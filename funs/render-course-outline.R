@@ -29,7 +29,7 @@ render_course_outline <- function(yml_file, header_level = 2){
   for (i in seq_along(chapters)){
 
     # oberabschnitt:
-    titel <- modul_zsfg[[i]][["title"]]
+    titel <- modul_zsfg[[i]][["Titel"]]
     cat(paste0(str_c(rep("#", header_level), collapse = "")," ", titel, "\n"))
     cat("\n")
 

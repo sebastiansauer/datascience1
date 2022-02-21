@@ -1,11 +1,11 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021) (preloaded format=xelatex 2022.2.1)  21 FEB 2022 21:52
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021) (preloaded format=xelatex 2022.2.21)  21 FEB 2022 21:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **Data-Science-1.tex
 (./Data-Science-1.tex
 LaTeX2e <2021-11-15> patch level 1
-L3 programming layer <2022-01-21> (/Users/sebastiansaueruser/Library/TinyTeX/te
+L3 programming layer <2022-02-05> (/Users/sebastiansaueruser/Library/TinyTeX/te
 xmf-dist/tex/latex/base/book.cls
 Document Class: book 2021/10/04 v1.4n Standard LaTeX document class
 (/Users/sebastiansaueruser/Library/TinyTeX/texmf-dist/tex/latex/base/bk10.clo
@@ -137,17 +137,17 @@ LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 )
 (/Users/sebastiansaueruser/Library/TinyTeX/texmf-dist/tex/generic/iftex/iftex.s
 ty
-Package: iftex 2020/03/06 v1.0d TeX engine tests
+Package: iftex 2022/02/03 v1.0f TeX engine tests
 )
 (/Users/sebastiansaueruser/Library/TinyTeX/texmf-dist/tex/latex/unicode-math/un
 icode-math.sty
 (/Users/sebastiansaueruser/Library/TinyTeX/texmf-dist/tex/latex/l3kernel/expl3.
 sty
-Package: expl3 2022-01-21 L3 programming layer (loader) 
+Package: expl3 2022-02-05 L3 programming layer (loader) 
 
 (/Users/sebastiansaueruser/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3bac
 kend-xetex.def
-File: l3backend-xetex.def 2022-01-12 L3 backend support: XeTeX
+File: l3backend-xetex.def 2022-02-07 L3 backend support: XeTeX
 (|extractbb --version)
 \c__kernel_sys_dvipdfmx_version_int=\count268
 \l__color_backend_stack_int=\count269
@@ -1037,10 +1037,10 @@ Type  H <return>  for immediate help.
 l.166 ...and\NAT@force@numbers{}\NAT@force@numbers
                                                    
 Here is how much of TeX's memory you used:
- 19269 strings out of 478142
- 357097 string characters out of 5850165
- 818250 words of memory out of 5000000
- 39611 multiletter control sequences out of 15000+600000
+ 19277 strings out of 478133
+ 357239 string characters out of 5849961
+ 818662 words of memory out of 5000000
+ 39628 multiletter control sequences out of 15000+600000
  475718 words of font info for 82 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  86i,6n,121p,1011b,417s stack positions out of 5000i,500n,10000p,200000b,80000s
