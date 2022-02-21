@@ -1,0 +1,11 @@
+# Modulzeitplan
+
+
+
+```{r render-outline-table, results = "asis", echo = FALSE, message = FALSE}
+source(paste0(here::here(),"/funs/render-course-table.R"))
+yml_file <- "_modul-ueberblick.yml"
+
+render_course_table(yml_file)
+```
+

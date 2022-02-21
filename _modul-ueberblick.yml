@@ -1,0 +1,150 @@
+thema1:
+  title: "Grundkonzepte"
+  kw: 11
+  datum: 14.-18.3.22
+  subtitle: "Einführung in das (und Ihr) Thema Forschung"
+  vorbereitung:
+    - Lesen Sie die Hinweise zum Modul.
+    - Installieren (oder Updaten) Sie die für dieses Modul angegeben Software.
+    - Lesen Sie die Literatur.
+  lernziele:
+    - Sie können erläutern, was man unter statistischem Lernen versteht.
+    - Sie wissen, war Overfitting ist, wie es entsteht, und wie es vermieden werden kann.
+    - Sie kennen verschiedenen Arten von statistischem Lernen und können Algorithmen zu diesen Arten zuordnen.
+  literatur:
+    - Rhys, Kap. 1
+  skript:
+    - "[Kap. 1]()"
+  hinweise:
+    - "Bitte beachten Sie die Einteilung in die Züge für den Präsenzunterricht."
+
+
+thema2:
+  title: "tidyverse, 2. Blick"
+  kw: 12
+  datum: 21.3.-25.3.
+  literatur:
+    - "Rhys, Kap. 2"
+  lernziele:
+    - Sie können Funktionen, auch anonyme, in R schreiben.
+    - Sie können Datensätze vom Lang- und Breit-Format wechseln.
+    - Sie können Mapping-Funktionen anwenden.
+    - Sie können eine dplyr-Funktion auf mehrere Spalten gleichzeitig anwenden.
+  vorbereitung:
+    - Lesen Sie die Literatur.
+
+
+
+
+thema3:
+  title: "tidymodels"
+  kw: 13
+  datum: 28.3.-1.4.
+  literatur:
+    - TMWR
+
+
+thema4:
+  title: "kNN"
+  kw: 14
+  datum: 4.4.-8.4.
+  literatur:
+    - "Rhys, Kap. 3"
+
+
+thema5:
+  title: "Statistisches Lernen"
+  kw: 15
+  datum: 11.4.-15.4.
+  hinweise:
+    - In dieser Woche fällt die Übung aus.
+  literatur:
+    - "Rhys, Kap. 3"
+
+
+thema6:
+  title: "Wiederholung"
+  kw: 16
+  datum: 18.4.-22.4
+  hinweise: 
+    - In dieser Woche fällt die Vorlesung aus.
+ 
+
+
+thema7:
+  title: "Logistische Regression"
+  kw: 17
+  datum: 25.4.-29.4.
+  literatur:
+    - "Rhys, Kap. 4"
+
+
+thema8:
+  title: "Naive Bayes"
+  kw: 18
+  datum: 2.4.-6.5.
+  literatur:
+    - "Rhys, Kap. 6"
+
+
+thema9:
+  title: "Entscheidungsbäume"
+  kw: 19
+  datum: 9.5.-13.5.
+  literatur:
+    - "Rhys, Kap. 7"
+
+
+thema10:
+  title: "Zufallswälder"
+  kw: 20
+  datum: 16.5.-20.5.
+  literatur:
+    - "Rhys, Kap. 8"
+    
+
+thema11:
+  title: "Fallstudie"
+  kw: 21
+  datum: 23.5.-27.5.
+  hinweise:
+    - Nächste Woche ist Blockwoche; es findet kein regulärer Unterricht statt.
+    - Diese Woche fällt die Übung aus.
+  literatur:
+    - "Rhys, Kap.9"
+
+
+thema12:
+  title: "Wiederholung"
+  kw: 23
+  datum: 6.6.-10.6.
+  hinweise:
+    - In dieser Woche fällt die Vorlesung aus.
+
+thema13:
+  title: "GAM"
+  kw: 24
+  datum: 13.6.-17.6.
+  literatur:
+    - "Rhys, Kap. 10"
+
+
+
+
+thema14:
+  title: "Lasso und Co"
+  kw: 25
+  datum: 20.6.-24.6.
+  literatur:
+    - "Rhys, Kap. 11"
+
+
+thema15:
+  title: "Vertiefung"
+  kw: 26
+  datum: 27.6.-1.7.
+  literatur:
+    - "Rhys, Kap. 12"    
+  hinweise:
+    - Nach dieser Woche endet der Unterricht.
+
