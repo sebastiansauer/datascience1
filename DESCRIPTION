@@ -1,6 +1,7 @@
 Package: placeholder
 Type: Book
-Title: Does not matter.
+Title: DataScience1
 Version: 0.0.1
 Imports: bookdown
 Remotes: rstudio/bookdown
+date: 2022-02-22

@@ -124,7 +124,7 @@
 
 \title{Data Science 1}
 \author{Sebastian Sauer}
-\date{2022-02-21 21:56:46}
+\date{2022-02-21 22:34:24}
 
 \begin{document}
 \maketitle
@@ -133,31 +133,17 @@
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
+\hypertarget{uxfcberblick}{%
+\chapter{Überblick}\label{uxfcberblick}}
+
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(tidyverse)}
+\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{include\_graphics}\NormalTok{(}\StringTok{"img/662upp.jpg"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## -- Attaching packages --------------------------------------- tidyverse 1.3.1 --
-\end{verbatim}
-
-\begin{verbatim}
-## v ggplot2 3.3.5     v purrr   0.3.4
-## v tibble  3.1.6     v dplyr   1.0.8
-## v tidyr   1.2.0     v stringr 1.4.0
-## v readr   2.1.2     v forcats 0.5.1
-\end{verbatim}
-
-\begin{verbatim}
-## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()
-\end{verbatim}
-
-\hypertarget{uxfcberblick}{%
-\chapter{Überblick}\label{uxfcberblick}}
+\includegraphics[width=7.32in]{img/662upp}
+\href{https://imgflip.com/i/662upp}{Imgflip Meme Generator}
 
 \hypertarget{was-sie-hier-lernen-und-wozu-das-gut-ist}{%
 \section{Was Sie hier lernen und wozu das gut ist}\label{was-sie-hier-lernen-und-wozu-das-gut-ist}}
@@ -260,11 +246,37 @@ sollten Sie folgendes Wissen mitbringen:
   \href{https://de.padlet.com/}{Padlet} zum einfachen (und anonymen) Hochladen von Arbeitsergebnissen der Studentis im Unterricht. Wir nutzen es als eine Art Pinwand zum Sammeln von Arbeitsbeiträgen. Die Zugangsdaten stellt Ihnen der Dozent bereit.
 \end{itemize}
 
+\hypertarget{modulzeitplan}{%
+\section{Modulzeitplan}\label{modulzeitplan}}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+Nr. & Kalenderwoche & Datum & Thema \\
+\midrule
+\endhead
+1 & 11 & 14.-18.3.22 & Grundkonzepte \\
+2 & 12 & 21.3.-25.3. & tidyverse, 2. Blick \\
+3 & 13 & 28.3.-1.4. & tidymodels \\
+4 & 14 & 4.4.-8.4. & kNN \\
+5 & 15 & 11.4.-15.4. & Statistisches Lernen \\
+6 & 16 & 18.4.-22.4 & Wiederholung \\
+7 & 17 & 25.4.-29.4. & Logistische Regression \\
+8 & 18 & 2.4.-6.5. & Naive Bayes \\
+9 & 19 & 9.5.-13.5. & Entscheidungsbäume \\
+10 & 20 & 16.5.-20.5. & Zufallswälder \\
+11 & 21 & 23.5.-27.5. & Fallstudie \\
+12 & 23 & 6.6.-10.6. & Wiederholung \\
+13 & 24 & 13.6.-17.6. & GAM \\
+14 & 25 & 20.6.-24.6. & Lasso und Co \\
+15 & 26 & 27.6.-1.7. & Vertiefung \\
+\bottomrule
+\end{longtable}
+
 \hypertarget{literatur}{%
 \section{Literatur}\label{literatur}}
 
 Zentrale Kursliteratur für die theoretischen Konzepte ist \citep{rhys_machine_2020}.
-Die praktische Umsetzung in R basiert auf \citep{silge_tidy_nodate}.
+Die praktische Umsetzung in R basiert auf \citep{silge_tidy_2022}.
 
 \hypertarget{moduluxfcberblick}{%
 \chapter{Modulüberblick}\label{moduluxfcberblick}}
@@ -680,32 +692,6 @@ Die praktische Umsetzung in R basiert auf \citep{silge_tidy_nodate}.
 \item
   Nach dieser Woche endet der Unterricht.
 \end{itemize}
-
-\hypertarget{modulzeitplan}{%
-\chapter{Modulzeitplan}\label{modulzeitplan}}
-
-\begin{longtable}[]{@{}llll@{}}
-\toprule
-Nr. & Kalenderwoche & Datum & Thema \\
-\midrule
-\endhead
-1 & 11 & 14.-18.3.22 & Grundkonzepte \\
-2 & 12 & 21.3.-25.3. & tidyverse, 2. Blick \\
-3 & 13 & 28.3.-1.4. & tidymodels \\
-4 & 14 & 4.4.-8.4. & kNN \\
-5 & 15 & 11.4.-15.4. & Statistisches Lernen \\
-6 & 16 & 18.4.-22.4 & Wiederholung \\
-7 & 17 & 25.4.-29.4. & Logistische Regression \\
-8 & 18 & 2.4.-6.5. & Naive Bayes \\
-9 & 19 & 9.5.-13.5. & Entscheidungsbäume \\
-10 & 20 & 16.5.-20.5. & Zufallswälder \\
-11 & 21 & 23.5.-27.5. & Fallstudie \\
-12 & 23 & 6.6.-10.6. & Wiederholung \\
-13 & 24 & 13.6.-17.6. & GAM \\
-14 & 25 & 20.6.-24.6. & Lasso und Co \\
-15 & 26 & 27.6.-1.7. & Vertiefung \\
-\bottomrule
-\end{longtable}
 
   \bibliography{book.bib,packages.bib}
 
