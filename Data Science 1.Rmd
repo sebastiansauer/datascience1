@@ -1,0 +1,173 @@
+--- 
+title: "Data Science 1"
+author: "Sebastian Sauer"
+date: "`r Sys.time()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+description: "Ein Kurs zu den Grundlagen des statistischen Lernens mit einem Fokus auf Prognosemodelle für hoch strukturierte Daten"
+---
+
+
+
+```{r}
+library(tidyverse)
+```
+
+
+
+# Überblick
+
+
+
+
+## Was Sie hier lernen und wozu das gut ist
+
+Alle Welt spricht von Big Data, aber ohne die Analyse sind die großen Daten nur großes Rauschen. Was letztlich interessiert, sind die Erkenntnisse, die Einblicke, nicht die Daten an sich. 
+Dabei ist es egal, ob die Daten groß oder klein sind. 
+Natürlich erlauben die heutigen Datenmengen im Verbund mit leistungsfähigen Rechnern und neuen Analysemethoden ein Verständnis, 
+das vor Kurzem noch nicht möglich war. 
+Und wir stehen erst am Anfang dieser Entwicklung. 
+Vielleicht handelt es sich bei diesem Feld um eines der dynamischsten Fachgebiete der heutigen Zeit. 
+Sie sind dabei: Sie lernen einiges Handwerkszeugs des "Datenwissenschaftlers". 
+Wir konzentrieren uns auf das vielleicht bekannteste Teilgebiet: 
+Ereignisse vorhersagen auf Basis von hoch strukturierten Daten 
+und geeigneter Algorithmen und Verfahren.
+Nach diesem Kurs sollten Sie in der Lage sein,
+typisches Gebabbel des Fachgebiet mit Lässigkeit mitzumachen.
+Ach ja, und mit einigem Erfolg Vorhersagemodelle entwickeln.
+
+
+
+
+## Lernziele
+
+Nach diesem Kurs sollten Sie
+
+- grundlegende Konzepte des statistischen Lernens verstehen und mit R anwenden können
+- gängige Prognose-Algorithmen kennen, in Grundzügen verstehen und mit R anwenden können
+- die Güte und Grenze von Prognosemodellen einschätzen können
+
+
+## Voraussetzungen
+
+Um von diesem Kurs am besten zu profitieren,
+sollten Sie folgendes Wissen mitbringen:
+
+
+- grundlegende Kenntnisse im Umgang mit R, möglichst auch mit dem tidyverse
+- grundlegende Kenntnisse der deskriptiven Statistik
+- grundlegende Kenntnis der Regressionsanalyse
+
+
+
+
+
+## Hinweise zu diesem Projekt
+
+- Die URL zu diesem Projekt lautet <test.io>.
+
+- Lesen Sie sich die folgenden Informationen bitte gut durch: [Hinweise](https://sebastiansauer.github.io/fopra/Interna/Hinweise.html)
+
+- Den Quellcode finden Sie [in diesem Github-Repo](https://github.com/sebastiansauer/datascience1).
+
+- Sie haben Feedback, Fehlerhinweise oder Wünsche zur Weiterentwicklung? Am besten stellen Sie  [hier](https://github.com/sebastiansauer/datascience1/issues) einen *Issue*  ein.
+
+- Dieses Projekt steht unter der [MIT-Lizenz](https://github.com/sebastiansauer/datascience1/blob/main/LICENSE)). 
+
+
+
+
+
+## Lernhilfen
+
+
+
+
+### Software
+
+- Installieren Sie [R und seine Freunde](https://data-se.netlify.app/2021/11/30/installation-von-r-und-seiner-freunde/).
+- Installieren Sie die folgende R-Pakete:
+    - tidyverse
+    - tidymodels
+    - weitere Pakete werden im Unterricht bekannt gegeben (es schadet aber nichts, jetzt schon Pakete nach eigenem Ermessen zu installieren)
+- [R Syntax aus dem Unterricht](https://github.com/sebastiansauer/Lehre) findet sich im Github-Repo bzw. Ordner zum jeweiligen Semester.
+
+
+
+
+
+### Online-Zusammenarbeit
+
+- [Frag-Jetzt-Raum zum anonymen Fragen stellen während des Unterrichts](https://frag.jetzt/home). Der Keycode wird Ihnen vom Dozenten bereitgestellt.
+- [Padlet](https://de.padlet.com/) zum einfachen (und anonymen) Hochladen von Arbeitsergebnissen der Studentis im Unterricht. Wir nutzen es als eine Art Pinwand zum Sammeln von Arbeitsbeiträgen. Die Zugangsdaten stellt Ihnen der Dozent bereit.
+
+
+
+
+
+
+
+
+## Literatur
+
+Zentrale Kursliteratur für die theoretischen Konzepte ist [@rhys_machine_2020].
+Die praktische Umsetzung in R basiert auf [@silge_tidy_nodate].
+
+
+
+
+
+
+
+
+
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```
+
+
+<!--chapter:end:index.Rmd-->
+
+# Modulüberblick
+
+
+
+```{r render-outline, results = "asis", echo = FALSE, message = FALSE}
+source(paste0(here::here(),"/funs/render-course-outline.R"))
+yml_file <- "_modul-ueberblick.yml"
+
+render_course_outline(yml_file)
+```
+
+
+<!--chapter:end:01-Modulueberblick.Rmd-->
+
+# Modulzeitplan
+
+
+
+```{r render-outline-table, results = "asis", echo = FALSE, message = FALSE}
+source(paste0(here::here(),"/funs/render-course-table.R"))
+yml_file <- "_modul-ueberblick.yml"
+
+render_course_table(yml_file)
+```
+
+
+<!--chapter:end:02-Modulzeitplan.Rmd-->
+
+`r if (knitr:::is_html_output()) '
+# References {-}
+'`
+
+<!--chapter:end:06-references.Rmd-->
+

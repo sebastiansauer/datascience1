@@ -1,0 +1,712 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{book}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Data Science 1},
+  pdfauthor={Sebastian Sauer},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{booktabs}
+\usepackage{amsthm}
+\makeatletter
+\def\thm@space@setup{%
+  \thm@preskip=8pt plus 2pt minus 4pt
+  \thm@postskip=\thm@preskip
+}
+\makeatother
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage[]{natbib}
+\bibliographystyle{apalike}
+
+\title{Data Science 1}
+\author{Sebastian Sauer}
+\date{2022-02-21 21:52:38}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## -- Attaching packages --------------------------------------- tidyverse 1.3.1 --
+\end{verbatim}
+
+\begin{verbatim}
+## v ggplot2 3.3.5     v purrr   0.3.4
+## v tibble  3.1.6     v dplyr   1.0.8
+## v tidyr   1.2.0     v stringr 1.4.0
+## v readr   2.1.2     v forcats 0.5.1
+\end{verbatim}
+
+\begin{verbatim}
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+\end{verbatim}
+
+\hypertarget{uxfcberblick}{%
+\chapter{Überblick}\label{uxfcberblick}}
+
+\hypertarget{was-sie-hier-lernen-und-wozu-das-gut-ist}{%
+\section{Was Sie hier lernen und wozu das gut ist}\label{was-sie-hier-lernen-und-wozu-das-gut-ist}}
+
+Alle Welt spricht von Big Data, aber ohne die Analyse sind die großen Daten nur großes Rauschen. Was letztlich interessiert, sind die Erkenntnisse, die Einblicke, nicht die Daten an sich.
+Dabei ist es egal, ob die Daten groß oder klein sind.
+Natürlich erlauben die heutigen Datenmengen im Verbund mit leistungsfähigen Rechnern und neuen Analysemethoden ein Verständnis,
+das vor Kurzem noch nicht möglich war.
+Und wir stehen erst am Anfang dieser Entwicklung.
+Vielleicht handelt es sich bei diesem Feld um eines der dynamischsten Fachgebiete der heutigen Zeit.
+Sie sind dabei: Sie lernen einiges Handwerkszeugs des ``Datenwissenschaftlers''.
+Wir konzentrieren uns auf das vielleicht bekannteste Teilgebiet:
+Ereignisse vorhersagen auf Basis von hoch strukturierten Daten
+und geeigneter Algorithmen und Verfahren.
+Nach diesem Kurs sollten Sie in der Lage sein,
+typisches Gebabbel des Fachgebiet mit Lässigkeit mitzumachen.
+Ach ja, und mit einigem Erfolg Vorhersagemodelle entwickeln.
+
+\hypertarget{lernziele}{%
+\section{Lernziele}\label{lernziele}}
+
+Nach diesem Kurs sollten Sie
+
+\begin{itemize}
+\tightlist
+\item
+  grundlegende Konzepte des statistischen Lernens verstehen und mit R anwenden können
+\item
+  gängige Prognose-Algorithmen kennen, in Grundzügen verstehen und mit R anwenden können
+\item
+  die Güte und Grenze von Prognosemodellen einschätzen können
+\end{itemize}
+
+\hypertarget{voraussetzungen}{%
+\section{Voraussetzungen}\label{voraussetzungen}}
+
+Um von diesem Kurs am besten zu profitieren,
+sollten Sie folgendes Wissen mitbringen:
+
+\begin{itemize}
+\tightlist
+\item
+  grundlegende Kenntnisse im Umgang mit R, möglichst auch mit dem tidyverse
+\item
+  grundlegende Kenntnisse der deskriptiven Statistik
+\item
+  grundlegende Kenntnis der Regressionsanalyse
+\end{itemize}
+
+\hypertarget{hinweise-zu-diesem-projekt}{%
+\section{Hinweise zu diesem Projekt}\label{hinweise-zu-diesem-projekt}}
+
+\begin{itemize}
+\item
+  Die URL zu diesem Projekt lautet \textless test.io\textgreater.
+\item
+  Lesen Sie sich die folgenden Informationen bitte gut durch: \href{https://sebastiansauer.github.io/fopra/Interna/Hinweise.html}{Hinweise}
+\item
+  Den Quellcode finden Sie \href{https://github.com/sebastiansauer/datascience1}{in diesem Github-Repo}.
+\item
+  Sie haben Feedback, Fehlerhinweise oder Wünsche zur Weiterentwicklung? Am besten stellen Sie \href{https://github.com/sebastiansauer/datascience1/issues}{hier} einen \emph{Issue} ein.
+\item
+  Dieses Projekt steht unter der \href{https://github.com/sebastiansauer/datascience1/blob/main/LICENSE}{MIT-Lizenz}).
+\end{itemize}
+
+\hypertarget{lernhilfen}{%
+\section{Lernhilfen}\label{lernhilfen}}
+
+\hypertarget{software}{%
+\subsection{Software}\label{software}}
+
+\begin{itemize}
+\tightlist
+\item
+  Installieren Sie \href{https://data-se.netlify.app/2021/11/30/installation-von-r-und-seiner-freunde/}{R und seine Freunde}.
+\item
+  Installieren Sie die folgende R-Pakete:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    tidyverse
+  \item
+    tidymodels
+  \item
+    weitere Pakete werden im Unterricht bekannt gegeben (es schadet aber nichts, jetzt schon Pakete nach eigenem Ermessen zu installieren)
+  \end{itemize}
+\item
+  \href{https://github.com/sebastiansauer/Lehre}{R Syntax aus dem Unterricht} findet sich im Github-Repo bzw. Ordner zum jeweiligen Semester.
+\end{itemize}
+
+\hypertarget{online-zusammenarbeit}{%
+\subsection{Online-Zusammenarbeit}\label{online-zusammenarbeit}}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://frag.jetzt/home}{Frag-Jetzt-Raum zum anonymen Fragen stellen während des Unterrichts}. Der Keycode wird Ihnen vom Dozenten bereitgestellt.
+\item
+  \href{https://de.padlet.com/}{Padlet} zum einfachen (und anonymen) Hochladen von Arbeitsergebnissen der Studentis im Unterricht. Wir nutzen es als eine Art Pinwand zum Sammeln von Arbeitsbeiträgen. Die Zugangsdaten stellt Ihnen der Dozent bereit.
+\end{itemize}
+
+\hypertarget{literatur}{%
+\section{Literatur}\label{literatur}}
+
+Zentrale Kursliteratur für die theoretischen Konzepte ist \citep{rhys_machine_2020}.
+Die praktische Umsetzung in R basiert auf \citep{silge_tidy_nodate}.
+
+\hypertarget{moduluxfcberblick}{%
+\chapter{Modulüberblick}\label{moduluxfcberblick}}
+
+\hypertarget{section}{%
+\section{}\label{section}}
+
+\hypertarget{datum}{%
+\subsection{Datum}\label{datum}}
+
+\begin{itemize}
+\tightlist
+\item
+  14.-18.3.22
+\end{itemize}
+
+\hypertarget{lernziele-1}{%
+\subsection{Lernziele}\label{lernziele-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  Sie können erläutern, was man unter statistischem Lernen versteht.
+\item
+  Sie wissen, war Overfitting ist, wie es entsteht, und wie es vermieden werden kann.
+\item
+  Sie kennen verschiedenen Arten von statistischem Lernen und können Algorithmen zu diesen Arten zuordnen.
+\end{itemize}
+
+\hypertarget{vorbereitung}{%
+\subsection{Vorbereitung}\label{vorbereitung}}
+
+\begin{itemize}
+\tightlist
+\item
+  Lesen Sie die Hinweise zum Modul.
+\item
+  Installieren (oder Updaten) Sie die für dieses Modul angegeben Software.
+\item
+  Lesen Sie die Literatur.
+\end{itemize}
+
+\hypertarget{literatur-1}{%
+\subsection{Literatur}\label{literatur-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  Rhys, Kap. 1
+\end{itemize}
+
+\hypertarget{skript}{%
+\subsection{Skript}\label{skript}}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{}{Kap. 1}
+\end{itemize}
+
+\hypertarget{hinweise}{%
+\subsection{Hinweise}\label{hinweise}}
+
+\begin{itemize}
+\tightlist
+\item
+  Bitte beachten Sie die Einteilung in die Züge für den Präsenzunterricht.
+\end{itemize}
+
+\hypertarget{section-1}{%
+\section{}\label{section-1}}
+
+\hypertarget{datum-1}{%
+\subsection{Datum}\label{datum-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  21.3.-25.3.
+\end{itemize}
+
+\hypertarget{lernziele-2}{%
+\subsection{Lernziele}\label{lernziele-2}}
+
+\begin{itemize}
+\tightlist
+\item
+  Sie können Funktionen, auch anonyme, in R schreiben.
+\item
+  Sie können Datensätze vom Lang- und Breit-Format wechseln.
+\item
+  Sie können Mapping-Funktionen anwenden.
+\item
+  Sie können eine dplyr-Funktion auf mehrere Spalten gleichzeitig anwenden.
+\end{itemize}
+
+\hypertarget{vorbereitung-1}{%
+\subsection{Vorbereitung}\label{vorbereitung-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  Lesen Sie die Literatur.
+\end{itemize}
+
+\hypertarget{literatur-2}{%
+\subsection{Literatur}\label{literatur-2}}
+
+\begin{itemize}
+\tightlist
+\item
+  Rhys, Kap. 2
+\end{itemize}
+
+\hypertarget{section-2}{%
+\section{}\label{section-2}}
+
+\hypertarget{datum-2}{%
+\subsection{Datum}\label{datum-2}}
+
+\begin{itemize}
+\tightlist
+\item
+  28.3.-1.4.
+\end{itemize}
+
+\hypertarget{literatur-3}{%
+\subsection{Literatur}\label{literatur-3}}
+
+\begin{itemize}
+\tightlist
+\item
+  TMWR
+\end{itemize}
+
+\hypertarget{section-3}{%
+\section{}\label{section-3}}
+
+\hypertarget{datum-3}{%
+\subsection{Datum}\label{datum-3}}
+
+\begin{itemize}
+\tightlist
+\item
+  4.4.-8.4.
+\end{itemize}
+
+\hypertarget{literatur-4}{%
+\subsection{Literatur}\label{literatur-4}}
+
+\begin{itemize}
+\tightlist
+\item
+  Rhys, Kap. 3
+\end{itemize}
+
+\hypertarget{section-4}{%
+\section{}\label{section-4}}
+
+\hypertarget{datum-4}{%
+\subsection{Datum}\label{datum-4}}
+
+\begin{itemize}
+\tightlist
+\item
+  11.4.-15.4.
+\end{itemize}
+
+\hypertarget{literatur-5}{%
+\subsection{Literatur}\label{literatur-5}}
+
+\begin{itemize}
+\tightlist
+\item
+  Rhys, Kap. 3
+\end{itemize}
+
+\hypertarget{hinweise-1}{%
+\subsection{Hinweise}\label{hinweise-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  In dieser Woche fällt die Übung aus.
+\end{itemize}
+
+\hypertarget{section-5}{%
+\section{}\label{section-5}}
+
+\hypertarget{datum-5}{%
+\subsection{Datum}\label{datum-5}}
+
+\begin{itemize}
+\tightlist
+\item
+  18.4.-22.4
+\end{itemize}
+
+\hypertarget{hinweise-2}{%
+\subsection{Hinweise}\label{hinweise-2}}
+
+\begin{itemize}
+\tightlist
+\item
+  In dieser Woche fällt die Vorlesung aus.
+\end{itemize}
+
+\hypertarget{section-6}{%
+\section{}\label{section-6}}
+
+\hypertarget{datum-6}{%
+\subsection{Datum}\label{datum-6}}
+
+\begin{itemize}
+\tightlist
+\item
+  25.4.-29.4.
+\end{itemize}
+
+\hypertarget{literatur-6}{%
+\subsection{Literatur}\label{literatur-6}}
+
+\begin{itemize}
+\tightlist
+\item
+  Rhys, Kap. 4
+\end{itemize}
+
+\hypertarget{section-7}{%
+\section{}\label{section-7}}
+
+\hypertarget{datum-7}{%
+\subsection{Datum}\label{datum-7}}
+
+\begin{itemize}
+\tightlist
+\item
+  2.4.-6.5.
+\end{itemize}
+
+\hypertarget{literatur-7}{%
+\subsection{Literatur}\label{literatur-7}}
+
+\begin{itemize}
+\tightlist
+\item
+  Rhys, Kap. 6
+\end{itemize}
+
+\hypertarget{section-8}{%
+\section{}\label{section-8}}
+
+\hypertarget{datum-8}{%
+\subsection{Datum}\label{datum-8}}
+
+\begin{itemize}
+\tightlist
+\item
+  9.5.-13.5.
+\end{itemize}
+
+\hypertarget{literatur-8}{%
+\subsection{Literatur}\label{literatur-8}}
+
+\begin{itemize}
+\tightlist
+\item
+  Rhys, Kap. 7
+\end{itemize}
+
+\hypertarget{section-9}{%
+\section{}\label{section-9}}
+
+\hypertarget{datum-9}{%
+\subsection{Datum}\label{datum-9}}
+
+\begin{itemize}
+\tightlist
+\item
+  16.5.-20.5.
+\end{itemize}
+
+\hypertarget{literatur-9}{%
+\subsection{Literatur}\label{literatur-9}}
+
+\begin{itemize}
+\tightlist
+\item
+  Rhys, Kap. 8
+\end{itemize}
+
+\hypertarget{section-10}{%
+\section{}\label{section-10}}
+
+\hypertarget{datum-10}{%
+\subsection{Datum}\label{datum-10}}
+
+\begin{itemize}
+\tightlist
+\item
+  23.5.-27.5.
+\end{itemize}
+
+\hypertarget{literatur-10}{%
+\subsection{Literatur}\label{literatur-10}}
+
+\begin{itemize}
+\tightlist
+\item
+  Rhys, Kap.9
+\end{itemize}
+
+\hypertarget{hinweise-3}{%
+\subsection{Hinweise}\label{hinweise-3}}
+
+\begin{itemize}
+\tightlist
+\item
+  Nächste Woche ist BlocKalenderwocheoche; es findet kein regulärer Unterricht statt.
+\item
+  Diese Woche fällt die Übung aus.
+\end{itemize}
+
+\hypertarget{section-11}{%
+\section{}\label{section-11}}
+
+\hypertarget{datum-11}{%
+\subsection{Datum}\label{datum-11}}
+
+\begin{itemize}
+\tightlist
+\item
+  6.6.-10.6.
+\end{itemize}
+
+\hypertarget{hinweise-4}{%
+\subsection{Hinweise}\label{hinweise-4}}
+
+\begin{itemize}
+\tightlist
+\item
+  In dieser Woche fällt die Vorlesung aus.
+\end{itemize}
+
+\hypertarget{section-12}{%
+\section{}\label{section-12}}
+
+\hypertarget{datum-12}{%
+\subsection{Datum}\label{datum-12}}
+
+\begin{itemize}
+\tightlist
+\item
+  13.6.-17.6.
+\end{itemize}
+
+\hypertarget{literatur-11}{%
+\subsection{Literatur}\label{literatur-11}}
+
+\begin{itemize}
+\tightlist
+\item
+  Rhys, Kap. 10
+\end{itemize}
+
+\hypertarget{section-13}{%
+\section{}\label{section-13}}
+
+\hypertarget{datum-13}{%
+\subsection{Datum}\label{datum-13}}
+
+\begin{itemize}
+\tightlist
+\item
+  20.6.-24.6.
+\end{itemize}
+
+\hypertarget{literatur-12}{%
+\subsection{Literatur}\label{literatur-12}}
+
+\begin{itemize}
+\tightlist
+\item
+  Rhys, Kap. 11
+\end{itemize}
+
+\hypertarget{section-14}{%
+\section{}\label{section-14}}
+
+\hypertarget{datum-14}{%
+\subsection{Datum}\label{datum-14}}
+
+\begin{itemize}
+\tightlist
+\item
+  27.6.-1.7.
+\end{itemize}
+
+\hypertarget{literatur-13}{%
+\subsection{Literatur}\label{literatur-13}}
+
+\begin{itemize}
+\tightlist
+\item
+  Rhys, Kap. 12
+\end{itemize}
+
+\hypertarget{hinweise-5}{%
+\subsection{Hinweise}\label{hinweise-5}}
+
+\begin{itemize}
+\tightlist
+\item
+  Nach dieser Woche endet der Unterricht.
+\end{itemize}
+
+\hypertarget{modulzeitplan}{%
+\chapter{Modulzeitplan}\label{modulzeitplan}}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+Nr. & Kalenderwoche & Datum & Thema \\
+\midrule
+\endhead
+1 & 11 & 14.-18.3.22 & Grundkonzepte \\
+2 & 12 & 21.3.-25.3. & tidyverse, 2. Blick \\
+3 & 13 & 28.3.-1.4. & tidymodels \\
+4 & 14 & 4.4.-8.4. & kNN \\
+5 & 15 & 11.4.-15.4. & Statistisches Lernen \\
+6 & 16 & 18.4.-22.4 & Wiederholung \\
+7 & 17 & 25.4.-29.4. & Logistische Regression \\
+8 & 18 & 2.4.-6.5. & Naive Bayes \\
+9 & 19 & 9.5.-13.5. & Entscheidungsbäume \\
+10 & 20 & 16.5.-20.5. & Zufallswälder \\
+11 & 21 & 23.5.-27.5. & Fallstudie \\
+12 & 23 & 6.6.-10.6. & Wiederholung \\
+13 & 24 & 13.6.-17.6. & GAM \\
+14 & 25 & 20.6.-24.6. & Lasso und Co \\
+15 & 26 & 27.6.-1.7. & Vertiefung \\
+\bottomrule
+\end{longtable}
+
+  \bibliography{book.bib,packages.bib}
+
+\end{document}

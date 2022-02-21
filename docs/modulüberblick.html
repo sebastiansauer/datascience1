@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Kapitel 2 Modulüberblick | Data Science 1</title>
+  <meta name="description" content="Ein Kurs zu den Grundlagen des statistischen Lernens mit einem Fokus auf Prognosemodelle für hoch strukturierte Daten" />
+  <meta name="generator" content="bookdown 0.24.2 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Kapitel 2 Modulüberblick | Data Science 1" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Ein Kurs zu den Grundlagen des statistischen Lernens mit einem Fokus auf Prognosemodelle für hoch strukturierte Daten" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Kapitel 2 Modulüberblick | Data Science 1" />
+  
+  <meta name="twitter:description" content="Ein Kurs zu den Grundlagen des statistischen Lernens mit einem Fokus auf Prognosemodelle für hoch strukturierte Daten" />
+  
+
+<meta name="author" content="Sebastian Sauer" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="modulzeitplan.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Science Grundlagen</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Überblick</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#was-sie-hier-lernen-und-wozu-das-gut-ist"><i class="fa fa-check"></i><b>1.1</b> Was Sie hier lernen und wozu das gut ist</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#lernziele"><i class="fa fa-check"></i><b>1.2</b> Lernziele</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#voraussetzungen"><i class="fa fa-check"></i><b>1.3</b> Voraussetzungen</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#hinweise-zu-diesem-projekt"><i class="fa fa-check"></i><b>1.4</b> Hinweise zu diesem Projekt</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#lernhilfen"><i class="fa fa-check"></i><b>1.5</b> Lernhilfen</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="index.html"><a href="index.html#software"><i class="fa fa-check"></i><b>1.5.1</b> Software</a></li>
+<li class="chapter" data-level="1.5.2" data-path="index.html"><a href="index.html#online-zusammenarbeit"><i class="fa fa-check"></i><b>1.5.2</b> Online-Zusammenarbeit</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#literatur"><i class="fa fa-check"></i><b>1.6</b> Literatur</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="modulüberblick.html"><a href="modulüberblick.html"><i class="fa fa-check"></i><b>2</b> Modulüberblick</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="modulüberblick.html"><a href="modulüberblick.html#section"><i class="fa fa-check"></i><b>2.1</b> </a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="modulüberblick.html"><a href="modulüberblick.html#datum"><i class="fa fa-check"></i><b>2.1.1</b> Datum</a></li>
+<li class="chapter" data-level="2.1.2" data-path="modulüberblick.html"><a href="modulüberblick.html#lernziele-1"><i class="fa fa-check"></i><b>2.1.2</b> Lernziele</a></li>
+<li class="chapter" data-level="2.1.3" data-path="modulüberblick.html"><a href="modulüberblick.html#vorbereitung"><i class="fa fa-check"></i><b>2.1.3</b> Vorbereitung</a></li>
+<li class="chapter" data-level="2.1.4" data-path="modulüberblick.html"><a href="modulüberblick.html#literatur-1"><i class="fa fa-check"></i><b>2.1.4</b> Literatur</a></li>
+<li class="chapter" data-level="2.1.5" data-path="modulüberblick.html"><a href="modulüberblick.html#skript"><i class="fa fa-check"></i><b>2.1.5</b> Skript</a></li>
+<li class="chapter" data-level="2.1.6" data-path="modulüberblick.html"><a href="modulüberblick.html#hinweise"><i class="fa fa-check"></i><b>2.1.6</b> Hinweise</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="modulüberblick.html"><a href="modulüberblick.html#section-1"><i class="fa fa-check"></i><b>2.2</b> </a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="modulüberblick.html"><a href="modulüberblick.html#datum-1"><i class="fa fa-check"></i><b>2.2.1</b> Datum</a></li>
+<li class="chapter" data-level="2.2.2" data-path="modulüberblick.html"><a href="modulüberblick.html#lernziele-2"><i class="fa fa-check"></i><b>2.2.2</b> Lernziele</a></li>
+<li class="chapter" data-level="2.2.3" data-path="modulüberblick.html"><a href="modulüberblick.html#vorbereitung-1"><i class="fa fa-check"></i><b>2.2.3</b> Vorbereitung</a></li>
+<li class="chapter" data-level="2.2.4" data-path="modulüberblick.html"><a href="modulüberblick.html#literatur-2"><i class="fa fa-check"></i><b>2.2.4</b> Literatur</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="modulüberblick.html"><a href="modulüberblick.html#section-2"><i class="fa fa-check"></i><b>2.3</b> </a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="modulüberblick.html"><a href="modulüberblick.html#datum-2"><i class="fa fa-check"></i><b>2.3.1</b> Datum</a></li>
+<li class="chapter" data-level="2.3.2" data-path="modulüberblick.html"><a href="modulüberblick.html#literatur-3"><i class="fa fa-check"></i><b>2.3.2</b> Literatur</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="modulüberblick.html"><a href="modulüberblick.html#section-3"><i class="fa fa-check"></i><b>2.4</b> </a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="modulüberblick.html"><a href="modulüberblick.html#datum-3"><i class="fa fa-check"></i><b>2.4.1</b> Datum</a></li>
+<li class="chapter" data-level="2.4.2" data-path="modulüberblick.html"><a href="modulüberblick.html#literatur-4"><i class="fa fa-check"></i><b>2.4.2</b> Literatur</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="modulüberblick.html"><a href="modulüberblick.html#section-4"><i class="fa fa-check"></i><b>2.5</b> </a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="modulüberblick.html"><a href="modulüberblick.html#datum-4"><i class="fa fa-check"></i><b>2.5.1</b> Datum</a></li>
+<li class="chapter" data-level="2.5.2" data-path="modulüberblick.html"><a href="modulüberblick.html#literatur-5"><i class="fa fa-check"></i><b>2.5.2</b> Literatur</a></li>
+<li class="chapter" data-level="2.5.3" data-path="modulüberblick.html"><a href="modulüberblick.html#hinweise-1"><i class="fa fa-check"></i><b>2.5.3</b> Hinweise</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="modulüberblick.html"><a href="modulüberblick.html#section-5"><i class="fa fa-check"></i><b>2.6</b> </a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="modulüberblick.html"><a href="modulüberblick.html#datum-5"><i class="fa fa-check"></i><b>2.6.1</b> Datum</a></li>
+<li class="chapter" data-level="2.6.2" data-path="modulüberblick.html"><a href="modulüberblick.html#hinweise-2"><i class="fa fa-check"></i><b>2.6.2</b> Hinweise</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="modulüberblick.html"><a href="modulüberblick.html#section-6"><i class="fa fa-check"></i><b>2.7</b> </a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="modulüberblick.html"><a href="modulüberblick.html#datum-6"><i class="fa fa-check"></i><b>2.7.1</b> Datum</a></li>
+<li class="chapter" data-level="2.7.2" data-path="modulüberblick.html"><a href="modulüberblick.html#literatur-6"><i class="fa fa-check"></i><b>2.7.2</b> Literatur</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="modulüberblick.html"><a href="modulüberblick.html#section-7"><i class="fa fa-check"></i><b>2.8</b> </a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="modulüberblick.html"><a href="modulüberblick.html#datum-7"><i class="fa fa-check"></i><b>2.8.1</b> Datum</a></li>
+<li class="chapter" data-level="2.8.2" data-path="modulüberblick.html"><a href="modulüberblick.html#literatur-7"><i class="fa fa-check"></i><b>2.8.2</b> Literatur</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="modulüberblick.html"><a href="modulüberblick.html#section-8"><i class="fa fa-check"></i><b>2.9</b> </a>
+<ul>
+<li class="chapter" data-level="2.9.1" data-path="modulüberblick.html"><a href="modulüberblick.html#datum-8"><i class="fa fa-check"></i><b>2.9.1</b> Datum</a></li>
+<li class="chapter" data-level="2.9.2" data-path="modulüberblick.html"><a href="modulüberblick.html#literatur-8"><i class="fa fa-check"></i><b>2.9.2</b> Literatur</a></li>
+</ul></li>
+<li class="chapter" data-level="2.10" data-path="modulüberblick.html"><a href="modulüberblick.html#section-9"><i class="fa fa-check"></i><b>2.10</b> </a>
+<ul>
+<li class="chapter" data-level="2.10.1" data-path="modulüberblick.html"><a href="modulüberblick.html#datum-9"><i class="fa fa-check"></i><b>2.10.1</b> Datum</a></li>
+<li class="chapter" data-level="2.10.2" data-path="modulüberblick.html"><a href="modulüberblick.html#literatur-9"><i class="fa fa-check"></i><b>2.10.2</b> Literatur</a></li>
+</ul></li>
+<li class="chapter" data-level="2.11" data-path="modulüberblick.html"><a href="modulüberblick.html#section-10"><i class="fa fa-check"></i><b>2.11</b> </a>
+<ul>
+<li class="chapter" data-level="2.11.1" data-path="modulüberblick.html"><a href="modulüberblick.html#datum-10"><i class="fa fa-check"></i><b>2.11.1</b> Datum</a></li>
+<li class="chapter" data-level="2.11.2" data-path="modulüberblick.html"><a href="modulüberblick.html#literatur-10"><i class="fa fa-check"></i><b>2.11.2</b> Literatur</a></li>
+<li class="chapter" data-level="2.11.3" data-path="modulüberblick.html"><a href="modulüberblick.html#hinweise-3"><i class="fa fa-check"></i><b>2.11.3</b> Hinweise</a></li>
+</ul></li>
+<li class="chapter" data-level="2.12" data-path="modulüberblick.html"><a href="modulüberblick.html#section-11"><i class="fa fa-check"></i><b>2.12</b> </a>
+<ul>
+<li class="chapter" data-level="2.12.1" data-path="modulüberblick.html"><a href="modulüberblick.html#datum-11"><i class="fa fa-check"></i><b>2.12.1</b> Datum</a></li>
+<li class="chapter" data-level="2.12.2" data-path="modulüberblick.html"><a href="modulüberblick.html#hinweise-4"><i class="fa fa-check"></i><b>2.12.2</b> Hinweise</a></li>
+</ul></li>
+<li class="chapter" data-level="2.13" data-path="modulüberblick.html"><a href="modulüberblick.html#section-12"><i class="fa fa-check"></i><b>2.13</b> </a>
+<ul>
+<li class="chapter" data-level="2.13.1" data-path="modulüberblick.html"><a href="modulüberblick.html#datum-12"><i class="fa fa-check"></i><b>2.13.1</b> Datum</a></li>
+<li class="chapter" data-level="2.13.2" data-path="modulüberblick.html"><a href="modulüberblick.html#literatur-11"><i class="fa fa-check"></i><b>2.13.2</b> Literatur</a></li>
+</ul></li>
+<li class="chapter" data-level="2.14" data-path="modulüberblick.html"><a href="modulüberblick.html#section-13"><i class="fa fa-check"></i><b>2.14</b> </a>
+<ul>
+<li class="chapter" data-level="2.14.1" data-path="modulüberblick.html"><a href="modulüberblick.html#datum-13"><i class="fa fa-check"></i><b>2.14.1</b> Datum</a></li>
+<li class="chapter" data-level="2.14.2" data-path="modulüberblick.html"><a href="modulüberblick.html#literatur-12"><i class="fa fa-check"></i><b>2.14.2</b> Literatur</a></li>
+</ul></li>
+<li class="chapter" data-level="2.15" data-path="modulüberblick.html"><a href="modulüberblick.html#section-14"><i class="fa fa-check"></i><b>2.15</b> </a>
+<ul>
+<li class="chapter" data-level="2.15.1" data-path="modulüberblick.html"><a href="modulüberblick.html#datum-14"><i class="fa fa-check"></i><b>2.15.1</b> Datum</a></li>
+<li class="chapter" data-level="2.15.2" data-path="modulüberblick.html"><a href="modulüberblick.html#literatur-13"><i class="fa fa-check"></i><b>2.15.2</b> Literatur</a></li>
+<li class="chapter" data-level="2.15.3" data-path="modulüberblick.html"><a href="modulüberblick.html#hinweise-5"><i class="fa fa-check"></i><b>2.15.3</b> Hinweise</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="modulzeitplan.html"><a href="modulzeitplan.html"><i class="fa fa-check"></i><b>3</b> Modulzeitplan</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Science 1</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="modulüberblick" class="section level1" number="2">
+<h1><span class="header-section-number">Kapitel 2</span> Modulüberblick</h1>
+<div id="section" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> </h2>
+<div id="datum" class="section level3" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Datum</h3>
+<ul>
+<li>14.-18.3.22</li>
+</ul>
+</div>
+<div id="lernziele-1" class="section level3" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> Lernziele</h3>
+<ul>
+<li>Sie können erläutern, was man unter statistischem Lernen versteht.</li>
+<li>Sie wissen, war Overfitting ist, wie es entsteht, und wie es vermieden werden kann.</li>
+<li>Sie kennen verschiedenen Arten von statistischem Lernen und können Algorithmen zu diesen Arten zuordnen.</li>
+</ul>
+</div>
+<div id="vorbereitung" class="section level3" number="2.1.3">
+<h3><span class="header-section-number">2.1.3</span> Vorbereitung</h3>
+<ul>
+<li>Lesen Sie die Hinweise zum Modul.</li>
+<li>Installieren (oder Updaten) Sie die für dieses Modul angegeben Software.</li>
+<li>Lesen Sie die Literatur.</li>
+</ul>
+</div>
+<div id="literatur-1" class="section level3" number="2.1.4">
+<h3><span class="header-section-number">2.1.4</span> Literatur</h3>
+<ul>
+<li>Rhys, Kap. 1</li>
+</ul>
+</div>
+<div id="skript" class="section level3" number="2.1.5">
+<h3><span class="header-section-number">2.1.5</span> Skript</h3>
+<ul>
+<li><a href="">Kap. 1</a></li>
+</ul>
+</div>
+<div id="hinweise" class="section level3" number="2.1.6">
+<h3><span class="header-section-number">2.1.6</span> Hinweise</h3>
+<ul>
+<li>Bitte beachten Sie die Einteilung in die Züge für den Präsenzunterricht.</li>
+</ul>
+</div>
+</div>
+<div id="section-1" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> </h2>
+<div id="datum-1" class="section level3" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Datum</h3>
+<ul>
+<li>21.3.-25.3.</li>
+</ul>
+</div>
+<div id="lernziele-2" class="section level3" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> Lernziele</h3>
+<ul>
+<li>Sie können Funktionen, auch anonyme, in R schreiben.</li>
+<li>Sie können Datensätze vom Lang- und Breit-Format wechseln.</li>
+<li>Sie können Mapping-Funktionen anwenden.</li>
+<li>Sie können eine dplyr-Funktion auf mehrere Spalten gleichzeitig anwenden.</li>
+</ul>
+</div>
+<div id="vorbereitung-1" class="section level3" number="2.2.3">
+<h3><span class="header-section-number">2.2.3</span> Vorbereitung</h3>
+<ul>
+<li>Lesen Sie die Literatur.</li>
+</ul>
+</div>
+<div id="literatur-2" class="section level3" number="2.2.4">
+<h3><span class="header-section-number">2.2.4</span> Literatur</h3>
+<ul>
+<li>Rhys, Kap. 2</li>
+</ul>
+</div>
+</div>
+<div id="section-2" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> </h2>
+<div id="datum-2" class="section level3" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Datum</h3>
+<ul>
+<li>28.3.-1.4.</li>
+</ul>
+</div>
+<div id="literatur-3" class="section level3" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> Literatur</h3>
+<ul>
+<li>TMWR</li>
+</ul>
+</div>
+</div>
+<div id="section-3" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> </h2>
+<div id="datum-3" class="section level3" number="2.4.1">
+<h3><span class="header-section-number">2.4.1</span> Datum</h3>
+<ul>
+<li>4.4.-8.4.</li>
+</ul>
+</div>
+<div id="literatur-4" class="section level3" number="2.4.2">
+<h3><span class="header-section-number">2.4.2</span> Literatur</h3>
+<ul>
+<li>Rhys, Kap. 3</li>
+</ul>
+</div>
+</div>
+<div id="section-4" class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> </h2>
+<div id="datum-4" class="section level3" number="2.5.1">
+<h3><span class="header-section-number">2.5.1</span> Datum</h3>
+<ul>
+<li>11.4.-15.4.</li>
+</ul>
+</div>
+<div id="literatur-5" class="section level3" number="2.5.2">
+<h3><span class="header-section-number">2.5.2</span> Literatur</h3>
+<ul>
+<li>Rhys, Kap. 3</li>
+</ul>
+</div>
+<div id="hinweise-1" class="section level3" number="2.5.3">
+<h3><span class="header-section-number">2.5.3</span> Hinweise</h3>
+<ul>
+<li>In dieser Woche fällt die Übung aus.</li>
+</ul>
+</div>
+</div>
+<div id="section-5" class="section level2" number="2.6">
+<h2><span class="header-section-number">2.6</span> </h2>
+<div id="datum-5" class="section level3" number="2.6.1">
+<h3><span class="header-section-number">2.6.1</span> Datum</h3>
+<ul>
+<li>18.4.-22.4</li>
+</ul>
+</div>
+<div id="hinweise-2" class="section level3" number="2.6.2">
+<h3><span class="header-section-number">2.6.2</span> Hinweise</h3>
+<ul>
+<li>In dieser Woche fällt die Vorlesung aus.</li>
+</ul>
+</div>
+</div>
+<div id="section-6" class="section level2" number="2.7">
+<h2><span class="header-section-number">2.7</span> </h2>
+<div id="datum-6" class="section level3" number="2.7.1">
+<h3><span class="header-section-number">2.7.1</span> Datum</h3>
+<ul>
+<li>25.4.-29.4.</li>
+</ul>
+</div>
+<div id="literatur-6" class="section level3" number="2.7.2">
+<h3><span class="header-section-number">2.7.2</span> Literatur</h3>
+<ul>
+<li>Rhys, Kap. 4</li>
+</ul>
+</div>
+</div>
+<div id="section-7" class="section level2" number="2.8">
+<h2><span class="header-section-number">2.8</span> </h2>
+<div id="datum-7" class="section level3" number="2.8.1">
+<h3><span class="header-section-number">2.8.1</span> Datum</h3>
+<ul>
+<li>2.4.-6.5.</li>
+</ul>
+</div>
+<div id="literatur-7" class="section level3" number="2.8.2">
+<h3><span class="header-section-number">2.8.2</span> Literatur</h3>
+<ul>
+<li>Rhys, Kap. 6</li>
+</ul>
+</div>
+</div>
+<div id="section-8" class="section level2" number="2.9">
+<h2><span class="header-section-number">2.9</span> </h2>
+<div id="datum-8" class="section level3" number="2.9.1">
+<h3><span class="header-section-number">2.9.1</span> Datum</h3>
+<ul>
+<li>9.5.-13.5.</li>
+</ul>
+</div>
+<div id="literatur-8" class="section level3" number="2.9.2">
+<h3><span class="header-section-number">2.9.2</span> Literatur</h3>
+<ul>
+<li>Rhys, Kap. 7</li>
+</ul>
+</div>
+</div>
+<div id="section-9" class="section level2" number="2.10">
+<h2><span class="header-section-number">2.10</span> </h2>
+<div id="datum-9" class="section level3" number="2.10.1">
+<h3><span class="header-section-number">2.10.1</span> Datum</h3>
+<ul>
+<li>16.5.-20.5.</li>
+</ul>
+</div>
+<div id="literatur-9" class="section level3" number="2.10.2">
+<h3><span class="header-section-number">2.10.2</span> Literatur</h3>
+<ul>
+<li>Rhys, Kap. 8</li>
+</ul>
+</div>
+</div>
+<div id="section-10" class="section level2" number="2.11">
+<h2><span class="header-section-number">2.11</span> </h2>
+<div id="datum-10" class="section level3" number="2.11.1">
+<h3><span class="header-section-number">2.11.1</span> Datum</h3>
+<ul>
+<li>23.5.-27.5.</li>
+</ul>
+</div>
+<div id="literatur-10" class="section level3" number="2.11.2">
+<h3><span class="header-section-number">2.11.2</span> Literatur</h3>
+<ul>
+<li>Rhys, Kap.9</li>
+</ul>
+</div>
+<div id="hinweise-3" class="section level3" number="2.11.3">
+<h3><span class="header-section-number">2.11.3</span> Hinweise</h3>
+<ul>
+<li>Nächste Woche ist BlocKalenderwocheoche; es findet kein regulärer Unterricht statt.</li>
+<li>Diese Woche fällt die Übung aus.</li>
+</ul>
+</div>
+</div>
+<div id="section-11" class="section level2" number="2.12">
+<h2><span class="header-section-number">2.12</span> </h2>
+<div id="datum-11" class="section level3" number="2.12.1">
+<h3><span class="header-section-number">2.12.1</span> Datum</h3>
+<ul>
+<li>6.6.-10.6.</li>
+</ul>
+</div>
+<div id="hinweise-4" class="section level3" number="2.12.2">
+<h3><span class="header-section-number">2.12.2</span> Hinweise</h3>
+<ul>
+<li>In dieser Woche fällt die Vorlesung aus.</li>
+</ul>
+</div>
+</div>
+<div id="section-12" class="section level2" number="2.13">
+<h2><span class="header-section-number">2.13</span> </h2>
+<div id="datum-12" class="section level3" number="2.13.1">
+<h3><span class="header-section-number">2.13.1</span> Datum</h3>
+<ul>
+<li>13.6.-17.6.</li>
+</ul>
+</div>
+<div id="literatur-11" class="section level3" number="2.13.2">
+<h3><span class="header-section-number">2.13.2</span> Literatur</h3>
+<ul>
+<li>Rhys, Kap. 10</li>
+</ul>
+</div>
+</div>
+<div id="section-13" class="section level2" number="2.14">
+<h2><span class="header-section-number">2.14</span> </h2>
+<div id="datum-13" class="section level3" number="2.14.1">
+<h3><span class="header-section-number">2.14.1</span> Datum</h3>
+<ul>
+<li>20.6.-24.6.</li>
+</ul>
+</div>
+<div id="literatur-12" class="section level3" number="2.14.2">
+<h3><span class="header-section-number">2.14.2</span> Literatur</h3>
+<ul>
+<li>Rhys, Kap. 11</li>
+</ul>
+</div>
+</div>
+<div id="section-14" class="section level2" number="2.15">
+<h2><span class="header-section-number">2.15</span> </h2>
+<div id="datum-14" class="section level3" number="2.15.1">
+<h3><span class="header-section-number">2.15.1</span> Datum</h3>
+<ul>
+<li>27.6.-1.7.</li>
+</ul>
+</div>
+<div id="literatur-13" class="section level3" number="2.15.2">
+<h3><span class="header-section-number">2.15.2</span> Literatur</h3>
+<ul>
+<li>Rhys, Kap. 12</li>
+</ul>
+</div>
+<div id="hinweise-5" class="section level3" number="2.15.3">
+<h3><span class="header-section-number">2.15.3</span> Hinweise</h3>
+<ul>
+<li>Nach dieser Woche endet der Unterricht.</li>
+</ul>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="modulzeitplan.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/01-Modulueberblick.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Data Science 1.pdf", "Data Science 1.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

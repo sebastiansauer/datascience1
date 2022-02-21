@@ -1,0 +1,13 @@
+\begin{thebibliography}{}
+
+\bibitem[Rhys, ]{rhys_machine_2020}
+Rhys, H.
+\newblock {\em Machine Learning with R, the tidyverse, and mlr}.
+\newblock Manning publications.
+\newblock {OCLC}: on1121083327.
+
+\bibitem[Silge and Kuhn, ]{silge_tidy_nodate}
+Silge, J. and Kuhn, M.
+\newblock {\em Tidy Modeling with R}.
+
+\end{thebibliography}

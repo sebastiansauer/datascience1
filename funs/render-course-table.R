@@ -15,9 +15,9 @@ render_course_table <- function(yml_file){
   kw <- vector()
 
   for (i in titel_nr){
-    datum[i] <- modul_zsfg[[i]][["datum"]]
-    kw[i] <- modul_zsfg[[i]][["kw"]]
-    thema[i] <- modul_zsfg[[i]][["title"]]
+    datum[i] <- modul_zsfg[[i]][["Datum"]]
+    kw[i] <- modul_zsfg[[i]][["Kalenderwoche"]]
+    thema[i] <- modul_zsfg[[i]][["Titel"]]
   }
 
 
