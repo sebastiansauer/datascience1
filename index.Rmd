@@ -1,5 +1,5 @@
 --- 
-title: "Data Science 1"
+title: "DataScience1"
 subtitle: |
   | Grundlagen der Prognosemodellierung 🔮🧰
   | Work in Progress 🚧

@@ -16,7 +16,16 @@ thema1:
   Skript:
     - "[Kap. 1]()"
   Hinweise:
-    - "Bitte beachten Sie die Einteilung in die Züge für den Präsenzunterricht."
+    - "Bitte beachten Sie die Hinweise zum Präsenzunterricht und der Streamingoption."
+    - "Bitte stellen Sie sicher, dass Sie einen einsatzbereiten Computer haben und dass die angegebene Software (in aktueller Version) läuft."
+  Vertiefung:
+    - "[Verdienst einer deutschen Data Scientistin](https://www.zeit.de/arbeit/2020-10/data-scientist-gehalt-geldanlage-programmieren-kontoauszug)"
+    - "[Weitere Fallstudie zum Thema Regression auf Kaggle](https://www.kaggle.com/micahshull/r-bike-sharing-linear-regression)"
+  Aufgaben:
+    - "[Machen Sie sich mit 'Kaggle' vertraut](https://www.kaggle.com/)"
+    - "[Arbeiten Sie diese Regressionsfallstudie (zum Thema Gehalt) auf Kaggle auf](https://www.kaggle.com/pranjalpandey12/performing-simple-linear-regression-in-r)"
+    - "[Werfen Sie einen Blick in diese Fallstudie auf Kaggle zum Thema Hauspreise](https://www.kaggle.com/lazaro97/data-preprocessing-and-linear-regression-with-r)"
+    - "[Wiederholen Sie unser Vorgehen in der Fallstudie zu den Flugverspätungen](https://data-se.netlify.app/2021/03/10/fallstudie-modellierung-von-flugversp%C3%A4tungen/)"
 
 
 thema2:
@@ -57,7 +66,7 @@ thema5:
   Kalenderwoche: 15
   Datum: 11.4.-15.4.
   Hinweise:
-    - In dieser Woche fällt die Übung aus.
+    - In dieser Woche fällt die Übung aus (Ostern).
   Literatur:
     - "Rhys, Kap. 3"
 
@@ -67,22 +76,22 @@ thema6:
   Kalenderwoche: 16
   Datum: 18.4.-22.4
   Hinweise: 
-    - In dieser Woche fällt die Vorlesung aus.
+    - In dieser Woche fällt die Vorlesung aus (Ostern).
  
 
 
 thema7:
   Titel: "Logistische Regression"
-  Kalenderwoche: 17
-  Datum: 25.4.-29.4.
   Literatur:
     - "Rhys, Kap. 4"
+  Kalenderwoche: 17
+  Datum: 25.4.-29.4
 
 
 thema8:
   Titel: "Naive Bayes"
   Kalenderwoche: 18
-  Datum: 2.4.-6.5.
+  Datum: 2.5.-6.5.
   Literatur:
     - "Rhys, Kap. 6"
 
@@ -108,7 +117,7 @@ thema11:
   Kalenderwoche: 21
   Datum: 23.5.-27.5.
   Hinweise:
-    - Nächste Woche ist BlocKalenderwocheoche; es findet kein regulärer Unterricht statt.
+    - Nächste Woche ist Blockwoche; es findet kein regulärer Unterricht statt.
     - Diese Woche fällt die Übung aus.
   Literatur:
     - "Rhys, Kap.9"
@@ -119,7 +128,7 @@ thema12:
   Kalenderwoche: 23
   Datum: 6.6.-10.6.
   Hinweise:
-    - In dieser Woche fällt die Vorlesung aus.
+    - In dieser Woche fällt die Vorlesung aus (Pfingsten).
 
 thema13:
   Titel: "GAM"
