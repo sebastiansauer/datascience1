@@ -36,51 +36,11 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
-  pdftitle={Data Science 1},
+  pdftitle={DataScience1},
   pdfauthor={Sebastian Sauer},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
-\usepackage{color}
-\usepackage{fancyvrb}
-\newcommand{\VerbBar}{|}
-\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
-\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
-% Add ',fontsize=\small' for more characters per line
-\usepackage{framed}
-\definecolor{shadecolor}{RGB}{248,248,248}
-\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
-\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
-\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
-\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\BuiltInTok}[1]{#1}
-\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
-\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
-\newcommand{\ExtensionTok}[1]{#1}
-\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ImportTok}[1]{#1}
-\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\NormalTok}[1]{#1}
-\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
-\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
@@ -104,11 +64,16 @@
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
+\usepackage[normalem]{ulem}
+% Avoid problems with \sout in headers with hyperref
+\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{5}
 \usepackage{booktabs}
+\usepackage{float}
+\usepackage{bm}
 \usepackage{amsthm}
 \makeatletter
 \def\thm@space@setup{%
@@ -122,9 +87,9 @@
 \usepackage[]{natbib}
 \bibliographystyle{apalike}
 
-\title{Data Science 1}
+\title{DataScience1}
 \author{Sebastian Sauer}
-\date{2022-02-21 22:34:24}
+\date{2022-03-07 10:06:03}
 
 \begin{document}
 \maketitle
@@ -136,13 +101,14 @@
 \hypertarget{uxfcberblick}{%
 \chapter{Überblick}\label{uxfcberblick}}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{include\_graphics}\NormalTok{(}\StringTok{"img/662upp.jpg"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\begin{figure}[H]
 
-\includegraphics[width=7.32in]{img/662upp}
+{\centering \includegraphics[width=0.5\linewidth]{img/662upp} 
+
+}
+
+\end{figure}
+
 \href{https://imgflip.com/i/662upp}{Imgflip Meme Generator}
 
 \hypertarget{was-sie-hier-lernen-und-wozu-das-gut-ist}{%
@@ -260,8 +226,8 @@ Nr. & Kalenderwoche & Datum & Thema \\
 4 & 14 & 4.4.-8.4. & kNN \\
 5 & 15 & 11.4.-15.4. & Statistisches Lernen \\
 6 & 16 & 18.4.-22.4 & Wiederholung \\
-7 & 17 & 25.4.-29.4. & Logistische Regression \\
-8 & 18 & 2.4.-6.5. & Naive Bayes \\
+7 & 17 & 25.4.-29.4 & Logistische Regression \\
+8 & 18 & 2.5.-6.5. & Naive Bayes \\
 9 & 19 & 9.5.-13.5. & Entscheidungsbäume \\
 10 & 20 & 16.5.-20.5. & Zufallswälder \\
 11 & 21 & 23.5.-27.5. & Fallstudie \\
@@ -277,6 +243,63 @@ Nr. & Kalenderwoche & Datum & Thema \\
 
 Zentrale Kursliteratur für die theoretischen Konzepte ist \citep{rhys_machine_2020}.
 Die praktische Umsetzung in R basiert auf \citep{silge_tidy_2022}.
+
+\hypertarget{faq}{%
+\section{FAQ}\label{faq}}
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{Folien}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Frage: Gibt es ein Folienskript?
+  \item
+    Antwort: Wo es einfache, gute Literatur gibt, gibt es kein Skript. Wo es keine gute oder keine einfach zugängliche Literatur gibt, dort gibt es ein Skript.
+  \end{itemize}
+\item
+  \emph{Englisch}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Ist die Literatur auf Englisch?
+  \item
+    Ja. Allerdings ist die Literatur gut zugänglich. Das Englisch ist nicht schwer. Bedenken Sie: Englisch ist die lingua franca in Wissenschaft und Wirtschaft. Ein solides Verständnis englischer (geschriebener) Sprache ist für eine gute Ausbildung unerlässlich. Zu dem sollte die Kursliteratur fachlich passende und gute Bücher umfassen; oft sind das englische Titel.
+  \end{itemize}
+\item
+  \emph{Anstrengend}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Ist der Kurs sehr anstrengend, aufwändig?
+  \item
+    Der Kurs hat ein mittleres Anspruchsniveau.
+  \end{itemize}
+\item
+  \emph{Mathe}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Muss man ein Mathe-Crack sein, um eine gute Note zu erreichen?
+  \item
+    Nein. Mathe steht nicht im Vordergrund.
+  \end{itemize}
+\item
+  \emph{Prüfungsliteratur}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Welche Literatur ist prüfungsrelevant?
+  \item
+    Die Prüfung ist angewandt, z.B. ein Prognosewettbewerb. Es wird keine Klausur geben, in der reines Wissen abgefragt wird.
+  \end{itemize}
+\end{itemize}
 
 \hypertarget{moduluxfcberblick}{%
 \chapter{Modulüberblick}\label{moduluxfcberblick}}
@@ -337,13 +360,43 @@ Die praktische Umsetzung in R basiert auf \citep{silge_tidy_2022}.
   \href{}{Kap. 1}
 \end{itemize}
 
+\hypertarget{aufgaben}{%
+\subsection{Aufgaben}\label{aufgaben}}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://www.kaggle.com/}{Machen Sie sich mit `Kaggle' vertraut}
+\item
+  \href{https://www.kaggle.com/pranjalpandey12/performing-simple-linear-regression-in-r}{Arbeiten Sie diese Regressionsfallstudie (zum Thema Gehalt) auf Kaggle auf}
+\item
+  \href{https://www.kaggle.com/lazaro97/data-preprocessing-and-linear-regression-with-r}{Werfen Sie einen Blick in diese Fallstudie auf Kaggle zum Thema Hauspreise}
+\item
+  \href{https://data-se.netlify.app/2021/03/10/fallstudie-modellierung-von-flugversp\%C3\%A4tungen/}{Wiederholen Sie unser Vorgehen in der Fallstudie zu den Flugverspätungen}
+\end{itemize}
+
+\hypertarget{vertiefung}{%
+\subsection{Vertiefung}\label{vertiefung}}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://www.zeit.de/arbeit/2020-10/data-scientist-gehalt-geldanlage-programmieren-kontoauszug}{Verdienst einer deutschen Data Scientistin}
+\item
+  \href{https://www.kaggle.com/micahshull/r-bike-sharing-linear-regression}{Weitere Fallstudie zum Thema Regression auf Kaggle}
+\item
+  \href{https://www.coursera.org/learn/data-science-course}{Crashkurs Data Science (Coursera, Johns Hopkins University) mit `Star-Dozenten'}
+\end{itemize}
+
 \hypertarget{hinweise}{%
 \subsection{Hinweise}\label{hinweise}}
 
 \begin{itemize}
 \tightlist
 \item
-  Bitte beachten Sie die Einteilung in die Züge für den Präsenzunterricht.
+  Bitte beachten Sie die Hinweise zum Präsenzunterricht und der Streamingoption.
+\item
+  Bitte stellen Sie sicher, dass Sie einen einsatzbereiten Computer haben und dass die angegebene Software (in aktueller Version) läuft.
 \end{itemize}
 
 \hypertarget{tidyverse-2.-blick}{%
@@ -454,13 +507,22 @@ Die praktische Umsetzung in R basiert auf \citep{silge_tidy_2022}.
   Rhys, Kap. 3
 \end{itemize}
 
+\hypertarget{vertiefung-1}{%
+\subsection{Vertiefung}\label{vertiefung-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://xkcd.com/435/}{Fields arranged by purity, xkcd 435}
+\end{itemize}
+
 \hypertarget{hinweise-1}{%
 \subsection{Hinweise}\label{hinweise-1}}
 
 \begin{itemize}
 \tightlist
 \item
-  In dieser Woche fällt die Übung aus.
+  In dieser Woche fällt die Übung aus (Ostern).
 \end{itemize}
 
 \hypertarget{wiederholung}{%
@@ -481,7 +543,7 @@ Die praktische Umsetzung in R basiert auf \citep{silge_tidy_2022}.
 \begin{itemize}
 \tightlist
 \item
-  In dieser Woche fällt die Vorlesung aus.
+  In dieser Woche fällt die Vorlesung aus (Ostern).
 \end{itemize}
 
 \hypertarget{logistische-regression}{%
@@ -493,7 +555,7 @@ Die praktische Umsetzung in R basiert auf \citep{silge_tidy_2022}.
 \begin{itemize}
 \tightlist
 \item
-  25.4.-29.4.
+  25.4.-29.4
 \end{itemize}
 
 \hypertarget{literatur-6}{%
@@ -514,7 +576,7 @@ Die praktische Umsetzung in R basiert auf \citep{silge_tidy_2022}.
 \begin{itemize}
 \tightlist
 \item
-  2.4.-6.5.
+  2.5.-6.5.
 \end{itemize}
 
 \hypertarget{literatur-7}{%
@@ -595,7 +657,7 @@ Die praktische Umsetzung in R basiert auf \citep{silge_tidy_2022}.
 \begin{itemize}
 \tightlist
 \item
-  Nächste Woche ist BlocKalenderwocheoche; es findet kein regulärer Unterricht statt.
+  Nächste Woche ist Blockwoche; es findet kein regulärer Unterricht statt.
 \item
   Diese Woche fällt die Übung aus.
 \end{itemize}
@@ -618,7 +680,7 @@ Die praktische Umsetzung in R basiert auf \citep{silge_tidy_2022}.
 \begin{itemize}
 \tightlist
 \item
-  In dieser Woche fällt die Vorlesung aus.
+  In dieser Woche fällt die Vorlesung aus (Pfingsten).
 \end{itemize}
 
 \hypertarget{gam}{%
@@ -663,8 +725,8 @@ Die praktische Umsetzung in R basiert auf \citep{silge_tidy_2022}.
   Rhys, Kap. 11
 \end{itemize}
 
-\hypertarget{vertiefung}{%
-\section{Vertiefung}\label{vertiefung}}
+\hypertarget{vertiefung-2}{%
+\section{Vertiefung}\label{vertiefung-2}}
 
 \hypertarget{datum-14}{%
 \subsection{Datum}\label{datum-14}}
@@ -684,6 +746,15 @@ Die praktische Umsetzung in R basiert auf \citep{silge_tidy_2022}.
   Rhys, Kap. 12
 \end{itemize}
 
+\hypertarget{vertiefung-3}{%
+\subsection{Vertiefung}\label{vertiefung-3}}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://medium.com/swlh/how-to-structure-a-python-based-data-science-project-a-short-tutorial-for-beginners-7e00bff14f56}{Wie man eine Data-Science-Projekt strukturiert}
+\end{itemize}
+
 \hypertarget{hinweise-5}{%
 \subsection{Hinweise}\label{hinweise-5}}
 
@@ -692,6 +763,309 @@ Die praktische Umsetzung in R basiert auf \citep{silge_tidy_2022}.
 \item
   Nach dieser Woche endet der Unterricht.
 \end{itemize}
+
+\hypertarget{pruxfcfung}{%
+\chapter{Prüfung}\label{pruxfcfung}}
+
+\hypertarget{tldr-zusammenfassung}{%
+\section{tl;dr: Zusammenfassung}\label{tldr-zusammenfassung}}
+
+Vorhersagen sind eine praktische Sache, zumindest wenn Sie stimmen.
+Wenn Sie den DAX-Stand von morgen genau vorhersagen können,
+rufen Sie mich bitte sofort an. Genau das ist Ihre Aufgabe in dieser Prüfungsleistung:
+Sie sollen Werte vorhersagen.
+
+Etwas konkreter: Stellen Sie sich ein paar Studentis vor.
+Von allen wissen Sie, wie lange die Person für die Statistikklausur gelernt hat.
+Außerdem wissen Sie die Motivation jeder Person und vielleicht noch ein paar noten-relevante Infos.
+Und Sie wissen die Note jeder Person in der Statistikklausur.
+Auf dieser Basis fragt sie ein Student (Alois), der im kommenden Semester die Prüfung in Statistik schreiben \sout{muss} will:
+``Sag mal, wenn ich 100 Stunden lerne und so mittel motiviert bin (bestenfalls), welche Note kann ich dann erwarten?''.
+Mit Hilfe Ihrer Analyse können Sie diese Frage (und andere) beantworten.
+Natürlich könnten Sie es sich leicht machen und antworten:
+``Mei, der Notendurchschnitt war beim letzten Mal 2.7.
+Also ist 2.7 kein ganz doofer Tipp für deine Note.''
+Ja, das ist keine doofe Antwort, aber man genauere Prognose machen,
+wenn man es geschickt anstellt.
+Da hilft Ihnen die Statistik (doch, wirklich).
+
+Kurz gesagt gehen Sie so vor:
+Importieren Sie die Daten in R, starten Sie die nötigen R-Pakete und
+schauen Sie sich die Daten unter verschiedenen Blickwinkeln an.
+Dann nehmen Sie die vielversprechendsten Prädiktoren in ein Regressionsmodell und schauen sich an,
+wie gut die Vorhersage ist.
+Wiederholen Sie das ein paar Mal, bis Sie ein Modell haben, das Sie brauchbar finden.
+Mit diesem Modell sagen Sie dann die Noten der neuen Studis (Alois und Co.) vorher.
+Je genauer Ihre Vorhersage, desto besser ist Ihr Prüfungsergebnis.
+
+\hypertarget{vorhersage}{%
+\section{Vorhersage}\label{vorhersage}}
+
+Neben der erklärenden, rückwärtsgerichteten Modellierung spielt insbesondere in der Praxis die \emph{vorhersageorientierte} Modellierung eine wichtige Rolle:
+Ziel ist es, bei gegebenen, neuen Beobachtungen die noch unbekannten Werte der Zielvariablen \(y\) \emph{vorherzusagen}, z.B. für neue Kunden auf Basis von soziodemographischen Daten den \emph{Kundenwert} -- möglichst genau -- zu prognostizieren.
+Dies geschieht auf Basis der vorhandenen Daten der Bestandskunden,
+d.h. inklusive des für diese Kunden bekannten Kundenwertes.
+
+Ihnen werden \emph{zwei Teildatenmengen} zur Verfügung gestellt:
+Zum einen gibt es die Trainingsdaten (auch \emph{Lerndaten} genannt) und zum anderen gibt es Anwendungsdaten (auch \emph{Testdaten} genannt), auf die man das Modell anwendet.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Bei den Trainingsdaten (Train-Sample) liegen sowohl die erklärenden Variablen \({\bf{x}} = (x_1, x_2, \ldots, x_n)\) als auch die Zielvariable \(y\) vor.
+  Auf diesen Trainingsdaten wird das Modell \(y=f({x})+\epsilon = f(x_1, x_2, \ldots, x_n)+\epsilon\) gebildet und durch \(\hat{f}(\cdot)\) geschätzt. Es ist also die Variable \(y\) vorherszusagen.
+\item
+  Dieses geschätzte Modell (\(\hat{f}(\cdot)\)) wird auf die Anwendungsdaten \(\bf{x}_0\), für die (Ihnen) die Werte der Zielvariable \(y\) unbekannt sind, angewendet, d.h., es wird \(\hat{y}_0 :=\hat{f}({\bf{x}}_0)\) berechnet.
+  Der unbekannte Wert \(y_0\) der Zielvariable \(y\) wird durch \(\hat{y}_0\) prognostiziert.
+\end{enumerate}
+
+Liegt zu einem noch späteren Zeitpunkt der eingetroffene Wert \(y_0\) der Zielvariable \(y\) vor, so kann die eigene Vorhersage \(\hat{y}_0\) evaluiert werden,
+d.h. z.B. kann der Fehler \(e=y_0-\hat{y}_0\) zwischen prognostiziertem Wert \(\hat{y}_0\) und wahrem Wert \(y_0\) analysiert werden.
+
+In der praktischen Anwendung können zeitlich drei aufeinanderfolgende Schritte unterschieden werden (vergleiche oben):
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  die \emph{Trainingsphase}, d.h., die Phase für die sowohl erklärende (\({\bf{x}}\)) als auch die erklärte Variable (\(y\)) bekannt sind. Hier wird das Modell geschätzt (gelernt): \(\hat{f}(\bf{x})\). Dafür wird der Trainingsdatensatz genutzt.
+\item
+  In der folgenden \emph{Anwendungsphase} sind nur die erklärenden Variablen (\({\bf{x_0}}\)) bekannt, nicht \(y_0\). Auf Basis der Ergebnisses aus dem 1. Schritt wird \(\hat{y}_0 :=\hat{f}({\bf{x}}_0)\) prognostiziert.
+\item
+  Evt. gibt es später noch die \emph{Evaluierungsphase}, für die dann auch die Zielvariable (\(y_0\)) bekannt ist, so dass die Vorhersagegüte des Modells überprüft werden kann.
+\end{enumerate}
+
+Im Computer kann man dieses Anwendungsszenario \emph{simulieren}:
+man teilt die Datenmenge \emph{zufällig} in eine Lern- bzw. Trainingsstichprobe (Trainingsdaten; \((\bf{x},y)\)) und eine Teststichprobe (Anwendungsdaten, \((\bf{x_0})\)) auf:
+Die Modellierung erfolgt auf den Trainingsdaten.
+Das Modell wird angewendet auf die Testdaten (Anwendungsdaten).
+Da man hier aber auch die Zielvariable (\(y_0\)) kennt, kann damit das Modell evaluiert werden.
+
+\hypertarget{hauptziel-genaue-prognose}{%
+\section{Hauptziel: Genaue Prognose}\label{hauptziel-genaue-prognose}}
+
+Ihre Aufgabe ist: Spielen Sie den Data-Scientist!
+Konstruieren Sie ein Modell auf Basis der Trainingsdaten \((\bf{x},y\))
+und sagen Sie für die Anwendungsdaten (\(\bf{x_0}\)) die Zielvariable möglichst genau voraus (\(\hat{y}_0\)).
+
+Ihr(e) Dozent*in kennt den Wert der Zielvariable (\(y_0\)).
+
+Von zwei Prognosemodellen zum gleichen Datensatz ist dasjenige Modell besser,
+das weniger Vorhersagefehler aufweist, also genauer vorhersagt.
+Kurz gesagt: Genauer ist besser.
+
+\hypertarget{zum-aufbau-ihrer-prognosedatei-im-csv-format}{%
+\section{Zum Aufbau Ihrer Prognosedatei im CSV-Format}\label{zum-aufbau-ihrer-prognosedatei-im-csv-format}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Die CSV-Datei muss aus genau zwei Spalten mit (exakt) folgenden Spaltennamen bestehen:
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\tightlist
+\item
+  \texttt{id}: Den ID-Wert jedes vorhergesagten Wertes
+\item
+  \texttt{pred}: Der vorhergesagte Wert.
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\item
+  Umlaute sind zu ersetzen (also \texttt{Süß} wird \texttt{Suess} etc.).
+\item
+  Die CSV-Datei muss als \emph{Spaltentrennzeichen} ein \emph{Komma} verwenden und als \emph{Dezimaltrennzeichen} einen \emph{Punkt} (d.h. also die \emph{Standardformatierung} einer CSV-Datei; \emph{nicht} die deutsche Formatierung).
+\item
+  Die CSV-Datei muss genau die Anzahl an Zeilen aufweisen, die der Zeilenlänge im Test-Datensatz entspricht.
+\item
+  Prüfen Sie, dass Ihre CSV-Datei sich problemlos lesen lässt.
+  Falls keine (funktionstüchtige) CSV-Datei eingereicht (hochgeladen) wurde, ist die Prüfung nicht bestanden.
+  Tipp: Öffnen Sie die CSV-Datei mit einem Texteditor und schauen Sie sich an, ob alles vernünftig aussieht.
+  Achtung: Öffnen Sie die CSV-Datei besser nicht mit Excel, da Excel einen Bug hat,
+  der CSV-Dateien verfälschen kann auch ohne dass man die Datei speichert.
+\end{enumerate}
+
+\hypertarget{einzureichende-dateien}{%
+\section{Einzureichende Dateien}\label{einzureichende-dateien}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Folgende* Dateiarten* sind einzureichen:
+
+  \begin{enumerate}
+  \def\labelenumii{\arabic{enumii}.}
+  \tightlist
+  \item
+    Prognose: Ihre \emph{Prognose-Datei} (CSV-Datei)
+  \item
+    Analyse: Ihr \emph{Analyseskript} (R-, Rmd- oder Rmd-Notebook-Datei)
+  \end{enumerate}
+\item
+  Weitere Dateien sind nicht einzureichen.
+\item
+  Komprimieren Sie die Dateien \emph{nicht} (z.B. via \emph{zip}).
+\item
+  Der Name jeder eingereichnte Datei muss wie folgt lauten: \texttt{Nachname\_Vorname\_Matrikelnummer\_Dateiart.Endung}. Beispiel: \texttt{Sauer\_Sebastian\_0123456\_Prognose.csv} bzw. \texttt{Sauer\_Sebastian\_0123456\_Analyse.Rmd}.
+\end{enumerate}
+
+\hypertarget{tipps}{%
+\section{Tipps}\label{tipps}}
+
+\hypertarget{tipps-fuxfcr-eine-gute-prognose}{%
+\subsection{Tipps für eine gute Prognose}\label{tipps-fuxfcr-eine-gute-prognose}}
+
+\begin{itemize}
+\item
+  Schauen Sie in die Literatur.
+\item
+  Evtl. kann eine Datenvorverarbeitung (Variablentransformation, z.B. \(\log()\) oder die Elimination von Ausreißern) helfen.
+\item
+  Überlegen Sie sich Kriterien zur Modell- und/ oder Variablenauswahl. Auch hierfür gibt es Algorithmen und R-Funktionen.
+\item
+  Vermeiden Sie Über-Anpassung (Overfitting).
+\item
+  Vermeiden Sie viele fehlende Werte bei Ihrer Prognose. Fehlende Werte werden bei der Benotung mit dem Mittelwert (der vorhandenen Prognosewerte Ihrer Einreichung) aufgefüllt.
+\end{itemize}
+
+\hypertarget{tipps-zur-datenverarbeitung}{%
+\subsection{Tipps zur Datenverarbeitung}\label{tipps-zur-datenverarbeitung}}
+
+\begin{itemize}
+\tightlist
+\item
+  Ein ``deutsches'' Excel kann Standard-CSV-Dateien nicht ohne Weiteres lesen. Online-Dienste wie Google Sheets können dies allerdings.
+\end{itemize}
+
+\hypertarget{tipps-zum-aufbau-des-analyseskripts}{%
+\subsection{Tipps zum Aufbau des Analyseskripts}\label{tipps-zum-aufbau-des-analyseskripts}}
+
+\begin{itemize}
+\item
+  Zu Beginn des Skripts sollten alle verwendeten R-Pakete mittels \texttt{library()} gestartet werden.
+\item
+  Zu Beginn des Skripts sollten die Daten von der vom Dozenten bereitgestellten URL importiert werden (\emph{nicht} von der eigenen Festplatte, da das Skript sonst bei Dritten, wie Ihrem Prüfer, nicht lauffähig ist).
+\end{itemize}
+
+\hypertarget{sonstiges}{%
+\subsection{Sonstiges}\label{sonstiges}}
+
+\begin{itemize}
+\item
+  Legen Sie regelmäßig Sicherheitskopien Ihrer Arbeit an (ggf. auf einem anderen Datenträger).
+\item
+  Achten Sie darauf, dass Sie nicht durcheinander kommen, in welcher Datei der aktuelle Stand Ihrer Arbeit liegt.
+\end{itemize}
+
+\hypertarget{bewertung}{%
+\section{Bewertung}\label{bewertung}}
+
+\hypertarget{kriterien}{%
+\subsection{Kriterien}\label{kriterien}}
+
+\begin{itemize}
+\item
+  Es gibt drei Bewertungskriterien:
+
+  \begin{itemize}
+  \item
+    \emph{Formalia}: u.a. Reproduzierbarkeit der Analyse, Lesbarkeit der Syntax, Übersichtlichkeit der Analyse.
+  \item
+    \emph{Methode}: u.a. methodischer Anspruch und Korrektheit in der Explorativen Datenanalyse, Datenvorverarbeitung, Variablenauswahl und Modellierungsmethode.
+  \item
+    \emph{Inhalt}: \textbf{Vorhersagegüte}.
+  \end{itemize}
+\item
+  Das zentrale Bewertungskriterium ist \emph{Inhalt}; die übrigen beiden Kriterien fließen nur bei besonders guter oder schlechter Leistung in die Gesamtnote ein.
+\item
+  Die quantitative Datenanalyse in Durchführung und Interpretation ist der Schwerpunkt dieser Arbeit. Zufälliges identisches Vorgehen, z.B. im R Code, ist sehr unwahrscheinlich und kann als \textbf{Plagiat} bewertet werden.
+\item
+  Die Gesamtnote muss sich nicht als arithmetischer Mittelwert der Teilnoten ergeben.
+\item
+  Es werden keine Teilnoten vergeben, sondern nur eine Gesamtnote wird vergeben.
+\end{itemize}
+
+\hypertarget{kennzahl-der-modellguxfcte}{%
+\subsection{Kennzahl der Modellgüte}\label{kennzahl-der-modellguxfcte}}
+
+Die Güte der Vorhersage wird anhand des \emph{mittleren Absolutfehlers} (mae) bemessen:
+
+\[\text{mae} = \frac{1}{n} \sum_{i=1}^n(y_i - \hat{y}_i)\]
+
+\hypertarget{notenstufen}{%
+\subsection{Notenstufen}\label{notenstufen}}
+
+Zur Vorhersagegüte: Die Vorhersagegüte eines einfachen Minimalmodells entspricht einer \(4,0\), die eines Referenzmodells des Dozenten einer \(2,0\).
+
+Ihre Bewertung erfolgt entsprechend Ihrer Vorhersagegüte, d.h., sind Sie besser als das Referenzmodell erhalten Sie hier in diesem Teilaspekt eine bessere Note als \(2,0\)!
+
+\hypertarget{bewertungsprozess}{%
+\subsection{Bewertungsprozess}\label{bewertungsprozess}}
+
+Der Gutachter legt im Nachgang der Prüfung alle Teilnehmis ihre jeweilige Wert der Kennzahl der Modellgüte offen.
+Außerdem werden die vorherzusagenden Daten veröffentlicht
+sowie die Grenzwerte für jede Notenstufe.
+Auf dieser Basis ist es allen Teilnehmis möglich,
+die Korrektheit Ihrer Note zu überprüfen.
+
+\hypertarget{hinweise-6}{%
+\section{Hinweise}\label{hinweise-6}}
+
+Sie haben freie Methodenwahl bei der Modellierung und Vorverarbeitung. Nutzen Sie den Stoff wie im Unterricht gelernt; Sie können aber auch auf weitere Inhalte, die nicht im Unterricht behandelt wurden, zugreifen.
+
+Eine Einführung in verschiedene Methoden gibt es z.B. bei Sebastian Sauer (2019): \emph{Moderne Datenanalyse mit R}\footnote{\url{https://link.springer.com/book/10.1007/978-3-658-21587-3}} aber auch bei Max Kuhn und Julia Silge (2021): \emph{Tidy Modeling with R}.\footnote{\url{https://www.tmwr.org/}}. Die Bücher beinhalten jeweils Beispiele und Anwendung mit R.
+
+Auch ist es Ihnen überlassen, welche Variablen Sie zur Modellierung heranziehen -- und ob Sie diese eventuell vorverarbeiten, d.h., transformieren, zusammenfassen, Ausreißer bereinigen o.Ä.. Denken Sie nur daran, die Datentransformation, die Sie auf den Trainingsdaten durchführen, auch auf den Testdaten (Anwendungsdaten) durchzuführen.
+
+Hinweise zur Modellwahl usw. gibt es auch in erwähnter Literatur, aber auch in vielen Büchern zum Thema Data-Science.
+
+\textbf{Alles, was Sie tun, Datenvorverarbeitung, Modellierung und Anwenden, muss transparent und reproduzierbar sein.} Im Übrigen lautet die Aufgabe:
+Finden Sie ein Modell, von dem Sie glauben, dass es die Testdaten gut vorhersagt. \(\hat{y}=42\) ist zwar eine schöne Antwort,
+trifft die Wirklichkeit aber leider nicht immer.
+Eine gute Modellierung auf den \emph{Trainingsdaten} (z.B. hohes \(R^2\)) bedeutet nicht zwangsläufig eine gute Vorhersage (\emph{Test-Set}).
+
+\hypertarget{formalia}{%
+\section{Formalia}\label{formalia}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Es sind nur Einzelarbeiten zulässig.
+\item
+  In der Analyse muss als Ausgangspunkt der vom/von der Dozenten/in bereitgestellten Datensatz genutzt werden.
+\item
+  Alle Analyseschritte bzw. alle Veränderungen an den Daten müssen im (eingereichten) \emph{Analyseskript} nachvollziehbar (transparent und reproduzierbar) aufgeführt sein. Das Analyseskript ist als R-Skript, Rmd-Datei oder Rmd-Notebook-Datei abzugeben. Sie können die bereitgestellte Vorlage als Analyseskript nutzen (\texttt{Template-Dokumentation-Vorhersagemodellierung.Rmd}).
+\item
+  Das Analyseskript muss funktionstüchtig für den Prüfer sein: Alle Befehle müssen ohne Fehlermeldung durchlaufen (abgesehen von etwaiger Installation fehlender Pakete).
+\item
+  Es dürfen keine weiteren Informationen (Daten) als die vom Dozenten ausgegebenen verwendet werden. Sonstige Hilfe (z.B. von Dritten) ist ebenfalls unzulässig.
+\item
+  Nichtbeachtung der für dieses Modul formulierten Regeln kann zu Nichtbestehen oder Punkteabzug führen.
+\item
+  Der Schwerpunkt dieser Hausarbeit liegt auf der quantitativen Modellierung, der formale Anspruch liegt daher unter dem von anderen Hausarbeiten.
+\item
+  Es muss keine Literatur zitiert werden.
+\item
+  Ein ausgedrucktes Exemplar muss nicht abgegeben werden.
+\item
+  Während der Prüfungsphase werden keine inhaltlichen Fragen (``wie macht man nochmal eine Log-Transformation?'') und keine technischen Fragen (``wie installiert man nochmal ein R-Paket?'') beantwortet.
+\end{enumerate}
+
+\hypertarget{wo-finde-ich-beispiele}{%
+\section{Wo finde ich Beispiele?}\label{wo-finde-ich-beispiele}}
+
+Eine Beispiel-Modellierung finden Sie in der Datei \texttt{Beispielanalyse-Prognose-Wettbewerb.Rmd}.
+Eine beispielhafte Vorlage (Template), die Sie als Richtschnur nutzen können, ist mit der Datei \texttt{Template-Vorhersagemodellierung.Rmd} \href{https://github.com/sebastiansauer/vorhersagemodellierung/tree/main/Material}{hier} bereitgestellt.
+Im Internet finden sich viele Fallstudien, von denen Sie sich inspirieren lassen können.
+
+\hypertarget{plagiatskontrolle}{%
+\section{Plagiatskontrolle}\label{plagiatskontrolle}}
+
+Die eingereichten Arbeiten werden automatisiert auf Plagiate überprüft. Gibt es substanzielle Überschneidungen zwischen zwei (oder mehr) Arbeiten, werden alle diese Arbeiten mit \emph{ungenügend} bewertet.
 
   \bibliography{book.bib,packages.bib}
 

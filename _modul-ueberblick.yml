@@ -21,6 +21,7 @@ thema1:
   Vertiefung:
     - "[Verdienst einer deutschen Data Scientistin](https://www.zeit.de/arbeit/2020-10/data-scientist-gehalt-geldanlage-programmieren-kontoauszug)"
     - "[Weitere Fallstudie zum Thema Regression auf Kaggle](https://www.kaggle.com/micahshull/r-bike-sharing-linear-regression)"
+    - "[Crashkurs Data Science (Coursera, Johns Hopkins University) mit 'Star-Dozenten'](https://www.coursera.org/learn/data-science-course)"
   Aufgaben:
     - "[Machen Sie sich mit 'Kaggle' vertraut](https://www.kaggle.com/)"
     - "[Arbeiten Sie diese Regressionsfallstudie (zum Thema Gehalt) auf Kaggle auf](https://www.kaggle.com/pranjalpandey12/performing-simple-linear-regression-in-r)"
@@ -69,6 +70,8 @@ thema5:
     - In dieser Woche fällt die Übung aus (Ostern).
   Literatur:
     - "Rhys, Kap. 3"
+  Vertiefung:
+    - "[Fields arranged by purity, xkcd 435](https://xkcd.com/435/)"
 
 
 thema6:
@@ -156,4 +159,6 @@ thema15:
     - "Rhys, Kap. 12"    
   Hinweise:
     - Nach dieser Woche endet der Unterricht.
+  Vertiefung:
+    - "[Wie man eine Data-Science-Projekt strukturiert](https://medium.com/swlh/how-to-structure-a-python-based-data-science-project-a-short-tutorial-for-beginners-7e00bff14f56)"
 

@@ -1,8 +1,7 @@
 --- 
 title: "DataScience1"
-subtitle: |
-  | Grundlagen der Prognosemodellierung 🔮🧰
-  | Work in Progress 🚧
+subtitle: Grundlagen der Prognosemodellierung 🔮🧰
+
   
 author: "Sebastian Sauer"
 date: "`r Sys.time()`"
@@ -13,7 +12,7 @@ bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
 github-repo: rstudio/bookdown-demo
-description: "Ein Kurs zu den Grundlagen des statistischen Lernens mit einem Fokus auf Prognosemodelle für hoch strukturierte Daten"
+# description: "Ein Kurs zu den Grundlagen des statistischen Lernens mit einem Fokus auf Prognosemodelle für hoch strukturierte Daten"
 ---
 
 
@@ -163,6 +162,12 @@ Die praktische Umsetzung in R basiert auf [@silge_tidy_2022].
 
 
 
+## FAQ
+
+
+```{r child = "children/faq.Rmd"}
+
+```
 
 
 
