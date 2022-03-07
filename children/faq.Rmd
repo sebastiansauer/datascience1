@@ -14,8 +14,15 @@
     
 - *Mathe*
     - Muss man ein Mathe-Crack sein, um eine gute Note zu erreichen?
-    - Nein. Mathe steht nicht im Vordergrund.
+    - Nein. Mathe steht nicht im Vordergrund. Schauen Sie sich die Literatur an, sie werden wenig Mathe darin finden.
     
 - *Prüfungsliteratur*
     - Welche Literatur ist prüfungsrelevant?
     - Die Prüfung ist angewandt, z.B. ein Prognosewettbewerb. Es wird keine Klausur geben, in der reines Wissen abgefragt wird.
+
+
+- *Nur R?*
+    - Wird nur R in dem Kurs gelehrt? Andere Programmiersprachen sind doch auch wichtig.
+    - In der Datenanalyse gibt es zwei zentrale Programmiersprachen, R und Python. Beide sind gut und beide werden viel verwendet. In einer Grundausbildung sollte man sich auf eine Sprache begrenzen, da sonst den Sprachen zu viel Zeit eingeräumt werden muss. Wichtiger als eine zweite Programmiersprache zu lernen, mit der man nicht viel mehr kann als mit der ersten, ist es, die Inhalte des Fachs zu lernen.
+    
+    
