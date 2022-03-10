@@ -2,7 +2,7 @@ thema1:
   Titel: "Grundkonzepte"
   Kalenderwoche: 11
   Datum: 14.-18.3.22
-  UnterTitel: "Einführung in das (und Ihr) Thema Forschung"
+  UnterTitel: "Einführung in Data Science"
   Vorbereitung:
     - Lesen Sie die Hinweise zum Modul.
     - Installieren (oder Updaten) Sie die für dieses Modul angegeben Software.
@@ -13,6 +13,7 @@ thema1:
     - Sie kennen verschiedenen Arten von statistischem Lernen und können Algorithmen zu diesen Arten zuordnen.
   Literatur:
     - Rhys, Kap. 1
+    - evtl. Sauer, Kap. 15
   Skript:
     - "[Kap. 1]()"
   Hinweise:

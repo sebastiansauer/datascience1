@@ -22,7 +22,7 @@ github-repo: rstudio/bookdown-demo
   fig.asp = 0.618,
   fig.align='center',
   fig.width = 5,
-  out.width = "50%",
+  out.width = "70%",
   fig.cap = "", 
   fig.path = "chunk-img/",
   dpi = 300,
@@ -156,8 +156,10 @@ render_course_table(yml_file)
 
 ## Literatur
 
-Zentrale Kursliteratur für die theoretischen Konzepte ist [@rhys_machine_2020].
-Die praktische Umsetzung in R basiert auf [@silge_tidy_2022].
+Zentrale Kursliteratur für die theoretischen Konzepte ist @rhys.
+Die praktische Umsetzung in R basiert auf @silge_tidy_2022. Eine theoretische Konzepte sind @islr entnommen. In einigen Punkten ist @modar hilfreich.
+
+
 
 
 
