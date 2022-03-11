@@ -406,7 +406,7 @@ graph TD
   ML --> B
   ML --> DimRed
 ",
-height = 550
+height = 450
 )
 ```
 
@@ -467,8 +467,38 @@ knitr::include_graphics("img/overfitting-crop.png")
 
 ## No free lunch
 
-<a href="https://imgflip.com/i/687izk"><img src="https://i.imgflip.com/687izk.jpg" title="made at imgflip.com"/></a><div><a href="https://imgflip.com/memegenerator">from Imgflip Meme Generator</a></div>
+<a href="https://imgflip.com/i/687izk"><img src="https://i.imgflip.com/687izk.jpg" height="400" title="made at imgflip.com"/></a><div><a href="https://imgflip.com/memegenerator">from Imgflip Meme Generator</a></div>
 
+
+Wenn $f$ (die Beziehung zwischen $Y$ und $X$, auch *datengenerierender Prozess* genannt) linear oder fast linear ist,
+dann wird ein lineare Modell gute Vorhersagen liefern, vgl. Abb. \@ref(fig:2-10) aus @islr, dort zeigt die schwarze Linie den "wahren Zusammenhang", also $f$ an. In orange sieht man ein lineares Modell, in grün ein hoch komplexes Modell,
+das sich in einer "wackligen" Funktion - also mit hoher Varianz - 
+niederschlägt. Das grüne Modell könnte z.B. ein Polynom-Modell hohen Grades sein, z. B. 
+$y = b_0 + b_1 x^{10} + b_2 x^9 + \ldots + b_11 x^1 + \epsilon$. 
+Das lineare Modell hat hingegen wenig Varianz und in diesem Fall wenig Bias.
+Daher ist es für dieses $f$ gut passend.
+Die grüne Funktion zeigt dagegen Überanpassung (overfitting), 
+also viel Modellfehler (für eine Test-Stichprobe).
+
+
+:::: {.infobox .caution}
+Die grüne Funktion in  Abb. \@ref(fig:2-10) wird neue, beim Modelltraining unbekannte Beobachtungen ($y_0$) vergleichsweise schlecht vorhersagen. In Abb. \@ref(fig:2-11)  ist es umgekehrt.
+:::
+
+```{r 2-10, fig.cap = "Ein lineare Funktion verlangt ein lineares Modell; ein nichtlineares Modell wird in einem höheren Vorhersagefehler (bei neuen Daten!) resultieren."}
+knitr::include_graphics("img/2-10.png")
+```
+
+
+Betrachten wir im Gegensatz dazu  Abb. \@ref(fig:2-11) aus @islr, die (in schwarz) eine hochgradig *nichtlineare* Funktion $f$ zeigt.
+Entsprechend wird das lineare Modell (orange) nur schlechte Vorhersagen erreichen - es hat zu viel Bias, da zu simpel. 
+Ein lineares Modell wird der Komplexität von $f$ nicht gerecht,
+Unteranpassung (underfitting) liegt vor.
+
+
+```{r 2-11, fig.cap = "Eine nichtlineare Funktion (schwarz) verlangt eine nichtlineares Modell. Ein lineares Modell (orange) ist unterangepasst und hat eine schlechte Vorhersageleistung."}
+knitr::include_graphics("img/2-11.png")
+```
 
 
 
@@ -480,7 +510,7 @@ $$E = (y - \hat{y}) = \text{Bias} + \text{Varianz} + \epsilon$$
 
 Dabei meint $\epsilon$ den *nicht reduzierbaren Fehler*, z.B. weil dem Modell Informationen fehlen. So kann man etwa auf der Motivation von Studentis keine perfekte Vorhersage ihrer Noten erreichen (lehrt die Erfahrung).
 
-Bias und Varianz sind Kontrahenten: Ein Modell, das wenig Bias hat, neigt tendenziell zu wenig Varianz und umgekehrt, vgl. Abb. \@ref(fig:bias-var) aus [@modar].
+Bias und Varianz sind Kontrahenten: Ein Modell, das wenig Bias hat, neigt tendenziell zu wenig Varianz und umgekehrt, vgl. Abb. \@ref(fig:bias-var) aus @modar.
 
 
 ```{r bias-var, fig.cap = "Abwängung von Bias vs. Varianz"}

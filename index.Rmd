@@ -45,11 +45,9 @@ library(tidyverse)
 # Überblick
 
 
+<a href="https://imgflip.com/i/689g8g"><img src="https://i.imgflip.com/689g8g.jpg" width="300" title="made at imgflip.com"/></a><div><a href="https://imgflip.com/memegenerator">from Imgflip Meme Generator</a></div>
 
-```{r}
-knitr::include_graphics("img/662upp.jpg")
-```
-[Imgflip Meme Generator](https://imgflip.com/i/662upp)
+
 
 
 
@@ -105,7 +103,7 @@ sollten Sie folgendes Wissen mitbringen:
 
 - Sie haben Feedback, Fehlerhinweise oder Wünsche zur Weiterentwicklung? Am besten stellen Sie  [hier](https://github.com/sebastiansauer/datascience1/issues) einen *Issue*  ein.
 
-- Dieses Projekt steht unter der [MIT-Lizenz](https://github.com/sebastiansauer/datascience1/blob/main/LICENSE)). 
+- Dieses Projekt steht unter der [MIT-Lizenz](https://github.com/sebastiansauer/datascience1/blob/main/LICENSE). 
 
 
 
@@ -157,7 +155,8 @@ render_course_table(yml_file)
 ## Literatur
 
 Zentrale Kursliteratur für die theoretischen Konzepte ist @rhys.
-Die praktische Umsetzung in R basiert auf @silge_tidy_2022. Eine theoretische Konzepte sind @islr entnommen. In einigen Punkten ist @modar hilfreich.
+Bitte prüfen Sie, ob das Buch in einer Bibliothek verfügbar ist.
+Die praktische Umsetzung in R basiert auf @silge_tidy_2022; das Buch ist frei online verfügbar. Eine theoretische Konzepte sind @islr entnommen; dieser Test ist frei online verfügbar. In einigen Punkten ist @modar hilfreich; das Buch ist über SpringerLink in Ihrer Hochschul-Bibliothek verfügbar.
 
 
 

@@ -41,6 +41,46 @@
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
@@ -96,7 +136,7 @@
 \makeatother
 \subtitle{Grundlagen der Prognosemodellierung 🔮🧰}
 \author{Sebastian Sauer}
-\date{2022-03-10 21:21:12}
+\date{2022-03-11 10:17:06}
 
 \begin{document}
 \maketitle
@@ -108,15 +148,7 @@
 \hypertarget{uxfcberblick}{%
 \chapter{Überblick}\label{uxfcberblick}}
 
-\begin{figure}[H]
-
-{\centering \includegraphics[width=0.5\linewidth]{img/662upp} 
-
-}
-
-\end{figure}
-
-\href{https://imgflip.com/i/662upp}{Imgflip Meme Generator}
+from Imgflip Meme Generator
 
 \hypertarget{was-sie-hier-lernen-und-wozu-das-gut-ist}{%
 \section{Was Sie hier lernen und wozu das gut ist}\label{was-sie-hier-lernen-und-wozu-das-gut-ist}}
@@ -179,7 +211,7 @@ sollten Sie folgendes Wissen mitbringen:
 \item
   Sie haben Feedback, Fehlerhinweise oder Wünsche zur Weiterentwicklung? Am besten stellen Sie \href{https://github.com/sebastiansauer/datascience1/issues}{hier} einen \emph{Issue} ein.
 \item
-  Dieses Projekt steht unter der \href{https://github.com/sebastiansauer/datascience1/blob/main/LICENSE}{MIT-Lizenz}).
+  Dieses Projekt steht unter der \href{https://github.com/sebastiansauer/datascience1/blob/main/LICENSE}{MIT-Lizenz}.
 \end{itemize}
 
 \hypertarget{lernhilfen}{%
@@ -248,8 +280,9 @@ Nr. & Kalenderwoche & Datum & Thema \\
 \hypertarget{literatur}{%
 \section{Literatur}\label{literatur}}
 
-Zentrale Kursliteratur für die theoretischen Konzepte ist \citep{rhys}.
-Die praktische Umsetzung in R basiert auf \citep{silge_tidy_2022}. Eine theoretische Konzepte sind \citet{james_introduction_2021} entnommen.
+Zentrale Kursliteratur für die theoretischen Konzepte ist \citet{rhys}.
+Bitte prüfen Sie, ob das Buch in einer Bibliothek verfügbar ist.
+Die praktische Umsetzung in R basiert auf \citet{silge_tidy_2022}; das Buch ist frei online verfügbar. Eine theoretische Konzepte sind \citet{islr} entnommen; dieser Test ist frei online verfügbar. In einigen Punkten ist \citet{modar} hilfreich; das Buch ist über SpringerLink in Ihrer Hochschul-Bibliothek verfügbar.
 
 \hypertarget{faq}{%
 \section{FAQ}\label{faq}}
@@ -366,15 +399,8 @@ Die praktische Umsetzung in R basiert auf \citep{silge_tidy_2022}. Eine theoreti
 \tightlist
 \item
   Rhys, Kap. 1
-\end{itemize}
-
-\hypertarget{skript}{%
-\subsection{Skript}\label{skript}}
-
-\begin{itemize}
-\tightlist
 \item
-  \href{}{Kap. 1}
+  evtl. Sauer, Kap. 15
 \end{itemize}
 
 \hypertarget{aufgaben}{%
@@ -1107,13 +1133,19 @@ Dieser ``Dreiklang'' ist in folgendem Venn-Diagramm dargestellt.
 
 \textbackslash begin\{figure\}{[}H{]}
 
-\{\centering \includegraphics[width=0.5\linewidth]{chunk-img/ai-ml2-1}
+\{\centering \includegraphics[width=0.7\linewidth]{chunk-img/ai-ml2-1}
 
 In beiden Fällen finden Algorithmen Verwendung.
 Algorithmen sind nichts anderes als genaue Schritt-für-Schritt-Anleitungen, um etwas zu erledigen.
 Ein Kochrezept ist ein klassisches Beispiel für einen Algorithmus.
 
 \href{https://www.c-programming-simple-steps.com/images/xsum-two-numbers-h.png.pagespeed.ic.AM9WYFPgEo.webp}{Hier} findet sich ein Beispiel für einen einfachen Additionsalgorithmus.
+
+Es gibt viele ML-Algorithmen, vgl. Abb. \ref{fig:algos}.
+
+\textbackslash begin\{figure\}{[}H{]}
+
+\{\centering \includegraphics[width=0.7\linewidth]{chunk-img/algos-1}
 
 \hypertarget{rule-based}{%
 \subsection{Rule-based}\label{rule-based}}
@@ -1122,6 +1154,23 @@ Klassische (ältere) KI implementiert Regeln ``hartverdrahtet'' in ein Computers
 Nutzer füttern Daten in dieses System. Das System leitet dann daraus Antworten ab.
 
 \emph{Regeln} kann man prototypisch mit \emph{Wenn-Dann-Abfragen} darstellen:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lernzeit }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{20}\NormalTok{)}
+\NormalTok{schlauer\_nebensitzer }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{)}
+
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{4}\NormalTok{) \{}
+  \ControlFlowTok{if}\NormalTok{ (lernzeit[i] }\SpecialCharTok{\textgreater{}} \DecValTok{10}\NormalTok{) \{}
+    \FunctionTok{print}\NormalTok{(}\StringTok{"bestanden!"}\NormalTok{)}
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}
+    \ControlFlowTok{if}\NormalTok{ (schlauer\_nebensitzer[i] }\SpecialCharTok{==} \ConstantTok{TRUE}\NormalTok{) \{}
+      \FunctionTok{print}\NormalTok{(}\StringTok{"bestanden!"}\NormalTok{)}
+\NormalTok{    \} }\ControlFlowTok{else} \FunctionTok{print}\NormalTok{(}\StringTok{"Durchgefallen!"}\NormalTok{)}
+\NormalTok{  \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 ## [1] "Durchgefallen!"
@@ -1147,7 +1196,7 @@ Sicherlich könnte man das schlauer programmieren, vielleicht so:
 
 ML hat zum Ziel, Regeln aus den Daten zu lernen. Man füttert Daten und Antworten in das System, das System gibt Regeln zurück.
 
-\citet{james_introduction_2021} definieren ML so:
+\citet{islr} definieren ML so:
 Nehmen wir an, wir haben die abhängige Variable \(Y\) und \(p\) Prädiktoren, \(X_1,X_2, \ldots, X_p\).
 Weiter nehmen wir an, die Beziehung zwischen \(Y\) und \(X = (X_1, X_2, \ldots, X_p)\) kann durch eine Funktion \(f\) beschrieben werden.
 Das kann man so darstellen:
@@ -1156,12 +1205,34 @@ Das kann man so darstellen:
 
 ML kann man auffassen als eine Menge an Verfahren, um \(f\) zu schätzen.
 
+Ein Beispiel ist in Abb. \ref{fig:statlearning} gezeigt \citep{islr}.
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=0.7\linewidth]{img/2-2} 
+
+}
+
+\caption{Vorhersage des Einkommens durch Ausbildungsjahre}\label{fig:statlearning}
+\end{figure}
+
+Natürlich kann \(X\) mehr als eine Variable beinhalten, vgl. Abb. \ref{fig:sl2} \citep{islr}.
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=0.7\linewidth]{img/2-3} 
+
+}
+
+\caption{Vorhersage des Einkommens als Funktion von Ausbildungsjahren und Dienstjahren}\label{fig:sl2}
+\end{figure}
+
 Anders gesagt: traditionelle KI-Systeme werden mit Daten und Regeln gefüttert und liefern Antworten.
 ML-Systeme werden mit Daten und Antworten gefüttert und liefern Regeln zurück, vgl. Abb. \ref{fig:ki-ml2}.
 
 \textbackslash begin\{figure\}{[}H{]}
 
-\{\centering \includegraphics[width=0.5\linewidth]{chunk-img/ki-ml2-1}
+\{\centering \includegraphics[width=0.7\linewidth]{chunk-img/ki-ml2-1}
 
 \hypertarget{modell-vs.-algorithmus}{%
 \section{Modell vs.~Algorithmus}\label{modell-vs.-algorithmus}}
@@ -1186,7 +1257,7 @@ Der Gegenstand definiert (gestaltet) das Modell. Das Modell ist eine Vereinfachu
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=0.5\linewidth]{img/modell-crop} 
+{\centering \includegraphics[width=0.7\linewidth]{img/modell-crop} 
 
 }
 
@@ -1227,7 +1298,100 @@ Eine typische Gliederung unterscheidet in \emph{supervidierte} (geleitete) und \
 
 \textbackslash begin\{figure\}{[}H{]}
 
-\{\centering \includegraphics[width=0.5\linewidth]{chunk-img/taxonomie-1}
+\{\centering \includegraphics[width=0.7\linewidth]{chunk-img/taxonomie-1}
+
+\hypertarget{geleitetes-lernen}{%
+\subsection{Geleitetes Lernen}\label{geleitetes-lernen}}
+
+Die zwei Phasen des geleiteten Lernens sind in Abb. \ref{fig:supervid} dargestellt.
+
+\textbackslash begin\{figure\}{[}H{]}
+
+\{\centering \includegraphics[width=0.7\linewidth]{chunk-img/supervid-1}
+
+\hypertarget{regression-numerische-vorhersage}{%
+\subsubsection{Regression: Numerische Vorhersage}\label{regression-numerische-vorhersage}}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=0.7\linewidth]{chunk-img/unnamed-chunk-8-1} 
+
+}
+
+\end{figure}
+
+Die Modellgüte eines numerischen Vorhersagemodells wird oft mit (einem der) folgenden \emph{Gütekoeffizienten} gemessen:
+
+\begin{itemize}
+\tightlist
+\item
+  Mean Squared Error (Mittlerer Quadratfehler):
+\end{itemize}
+
+\[MSE := \frac{1}{n} \sum (y_i - \hat{y}_i)^2\]
+
+\begin{itemize}
+\tightlist
+\item
+  Mean Absolute Error (Mittlerer Absolutfehler):
+\end{itemize}
+
+\[MAE :=  \frac{1}{n} \sum |(y_i - \hat{y}_i)|\]
+
+Wir sind nicht adaran interessiert die Vorhersagegenauigkeit in den bekannten Daten einzuschätzen, sondern im Hinblick auf neue Daten, die in der Lernphase dem Modell nicht bekannt waren.
+
+\hypertarget{klassifikation-nominale-vorhersage}{%
+\subsubsection{Klassifikation: Nominale Vorhersage}\label{klassifikation-nominale-vorhersage}}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=0.7\linewidth]{img/aktien-plot-1} 
+
+}
+
+\end{figure}
+
+Die Modellgüte eines numerischen Vorhersagemodells wird oft mit folgendem \emph{Gütekoeffizienten} gemessen:
+
+\begin{itemize}
+\tightlist
+\item
+  Mittlerer Klassifikationfehler \(e\):
+\end{itemize}
+
+\[e := \frac{1}{n} I(y_i \ne \hat{y}_i) \]
+
+Dabei ist \(I\) eine Indikatorfunktion, die \texttt{1} zurückliefert,
+wenn tatsächlicher Wert und vorhergesagter Wert identisch sind.
+
+\hypertarget{ungeleitetes-lernen}{%
+\subsection{Ungeleitetes Lernen}\label{ungeleitetes-lernen}}
+
+Die zwei Phasen des ungeleiteten Lernens sind in Abb. \ref{fig:unsuper} dargestellt.
+
+\textbackslash begin\{figure\}{[}H{]}
+
+\{\centering \includegraphics[width=0.7\linewidth]{chunk-img/unsuper-1}
+
+Ungeleitetes Lernen kann man wiederum in zwei Arten unterteilen, vgl. Abb. \ref{fig:ungel}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Fallreduzierendes Modellieren (Clustering)
+\item
+  Dimensionsreduzierendes Modellieren (z.B. Faktorenanalyse)
+\end{enumerate}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=0.7\linewidth]{img/ungeleitetes_Modellieren_crop} 
+
+}
+
+\caption{Zwei Arten von ungeleitetem Modellieren}\label{fig:ungel}
+\end{figure}
 
 \hypertarget{ziele-des-ml}{%
 \section{Ziele des ML}\label{ziele-des-ml}}
@@ -1236,21 +1400,123 @@ Man kann vier Ziele des ML unterscheiden, s. Abb. \ref{fig:ziele}.
 
 \textbackslash begin\{figure\}{[}H{]}
 
-\{\centering \includegraphics[width=0.5\linewidth]{chunk-img/ziele-1}
+\{\centering \includegraphics[width=0.7\linewidth]{chunk-img/ziele-1}
 
 \emph{Vorhersage} bezieht sich auf die Schätzung der Werte von Zielvariablen (sowie die damit verbundene Unsicherheit).
 \emph{Erklärung} meint die kausale Analyse von Zusammenhängen.
 \emph{Beschreibung} ist praktisch gleichzusetzen mit der Verwendung von deskriptiven Statistiken.
 \emph{Dimensionsreduktion} ist ein Oberbegriff für Verfahren, die die Anzahl der Variablen (Spalten) oder der Beobachtungen (Zeilen) verringert.s
 
-\hypertarget{test}{%
-\section{Test}\label{test}}
+Wie ``gut'' ein Modell ist, quantifiziert man in verschiedenen Kennzahlen; man spricht von Modellgüte oder \emph{model fit}.
+Je schlechter die Modellgüte, desto höher der \emph{Modellfehler}, vgl. Abb. \ref{fig:resid}.
 
-jköjk \ref{fig:test}
+\begin{figure}[H]
 
-\textbackslash begin\{figure\}{[}H{]}
+{\centering \includegraphics[width=0.7\linewidth]{img/resids-plot-1} 
 
-\{\centering \includegraphics[width=0.5\linewidth]{chunk-img/test-1}
+}
+
+\caption{Wenig (links) vs. viel (rechts) Vorhersagefehler}\label{fig:resid}
+\end{figure}
+
+Die Modellgüte eines Modells ist nur relevant für \emph{neue Beobachtungen},
+an denen das Modell nicht trainiert wurde.
+
+\hypertarget{uxfcber--vs.-unteranpassung}{%
+\section{Über- vs.~Unteranpassung}\label{uxfcber--vs.-unteranpassung}}
+
+\emph{Overfitting}: Ein Modell sagt die Trainingsdaten zu genau vorher - es nimmt Rauschen als ``bare Münze'', also fälschlich als Signal. Solche Modelle haben zu viel \emph{Varianz} in ihren Vorhersagen.
+
+\emph{Underfitting}: Ein Modell ist zu simpel (ungenau, grobkörnig) - es unterschlägt Nuancen des tatsächlichen Musters. Solche Modelle haben zu viel \emph{Verzerrung} (Bias) in ihren Vorhersagen.
+
+Welches der folgenden Modelle (B,C,D) passt am besten zu den Daten (A), s. Abb. \ref{fig:overunder}, vgl. \citep{modar}, Kap. 15.
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=0.7\linewidth]{img/overfitting-4-plots-1} 
+
+}
+
+\caption{Over- vs. Underfitting}\label{fig:overunder}
+\end{figure}
+
+Welches Modell wird wohl neue Daten am besten vorhersagen? Was meinen Sie?
+
+Modell D zeigt sehr gute Beschreibung (``Retrodiktion'') der Werte, anhand derer das Modell trainiert wurde (``Trainingsstichprobe'').
+Wird es aber ``ehrlich'' getestet, d.h. anhand neuer Daten (``Test-Stichprobe''),
+wird es vermutlich \emph{nicht} so gut abschneiden.
+
+Es gilt, ein Modell mit ``mittlerer'' Komplexität zu finden, um Über- und Unteranpassung in Grenzen zu halten.
+Leider ist es nicht möglich, vorab zu sagen, was der richtige, ``mittlere'' Wert an Komplexität eines Modells ist, vgl. Abb. \ref{fig:overfitting} aus \citep{modar}.
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=0.7\linewidth]{img/overfitting-crop} 
+
+}
+
+\caption{Mittlere Modellkomplexität führt zur besten Vorhersagegüte}\label{fig:overfitting}
+\end{figure}
+
+\hypertarget{no-free-lunch}{%
+\section{No free lunch}\label{no-free-lunch}}
+
+from Imgflip Meme Generator
+
+Wenn \(f\) (die Beziehung zwischen \(Y\) und \(X\), auch \emph{datengenerierender Prozess} genannt) linear oder fast linear ist,
+dann wird ein lineare Modell gute Vorhersagen liefern, vgl. Abb. \ref{fig:2-10}, dort zeigt die schwarze Linie den ``wahren Zusammenhang'', also \(f\) an. In orange sieht man ein lineares Modell, in grün ein hoch komplexes Modell,
+das sich in einer ``wackligen'' Funktion - also mit hoher Varianz -
+niederschlägt. Das grüne Modell könnte z.B. ein Polynom-Modell hohen Grades sein, z. B.
+\(y = b_0 + b_1 x^{10} + b_2 x^9 + \ldots + b_11 x^1 + \epsilon\).
+Das lineare Modell hat hingegen wenig Varianz und in diesem Fall wenig Bias.
+Daher ist es für dieses \(f\) gut passend.
+Die grüne Funktion zeigt dagegen Überanpassung (overfitting),
+also viel Modellfehler (für eine Test-Stichprobe).
+
+Die grüne Funktion in Abb. \ref{fig:2-10} wird neue, beim Modelltraining unbekannte Beobachtungen (\(y_0\)) vergleichsweise schlecht vorhersagen. In Abb. \ref{fig:2-11} ist es umgekehrt.
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=0.7\linewidth]{img/2-10} 
+
+}
+
+\caption{Ein lineare Funktion verlangt ein lineares Modell; ein nichtlineares Modell wird in einem höheren Vorhersagefehler (bei neuen Daten!) resultieren.}\label{fig:2-10}
+\end{figure}
+
+Betrachten wir im Gegensatz dazu Abb. \ref{fig:2-11}, die (in schwarz) eine hochgradig \emph{nichtlineare} Funktion \(f\) zeigt.
+Entsprechend wird das lineare Modell (orange) nur schlechte Vorhersagen erreichen - es hat zu viel Bias, da zu simpel.
+Ein lineares Modell wird der Komplexität von \(f\) nicht gerecht,
+Unteranpassung (underfitting) liegt vor.
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=0.7\linewidth]{img/2-11} 
+
+}
+
+\caption{Eine nichtlineare Funktion (schwarz) verlangt eine nichtlineares Modell. Ein lineares Modell (orange) ist unterangepasst und hat eine schlechte Vorhersageleistung.}\label{fig:2-11}
+\end{figure}
+
+\hypertarget{bias-varianz-abwuxe4gung}{%
+\section{Bias-Varianz-Abwägung}\label{bias-varianz-abwuxe4gung}}
+
+Der Gesamtfehler \(E\) des Modells ist die Summe dreier Terme:
+
+\[E = (y - \hat{y}) = \text{Bias} + \text{Varianz} + \epsilon\]
+
+Dabei meint \(\epsilon\) den \emph{nicht reduzierbaren Fehler}, z.B. weil dem Modell Informationen fehlen. So kann man etwa auf der Motivation von Studentis keine perfekte Vorhersage ihrer Noten erreichen (lehrt die Erfahrung).
+
+Bias und Varianz sind Kontrahenten: Ein Modell, das wenig Bias hat, neigt tendenziell zu wenig Varianz und umgekehrt, vgl. Abb. \ref{fig:bias-var} aus \citep{modar}.
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=0.7\linewidth]{img/plot-bias-variance-1} 
+
+}
+
+\caption{Abwängung von Bias vs. Varianz}\label{fig:bias-var}
+\end{figure}
 
   \bibliography{book.bib,packages.bib}
 

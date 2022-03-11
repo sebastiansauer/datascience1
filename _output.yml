@@ -6,7 +6,7 @@ bookdown::gitbook:
       before: |
         <li><a href="./">Data Science Grundlagen</a></li>
       after: 
-    edit: https://github.com/sebastiansauer/datascience1
+    edit: https://github.com/sebastiansauer/datascience1%s
     download: []
 bookdown::pdf_book:
   includes:

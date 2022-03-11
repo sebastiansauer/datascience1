@@ -13,6 +13,8 @@ fig:ziele
 fig:resid
 fig:overunder
 fig:overfitting
+fig:2-10
+fig:2-11
 fig:bias-var
 überblick
 was-sie-hier-lernen-und-wozu-das-gut-ist
@@ -31,7 +33,6 @@ datum
 lernziele-1
 vorbereitung
 literatur-1
-skript
 aufgaben
 vertiefung
 hinweise
