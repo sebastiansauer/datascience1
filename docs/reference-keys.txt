@@ -87,6 +87,7 @@ literatur-13
 vertiefung-3
 hinweise-5
 prüfung
+prüfungleistung
 tldr-zusammenfassung
 vorhersage
 hauptziel-genaue-prognose
