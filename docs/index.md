@@ -2,42 +2,24 @@
 title: "DataScience1"
 subtitle: Grundlagen der Prognosemodellierung 🔮🧰
 
+  
 author: "Sebastian Sauer"
-date: "`r Sys.time()`"
+date: "2022-03-17 09:50:05"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
-description: "Grundlagen der Prognosemodellierung mit tidymodels"
-github-repo: sebastiansauer/datascience1
+github-repo: rstudio/bookdown-demo
 # description: "Ein Kurs zu den Grundlagen des statistischen Lernens mit einem Fokus auf Prognosemodelle für hoch strukturierte Daten"
 ---
 
 
-```{r global-knitr-options, include=FALSE}
-  knitr::opts_chunk$set(
-  fig.pos = 'H',
-  fig.asp = 0.618,
-  fig.align='center',
-  fig.width = 5,
-  out.width = "70%",
-  fig.cap = "", 
-  fig.path = "chunk-img/",
-  dpi = 300,
-  # tidy = TRUE,
-  echo = FALSE,
-  message = FALSE,
-  warning = FALSE,
-  cache = FALSE,
-  fig.show = "hold")
-```
 
 
-```{r message = FALSE, echo = FALSE}
-library(tidyverse)
-```
+
+
 
 
 
@@ -145,12 +127,23 @@ sollten Sie folgendes Wissen mitbringen:
 ## Modulzeitplan
 
 
-```{r render-outline-table, results = "asis", echo = FALSE, message = FALSE}
-source(paste0(here::here(),"/funs/render-course-table.R"))
-yml_file <- "_modul-ueberblick.yml"
-
-render_course_table(yml_file)
-```
+Nr. | Kalenderwoche | Datum | Thema
+---|---|---|--
+1 | 11 | 14.-18.3.22 | Grundkonzepte
+2 | 12 | 21.3.-25.3. | tidyverse, 2. Blick
+3 | 13 | 28.3.-1.4. | tidymodels
+4 | 14 | 4.4.-8.4. | kNN
+5 | 15 | 11.4.-15.4. | Statistisches Lernen
+6 | 16 | 18.4.-22.4 | Wiederholung
+7 | 17 | 25.4.-29.4 | Logistische Regression
+8 | 18 | 2.5.-6.5. | Naive Bayes
+9 | 19 | 9.5.-13.5. | Entscheidungsbäume
+10 | 20 | 16.5.-20.5. | Zufallswälder
+11 | 21 | 23.5.-27.5. | Fallstudie
+12 | 23 | 6.6.-10.6. | Wiederholung
+13 | 24 | 13.6.-17.6. | GAM
+14 | 25 | 20.6.-24.6. | Lasso und Co
+15 | 26 | 27.6.-1.7. | Vertiefung
 
 
 
@@ -186,21 +179,42 @@ In dem Buch wird das Lehrbuch @islr in Tidymodels-Konzepte übersetzt; sehr sch�
 ## FAQ
 
 
-```{r child = "children/faq.Rmd"}
-
-```
 
 
 
+- *Folien*
+    - Frage: Gibt es ein Folienskript?
+    - Antwort: Wo es einfache, gute Literatur gibt, gibt es kein Skript. Wo es keine gute oder keine einfach zugängliche Literatur gibt, dort gibt es ein Skript.
+    
+- *Englisch*
+    - Ist die Literatur auf Englisch?
+    - Ja. Allerdings ist die Literatur gut zugänglich. Das Englisch ist nicht schwer. Bedenken Sie: Englisch ist die lingua franca in Wissenschaft und Wirtschaft. Ein solides Verständnis englischer (geschriebener) Sprache ist für eine gute Ausbildung unerlässlich. Zu dem sollte die Kursliteratur fachlich passende und gute Bücher umfassen; oft sind das englische Titel. 
+    
+- *Anstrengend*
+    - Ist der Kurs sehr anstrengend, aufwändig?
+    - Der Kurs hat ein mittleres Anspruchsniveau. 
+    
+- *Mathe*
+    - Muss man ein Mathe-Crack sein, um eine gute Note zu erreichen?
+    - Nein. Mathe steht nicht im Vordergrund. Schauen Sie sich die Literatur an, sie werden wenig Mathe darin finden.
+    
+- *Prüfungsliteratur*
+    - Welche Literatur ist prüfungsrelevant?
+    - Die Prüfung ist angewandt, z.B. ein Prognosewettbewerb. Es wird keine Klausur geben, in der reines Wissen abgefragt wird.
+
+
+- *Nur R?*
+    - Wird nur R in dem Kurs gelehrt? Andere Programmiersprachen sind doch auch wichtig.
+    - In der Datenanalyse gibt es zwei zentrale Programmiersprachen, R und Python. Beide sind gut und beide werden viel verwendet. In einer Grundausbildung sollte man sich auf eine Sprache begrenzen, da sonst den Sprachen zu viel Zeit eingeräumt werden muss. Wichtiger als eine zweite Programmiersprache zu lernen, mit der man nicht viel mehr kann als mit der ersten, ist es, die Inhalte des Fachs zu lernen.
+    
+    
 
 
 
 
 
-```{r include=FALSE}
-# automatically create a bib database for R packages
-knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown'
-), 'packages.bib')
-```
+
+
+
+
 

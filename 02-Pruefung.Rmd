@@ -5,7 +5,7 @@
 
 Die Prüfungsleistung besteht aus einem *Prognosewettbewerb*.
 
-```{r hinweise, results='asis'}
+```{r hinweise, results='asis', echo = FALSE}
 url <- "https://raw.githubusercontent.com/sebastiansauer/Lehre/main/Hinweise/Hinweise-Pruefung-Prognosewettbewerb-child.Rmd"
 childtext <- readLines(url)
 cat(childtext, sep="\n")

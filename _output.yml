@@ -8,11 +8,24 @@ bookdown::gitbook:
       after: 
     edit: https://github.com/sebastiansauer/datascience1%s
     download: []
+  repo: https://github.com/sebastiansauer/datascience1
+  
+    
+bookdown::bs4_book:
+  css: ["style-bs4.css"]
+  theme:
+    primary: "#26A9C2"
+  repo: https://github.com/sebastiansauer/datascience1   
+    
+    
+    
 bookdown::pdf_book:
   includes:
     in_header: preamble.tex
   latex_engine: xelatex
   citation_package: natbib
   keep_tex: yes
+  
+  
 bookdown::epub_book: default
-bookdown::bs4_book: default
+

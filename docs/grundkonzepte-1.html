@@ -1,379 +1,86 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html lang="en">
 <head>
-
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Kapitel 4 Grundkonzepte | DataScience1</title>
-  <meta name="description" content="Kapitel 4 Grundkonzepte | DataScience1" />
-  <meta name="generator" content="bookdown 0.24.2 and GitBook 2.6.7" />
-
-  <meta property="og:title" content="Kapitel 4 Grundkonzepte | DataScience1" />
-  <meta property="og:type" content="book" />
-  
-  
-  
-  <meta name="github-repo" content="rstudio/bookdown-demo" />
-
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Kapitel 4 Grundkonzepte | DataScience1" />
-  
-  
-  
-
-<meta name="author" content="Sebastian Sauer" />
-
-
-
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-  
-  
-<link rel="prev" href="prüfung.html"/>
-<link rel="next" href="references.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
-<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
-<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
-
-
-
-
-
-
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
-<script src="libs/viz-1.8.2/viz.js"></script>
-<link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
-<script src="libs/grViz-binding-1.0.6.1/grViz.js"></script>
-<script src="libs/es6shim-0.35.6/es6shim.js"></script>
-<script src="libs/es7shim-6.0.0/es7shim.js"></script>
-<script src="libs/graphre-0.1.3/graphre.js"></script>
-<script src="libs/nomnoml-1.3.1/nomnoml.js"></script>
-<script src="libs/nomnoml-binding-0.2.3/nomnoml.js"></script>
-<script src="libs/d3-3.3.8/d3.min.js"></script>
-<script src="libs/dagre-0.4.0/dagre-d3.min.js"></script>
-<link href="libs/mermaid-0.3.0/dist/mermaid.css" rel="stylesheet" />
-<script src="libs/mermaid-0.3.0/dist/mermaid.slim.min.js"></script>
-<script src="libs/chromatography-0.1/chromatography.js"></script>
-<script src="libs/DiagrammeR-binding-1.0.6.1/DiagrammeR.js"></script>
-
-
-<style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
-
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
-</style>
-
-<link rel="stylesheet" href="style.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Kapitel 4 Grundkonzepte | DataScience1</title>
+<meta name="author" content="Sebastian Sauer">
+<meta name="generator" content="bookdown 0.24.2 with bs4_book()">
+<meta property="og:title" content="Kapitel 4 Grundkonzepte | DataScience1">
+<meta property="og:type" content="book">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kapitel 4 Grundkonzepte | DataScience1">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
+<script src="libs/grViz-binding-1.0.6.1/grViz.js"></script><script src="libs/es6shim-0.35.6/es6shim.js"></script><script src="libs/es7shim-6.0.0/es7shim.js"></script><script src="libs/graphre-0.1.3/graphre.js"></script><script src="libs/nomnoml-1.3.1/nomnoml.js"></script><script src="libs/nomnoml-binding-0.2.3/nomnoml.js"></script><script src="libs/d3-3.3.8/d3.min.js"></script><script src="libs/dagre-0.4.0/dagre-d3.min.js"></script><link href="libs/mermaid-0.3.0/dist/mermaid.css" rel="stylesheet">
+<script src="libs/mermaid-0.3.0/dist/mermaid.slim.min.js"></script><script src="libs/chromatography-0.1/chromatography.js"></script><script src="libs/DiagrammeR-binding-1.0.6.1/DiagrammeR.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="style-bs4.css">
+<meta name="description" content="4.1 Was ist Data Science? Es gibt mehrere Definitionen von Data Science, aber keinen kompletten Konsens. Baumer, Kaplan, and Horton (2017) definieren Data Science wie folgt (S. 4): The science of...">
+<meta property="og:description" content="4.1 Was ist Data Science? Es gibt mehrere Definitionen von Data Science, aber keinen kompletten Konsens. Baumer, Kaplan, and Horton (2017) definieren Data Science wie folgt (S. 4): The science of...">
+<meta name="twitter:description" content="4.1 Was ist Data Science? Es gibt mehrere Definitionen von Data Science, aber keinen kompletten Konsens. Baumer, Kaplan, and Horton (2017) definieren Data Science wie folgt (S. 4): The science of...">
 </head>
+<body data-spy="scroll" data-target="#toc">
 
-<body>
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 
-
-
-  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
-
-    <div class="book-summary">
-      <nav role="navigation">
-
-<ul class="summary">
-<li><a href="./">Data Science Grundlagen</a></li>
-
-<li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Überblick</a>
-<ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#was-sie-hier-lernen-und-wozu-das-gut-ist"><i class="fa fa-check"></i><b>1.1</b> Was Sie hier lernen und wozu das gut ist</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#lernziele"><i class="fa fa-check"></i><b>1.2</b> Lernziele</a></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#voraussetzungen"><i class="fa fa-check"></i><b>1.3</b> Voraussetzungen</a></li>
-<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#hinweise-zu-diesem-projekt"><i class="fa fa-check"></i><b>1.4</b> Hinweise zu diesem Projekt</a></li>
-<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#lernhilfen"><i class="fa fa-check"></i><b>1.5</b> Lernhilfen</a>
-<ul>
-<li class="chapter" data-level="1.5.1" data-path="index.html"><a href="index.html#software"><i class="fa fa-check"></i><b>1.5.1</b> Software</a></li>
-<li class="chapter" data-level="1.5.2" data-path="index.html"><a href="index.html#videos"><i class="fa fa-check"></i><b>1.5.2</b> Videos</a></li>
-<li class="chapter" data-level="1.5.3" data-path="index.html"><a href="index.html#online-zusammenarbeit"><i class="fa fa-check"></i><b>1.5.3</b> Online-Zusammenarbeit</a></li>
-</ul></li>
-<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#modulzeitplan"><i class="fa fa-check"></i><b>1.6</b> Modulzeitplan</a></li>
-<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#literatur"><i class="fa fa-check"></i><b>1.7</b> Literatur</a></li>
-<li class="chapter" data-level="1.8" data-path="index.html"><a href="index.html#faq"><i class="fa fa-check"></i><b>1.8</b> FAQ</a></li>
-</ul></li>
-<li class="chapter" data-level="2" data-path="modulüberblick.html"><a href="modulüberblick.html"><i class="fa fa-check"></i><b>2</b> Modulüberblick</a>
-<ul>
-<li class="chapter" data-level="2.1" data-path="modulüberblick.html"><a href="modulüberblick.html#grundkonzepte"><i class="fa fa-check"></i><b>2.1</b> Grundkonzepte</a>
-<ul>
-<li class="chapter" data-level="2.1.1" data-path="modulüberblick.html"><a href="modulüberblick.html#datum"><i class="fa fa-check"></i><b>2.1.1</b> Datum</a></li>
-<li class="chapter" data-level="2.1.2" data-path="modulüberblick.html"><a href="modulüberblick.html#lernziele-1"><i class="fa fa-check"></i><b>2.1.2</b> Lernziele</a></li>
-<li class="chapter" data-level="2.1.3" data-path="modulüberblick.html"><a href="modulüberblick.html#vorbereitung"><i class="fa fa-check"></i><b>2.1.3</b> Vorbereitung</a></li>
-<li class="chapter" data-level="2.1.4" data-path="modulüberblick.html"><a href="modulüberblick.html#literatur-1"><i class="fa fa-check"></i><b>2.1.4</b> Literatur</a></li>
-<li class="chapter" data-level="2.1.5" data-path="modulüberblick.html"><a href="modulüberblick.html#aufgaben"><i class="fa fa-check"></i><b>2.1.5</b> Aufgaben</a></li>
-<li class="chapter" data-level="2.1.6" data-path="modulüberblick.html"><a href="modulüberblick.html#vertiefung"><i class="fa fa-check"></i><b>2.1.6</b> Vertiefung</a></li>
-<li class="chapter" data-level="2.1.7" data-path="modulüberblick.html"><a href="modulüberblick.html#hinweise"><i class="fa fa-check"></i><b>2.1.7</b> Hinweise</a></li>
-</ul></li>
-<li class="chapter" data-level="2.2" data-path="modulüberblick.html"><a href="modulüberblick.html#tidyverse-2.-blick"><i class="fa fa-check"></i><b>2.2</b> tidyverse, 2. Blick</a>
-<ul>
-<li class="chapter" data-level="2.2.1" data-path="modulüberblick.html"><a href="modulüberblick.html#datum-1"><i class="fa fa-check"></i><b>2.2.1</b> Datum</a></li>
-<li class="chapter" data-level="2.2.2" data-path="modulüberblick.html"><a href="modulüberblick.html#lernziele-2"><i class="fa fa-check"></i><b>2.2.2</b> Lernziele</a></li>
-<li class="chapter" data-level="2.2.3" data-path="modulüberblick.html"><a href="modulüberblick.html#vorbereitung-1"><i class="fa fa-check"></i><b>2.2.3</b> Vorbereitung</a></li>
-<li class="chapter" data-level="2.2.4" data-path="modulüberblick.html"><a href="modulüberblick.html#literatur-2"><i class="fa fa-check"></i><b>2.2.4</b> Literatur</a></li>
-</ul></li>
-<li class="chapter" data-level="2.3" data-path="modulüberblick.html"><a href="modulüberblick.html#tidymodels"><i class="fa fa-check"></i><b>2.3</b> tidymodels</a>
-<ul>
-<li class="chapter" data-level="2.3.1" data-path="modulüberblick.html"><a href="modulüberblick.html#datum-2"><i class="fa fa-check"></i><b>2.3.1</b> Datum</a></li>
-<li class="chapter" data-level="2.3.2" data-path="modulüberblick.html"><a href="modulüberblick.html#literatur-3"><i class="fa fa-check"></i><b>2.3.2</b> Literatur</a></li>
-</ul></li>
-<li class="chapter" data-level="2.4" data-path="modulüberblick.html"><a href="modulüberblick.html#knn"><i class="fa fa-check"></i><b>2.4</b> kNN</a>
-<ul>
-<li class="chapter" data-level="2.4.1" data-path="modulüberblick.html"><a href="modulüberblick.html#datum-3"><i class="fa fa-check"></i><b>2.4.1</b> Datum</a></li>
-<li class="chapter" data-level="2.4.2" data-path="modulüberblick.html"><a href="modulüberblick.html#literatur-4"><i class="fa fa-check"></i><b>2.4.2</b> Literatur</a></li>
-</ul></li>
-<li class="chapter" data-level="2.5" data-path="modulüberblick.html"><a href="modulüberblick.html#statistisches-lernen"><i class="fa fa-check"></i><b>2.5</b> Statistisches Lernen</a>
-<ul>
-<li class="chapter" data-level="2.5.1" data-path="modulüberblick.html"><a href="modulüberblick.html#datum-4"><i class="fa fa-check"></i><b>2.5.1</b> Datum</a></li>
-<li class="chapter" data-level="2.5.2" data-path="modulüberblick.html"><a href="modulüberblick.html#literatur-5"><i class="fa fa-check"></i><b>2.5.2</b> Literatur</a></li>
-<li class="chapter" data-level="2.5.3" data-path="modulüberblick.html"><a href="modulüberblick.html#vertiefung-1"><i class="fa fa-check"></i><b>2.5.3</b> Vertiefung</a></li>
-<li class="chapter" data-level="2.5.4" data-path="modulüberblick.html"><a href="modulüberblick.html#hinweise-1"><i class="fa fa-check"></i><b>2.5.4</b> Hinweise</a></li>
-</ul></li>
-<li class="chapter" data-level="2.6" data-path="modulüberblick.html"><a href="modulüberblick.html#wiederholung"><i class="fa fa-check"></i><b>2.6</b> Wiederholung</a>
-<ul>
-<li class="chapter" data-level="2.6.1" data-path="modulüberblick.html"><a href="modulüberblick.html#datum-5"><i class="fa fa-check"></i><b>2.6.1</b> Datum</a></li>
-<li class="chapter" data-level="2.6.2" data-path="modulüberblick.html"><a href="modulüberblick.html#hinweise-2"><i class="fa fa-check"></i><b>2.6.2</b> Hinweise</a></li>
-</ul></li>
-<li class="chapter" data-level="2.7" data-path="modulüberblick.html"><a href="modulüberblick.html#logistische-regression"><i class="fa fa-check"></i><b>2.7</b> Logistische Regression</a>
-<ul>
-<li class="chapter" data-level="2.7.1" data-path="modulüberblick.html"><a href="modulüberblick.html#datum-6"><i class="fa fa-check"></i><b>2.7.1</b> Datum</a></li>
-<li class="chapter" data-level="2.7.2" data-path="modulüberblick.html"><a href="modulüberblick.html#literatur-6"><i class="fa fa-check"></i><b>2.7.2</b> Literatur</a></li>
-</ul></li>
-<li class="chapter" data-level="2.8" data-path="modulüberblick.html"><a href="modulüberblick.html#naive-bayes"><i class="fa fa-check"></i><b>2.8</b> Naive Bayes</a>
-<ul>
-<li class="chapter" data-level="2.8.1" data-path="modulüberblick.html"><a href="modulüberblick.html#datum-7"><i class="fa fa-check"></i><b>2.8.1</b> Datum</a></li>
-<li class="chapter" data-level="2.8.2" data-path="modulüberblick.html"><a href="modulüberblick.html#literatur-7"><i class="fa fa-check"></i><b>2.8.2</b> Literatur</a></li>
-</ul></li>
-<li class="chapter" data-level="2.9" data-path="modulüberblick.html"><a href="modulüberblick.html#entscheidungsbäume"><i class="fa fa-check"></i><b>2.9</b> Entscheidungsbäume</a>
-<ul>
-<li class="chapter" data-level="2.9.1" data-path="modulüberblick.html"><a href="modulüberblick.html#datum-8"><i class="fa fa-check"></i><b>2.9.1</b> Datum</a></li>
-<li class="chapter" data-level="2.9.2" data-path="modulüberblick.html"><a href="modulüberblick.html#literatur-8"><i class="fa fa-check"></i><b>2.9.2</b> Literatur</a></li>
-</ul></li>
-<li class="chapter" data-level="2.10" data-path="modulüberblick.html"><a href="modulüberblick.html#zufallswälder"><i class="fa fa-check"></i><b>2.10</b> Zufallswälder</a>
-<ul>
-<li class="chapter" data-level="2.10.1" data-path="modulüberblick.html"><a href="modulüberblick.html#datum-9"><i class="fa fa-check"></i><b>2.10.1</b> Datum</a></li>
-<li class="chapter" data-level="2.10.2" data-path="modulüberblick.html"><a href="modulüberblick.html#literatur-9"><i class="fa fa-check"></i><b>2.10.2</b> Literatur</a></li>
-</ul></li>
-<li class="chapter" data-level="2.11" data-path="modulüberblick.html"><a href="modulüberblick.html#fallstudie"><i class="fa fa-check"></i><b>2.11</b> Fallstudie</a>
-<ul>
-<li class="chapter" data-level="2.11.1" data-path="modulüberblick.html"><a href="modulüberblick.html#datum-10"><i class="fa fa-check"></i><b>2.11.1</b> Datum</a></li>
-<li class="chapter" data-level="2.11.2" data-path="modulüberblick.html"><a href="modulüberblick.html#literatur-10"><i class="fa fa-check"></i><b>2.11.2</b> Literatur</a></li>
-<li class="chapter" data-level="2.11.3" data-path="modulüberblick.html"><a href="modulüberblick.html#hinweise-3"><i class="fa fa-check"></i><b>2.11.3</b> Hinweise</a></li>
-</ul></li>
-<li class="chapter" data-level="2.12" data-path="modulüberblick.html"><a href="modulüberblick.html#wiederholung-1"><i class="fa fa-check"></i><b>2.12</b> Wiederholung</a>
-<ul>
-<li class="chapter" data-level="2.12.1" data-path="modulüberblick.html"><a href="modulüberblick.html#datum-11"><i class="fa fa-check"></i><b>2.12.1</b> Datum</a></li>
-<li class="chapter" data-level="2.12.2" data-path="modulüberblick.html"><a href="modulüberblick.html#hinweise-4"><i class="fa fa-check"></i><b>2.12.2</b> Hinweise</a></li>
-</ul></li>
-<li class="chapter" data-level="2.13" data-path="modulüberblick.html"><a href="modulüberblick.html#gam"><i class="fa fa-check"></i><b>2.13</b> GAM</a>
-<ul>
-<li class="chapter" data-level="2.13.1" data-path="modulüberblick.html"><a href="modulüberblick.html#datum-12"><i class="fa fa-check"></i><b>2.13.1</b> Datum</a></li>
-<li class="chapter" data-level="2.13.2" data-path="modulüberblick.html"><a href="modulüberblick.html#literatur-11"><i class="fa fa-check"></i><b>2.13.2</b> Literatur</a></li>
-</ul></li>
-<li class="chapter" data-level="2.14" data-path="modulüberblick.html"><a href="modulüberblick.html#lasso-und-co"><i class="fa fa-check"></i><b>2.14</b> Lasso und Co</a>
-<ul>
-<li class="chapter" data-level="2.14.1" data-path="modulüberblick.html"><a href="modulüberblick.html#datum-13"><i class="fa fa-check"></i><b>2.14.1</b> Datum</a></li>
-<li class="chapter" data-level="2.14.2" data-path="modulüberblick.html"><a href="modulüberblick.html#literatur-12"><i class="fa fa-check"></i><b>2.14.2</b> Literatur</a></li>
-</ul></li>
-<li class="chapter" data-level="2.15" data-path="modulüberblick.html"><a href="modulüberblick.html#vertiefung-2"><i class="fa fa-check"></i><b>2.15</b> Vertiefung</a>
-<ul>
-<li class="chapter" data-level="2.15.1" data-path="modulüberblick.html"><a href="modulüberblick.html#datum-14"><i class="fa fa-check"></i><b>2.15.1</b> Datum</a></li>
-<li class="chapter" data-level="2.15.2" data-path="modulüberblick.html"><a href="modulüberblick.html#literatur-13"><i class="fa fa-check"></i><b>2.15.2</b> Literatur</a></li>
-<li class="chapter" data-level="2.15.3" data-path="modulüberblick.html"><a href="modulüberblick.html#vertiefung-3"><i class="fa fa-check"></i><b>2.15.3</b> Vertiefung</a></li>
-<li class="chapter" data-level="2.15.4" data-path="modulüberblick.html"><a href="modulüberblick.html#hinweise-5"><i class="fa fa-check"></i><b>2.15.4</b> Hinweise</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="prüfung.html"><a href="prüfung.html"><i class="fa fa-check"></i><b>3</b> Prüfung</a>
-<ul>
-<li class="chapter" data-level="3.1" data-path="prüfung.html"><a href="prüfung.html#prüfungleistung"><i class="fa fa-check"></i><b>3.1</b> Prüfungleistung</a></li>
-<li class="chapter" data-level="3.2" data-path="prüfung.html"><a href="prüfung.html#tldr-zusammenfassung"><i class="fa fa-check"></i><b>3.2</b> tl;dr: Zusammenfassung</a></li>
-<li class="chapter" data-level="3.3" data-path="prüfung.html"><a href="prüfung.html#vorhersage"><i class="fa fa-check"></i><b>3.3</b> Vorhersage</a></li>
-<li class="chapter" data-level="3.4" data-path="prüfung.html"><a href="prüfung.html#hauptziel-genaue-prognose"><i class="fa fa-check"></i><b>3.4</b> Hauptziel: Genaue Prognose</a></li>
-<li class="chapter" data-level="3.5" data-path="prüfung.html"><a href="prüfung.html#zum-aufbau-ihrer-prognosedatei-im-csv-format"><i class="fa fa-check"></i><b>3.5</b> Zum Aufbau Ihrer Prognosedatei im CSV-Format</a></li>
-<li class="chapter" data-level="3.6" data-path="prüfung.html"><a href="prüfung.html#einzureichende-dateien"><i class="fa fa-check"></i><b>3.6</b> Einzureichende Dateien</a></li>
-<li class="chapter" data-level="3.7" data-path="prüfung.html"><a href="prüfung.html#tipps"><i class="fa fa-check"></i><b>3.7</b> Tipps</a>
-<ul>
-<li class="chapter" data-level="3.7.1" data-path="prüfung.html"><a href="prüfung.html#tipps-für-eine-gute-prognose"><i class="fa fa-check"></i><b>3.7.1</b> Tipps für eine gute Prognose</a></li>
-<li class="chapter" data-level="3.7.2" data-path="prüfung.html"><a href="prüfung.html#tipps-zur-datenverarbeitung"><i class="fa fa-check"></i><b>3.7.2</b> Tipps zur Datenverarbeitung</a></li>
-<li class="chapter" data-level="3.7.3" data-path="prüfung.html"><a href="prüfung.html#tipps-zum-aufbau-des-analyseskripts"><i class="fa fa-check"></i><b>3.7.3</b> Tipps zum Aufbau des Analyseskripts</a></li>
-<li class="chapter" data-level="3.7.4" data-path="prüfung.html"><a href="prüfung.html#sonstiges"><i class="fa fa-check"></i><b>3.7.4</b> Sonstiges</a></li>
-</ul></li>
-<li class="chapter" data-level="3.8" data-path="prüfung.html"><a href="prüfung.html#bewertung"><i class="fa fa-check"></i><b>3.8</b> Bewertung</a>
-<ul>
-<li class="chapter" data-level="3.8.1" data-path="prüfung.html"><a href="prüfung.html#kriterien"><i class="fa fa-check"></i><b>3.8.1</b> Kriterien</a></li>
-<li class="chapter" data-level="3.8.2" data-path="prüfung.html"><a href="prüfung.html#kennzahl-der-modellgüte"><i class="fa fa-check"></i><b>3.8.2</b> Kennzahl der Modellgüte</a></li>
-<li class="chapter" data-level="3.8.3" data-path="prüfung.html"><a href="prüfung.html#notenstufen"><i class="fa fa-check"></i><b>3.8.3</b> Notenstufen</a></li>
-<li class="chapter" data-level="3.8.4" data-path="prüfung.html"><a href="prüfung.html#bewertungsprozess"><i class="fa fa-check"></i><b>3.8.4</b> Bewertungsprozess</a></li>
-</ul></li>
-<li class="chapter" data-level="3.9" data-path="prüfung.html"><a href="prüfung.html#hinweise-6"><i class="fa fa-check"></i><b>3.9</b> Hinweise</a></li>
-<li class="chapter" data-level="3.10" data-path="prüfung.html"><a href="prüfung.html#formalia"><i class="fa fa-check"></i><b>3.10</b> Formalia</a></li>
-<li class="chapter" data-level="3.11" data-path="prüfung.html"><a href="prüfung.html#wo-finde-ich-beispiele"><i class="fa fa-check"></i><b>3.11</b> Wo finde ich Beispiele?</a></li>
-<li class="chapter" data-level="3.12" data-path="prüfung.html"><a href="prüfung.html#plagiatskontrolle"><i class="fa fa-check"></i><b>3.12</b> Plagiatskontrolle</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="grundkonzepte-1.html"><a href="grundkonzepte-1.html"><i class="fa fa-check"></i><b>4</b> Grundkonzepte</a>
-<ul>
-<li class="chapter" data-level="4.1" data-path="grundkonzepte-1.html"><a href="grundkonzepte-1.html#was-ist-data-science"><i class="fa fa-check"></i><b>4.1</b> Was ist Data Science?</a></li>
-<li class="chapter" data-level="4.2" data-path="grundkonzepte-1.html"><a href="grundkonzepte-1.html#was-ist-machine-learning"><i class="fa fa-check"></i><b>4.2</b> Was ist Machine Learning?</a>
-<ul>
-<li class="chapter" data-level="4.2.1" data-path="grundkonzepte-1.html"><a href="grundkonzepte-1.html#rule-based"><i class="fa fa-check"></i><b>4.2.1</b> Rule-based</a></li>
-<li class="chapter" data-level="4.2.2" data-path="grundkonzepte-1.html"><a href="grundkonzepte-1.html#data-based"><i class="fa fa-check"></i><b>4.2.2</b> Data-based</a></li>
-</ul></li>
-<li class="chapter" data-level="4.3" data-path="grundkonzepte-1.html"><a href="grundkonzepte-1.html#modell-vs.-algorithmus"><i class="fa fa-check"></i><b>4.3</b> Modell vs. Algorithmus</a>
-<ul>
-<li class="chapter" data-level="4.3.1" data-path="grundkonzepte-1.html"><a href="grundkonzepte-1.html#modell"><i class="fa fa-check"></i><b>4.3.1</b> Modell</a></li>
-<li class="chapter" data-level="4.3.2" data-path="grundkonzepte-1.html"><a href="grundkonzepte-1.html#beispiel-für-einen-ml-algorithmus"><i class="fa fa-check"></i><b>4.3.2</b> Beispiel für einen ML-Algorithmus</a></li>
-</ul></li>
-<li class="chapter" data-level="4.4" data-path="grundkonzepte-1.html"><a href="grundkonzepte-1.html#taxonomie"><i class="fa fa-check"></i><b>4.4</b> Taxonomie</a>
-<ul>
-<li class="chapter" data-level="4.4.1" data-path="grundkonzepte-1.html"><a href="grundkonzepte-1.html#geleitetes-lernen"><i class="fa fa-check"></i><b>4.4.1</b> Geleitetes Lernen</a></li>
-<li class="chapter" data-level="4.4.2" data-path="grundkonzepte-1.html"><a href="grundkonzepte-1.html#ungeleitetes-lernen"><i class="fa fa-check"></i><b>4.4.2</b> Ungeleitetes Lernen</a></li>
-</ul></li>
-<li class="chapter" data-level="4.5" data-path="grundkonzepte-1.html"><a href="grundkonzepte-1.html#ziele-des-ml"><i class="fa fa-check"></i><b>4.5</b> Ziele des ML</a></li>
-<li class="chapter" data-level="4.6" data-path="grundkonzepte-1.html"><a href="grundkonzepte-1.html#über--vs.-unteranpassung"><i class="fa fa-check"></i><b>4.6</b> Über- vs. Unteranpassung</a></li>
-<li class="chapter" data-level="4.7" data-path="grundkonzepte-1.html"><a href="grundkonzepte-1.html#no-free-lunch"><i class="fa fa-check"></i><b>4.7</b> No free lunch</a></li>
-<li class="chapter" data-level="4.8" data-path="grundkonzepte-1.html"><a href="grundkonzepte-1.html#bias-varianz-abwägung"><i class="fa fa-check"></i><b>4.8</b> Bias-Varianz-Abwägung</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
-</ul>
-
-      </nav>
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="Grundlagen der Prognosemodellierung 🔮🧰">DataScience1</a>:
+        <small class="text-muted">Grundlagen der Prognosemodellierung 🔮🧰</small>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
 
-    <div class="book-body">
-      <div class="body-inner">
-        <div class="book-header" role="navigation">
-          <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">DataScience1</a>
-          </h1>
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Überblick</a></li>
+<li><a class="" href="modul%C3%BCberblick.html"><span class="header-section-number">2</span> Modulüberblick</a></li>
+<li><a class="" href="pr%C3%BCfung.html"><span class="header-section-number">3</span> Prüfung</a></li>
+<li><a class="active" href="grundkonzepte-1.html"><span class="header-section-number">4</span> Grundkonzepte</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/sebastiansauer/datascience1">View book source <i class="fab fa-github"></i></a></p>
         </div>
-
-        <div class="page-wrapper" tabindex="-1" role="main">
-          <div class="page-inner">
-
-            <section class="normal" id="section-">
-<div id="grundkonzepte-1" class="section level1" number="4">
-<h1><span class="header-section-number">Kapitel 4</span> Grundkonzepte</h1>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="grundkonzepte-1" class="section level1" number="4">
+<h1>
+<span class="header-section-number">Kapitel 4</span> Grundkonzepte<a class="anchor" aria-label="anchor" href="#grundkonzepte-1"><i class="fas fa-link"></i></a>
+</h1>
 <div id="was-ist-data-science" class="section level2" number="4.1">
-<h2><span class="header-section-number">4.1</span> Was ist Data Science?</h2>
+<h2>
+<span class="header-section-number">4.1</span> Was ist Data Science?<a class="anchor" aria-label="anchor" href="#was-ist-data-science"><i class="fas fa-link"></i></a>
+</h2>
 <p>Es gibt mehrere Definitionen von <em>Data Science</em>, aber keinen kompletten Konsens.
-<span class="citation">Baumer, Kaplan, and Horton (<a href="#ref-baumer_modern_2017" role="doc-biblioref">2017</a>)</span> definieren Data Science wie folgt (S. 4):</p>
+<span class="citation">Baumer, Kaplan, and Horton (<a href="references.html#ref-baumer_modern_2017" role="doc-biblioref">2017</a>)</span> definieren Data Science wie folgt (S. 4):</p>
 <div class="infobox quote">
 <p>The science of extracting meaningful information from data</p>
 </div>
 <p>Auf der anderen Seite entgegen viele Statistiker: “Hey, das machen wir doch schon immer!”.</p>
 <p>Eine Antwort auf diesen Einwand ist, dass in Data Science nicht nur die Statistik eine Rolle spielt, sondern auch die Informatik sowie - zu einem geringen Teil - die Fachwissenschafte (“Domäne”), die sozusagen den Empfänger bzw. die Kunden oder den Rahmen stellt.
 Dieser “Dreiklang” ist in folgendem Venn-Diagramm dargestellt.</p>
-<script type="module" src="https://unpkg.com/venny?module"></script>
-<p><venn-diagram>
-<venn-set name="A" label="Statistik"></venn-set>
-<venn-set name="B" label="Informatik"></venn-set>
-<venn-set name="C" label="Domäne" size = "5"></venn-set>
-<venn-n sets="A B C">
-</venn-diagram></p>
+<script type="module" src="https://unpkg.com/venny?module"></script><p><venn-diagram><venn-set name="A" label="Statistik"></venn-set><venn-set name="B" label="Informatik"></venn-set><venn-set name="C" label="Domäne" size="5"></venn-set><venn-n sets="A B C"></venn-n></venn-diagram></p>
 </div>
 <div id="was-ist-machine-learning" class="section level2" number="4.2">
-<h2><span class="header-section-number">4.2</span> Was ist Machine Learning?</h2>
-<p><em>Maschinelles Lernen</em> (ML), oft auch (synonym) als <em>statistisches Lernen</em> (statistical learning) bezeichnet, ist ein Teilgebiet der <em>künstlichen Intelligenz</em> (KI; artificial intelligence, AI) <span class="citation">(<a href="#ref-rhys" role="doc-biblioref">Rhys 2020</a>)</span>. ML wird auch als <em>data-based</em> bezeichnet in Abgrenzung von <em>rule-based</em>, was auch als “klassische KI” bezeichnet wird, vgl. Abb. <a href="grundkonzepte-1.html#fig:ai-ml2">4.1</a>.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ai-ml2"></span>
-<div id="htmlwidget-b0d9bee7768d7cbd5206" style="width:70%;height:250px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b0d9bee7768d7cbd5206">{"x":{"diagram":"\ndigraph D {\n\n    node [fontname=\"Arial\"];\n\n    node_A [shape=record    label=\"{KI|{rule-based|data-based}}\"];\n\n\n}\n\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
-<p class="caption">
+<h2>
+<span class="header-section-number">4.2</span> Was ist Machine Learning?<a class="anchor" aria-label="anchor" href="#was-ist-machine-learning"><i class="fas fa-link"></i></a>
+</h2>
+<p><em>Maschinelles Lernen</em> (ML), oft auch (synonym) als <em>statistisches Lernen</em> (statistical learning) bezeichnet, ist ein Teilgebiet der <em>künstlichen Intelligenz</em> (KI; artificial intelligence, AI) <span class="citation">(<a href="references.html#ref-rhys" role="doc-biblioref">Rhys 2020</a>)</span>. ML wird auch als <em>data-based</em> bezeichnet in Abgrenzung von <em>rule-based</em>, was auch als “klassische KI” bezeichnet wird, vgl. Abb. <a href="grundkonzepte-1.html#fig:ai-ml2">4.1</a>.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:ai-ml2"></span>
+<div id="htmlwidget-45370b93bd1a7f94e984" style="width:100%;height:250px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-45370b93bd1a7f94e984">{"x":{"diagram":"\ndigraph D {\n\n    node [fontname=\"Arial\"];\n\n    node_A [shape=record    label=\"{KI|{rule-based|data-based}}\"];\n\n\n}\n\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><p class="caption">
 Figure 4.1: KI und Maschinelles Lernen
 </p>
 </div>
@@ -382,35 +89,47 @@ Algorithmen sind nichts anderes als genaue Schritt-für-Schritt-Anleitungen, um 
 Ein Kochrezept ist ein klassisches Beispiel für einen Algorithmus.</p>
 <p><a href="https://www.c-programming-simple-steps.com/images/xsum-two-numbers-h.png.pagespeed.ic.AM9WYFPgEo.webp">Hier</a> findet sich ein Beispiel für einen einfachen Additionsalgorithmus.</p>
 <p>Es gibt viele ML-Algorithmen, vgl. Abb. <a href="grundkonzepte-1.html#fig:algos">4.2</a>.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:algos"></span>
-<div id="htmlwidget-06828bf06f94646ee667" style="width:70%;height:350px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-06828bf06f94646ee667">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: leftright\n[KI|\n  [ML|\n    [Regression] \n    [Neuronale Netze] \n    [...]\n  ]  \n  \n]\n","svg":false},"evals":[],"jsHooks":[]}</script>
-<p class="caption">
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:algos"></span>
+<div id="htmlwidget-7eb43e8f801c4a455e8f" style="width:100%;height:350px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7eb43e8f801c4a455e8f">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: leftright\n[KI|\n  [ML|\n    [Regression] \n    [Neuronale Netze] \n    [...]\n  ]  \n  \n]\n","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
 Figure 4.2: ML-Matroschka
 </p>
 </div>
 <div id="rule-based" class="section level3" number="4.2.1">
-<h3><span class="header-section-number">4.2.1</span> Rule-based</h3>
+<h3>
+<span class="header-section-number">4.2.1</span> Rule-based<a class="anchor" aria-label="anchor" href="#rule-based"><i class="fas fa-link"></i></a>
+</h3>
 <p>Klassische (ältere) KI implementiert Regeln “hartverdrahtet” in ein Computersystem.
 Nutzer füttern Daten in dieses System. Das System leitet dann daraus Antworten ab.</p>
 <p><em>Regeln</em> kann man prototypisch mit <em>Wenn-Dann-Abfragen</em> darstellen:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="grundkonzepte-1.html#cb1-1" aria-hidden="true" tabindex="-1"></a>lernzeit <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">20</span>)</span>
-<span id="cb1-2"><a href="grundkonzepte-1.html#cb1-2" aria-hidden="true" tabindex="-1"></a>schlauer_nebensitzer <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>)</span>
-<span id="cb1-3"><a href="grundkonzepte-1.html#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="grundkonzepte-1.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>) {</span>
-<span id="cb1-5"><a href="grundkonzepte-1.html#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (lernzeit[i] <span class="sc">&gt;</span> <span class="dv">10</span>) {</span>
-<span id="cb1-6"><a href="grundkonzepte-1.html#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">&quot;bestanden!&quot;</span>)</span>
-<span id="cb1-7"><a href="grundkonzepte-1.html#cb1-7" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb1-8"><a href="grundkonzepte-1.html#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (schlauer_nebensitzer[i] <span class="sc">==</span> <span class="cn">TRUE</span>) {</span>
-<span id="cb1-9"><a href="grundkonzepte-1.html#cb1-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">print</span>(<span class="st">&quot;bestanden!&quot;</span>)</span>
-<span id="cb1-10"><a href="grundkonzepte-1.html#cb1-10" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="fu">print</span>(<span class="st">&quot;Durchgefallen!&quot;</span>)</span>
-<span id="cb1-11"><a href="grundkonzepte-1.html#cb1-11" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb1-12"><a href="grundkonzepte-1.html#cb1-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<pre><code>## [1] &quot;Durchgefallen!&quot;
-## [1] &quot;Durchgefallen!&quot;
-## [1] &quot;bestanden!&quot;
-## [1] &quot;bestanden!&quot;</code></pre>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">lernzeit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">20</span><span class="op">)</span>
+<span class="va">schlauer_nebensitzer</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span><span class="op">)</span>
+
+<span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span> <span class="op">{</span>
+  <span class="kw">if</span> <span class="op">(</span><span class="va">lernzeit</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&gt;</span> <span class="fl">10</span><span class="op">)</span> <span class="op">{</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"bestanden!"</span><span class="op">)</span>
+  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
+    <span class="kw">if</span> <span class="op">(</span><span class="va">schlauer_nebensitzer</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">==</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">{</span>
+      <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"bestanden!"</span><span class="op">)</span>
+    <span class="op">}</span> <span class="kw">else</span> <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Durchgefallen!"</span><span class="op">)</span>
+  <span class="op">}</span>
+<span class="op">}</span></code></pre></div>
+<pre><code>## [1] "Durchgefallen!"
+## [1] "Durchgefallen!"
+## [1] "bestanden!"
+## [1] "bestanden!"</code></pre>
 <p>Sicherlich könnte man das schlauer programmieren, vielleicht so:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">d</span> <span class="op">&lt;-</span> 
+  <span class="fu">tibble</span><span class="op">(</span>
+  lernzeit <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">20</span><span class="op">)</span>,
+  schlauer_nebensitzer <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span><span class="op">)</span>
+<span class="op">)</span>
+
+<span class="va">d</span> <span class="op">%&gt;%</span> 
+  <span class="fu">mutate</span><span class="op">(</span>bestanden <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">lernzeit</span> <span class="op">&gt;</span> <span class="fl">10</span> <span class="op">|</span> <span class="va">schlauer_nebensitzer</span> <span class="op">==</span> <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 4 × 3
 ##   lernzeit schlauer_nebensitzer bestanden
 ##      &lt;dbl&gt; &lt;lgl&gt;                &lt;lgl&gt;    
@@ -420,25 +139,27 @@ Nutzer füttern Daten in dieses System. Das System leitet dann daraus Antworten 
 ## 4       20 TRUE                 TRUE</code></pre>
 </div>
 <div id="data-based" class="section level3" number="4.2.2">
-<h3><span class="header-section-number">4.2.2</span> Data-based</h3>
+<h3>
+<span class="header-section-number">4.2.2</span> Data-based<a class="anchor" aria-label="anchor" href="#data-based"><i class="fas fa-link"></i></a>
+</h3>
 <p>ML hat zum Ziel, Regeln aus den Daten zu lernen. Man füttert Daten und Antworten in das System, das System gibt Regeln zurück.</p>
-<p><span class="citation">James et al. (<a href="#ref-islr" role="doc-biblioref">2021</a>)</span> definieren ML so:
+<p><span class="citation">James et al. (<a href="references.html#ref-islr" role="doc-biblioref">2021</a>)</span> definieren ML so:
 Nehmen wir an, wir haben die abhängige Variable <span class="math inline">\(Y\)</span> und <span class="math inline">\(p\)</span> Prädiktoren, <span class="math inline">\(X_1,X_2, \ldots, X_p\)</span>.
 Weiter nehmen wir an, die Beziehung zwischen <span class="math inline">\(Y\)</span> und <span class="math inline">\(X = (X_1, X_2, \ldots, X_p)\)</span> kann durch eine Funktion <span class="math inline">\(f\)</span> beschrieben werden.
 Das kann man so darstellen:</p>
 <p><span class="math display">\[Y = f(X) + \epsilon\]</span></p>
 <p>ML kann man auffassen als eine Menge an Verfahren, um <span class="math inline">\(f\)</span> zu schätzen.</p>
-<p>Ein Beispiel ist in Abb. <a href="grundkonzepte-1.html#fig:statlearning">4.3</a> gezeigt <span class="citation">(<a href="#ref-islr" role="doc-biblioref">James et al. 2021</a>)</span>.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:statlearning"></span>
-<img src="img/2-2.png" alt="Vorhersage des Einkommens durch Ausbildungsjahre" width="70%" />
-<p class="caption">
+<p>Ein Beispiel ist in Abb. <a href="grundkonzepte-1.html#fig:statlearning">4.3</a> gezeigt <span class="citation">(<a href="references.html#ref-islr" role="doc-biblioref">James et al. 2021</a>)</span>.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:statlearning"></span>
+<img src="img/2-2.png" alt="Vorhersage des Einkommens durch Ausbildungsjahre" width="100%"><p class="caption">
 Figure 4.3: Vorhersage des Einkommens durch Ausbildungsjahre
 </p>
 </div>
-<p>Natürlich kann <span class="math inline">\(X\)</span> mehr als eine Variable beinhalten, vgl. Abb. <a href="grundkonzepte-1.html#fig:sl2">4.4</a> <span class="citation">(<a href="#ref-islr" role="doc-biblioref">James et al. 2021</a>)</span>.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:sl2"></span>
-<img src="img/2-3.png" alt="Vorhersage des Einkommens als Funktion von Ausbildungsjahren und Dienstjahren" width="70%" />
-<p class="caption">
+<p>Natürlich kann <span class="math inline">\(X\)</span> mehr als eine Variable beinhalten, vgl. Abb. <a href="grundkonzepte-1.html#fig:sl2">4.4</a> <span class="citation">(<a href="references.html#ref-islr" role="doc-biblioref">James et al. 2021</a>)</span>.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:sl2"></span>
+<img src="img/2-3.png" alt="Vorhersage des Einkommens als Funktion von Ausbildungsjahren und Dienstjahren" width="100%"><p class="caption">
 Figure 4.4: Vorhersage des Einkommens als Funktion von Ausbildungsjahren und Dienstjahren
 </p>
 </div>
@@ -460,31 +181,35 @@ Figure 4.4: Vorhersage des Einkommens als Funktion von Ausbildungsjahren und Die
 <!-- ``` -->
 <p>Anders gesagt: traditionelle KI-Systeme werden mit Daten und Regeln gefüttert und liefern Antworten.
 ML-Systeme werden mit Daten und Antworten gefüttert und liefern Regeln zurück, vgl. Abb. <a href="grundkonzepte-1.html#fig:ki-ml2">4.5</a>.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ki-ml2"></span>
-<div id="htmlwidget-36090d46be584089eadf" style="width:70%;height:450px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-36090d46be584089eadf">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: leftright\n  [rule-based|\n  [Daten] -> [Antworten]\n  [Regeln] -> [Antworten]\n]\n  [data-based|\n  [Daten] -> [Regeln]\n  [Antworten] -> [Regeln]\n]  \n  ","svg":false},"evals":[],"jsHooks":[]}</script>
-<p class="caption">
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:ki-ml2"></span>
+<div id="htmlwidget-2c69e6d18cb7f6a877dc" style="width:100%;height:450px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2c69e6d18cb7f6a877dc">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: leftright\n  [rule-based|\n  [Daten] -> [Antworten]\n  [Regeln] -> [Antworten]\n]\n  [data-based|\n  [Daten] -> [Regeln]\n  [Antworten] -> [Regeln]\n]  \n  ","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
 Figure 4.5: Vergleich von klassischer KI und ML
 </p>
 </div>
 </div>
 </div>
 <div id="modell-vs.-algorithmus" class="section level2" number="4.3">
-<h2><span class="header-section-number">4.3</span> Modell vs. Algorithmus</h2>
+<h2>
+<span class="header-section-number">4.3</span> Modell vs. Algorithmus<a class="anchor" aria-label="anchor" href="#modell-vs.-algorithmus"><i class="fas fa-link"></i></a>
+</h2>
 <div id="modell" class="section level3" number="4.3.1">
-<h3><span class="header-section-number">4.3.1</span> Modell</h3>
-<p>Ein Modell, s. Abb. <a href="grundkonzepte-1.html#fig:vw">4.6</a> <span class="citation">(<a href="#ref-spurzem_vw_2017" role="doc-biblioref">Spurzem 2017</a>)</span>!</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:vw"></span>
-<img src="img/vw_modell.JPG" alt="Ein Modell-Auto" width="33%" />
-<p class="caption">
+<h3>
+<span class="header-section-number">4.3.1</span> Modell<a class="anchor" aria-label="anchor" href="#modell"><i class="fas fa-link"></i></a>
+</h3>
+<p>Ein Modell, s. Abb. <a href="grundkonzepte-1.html#fig:vw">4.6</a> <span class="citation">(<a href="references.html#ref-spurzem_vw_2017" role="doc-biblioref">Spurzem 2017</a>)</span>!</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:vw"></span>
+<img src="img/vw_modell.JPG" alt="Ein Modell-Auto" width="33%"><p class="caption">
 Figure 4.6: Ein Modell-Auto
 </p>
 </div>
 <p>Wie man sieht, ist ein Modell eine vereinfachte Repräsentation eines Gegenstands.</p>
 <p>Der Gegenstand definiert (gestaltet) das Modell. Das Modell ist eine Vereinfachung des Gegenstands, vgl. Abb. <a href="grundkonzepte-1.html#fig:modell">4.7</a>.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:modell"></span>
-<img src="img/Modell-crop.png" alt="Gegenstand und Modell" width="70%" />
-<p class="caption">
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:modell"></span>
+<img src="img/Modell-crop.png" alt="Gegenstand und Modell" width="100%"><p class="caption">
 Figure 4.7: Gegenstand und Modell
 </p>
 </div>
@@ -492,43 +217,55 @@ Figure 4.7: Gegenstand und Modell
 die aus den Daten gelernt wurden.</p>
 </div>
 <div id="beispiel-für-einen-ml-algorithmus" class="section level3" number="4.3.2">
-<h3><span class="header-section-number">4.3.2</span> Beispiel für einen ML-Algorithmus</h3>
+<h3>
+<span class="header-section-number">4.3.2</span> Beispiel für einen ML-Algorithmus<a class="anchor" aria-label="anchor" href="#beispiel-f%C3%BCr-einen-ml-algorithmus"><i class="fas fa-link"></i></a>
+</h3>
 <p>Unter einem ML-Algorithmus versteht man das (mathematische oder statistische) Verfahren,
-anhand dessen die Beziehung zwischen <span class="math inline">\(X\)</span> und <span class="math inline">\(Y\)</span> “gelernt” wird. Bei <span class="citation">Rhys (<a href="#ref-rhys" role="doc-biblioref">2020</a>)</span> (S. 9) findet sich dazu ein Beispiel, das kurz zusammengefasst etwa so lautet:</p>
+anhand dessen die Beziehung zwischen <span class="math inline">\(X\)</span> und <span class="math inline">\(Y\)</span> “gelernt” wird. Bei <span class="citation">Rhys (<a href="references.html#ref-rhys" role="doc-biblioref">2020</a>)</span> (S. 9) findet sich dazu ein Beispiel, das kurz zusammengefasst etwa so lautet:</p>
 <p><em>Beispiel eines Regressionsalgorithmus</em></p>
 <ol style="list-style-type: decimal">
-<li>Setze Gerade in die Daten mit <span class="math inline">\(b_0 = \hat{y}, b_1 = 0\)</span></li>
-<li>Berechne <span class="math inline">\(MSS = \sum (y_i - \hat{y_i})^2\)</span></li>
-<li>“Drehe” die Gerade ein bisschen, d.h. erhöhe <span class="math inline">\(b_1^{neu} = b_1^{alt} + 0.1\)</span></li>
-<li>Wiederhole 2-3 solange, bis <span class="math inline">\(MSS &lt; \text{Zielwert}\)</span></li>
+<li>Setze Gerade in die Daten mit <span class="math inline">\(b_0 = \hat{y}, b_1 = 0\)</span>
+</li>
+<li>Berechne <span class="math inline">\(MSS = \sum (y_i - \hat{y_i})^2\)</span>
+</li>
+<li>“Drehe” die Gerade ein bisschen, d.h. erhöhe <span class="math inline">\(b_1^{neu} = b_1^{alt} + 0.1\)</span>
+</li>
+<li>Wiederhole 2-3 solange, bis <span class="math inline">\(MSS &lt; \text{Zielwert}\)</span>
+</li>
 </ol>
 <p>Diesen Algorithmus kann man “von Hand” z.B. mit <a href="https://shinyapps.org/showapp.php?app=https://shiny.psy.lmu.de/felix/lmfit&amp;by=Felix%20Sch%C3%B6nbrodt&amp;title=Find-a-fit!&amp;shorttitle=Find-a-fit!">dieser App</a> durchspielen.</p>
 </div>
 </div>
 <div id="taxonomie" class="section level2" number="4.4">
-<h2><span class="header-section-number">4.4</span> Taxonomie</h2>
+<h2>
+<span class="header-section-number">4.4</span> Taxonomie<a class="anchor" aria-label="anchor" href="#taxonomie"><i class="fas fa-link"></i></a>
+</h2>
 <p>Methoden des maschinellen Lernens lassen sich verschiedentlich gliedern.
 Eine typische Gliederung unterscheidet in <em>supervidierte</em> (geleitete) und <em>nicht-supervidierte</em> (ungeleitete) Algorithmen, s. Abb. <a href="grundkonzepte-1.html#fig:taxonomie">4.8</a>.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:taxonomie"></span>
-<div id="htmlwidget-693366e906d374f522d0" style="width:70%;height:250px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-693366e906d374f522d0">{"x":{"diagram":"\ngraph LR\n  ML[Maschinelles Lernen]\n  SL[Supervidiertes Lernen]\n  NSL[Nicht-supervidiertes Lernen]\n  Re[Regression]\n  Class[Klassifikation]\n  DimRed[Dimensionsreduktion]\n  Clust[Clustering]\n  ML --> SL\n  ML --> NSL\n  SL --> Re\n  SL --> Class\n  NSL --> DimRed\n  NSL --> Clust\n"},"evals":[],"jsHooks":[]}</script>
-<p class="caption">
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:taxonomie"></span>
+<div id="htmlwidget-2bd0f4cf5e2f9a28c9c8" style="width:100%;height:250px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2bd0f4cf5e2f9a28c9c8">{"x":{"diagram":"\ngraph LR\n  ML[Maschinelles Lernen]\n  SL[Supervidiertes Lernen]\n  NSL[Nicht-supervidiertes Lernen]\n  Re[Regression]\n  Class[Klassifikation]\n  DimRed[Dimensionsreduktion]\n  Clust[Clustering]\n  ML --> SL\n  ML --> NSL\n  SL --> Re\n  SL --> Class\n  NSL --> DimRed\n  NSL --> Clust\n"},"evals":[],"jsHooks":[]}</script><p class="caption">
 Figure 4.8: Taxonomie der Arten des maschinellen Lernens
 </p>
 </div>
 <div id="geleitetes-lernen" class="section level3" number="4.4.1">
-<h3><span class="header-section-number">4.4.1</span> Geleitetes Lernen</h3>
+<h3>
+<span class="header-section-number">4.4.1</span> Geleitetes Lernen<a class="anchor" aria-label="anchor" href="#geleitetes-lernen"><i class="fas fa-link"></i></a>
+</h3>
 <p>Die zwei Phasen des geleiteten Lernens sind in Abb. <a href="grundkonzepte-1.html#fig:supervid">4.9</a> dargestellt.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:supervid"></span>
-<div id="htmlwidget-268b28953ea1fe9485ff" style="width:70%;height:550px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-268b28953ea1fe9485ff">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n\n[Lernphase|\n[Daten mit Antwort] -> [Geleiteter Algorithmus]\n[Geleiteter Algorithmus] -> [Modell]\n]\n\n[Vorhersagephase|\n[Neue Daten, ohne Antwort] -> [Modell]\n[Modell] -> [Antworten]\n]\n\n","svg":false},"evals":[],"jsHooks":[]}</script>
-<p class="caption">
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:supervid"></span>
+<div id="htmlwidget-df0e262275a33e913fbd" style="width:100%;height:550px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-df0e262275a33e913fbd">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n\n[Lernphase|\n[Daten mit Antwort] -> [Geleiteter Algorithmus]\n[Geleiteter Algorithmus] -> [Modell]\n]\n\n[Vorhersagephase|\n[Neue Daten, ohne Antwort] -> [Modell]\n[Modell] -> [Antworten]\n]\n\n","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
 Figure 4.9: Geleitetes Lernen geschieht in zwei Phasen
 </p>
 </div>
 <div id="regression-numerische-vorhersage" class="section level4" number="4.4.1.1">
-<h4><span class="header-section-number">4.4.1.1</span> Regression: Numerische Vorhersage</h4>
-<p><img src="chunk-img/unnamed-chunk-8-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<h4>
+<span class="header-section-number">4.4.1.1</span> Regression: Numerische Vorhersage<a class="anchor" aria-label="anchor" href="#regression-numerische-vorhersage"><i class="fas fa-link"></i></a>
+</h4>
+<div class="inline-figure"><img src="chunk-img/unnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto;"></div>
 <p>Die Modellgüte eines numerischen Vorhersagemodells wird oft mit (einem der) folgenden <em>Gütekoeffizienten</em> gemessen:</p>
 <ul>
 <li>Mean Squared Error (Mittlerer Quadratfehler):</li>
@@ -543,8 +280,10 @@ Figure 4.9: Geleitetes Lernen geschieht in zwei Phasen
 </div>
 </div>
 <div id="klassifikation-nominale-vorhersage" class="section level4" number="4.4.1.2">
-<h4><span class="header-section-number">4.4.1.2</span> Klassifikation: Nominale Vorhersage</h4>
-<p><img src="img/aktien-plot-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<h4>
+<span class="header-section-number">4.4.1.2</span> Klassifikation: Nominale Vorhersage<a class="anchor" aria-label="anchor" href="#klassifikation-nominale-vorhersage"><i class="fas fa-link"></i></a>
+</h4>
+<div class="inline-figure"><img src="img/aktien-plot-1.png" width="100%" style="display: block; margin: auto;"></div>
 <p>Die Modellgüte eines numerischen Vorhersagemodells wird oft mit folgendem <em>Gütekoeffizienten</em> gemessen:</p>
 <ul>
 <li>Mittlerer Klassifikationfehler <span class="math inline">\(e\)</span>:</li>
@@ -555,12 +294,14 @@ wenn tatsächlicher Wert und vorhergesagter Wert identisch sind.</p>
 </div>
 </div>
 <div id="ungeleitetes-lernen" class="section level3" number="4.4.2">
-<h3><span class="header-section-number">4.4.2</span> Ungeleitetes Lernen</h3>
+<h3>
+<span class="header-section-number">4.4.2</span> Ungeleitetes Lernen<a class="anchor" aria-label="anchor" href="#ungeleitetes-lernen"><i class="fas fa-link"></i></a>
+</h3>
 <p>Die zwei Phasen des ungeleiteten Lernens sind in Abb. <a href="grundkonzepte-1.html#fig:unsuper">4.10</a> dargestellt.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unsuper"></span>
-<div id="htmlwidget-3e0403086464f295163a" style="width:70%;height:450px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-3e0403086464f295163a">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n\n[Lernphase|\n[Daten ohne Antwort] -> [Ungeleiteter Algorithmus]\n[Ungeleiteter Algorithmus] -> [Modell]\n]\n\n[Vorhersagephase|\n[Neue Daten, ohne Antwort] -> [Modell]\n[Modell] -> [Zuordnung zu den Regeln des Modells]\n]\n\n","svg":false},"evals":[],"jsHooks":[]}</script>
-<p class="caption">
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:unsuper"></span>
+<div id="htmlwidget-0a96352197d472ef0b2e" style="width:100%;height:450px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0a96352197d472ef0b2e">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n\n[Lernphase|\n[Daten ohne Antwort] -> [Ungeleiteter Algorithmus]\n[Ungeleiteter Algorithmus] -> [Modell]\n]\n\n[Vorhersagephase|\n[Neue Daten, ohne Antwort] -> [Modell]\n[Modell] -> [Zuordnung zu den Regeln des Modells]\n]\n\n","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
 Figure 4.10: Die zwei Phasen des ungeleiteten Lernens
 </p>
 </div>
@@ -569,21 +310,23 @@ Figure 4.10: Die zwei Phasen des ungeleiteten Lernens
 <li>Fallreduzierendes Modellieren (Clustering)</li>
 <li>Dimensionsreduzierendes Modellieren (z.B. Faktorenanalyse)</li>
 </ol>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ungel"></span>
-<img src="img/ungeleitetes_Modellieren_crop.png" alt="Zwei Arten von ungeleitetem Modellieren" width="70%" />
-<p class="caption">
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:ungel"></span>
+<img src="img/ungeleitetes_Modellieren_crop.png" alt="Zwei Arten von ungeleitetem Modellieren" width="100%"><p class="caption">
 Figure 4.11: Zwei Arten von ungeleitetem Modellieren
 </p>
 </div>
 </div>
 </div>
 <div id="ziele-des-ml" class="section level2" number="4.5">
-<h2><span class="header-section-number">4.5</span> Ziele des ML</h2>
+<h2>
+<span class="header-section-number">4.5</span> Ziele des ML<a class="anchor" aria-label="anchor" href="#ziele-des-ml"><i class="fas fa-link"></i></a>
+</h2>
 <p>Man kann vier Ziele des ML unterscheiden, s. Abb. <a href="grundkonzepte-1.html#fig:ziele">4.12</a>.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ziele"></span>
-<div id="htmlwidget-4656c8b4e727c81c3a66" style="width:70%;height:450px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-4656c8b4e727c81c3a66">{"x":{"diagram":"\ngraph TD\n  ML[Maschinelles Lernen]\n  V[Vorhersage]\n  E[Erklärung/kausal]\n  B[Beschreibung]\n  DimRed[Dimensionsreduktion]\n  ML --> V\n  ML --> E\n  ML --> B\n  ML --> DimRed\n"},"evals":[],"jsHooks":[]}</script>
-<p class="caption">
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:ziele"></span>
+<div id="htmlwidget-911ab126294c19a3541b" style="width:100%;height:450px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-911ab126294c19a3541b">{"x":{"diagram":"\ngraph TD\n  ML[Maschinelles Lernen]\n  V[Vorhersage]\n  E[Erklärung/kausal]\n  B[Beschreibung]\n  DimRed[Dimensionsreduktion]\n  ML --> V\n  ML --> E\n  ML --> B\n  ML --> DimRed\n"},"evals":[],"jsHooks":[]}</script><p class="caption">
 Figure 4.12: Ziele des maschinellen Lernens
 </p>
 </div>
@@ -593,9 +336,9 @@ Figure 4.12: Ziele des maschinellen Lernens
 <em>Dimensionsreduktion</em> ist ein Oberbegriff für Verfahren, die die Anzahl der Variablen (Spalten) oder der Beobachtungen (Zeilen) verringert.s</p>
 <p>Wie “gut” ein Modell ist, quantifiziert man in verschiedenen Kennzahlen; man spricht von Modellgüte oder <em>model fit</em>.
 Je schlechter die Modellgüte, desto höher der <em>Modellfehler</em>, vgl. Abb. <a href="grundkonzepte-1.html#fig:resid">4.13</a>.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:resid"></span>
-<img src="img/resids-plot-1.png" alt="Wenig (links) vs. viel (rechts) Vorhersagefehler" width="70%" />
-<p class="caption">
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:resid"></span>
+<img src="img/resids-plot-1.png" alt="Wenig (links) vs. viel (rechts) Vorhersagefehler" width="100%"><p class="caption">
 Figure 4.13: Wenig (links) vs. viel (rechts) Vorhersagefehler
 </p>
 </div>
@@ -603,13 +346,15 @@ Figure 4.13: Wenig (links) vs. viel (rechts) Vorhersagefehler
 an denen das Modell nicht trainiert wurde.</p>
 </div>
 <div id="über--vs.-unteranpassung" class="section level2" number="4.6">
-<h2><span class="header-section-number">4.6</span> Über- vs. Unteranpassung</h2>
+<h2>
+<span class="header-section-number">4.6</span> Über- vs. Unteranpassung<a class="anchor" aria-label="anchor" href="#%C3%BCber--vs.-unteranpassung"><i class="fas fa-link"></i></a>
+</h2>
 <p><em>Overfitting</em>: Ein Modell sagt die Trainingsdaten zu genau vorher - es nimmt Rauschen als “bare Münze”, also fälschlich als Signal. Solche Modelle haben zu viel <em>Varianz</em> in ihren Vorhersagen.</p>
 <p><em>Underfitting</em>: Ein Modell ist zu simpel (ungenau, grobkörnig) - es unterschlägt Nuancen des tatsächlichen Musters. Solche Modelle haben zu viel <em>Verzerrung</em> (Bias) in ihren Vorhersagen.</p>
-<p>Welches der folgenden Modelle (B,C,D) passt am besten zu den Daten (A), s. Abb. <a href="grundkonzepte-1.html#fig:overunder">4.14</a>, vgl. <span class="citation">(<a href="#ref-modar" role="doc-biblioref">Sauer 2019</a>)</span>, Kap. 15.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:overunder"></span>
-<img src="img/overfitting-4-plots-1.png" alt="Over- vs. Underfitting" width="70%" />
-<p class="caption">
+<p>Welches der folgenden Modelle (B,C,D) passt am besten zu den Daten (A), s. Abb. <a href="grundkonzepte-1.html#fig:overunder">4.14</a>, vgl. <span class="citation">(<a href="references.html#ref-modar" role="doc-biblioref">Sauer 2019</a>)</span>, Kap. 15.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:overunder"></span>
+<img src="img/overfitting-4-plots-1.png" alt="Over- vs. Underfitting" width="100%"><p class="caption">
 Figure 4.14: Over- vs. Underfitting
 </p>
 </div>
@@ -618,22 +363,24 @@ Figure 4.14: Over- vs. Underfitting
 Wird es aber “ehrlich” getestet, d.h. anhand neuer Daten (“Test-Stichprobe”),
 wird es vermutlich <em>nicht</em> so gut abschneiden.</p>
 <p>Es gilt, ein Modell mit “mittlerer” Komplexität zu finden, um Über- und Unteranpassung in Grenzen zu halten.
-Leider ist es nicht möglich, vorab zu sagen, was der richtige, “mittlere” Wert an Komplexität eines Modells ist, vgl. Abb. <a href="grundkonzepte-1.html#fig:overfitting">4.15</a> aus <span class="citation">(<a href="#ref-modar" role="doc-biblioref">Sauer 2019</a>)</span>.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:overfitting"></span>
-<img src="img/overfitting-crop.png" alt="Mittlere Modellkomplexität führt zur besten Vorhersagegüte" width="70%" />
-<p class="caption">
+Leider ist es nicht möglich, vorab zu sagen, was der richtige, “mittlere” Wert an Komplexität eines Modells ist, vgl. Abb. <a href="grundkonzepte-1.html#fig:overfitting">4.15</a> aus <span class="citation">(<a href="references.html#ref-modar" role="doc-biblioref">Sauer 2019</a>)</span>.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:overfitting"></span>
+<img src="img/overfitting-crop.png" alt="Mittlere Modellkomplexität führt zur besten Vorhersagegüte" width="100%"><p class="caption">
 Figure 4.15: Mittlere Modellkomplexität führt zur besten Vorhersagegüte
 </p>
 </div>
 </div>
 <div id="no-free-lunch" class="section level2" number="4.7">
-<h2><span class="header-section-number">4.7</span> No free lunch</h2>
-<a href="https://imgflip.com/i/687izk"><img src="https://i.imgflip.com/687izk.jpg" height="400" title="made at imgflip.com"/></a>
+<h2>
+<span class="header-section-number">4.7</span> No free lunch<a class="anchor" aria-label="anchor" href="#no-free-lunch"><i class="fas fa-link"></i></a>
+</h2>
+<a href="https://imgflip.com/i/687izk"><img src="https://i.imgflip.com/687izk.jpg" height="400" title="made at imgflip.com"></a>
 <div>
 <a href="https://imgflip.com/memegenerator">from Imgflip Meme Generator</a>
 </div>
 <p>Wenn <span class="math inline">\(f\)</span> (die Beziehung zwischen <span class="math inline">\(Y\)</span> und <span class="math inline">\(X\)</span>, auch <em>datengenerierender Prozess</em> genannt) linear oder fast linear ist,
-dann wird ein lineare Modell gute Vorhersagen liefern, vgl. Abb. <a href="grundkonzepte-1.html#fig:2-10">4.16</a> aus <span class="citation">James et al. (<a href="#ref-islr" role="doc-biblioref">2021</a>)</span>, dort zeigt die schwarze Linie den “wahren Zusammenhang”, also <span class="math inline">\(f\)</span> an. In orange sieht man ein lineares Modell, in grün ein hoch komplexes Modell,
+dann wird ein lineare Modell gute Vorhersagen liefern, vgl. Abb. <a href="grundkonzepte-1.html#fig:2-10">4.16</a> aus <span class="citation">James et al. (<a href="references.html#ref-islr" role="doc-biblioref">2021</a>)</span>, dort zeigt die schwarze Linie den “wahren Zusammenhang”, also <span class="math inline">\(f\)</span> an. In orange sieht man ein lineares Modell, in grün ein hoch komplexes Modell,
 das sich in einer “wackligen” Funktion - also mit hoher Varianz -
 niederschlägt. Das grüne Modell könnte z.B. ein Polynom-Modell hohen Grades sein, z. B.
 <span class="math inline">\(y = b_0 + b_1 x^{10} + b_2 x^9 + \ldots + b_11 x^1 + \epsilon\)</span>.
@@ -644,118 +391,96 @@ also viel Modellfehler (für eine Test-Stichprobe).</p>
 <div class="infobox caution">
 <p>Die grüne Funktion in Abb. <a href="grundkonzepte-1.html#fig:2-10">4.16</a> wird neue, beim Modelltraining unbekannte Beobachtungen (<span class="math inline">\(y_0\)</span>) vergleichsweise schlecht vorhersagen. In Abb. <a href="grundkonzepte-1.html#fig:2-11">4.17</a> ist es umgekehrt.</p>
 </div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:2-10"></span>
-<img src="img/2-10.png" alt="Ein lineare Funktion verlangt ein lineares Modell; ein nichtlineares Modell wird in einem höheren Vorhersagefehler (bei neuen Daten!) resultieren." width="70%" />
-<p class="caption">
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:2-10"></span>
+<img src="img/2-10.png" alt="Ein lineare Funktion verlangt ein lineares Modell; ein nichtlineares Modell wird in einem höheren Vorhersagefehler (bei neuen Daten!) resultieren." width="100%"><p class="caption">
 Figure 4.16: Ein lineare Funktion verlangt ein lineares Modell; ein nichtlineares Modell wird in einem höheren Vorhersagefehler (bei neuen Daten!) resultieren.
 </p>
 </div>
-<p>Betrachten wir im Gegensatz dazu Abb. <a href="grundkonzepte-1.html#fig:2-11">4.17</a> aus <span class="citation">James et al. (<a href="#ref-islr" role="doc-biblioref">2021</a>)</span>, die (in schwarz) eine hochgradig <em>nichtlineare</em> Funktion <span class="math inline">\(f\)</span> zeigt.
+<p>Betrachten wir im Gegensatz dazu Abb. <a href="grundkonzepte-1.html#fig:2-11">4.17</a> aus <span class="citation">James et al. (<a href="references.html#ref-islr" role="doc-biblioref">2021</a>)</span>, die (in schwarz) eine hochgradig <em>nichtlineare</em> Funktion <span class="math inline">\(f\)</span> zeigt.
 Entsprechend wird das lineare Modell (orange) nur schlechte Vorhersagen erreichen - es hat zu viel Bias, da zu simpel.
 Ein lineares Modell wird der Komplexität von <span class="math inline">\(f\)</span> nicht gerecht,
 Unteranpassung (underfitting) liegt vor.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:2-11"></span>
-<img src="img/2-11.png" alt="Eine nichtlineare Funktion (schwarz) verlangt eine nichtlineares Modell. Ein lineares Modell (orange) ist unterangepasst und hat eine schlechte Vorhersageleistung." width="70%" />
-<p class="caption">
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:2-11"></span>
+<img src="img/2-11.png" alt="Eine nichtlineare Funktion (schwarz) verlangt eine nichtlineares Modell. Ein lineares Modell (orange) ist unterangepasst und hat eine schlechte Vorhersageleistung." width="100%"><p class="caption">
 Figure 4.17: Eine nichtlineare Funktion (schwarz) verlangt eine nichtlineares Modell. Ein lineares Modell (orange) ist unterangepasst und hat eine schlechte Vorhersageleistung.
 </p>
 </div>
 </div>
 <div id="bias-varianz-abwägung" class="section level2" number="4.8">
-<h2><span class="header-section-number">4.8</span> Bias-Varianz-Abwägung</h2>
+<h2>
+<span class="header-section-number">4.8</span> Bias-Varianz-Abwägung<a class="anchor" aria-label="anchor" href="#bias-varianz-abw%C3%A4gung"><i class="fas fa-link"></i></a>
+</h2>
 <p>Der Gesamtfehler <span class="math inline">\(E\)</span> des Modells ist die Summe dreier Terme:</p>
 <p><span class="math display">\[E = (y - \hat{y}) = \text{Bias} + \text{Varianz} + \epsilon\]</span></p>
 <p>Dabei meint <span class="math inline">\(\epsilon\)</span> den <em>nicht reduzierbaren Fehler</em>, z.B. weil dem Modell Informationen fehlen. So kann man etwa auf der Motivation von Studentis keine perfekte Vorhersage ihrer Noten erreichen (lehrt die Erfahrung).</p>
-<p>Bias und Varianz sind Kontrahenten: Ein Modell, das wenig Bias hat, neigt tendenziell zu wenig Varianz und umgekehrt, vgl. Abb. <a href="grundkonzepte-1.html#fig:bias-var">4.18</a> aus <span class="citation">Sauer (<a href="#ref-modar" role="doc-biblioref">2019</a>)</span>.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:bias-var"></span>
-<img src="img/plot-bias-variance-1.png" alt="Abwängung von Bias vs. Varianz" width="70%" />
-<p class="caption">
+<p>Bias und Varianz sind Kontrahenten: Ein Modell, das wenig Bias hat, neigt tendenziell zu wenig Varianz und umgekehrt, vgl. Abb. <a href="grundkonzepte-1.html#fig:bias-var">4.18</a> aus <span class="citation">Sauer (<a href="references.html#ref-modar" role="doc-biblioref">2019</a>)</span>.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:bias-var"></span>
+<img src="img/plot-bias-variance-1.png" alt="Abwängung von Bias vs. Varianz" width="100%"><p class="caption">
 Figure 4.18: Abwängung von Bias vs. Varianz
 </p>
 </div>
 
 </div>
 </div>
-<h3>References</h3>
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div id="ref-baumer_modern_2017" class="csl-entry">
-Baumer, Benjamin S., Daniel T. Kaplan, and Nicholas J. Horton. 2017. <em>Modern Data Science with r (Chapman &amp; Hall/<span>CRC</span> Texts in Statistical Science)</em>. Boca Raton, Florida: Chapman; Hall/<span>CRC</span>.
-</div>
-<div id="ref-islr" class="csl-entry">
-James, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2021. <em>An Introduction to Statistical Learning: With Applications in r</em>. Second edition. Springer Texts in Statistics. New York: Springer. <a href="https://link.springer.com/book/10.1007/978-1-0716-1418-1">https://link.springer.com/book/10.1007/978-1-0716-1418-1</a>.
-</div>
-<div id="ref-rhys" class="csl-entry">
-Rhys, Hefin. 2020. <em>Machine Learning with r, the Tidyverse, and Mlr</em>. Shelter Island, <span>NY</span>: Manning publications.
-</div>
-<div id="ref-modar" class="csl-entry">
-Sauer, Sebastian. 2019. <em>Moderne Datenanalyse Mit r: Daten Einlesen, Aufbereiten, Visualisieren Und Modellieren</em>. 1. Auflage 2019. <span>FOM</span>-Edition. Wiesbaden: Springer. <a href="https://www.springer.com/de/book/9783658215866">https://www.springer.com/de/book/9783658215866</a>.
-</div>
-<div id="ref-spurzem_vw_2017" class="csl-entry">
-Spurzem, Lothar. 2017. <em><span>VW</span> 1303 von Wiking in 1:87</em>. <a href="https://de.wikipedia.org/wiki/Modellautomobil#/media/File:Wiking-Modell_VW_1303_(um_1975).JPG">https://de.wikipedia.org/wiki/Modellautomobil#/media/File:Wiking-Modell_VW_1303_(um_1975).JPG</a>.
-</div>
-</div>
-            </section>
+  <div class="chapter-nav">
+<div class="prev"><a href="pr%C3%BCfung.html"><span class="header-section-number">3</span> Prüfung</a></div>
+<div class="next"><a href="references.html">References</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#grundkonzepte-1"><span class="header-section-number">4</span> Grundkonzepte</a></li>
+<li><a class="nav-link" href="#was-ist-data-science"><span class="header-section-number">4.1</span> Was ist Data Science?</a></li>
+<li>
+<a class="nav-link" href="#was-ist-machine-learning"><span class="header-section-number">4.2</span> Was ist Machine Learning?</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#rule-based"><span class="header-section-number">4.2.1</span> Rule-based</a></li>
+<li><a class="nav-link" href="#data-based"><span class="header-section-number">4.2.2</span> Data-based</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#modell-vs.-algorithmus"><span class="header-section-number">4.3</span> Modell vs. Algorithmus</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#modell"><span class="header-section-number">4.3.1</span> Modell</a></li>
+<li><a class="nav-link" href="#beispiel-f%C3%BCr-einen-ml-algorithmus"><span class="header-section-number">4.3.2</span> Beispiel für einen ML-Algorithmus</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#taxonomie"><span class="header-section-number">4.4</span> Taxonomie</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#geleitetes-lernen"><span class="header-section-number">4.4.1</span> Geleitetes Lernen</a></li>
+<li><a class="nav-link" href="#ungeleitetes-lernen"><span class="header-section-number">4.4.2</span> Ungeleitetes Lernen</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#ziele-des-ml"><span class="header-section-number">4.5</span> Ziele des ML</a></li>
+<li><a class="nav-link" href="#%C3%BCber--vs.-unteranpassung"><span class="header-section-number">4.6</span> Über- vs. Unteranpassung</a></li>
+<li><a class="nav-link" href="#no-free-lunch"><span class="header-section-number">4.7</span> No free lunch</a></li>
+<li><a class="nav-link" href="#bias-varianz-abw%C3%A4gung"><span class="header-section-number">4.8</span> Bias-Varianz-Abwägung</a></li>
+</ul>
 
-          </div>
-        </div>
-      </div>
-<a href="prüfung.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
-    </div>
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/sebastiansauer/datascience1/blob/master/03-Thema01.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/sebastiansauer/datascience1/edit/master/03-Thema01.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-03-17 09:50:05.</p>
   </div>
-<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
-<script>
-gitbook.require(["gitbook"], function(gitbook) {
-gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/sebastiansauer/datascience103-Thema01.Rmd",
-"text": "Edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": {},
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
-});
-});
-</script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -767,7 +492,22 @@ gitbook.start({
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
 </script>
 </body>
-
 </html>

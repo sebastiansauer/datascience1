@@ -4,3 +4,6 @@ language:
     chapter_name: "Kapitel "
 delete_merged_file: true
 output_dir: "docs"
+new_session: yes
+
+before_chapter_script: "_common.R"

@@ -1,445 +1,125 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html lang="en">
 <head>
-
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>References | DataScience1</title>
-  <meta name="description" content="References | DataScience1" />
-  <meta name="generator" content="bookdown 0.24.2 and GitBook 2.6.7" />
-
-  <meta property="og:title" content="References | DataScience1" />
-  <meta property="og:type" content="book" />
-  
-  
-  
-  <meta name="github-repo" content="rstudio/bookdown-demo" />
-
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="References | DataScience1" />
-  
-  
-  
-
-<meta name="author" content="Sebastian Sauer" />
-
-
-
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-  
-  
-<link rel="prev" href="grundkonzepte-1.html"/>
-
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
-<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
-<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
-
-
-
-
-
-
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
-<script src="libs/viz-1.8.2/viz.js"></script>
-<link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
-<script src="libs/grViz-binding-1.0.6.1/grViz.js"></script>
-<script src="libs/es6shim-0.35.6/es6shim.js"></script>
-<script src="libs/es7shim-6.0.0/es7shim.js"></script>
-<script src="libs/graphre-0.1.3/graphre.js"></script>
-<script src="libs/nomnoml-1.3.1/nomnoml.js"></script>
-<script src="libs/nomnoml-binding-0.2.3/nomnoml.js"></script>
-<script src="libs/d3-3.3.8/d3.min.js"></script>
-<script src="libs/dagre-0.4.0/dagre-d3.min.js"></script>
-<link href="libs/mermaid-0.3.0/dist/mermaid.css" rel="stylesheet" />
-<script src="libs/mermaid-0.3.0/dist/mermaid.slim.min.js"></script>
-<script src="libs/chromatography-0.1/chromatography.js"></script>
-<script src="libs/DiagrammeR-binding-1.0.6.1/DiagrammeR.js"></script>
-
-
-<style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
-
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
-</style>
-
-<link rel="stylesheet" href="style.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>References | DataScience1</title>
+<meta name="author" content="Sebastian Sauer">
+<meta name="generator" content="bookdown 0.24.2 with bs4_book()">
+<meta property="og:title" content="References | DataScience1">
+<meta property="og:type" content="book">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="References | DataScience1">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
+<script src="libs/grViz-binding-1.0.6.1/grViz.js"></script><script src="libs/es6shim-0.35.6/es6shim.js"></script><script src="libs/es7shim-6.0.0/es7shim.js"></script><script src="libs/graphre-0.1.3/graphre.js"></script><script src="libs/nomnoml-1.3.1/nomnoml.js"></script><script src="libs/nomnoml-binding-0.2.3/nomnoml.js"></script><script src="libs/d3-3.3.8/d3.min.js"></script><script src="libs/dagre-0.4.0/dagre-d3.min.js"></script><link href="libs/mermaid-0.3.0/dist/mermaid.css" rel="stylesheet">
+<script src="libs/mermaid-0.3.0/dist/mermaid.slim.min.js"></script><script src="libs/chromatography-0.1/chromatography.js"></script><script src="libs/DiagrammeR-binding-1.0.6.1/DiagrammeR.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="style-bs4.css">
+<meta name="description" content="Baumer, Benjamin S., Daniel T. Kaplan, and Nicholas J. Horton. 2017. Modern Data Science with r (Chapman &amp; Hall/CRC Texts in Statistical Science). Boca Raton, Florida: Chapman; Hall/CRC. ...">
+<meta property="og:description" content="Baumer, Benjamin S., Daniel T. Kaplan, and Nicholas J. Horton. 2017. Modern Data Science with r (Chapman &amp; Hall/CRC Texts in Statistical Science). Boca Raton, Florida: Chapman; Hall/CRC. ...">
+<meta name="twitter:description" content="Baumer, Benjamin S., Daniel T. Kaplan, and Nicholas J. Horton. 2017. Modern Data Science with r (Chapman &amp; Hall/CRC Texts in Statistical Science). Boca Raton, Florida: Chapman; Hall/CRC. ...">
 </head>
+<body data-spy="scroll" data-target="#toc">
 
-<body>
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 
-
-
-  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
-
-    <div class="book-summary">
-      <nav role="navigation">
-
-<ul class="summary">
-<li><a href="./">Data Science Grundlagen</a></li>
-
-<li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Überblick</a>
-<ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#was-sie-hier-lernen-und-wozu-das-gut-ist"><i class="fa fa-check"></i><b>1.1</b> Was Sie hier lernen und wozu das gut ist</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#lernziele"><i class="fa fa-check"></i><b>1.2</b> Lernziele</a></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#voraussetzungen"><i class="fa fa-check"></i><b>1.3</b> Voraussetzungen</a></li>
-<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#hinweise-zu-diesem-projekt"><i class="fa fa-check"></i><b>1.4</b> Hinweise zu diesem Projekt</a></li>
-<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#lernhilfen"><i class="fa fa-check"></i><b>1.5</b> Lernhilfen</a>
-<ul>
-<li class="chapter" data-level="1.5.1" data-path="index.html"><a href="index.html#software"><i class="fa fa-check"></i><b>1.5.1</b> Software</a></li>
-<li class="chapter" data-level="1.5.2" data-path="index.html"><a href="index.html#videos"><i class="fa fa-check"></i><b>1.5.2</b> Videos</a></li>
-<li class="chapter" data-level="1.5.3" data-path="index.html"><a href="index.html#online-zusammenarbeit"><i class="fa fa-check"></i><b>1.5.3</b> Online-Zusammenarbeit</a></li>
-</ul></li>
-<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#modulzeitplan"><i class="fa fa-check"></i><b>1.6</b> Modulzeitplan</a></li>
-<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#literatur"><i class="fa fa-check"></i><b>1.7</b> Literatur</a></li>
-<li class="chapter" data-level="1.8" data-path="index.html"><a href="index.html#faq"><i class="fa fa-check"></i><b>1.8</b> FAQ</a></li>
-</ul></li>
-<li class="chapter" data-level="2" data-path="modulüberblick.html"><a href="modulüberblick.html"><i class="fa fa-check"></i><b>2</b> Modulüberblick</a>
-<ul>
-<li class="chapter" data-level="2.1" data-path="modulüberblick.html"><a href="modulüberblick.html#grundkonzepte"><i class="fa fa-check"></i><b>2.1</b> Grundkonzepte</a>
-<ul>
-<li class="chapter" data-level="2.1.1" data-path="modulüberblick.html"><a href="modulüberblick.html#datum"><i class="fa fa-check"></i><b>2.1.1</b> Datum</a></li>
-<li class="chapter" data-level="2.1.2" data-path="modulüberblick.html"><a href="modulüberblick.html#lernziele-1"><i class="fa fa-check"></i><b>2.1.2</b> Lernziele</a></li>
-<li class="chapter" data-level="2.1.3" data-path="modulüberblick.html"><a href="modulüberblick.html#vorbereitung"><i class="fa fa-check"></i><b>2.1.3</b> Vorbereitung</a></li>
-<li class="chapter" data-level="2.1.4" data-path="modulüberblick.html"><a href="modulüberblick.html#literatur-1"><i class="fa fa-check"></i><b>2.1.4</b> Literatur</a></li>
-<li class="chapter" data-level="2.1.5" data-path="modulüberblick.html"><a href="modulüberblick.html#aufgaben"><i class="fa fa-check"></i><b>2.1.5</b> Aufgaben</a></li>
-<li class="chapter" data-level="2.1.6" data-path="modulüberblick.html"><a href="modulüberblick.html#vertiefung"><i class="fa fa-check"></i><b>2.1.6</b> Vertiefung</a></li>
-<li class="chapter" data-level="2.1.7" data-path="modulüberblick.html"><a href="modulüberblick.html#hinweise"><i class="fa fa-check"></i><b>2.1.7</b> Hinweise</a></li>
-</ul></li>
-<li class="chapter" data-level="2.2" data-path="modulüberblick.html"><a href="modulüberblick.html#tidyverse-2.-blick"><i class="fa fa-check"></i><b>2.2</b> tidyverse, 2. Blick</a>
-<ul>
-<li class="chapter" data-level="2.2.1" data-path="modulüberblick.html"><a href="modulüberblick.html#datum-1"><i class="fa fa-check"></i><b>2.2.1</b> Datum</a></li>
-<li class="chapter" data-level="2.2.2" data-path="modulüberblick.html"><a href="modulüberblick.html#lernziele-2"><i class="fa fa-check"></i><b>2.2.2</b> Lernziele</a></li>
-<li class="chapter" data-level="2.2.3" data-path="modulüberblick.html"><a href="modulüberblick.html#vorbereitung-1"><i class="fa fa-check"></i><b>2.2.3</b> Vorbereitung</a></li>
-<li class="chapter" data-level="2.2.4" data-path="modulüberblick.html"><a href="modulüberblick.html#literatur-2"><i class="fa fa-check"></i><b>2.2.4</b> Literatur</a></li>
-</ul></li>
-<li class="chapter" data-level="2.3" data-path="modulüberblick.html"><a href="modulüberblick.html#tidymodels"><i class="fa fa-check"></i><b>2.3</b> tidymodels</a>
-<ul>
-<li class="chapter" data-level="2.3.1" data-path="modulüberblick.html"><a href="modulüberblick.html#datum-2"><i class="fa fa-check"></i><b>2.3.1</b> Datum</a></li>
-<li class="chapter" data-level="2.3.2" data-path="modulüberblick.html"><a href="modulüberblick.html#literatur-3"><i class="fa fa-check"></i><b>2.3.2</b> Literatur</a></li>
-</ul></li>
-<li class="chapter" data-level="2.4" data-path="modulüberblick.html"><a href="modulüberblick.html#knn"><i class="fa fa-check"></i><b>2.4</b> kNN</a>
-<ul>
-<li class="chapter" data-level="2.4.1" data-path="modulüberblick.html"><a href="modulüberblick.html#datum-3"><i class="fa fa-check"></i><b>2.4.1</b> Datum</a></li>
-<li class="chapter" data-level="2.4.2" data-path="modulüberblick.html"><a href="modulüberblick.html#literatur-4"><i class="fa fa-check"></i><b>2.4.2</b> Literatur</a></li>
-</ul></li>
-<li class="chapter" data-level="2.5" data-path="modulüberblick.html"><a href="modulüberblick.html#statistisches-lernen"><i class="fa fa-check"></i><b>2.5</b> Statistisches Lernen</a>
-<ul>
-<li class="chapter" data-level="2.5.1" data-path="modulüberblick.html"><a href="modulüberblick.html#datum-4"><i class="fa fa-check"></i><b>2.5.1</b> Datum</a></li>
-<li class="chapter" data-level="2.5.2" data-path="modulüberblick.html"><a href="modulüberblick.html#literatur-5"><i class="fa fa-check"></i><b>2.5.2</b> Literatur</a></li>
-<li class="chapter" data-level="2.5.3" data-path="modulüberblick.html"><a href="modulüberblick.html#vertiefung-1"><i class="fa fa-check"></i><b>2.5.3</b> Vertiefung</a></li>
-<li class="chapter" data-level="2.5.4" data-path="modulüberblick.html"><a href="modulüberblick.html#hinweise-1"><i class="fa fa-check"></i><b>2.5.4</b> Hinweise</a></li>
-</ul></li>
-<li class="chapter" data-level="2.6" data-path="modulüberblick.html"><a href="modulüberblick.html#wiederholung"><i class="fa fa-check"></i><b>2.6</b> Wiederholung</a>
-<ul>
-<li class="chapter" data-level="2.6.1" data-path="modulüberblick.html"><a href="modulüberblick.html#datum-5"><i class="fa fa-check"></i><b>2.6.1</b> Datum</a></li>
-<li class="chapter" data-level="2.6.2" data-path="modulüberblick.html"><a href="modulüberblick.html#hinweise-2"><i class="fa fa-check"></i><b>2.6.2</b> Hinweise</a></li>
-</ul></li>
-<li class="chapter" data-level="2.7" data-path="modulüberblick.html"><a href="modulüberblick.html#logistische-regression"><i class="fa fa-check"></i><b>2.7</b> Logistische Regression</a>
-<ul>
-<li class="chapter" data-level="2.7.1" data-path="modulüberblick.html"><a href="modulüberblick.html#datum-6"><i class="fa fa-check"></i><b>2.7.1</b> Datum</a></li>
-<li class="chapter" data-level="2.7.2" data-path="modulüberblick.html"><a href="modulüberblick.html#literatur-6"><i class="fa fa-check"></i><b>2.7.2</b> Literatur</a></li>
-</ul></li>
-<li class="chapter" data-level="2.8" data-path="modulüberblick.html"><a href="modulüberblick.html#naive-bayes"><i class="fa fa-check"></i><b>2.8</b> Naive Bayes</a>
-<ul>
-<li class="chapter" data-level="2.8.1" data-path="modulüberblick.html"><a href="modulüberblick.html#datum-7"><i class="fa fa-check"></i><b>2.8.1</b> Datum</a></li>
-<li class="chapter" data-level="2.8.2" data-path="modulüberblick.html"><a href="modulüberblick.html#literatur-7"><i class="fa fa-check"></i><b>2.8.2</b> Literatur</a></li>
-</ul></li>
-<li class="chapter" data-level="2.9" data-path="modulüberblick.html"><a href="modulüberblick.html#entscheidungsbäume"><i class="fa fa-check"></i><b>2.9</b> Entscheidungsbäume</a>
-<ul>
-<li class="chapter" data-level="2.9.1" data-path="modulüberblick.html"><a href="modulüberblick.html#datum-8"><i class="fa fa-check"></i><b>2.9.1</b> Datum</a></li>
-<li class="chapter" data-level="2.9.2" data-path="modulüberblick.html"><a href="modulüberblick.html#literatur-8"><i class="fa fa-check"></i><b>2.9.2</b> Literatur</a></li>
-</ul></li>
-<li class="chapter" data-level="2.10" data-path="modulüberblick.html"><a href="modulüberblick.html#zufallswälder"><i class="fa fa-check"></i><b>2.10</b> Zufallswälder</a>
-<ul>
-<li class="chapter" data-level="2.10.1" data-path="modulüberblick.html"><a href="modulüberblick.html#datum-9"><i class="fa fa-check"></i><b>2.10.1</b> Datum</a></li>
-<li class="chapter" data-level="2.10.2" data-path="modulüberblick.html"><a href="modulüberblick.html#literatur-9"><i class="fa fa-check"></i><b>2.10.2</b> Literatur</a></li>
-</ul></li>
-<li class="chapter" data-level="2.11" data-path="modulüberblick.html"><a href="modulüberblick.html#fallstudie"><i class="fa fa-check"></i><b>2.11</b> Fallstudie</a>
-<ul>
-<li class="chapter" data-level="2.11.1" data-path="modulüberblick.html"><a href="modulüberblick.html#datum-10"><i class="fa fa-check"></i><b>2.11.1</b> Datum</a></li>
-<li class="chapter" data-level="2.11.2" data-path="modulüberblick.html"><a href="modulüberblick.html#literatur-10"><i class="fa fa-check"></i><b>2.11.2</b> Literatur</a></li>
-<li class="chapter" data-level="2.11.3" data-path="modulüberblick.html"><a href="modulüberblick.html#hinweise-3"><i class="fa fa-check"></i><b>2.11.3</b> Hinweise</a></li>
-</ul></li>
-<li class="chapter" data-level="2.12" data-path="modulüberblick.html"><a href="modulüberblick.html#wiederholung-1"><i class="fa fa-check"></i><b>2.12</b> Wiederholung</a>
-<ul>
-<li class="chapter" data-level="2.12.1" data-path="modulüberblick.html"><a href="modulüberblick.html#datum-11"><i class="fa fa-check"></i><b>2.12.1</b> Datum</a></li>
-<li class="chapter" data-level="2.12.2" data-path="modulüberblick.html"><a href="modulüberblick.html#hinweise-4"><i class="fa fa-check"></i><b>2.12.2</b> Hinweise</a></li>
-</ul></li>
-<li class="chapter" data-level="2.13" data-path="modulüberblick.html"><a href="modulüberblick.html#gam"><i class="fa fa-check"></i><b>2.13</b> GAM</a>
-<ul>
-<li class="chapter" data-level="2.13.1" data-path="modulüberblick.html"><a href="modulüberblick.html#datum-12"><i class="fa fa-check"></i><b>2.13.1</b> Datum</a></li>
-<li class="chapter" data-level="2.13.2" data-path="modulüberblick.html"><a href="modulüberblick.html#literatur-11"><i class="fa fa-check"></i><b>2.13.2</b> Literatur</a></li>
-</ul></li>
-<li class="chapter" data-level="2.14" data-path="modulüberblick.html"><a href="modulüberblick.html#lasso-und-co"><i class="fa fa-check"></i><b>2.14</b> Lasso und Co</a>
-<ul>
-<li class="chapter" data-level="2.14.1" data-path="modulüberblick.html"><a href="modulüberblick.html#datum-13"><i class="fa fa-check"></i><b>2.14.1</b> Datum</a></li>
-<li class="chapter" data-level="2.14.2" data-path="modulüberblick.html"><a href="modulüberblick.html#literatur-12"><i class="fa fa-check"></i><b>2.14.2</b> Literatur</a></li>
-</ul></li>
-<li class="chapter" data-level="2.15" data-path="modulüberblick.html"><a href="modulüberblick.html#vertiefung-2"><i class="fa fa-check"></i><b>2.15</b> Vertiefung</a>
-<ul>
-<li class="chapter" data-level="2.15.1" data-path="modulüberblick.html"><a href="modulüberblick.html#datum-14"><i class="fa fa-check"></i><b>2.15.1</b> Datum</a></li>
-<li class="chapter" data-level="2.15.2" data-path="modulüberblick.html"><a href="modulüberblick.html#literatur-13"><i class="fa fa-check"></i><b>2.15.2</b> Literatur</a></li>
-<li class="chapter" data-level="2.15.3" data-path="modulüberblick.html"><a href="modulüberblick.html#vertiefung-3"><i class="fa fa-check"></i><b>2.15.3</b> Vertiefung</a></li>
-<li class="chapter" data-level="2.15.4" data-path="modulüberblick.html"><a href="modulüberblick.html#hinweise-5"><i class="fa fa-check"></i><b>2.15.4</b> Hinweise</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="prüfung.html"><a href="prüfung.html"><i class="fa fa-check"></i><b>3</b> Prüfung</a>
-<ul>
-<li class="chapter" data-level="3.1" data-path="prüfung.html"><a href="prüfung.html#prüfungleistung"><i class="fa fa-check"></i><b>3.1</b> Prüfungleistung</a></li>
-<li class="chapter" data-level="3.2" data-path="prüfung.html"><a href="prüfung.html#tldr-zusammenfassung"><i class="fa fa-check"></i><b>3.2</b> tl;dr: Zusammenfassung</a></li>
-<li class="chapter" data-level="3.3" data-path="prüfung.html"><a href="prüfung.html#vorhersage"><i class="fa fa-check"></i><b>3.3</b> Vorhersage</a></li>
-<li class="chapter" data-level="3.4" data-path="prüfung.html"><a href="prüfung.html#hauptziel-genaue-prognose"><i class="fa fa-check"></i><b>3.4</b> Hauptziel: Genaue Prognose</a></li>
-<li class="chapter" data-level="3.5" data-path="prüfung.html"><a href="prüfung.html#zum-aufbau-ihrer-prognosedatei-im-csv-format"><i class="fa fa-check"></i><b>3.5</b> Zum Aufbau Ihrer Prognosedatei im CSV-Format</a></li>
-<li class="chapter" data-level="3.6" data-path="prüfung.html"><a href="prüfung.html#einzureichende-dateien"><i class="fa fa-check"></i><b>3.6</b> Einzureichende Dateien</a></li>
-<li class="chapter" data-level="3.7" data-path="prüfung.html"><a href="prüfung.html#tipps"><i class="fa fa-check"></i><b>3.7</b> Tipps</a>
-<ul>
-<li class="chapter" data-level="3.7.1" data-path="prüfung.html"><a href="prüfung.html#tipps-für-eine-gute-prognose"><i class="fa fa-check"></i><b>3.7.1</b> Tipps für eine gute Prognose</a></li>
-<li class="chapter" data-level="3.7.2" data-path="prüfung.html"><a href="prüfung.html#tipps-zur-datenverarbeitung"><i class="fa fa-check"></i><b>3.7.2</b> Tipps zur Datenverarbeitung</a></li>
-<li class="chapter" data-level="3.7.3" data-path="prüfung.html"><a href="prüfung.html#tipps-zum-aufbau-des-analyseskripts"><i class="fa fa-check"></i><b>3.7.3</b> Tipps zum Aufbau des Analyseskripts</a></li>
-<li class="chapter" data-level="3.7.4" data-path="prüfung.html"><a href="prüfung.html#sonstiges"><i class="fa fa-check"></i><b>3.7.4</b> Sonstiges</a></li>
-</ul></li>
-<li class="chapter" data-level="3.8" data-path="prüfung.html"><a href="prüfung.html#bewertung"><i class="fa fa-check"></i><b>3.8</b> Bewertung</a>
-<ul>
-<li class="chapter" data-level="3.8.1" data-path="prüfung.html"><a href="prüfung.html#kriterien"><i class="fa fa-check"></i><b>3.8.1</b> Kriterien</a></li>
-<li class="chapter" data-level="3.8.2" data-path="prüfung.html"><a href="prüfung.html#kennzahl-der-modellgüte"><i class="fa fa-check"></i><b>3.8.2</b> Kennzahl der Modellgüte</a></li>
-<li class="chapter" data-level="3.8.3" data-path="prüfung.html"><a href="prüfung.html#notenstufen"><i class="fa fa-check"></i><b>3.8.3</b> Notenstufen</a></li>
-<li class="chapter" data-level="3.8.4" data-path="prüfung.html"><a href="prüfung.html#bewertungsprozess"><i class="fa fa-check"></i><b>3.8.4</b> Bewertungsprozess</a></li>
-</ul></li>
-<li class="chapter" data-level="3.9" data-path="prüfung.html"><a href="prüfung.html#hinweise-6"><i class="fa fa-check"></i><b>3.9</b> Hinweise</a></li>
-<li class="chapter" data-level="3.10" data-path="prüfung.html"><a href="prüfung.html#formalia"><i class="fa fa-check"></i><b>3.10</b> Formalia</a></li>
-<li class="chapter" data-level="3.11" data-path="prüfung.html"><a href="prüfung.html#wo-finde-ich-beispiele"><i class="fa fa-check"></i><b>3.11</b> Wo finde ich Beispiele?</a></li>
-<li class="chapter" data-level="3.12" data-path="prüfung.html"><a href="prüfung.html#plagiatskontrolle"><i class="fa fa-check"></i><b>3.12</b> Plagiatskontrolle</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="grundkonzepte-1.html"><a href="grundkonzepte-1.html"><i class="fa fa-check"></i><b>4</b> Grundkonzepte</a>
-<ul>
-<li class="chapter" data-level="4.1" data-path="grundkonzepte-1.html"><a href="grundkonzepte-1.html#was-ist-data-science"><i class="fa fa-check"></i><b>4.1</b> Was ist Data Science?</a></li>
-<li class="chapter" data-level="4.2" data-path="grundkonzepte-1.html"><a href="grundkonzepte-1.html#was-ist-machine-learning"><i class="fa fa-check"></i><b>4.2</b> Was ist Machine Learning?</a>
-<ul>
-<li class="chapter" data-level="4.2.1" data-path="grundkonzepte-1.html"><a href="grundkonzepte-1.html#rule-based"><i class="fa fa-check"></i><b>4.2.1</b> Rule-based</a></li>
-<li class="chapter" data-level="4.2.2" data-path="grundkonzepte-1.html"><a href="grundkonzepte-1.html#data-based"><i class="fa fa-check"></i><b>4.2.2</b> Data-based</a></li>
-</ul></li>
-<li class="chapter" data-level="4.3" data-path="grundkonzepte-1.html"><a href="grundkonzepte-1.html#modell-vs.-algorithmus"><i class="fa fa-check"></i><b>4.3</b> Modell vs. Algorithmus</a>
-<ul>
-<li class="chapter" data-level="4.3.1" data-path="grundkonzepte-1.html"><a href="grundkonzepte-1.html#modell"><i class="fa fa-check"></i><b>4.3.1</b> Modell</a></li>
-<li class="chapter" data-level="4.3.2" data-path="grundkonzepte-1.html"><a href="grundkonzepte-1.html#beispiel-für-einen-ml-algorithmus"><i class="fa fa-check"></i><b>4.3.2</b> Beispiel für einen ML-Algorithmus</a></li>
-</ul></li>
-<li class="chapter" data-level="4.4" data-path="grundkonzepte-1.html"><a href="grundkonzepte-1.html#taxonomie"><i class="fa fa-check"></i><b>4.4</b> Taxonomie</a>
-<ul>
-<li class="chapter" data-level="4.4.1" data-path="grundkonzepte-1.html"><a href="grundkonzepte-1.html#geleitetes-lernen"><i class="fa fa-check"></i><b>4.4.1</b> Geleitetes Lernen</a></li>
-<li class="chapter" data-level="4.4.2" data-path="grundkonzepte-1.html"><a href="grundkonzepte-1.html#ungeleitetes-lernen"><i class="fa fa-check"></i><b>4.4.2</b> Ungeleitetes Lernen</a></li>
-</ul></li>
-<li class="chapter" data-level="4.5" data-path="grundkonzepte-1.html"><a href="grundkonzepte-1.html#ziele-des-ml"><i class="fa fa-check"></i><b>4.5</b> Ziele des ML</a></li>
-<li class="chapter" data-level="4.6" data-path="grundkonzepte-1.html"><a href="grundkonzepte-1.html#über--vs.-unteranpassung"><i class="fa fa-check"></i><b>4.6</b> Über- vs. Unteranpassung</a></li>
-<li class="chapter" data-level="4.7" data-path="grundkonzepte-1.html"><a href="grundkonzepte-1.html#no-free-lunch"><i class="fa fa-check"></i><b>4.7</b> No free lunch</a></li>
-<li class="chapter" data-level="4.8" data-path="grundkonzepte-1.html"><a href="grundkonzepte-1.html#bias-varianz-abwägung"><i class="fa fa-check"></i><b>4.8</b> Bias-Varianz-Abwägung</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
-</ul>
-
-      </nav>
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="Grundlagen der Prognosemodellierung 🔮🧰">DataScience1</a>:
+        <small class="text-muted">Grundlagen der Prognosemodellierung 🔮🧰</small>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
 
-    <div class="book-body">
-      <div class="body-inner">
-        <div class="book-header" role="navigation">
-          <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">DataScience1</a>
-          </h1>
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Überblick</a></li>
+<li><a class="" href="modul%C3%BCberblick.html"><span class="header-section-number">2</span> Modulüberblick</a></li>
+<li><a class="" href="pr%C3%BCfung.html"><span class="header-section-number">3</span> Prüfung</a></li>
+<li><a class="" href="grundkonzepte-1.html"><span class="header-section-number">4</span> Grundkonzepte</a></li>
+<li><a class="active" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/sebastiansauer/datascience1">View book source <i class="fab fa-github"></i></a></p>
         </div>
-
-        <div class="page-wrapper" tabindex="-1" role="main">
-          <div class="page-inner">
-
-            <section class="normal" id="section-">
-<div id="references" class="section level1 unnumbered">
-<h1>References</h1>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="references" class="section level1 unnumbered">
+<h1>References<a class="anchor" aria-label="anchor" href="#references"><i class="fas fa-link"></i></a>
+</h1>
 
 <div id="refs" class="references csl-bib-body hanging-indent">
-<div class="csl-entry">
+<div id="ref-baumer_modern_2017" class="csl-entry">
 Baumer, Benjamin S., Daniel T. Kaplan, and Nicholas J. Horton. 2017. <em>Modern Data Science with r (Chapman &amp; Hall/<span>CRC</span> Texts in Statistical Science)</em>. Boca Raton, Florida: Chapman; Hall/<span>CRC</span>.
 </div>
-<div class="csl-entry">
+<div id="ref-islrtidy" class="csl-entry">
+Hvitfeldt, Emil. 2022. <em><span>ISLR</span> Tidymodels Labs</em>. <a href="https://emilhvitfeldt.github.io/ISLR-tidymodels-labs/index.html">https://emilhvitfeldt.github.io/ISLR-tidymodels-labs/index.html</a>.
+</div>
+<div id="ref-islr" class="csl-entry">
 James, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2021. <em>An Introduction to Statistical Learning: With Applications in r</em>. Second edition. Springer Texts in Statistics. New York: Springer. <a href="https://link.springer.com/book/10.1007/978-1-0716-1418-1">https://link.springer.com/book/10.1007/978-1-0716-1418-1</a>.
 </div>
-<div class="csl-entry">
+<div id="ref-rhys" class="csl-entry">
 Rhys, Hefin. 2020. <em>Machine Learning with r, the Tidyverse, and Mlr</em>. Shelter Island, <span>NY</span>: Manning publications.
 </div>
-<div class="csl-entry">
+<div id="ref-modar" class="csl-entry">
 Sauer, Sebastian. 2019. <em>Moderne Datenanalyse Mit r: Daten Einlesen, Aufbereiten, Visualisieren Und Modellieren</em>. 1. Auflage 2019. <span>FOM</span>-Edition. Wiesbaden: Springer. <a href="https://www.springer.com/de/book/9783658215866">https://www.springer.com/de/book/9783658215866</a>.
 </div>
-<div class="csl-entry">
+<div id="ref-silge_tidy_2022" class="csl-entry">
 Silge, Julia, and Max Kuhn. 2022. <em>Tidy <span>Modeling</span> with <span>R</span></em>. <a href="https://www.tmwr.org/">https://www.tmwr.org/</a>.
 </div>
-<div class="csl-entry">
+<div id="ref-spurzem_vw_2017" class="csl-entry">
 Spurzem, Lothar. 2017. <em><span>VW</span> 1303 von Wiking in 1:87</em>. <a href="https://de.wikipedia.org/wiki/Modellautomobil#/media/File:Wiking-Modell_VW_1303_(um_1975).JPG">https://de.wikipedia.org/wiki/Modellautomobil#/media/File:Wiking-Modell_VW_1303_(um_1975).JPG</a>.
 </div>
 </div>
 </div>
 <div class="footnotes footnotes-end-of-document">
-<hr />
+<hr>
 <ol>
-<li id="fn1"><p><a href="https://link.springer.com/book/10.1007/978-3-658-21587-3">https://link.springer.com/book/10.1007/978-3-658-21587-3</a><a href="prüfung.html#fnref1" class="footnote-back">↩︎</a></p></li>
-<li id="fn2"><p><a href="https://www.tmwr.org/">https://www.tmwr.org/</a><a href="prüfung.html#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn1"><p><a href="https://link.springer.com/book/10.1007/978-3-658-21587-3">https://link.springer.com/book/10.1007/978-3-658-21587-3</a><a href="pr%C3%BCfung.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p><a href="https://www.tmwr.org/">https://www.tmwr.org/</a><a href="pr%C3%BCfung.html#fnref2" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
-            </section>
+  <div class="chapter-nav">
+<div class="prev"><a href="grundkonzepte-1.html"><span class="header-section-number">4</span> Grundkonzepte</a></div>
+<div class="empty"></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav"><li><a class="nav-link" href="#references">References</a></li></ul>
 
-          </div>
-        </div>
-      </div>
-<a href="grundkonzepte-1.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/sebastiansauer/datascience1/blob/master/90-references.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/sebastiansauer/datascience1/edit/master/90-references.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
 
-    </div>
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-03-17 09:50:05.</p>
   </div>
-<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
-<script>
-gitbook.require(["gitbook"], function(gitbook) {
-gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/sebastiansauer/datascience190-references.Rmd",
-"text": "Edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": {},
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
-});
-});
-</script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -451,7 +131,22 @@ gitbook.start({
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
 </script>
 </body>
-
 </html>
