@@ -20,7 +20,6 @@ fig:bias-var
 was-sie-hier-lernen-und-wozu-das-gut-ist
 lernziele
 voraussetzungen
-hinweise-zu-diesem-projekt
 lernhilfen
 software
 videos
@@ -28,6 +27,7 @@ online-zusammenarbeit
 modulzeitplan
 literatur
 faq
+hinweise-zu-diesem-buch
 modulüberblick
 grundkonzepte
 datum

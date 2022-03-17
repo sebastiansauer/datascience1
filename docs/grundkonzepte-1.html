@@ -6,20 +6,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Kapitel 4 Grundkonzepte | DataScience1</title>
 <meta name="author" content="Sebastian Sauer">
+<meta name="description" content="4.1 Was ist Data Science? Es gibt mehrere Definitionen von Data Science, aber keinen kompletten Konsens. Baumer, Kaplan, and Horton (2017) definieren Data Science wie folgt (S. 4): The science of...">
 <meta name="generator" content="bookdown 0.24.2 with bs4_book()">
 <meta property="og:title" content="Kapitel 4 Grundkonzepte | DataScience1">
 <meta property="og:type" content="book">
+<meta property="og:description" content="4.1 Was ist Data Science? Es gibt mehrere Definitionen von Data Science, aber keinen kompletten Konsens. Baumer, Kaplan, and Horton (2017) definieren Data Science wie folgt (S. 4): The science of...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kapitel 4 Grundkonzepte | DataScience1">
+<meta name="twitter:description" content="4.1 Was ist Data Science? Es gibt mehrere Definitionen von Data Science, aber keinen kompletten Konsens. Baumer, Kaplan, and Horton (2017) definieren Data Science wie folgt (S. 4): The science of...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
 <script src="libs/grViz-binding-1.0.6.1/grViz.js"></script><script src="libs/es6shim-0.35.6/es6shim.js"></script><script src="libs/es7shim-6.0.0/es7shim.js"></script><script src="libs/graphre-0.1.3/graphre.js"></script><script src="libs/nomnoml-1.3.1/nomnoml.js"></script><script src="libs/nomnoml-binding-0.2.3/nomnoml.js"></script><script src="libs/d3-3.3.8/d3.min.js"></script><script src="libs/dagre-0.4.0/dagre-d3.min.js"></script><link href="libs/mermaid-0.3.0/dist/mermaid.css" rel="stylesheet">
 <script src="libs/mermaid-0.3.0/dist/mermaid.slim.min.js"></script><script src="libs/chromatography-0.1/chromatography.js"></script><script src="libs/DiagrammeR-binding-1.0.6.1/DiagrammeR.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="style-bs4.css">
-<meta name="description" content="4.1 Was ist Data Science? Es gibt mehrere Definitionen von Data Science, aber keinen kompletten Konsens. Baumer, Kaplan, and Horton (2017) definieren Data Science wie folgt (S. 4): The science of...">
-<meta property="og:description" content="4.1 Was ist Data Science? Es gibt mehrere Definitionen von Data Science, aber keinen kompletten Konsens. Baumer, Kaplan, and Horton (2017) definieren Data Science wie folgt (S. 4): The science of...">
-<meta name="twitter:description" content="4.1 Was ist Data Science? Es gibt mehrere Definitionen von Data Science, aber keinen kompletten Konsens. Baumer, Kaplan, and Horton (2017) definieren Data Science wie folgt (S. 4): The science of...">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -79,8 +79,8 @@ Dieser “Dreiklang” ist in folgendem Venn-Diagramm dargestellt.</p>
 <p><em>Maschinelles Lernen</em> (ML), oft auch (synonym) als <em>statistisches Lernen</em> (statistical learning) bezeichnet, ist ein Teilgebiet der <em>künstlichen Intelligenz</em> (KI; artificial intelligence, AI) <span class="citation">(<a href="references.html#ref-rhys" role="doc-biblioref">Rhys 2020</a>)</span>. ML wird auch als <em>data-based</em> bezeichnet in Abgrenzung von <em>rule-based</em>, was auch als “klassische KI” bezeichnet wird, vgl. Abb. <a href="grundkonzepte-1.html#fig:ai-ml2">4.1</a>.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ai-ml2"></span>
-<div id="htmlwidget-45370b93bd1a7f94e984" style="width:100%;height:250px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-45370b93bd1a7f94e984">{"x":{"diagram":"\ndigraph D {\n\n    node [fontname=\"Arial\"];\n\n    node_A [shape=record    label=\"{KI|{rule-based|data-based}}\"];\n\n\n}\n\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><p class="caption">
+<div id="htmlwidget-ed2b16a98ec726e8f6d0" style="width:100%;height:250px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ed2b16a98ec726e8f6d0">{"x":{"diagram":"\ndigraph D {\n\n    node [fontname=\"Arial\"];\n\n    node_A [shape=record    label=\"{KI|{rule-based|data-based}}\"];\n\n\n}\n\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><p class="caption">
 Figure 4.1: KI und Maschinelles Lernen
 </p>
 </div>
@@ -91,8 +91,8 @@ Ein Kochrezept ist ein klassisches Beispiel für einen Algorithmus.</p>
 <p>Es gibt viele ML-Algorithmen, vgl. Abb. <a href="grundkonzepte-1.html#fig:algos">4.2</a>.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:algos"></span>
-<div id="htmlwidget-7eb43e8f801c4a455e8f" style="width:100%;height:350px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-7eb43e8f801c4a455e8f">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: leftright\n[KI|\n  [ML|\n    [Regression] \n    [Neuronale Netze] \n    [...]\n  ]  \n  \n]\n","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
+<div id="htmlwidget-bf73afa20d4c849c5244" style="width:100%;height:350px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-bf73afa20d4c849c5244">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: leftright\n[KI|\n  [ML|\n    [Regression] \n    [Neuronale Netze] \n    [...]\n  ]  \n  \n]\n","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
 Figure 4.2: ML-Matroschka
 </p>
 </div>
@@ -183,8 +183,8 @@ Figure 4.4: Vorhersage des Einkommens als Funktion von Ausbildungsjahren und Die
 ML-Systeme werden mit Daten und Antworten gefüttert und liefern Regeln zurück, vgl. Abb. <a href="grundkonzepte-1.html#fig:ki-ml2">4.5</a>.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ki-ml2"></span>
-<div id="htmlwidget-2c69e6d18cb7f6a877dc" style="width:100%;height:450px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-2c69e6d18cb7f6a877dc">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: leftright\n  [rule-based|\n  [Daten] -> [Antworten]\n  [Regeln] -> [Antworten]\n]\n  [data-based|\n  [Daten] -> [Regeln]\n  [Antworten] -> [Regeln]\n]  \n  ","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
+<div id="htmlwidget-2c2f641494a429264eee" style="width:100%;height:450px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2c2f641494a429264eee">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: leftright\n  [rule-based|\n  [Daten] -> [Antworten]\n  [Regeln] -> [Antworten]\n]\n  [data-based|\n  [Daten] -> [Regeln]\n  [Antworten] -> [Regeln]\n]  \n  ","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
 Figure 4.5: Vergleich von klassischer KI und ML
 </p>
 </div>
@@ -244,8 +244,8 @@ anhand dessen die Beziehung zwischen <span class="math inline">\(X\)</span> und 
 Eine typische Gliederung unterscheidet in <em>supervidierte</em> (geleitete) und <em>nicht-supervidierte</em> (ungeleitete) Algorithmen, s. Abb. <a href="grundkonzepte-1.html#fig:taxonomie">4.8</a>.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:taxonomie"></span>
-<div id="htmlwidget-2bd0f4cf5e2f9a28c9c8" style="width:100%;height:250px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-2bd0f4cf5e2f9a28c9c8">{"x":{"diagram":"\ngraph LR\n  ML[Maschinelles Lernen]\n  SL[Supervidiertes Lernen]\n  NSL[Nicht-supervidiertes Lernen]\n  Re[Regression]\n  Class[Klassifikation]\n  DimRed[Dimensionsreduktion]\n  Clust[Clustering]\n  ML --> SL\n  ML --> NSL\n  SL --> Re\n  SL --> Class\n  NSL --> DimRed\n  NSL --> Clust\n"},"evals":[],"jsHooks":[]}</script><p class="caption">
+<div id="htmlwidget-d7e253b532bbdfdb06e9" style="width:100%;height:250px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d7e253b532bbdfdb06e9">{"x":{"diagram":"\ngraph LR\n  ML[Maschinelles Lernen]\n  SL[Supervidiertes Lernen]\n  NSL[Nicht-supervidiertes Lernen]\n  Re[Regression]\n  Class[Klassifikation]\n  DimRed[Dimensionsreduktion]\n  Clust[Clustering]\n  ML --> SL\n  ML --> NSL\n  SL --> Re\n  SL --> Class\n  NSL --> DimRed\n  NSL --> Clust\n"},"evals":[],"jsHooks":[]}</script><p class="caption">
 Figure 4.8: Taxonomie der Arten des maschinellen Lernens
 </p>
 </div>
@@ -256,8 +256,8 @@ Figure 4.8: Taxonomie der Arten des maschinellen Lernens
 <p>Die zwei Phasen des geleiteten Lernens sind in Abb. <a href="grundkonzepte-1.html#fig:supervid">4.9</a> dargestellt.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:supervid"></span>
-<div id="htmlwidget-df0e262275a33e913fbd" style="width:100%;height:550px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-df0e262275a33e913fbd">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n\n[Lernphase|\n[Daten mit Antwort] -> [Geleiteter Algorithmus]\n[Geleiteter Algorithmus] -> [Modell]\n]\n\n[Vorhersagephase|\n[Neue Daten, ohne Antwort] -> [Modell]\n[Modell] -> [Antworten]\n]\n\n","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
+<div id="htmlwidget-e03ca3dae9bdfdacc6c8" style="width:100%;height:550px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e03ca3dae9bdfdacc6c8">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n\n[Lernphase|\n[Daten mit Antwort] -> [Geleiteter Algorithmus]\n[Geleiteter Algorithmus] -> [Modell]\n]\n\n[Vorhersagephase|\n[Neue Daten, ohne Antwort] -> [Modell]\n[Modell] -> [Antworten]\n]\n\n","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
 Figure 4.9: Geleitetes Lernen geschieht in zwei Phasen
 </p>
 </div>
@@ -300,8 +300,8 @@ wenn tatsächlicher Wert und vorhergesagter Wert identisch sind.</p>
 <p>Die zwei Phasen des ungeleiteten Lernens sind in Abb. <a href="grundkonzepte-1.html#fig:unsuper">4.10</a> dargestellt.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:unsuper"></span>
-<div id="htmlwidget-0a96352197d472ef0b2e" style="width:100%;height:450px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-0a96352197d472ef0b2e">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n\n[Lernphase|\n[Daten ohne Antwort] -> [Ungeleiteter Algorithmus]\n[Ungeleiteter Algorithmus] -> [Modell]\n]\n\n[Vorhersagephase|\n[Neue Daten, ohne Antwort] -> [Modell]\n[Modell] -> [Zuordnung zu den Regeln des Modells]\n]\n\n","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
+<div id="htmlwidget-511cd4a06927a9e155dd" style="width:100%;height:450px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-511cd4a06927a9e155dd">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n\n[Lernphase|\n[Daten ohne Antwort] -> [Ungeleiteter Algorithmus]\n[Ungeleiteter Algorithmus] -> [Modell]\n]\n\n[Vorhersagephase|\n[Neue Daten, ohne Antwort] -> [Modell]\n[Modell] -> [Zuordnung zu den Regeln des Modells]\n]\n\n","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
 Figure 4.10: Die zwei Phasen des ungeleiteten Lernens
 </p>
 </div>
@@ -325,8 +325,8 @@ Figure 4.11: Zwei Arten von ungeleitetem Modellieren
 <p>Man kann vier Ziele des ML unterscheiden, s. Abb. <a href="grundkonzepte-1.html#fig:ziele">4.12</a>.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ziele"></span>
-<div id="htmlwidget-911ab126294c19a3541b" style="width:100%;height:450px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-911ab126294c19a3541b">{"x":{"diagram":"\ngraph TD\n  ML[Maschinelles Lernen]\n  V[Vorhersage]\n  E[Erklärung/kausal]\n  B[Beschreibung]\n  DimRed[Dimensionsreduktion]\n  ML --> V\n  ML --> E\n  ML --> B\n  ML --> DimRed\n"},"evals":[],"jsHooks":[]}</script><p class="caption">
+<div id="htmlwidget-51ec0c01e94b078c36c3" style="width:100%;height:450px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-51ec0c01e94b078c36c3">{"x":{"diagram":"\ngraph TD\n  ML[Maschinelles Lernen]\n  V[Vorhersage]\n  E[Erklärung/kausal]\n  B[Beschreibung]\n  DimRed[Dimensionsreduktion]\n  ML --> V\n  ML --> E\n  ML --> B\n  ML --> DimRed\n"},"evals":[],"jsHooks":[]}</script><p class="caption">
 Figure 4.12: Ziele des maschinellen Lernens
 </p>
 </div>
@@ -472,7 +472,7 @@ Figure 4.18: Abwängung von Bias vs. Varianz
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-03-17 09:50:05.</p>
+    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-03-17 10:07:30.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -93,22 +93,6 @@ sollten Sie folgendes Wissen mitbringen:
 
 
 
-## Hinweise zu diesem Projekt
-
-- Die URL zu diesem Projekt lautet <test.io>.
-
-- Lesen Sie sich die folgenden Informationen bitte gut durch: [Hinweise](https://sebastiansauer.github.io/fopra/Interna/Hinweise.html)
-
-- Den Quellcode finden Sie [in diesem Github-Repo](https://github.com/sebastiansauer/datascience1).
-
-- Sie haben Feedback, Fehlerhinweise oder W체nsche zur Weiterentwicklung? Am besten stellen Sie  [hier](https://github.com/sebastiansauer/datascience1/issues) einen *Issue*  ein.
-
-- Dieses Projekt steht unter der [MIT-Lizenz](https://github.com/sebastiansauer/datascience1/blob/main/LICENSE). 
-
-
-
-
-
 ## Lernhilfen
 
 
@@ -117,7 +101,7 @@ sollten Sie folgendes Wissen mitbringen:
 
 ### Software
 
- Installieren Sie [R und seine Freunde](https://data-se.netlify.app/2021/11/30/installation-von-r-und-seiner-freunde/).
+- Installieren Sie [R und seine Freunde](https://data-se.netlify.app/2021/11/30/installation-von-r-und-seiner-freunde/).
 - Installieren Sie die folgende R-Pakete:
     - tidyverse
     - tidymodels
@@ -129,11 +113,14 @@ sollten Sie folgendes Wissen mitbringen:
 ### Videos
 
 - [Playlist zu den Themen](https://youtube.com/playlist?list=PLRR4REmBgpIGv1e4hZ8asrL3qVBe5LcKp)
-- 
+- Auf dem [YouTube-Kanal des Autors](https://www.youtube.com/channel/UCkvdtj8maE7g-SOCh4aDB9g) finden sich eine Reihe von Videos mit Bezug zum Inhalt dieses Buches.
 
 
 
 ### Online-Zusammenarbeit
+
+Hier finden Sie einige Werkzeuge, 
+die das Online-Zusammenarbeiten vereinfachen: 
 
 - [Frag-Jetzt-Raum zum anonymen Fragen stellen w채hrend des Unterrichts](https://frag.jetzt/home). Der Keycode wird Ihnen vom Dozenten bereitgestellt.
 - [Padlet](https://de.padlet.com/) zum einfachen (und anonymen) Hochladen von Arbeitsergebnissen der Studentis im Unterricht. Wir nutzen es als eine Art Pinwand zum Sammeln von Arbeitsbeitr채gen. Die Zugangsdaten stellt Ihnen der Dozent bereit.
@@ -191,6 +178,39 @@ In dem Buch wird das Lehrbuch @islr in Tidymodels-Konzepte 체bersetzt; sehr sch�
 ```
 
 
+
+
+
+
+
+
+## Hinweise zu diesem Buch
+
+- Die URL zu diesem Buch lautet <https://sebastiansauer.github.io/datascience1/> und ist bei [GitHub Pages](https://pages.github.com/) gehostet.
+
+- Lesen Sie sich die folgenden Informationen bitte gut durch: [Hinweise](https://sebastiansauer.github.io/fopra/Interna/Hinweise.html)
+
+- Den Quellcode finden Sie [in diesem Github-Repo](https://github.com/sebastiansauer/datascience1).
+
+- Sie haben Feedback, Fehlerhinweise oder W체nsche zur Weiterentwicklung? Am besten stellen Sie  [hier](https://github.com/sebastiansauer/datascience1/issues) einen *Issue*  ein.
+
+- Dieses Projekt steht unter der [MIT-Lizenz](https://github.com/sebastiansauer/datascience1/blob/main/LICENSE). 
+
+- Dieses Buch wurde in [RStudio](http://www.rstudio.com/ide/) mit Hilfe von [bookdown](http://bookdown.org/) geschrieben. 
+
+- Diese Version des Buches wurd mit der R-Version `r R.version.string` und den folgenden Paketen erstellt:
+
+```{r, echo = FALSE, results="asis"}
+deps <- desc::desc_get_deps()
+pkgs <- sort(deps$package[deps$type == "Imports"])
+pkgs <- sessioninfo::package_info(pkgs, dependencies = FALSE)
+df <- tibble::tibble(
+  package = pkgs$package,
+  version = pkgs$ondiskversion,
+  source = gsub("@", "\\\\@", pkgs$source)
+)
+knitr::kable(df, format = "markdown")
+```
 
 
 
