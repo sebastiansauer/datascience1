@@ -6,14 +6,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Kapitel 5 R, zweiter Blick | DataScience1</title>
 <meta name="author" content="Sebastian Sauer">
-<meta name="description" content="5.1 Objekttypen in R Näheres findet sich in Sauer (2019), Kap. 5.2.  5.1.1 Überblick In R ist praktisch alles ein Objekt. Ein Objekt meint ein im Computerspeicher repräsentiertes Ding, etwa eine...">
+<meta name="description" content="5.1 Objekttypen in R Näheres zu Objekttypen findet sich in Sauer (2019), Kap. 5.2.  5.1.1 Überblick In R ist praktisch alles ein Objekt. Ein Objekt meint ein im Computerspeicher repräsentiertes...">
 <meta name="generator" content="bookdown 0.24.2 with bs4_book()">
 <meta property="og:title" content="Kapitel 5 R, zweiter Blick | DataScience1">
 <meta property="og:type" content="book">
-<meta property="og:description" content="5.1 Objekttypen in R Näheres findet sich in Sauer (2019), Kap. 5.2.  5.1.1 Überblick In R ist praktisch alles ein Objekt. Ein Objekt meint ein im Computerspeicher repräsentiertes Ding, etwa eine...">
+<meta property="og:description" content="5.1 Objekttypen in R Näheres zu Objekttypen findet sich in Sauer (2019), Kap. 5.2.  5.1.1 Überblick In R ist praktisch alles ein Objekt. Ein Objekt meint ein im Computerspeicher repräsentiertes...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kapitel 5 R, zweiter Blick | DataScience1">
-<meta name="twitter:description" content="5.1 Objekttypen in R Näheres findet sich in Sauer (2019), Kap. 5.2.  5.1.1 Überblick In R ist praktisch alles ein Objekt. Ein Objekt meint ein im Computerspeicher repräsentiertes Ding, etwa eine...">
+<meta name="twitter:description" content="5.1 Objekttypen in R Näheres zu Objekttypen findet sich in Sauer (2019), Kap. 5.2.  5.1.1 Überblick In R ist praktisch alles ein Objekt. Ein Objekt meint ein im Computerspeicher repräsentiertes...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -65,7 +65,7 @@
 <h2>
 <span class="header-section-number">5.1</span> Objekttypen in R<a class="anchor" aria-label="anchor" href="#objekttypen-in-r"><i class="fas fa-link"></i></a>
 </h2>
-<p>Näheres findet sich in <span class="citation">Sauer (<a href="references.html#ref-modar" role="doc-biblioref">2019</a>)</span>, Kap. 5.2.</p>
+<p>Näheres zu Objekttypen findet sich in <span class="citation">Sauer (<a href="references.html#ref-modar" role="doc-biblioref">2019</a>)</span>, Kap. 5.2.</p>
 <div id="überblick" class="section level3" number="5.1.1">
 <h3>
 <span class="header-section-number">5.1.1</span> Überblick<a class="anchor" aria-label="anchor" href="#%C3%BCberblick"><i class="fas fa-link"></i></a>
@@ -84,9 +84,7 @@ Stattdessen nutzt R Vektoren der Länge 1.</p>
 <p>Ein nützliches Schema stammt aus <span class="citation">Wickham and Grolemund (<a href="references.html#ref-r4ds" role="doc-biblioref">2016</a>)</span>, s. Abb. <a href="r-zweiter-blick.html#fig:objtypes">5.2</a>.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:objtypes"></span>
-<iframe src="https://d33wubrfki0l68.cloudfront.net/1d1b4e1cf0dc5f6e80f621b0225354b0addb9578/6ee1c/diagrams/data-structures-overview.png?showcase=0" width="70%" height="400px" data-external="1">
-</iframe>
-<p class="caption">
+<img src="https://d33wubrfki0l68.cloudfront.net/1d1b4e1cf0dc5f6e80f621b0225354b0addb9578/6ee1c/diagrams/data-structures-overview.png" alt="Objektarten hierarchisch gegliedert" width="70%"><p class="caption">
 Figure 5.2: Objektarten hierarchisch gegliedert
 </p>
 </div>
@@ -425,7 +423,7 @@ Daher braucht’s Strukturen, die <em>Wiederholungen</em> beschreiben.</p>
 </h3>
 <p><code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code> ist eine Funktion aus dem R-Paket <code>purrr</code> und Teil des Tidyverse.</p>
 <p><code>map(x, f)</code> wenden die Funktion <code>f</code> auf jedes Element von <code>x</code> an.
-Ist <code>x</code> ein Tibble, so wird <code>f</code> demnach auf jede Spalte von <code>x</code> angewendet (“zugeordnet”, daher <code>map</code>), vgl. Abb. <a href="r-zweiter-blick.html#fig:map1">5.6</a>.</p>
+Ist <code>x</code> ein Tibble, so wird <code>f</code> demnach auf jede Spalte von <code>x</code> angewendet (“zugeordnet”, daher <code>map</code>), vgl. Abb. <a href="r-zweiter-blick.html#fig:map1">5.6</a> aus <span class="citation">Sauer (<a href="references.html#ref-modar" role="doc-biblioref">2019</a>)</span>.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:map1"></span>
 <img src="img/wdh.png" alt="Sinnbild für map" width="70%"><p class="caption">
@@ -571,7 +569,7 @@ nutzt man wieder die “Kringel-Schreibweise”:</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-03-21 18:24:52.</p>
+    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-03-21 20:45:31.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

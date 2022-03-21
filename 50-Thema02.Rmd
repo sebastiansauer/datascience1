@@ -8,7 +8,7 @@
 
 ## Objekttypen in R
 
-Näheres findet sich in @modar, Kap. 5.2.
+Näheres zu Objekttypen findet sich in @modar, Kap. 5.2.
 
 
 ### Überblick
@@ -28,8 +28,8 @@ Stattdessen nutzt R Vektoren der Länge 1.
 
 Ein nützliches Schema stammt aus @r4ds, s. Abb. \@ref(fig:objtypes).
 
-```{r objtypes, fig.cap = "Objektarten hierarchisch gegliedert"}
-knitr::include_app("https://d33wubrfki0l68.cloudfront.net/1d1b4e1cf0dc5f6e80f621b0225354b0addb9578/6ee1c/diagrams/data-structures-overview.png")
+```{r objtypes, fig.cap = "Objektarten hierarchisch gegliedert", out.width="70%"}
+knitr::include_graphics("https://d33wubrfki0l68.cloudfront.net/1d1b4e1cf0dc5f6e80f621b0225354b0addb9578/6ee1c/diagrams/data-structures-overview.png")
 ```
 
 
@@ -80,11 +80,13 @@ str(logischer_vektor)
 
 Vektoren können von folgenden Typen sein:
 
-- Numerisch (`numeric` auch `double`) genannt
+- Kommazahlen ( `double`) genannt
 - Ganzzahlig (`integer`, auch mit `L` für *Long* abgekürzt)
 - Text (´character`, String)
 - logische Ausdrücke (`logical` oder `lgl`) mit `TRUE` oder `FALSE`
 
+
+Kommazahlen und Ganze Zahlen zusammen bilden den Typ `numeric` (numerisch) in R.
 
 
 #### Faktoren
@@ -385,7 +387,7 @@ mtcars %>%
 `map()` ist eine Funktion aus dem R-Paket `purrr` und Teil des Tidyverse.
 
 `map(x, f)` wenden die Funktion `f` auf jedes Element von `x` an.
-Ist `x` ein Tibble, so wird `f` demnach auf jede Spalte von `x` angewendet ("zugeordnet", daher `map`), vgl. Abb. \@ref(fig:map1).
+Ist `x` ein Tibble, so wird `f` demnach auf jede Spalte von `x` angewendet ("zugeordnet", daher `map`), vgl. Abb. \@ref(fig:map1) aus @modar.
 
 
 ```{r map1, fig.cap = "Sinnbild für map"}

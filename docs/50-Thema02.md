@@ -8,7 +8,7 @@
 
 ## Objekttypen in R
 
-Näheres findet sich in @modar, Kap. 5.2.
+Näheres zu Objekttypen findet sich in @modar, Kap. 5.2.
 
 
 ### Überblick
@@ -30,7 +30,7 @@ Stattdessen nutzt R Vektoren der Länge 1.
 Ein nützliches Schema stammt aus @r4ds, s. Abb. \@ref(fig:objtypes).
 
 <div class="figure" style="text-align: center">
-<iframe src="https://d33wubrfki0l68.cloudfront.net/1d1b4e1cf0dc5f6e80f621b0225354b0addb9578/6ee1c/diagrams/data-structures-overview.png?showcase=0" width="70%" height="400px" data-external="1"></iframe>
+<img src="https://d33wubrfki0l68.cloudfront.net/1d1b4e1cf0dc5f6e80f621b0225354b0addb9578/6ee1c/diagrams/data-structures-overview.png" alt="Objektarten hierarchisch gegliedert" width="70%" />
 <p class="caption">(\#fig:objtypes)Objektarten hierarchisch gegliedert</p>
 </div>
 
@@ -560,7 +560,7 @@ mtcars %>%
 `map()` ist eine Funktion aus dem R-Paket `purrr` und Teil des Tidyverse.
 
 `map(x, f)` wenden die Funktion `f` auf jedes Element von `x` an.
-Ist `x` ein Tibble, so wird `f` demnach auf jede Spalte von `x` angewendet ("zugeordnet", daher `map`), vgl. Abb. \@ref(fig:map1).
+Ist `x` ein Tibble, so wird `f` demnach auf jede Spalte von `x` angewendet ("zugeordnet", daher `map`), vgl. Abb. \@ref(fig:map1) aus @modar.
 
 
 <div class="figure" style="text-align: center">
