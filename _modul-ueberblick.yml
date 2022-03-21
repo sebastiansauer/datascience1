@@ -22,12 +22,12 @@ thema1:
     - "[Verdienst einer deutschen Data Scientistin](https://www.zeit.de/arbeit/2020-10/data-scientist-gehalt-geldanlage-programmieren-kontoauszug)"
     - "[Weitere Fallstudie zum Thema Regression auf Kaggle](https://www.kaggle.com/micahshull/r-bike-sharing-linear-regression)"
     - "[Crashkurs Data Science (Coursera, Johns Hopkins University) mit 'Star-Dozenten'](https://www.coursera.org/learn/data-science-course)"
-  Aufgaben:
-    - "[Machen Sie sich mit 'Kaggle' vertraut](https://www.kaggle.com/)"
     - "[Arbeiten Sie diese Regressionsfallstudie (zum Thema Gehalt) auf Kaggle auf](https://www.kaggle.com/pranjalpandey12/performing-simple-linear-regression-in-r)"
     - "[Werfen Sie einen Blick in diese Fallstudie auf Kaggle zum Thema Hauspreise](https://www.kaggle.com/lazaro97/data-preprocessing-and-linear-regression-with-r)"
     - "[Wiederholen Sie unser Vorgehen in der Fallstudie zu den Flugverspätungen](https://data-se.netlify.app/2021/03/10/fallstudie-modellierung-von-flugversp%C3%A4tungen/)"
-
+  Aufgaben:
+    - "[Machen Sie sich mit 'Kaggle' vertraut](https://www.kaggle.com/)"
+    - "[Bearbeiten Sie die Fallstudie 'TitaRnic' auf Kaggle](https://www.kaggle.com/code/headsortails/tidy-titarnic/report)"
 
 thema2:
   Titel: "tidyverse, 2. Blick"

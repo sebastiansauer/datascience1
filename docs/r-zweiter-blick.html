@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Kapitel 5 R, zweiter Blick | DataScience1</title>
+<meta name="author" content="Sebastian Sauer">
+<meta name="description" content="5.1 Objekttypen in R Näheres findet sich in Sauer (2019), Kap. 5.2.  5.1.1 Überblick In R ist praktisch alles ein Objekt. Ein Objekt meint ein im Computerspeicher repräsentiertes Ding, etwa eine...">
+<meta name="generator" content="bookdown 0.24.2 with bs4_book()">
+<meta property="og:title" content="Kapitel 5 R, zweiter Blick | DataScience1">
+<meta property="og:type" content="book">
+<meta property="og:description" content="5.1 Objekttypen in R Näheres findet sich in Sauer (2019), Kap. 5.2.  5.1.1 Überblick In R ist praktisch alles ein Objekt. Ein Objekt meint ein im Computerspeicher repräsentiertes Ding, etwa eine...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kapitel 5 R, zweiter Blick | DataScience1">
+<meta name="twitter:description" content="5.1 Objekttypen in R Näheres findet sich in Sauer (2019), Kap. 5.2.  5.1.1 Überblick In R ist praktisch alles ein Objekt. Ein Objekt meint ein im Computerspeicher repräsentiertes Ding, etwa eine...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
+<script src="libs/grViz-binding-1.0.6.1/grViz.js"></script><script src="libs/es6shim-0.35.6/es6shim.js"></script><script src="libs/es7shim-6.0.0/es7shim.js"></script><script src="libs/graphre-0.1.3/graphre.js"></script><script src="libs/nomnoml-1.3.1/nomnoml.js"></script><script src="libs/nomnoml-binding-0.2.3/nomnoml.js"></script><script src="libs/d3-3.3.8/d3.min.js"></script><script src="libs/dagre-0.4.0/dagre-d3.min.js"></script><link href="libs/mermaid-0.3.0/dist/mermaid.css" rel="stylesheet">
+<script src="libs/mermaid-0.3.0/dist/mermaid.slim.min.js"></script><script src="libs/chromatography-0.1/chromatography.js"></script><script src="libs/DiagrammeR-binding-1.0.6.1/DiagrammeR.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="style-bs4.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="Grundlagen der Prognosemodellierung 🔮🧰">DataScience1</a>:
+        <small class="text-muted">Grundlagen der Prognosemodellierung 🔮🧰</small>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Zu diesem Buch</a></li>
+<li><a class="" href="hinweise.html"><span class="header-section-number">1</span> Hinweise</a></li>
+<li><a class="" href="modul%C3%BCberblick.html"><span class="header-section-number">2</span> Modulüberblick</a></li>
+<li><a class="" href="pr%C3%BCfung.html"><span class="header-section-number">3</span> Prüfung</a></li>
+<li class="book-part">Themen</li>
+<li><a class="" href="grundkonzepte-1.html"><span class="header-section-number">4</span> Grundkonzepte</a></li>
+<li><a class="active" href="r-zweiter-blick.html"><span class="header-section-number">5</span> R, zweiter Blick</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/sebastiansauer/datascience1">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="r-zweiter-blick" class="section level1" number="5">
+<h1>
+<span class="header-section-number">Kapitel 5</span> R, zweiter Blick<a class="anchor" aria-label="anchor" href="#r-zweiter-blick"><i class="fas fa-link"></i></a>
+</h1>
+<div id="objekttypen-in-r" class="section level2" number="5.1">
+<h2>
+<span class="header-section-number">5.1</span> Objekttypen in R<a class="anchor" aria-label="anchor" href="#objekttypen-in-r"><i class="fas fa-link"></i></a>
+</h2>
+<p>Näheres findet sich in <span class="citation">Sauer (<a href="references.html#ref-modar" role="doc-biblioref">2019</a>)</span>, Kap. 5.2.</p>
+<div id="überblick" class="section level3" number="5.1.1">
+<h3>
+<span class="header-section-number">5.1.1</span> Überblick<a class="anchor" aria-label="anchor" href="#%C3%BCberblick"><i class="fas fa-link"></i></a>
+</h3>
+<p>In R ist praktisch alles ein Objekt.
+Ein Objekt meint ein im Computerspeicher repräsentiertes Ding, etwa eine Tabelle.</p>
+<p>Vektoren und Dataframes (Tibbles) sind die vielleicht gängigsten Objektarten in R (vgl. Abb. <a href="r-zweiter-blick.html#fig:obs">5.1</a>, aus <span class="citation">Sauer (<a href="references.html#ref-modar" role="doc-biblioref">2019</a>)</span>).</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:obs"></span>
+<img src="img/zentrale_objektarten.png" alt="Zentrale Objektarten in R" width="70%"><p class="caption">
+Figure 5.1: Zentrale Objektarten in R
+</p>
+</div>
+<p>Es gibt in R keine (Objekte für) Skalare (einzelne Zahlen).
+Stattdessen nutzt R Vektoren der Länge 1.</p>
+<p>Ein nützliches Schema stammt aus <span class="citation">Wickham and Grolemund (<a href="references.html#ref-r4ds" role="doc-biblioref">2016</a>)</span>, s. Abb. <a href="r-zweiter-blick.html#fig:objtypes">5.2</a>.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:objtypes"></span>
+<iframe src="https://d33wubrfki0l68.cloudfront.net/1d1b4e1cf0dc5f6e80f621b0225354b0addb9578/6ee1c/diagrams/data-structures-overview.png?showcase=0" width="70%" height="400px" data-external="1">
+</iframe>
+<p class="caption">
+Figure 5.2: Objektarten hierarchisch gegliedert
+</p>
+</div>
+</div>
+<div id="taxonomie-1" class="section level3" number="5.1.2">
+<h3>
+<span class="header-section-number">5.1.2</span> Taxonomie<a class="anchor" aria-label="anchor" href="#taxonomie-1"><i class="fas fa-link"></i></a>
+</h3>
+<p>Unter <em>homogenen</em> Objektiven verstehen wir Datenstrukturen,
+die nur eine Art von Daten (wie Text oder Ganze Zahlen) fassen.
+Sonstige Objekte nennen wir <em>heterogen</em>.</p>
+<ul>
+<li>Homogene Objekte
+<ul>
+<li>Vektoren</li>
+<li>Matrizen</li>
+</ul>
+</li>
+<li>Heterogen
+<ul>
+<li>Liste</li>
+<li>Dataframes (Tibbles)</li>
+</ul>
+</li>
+</ul>
+<div id="vektoren" class="section level4" number="5.1.2.1">
+<h4>
+<span class="header-section-number">5.1.2.1</span> Vektoren<a class="anchor" aria-label="anchor" href="#vektoren"><i class="fas fa-link"></i></a>
+</h4>
+<p><em>Vektoren</em> sind insofern zentral in R,
+als dass die übrigen Datenstrukturen auf ihnen aufbauen, vgl. Abb. <a href="r-zweiter-blick.html#fig:vektorenimzentrum">5.3</a> aus <span class="citation">Sauer (<a href="references.html#ref-modar" role="doc-biblioref">2019</a>)</span>.</p>
+<p>Reine (atomare) Vektoren in R sind eine geordnete Liste von Daten eines Typs.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:vektorenimzentrum"></span>
+<img src="img/Datenstrukturen.png" alt="Vektoren stehen im Zentrum der Datenstrukturen in R" width="70%"><p class="caption">
+Figure 5.3: Vektoren stehen im Zentrum der Datenstrukturen in R
+</p>
+</div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">ein_vektor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span>
+<span class="va">noch_ein_vektor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span><span class="op">)</span>
+<span class="va">logischer_vektor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<p>Mit <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> kann man sich die <code>Str</code>uktur eines Objektsausgeben lassen:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">ein_vektor</span><span class="op">)</span></code></pre></div>
+<pre><code>##  num [1:3] 1 2 3</code></pre>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">noch_ein_vektor</span><span class="op">)</span></code></pre></div>
+<pre><code>##  chr [1:3] "A" "B" "C"</code></pre>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">logischer_vektor</span><span class="op">)</span></code></pre></div>
+<pre><code>##  logi [1:3] TRUE FALSE TRUE</code></pre>
+<p>Vektoren können von folgenden Typen sein:</p>
+<ul>
+<li>Numerisch (<code>numeric</code> auch <code>double</code>) genannt</li>
+<li>Ganzzahlig (<code>integer</code>, auch mit <code>L</code> für <em>Long</em> abgekürzt)</li>
+<li>Text (´character`, String)</li>
+<li>logische Ausdrücke (<code>logical</code> oder <code>lgl</code>) mit <code>TRUE</code> oder <code>FALSE</code>
+</li>
+</ul>
+</div>
+<div id="faktoren" class="section level4" number="5.1.2.2">
+<h4>
+<span class="header-section-number">5.1.2.2</span> Faktoren<a class="anchor" aria-label="anchor" href="#faktoren"><i class="fas fa-link"></i></a>
+</h4>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">sex</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Mann"</span>, <span class="st">"Frau"</span>, <span class="st">"Frau"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>Interessant:</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span></code></pre></div>
+<pre><code>##  Factor w/ 2 levels "Frau","Mann": 2 1 1</code></pre>
+<p>Vertiefende Informationen findet sich in <span class="citation">Wickham and Grolemund (<a href="references.html#ref-r4ds" role="doc-biblioref">2016</a>)</span>.</p>
+</div>
+<div id="listen" class="section level4" number="5.1.2.3">
+<h4>
+<span class="header-section-number">5.1.2.3</span> Listen<a class="anchor" aria-label="anchor" href="#listen"><i class="fas fa-link"></i></a>
+</h4>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">eine_liste</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>titel <span class="op">=</span> <span class="st">"Einführung"</span>,
+                   woche <span class="op">=</span> <span class="fl">1</span>,
+                   datum <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"2022-03-14"</span>, <span class="st">"2202-03-21"</span><span class="op">)</span>,
+                   lernziele <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"dies"</span>, <span class="st">"jenes"</span>, <span class="st">"und noch mehr"</span><span class="op">)</span>,
+                   lehre <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span><span class="op">)</span>
+                   <span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">eine_liste</span><span class="op">)</span></code></pre></div>
+<pre><code>## List of 5
+##  $ titel    : chr "Einführung"
+##  $ woche    : num 1
+##  $ datum    : chr [1:2] "2022-03-14" "2202-03-21"
+##  $ lernziele: chr [1:3] "dies" "jenes" "und noch mehr"
+##  $ lehre    : logi [1:3] TRUE TRUE TRUE</code></pre>
+</div>
+<div id="tibbles" class="section level4" number="5.1.2.4">
+<h4>
+<span class="header-section-number">5.1.2.4</span> Tibbles<a class="anchor" aria-label="anchor" href="#tibbles"><i class="fas fa-link"></i></a>
+</h4>
+<p>Für <code><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble()</a></code> brauchen wir <code>tidyverse</code>:</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">studentis</span> <span class="op">&lt;-</span>
+  <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>
+    name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Anna"</span>, <span class="st">"Berta"</span><span class="op">)</span>,
+    motivation <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">20</span><span class="op">)</span>,
+    noten <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1.3</span>, <span class="fl">1.7</span><span class="op">)</span>
+  <span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">studentis</span><span class="op">)</span></code></pre></div>
+<pre><code>## tibble [2 × 3] (S3: tbl_df/tbl/data.frame)
+##  $ name      : chr [1:2] "Anna" "Berta"
+##  $ motivation: num [1:2] 10 20
+##  $ noten     : num [1:2] 1.3 1.7</code></pre>
+</div>
+</div>
+<div id="indizieren" class="section level3" number="5.1.3">
+<h3>
+<span class="header-section-number">5.1.3</span> Indizieren<a class="anchor" aria-label="anchor" href="#indizieren"><i class="fas fa-link"></i></a>
+</h3>
+<p>Einen Teil eines Objekts auszulesen, bezeichnen wir als <em>Indizieren</em>.</p>
+<div id="reine-vektoren" class="section level4" number="5.1.3.1">
+<h4>
+<span class="header-section-number">5.1.3.1</span> Reine Vektoren<a class="anchor" aria-label="anchor" href="#reine-vektoren"><i class="fas fa-link"></i></a>
+</h4>
+<p>Zur Erinnerung:</p>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">ein_vektor</span><span class="op">)</span></code></pre></div>
+<pre><code>##  num [1:3] 1 2 3</code></pre>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">ein_vektor</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">ein_vektor</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">]</span></code></pre></div>
+<pre><code>## [1] 1 2</code></pre>
+<p>Aber <em>nicht</em> so:</p>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">ein_vektor</span><span class="op">[</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">]</span></code></pre></div>
+<pre><code>## Error in ein_vektor[1, 2]: incorrect number of dimensions</code></pre>
+<p>In <span class="citation">Sauer (<a href="references.html#ref-modar" role="doc-biblioref">2019</a>)</span>, Kap. 5.3.1 findet man weitere Indizierungsmöglichkeiten für reine Vektoren.</p>
+</div>
+<div id="listen-1" class="section level4" number="5.1.3.2">
+<h4>
+<span class="header-section-number">5.1.3.2</span> Listen<a class="anchor" aria-label="anchor" href="#listen-1"><i class="fas fa-link"></i></a>
+</h4>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">eine_liste</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre><code>## List of 5
+##  $ titel    : chr "Einführung"
+##  $ woche    : num 1
+##  $ datum    : chr [1:2] "2022-03-14" "2202-03-21"
+##  $ lernziele: chr [1:3] "dies" "jenes" "und noch mehr"
+##  $ lehre    : logi [1:3] TRUE TRUE TRUE</code></pre>
+<p>Listen können wie Vektoren, also mit <code>[</code> ausgelesen werden.
+Dann wird eine Liste zurückgegeben.</p>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">eine_liste</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></code></pre></div>
+<pre><code>## $titel
+## [1] "Einführung"</code></pre>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">eine_liste</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></code></pre></div>
+<pre><code>## $woche
+## [1] 1</code></pre>
+<p>Mann kann auch die “doppelte Eckklammer”, <code>[[</code> zum Auslesen verwenden;
+dann wird anstelle einer Liste die einfachere Struktur eines Vektors zurückgegeben:</p>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">eine_liste</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></code></pre></div>
+<pre><code>## [1] "Einführung"</code></pre>
+<p>Mann die Elemente der Liste entweder mit ihrer Positionsnummer (1, 2, …) oder,
+sofern vorhanden, ihren Namen ansprechen:</p>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">eine_liste</span><span class="op">[[</span><span class="st">"titel"</span><span class="op">]</span><span class="op">]</span></code></pre></div>
+<pre><code>## [1] "Einführung"</code></pre>
+<p>Dann gibt es noch den Dollar-Operator,
+mit dem Mann benannte Elemente von Listen ansprechen kann:</p>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">eine_liste</span><span class="op">$</span><span class="va">titel</span></code></pre></div>
+<pre><code>## [1] "Einführung"</code></pre>
+<p>Man kann auch tiefer in eine Liste hinein indizieren.
+Sagen wir, uns interessiert das 4. Element der Liste <code>eine_liste</code> -
+und davon das erste Element.</p>
+<p>Das geht dann so:</p>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">eine_liste</span><span class="op">[[</span><span class="fl">4</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> </code></pre></div>
+<pre><code>## [1] "dies"</code></pre>
+<p>Eine einfachere Art des Indizierens von Listen bietet die Funktion <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck()</a></code>, aus dem Paket <code>purrr</code>,
+das Hilfen für den Umgang mit Listen bietet.</p>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span><span class="op">(</span><span class="va">eine_liste</span>, <span class="fl">4</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "dies"          "jenes"         "und noch mehr"</code></pre>
+<p>Und jetzt aus dem 4. Element das 1. Element:</p>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span><span class="op">(</span><span class="va">eine_liste</span>, <span class="fl">4</span>, <span class="fl">1</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "dies"</code></pre>
+</div>
+<div id="tibbles-1" class="section level4" number="5.1.3.3">
+<h4>
+<span class="header-section-number">5.1.3.3</span> Tibbles<a class="anchor" aria-label="anchor" href="#tibbles-1"><i class="fas fa-link"></i></a>
+</h4>
+<p>Tibbles lassen sich sowohl wie ein Vektor als auch wie eine Liste indizieren.</p>
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">studentis</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 1
+##   name 
+##   &lt;chr&gt;
+## 1 Anna 
+## 2 Berta</code></pre>
+<p>Die Indizierung eines Tibbles mit der einfachen Eckklammer liefert einen Tibble zurück.</p>
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">studentis</span><span class="op">[</span><span class="st">"name"</span><span class="op">]</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 1
+##   name 
+##   &lt;chr&gt;
+## 1 Anna 
+## 2 Berta</code></pre>
+<p>Mit doppelter Eckklammer bekommt man,
+analog zur Liste,
+einen Vektor zurück:</p>
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">studentis</span><span class="op">[[</span><span class="st">"name"</span><span class="op">]</span><span class="op">]</span></code></pre></div>
+<pre><code>## [1] "Anna"  "Berta"</code></pre>
+<p>Beim Dollar-Operator kommt auch eine Liste zurück:</p>
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">studentis</span><span class="op">$</span><span class="va">name</span></code></pre></div>
+<pre><code>## [1] "Anna"  "Berta"</code></pre>
+</div>
+</div>
+<div id="weiterführende-hinweise" class="section level3" number="5.1.4">
+<h3>
+<span class="header-section-number">5.1.4</span> Weiterführende Hinweise<a class="anchor" aria-label="anchor" href="#weiterf%C3%BChrende-hinweise"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>
+<a href="https://jennybc.github.io/purrr-tutorial/bk00_vectors-and-lists.html">Tutorial</a> zum Themen Indizieren von Listen von Jenny BC.</li>
+</ul>
+</div>
+<div id="indizieren-mit-dem-tidyverse" class="section level3" number="5.1.5">
+<h3>
+<span class="header-section-number">5.1.5</span> Indizieren mit dem Tidyverse<a class="anchor" aria-label="anchor" href="#indizieren-mit-dem-tidyverse"><i class="fas fa-link"></i></a>
+</h3>
+<p>Natürlich kann man auch die Tidyverse-Verben zum Indizieren verwenden.
+Das bietet sich an, wenn zwei Bedingungen erfüllt sind:</p>
+<ol style="list-style-type: decimal">
+<li>Wenn man einen Tibble als Input und als Output hat</li>
+<li>Wenn man nicht programmieren möchte</li>
+</ol>
+</div>
+</div>
+<div id="datensätze-von-lang-nach-breit-umformatieren" class="section level2" number="5.2">
+<h2>
+<span class="header-section-number">5.2</span> Datensätze von lang nach breit umformatieren<a class="anchor" aria-label="anchor" href="#datens%C3%A4tze-von-lang-nach-breit-umformatieren"><i class="fas fa-link"></i></a>
+</h2>
+<p>Manchmal findet man Datensätze im sog. <em>langen</em> Format vor,
+manchmal im <em>breiten</em>.</p>
+<p>In der Regel müssen die Daten “tidy” sein,
+was meist dem langen Format entspricht, vgl. Abb. <a href="r-zweiter-blick.html#fig:langbreit">5.4</a> aus <span class="citation">Sauer (<a href="references.html#ref-modar" role="doc-biblioref">2019</a>)</span>.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:langbreit"></span>
+<img src="img/gather_spread.png" alt="Von lang nach breit und zurück" width="70%"><p class="caption">
+Figure 5.4: Von lang nach breit und zurück
+</p>
+</div>
+<p>In einer neueren Version des Tidyverse werden diese beiden Befehle umbenannt bzw. erweitert:</p>
+<ul>
+<li>
+<code><a href="https://tidyr.tidyverse.org/reference/gather.html">gather()</a></code> -&gt; <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code>
+</li>
+<li>
+<code><a href="https://tidyr.tidyverse.org/reference/spread.html">spread()</a></code> -&gt; <code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider()</a></code>
+</li>
+</ul>
+<p>Weitere Informationen findet sich in <span class="citation">Wickham and Grolemund (<a href="references.html#ref-r4ds" role="doc-biblioref">2016</a>)</span>, in <a href="https://r4ds.had.co.nz/tidy-data.html?q=pivot_#pivoting">diesem Abschnitt, 12.3</a>.</p>
+</div>
+<div id="funktionen" class="section level2" number="5.3">
+<h2>
+<span class="header-section-number">5.3</span> Funktionen<a class="anchor" aria-label="anchor" href="#funktionen"><i class="fas fa-link"></i></a>
+</h2>
+<p>Eine Funktion kann man sich als analog zu einer Variable vorstellen.
+Es ist ein Objekt, das nicht Daten, sondern Syntax beinhaltet,
+vgl. Abb. <a href="r-zweiter-blick.html#fig:funs">5.5</a> aus <span class="citation">Sauer (<a href="references.html#ref-modar" role="doc-biblioref">2019</a>)</span>.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:funs"></span>
+<img src="img/Funs_def.png" alt="Sinnbild einer Funktion" width="70%"><p class="caption">
+Figure 5.5: Sinnbild einer Funktion
+</p>
+</div>
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mittelwert</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span>
+  
+  <span class="va">summe</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+  <span class="va">mw</span> <span class="op">&lt;-</span> <span class="va">summe</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">mw</span><span class="op">)</span>
+  
+<span class="op">}</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">mittelwert</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<p>Weitere Informationen finden sich in <a href="https://r4ds.had.co.nz/functions.html">Kapitel 19</a> in <span class="citation">Wickham and Grolemund (<a href="references.html#ref-r4ds" role="doc-biblioref">2016</a>)</span>. Alternativ findet sich ein Abschnitt dazu (28.1) in <span class="citation">Sauer (<a href="references.html#ref-modar" role="doc-biblioref">2019</a>)</span>.</p>
+</div>
+<div id="wiederholungen-programmieren" class="section level2" number="5.4">
+<h2>
+<span class="header-section-number">5.4</span> Wiederholungen programmieren<a class="anchor" aria-label="anchor" href="#wiederholungen-programmieren"><i class="fas fa-link"></i></a>
+</h2>
+<p>Häufig möchte man eine Operation mehrfach ausführen.
+Ein Beispiel wäre die Anzahl der fehlenden Werte pro Spalte auslesen.
+Natürlich kann man die Abfrage einfach häufig tippen, nervt aber irgendwann.
+Daher braucht’s Strukturen, die <em>Wiederholungen</em> beschreiben.</p>
+<p>Dafür gibt es verschiedene Ansätze.</p>
+<div id="across" class="section level3" number="5.4.1">
+<h3>
+<span class="header-section-number">5.4.1</span> <code>across()</code><a class="anchor" aria-label="anchor" href="#across"><i class="fas fa-link"></i></a>
+</h3>
+<p>Handelt es sich um Spalten von Tibbles, dann bietet sich die Funktion <code>across(.col, .fns)</code> an.
+<code>across</code> wendet eine oder mehrere Funktionen (mit <code>.fns</code> bezeichnet) auf die Spalten <code>.col</code> an.</p>
+<p>Das erklärt sich am besten mit einem Beispiel:</p>
+<p>Natürlich hätte man in diesem Fall auch anders vorgehen können:</p>
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span>.cols <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span>,
+                   .fns <span class="op">=</span> <span class="va">mean</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>##        mpg    cyl     disp       hp     drat      wt     qsec     vs      am
+## 1 20.09062 6.1875 230.7219 146.6875 3.596563 3.21725 17.84875 0.4375 0.40625
+##     gear   carb
+## 1 3.6875 2.8125</code></pre>
+<p>Möchte man der Funktion <code>.fns</code> Parameter übergeben, so nutzt man diese Syntax (“Purrr-Lambda”):</p>
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span>.cols <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span>,
+                   .fns <span class="op">=</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">.</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>##        mpg    cyl     disp       hp     drat      wt     qsec     vs      am
+## 1 20.09062 6.1875 230.7219 146.6875 3.596563 3.21725 17.84875 0.4375 0.40625
+##     gear   carb
+## 1 3.6875 2.8125</code></pre>
+<p><a href="https://www.rebeccabarter.com/blog/2020-07-09-across/">Hier</a> findet sich ein guter Überblick zu <code><a href="https://dplyr.tidyverse.org/reference/across.html">across()</a></code>.</p>
+</div>
+<div id="map" class="section level3" number="5.4.2">
+<h3>
+<span class="header-section-number">5.4.2</span> <code>map()</code><a class="anchor" aria-label="anchor" href="#map"><i class="fas fa-link"></i></a>
+</h3>
+<p><code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code> ist eine Funktion aus dem R-Paket <code>purrr</code> und Teil des Tidyverse.</p>
+<p><code>map(x, f)</code> wenden die Funktion <code>f</code> auf jedes Element von <code>x</code> an.
+Ist <code>x</code> ein Tibble, so wird <code>f</code> demnach auf jede Spalte von <code>x</code> angewendet (“zugeordnet”, daher <code>map</code>), vgl. Abb. <a href="r-zweiter-blick.html#fig:map1">5.6</a>.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:map1"></span>
+<img src="img/wdh.png" alt="Sinnbild für map" width="70%"><p class="caption">
+Figure 5.6: Sinnbild für map
+</p>
+</div>
+<p>Hier ein Beispiel-Code:</p>
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span>
+
+<span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">mean</span><span class="op">)</span></code></pre></div>
+<pre><code>## $mpg
+## [1] 20.09062
+## 
+## $cyl
+## [1] 6.1875
+## 
+## $disp
+## [1] 230.7219
+## 
+## $hp
+## [1] 146.6875
+## 
+## $drat
+## [1] 3.596563
+## 
+## $wt
+## [1] 3.21725
+## 
+## $qsec
+## [1] 17.84875
+## 
+## $vs
+## [1] 0.4375
+## 
+## $am
+## [1] 0.40625
+## 
+## $gear
+## [1] 3.6875
+## 
+## $carb
+## [1] 2.8125</code></pre>
+<p>Möchte man der gemappten Funktion Parameter übergeben,
+nutzt man wieder die “Kringel-Schreibweise”:</p>
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">.</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## $mpg
+## [1] 20.09062
+## 
+## $cyl
+## [1] 6.1875
+## 
+## $disp
+## [1] 230.7219
+## 
+## $hp
+## [1] 146.6875
+## 
+## $drat
+## [1] 3.596563
+## 
+## $wt
+## [1] 3.21725
+## 
+## $qsec
+## [1] 17.84875
+## 
+## $vs
+## [1] 0.4375
+## 
+## $am
+## [1] 0.40625
+## 
+## $gear
+## [1] 3.6875
+## 
+## $carb
+## [1] 2.8125</code></pre>
+</div>
+<div id="weiterführende-hinweise-1" class="section level3" number="5.4.3">
+<h3>
+<span class="header-section-number">5.4.3</span> Weiterführende Hinweise<a class="anchor" aria-label="anchor" href="#weiterf%C3%BChrende-hinweise-1"><i class="fas fa-link"></i></a>
+</h3>
+<p>Weiteres zu <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code> findet sich z.B. in <span class="citation">Wickham and Grolemund (<a href="references.html#ref-r4ds" role="doc-biblioref">2016</a>)</span>, <a href="https://r4ds.had.co.nz/iteration.html#the-map-functions">Kapitel 21.5</a> oder in <span class="citation">Sauer (<a href="references.html#ref-modar" role="doc-biblioref">2019</a>)</span>, Kap. 28.2.</p>
+<p><a href="https://jennybc.github.io/purrr-tutorial/ls01_map-name-position-shortcuts.html">Tutorial</a> zu <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code> von Jenny BC.</p>
+</div>
+</div>
+<div id="listenspalten" class="section level2" number="5.5">
+<h2>
+<span class="header-section-number">5.5</span> Listenspalten<a class="anchor" aria-label="anchor" href="#listenspalten"><i class="fas fa-link"></i></a>
+</h2>
+<p><a href="https://r4ds.had.co.nz/many-models.html?q=list#creating-list-columns">Kap. 25.3</a> aus <span class="citation">Wickham and Grolemund (<a href="references.html#ref-r4ds" role="doc-biblioref">2016</a>)</span> bietet einen guten Einstieg in das Konzept von Listenspalten (list-columns) in R.</p>
+</div>
+<div id="literatur-14" class="section level2" number="5.6">
+<h2>
+<span class="header-section-number">5.6</span> Literatur<a class="anchor" aria-label="anchor" href="#literatur-14"><i class="fas fa-link"></i></a>
+</h2>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="grundkonzepte-1.html"><span class="header-section-number">4</span> Grundkonzepte</a></div>
+<div class="next"><a href="references.html">References</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#r-zweiter-blick"><span class="header-section-number">5</span> R, zweiter Blick</a></li>
+<li>
+<a class="nav-link" href="#objekttypen-in-r"><span class="header-section-number">5.1</span> Objekttypen in R</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#%C3%BCberblick"><span class="header-section-number">5.1.1</span> Überblick</a></li>
+<li><a class="nav-link" href="#taxonomie-1"><span class="header-section-number">5.1.2</span> Taxonomie</a></li>
+<li><a class="nav-link" href="#indizieren"><span class="header-section-number">5.1.3</span> Indizieren</a></li>
+<li><a class="nav-link" href="#weiterf%C3%BChrende-hinweise"><span class="header-section-number">5.1.4</span> Weiterführende Hinweise</a></li>
+<li><a class="nav-link" href="#indizieren-mit-dem-tidyverse"><span class="header-section-number">5.1.5</span> Indizieren mit dem Tidyverse</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#datens%C3%A4tze-von-lang-nach-breit-umformatieren"><span class="header-section-number">5.2</span> Datensätze von lang nach breit umformatieren</a></li>
+<li><a class="nav-link" href="#funktionen"><span class="header-section-number">5.3</span> Funktionen</a></li>
+<li>
+<a class="nav-link" href="#wiederholungen-programmieren"><span class="header-section-number">5.4</span> Wiederholungen programmieren</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#across"><span class="header-section-number">5.4.1</span> across()</a></li>
+<li><a class="nav-link" href="#map"><span class="header-section-number">5.4.2</span> map()</a></li>
+<li><a class="nav-link" href="#weiterf%C3%BChrende-hinweise-1"><span class="header-section-number">5.4.3</span> Weiterführende Hinweise</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#listenspalten"><span class="header-section-number">5.5</span> Listenspalten</a></li>
+<li><a class="nav-link" href="#literatur-14"><span class="header-section-number">5.6</span> Literatur</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/sebastiansauer/datascience1/blob/master/50-Thema02.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/sebastiansauer/datascience1/edit/master/50-Thema02.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-03-21 18:24:52.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

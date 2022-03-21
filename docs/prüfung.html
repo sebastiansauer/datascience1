@@ -42,10 +42,13 @@
 
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
-<li><a class="" href="index.html"><span class="header-section-number">1</span> Überblick</a></li>
+<li><a class="" href="index.html">Zu diesem Buch</a></li>
+<li><a class="" href="hinweise.html"><span class="header-section-number">1</span> Hinweise</a></li>
 <li><a class="" href="modul%C3%BCberblick.html"><span class="header-section-number">2</span> Modulüberblick</a></li>
 <li><a class="active" href="pr%C3%BCfung.html"><span class="header-section-number">3</span> Prüfung</a></li>
+<li class="book-part">Themen</li>
 <li><a class="" href="grundkonzepte-1.html"><span class="header-section-number">4</span> Grundkonzepte</a></li>
+<li><a class="" href="r-zweiter-blick.html"><span class="header-section-number">5</span> R, zweiter Blick</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
 
@@ -252,7 +255,7 @@ der CSV-Dateien verfälschen kann auch ohne dass man die Datei speichert.</p></l
 <span class="header-section-number">3.8.2</span> Kennzahl der Modellgüte<a class="anchor" aria-label="anchor" href="#kennzahl-der-modellg%C3%BCte"><i class="fas fa-link"></i></a>
 </h3>
 <p>Die Güte der Vorhersage wird anhand des <em>mittleren Absolutfehlers</em> (mae) bemessen:</p>
-<p><span class="math display">\[\text{mae} = \frac{1}{n} \sum_{i=1}^n(y_i - \hat{y}_i)\]</span></p>
+<p><span class="math display">\[\text{mae} = \frac{1}{n} \sum_{i=1}^n|(y_i - \hat{y}_i)|\]</span></p>
 </div>
 <div id="notenstufen" class="section level3" number="3.8.3">
 <h3>
@@ -272,9 +275,9 @@ Auf dieser Basis ist es allen Teilnehmis möglich,
 die Korrektheit Ihrer Note zu überprüfen.</p>
 </div>
 </div>
-<div id="hinweise-6" class="section level2" number="3.9">
+<div id="hinweise-7" class="section level2" number="3.9">
 <h2>
-<span class="header-section-number">3.9</span> Hinweise<a class="anchor" aria-label="anchor" href="#hinweise-6"><i class="fas fa-link"></i></a>
+<span class="header-section-number">3.9</span> Hinweise<a class="anchor" aria-label="anchor" href="#hinweise-7"><i class="fas fa-link"></i></a>
 </h2>
 <p>Sie haben freie Methodenwahl bei der Modellierung und Vorverarbeitung. Nutzen Sie den Stoff wie im Unterricht gelernt; Sie können aber auch auf weitere Inhalte, die nicht im Unterricht behandelt wurden, zugreifen.</p>
 <p>Eine Einführung in verschiedene Methoden gibt es z.B. bei Sebastian Sauer (2019): <em>Moderne Datenanalyse mit R</em><a href="references.html#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> aber auch bei Max Kuhn und Julia Silge (2021): <em>Tidy Modeling with R</em>.<a href="references.html#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>. Die Bücher beinhalten jeweils Beispiele und Anwendung mit R.</p>
@@ -318,6 +321,9 @@ Im Internet finden sich viele Fallstudien, von denen Sie sich inspirieren lassen
 
 </div>
 </div>
+
+
+
   <div class="chapter-nav">
 <div class="prev"><a href="modul%C3%BCberblick.html"><span class="header-section-number">2</span> Modulüberblick</a></div>
 <div class="next"><a href="grundkonzepte-1.html"><span class="header-section-number">4</span> Grundkonzepte</a></div>
@@ -347,7 +353,7 @@ Im Internet finden sich viele Fallstudien, von denen Sie sich inspirieren lassen
 <li><a class="nav-link" href="#bewertungsprozess"><span class="header-section-number">3.8.4</span> Bewertungsprozess</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#hinweise-6"><span class="header-section-number">3.9</span> Hinweise</a></li>
+<li><a class="nav-link" href="#hinweise-7"><span class="header-section-number">3.9</span> Hinweise</a></li>
 <li><a class="nav-link" href="#formalia"><span class="header-section-number">3.10</span> Formalia</a></li>
 <li><a class="nav-link" href="#wo-finde-ich-beispiele"><span class="header-section-number">3.11</span> Wo finde ich Beispiele?</a></li>
 <li><a class="nav-link" href="#plagiatskontrolle"><span class="header-section-number">3.12</span> Plagiatskontrolle</a></li>
@@ -355,8 +361,8 @@ Im Internet finden sich viele Fallstudien, von denen Sie sich inspirieren lassen
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/sebastiansauer/datascience1/blob/master/02-Pruefung.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/sebastiansauer/datascience1/edit/master/02-Pruefung.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/sebastiansauer/datascience1/blob/master/30-Pruefung.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/sebastiansauer/datascience1/edit/master/30-Pruefung.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
@@ -368,7 +374,7 @@ Im Internet finden sich viele Fallstudien, von denen Sie sich inspirieren lassen
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-03-17 10:07:30.</p>
+    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-03-21 18:24:52.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
