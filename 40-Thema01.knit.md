@@ -3,33 +3,12 @@
 # Grundkonzepte
 
 
-```{r global-knitr-options, include=FALSE}
-  knitr::opts_chunk$set(
-  fig.pos = 'H',
-  fig.asp = 0.618,
-  fig.align='center',
-  fig.width = 5,
-  out.width = "100%",
-  fig.cap = "", 
-  fig.path = "chunk-img/",
-  dpi = 300,
-  # tidy = TRUE,
-  echo = FALSE,
-  message = FALSE,
-  warning = FALSE,
-  cache = FALSE,
-  fig.show = "hold")
-```
 
 
 
 
-```{r}
-library(nomnoml)
-library(DiagrammeR)
 
-knitr::knit_hooks$set(crop = knitr::hook_pdfcrop)
-```
+
 
 
 ## Was ist Data Science?
@@ -73,24 +52,15 @@ Dieser "Dreiklang" ist in folgendem Venn-Diagramm dargestellt.
 
 
 
-```{r ai-ml2, eval = TRUE, fig.cap="KI und Maschinelles Lernen", strip.white = TRUE, echo = FALSE, fig.align='center'}
-d <- "
-digraph D {
+<div class="figure" style="text-align: center">
 
-    node [fontname='Arial'];
-
-    node_A [shape=record    label='{KI|{rule-based|data-based}}'];
-
-
-}
-
-"
-
-
-DiagrammeR::grViz(d, height = 250)
-
-
+```{=html}
+<div id="htmlwidget-a971b3d6a47b1e521fe7" style="width:100%;height:250px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a971b3d6a47b1e521fe7">{"x":{"diagram":"\ndigraph D {\n\n    node [fontname=\"Arial\"];\n\n    node_A [shape=record    label=\"{KI|{rule-based|data-based}}\"];\n\n\n}\n\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 ```
+
+<p class="caption">(\#fig:ai-ml2)KI und Maschinelles Lernen</p>
+</div>
 
 
 In beiden Fällen finden Algorithmen Verwendung.
@@ -103,20 +73,15 @@ Ein Kochrezept ist ein klassisches Beispiel für einen Algorithmus.
 
 Es gibt viele ML-Algorithmen, vgl. Abb. \@ref(fig:algos).
 
-```{r algos, echo = FALSE, fig.cap = "ML-Matroschka"}
-d <- 
-"#direction: leftright
-[KI|
-  [ML|
-    [Regression] 
-    [Neuronale Netze] 
-    [...]
-  ]  
-  
-]
-"
-nomnoml(d, height = 350)
+<div class="figure" style="text-align: center">
+
+```{=html}
+<div id="htmlwidget-4a921fc42935742afcb6" style="width:100%;height:350px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4a921fc42935742afcb6">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: leftright\n[KI|\n  [ML|\n    [Regression] \n    [Neuronale Netze] \n    [...]\n  ]  \n  \n]\n","svg":false},"evals":[],"jsHooks":[]}</script>
 ```
+
+<p class="caption">(\#fig:algos)ML-Matroschka</p>
+</div>
 
 
 
@@ -129,7 +94,8 @@ Nutzer füttern Daten in dieses System. Das System leitet dann daraus Antworten 
 *Regeln* kann man prototypisch mit *Wenn-Dann-Abfragen* darstellen:
 
 
-```{r echo = TRUE}
+
+```r
 lernzeit <- c(0, 10, 10, 20)
 schlauer_nebensitzer <- c(FALSE, FALSE, TRUE, TRUE)
 
@@ -144,10 +110,18 @@ for (i in 1:4) {
 }
 ```
 
+```
+## [1] "Durchgefallen!"
+## [1] "Durchgefallen!"
+## [1] "bestanden!"
+## [1] "bestanden!"
+```
+
 
 Sicherlich könnte man das schlauer programmieren, vielleicht so:
 
-```{r echo = TRUE}
+
+```r
 d <- 
   tibble(
   lernzeit = c(0, 10, 10, 20),
@@ -156,7 +130,16 @@ d <-
 
 d %>% 
   mutate(bestanden = ifelse(lernzeit > 10 | schlauer_nebensitzer == TRUE, TRUE, FALSE))
+```
 
+```
+## # A tibble: 4 × 3
+##   lernzeit schlauer_nebensitzer bestanden
+##      <dbl> <lgl>                <lgl>    
+## 1        0 FALSE                FALSE    
+## 2       10 FALSE                FALSE    
+## 3       10 TRUE                 TRUE     
+## 4       20 TRUE                 TRUE
 ```
 
 
@@ -178,17 +161,19 @@ ML kann man auffassen als eine Menge an Verfahren, um $f$ zu schätzen.
 
 Ein Beispiel ist in Abb. \@ref(fig:statlearning) gezeigt [@islr].
 
-```{r statlearning, fig.cap = "Vorhersage des Einkommens durch Ausbildungsjahre"}
-knitr::include_graphics("img/2-2.png")
-```
+<div class="figure" style="text-align: center">
+<img src="img/2-2.png" alt="Vorhersage des Einkommens durch Ausbildungsjahre" width="100%" />
+<p class="caption">(\#fig:statlearning)Vorhersage des Einkommens durch Ausbildungsjahre</p>
+</div>
 
 
 Natürlich kann $X$ mehr als eine Variable beinhalten, vgl. Abb. \@ref(fig:sl2) [@islr].
 
 
-```{r sl2, fig.cap = "Vorhersage des Einkommens als Funktion von Ausbildungsjahren und Dienstjahren"}
-knitr::include_graphics("img/2-3.png")
-```
+<div class="figure" style="text-align: center">
+<img src="img/2-3.png" alt="Vorhersage des Einkommens als Funktion von Ausbildungsjahren und Dienstjahren" width="100%" />
+<p class="caption">(\#fig:sl2)Vorhersage des Einkommens als Funktion von Ausbildungsjahren und Dienstjahren</p>
+</div>
 
 
 <!-- ```{nomnoml, echo = FALSE} -->
@@ -214,21 +199,15 @@ Anders gesagt: traditionelle KI-Systeme werden mit Daten und Regeln gefüttert u
 ML-Systeme werden mit Daten und Antworten gefüttert und liefern Regeln zurück, vgl. Abb. \@ref(fig:ki-ml2).
 
 
-```{r ki-ml2, fig.cap = "Vergleich von klassischer KI und ML", fig.align = "center", echo = FALSE}
-nomnoml::nomnoml(
-  "#direction: leftright
-  [rule-based|
-  [Daten] -> [Antworten]
-  [Regeln] -> [Antworten]
-]
-  [data-based|
-  [Daten] -> [Regeln]
-  [Antworten] -> [Regeln]
-]  
-  ",
-height = 450
-)
+<div class="figure" style="text-align: center">
+
+```{=html}
+<div id="htmlwidget-ea2ce2da18c82a891e61" style="width:100%;height:450px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ea2ce2da18c82a891e61">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: leftright\n  [rule-based|\n  [Daten] -> [Antworten]\n  [Regeln] -> [Antworten]\n]\n  [data-based|\n  [Daten] -> [Regeln]\n  [Antworten] -> [Regeln]\n]  \n  ","svg":false},"evals":[],"jsHooks":[]}</script>
 ```
+
+<p class="caption">(\#fig:ki-ml2)Vergleich von klassischer KI und ML</p>
+</div>
 
 
 
@@ -241,18 +220,20 @@ height = 450
 Ein Modell, s. Abb. \@ref(fig:vw) [@spurzem_vw_2017]!
 
 
-```{r vw, echo = FALSE, fig.cap = "Ein Modell-Auto", out.width="33%"}
-knitr::include_graphics("img/vw_modell.JPG")
-```
+<div class="figure" style="text-align: center">
+<img src="img/vw_modell.JPG" alt="Ein Modell-Auto" width="33%" />
+<p class="caption">(\#fig:vw)Ein Modell-Auto</p>
+</div>
 
 
 Wie man sieht, ist ein Modell eine vereinfachte Repräsentation eines Gegenstands.
 
 Der Gegenstand definiert (gestaltet) das Modell. Das Modell ist eine Vereinfachung des Gegenstands, vgl. Abb. \@ref(fig:modell).
 
-```{r modell, fig.cap = "Gegenstand und Modell", echo = FALSE}
-knitr::include_graphics("img/modell-crop.png")
-```
+<div class="figure" style="text-align: center">
+<img src="img/modell-crop.png" alt="Gegenstand und Modell" width="100%" />
+<p class="caption">(\#fig:modell)Gegenstand und Modell</p>
+</div>
 
 
 Im maschinellen Lernen meint ein Modell, praktisch gesehen, die Regeln,
@@ -282,26 +263,15 @@ Methoden des maschinellen Lernens lassen sich verschiedentlich gliedern.
 Eine typische Gliederung unterscheidet in *supervidierte* (geleitete) und *nicht-supervidierte* (ungeleitete) Algorithmen, s. Abb. \@ref(fig:taxonomie).
 
 
-```{r taxonomie, fig.cap="Taxonomie der Arten des maschinellen Lernens", echo = FALSE}
-mermaid("
-graph LR
-  ML[Maschinelles Lernen]
-  SL[Supervidiertes Lernen]
-  NSL[Nicht-supervidiertes Lernen]
-  Re[Regression]
-  Class[Klassifikation]
-  DimRed[Dimensionsreduktion]
-  Clust[Clustering]
-  ML --> SL
-  ML --> NSL
-  SL --> Re
-  SL --> Class
-  NSL --> DimRed
-  NSL --> Clust
-",
-height = 250
-)
+<div class="figure" style="text-align: center">
+
+```{=html}
+<div id="htmlwidget-399399a2e33b394c3a98" style="width:100%;height:250px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-399399a2e33b394c3a98">{"x":{"diagram":"\ngraph LR\n  ML[Maschinelles Lernen]\n  SL[Supervidiertes Lernen]\n  NSL[Nicht-supervidiertes Lernen]\n  Re[Regression]\n  Class[Klassifikation]\n  DimRed[Dimensionsreduktion]\n  Clust[Clustering]\n  ML --> SL\n  ML --> NSL\n  SL --> Re\n  SL --> Class\n  NSL --> DimRed\n  NSL --> Clust\n"},"evals":[],"jsHooks":[]}</script>
 ```
+
+<p class="caption">(\#fig:taxonomie)Taxonomie der Arten des maschinellen Lernens</p>
+</div>
 
 
 
@@ -309,35 +279,21 @@ height = 250
 
 Die zwei Phasen des geleiteten Lernens sind in Abb. \@ref(fig:supervid) dargestellt.
 
-```{r supervid, echo = FALSE, fig.cap = "Geleitetes Lernen geschieht in zwei Phasen"}
-d <-
-"
+<div class="figure" style="text-align: center">
 
-[Lernphase|
-[Daten mit Antwort] -> [Geleiteter Algorithmus]
-[Geleiteter Algorithmus] -> [Modell]
-]
-
-[Vorhersagephase|
-[Neue Daten, ohne Antwort] -> [Modell]
-[Modell] -> [Antworten]
-]
-
-"
-nomnoml(d, height = 550)
+```{=html}
+<div id="htmlwidget-28ae8cef2af42946ab81" style="width:100%;height:550px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-28ae8cef2af42946ab81">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n\n[Lernphase|\n[Daten mit Antwort] -> [Geleiteter Algorithmus]\n[Geleiteter Algorithmus] -> [Modell]\n]\n\n[Vorhersagephase|\n[Neue Daten, ohne Antwort] -> [Modell]\n[Modell] -> [Antworten]\n]\n\n","svg":false},"evals":[],"jsHooks":[]}</script>
 ```
+
+<p class="caption">(\#fig:supervid)Geleitetes Lernen geschieht in zwei Phasen</p>
+</div>
 
 
 #### Regression: Numerische Vorhersage
 
 
-```{r}
-ggplot(mtcars) +
-  aes(x = hp, y = mpg) +
-  geom_point() +
-  geom_smooth(method = "lm") +
-  theme_minimal()
-```
+<img src="chunk-img/unnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto;" />
 
 
 Die Modellgüte eines numerischen Vorhersagemodells wird oft mit (einem der) folgenden *Gütekoeffizienten* gemessen:
@@ -361,9 +317,7 @@ Wir sind nicht adaran interessiert die Vorhersagegenauigkeit in den bekannten Da
 
 
 
-```{r }
-knitr::include_graphics("img/aktien-plot-1.png")
-```
+<img src="img/aktien-plot-1.png" width="100%" style="display: block; margin: auto;" />
 
 
 
@@ -381,23 +335,15 @@ wenn tatsächlicher Wert und vorhergesagter Wert identisch sind.
 Die zwei Phasen des ungeleiteten Lernens sind in Abb. \@ref(fig:unsuper) dargestellt.
 
 
-```{r unsuper, fig.cap = "Die zwei Phasen des ungeleiteten Lernens", echo = FALSE}
-d <-
-"
+<div class="figure" style="text-align: center">
 
-[Lernphase|
-[Daten ohne Antwort] -> [Ungeleiteter Algorithmus]
-[Ungeleiteter Algorithmus] -> [Modell]
-]
-
-[Vorhersagephase|
-[Neue Daten, ohne Antwort] -> [Modell]
-[Modell] -> [Zuordnung zu den Regeln des Modells]
-]
-
-"
-nomnoml(d, height = 450)
+```{=html}
+<div id="htmlwidget-d3959b2b5d9393e9f28b" style="width:100%;height:450px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d3959b2b5d9393e9f28b">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n\n[Lernphase|\n[Daten ohne Antwort] -> [Ungeleiteter Algorithmus]\n[Ungeleiteter Algorithmus] -> [Modell]\n]\n\n[Vorhersagephase|\n[Neue Daten, ohne Antwort] -> [Modell]\n[Modell] -> [Zuordnung zu den Regeln des Modells]\n]\n\n","svg":false},"evals":[],"jsHooks":[]}</script>
 ```
+
+<p class="caption">(\#fig:unsuper)Die zwei Phasen des ungeleiteten Lernens</p>
+</div>
 
 
 Ungeleitetes Lernen kann man wiederum in zwei Arten unterteilen, vgl. Abb. \@ref(fig:ungel):
@@ -405,9 +351,10 @@ Ungeleitetes Lernen kann man wiederum in zwei Arten unterteilen, vgl. Abb. \@ref
 1. Fallreduzierendes Modellieren (Clustering)
 2. Dimensionsreduzierendes Modellieren (z.B. Faktorenanalyse)
 
-```{r ungel, fig.cap = "Zwei Arten von ungeleitetem Modellieren"}
-knitr::include_graphics("img/ungeleitetes_Modellieren_crop.png")
-```
+<div class="figure" style="text-align: center">
+<img src="img/ungeleitetes_Modellieren_crop.png" alt="Zwei Arten von ungeleitetem Modellieren" width="100%" />
+<p class="caption">(\#fig:ungel)Zwei Arten von ungeleitetem Modellieren</p>
+</div>
 
 
 
@@ -416,22 +363,15 @@ knitr::include_graphics("img/ungeleitetes_Modellieren_crop.png")
 
 Man kann vier Ziele des ML unterscheiden, s. Abb. \@ref(fig:ziele).
 
-```{r ziele, fig.cap="Ziele des maschinellen Lernens", echo = FALSE}
-DiagrammeR::mermaid("
-graph TD
-  ML[Maschinelles Lernen]
-  V[Vorhersage]
-  E[Erklärung/kausal]
-  B[Beschreibung]
-  DimRed[Dimensionsreduktion]
-  ML --> V
-  ML --> E
-  ML --> B
-  ML --> DimRed
-",
-height = 450
-)
+<div class="figure" style="text-align: center">
+
+```{=html}
+<div id="htmlwidget-2a53c8e645a39fc0a9b5" style="width:100%;height:450px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2a53c8e645a39fc0a9b5">{"x":{"diagram":"\ngraph TD\n  ML[Maschinelles Lernen]\n  V[Vorhersage]\n  E[Erklärung/kausal]\n  B[Beschreibung]\n  DimRed[Dimensionsreduktion]\n  ML --> V\n  ML --> E\n  ML --> B\n  ML --> DimRed\n"},"evals":[],"jsHooks":[]}</script>
 ```
+
+<p class="caption">(\#fig:ziele)Ziele des maschinellen Lernens</p>
+</div>
 
 *Vorhersage* bezieht sich auf die Schätzung der Werte von Zielvariablen (sowie die damit verbundene Unsicherheit).
 *Erklärung* meint die kausale Analyse von Zusammenhängen.
@@ -442,9 +382,10 @@ height = 450
 Wie "gut" ein Modell ist, quantifiziert man in verschiedenen Kennzahlen; man spricht von Modellgüte oder *model fit*. 
 Je schlechter die Modellgüte, desto höher der *Modellfehler*, vgl. Abb. \@ref(fig:resid).
 
-```{r resid, fig.cap = "Wenig (links) vs. viel (rechts) Vorhersagefehler"}
-knitr::include_graphics("img/resids-plot-1.png")
-```
+<div class="figure" style="text-align: center">
+<img src="img/resids-plot-1.png" alt="Wenig (links) vs. viel (rechts) Vorhersagefehler" width="100%" />
+<p class="caption">(\#fig:resid)Wenig (links) vs. viel (rechts) Vorhersagefehler</p>
+</div>
 
 
 
@@ -465,9 +406,10 @@ an denen das Modell nicht trainiert wurde.
 
 Welches der folgenden Modelle (B,C,D) passt am besten zu den Daten (A), s. Abb. \@ref(fig:overunder), vgl. [@modar], Kap. 15.
 
-```{r overunder, fig.cap = "Over- vs. Underfitting"}
-knitr::include_graphics("img/overfitting-4-plots-1.png")
-```
+<div class="figure" style="text-align: center">
+<img src="img/overfitting-4-plots-1.png" alt="Over- vs. Underfitting" width="100%" />
+<p class="caption">(\#fig:overunder)Over- vs. Underfitting</p>
+</div>
 
 
 Welches Modell wird wohl neue Daten am besten vorhersagen? Was meinen Sie?
@@ -481,9 +423,10 @@ Es gilt, ein Modell mit "mittlerer" Komplexität zu finden, um Über- und Untera
 Leider ist es nicht möglich, vorab zu sagen, was der richtige, "mittlere" Wert an Komplexität eines Modells ist, vgl. Abb. \@ref(fig:overfitting) aus [@modar].
 
 
-```{r overfitting, fig.cap = "Mittlere Modellkomplexität führt zur besten Vorhersagegüte"}
-knitr::include_graphics("img/overfitting-crop.png")
-```
+<div class="figure" style="text-align: center">
+<img src="img/overfitting-crop.png" alt="Mittlere Modellkomplexität führt zur besten Vorhersagegüte" width="100%" />
+<p class="caption">(\#fig:overfitting)Mittlere Modellkomplexität führt zur besten Vorhersagegüte</p>
+</div>
 
 
 
@@ -508,9 +451,10 @@ also viel Modellfehler (für eine Test-Stichprobe).
 Die grüne Funktion in  Abb. \@ref(fig:2-10) wird neue, beim Modelltraining unbekannte Beobachtungen ($y_0$) vergleichsweise schlecht vorhersagen. In Abb. \@ref(fig:2-11)  ist es umgekehrt.
 :::
 
-```{r 2-10, fig.cap = "Ein lineare Funktion verlangt ein lineares Modell; ein nichtlineares Modell wird in einem höheren Vorhersagefehler (bei neuen Daten!) resultieren."}
-knitr::include_graphics("img/2-10.png")
-```
+<div class="figure" style="text-align: center">
+<img src="img/2-10.png" alt="Ein lineare Funktion verlangt ein lineares Modell; ein nichtlineares Modell wird in einem höheren Vorhersagefehler (bei neuen Daten!) resultieren." width="100%" />
+<p class="caption">(\#fig:2-10)Ein lineare Funktion verlangt ein lineares Modell; ein nichtlineares Modell wird in einem höheren Vorhersagefehler (bei neuen Daten!) resultieren.</p>
+</div>
 
 
 Betrachten wir im Gegensatz dazu  Abb. \@ref(fig:2-11) aus @islr, die (in schwarz) eine hochgradig *nichtlineare* Funktion $f$ zeigt.
@@ -519,9 +463,10 @@ Ein lineares Modell wird der Komplexität von $f$ nicht gerecht,
 Unteranpassung (underfitting) liegt vor.
 
 
-```{r 2-11, fig.cap = "Eine nichtlineare Funktion (schwarz) verlangt eine nichtlineares Modell. Ein lineares Modell (orange) ist unterangepasst und hat eine schlechte Vorhersageleistung."}
-knitr::include_graphics("img/2-11.png")
-```
+<div class="figure" style="text-align: center">
+<img src="img/2-11.png" alt="Eine nichtlineare Funktion (schwarz) verlangt eine nichtlineares Modell. Ein lineares Modell (orange) ist unterangepasst und hat eine schlechte Vorhersageleistung." width="100%" />
+<p class="caption">(\#fig:2-11)Eine nichtlineare Funktion (schwarz) verlangt eine nichtlineares Modell. Ein lineares Modell (orange) ist unterangepasst und hat eine schlechte Vorhersageleistung.</p>
+</div>
 
 
 
@@ -536,9 +481,10 @@ Dabei meint $\epsilon$ den *nicht reduzierbaren Fehler*, z.B. weil dem Modell In
 Bias und Varianz sind Kontrahenten: Ein Modell, das wenig Bias hat, neigt tendenziell zu wenig Varianz und umgekehrt, vgl. Abb. \@ref(fig:bias-var) aus @modar.
 
 
-```{r bias-var, fig.cap = "Abwängung von Bias vs. Varianz"}
-knitr::include_graphics("img/plot-bias-variance-1.png")
-```
+<div class="figure" style="text-align: center">
+<img src="img/plot-bias-variance-1.png" alt="Abwängung von Bias vs. Varianz" width="100%" />
+<p class="caption">(\#fig:bias-var)Abwängung von Bias vs. Varianz</p>
+</div>
 
 
 
@@ -547,36 +493,7 @@ knitr::include_graphics("img/plot-bias-variance-1.png")
 <!-- ## Aufgaben -->
 
 
-```{r render-outline-exs, results = "asis", echo = FALSE, message = FALSE}
-source("https://raw.githubusercontent.com/sebastiansauer/Lehre/main/R-Code/render-course-sections.R")
-
-course_dates_file <- here::here("course-dates.yaml")
-content_file <- here::here("_modul-ueberblick.yaml")
-
-stopifnot(file.exists(course_dates_file))
-stopifnot(file.exists(content_file))
-
-render_section(course_dates_file,
-               content_file,
-                      id = 2, 
-                      name = "Aufgaben",
-                      header_level = 1)
-```
 
 
 
-
-<!-- ## Vertiefung -->
-
-
-
-
-```{r render-outline-vertiefung, results = "asis", echo = FALSE, message = FALSE}
-source(paste0(here::here(),"/funs/render-course-section.R"))
-
-render_course_section(yml_file, 
-                      chapter = 1, 
-                      section = "Vertiefung",
-                      header_level = 1)
-```
 

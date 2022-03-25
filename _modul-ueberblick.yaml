@@ -1,7 +1,5 @@
 thema1:
   Titel: "Grundkonzepte"
-  Kalenderwoche: 11
-  Datum: 14.-18.3.22
   UnterTitel: "Einführung in Data Science"
   Vorbereitung:
     - Lesen Sie die Hinweise zum Modul.
@@ -31,8 +29,7 @@ thema1:
 
 thema2:
   Titel: "tidyverse, 2. Blick"
-  Kalenderwoche: 12
-  Datum: 21.3.-25.3.
+
   Literatur:
     - "Rhys, Kap. 2"
   Lernziele:
@@ -42,30 +39,28 @@ thema2:
     - Sie können eine dplyr-Funktion auf mehrere Spalten gleichzeitig anwenden.
   Vorbereitung:
     - Lesen Sie die Literatur.
+  Aufgaben:
+    - "[Aufgaben](https://sebastiansauer.github.io/datascience1/r-zweiter-blick.html#aufgaben-2)"
 
 
 
 
 thema3:
   Titel: "tidymodels"
-  Kalenderwoche: 13
-  Datum: 28.3.-1.4.
   Literatur:
     - TMWR
 
 
 thema4:
   Titel: "kNN"
-  Kalenderwoche: 14
-  Datum: 4.4.-8.4.
+
   Literatur:
     - "Rhys, Kap. 3"
 
 
 thema5:
   Titel: "Statistisches Lernen"
-  Kalenderwoche: 15
-  Datum: 11.4.-15.4.
+
   Hinweise:
     - In dieser Woche fällt die Übung aus (Ostern).
   Literatur:
@@ -76,8 +71,7 @@ thema5:
 
 thema6:
   Titel: "Wiederholung"
-  Kalenderwoche: 16
-  Datum: 18.4.-22.4
+
   Hinweise: 
     - In dieser Woche fällt die Vorlesung aus (Ostern).
  
@@ -87,38 +81,33 @@ thema7:
   Titel: "Logistische Regression"
   Literatur:
     - "Rhys, Kap. 4"
-  Kalenderwoche: 17
-  Datum: 25.4.-29.4
+
 
 
 thema8:
   Titel: "Naive Bayes"
-  Kalenderwoche: 18
-  Datum: 2.5.-6.5.
+
   Literatur:
     - "Rhys, Kap. 6"
 
 
 thema9:
   Titel: "Entscheidungsbäume"
-  Kalenderwoche: 19
-  Datum: 9.5.-13.5.
+
   Literatur:
     - "Rhys, Kap. 7"
 
 
 thema10:
   Titel: "Zufallswälder"
-  Kalenderwoche: 20
-  Datum: 16.5.-20.5.
+
   Literatur:
     - "Rhys, Kap. 8"
     
 
 thema11:
   Titel: "Fallstudie"
-  Kalenderwoche: 21
-  Datum: 23.5.-27.5.
+
   Hinweise:
     - Nächste Woche ist Blockwoche; es findet kein regulärer Unterricht statt.
     - Diese Woche fällt die Übung aus.
@@ -128,15 +117,13 @@ thema11:
 
 thema12:
   Titel: "Wiederholung"
-  Kalenderwoche: 23
-  Datum: 6.6.-10.6.
+
   Hinweise:
     - In dieser Woche fällt die Vorlesung aus (Pfingsten).
 
 thema13:
   Titel: "GAM"
-  Kalenderwoche: 24
-  Datum: 13.6.-17.6.
+
   Literatur:
     - "Rhys, Kap. 10"
 
@@ -145,20 +132,25 @@ thema13:
 
 thema14:
   Titel: "Lasso und Co"
-  Kalenderwoche: 25
-  Datum: 20.6.-24.6.
+
   Literatur:
     - "Rhys, Kap. 11"
 
 
+thema15a:
+  Titel: Wiederholung
+  
+
 thema15:
   Titel: "Vertiefung"
-  Kalenderwoche: 26
-  Datum: 27.6.-1.7.
+
   Literatur:
     - "Rhys, Kap. 12"    
   Hinweise:
     - Nach dieser Woche endet der Unterricht.
   Vertiefung:
     - "[Wie man eine Data-Science-Projekt strukturiert](https://medium.com/swlh/how-to-structure-a-python-based-data-science-project-a-short-tutorial-for-beginners-7e00bff14f56)"
+
+
+
 

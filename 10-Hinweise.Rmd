@@ -4,6 +4,10 @@
 # Hinweise 
 
 
+
+
+
+
 <a href="https://imgflip.com/i/689g8g"><img src="https://i.imgflip.com/689g8g.jpg" width="300" title="made at imgflip.com"/></a><div><a href="https://imgflip.com/memegenerator">from Imgflip Meme Generator</a></div>
 
 
@@ -15,6 +19,14 @@ library(tidyverse)
 ```{r echo = FALSE}
 source("funs/define-constants.R")
 ```
+
+
+
+
+```{r echo = FALSE}
+source("https://raw.githubusercontent.com/sebastiansauer/Lehre/main/R-Code/render-course-sections.R")
+```
+
 
 
 ## Was Sie hier lernen und wozu das gut ist
@@ -98,13 +110,18 @@ die das Online-Zusammenarbeiten vereinfachen:
 ## Modulzeitplan
 
 
-```{r render-outline-table, results = "asis", echo = FALSE, message = FALSE}
-source(paste0(here::here(),"/funs/render-course-table.R"))
 
-render_course_table(yml_file)
+```{r render-outline-course-small-table, results = "asis", echo = FALSE, message = FALSE}
+
+course_dates_file <- here::here("course-dates.yaml")
+content_file <- here::here("_modul-ueberblick.yaml")
+
+stopifnot(file.exists(course_dates_file))
+stopifnot(file.exists(content_file))
+
+#debug(render_course_outline)
+render_course_outline(course_dates_file, content_file, small_table = TRUE, header_level = 3)
 ```
-
-
 
 
 

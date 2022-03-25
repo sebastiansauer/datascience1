@@ -1,0 +1,8 @@
+year: 2022
+start_week: 11
+first_day: 2022-03-14
+weeks_n: 16
+weeks_off:
+  - 12
+weeks_off_comments:
+  - Projektwoche

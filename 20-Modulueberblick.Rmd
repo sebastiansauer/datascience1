@@ -1,14 +1,27 @@
 # Modulüberblick
 
-```{r include=FALSE}
+```{r include=TRUE}
+library(yaml)
 library(tidyverse)
 ```
 
 
-```{r render-outline, results = "asis", echo = FALSE, message = FALSE}
-source(paste0(here::here(),"/funs/render-course-outline.R"))
-yml_file <- "_modul-ueberblick.yml"
+```{r echo = FALSE}
+source("https://raw.githubusercontent.com/sebastiansauer/Lehre/main/R-Code/render-course-sections.R")
+```
 
-render_course_outline(yml_file)
+
+
+
+```{r render-outline-course, results = "asis", echo = FALSE, message = FALSE}
+
+course_dates_file <- here::here("course-dates.yaml")
+content_file <- here::here("_modul-ueberblick.yaml")
+
+stopifnot(file.exists(course_dates_file))
+stopifnot(file.exists(content_file))
+
+#debug(render_course_outline)
+render_course_outline(course_dates_file, content_file, small_table = FALSE)
 ```
 
