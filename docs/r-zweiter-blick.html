@@ -139,12 +139,13 @@ Figure 5.3: Vektoren stehen im Zentrum der Datenstrukturen in R
 <pre><code>##  logi [1:3] TRUE FALSE TRUE</code></pre>
 <p>Vektoren können von folgenden Typen sein:</p>
 <ul>
-<li>Numerisch (<code>numeric</code> auch <code>double</code>) genannt</li>
+<li>Kommazahlen ( <code>double</code>) genannt</li>
 <li>Ganzzahlig (<code>integer</code>, auch mit <code>L</code> für <em>Long</em> abgekürzt)</li>
 <li>Text (´character`, String)</li>
 <li>logische Ausdrücke (<code>logical</code> oder <code>lgl</code>) mit <code>TRUE</code> oder <code>FALSE</code>
 </li>
 </ul>
+<p>Kommazahlen und Ganze Zahlen zusammen bilden den Typ <code>numeric</code> (numerisch) in R.</p>
 </div>
 <div id="faktoren" class="section level4" number="5.1.2.2">
 <h4>
@@ -518,9 +519,190 @@ nutzt man wieder die “Kringel-Schreibweise”:</p>
 </h2>
 <p><a href="https://r4ds.had.co.nz/many-models.html?q=list#creating-list-columns">Kap. 25.3</a> aus <span class="citation">Wickham and Grolemund (<a href="references.html#ref-r4ds" role="doc-biblioref">2016</a>)</span> bietet einen guten Einstieg in das Konzept von Listenspalten (list-columns) in R.</p>
 </div>
-<div id="literatur-14" class="section level2" number="5.6">
+<div id="aufgaben-2" class="section level2" number="5.6">
 <h2>
-<span class="header-section-number">5.6</span> Literatur<a class="anchor" aria-label="anchor" href="#literatur-14"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.6</span> Aufgaben<a class="anchor" aria-label="anchor" href="#aufgaben-2"><i class="fas fa-link"></i></a>
+</h2>
+<ol style="list-style-type: decimal">
+<li>
+<p><strong>Aufgabe</strong><br></p>
+<p>Schreiben Sie eine Funktion, mit folgendem Algorithmus, wobei ein
+beliebiger Vektor als Eingabe verlangt wird.</p>
+<ol style="list-style-type: decimal">
+<li>Zähle die Anzahl verschiedener Werte.</li>
+<li>Wenn es nur zwei verschiedene Werte gibt, gebe <code>TRUE</code> zurück,
+ansonsten <code>FALSE</code>.</li>
+</ol>
+<p>Hinweise:</p>
+<ul>
+<li>Wählen Sie einen treffenden Namen für Ihre Funktion (nutzen Sie
+am besten ein konsistentes Namensschema).</li>
+<li>Wichtigster Tipp: Googeln :-)</li>
+<li>Verschiedene Werte eines Vektors gibt die Funktion <code><a href="https://rdrr.io/r/base/unique.html">unique()</a></code>
+zurück.</li>
+<li>Vermutlich gibt es schon viele Lösungen (Implementierungen) für
+diese Funktion. Ist nur als Übung gedacht :-)</li>
+</ul>
+<p><br><strong>Lösung</strong></p>
+<pre class="text"><code>has_two_levels &lt;- function(vec){
+
+  # input: vector of any type
+  # value: number of unique values (double)
+
+  tmp &lt;- length(unique(vec))
+  tmp == 2
+}</code></pre>
+<p><code>levels</code> ist ein Ausdruck, der nahelegt, dass es sich um
+<em>verschiedene</em> Werte (“Ausprägungen” oder “Stufen”) handelt.</p>
+<p>Alternativ könnte man die Funktion auch so schreiben:</p>
+<pre class="text"><code>has_two_values &lt;- function(vec){
+
+  # input: vector of any type
+  # value: number of unique values (double)
+
+  step1 &lt;- unique(vec)
+  step2 &lt;- length(step1)
+  step3 &lt;- if(step2 == 2) {
+    out &lt;- TRUE
+  } else {
+    out &lt;- FALSE
+  }
+
+  out &lt;- step2
+  return(out)
+
+}</code></pre>
+<p>Das ist expliziter, aber länger.</p>
+<p>Wenn man es genau nimmt, heißt <em>binär</em>, dass es nur die Werte <code>0</code>
+und <code>1</code> gibt. Das ist ein strengeres Kriterium, wie dass es zwei
+beliebigen verschiedene Werte gibt (s. unten dazu ein Vorschlag).</p>
+<p>Testen wir unsere Funktion, Test 1:</p>
+<pre class="text"><code>x &lt;- c(1,2, 3, 3, 3, 1)
+x2 &lt;- c("A", "B")
+
+
+has_two_levels(x2)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="text"><code>has_two_levels(x)</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+<p>Test 2:</p>
+<pre class="text"><code>data(mtcars)</code></pre>
+<p>Wir wenden unsere neue Funktion mit Tidyverse-Methoden an:</p>
+<pre class="text"><code>mtcars %&gt;% 
+  summarise(am_has_two_values = has_two_levels(am),
+            mpg_has_two_values = has_two_levels(mpg))</code></pre>
+<pre><code>##   am_has_two_values mpg_has_two_values
+## 1              TRUE              FALSE</code></pre>
+<p>Bonus!</p>
+<p>Verwenden Sie <code><a href="https://dplyr.tidyverse.org/reference/across.html">across()</a></code> (<a href="https://dplyr.tidyverse.org">dplyr</a>), um alle Spalten von <code>mtcars</code>
+mit <code>has_two_levels()</code> zu überprüfen.</p>
+<pre class="text"><code>mtcars %&gt;% 
+  summarise(across(everything(),
+                   has_two_levels))</code></pre>
+<pre><code>##     mpg   cyl  disp    hp  drat    wt  qsec   vs   am  gear
+## 1 FALSE FALSE FALSE FALSE FALSE FALSE FALSE TRUE TRUE FALSE
+##    carb
+## 1 FALSE</code></pre>
+<p>Kann man auch so schreiben:</p>
+<pre class="text"><code>mtcars %&gt;% 
+  summarise(across(everything(),
+                   ~ has_two_levels(.)))</code></pre>
+<pre><code>##     mpg   cyl  disp    hp  drat    wt  qsec   vs   am  gear
+## 1 FALSE FALSE FALSE FALSE FALSE FALSE FALSE TRUE TRUE FALSE
+##    carb
+## 1 FALSE</code></pre>
+<p>Bonus-Bonus:</p>
+<p>So könnte man eine Funktion schreiben, die prüft, ob die
+Ausprägungen eines Vektors binär sind, d.h. nur <code>0</code> oder <code>1</code>:</p>
+<pre class="text"><code>is_binary &lt;- function(var){
+  return(all(var %in% c(0,1)))
+}</code></pre>
+</li>
+<li>
+<p><strong>Aufgabe</strong><br></p>
+<p>Schreiben Sie eine Funktion zur Berechnung der Anzahl der fehlenden
+Werte in einem (numerischen) Vektor!</p>
+<p>Hinweise:</p>
+<ul>
+<li>Wählen Sie einen treffenden Namen für Ihre Funktion (nutzen Sie
+am besten ein konsistentes Namensschema).</li>
+</ul>
+<p><br><strong>Lösung</strong></p>
+<pre class="text"><code>na_n &lt;- function(num_vec) {
+  # input: num. vector (int or double)
+  # value: count of missing values (double)
+
+  if (!is.numeric(num_vec)) stop("Numeric input is needed!")
+  out &lt;- sum(is.na(num_vec))
+  return(out)
+
+}</code></pre>
+<p>Test:</p>
+<pre class="text"><code>x &lt;- c(1,2, NA, NA)
+x2 &lt;- c("A", "B", NA)
+
+na_n(x)</code></pre>
+<pre><code>## [1] 2</code></pre>
+<p>Bei <code>x2</code> sollte ein Fehler aufgeworfen werden:</p>
+<pre class="text"><code>na_n(x2)</code></pre>
+<pre><code>## Error in na_n(x2): Numeric input is needed!</code></pre>
+<p>Gut!</p>
+<p>Testen wir weiter, jetzt mit dem Datensatz <code>mtcars</code>:</p>
+<pre class="text"><code>mtcars[1, c(1,2,3,4)] &lt;- NA  # Zeilen/Spalte
+
+mtcars %&gt;% 
+  summarise(mpg_na_n = na_n(mpg))</code></pre>
+<pre><code>##   mpg_na_n
+## 1        1</code></pre>
+<p>BONUS!</p>
+<p>Verwenden Sie <code><a href="https://dplyr.tidyverse.org/reference/across.html">across()</a></code>, um die fehlenden Werte in allen Spalten
+von <code>mtcars</code> zu zählen.</p>
+<p>Wer schnell ist, der nehme gerne <code><a href="https://rdrr.io/pkg/nycflights13/man/flights.html">nycflights13::flights</a></code> (aus dem
+Paket <a href="https://github.com/hadley/nycflights13">nycflights13</a> oder per CSV-Datei aus geeigneter Stelel aus
+dem Internet. Meistens geht es schneller, die Daten aus einem Paket
+zu laden mit <code>data(flights)</code> nachdem man <code><a href="https://github.com/hadley/nycflights13">library(nycflights13)</a></code>
+geschrieben hat).</p>
+<pre class="text"><code>mtcars %&gt;% 
+  summarise(across(everything(), na_n)) </code></pre>
+<pre><code>##   mpg cyl disp hp drat wt qsec vs am gear carb
+## 1   1   1    1  1    0  0    0  0  0    0    0</code></pre>
+<p>Mit <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code> ist es häufig übersichtlicher bzw. besser für
+weitere Bearbeitungsschritte, wie das folgende Beispiel zeigt:</p>
+<pre class="text"><code>mtcars %&gt;% 
+  summarise(across(everything(), na_n)) %&gt;% 
+  pivot_longer(everything()) %&gt;% 
+  filter(value &gt; 0)</code></pre>
+<pre><code>## # A tibble: 4 × 2
+##   name  value
+##   &lt;chr&gt; &lt;int&gt;
+## 1 mpg       1
+## 2 cyl       1
+## 3 disp      1
+## 4 hp        1</code></pre>
+<p><code>flights</code>:</p>
+<pre class="text"><code>data(flights, package = "nycflights13")
+
+flights %&gt;% 
+  select(where(is.numeric)) %&gt;% 
+  summarise(across(everything(),
+                   na_n)) %&gt;% 
+  pivot_longer(everything()) %&gt;% 
+  arrange(-value) %&gt;%  # Sortiere absteigend nach Anzahl der fehlenden Werte
+  filter(value &gt; 0)  # Zeige nur Variablen mit fehlenden Werten</code></pre>
+<pre><code>## # A tibble: 5 × 2
+##   name      value
+##   &lt;chr&gt;     &lt;int&gt;
+## 1 arr_delay  9430
+## 2 air_time   9430
+## 3 arr_time   8713
+## 4 dep_time   8255
+## 5 dep_delay  8255</code></pre>
+</li>
+</ol>
+</div>
+<div id="literatur-14" class="section level2" number="5.7">
+<h2>
+<span class="header-section-number">5.7</span> Literatur<a class="anchor" aria-label="anchor" href="#literatur-14"><i class="fas fa-link"></i></a>
 </h2>
 
 </div>
@@ -551,7 +733,8 @@ nutzt man wieder die “Kringel-Schreibweise”:</p>
 </ul>
 </li>
 <li><a class="nav-link" href="#listenspalten"><span class="header-section-number">5.5</span> Listenspalten</a></li>
-<li><a class="nav-link" href="#literatur-14"><span class="header-section-number">5.6</span> Literatur</a></li>
+<li><a class="nav-link" href="#aufgaben-2"><span class="header-section-number">5.6</span> Aufgaben</a></li>
+<li><a class="nav-link" href="#literatur-14"><span class="header-section-number">5.7</span> Literatur</a></li>
 </ul>
 
       <div class="book-extra">
@@ -569,7 +752,7 @@ nutzt man wieder die “Kringel-Schreibweise”:</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-03-21 20:45:31.</p>
+    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-03-25 12:46:06.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
