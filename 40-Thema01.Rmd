@@ -558,9 +558,9 @@ stopifnot(file.exists(content_file))
 
 render_section(course_dates_file,
                content_file,
-                      id = 2, 
-                      name = "Aufgaben",
-                      header_level = 1)
+               id = 1, 
+               name = "Aufgaben",
+               header_level = 1)
 ```
 
 
@@ -572,11 +572,12 @@ render_section(course_dates_file,
 
 
 ```{r render-outline-vertiefung, results = "asis", echo = FALSE, message = FALSE}
-source(paste0(here::here(),"/funs/render-course-section.R"))
 
-render_course_section(yml_file, 
-                      chapter = 1, 
-                      section = "Vertiefung",
-                      header_level = 1)
+
+render_section(course_dates_file,
+               content_file,
+               id = 1, 
+               name = "Vertiefung",
+               header_level = 1)
 ```
 
