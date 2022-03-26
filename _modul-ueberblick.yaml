@@ -28,24 +28,28 @@ thema1:
     - "[Bearbeiten Sie die Fallstudie 'TitaRnic' auf Kaggle](https://www.kaggle.com/code/headsortails/tidy-titarnic/report)"
 
 thema2:
-  Titel: "tidyverse, 2. Blick"
+  Titel: "R, 2. Blick"
 
   Literatur:
     - "Rhys, Kap. 2"
   Lernziele:
-    - Sie können Funktionen, auch anonyme, in R schreiben.
+    - Sie können Funktionen, in R schreiben.
     - Sie können Datensätze vom Lang- und Breit-Format wechseln.
-    - Sie können Mapping-Funktionen anwenden.
+    - Sie können Wiederholungsstrukturen wie Mapping-Funktionen anwenden.
     - Sie können eine dplyr-Funktion auf mehrere Spalten gleichzeitig anwenden.
   Vorbereitung:
     - Lesen Sie die Literatur.
   Aufgaben:
     - "[Aufgaben](https://sebastiansauer.github.io/datascience1/r-zweiter-blick.html#aufgaben-2)"
-
-
+    - "[Lernen Sie Wiederholungsstrukturen mit ggplot](https://data-se.netlify.app/2021/02/06/plotting-multiple-plots-using-purrr-map-and-ggplot/)"
 
 
 thema3:
+  Titel: "R, 2. Blick - Fortsetzung"
+    
+    
+
+thema3a:
   Titel: "tidymodels"
   Literatur:
     - TMWR
@@ -137,9 +141,6 @@ thema14:
     - "Rhys, Kap. 11"
 
 
-thema15a:
-  Titel: Wiederholung
-  
 
 thema15:
   Titel: "Vertiefung"

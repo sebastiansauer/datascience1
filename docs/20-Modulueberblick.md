@@ -8,49 +8,471 @@
 
 
 
-## Grundkonzepte
+## Modulzeitplan
 
 
-### ID 
-
-1
 
 
-### KW 
+```{=html}
+<div id="hmphwegjqh" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#hmphwegjqh .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#hmphwegjqh .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hmphwegjqh .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#hmphwegjqh .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#hmphwegjqh .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hmphwegjqh .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hmphwegjqh .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#hmphwegjqh .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#hmphwegjqh .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#hmphwegjqh .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#hmphwegjqh .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#hmphwegjqh .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#hmphwegjqh .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#hmphwegjqh .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#hmphwegjqh .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#hmphwegjqh .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#hmphwegjqh .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#hmphwegjqh .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hmphwegjqh .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#hmphwegjqh .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hmphwegjqh .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#hmphwegjqh .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#hmphwegjqh .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#hmphwegjqh .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hmphwegjqh .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#hmphwegjqh .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hmphwegjqh .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#hmphwegjqh .gt_left {
+  text-align: left;
+}
+
+#hmphwegjqh .gt_center {
+  text-align: center;
+}
+
+#hmphwegjqh .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#hmphwegjqh .gt_font_normal {
+  font-weight: normal;
+}
+
+#hmphwegjqh .gt_font_bold {
+  font-weight: bold;
+}
+
+#hmphwegjqh .gt_font_italic {
+  font-style: italic;
+}
+
+#hmphwegjqh .gt_super {
+  font-size: 65%;
+}
+
+#hmphwegjqh .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 65%;
+}
+</style>
+<table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Kurswoche</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">KW</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Titel</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Datum_Beginn</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Datum_Ende</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_right">1</td>
+<td class="gt_row gt_right">11</td>
+<td class="gt_row gt_left">Grundkonzepte</td>
+<td class="gt_row gt_left">2022-03-14</td>
+<td class="gt_row gt_left">2022-03-20</td></tr>
+    <tr><td class="gt_row gt_right">2</td>
+<td class="gt_row gt_right">12</td>
+<td class="gt_row gt_left">R, 2. Blick</td>
+<td class="gt_row gt_left">2022-03-21</td>
+<td class="gt_row gt_left">2022-03-27</td></tr>
+    <tr><td class="gt_row gt_right">3</td>
+<td class="gt_row gt_right">13</td>
+<td class="gt_row gt_left">R, 2. Blick - Fortsetzung</td>
+<td class="gt_row gt_left">2022-03-28</td>
+<td class="gt_row gt_left">2022-04-03</td></tr>
+    <tr><td class="gt_row gt_right">4</td>
+<td class="gt_row gt_right">14</td>
+<td class="gt_row gt_left">tidymodels</td>
+<td class="gt_row gt_left">2022-04-04</td>
+<td class="gt_row gt_left">2022-04-10</td></tr>
+    <tr><td class="gt_row gt_right">5</td>
+<td class="gt_row gt_right">15</td>
+<td class="gt_row gt_left">kNN</td>
+<td class="gt_row gt_left">2022-04-11</td>
+<td class="gt_row gt_left">2022-04-17</td></tr>
+    <tr><td class="gt_row gt_right">6</td>
+<td class="gt_row gt_right">16</td>
+<td class="gt_row gt_left">Statistisches Lernen</td>
+<td class="gt_row gt_left">2022-04-18</td>
+<td class="gt_row gt_left">2022-04-24</td></tr>
+    <tr><td class="gt_row gt_right">7</td>
+<td class="gt_row gt_right">17</td>
+<td class="gt_row gt_left">Wiederholung</td>
+<td class="gt_row gt_left">2022-04-25</td>
+<td class="gt_row gt_left">2022-05-01</td></tr>
+    <tr><td class="gt_row gt_right">8</td>
+<td class="gt_row gt_right">18</td>
+<td class="gt_row gt_left">Logistische Regression</td>
+<td class="gt_row gt_left">2022-05-02</td>
+<td class="gt_row gt_left">2022-05-08</td></tr>
+    <tr><td class="gt_row gt_right">9</td>
+<td class="gt_row gt_right">19</td>
+<td class="gt_row gt_left">Naive Bayes</td>
+<td class="gt_row gt_left">2022-05-09</td>
+<td class="gt_row gt_left">2022-05-15</td></tr>
+    <tr><td class="gt_row gt_right">10</td>
+<td class="gt_row gt_right">20</td>
+<td class="gt_row gt_left">Entscheidungsbäume</td>
+<td class="gt_row gt_left">2022-05-16</td>
+<td class="gt_row gt_left">2022-05-22</td></tr>
+    <tr><td class="gt_row gt_right">11</td>
+<td class="gt_row gt_right">21</td>
+<td class="gt_row gt_left">Zufallswälder</td>
+<td class="gt_row gt_left">2022-05-23</td>
+<td class="gt_row gt_left">2022-05-29</td></tr>
+    <tr><td class="gt_row gt_right">12</td>
+<td class="gt_row gt_right">23</td>
+<td class="gt_row gt_left">Wiederholung</td>
+<td class="gt_row gt_left">2022-06-06</td>
+<td class="gt_row gt_left">2022-06-12</td></tr>
+    <tr><td class="gt_row gt_right">13</td>
+<td class="gt_row gt_right">24</td>
+<td class="gt_row gt_left">GAM</td>
+<td class="gt_row gt_left">2022-06-13</td>
+<td class="gt_row gt_left">2022-06-19</td></tr>
+    <tr><td class="gt_row gt_right">14</td>
+<td class="gt_row gt_right">25</td>
+<td class="gt_row gt_left">Lasso und Co</td>
+<td class="gt_row gt_left">2022-06-20</td>
+<td class="gt_row gt_left">2022-06-26</td></tr>
+    <tr><td class="gt_row gt_right">15</td>
+<td class="gt_row gt_right">26</td>
+<td class="gt_row gt_left">Vertiefung</td>
+<td class="gt_row gt_left">2022-06-27</td>
+<td class="gt_row gt_left">2022-07-03</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+```
+
+
+## Beschreibung der Themen
+
+
+### Grundkonzepte
+
+
+#### KW 
 
 11
 
 
-### Lehre 
-
-TRUE
-
-
-### lehrfrei 
-
-FALSE
-
-
-### Kurswoche 
+#### Kurswoche 
 
 1
 
 
-### Wochenbeginn_Datum 
+#### Datum_Beginn 
 
 2022-03-14
 
 
-### Wochenabschluss_Datum 
-
-2022-03-20
-
-
-### Titel 
+#### Titel 
 
 Grundkonzepte
 
-### Lernziele 
+#### Lernziele 
 
 - Sie können erläutern, was man unter statistischem Lernen versteht.
 - Sie wissen, war Overfitting ist, wie es entsteht, und wie es vermieden werden kann.
@@ -58,7 +480,7 @@ Grundkonzepte
 
 
 
-### Vorbereitung 
+#### Vorbereitung 
 
 - Lesen Sie die Hinweise zum Modul.
 - Installieren (oder Updaten) Sie die für dieses Modul angegeben Software.
@@ -66,23 +488,14 @@ Grundkonzepte
 
 
 
-### Literatur 
-
-- Rhys, Kap. 1
-- evtl. Sauer, Kap. 15
-
-
-
-
-
-### Aufgaben 
+#### Aufgaben 
 
 - [Machen Sie sich mit 'Kaggle' vertraut](https://www.kaggle.com/)
 - [Bearbeiten Sie die Fallstudie 'TitaRnic' auf Kaggle](https://www.kaggle.com/code/headsortails/tidy-titarnic/report)
 
 
 
-### Vertiefung 
+#### Vertiefung 
 
 - [Verdienst einer deutschen Data Scientistin](https://www.zeit.de/arbeit/2020-10/data-scientist-gehalt-geldanlage-programmieren-kontoauszug)
 - [Weitere Fallstudie zum Thema Regression auf Kaggle](https://www.kaggle.com/micahshull/r-bike-sharing-linear-regression)
@@ -93,7 +506,7 @@ Grundkonzepte
 
 
 
-### Hinweise 
+#### Hinweise 
 
 - Bitte beachten Sie die Hinweise zum Präsenzunterricht und der Streamingoption.
 - Bitte stellen Sie sicher, dass Sie einen einsatzbereiten Computer haben und dass die angegebene Software (in aktueller Version) läuft.
@@ -102,74 +515,47 @@ Grundkonzepte
 
 
 
-## tidyverse, 2. Blick
+### R, 2. Blick
 
 
-### ID 
-
-2
-
-
-### KW 
+#### KW 
 
 12
 
 
-### Lehre 
-
-TRUE
-
-
-### lehrfrei 
-
-FALSE
-
-
-### Kurswoche 
+#### Kurswoche 
 
 2
 
 
-### Wochenbeginn_Datum 
+#### Datum_Beginn 
 
 2022-03-21
 
 
-### Wochenabschluss_Datum 
+#### Titel 
 
-2022-03-27
+R, 2. Blick
 
+#### Lernziele 
 
-### Titel 
-
-tidyverse, 2. Blick
-
-### Lernziele 
-
-- Sie können Funktionen, auch anonyme, in R schreiben.
+- Sie können Funktionen, in R schreiben.
 - Sie können Datensätze vom Lang- und Breit-Format wechseln.
-- Sie können Mapping-Funktionen anwenden.
+- Sie können Wiederholungsstrukturen wie Mapping-Funktionen anwenden.
 - Sie können eine dplyr-Funktion auf mehrere Spalten gleichzeitig anwenden.
 
 
 
-### Vorbereitung 
+#### Vorbereitung 
 
 - Lesen Sie die Literatur.
 
 
 
-### Literatur 
-
-- Rhys, Kap. 2
-
-
-
-
-
-### Aufgaben 
+#### Aufgaben 
 
 - [Aufgaben](https://sebastiansauer.github.io/datascience1/r-zweiter-blick.html#aufgaben-2)
+- [Lernen Sie Wiederholungsstrukturen mit ggplot](https://data-se.netlify.app/2021/02/06/plotting-multiple-plots-using-purrr-map-and-ggplot/)
 
 
 
@@ -177,180 +563,125 @@ tidyverse, 2. Blick
 
 
 
-## tidymodels
+### R, 2. Blick - Fortsetzung
 
 
-### ID 
-
-3
-
-
-### KW 
+#### KW 
 
 13
 
 
-### Lehre 
-
-TRUE
-
-
-### lehrfrei 
-
-FALSE
-
-
-### Kurswoche 
+#### Kurswoche 
 
 3
 
 
-### Wochenbeginn_Datum 
+#### Datum_Beginn 
 
 2022-03-28
 
 
-### Wochenabschluss_Datum 
+#### Titel 
 
-2022-04-03
+R, 2. Blick - Fortsetzung
 
 
-### Titel 
+
+
+
+
+
+
+### tidymodels
+
+
+#### KW 
+
+14
+
+
+#### Kurswoche 
+
+4
+
+
+#### Datum_Beginn 
+
+2022-04-04
+
+
+#### Titel 
 
 tidymodels
 
 
 
-### Literatur 
-
-- TMWR
 
 
 
 
 
+### kNN
 
 
+#### KW 
+
+15
 
 
+#### Kurswoche 
 
-## kNN
-
-
-### ID 
-
-4
+5
 
 
-### KW 
+#### Datum_Beginn 
 
-14
-
-
-### Lehre 
-
-TRUE
+2022-04-11
 
 
-### lehrfrei 
-
-FALSE
-
-
-### Kurswoche 
-
-4
-
-
-### Wochenbeginn_Datum 
-
-2022-04-04
-
-
-### Wochenabschluss_Datum 
-
-2022-04-10
-
-
-### Titel 
+#### Titel 
 
 kNN
 
 
 
-### Literatur 
-
-- Rhys, Kap. 3
 
 
 
 
 
+### Statistisches Lernen
 
 
+#### KW 
+
+16
 
 
+#### Kurswoche 
 
-## Statistisches Lernen
-
-
-### ID 
-
-5
+6
 
 
-### KW 
+#### Datum_Beginn 
 
-15
-
-
-### Lehre 
-
-TRUE
+2022-04-18
 
 
-### lehrfrei 
-
-FALSE
-
-
-### Kurswoche 
-
-5
-
-
-### Wochenbeginn_Datum 
-
-2022-04-11
-
-
-### Wochenabschluss_Datum 
-
-2022-04-17
-
-
-### Titel 
+#### Titel 
 
 Statistisches Lernen
 
 
 
-### Literatur 
 
-- Rhys, Kap. 3
-
-
-
-
-
-
-### Vertiefung 
+#### Vertiefung 
 
 - [Fields arranged by purity, xkcd 435](https://xkcd.com/435/)
 
 
 
-### Hinweise 
+#### Hinweise 
 
 - In dieser Woche fällt die Übung aus (Ostern).
 
@@ -358,45 +689,25 @@ Statistisches Lernen
 
 
 
-## Wiederholung
+### Wiederholung
 
 
-### ID 
+#### KW 
 
-6
-
-
-### KW 
-
-16
+17
 
 
-### Lehre 
+#### Kurswoche 
 
-TRUE
-
-
-### lehrfrei 
-
-FALSE
+7
 
 
-### Kurswoche 
+#### Datum_Beginn 
 
-6
-
-
-### Wochenbeginn_Datum 
-
-2022-04-18
+2022-04-25
 
 
-### Wochenabschluss_Datum 
-
-2022-04-24
-
-
-### Titel 
+#### Titel 
 
 Wiederholung
 
@@ -404,10 +715,7 @@ Wiederholung
 
 
 
-
-
-
-### Hinweise 
+#### Hinweise 
 
 - In dieser Woche fällt die Vorlesung aus (Ostern).
 
@@ -415,289 +723,149 @@ Wiederholung
 
 
 
-## Logistische Regression
+### Logistische Regression
 
 
-### ID 
+#### KW 
 
-7
-
-
-### KW 
-
-17
+18
 
 
-### Lehre 
+#### Kurswoche 
 
-TRUE
-
-
-### lehrfrei 
-
-FALSE
+8
 
 
-### Kurswoche 
+#### Datum_Beginn 
 
-7
-
-
-### Wochenbeginn_Datum 
-
-2022-04-25
+2022-05-02
 
 
-### Wochenabschluss_Datum 
-
-2022-05-01
-
-
-### Titel 
+#### Titel 
 
 Logistische Regression
 
 
 
-### Literatur 
-
-- Rhys, Kap. 4
 
 
 
 
 
+### Naive Bayes
 
 
+#### KW 
+
+19
 
 
+#### Kurswoche 
 
-## Naive Bayes
-
-
-### ID 
-
-8
+9
 
 
-### KW 
+#### Datum_Beginn 
 
-18
-
-
-### Lehre 
-
-TRUE
+2022-05-09
 
 
-### lehrfrei 
-
-FALSE
-
-
-### Kurswoche 
-
-8
-
-
-### Wochenbeginn_Datum 
-
-2022-05-02
-
-
-### Wochenabschluss_Datum 
-
-2022-05-08
-
-
-### Titel 
+#### Titel 
 
 Naive Bayes
 
 
 
-### Literatur 
-
-- Rhys, Kap. 6
 
 
 
 
 
+### Entscheidungsbäume
 
 
+#### KW 
+
+20
 
 
+#### Kurswoche 
 
-## Entscheidungsbäume
-
-
-### ID 
-
-9
+10
 
 
-### KW 
+#### Datum_Beginn 
 
-19
-
-
-### Lehre 
-
-TRUE
+2022-05-16
 
 
-### lehrfrei 
-
-FALSE
-
-
-### Kurswoche 
-
-9
-
-
-### Wochenbeginn_Datum 
-
-2022-05-09
-
-
-### Wochenabschluss_Datum 
-
-2022-05-15
-
-
-### Titel 
+#### Titel 
 
 Entscheidungsbäume
 
 
 
-### Literatur 
-
-- Rhys, Kap. 7
 
 
 
 
 
+### Zufallswälder
 
 
+#### KW 
+
+21
 
 
+#### Kurswoche 
 
-## Zufallswälder
-
-
-### ID 
-
-10
+11
 
 
-### KW 
+#### Datum_Beginn 
 
-20
-
-
-### Lehre 
-
-TRUE
+2022-05-23
 
 
-### lehrfrei 
-
-FALSE
-
-
-### Kurswoche 
-
-10
-
-
-### Wochenbeginn_Datum 
-
-2022-05-16
-
-
-### Wochenabschluss_Datum 
-
-2022-05-22
-
-
-### Titel 
+#### Titel 
 
 Zufallswälder
 
 
 
-### Literatur 
-
-- Rhys, Kap. 8
 
 
 
 
 
+### Fallstudie
 
 
+#### KW 
+
+22
 
 
-
-## Fallstudie
-
-
-### ID 
+#### Kurswoche 
 
 11
 
 
-### KW 
+#### Datum_Beginn 
 
-21
-
-
-### Lehre 
-
-TRUE
+2022-05-30
 
 
-### lehrfrei 
-
-FALSE
-
-
-### Kurswoche 
-
-11
-
-
-### Wochenbeginn_Datum 
-
-2022-05-23
-
-
-### Wochenabschluss_Datum 
-
-2022-05-29
-
-
-### Titel 
+#### Titel 
 
 Fallstudie
 
 
 
-### Literatur 
-
-- Rhys, Kap.9
 
 
-
-
-
-
-
-### Hinweise 
+#### Hinweise 
 
 - Nächste Woche ist Blockwoche; es findet kein regulärer Unterricht statt.
 - Diese Woche fällt die Übung aus.
@@ -706,45 +874,25 @@ Fallstudie
 
 
 
-## Wiederholung
+### Wiederholung
 
 
-### ID 
+#### KW 
+
+23
+
+
+#### Kurswoche 
 
 12
 
 
-### KW 
+#### Datum_Beginn 
 
-22
-
-
-### Lehre 
-
-FALSE
+2022-06-06
 
 
-### lehrfrei 
-
-TRUE
-
-
-### Kurswoche 
-
-11
-
-
-### Wochenbeginn_Datum 
-
-2022-05-30
-
-
-### Wochenabschluss_Datum 
-
-2022-06-05
-
-
-### Titel 
+#### Titel 
 
 Wiederholung
 
@@ -752,10 +900,7 @@ Wiederholung
 
 
 
-
-
-
-### Hinweise 
+#### Hinweise 
 
 - In dieser Woche fällt die Vorlesung aus (Pfingsten).
 
@@ -763,232 +908,96 @@ Wiederholung
 
 
 
-## GAM
+### GAM
 
 
-### ID 
+#### KW 
+
+24
+
+
+#### Kurswoche 
 
 13
 
 
-### KW 
+#### Datum_Beginn 
 
-23
-
-
-### Lehre 
-
-TRUE
+2022-06-13
 
 
-### lehrfrei 
-
-FALSE
-
-
-### Kurswoche 
-
-12
-
-
-### Wochenbeginn_Datum 
-
-2022-06-06
-
-
-### Wochenabschluss_Datum 
-
-2022-06-12
-
-
-### Titel 
+#### Titel 
 
 GAM
 
 
 
-### Literatur 
-
-- Rhys, Kap. 10
 
 
 
 
 
+### Lasso und Co
 
 
+#### KW 
+
+25
 
 
-
-## Lasso und Co
-
-
-### ID 
+#### Kurswoche 
 
 14
 
 
-### KW 
+#### Datum_Beginn 
 
-24
-
-
-### Lehre 
-
-TRUE
+2022-06-20
 
 
-### lehrfrei 
-
-FALSE
-
-
-### Kurswoche 
-
-13
-
-
-### Wochenbeginn_Datum 
-
-2022-06-13
-
-
-### Wochenabschluss_Datum 
-
-2022-06-19
-
-
-### Titel 
+#### Titel 
 
 Lasso und Co
 
 
 
-### Literatur 
-
-- Rhys, Kap. 11
 
 
 
 
 
+### Vertiefung
 
 
-
-
-
-## Wiederholung
-
-
-### ID 
-
-15
-
-
-### KW 
-
-25
-
-
-### Lehre 
-
-TRUE
-
-
-### lehrfrei 
-
-FALSE
-
-
-### Kurswoche 
-
-14
-
-
-### Wochenbeginn_Datum 
-
-2022-06-20
-
-
-### Wochenabschluss_Datum 
-
-2022-06-26
-
-
-### Titel 
-
-Wiederholung
-
-
-
-
-
-
-
-
-
-
-
-## Vertiefung
-
-
-### ID 
-
-16
-
-
-### KW 
+#### KW 
 
 26
 
 
-### Lehre 
-
-TRUE
-
-
-### lehrfrei 
-
-FALSE
-
-
-### Kurswoche 
+#### Kurswoche 
 
 15
 
 
-### Wochenbeginn_Datum 
+#### Datum_Beginn 
 
 2022-06-27
 
 
-### Wochenabschluss_Datum 
-
-2022-07-03
-
-
-### Titel 
+#### Titel 
 
 Vertiefung
 
 
 
-### Literatur 
 
-- Rhys, Kap. 12
-
-
-
-
-
-
-### Vertiefung 
+#### Vertiefung 
 
 - [Wie man eine Data-Science-Projekt strukturiert](https://medium.com/swlh/how-to-structure-a-python-based-data-science-project-a-short-tutorial-for-beginners-7e00bff14f56)
 
 
 
-### Hinweise 
+#### Hinweise 
 
 - Nach dieser Woche endet der Unterricht.
 

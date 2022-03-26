@@ -13,7 +13,11 @@ source("https://raw.githubusercontent.com/sebastiansauer/Lehre/main/R-Code/rende
 
 
 
-```{r render-outline-course, results = "asis", echo = FALSE, message = FALSE}
+## Modulzeitplan
+
+
+
+```{r render-outline-course-small-table, results = "asis", echo = FALSE, message = FALSE}
 
 course_dates_file <- here::here("course-dates.yaml")
 content_file <- here::here("_modul-ueberblick.yaml")
@@ -22,6 +26,27 @@ stopifnot(file.exists(course_dates_file))
 stopifnot(file.exists(content_file))
 
 #debug(render_course_outline)
-render_course_outline(course_dates_file, content_file, small_table = FALSE)
+render_course_outline(course_dates_file, content_file, small_table = TRUE, header_level = 3)
+```
+
+
+## Beschreibung der Themen
+
+
+```{r render-outline-course, results = "asis", echo = FALSE, message = FALSE}
+
+course_dates_file <- here::here("course-dates.yaml")
+content_file <- here::here("_modul-ueberblick.yaml")
+
+stopifnot(file.exists(course_dates_file))
+stopifnot(file.exists(content_file))
+
+descriptors <- c("KW", "Kurswoche", "Datum_Beginn", "Titel", "Lernziele", "Vorbereitung", "Aufgaben", "Vertiefung", "Hinweise")
+
+#debug(render_course_outline)
+render_course_outline(course_dates_file, content_file, 
+                      small_table = FALSE, 
+                      descriptors = descriptors,
+                      header_level = 3)
 ```
 

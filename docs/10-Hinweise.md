@@ -107,12 +107,12 @@ die das Online-Zusammenarbeiten vereinfachen:
 
 
 ```{=html}
-<div id="ppchunjurj" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="nwrjwpcojg" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#ppchunjurj .gt_table {
+#nwrjwpcojg .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -137,7 +137,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-left-color: #D3D3D3;
 }
 
-#ppchunjurj .gt_heading {
+#nwrjwpcojg .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -149,7 +149,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-right-color: #D3D3D3;
 }
 
-#ppchunjurj .gt_title {
+#nwrjwpcojg .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -159,7 +159,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-bottom-width: 0;
 }
 
-#ppchunjurj .gt_subtitle {
+#nwrjwpcojg .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -169,13 +169,13 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-top-width: 0;
 }
 
-#ppchunjurj .gt_bottom_border {
+#nwrjwpcojg .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ppchunjurj .gt_col_headings {
+#nwrjwpcojg .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -190,7 +190,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-right-color: #D3D3D3;
 }
 
-#ppchunjurj .gt_col_heading {
+#nwrjwpcojg .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -210,7 +210,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   overflow-x: hidden;
 }
 
-#ppchunjurj .gt_column_spanner_outer {
+#nwrjwpcojg .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -222,15 +222,15 @@ die das Online-Zusammenarbeiten vereinfachen:
   padding-right: 4px;
 }
 
-#ppchunjurj .gt_column_spanner_outer:first-child {
+#nwrjwpcojg .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ppchunjurj .gt_column_spanner_outer:last-child {
+#nwrjwpcojg .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ppchunjurj .gt_column_spanner {
+#nwrjwpcojg .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -242,7 +242,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   width: 100%;
 }
 
-#ppchunjurj .gt_group_heading {
+#nwrjwpcojg .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -264,7 +264,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   vertical-align: middle;
 }
 
-#ppchunjurj .gt_empty_group_heading {
+#nwrjwpcojg .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -279,15 +279,15 @@ die das Online-Zusammenarbeiten vereinfachen:
   vertical-align: middle;
 }
 
-#ppchunjurj .gt_from_md > :first-child {
+#nwrjwpcojg .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ppchunjurj .gt_from_md > :last-child {
+#nwrjwpcojg .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ppchunjurj .gt_row {
+#nwrjwpcojg .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -306,7 +306,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   overflow-x: hidden;
 }
 
-#ppchunjurj .gt_stub {
+#nwrjwpcojg .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -318,7 +318,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   padding-left: 12px;
 }
 
-#ppchunjurj .gt_summary_row {
+#nwrjwpcojg .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -328,7 +328,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   padding-right: 5px;
 }
 
-#ppchunjurj .gt_first_summary_row {
+#nwrjwpcojg .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -338,7 +338,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-top-color: #D3D3D3;
 }
 
-#ppchunjurj .gt_grand_summary_row {
+#nwrjwpcojg .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -348,7 +348,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   padding-right: 5px;
 }
 
-#ppchunjurj .gt_first_grand_summary_row {
+#nwrjwpcojg .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -358,11 +358,11 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-top-color: #D3D3D3;
 }
 
-#ppchunjurj .gt_striped {
+#nwrjwpcojg .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ppchunjurj .gt_table_body {
+#nwrjwpcojg .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -371,7 +371,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-bottom-color: #D3D3D3;
 }
 
-#ppchunjurj .gt_footnotes {
+#nwrjwpcojg .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -385,13 +385,13 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-right-color: #D3D3D3;
 }
 
-#ppchunjurj .gt_footnote {
+#nwrjwpcojg .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#ppchunjurj .gt_sourcenotes {
+#nwrjwpcojg .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -405,41 +405,41 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-right-color: #D3D3D3;
 }
 
-#ppchunjurj .gt_sourcenote {
+#nwrjwpcojg .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#ppchunjurj .gt_left {
+#nwrjwpcojg .gt_left {
   text-align: left;
 }
 
-#ppchunjurj .gt_center {
+#nwrjwpcojg .gt_center {
   text-align: center;
 }
 
-#ppchunjurj .gt_right {
+#nwrjwpcojg .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ppchunjurj .gt_font_normal {
+#nwrjwpcojg .gt_font_normal {
   font-weight: normal;
 }
 
-#ppchunjurj .gt_font_bold {
+#nwrjwpcojg .gt_font_bold {
   font-weight: bold;
 }
 
-#ppchunjurj .gt_font_italic {
+#nwrjwpcojg .gt_font_italic {
   font-style: italic;
 }
 
-#ppchunjurj .gt_super {
+#nwrjwpcojg .gt_super {
   font-size: 65%;
 }
 
-#ppchunjurj .gt_footnote_marks {
+#nwrjwpcojg .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -452,70 +452,86 @@ die das Online-Zusammenarbeiten vereinfachen:
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Kurswoche</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">KW</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Titel</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Wochenbeginn_Datum</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Datum_Beginn</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Datum_Ende</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
     <tr><td class="gt_row gt_right">1</td>
 <td class="gt_row gt_right">11</td>
 <td class="gt_row gt_left">Grundkonzepte</td>
-<td class="gt_row gt_left">2022-03-14</td></tr>
+<td class="gt_row gt_left">2022-03-14</td>
+<td class="gt_row gt_left">2022-03-20</td></tr>
     <tr><td class="gt_row gt_right">2</td>
 <td class="gt_row gt_right">12</td>
-<td class="gt_row gt_left">tidyverse, 2. Blick</td>
-<td class="gt_row gt_left">2022-03-21</td></tr>
+<td class="gt_row gt_left">R, 2. Blick</td>
+<td class="gt_row gt_left">2022-03-21</td>
+<td class="gt_row gt_left">2022-03-27</td></tr>
     <tr><td class="gt_row gt_right">3</td>
 <td class="gt_row gt_right">13</td>
-<td class="gt_row gt_left">tidymodels</td>
-<td class="gt_row gt_left">2022-03-28</td></tr>
+<td class="gt_row gt_left">R, 2. Blick - Fortsetzung</td>
+<td class="gt_row gt_left">2022-03-28</td>
+<td class="gt_row gt_left">2022-04-03</td></tr>
     <tr><td class="gt_row gt_right">4</td>
 <td class="gt_row gt_right">14</td>
-<td class="gt_row gt_left">kNN</td>
-<td class="gt_row gt_left">2022-04-04</td></tr>
+<td class="gt_row gt_left">tidymodels</td>
+<td class="gt_row gt_left">2022-04-04</td>
+<td class="gt_row gt_left">2022-04-10</td></tr>
     <tr><td class="gt_row gt_right">5</td>
 <td class="gt_row gt_right">15</td>
-<td class="gt_row gt_left">Statistisches Lernen</td>
-<td class="gt_row gt_left">2022-04-11</td></tr>
+<td class="gt_row gt_left">kNN</td>
+<td class="gt_row gt_left">2022-04-11</td>
+<td class="gt_row gt_left">2022-04-17</td></tr>
     <tr><td class="gt_row gt_right">6</td>
 <td class="gt_row gt_right">16</td>
-<td class="gt_row gt_left">Wiederholung</td>
-<td class="gt_row gt_left">2022-04-18</td></tr>
+<td class="gt_row gt_left">Statistisches Lernen</td>
+<td class="gt_row gt_left">2022-04-18</td>
+<td class="gt_row gt_left">2022-04-24</td></tr>
     <tr><td class="gt_row gt_right">7</td>
 <td class="gt_row gt_right">17</td>
-<td class="gt_row gt_left">Logistische Regression</td>
-<td class="gt_row gt_left">2022-04-25</td></tr>
+<td class="gt_row gt_left">Wiederholung</td>
+<td class="gt_row gt_left">2022-04-25</td>
+<td class="gt_row gt_left">2022-05-01</td></tr>
     <tr><td class="gt_row gt_right">8</td>
 <td class="gt_row gt_right">18</td>
-<td class="gt_row gt_left">Naive Bayes</td>
-<td class="gt_row gt_left">2022-05-02</td></tr>
+<td class="gt_row gt_left">Logistische Regression</td>
+<td class="gt_row gt_left">2022-05-02</td>
+<td class="gt_row gt_left">2022-05-08</td></tr>
     <tr><td class="gt_row gt_right">9</td>
 <td class="gt_row gt_right">19</td>
-<td class="gt_row gt_left">Entscheidungsbäume</td>
-<td class="gt_row gt_left">2022-05-09</td></tr>
+<td class="gt_row gt_left">Naive Bayes</td>
+<td class="gt_row gt_left">2022-05-09</td>
+<td class="gt_row gt_left">2022-05-15</td></tr>
     <tr><td class="gt_row gt_right">10</td>
 <td class="gt_row gt_right">20</td>
-<td class="gt_row gt_left">Zufallswälder</td>
-<td class="gt_row gt_left">2022-05-16</td></tr>
+<td class="gt_row gt_left">Entscheidungsbäume</td>
+<td class="gt_row gt_left">2022-05-16</td>
+<td class="gt_row gt_left">2022-05-22</td></tr>
     <tr><td class="gt_row gt_right">11</td>
 <td class="gt_row gt_right">21</td>
-<td class="gt_row gt_left">Fallstudie</td>
-<td class="gt_row gt_left">2022-05-23</td></tr>
+<td class="gt_row gt_left">Zufallswälder</td>
+<td class="gt_row gt_left">2022-05-23</td>
+<td class="gt_row gt_left">2022-05-29</td></tr>
     <tr><td class="gt_row gt_right">12</td>
 <td class="gt_row gt_right">23</td>
-<td class="gt_row gt_left">GAM</td>
-<td class="gt_row gt_left">2022-06-06</td></tr>
+<td class="gt_row gt_left">Wiederholung</td>
+<td class="gt_row gt_left">2022-06-06</td>
+<td class="gt_row gt_left">2022-06-12</td></tr>
     <tr><td class="gt_row gt_right">13</td>
 <td class="gt_row gt_right">24</td>
-<td class="gt_row gt_left">Lasso und Co</td>
-<td class="gt_row gt_left">2022-06-13</td></tr>
+<td class="gt_row gt_left">GAM</td>
+<td class="gt_row gt_left">2022-06-13</td>
+<td class="gt_row gt_left">2022-06-19</td></tr>
     <tr><td class="gt_row gt_right">14</td>
 <td class="gt_row gt_right">25</td>
-<td class="gt_row gt_left">Wiederholung</td>
-<td class="gt_row gt_left">2022-06-20</td></tr>
+<td class="gt_row gt_left">Lasso und Co</td>
+<td class="gt_row gt_left">2022-06-20</td>
+<td class="gt_row gt_left">2022-06-26</td></tr>
     <tr><td class="gt_row gt_right">15</td>
 <td class="gt_row gt_right">26</td>
 <td class="gt_row gt_left">Vertiefung</td>
-<td class="gt_row gt_left">2022-06-27</td></tr>
+<td class="gt_row gt_left">2022-06-27</td>
+<td class="gt_row gt_left">2022-07-03</td></tr>
   </tbody>
   
   
