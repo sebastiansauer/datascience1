@@ -581,7 +581,7 @@ Das können wir mit <code><a href="https://rdrr.io/r/utils/str.html">str()</a></
 ##   ..$ am  : num [1:32] 1 1 1 0 0 0 0 0 0 0 ...
 ##   ..$ gear: num [1:32] 4 4 4 3 3 3 3 4 4 4 ...
 ##   ..$ carb: num [1:32] 4 4 1 1 2 1 4 2 2 4 ...
-##  $ in_id : int [1:21] 1 4 5 8 9 11 12 14 15 16 ...
+##  $ in_id : int [1:21] 2 5 6 7 8 10 13 14 16 17 ...
 ##  $ out_id: logi NA
 ##  $ id    : tibble [1 × 1] (S3: tbl_df/tbl/data.frame)
 ##   ..$ id: chr "Fold1"
@@ -611,6 +611,11 @@ Zur Erinnerung: Ein Datafram ist ein Spezialfall einer Liste, also auch eine Lis
 ## Hornet 4 Drive    21.4
 ## Hornet Sportabout 18.7
 ## Valiant           18.1</code></pre>
+<p>Mit <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck()</a></code> bekommen wir das gleiche Ergebnis,
+nur etwas komfortabler,
+da wir keine Eckklammern tippen müssen:</p>
+<pre><code>## [1] 21</code></pre>
+<p>Wie man sieht, können wir beliebig tief in das Objekt hineinindizieren.</p>
 </div>
 </div>
 <div id="aufgaben-3" class="section level2" number="5.6">
@@ -905,7 +910,7 @@ Syntax.</li>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-03-30 21:37:17.</p>
+    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-03-30 21:45:32.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

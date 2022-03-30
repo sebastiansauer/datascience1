@@ -507,6 +507,19 @@ pos11[["data"]][1] %>%
   head()
 ```
 
+
+Mit `pluck()` bekommen wir das gleiche Ergebnis, 
+nur etwas komfortabler,
+da wir keine Eckklammern tippen müssen:
+
+```{r}
+pluck(pos11, "data", 1, 1)
+```
+
+Wie man sieht, können wir beliebig tief in das Objekt hineinindizieren.
+
+
+
 ## Aufgaben
 
 ```{r child = "Aufgaben/Thema2-Loesungen1.markdown", results='asis'}
