@@ -6,6 +6,8 @@
 # R, zweiter Blick
 
 
+
+
 ## Objekttypen in R
 
 Näheres zu Objekttypen findet sich in @modar, Kap. 5.2.
@@ -700,6 +702,14 @@ Daher ist es praktisch, sich schon mal damit zu beschäftigen.
 Hier ein Beispiel für eine $v=3$-fache Kreuzvalidierung:
 
 
+```r
+library(tidymodels)
+mtcars_cv <-
+  vfold_cv(mtcars, v = 3)
+
+mtcars_cv
+```
+
 ```
 ## #  3-fold cross-validation 
 ## # A tibble: 3 × 2
@@ -716,6 +726,11 @@ Die Musik spielt in der 1. Spalte.
 Lesen wir den Inhalt der 1. Spalte, 1 Zeile aus (nennen wir das mal "Position 1,1"):
 
 
+```r
+pos11 <- mtcars_cv[[1]][[1]]
+pos11
+```
+
 ```
 ## <Analysis/Assess/Total>
 ## <21/11/32>
@@ -727,6 +742,10 @@ Schauen wir jetzt in dieses Objekt näher an.
 Das können wir mit `str()` tun.
 `str()` zeigt uns die Strktur eines Objekts.
 
+
+```r
+str(pos11)
+```
 
 ```
 ## List of 4
@@ -742,7 +761,7 @@ Das können wir mit `str()` tun.
 ##   ..$ am  : num [1:32] 1 1 1 0 0 0 0 0 0 0 ...
 ##   ..$ gear: num [1:32] 4 4 4 3 3 3 3 4 4 4 ...
 ##   ..$ carb: num [1:32] 4 4 1 1 2 1 4 2 2 4 ...
-##  $ in_id : int [1:21] 2 3 10 11 12 13 14 15 17 18 ...
+##  $ in_id : int [1:21] 1 4 5 8 9 11 12 14 15 16 ...
 ##  $ out_id: logi NA
 ##  $ id    : tibble [1 × 1] (S3: tbl_df/tbl/data.frame)
 ##   ..$ id: chr "Fold1"
@@ -762,6 +781,10 @@ Damit handelt es sich bei Spalte 1 dieses Dataframes (`mtcars_cv`) also um eine 
 Sprechen wir in `pos11` das erste Element an (`data`) und davon das erste Element:
 
 
+```r
+pos11[["data"]][[1]]
+```
+
 ```
 ##  [1] 21.0 21.0 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 17.8 16.4 17.3 15.2 10.4
 ## [16] 10.4 14.7 32.4 30.4 33.9 21.5 15.5 15.2 13.3 19.2 27.3 26.0 30.4 15.8 19.7
@@ -773,6 +796,11 @@ Zur Erinnerung: Ein Datafram ist ein Spezialfall einer Liste, also auch eine Lis
 
 Zum Vergleich indizieren wir mal mit einer einfachen Eckklammer:
 
+
+```r
+pos11[["data"]][1] %>% 
+  head()
+```
 
 ```
 ##                    mpg

@@ -6,6 +6,8 @@
 # R, zweiter Blick
 
 
+
+
 ## Objekttypen in R
 
 Näheres zu Objekttypen findet sich in @modar, Kap. 5.2.
@@ -451,7 +453,7 @@ Daher ist es praktisch, sich schon mal damit zu beschäftigen.
 
 Hier ein Beispiel für eine $v=3$-fache Kreuzvalidierung:
 
-```{r}
+```{r echo = TRUE}
 library(tidymodels)
 mtcars_cv <-
   vfold_cv(mtcars, v = 3)
@@ -464,7 +466,7 @@ Die Musik spielt in der 1. Spalte.
 
 Lesen wir den Inhalt der 1. Spalte, 1 Zeile aus (nennen wir das mal "Position 1,1"):
 
-```{r}
+```{r  echo = TRUE}
 pos11 <- mtcars_cv[[1]][[1]]
 pos11
 ```
@@ -475,7 +477,7 @@ Schauen wir jetzt in dieses Objekt näher an.
 Das können wir mit `str()` tun.
 `str()` zeigt uns die Strktur eines Objekts.
 
-```{r}
+```{r  echo = TRUE}
 str(pos11)
 ```
 
@@ -491,7 +493,7 @@ Damit handelt es sich bei Spalte 1 dieses Dataframes (`mtcars_cv`) also um eine 
 
 Sprechen wir in `pos11` das erste Element an (`data`) und davon das erste Element:
 
-```{r}
+```{r echo = TRUE}
 pos11[["data"]][[1]]
 ```
 
@@ -500,7 +502,7 @@ Zur Erinnerung: Ein Datafram ist ein Spezialfall einer Liste, also auch eine Lis
 
 Zum Vergleich indizieren wir mal mit einer einfachen Eckklammer:
 
-```{r}
+```{r echo = TRUE}
 pos11[["data"]][1] %>% 
   head()
 ```

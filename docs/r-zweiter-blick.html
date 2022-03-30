@@ -541,6 +541,12 @@ in dem man mit <code>NA</code> auffüllt.</p>
 werden wir mit Listenspalten zu tun haben.
 Daher ist es praktisch, sich schon mal damit zu beschäftigen.</p>
 <p>Hier ein Beispiel für eine <span class="math inline">\(v=3\)</span>-fache Kreuzvalidierung:</p>
+<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span>
+<span class="va">mtcars_cv</span> <span class="op">&lt;-</span>
+  <span class="fu">vfold_cv</span><span class="op">(</span><span class="va">mtcars</span>, v <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
+
+<span class="va">mtcars_cv</span></code></pre></div>
 <pre><code>## #  3-fold cross-validation 
 ## # A tibble: 3 × 2
 ##   splits          id   
@@ -551,12 +557,17 @@ Daher ist es praktisch, sich schon mal damit zu beschäftigen.</p>
 <p>Betrachten wir das Objekt <code>mtcars_cv</code> näher.
 Die Musik spielt in der 1. Spalte.</p>
 <p>Lesen wir den Inhalt der 1. Spalte, 1 Zeile aus (nennen wir das mal “Position 1,1”):</p>
+<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">pos11</span> <span class="op">&lt;-</span> <span class="va">mtcars_cv</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>
+<span class="va">pos11</span></code></pre></div>
 <pre><code>## &lt;Analysis/Assess/Total&gt;
 ## &lt;21/11/32&gt;</code></pre>
 <p>In dieser Zelle findet sich eine Aufteilung des Komplettdatensatzes in den Analyseteil (Analysis sample) und den Assessmentteil (Assessment Sample).</p>
 <p>Schauen wir jetzt in dieses Objekt näher an.
 Das können wir mit <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> tun.
 <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> zeigt uns die Strktur eines Objekts.</p>
+<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">pos11</span><span class="op">)</span></code></pre></div>
 <pre><code>## List of 4
 ##  $ data  :'data.frame':  32 obs. of  11 variables:
 ##   ..$ mpg : num [1:32] 21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 ...
@@ -570,7 +581,7 @@ Das können wir mit <code><a href="https://rdrr.io/r/utils/str.html">str()</a></
 ##   ..$ am  : num [1:32] 1 1 1 0 0 0 0 0 0 0 ...
 ##   ..$ gear: num [1:32] 4 4 4 3 3 3 3 4 4 4 ...
 ##   ..$ carb: num [1:32] 4 4 1 1 2 1 4 2 2 4 ...
-##  $ in_id : int [1:21] 2 3 10 11 12 13 14 15 17 18 ...
+##  $ in_id : int [1:21] 1 4 5 8 9 11 12 14 15 16 ...
 ##  $ out_id: logi NA
 ##  $ id    : tibble [1 × 1] (S3: tbl_df/tbl/data.frame)
 ##   ..$ id: chr "Fold1"
@@ -582,12 +593,17 @@ als ein Skalar bzw. ein einzelnes, atomares Element.</p>
 <p>Damit handelt es sich bei Spalte 1 dieses Dataframes (<code>mtcars_cv</code>) also um eine Listenspalte.</p>
 <p>Üben wir uns noch etwas im Indizieren.</p>
 <p>Sprechen wir in <code>pos11</code> das erste Element an (<code>data</code>) und davon das erste Element:</p>
+<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">pos11</span><span class="op">[[</span><span class="st">"data"</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <pre><code>##  [1] 21.0 21.0 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 17.8 16.4 17.3 15.2 10.4
 ## [16] 10.4 14.7 32.4 30.4 33.9 21.5 15.5 15.2 13.3 19.2 27.3 26.0 30.4 15.8 19.7
 ## [31] 15.0 21.4</code></pre>
 <p>Wir haben hier die doppelten Eckklammern benutzt, um den “eigentlichen” oder “inneren” Vektor zu bekommen, nicht die “außen” herumgewickelte Liste.
 Zur Erinnerung: Ein Datafram ist ein Spezialfall einer Liste, also auch eine Liste, nur eine mit bestimmten Eigenschaften.</p>
 <p>Zum Vergleich indizieren wir mal mit einer einfachen Eckklammer:</p>
+<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">pos11</span><span class="op">[[</span><span class="st">"data"</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code>##                    mpg
 ## Mazda RX4         21.0
 ## Mazda RX4 Wag     21.0
@@ -889,7 +905,7 @@ Syntax.</li>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-03-30 21:31:58.</p>
+    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-03-30 21:37:17.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
