@@ -14,12 +14,12 @@
 
 
 ```{=html}
-<div id="hmphwegjqh" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="soxyddhjce" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#hmphwegjqh .gt_table {
+#soxyddhjce .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -44,7 +44,7 @@
   border-left-color: #D3D3D3;
 }
 
-#hmphwegjqh .gt_heading {
+#soxyddhjce .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -56,7 +56,7 @@
   border-right-color: #D3D3D3;
 }
 
-#hmphwegjqh .gt_title {
+#soxyddhjce .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -66,7 +66,7 @@
   border-bottom-width: 0;
 }
 
-#hmphwegjqh .gt_subtitle {
+#soxyddhjce .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -76,13 +76,13 @@
   border-top-width: 0;
 }
 
-#hmphwegjqh .gt_bottom_border {
+#soxyddhjce .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#hmphwegjqh .gt_col_headings {
+#soxyddhjce .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -97,7 +97,7 @@
   border-right-color: #D3D3D3;
 }
 
-#hmphwegjqh .gt_col_heading {
+#soxyddhjce .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -117,7 +117,7 @@
   overflow-x: hidden;
 }
 
-#hmphwegjqh .gt_column_spanner_outer {
+#soxyddhjce .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -129,15 +129,15 @@
   padding-right: 4px;
 }
 
-#hmphwegjqh .gt_column_spanner_outer:first-child {
+#soxyddhjce .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#hmphwegjqh .gt_column_spanner_outer:last-child {
+#soxyddhjce .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#hmphwegjqh .gt_column_spanner {
+#soxyddhjce .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -149,7 +149,7 @@
   width: 100%;
 }
 
-#hmphwegjqh .gt_group_heading {
+#soxyddhjce .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -171,7 +171,7 @@
   vertical-align: middle;
 }
 
-#hmphwegjqh .gt_empty_group_heading {
+#soxyddhjce .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -186,15 +186,15 @@
   vertical-align: middle;
 }
 
-#hmphwegjqh .gt_from_md > :first-child {
+#soxyddhjce .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#hmphwegjqh .gt_from_md > :last-child {
+#soxyddhjce .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#hmphwegjqh .gt_row {
+#soxyddhjce .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -213,7 +213,7 @@
   overflow-x: hidden;
 }
 
-#hmphwegjqh .gt_stub {
+#soxyddhjce .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -225,7 +225,7 @@
   padding-left: 12px;
 }
 
-#hmphwegjqh .gt_summary_row {
+#soxyddhjce .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -235,7 +235,7 @@
   padding-right: 5px;
 }
 
-#hmphwegjqh .gt_first_summary_row {
+#soxyddhjce .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -245,7 +245,7 @@
   border-top-color: #D3D3D3;
 }
 
-#hmphwegjqh .gt_grand_summary_row {
+#soxyddhjce .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -255,7 +255,7 @@
   padding-right: 5px;
 }
 
-#hmphwegjqh .gt_first_grand_summary_row {
+#soxyddhjce .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -265,11 +265,11 @@
   border-top-color: #D3D3D3;
 }
 
-#hmphwegjqh .gt_striped {
+#soxyddhjce .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#hmphwegjqh .gt_table_body {
+#soxyddhjce .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -278,7 +278,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#hmphwegjqh .gt_footnotes {
+#soxyddhjce .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -292,13 +292,13 @@
   border-right-color: #D3D3D3;
 }
 
-#hmphwegjqh .gt_footnote {
+#soxyddhjce .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#hmphwegjqh .gt_sourcenotes {
+#soxyddhjce .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -312,41 +312,41 @@
   border-right-color: #D3D3D3;
 }
 
-#hmphwegjqh .gt_sourcenote {
+#soxyddhjce .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#hmphwegjqh .gt_left {
+#soxyddhjce .gt_left {
   text-align: left;
 }
 
-#hmphwegjqh .gt_center {
+#soxyddhjce .gt_center {
   text-align: center;
 }
 
-#hmphwegjqh .gt_right {
+#soxyddhjce .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#hmphwegjqh .gt_font_normal {
+#soxyddhjce .gt_font_normal {
   font-weight: normal;
 }
 
-#hmphwegjqh .gt_font_bold {
+#soxyddhjce .gt_font_bold {
   font-weight: bold;
 }
 
-#hmphwegjqh .gt_font_italic {
+#soxyddhjce .gt_font_italic {
   font-style: italic;
 }
 
-#hmphwegjqh .gt_super {
+#soxyddhjce .gt_super {
   font-size: 65%;
 }
 
-#hmphwegjqh .gt_footnote_marks {
+#soxyddhjce .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -452,25 +452,13 @@
 
 ### Grundkonzepte
 
+#### Vorbereitung 
 
-#### KW 
-
-11
-
-
-#### Kurswoche 
-
-1
+- Lesen Sie die Hinweise zum Modul.
+- Installieren (oder Updaten) Sie die für dieses Modul angegeben Software.
+- Lesen Sie die Literatur.
 
 
-#### Datum_Beginn 
-
-2022-03-14
-
-
-#### Titel 
-
-Grundkonzepte
 
 #### Lernziele 
 
@@ -480,18 +468,17 @@ Grundkonzepte
 
 
 
-#### Vorbereitung 
+#### Literatur 
 
-- Lesen Sie die Hinweise zum Modul.
-- Installieren (oder Updaten) Sie die für dieses Modul angegeben Software.
-- Lesen Sie die Literatur.
-
+- Rhys, Kap. 1
+- evtl. Sauer, Kap. 15
 
 
-#### Aufgaben 
 
-- [Machen Sie sich mit 'Kaggle' vertraut](https://www.kaggle.com/)
-- [Bearbeiten Sie die Fallstudie 'TitaRnic' auf Kaggle](https://www.kaggle.com/code/headsortails/tidy-titarnic/report)
+#### Hinweise 
+
+- Bitte beachten Sie die Hinweise zum Präsenzunterricht und der Streamingoption.
+- Bitte stellen Sie sicher, dass Sie einen einsatzbereiten Computer haben und dass die angegebene Software (in aktueller Version) läuft.
 
 
 
@@ -506,10 +493,10 @@ Grundkonzepte
 
 
 
-#### Hinweise 
+#### Aufgaben 
 
-- Bitte beachten Sie die Hinweise zum Präsenzunterricht und der Streamingoption.
-- Bitte stellen Sie sicher, dass Sie einen einsatzbereiten Computer haben und dass die angegebene Software (in aktueller Version) läuft.
+- [Machen Sie sich mit 'Kaggle' vertraut](https://www.kaggle.com/)
+- [Bearbeiten Sie die Fallstudie 'TitaRnic' auf Kaggle](https://www.kaggle.com/code/headsortails/tidy-titarnic/report)
 
 
 
@@ -517,25 +504,11 @@ Grundkonzepte
 
 ### R, 2. Blick
 
+#### Vorbereitung 
 
-#### KW 
-
-12
-
-
-#### Kurswoche 
-
-2
+- Lesen Sie die Literatur.
 
 
-#### Datum_Beginn 
-
-2022-03-21
-
-
-#### Titel 
-
-R, 2. Blick
 
 #### Lernziele 
 
@@ -546,9 +519,11 @@ R, 2. Blick
 
 
 
-#### Vorbereitung 
+#### Literatur 
 
-- Lesen Sie die Literatur.
+- Rhys, Kap. 2
+
+
 
 
 
@@ -561,30 +536,14 @@ R, 2. Blick
 
 
 
-
-
 ### R, 2. Blick - Fortsetzung
 
 
-#### KW 
-
-13
 
 
-#### Kurswoche 
+#### Hinweise 
 
-3
-
-
-#### Datum_Beginn 
-
-2022-03-28
-
-
-#### Titel 
-
-R, 2. Blick - Fortsetzung
-
+- Fortsetzung der Inhalte des vorherigen Themas
 
 
 
@@ -595,24 +554,10 @@ R, 2. Blick - Fortsetzung
 ### tidymodels
 
 
-#### KW 
 
-14
+#### Literatur 
 
-
-#### Kurswoche 
-
-4
-
-
-#### Datum_Beginn 
-
-2022-04-04
-
-
-#### Titel 
-
-tidymodels
+- TMWR
 
 
 
@@ -624,24 +569,10 @@ tidymodels
 ### kNN
 
 
-#### KW 
 
-15
+#### Literatur 
 
-
-#### Kurswoche 
-
-5
-
-
-#### Datum_Beginn 
-
-2022-04-11
-
-
-#### Titel 
-
-kNN
+- Rhys, Kap. 3
 
 
 
@@ -653,31 +584,10 @@ kNN
 ### Statistisches Lernen
 
 
-#### KW 
 
-16
+#### Literatur 
 
-
-#### Kurswoche 
-
-6
-
-
-#### Datum_Beginn 
-
-2022-04-18
-
-
-#### Titel 
-
-Statistisches Lernen
-
-
-
-
-#### Vertiefung 
-
-- [Fields arranged by purity, xkcd 435](https://xkcd.com/435/)
+- Rhys, Kap. 3
 
 
 
@@ -687,30 +597,16 @@ Statistisches Lernen
 
 
 
+#### Vertiefung 
+
+- [Fields arranged by purity, xkcd 435](https://xkcd.com/435/)
+
+
+
+
 
 
 ### Wiederholung
-
-
-#### KW 
-
-17
-
-
-#### Kurswoche 
-
-7
-
-
-#### Datum_Beginn 
-
-2022-04-25
-
-
-#### Titel 
-
-Wiederholung
-
 
 
 
@@ -723,27 +619,15 @@ Wiederholung
 
 
 
+
+
 ### Logistische Regression
 
 
-#### KW 
 
-18
+#### Literatur 
 
-
-#### Kurswoche 
-
-8
-
-
-#### Datum_Beginn 
-
-2022-05-02
-
-
-#### Titel 
-
-Logistische Regression
+- Rhys, Kap. 4
 
 
 
@@ -755,24 +639,10 @@ Logistische Regression
 ### Naive Bayes
 
 
-#### KW 
 
-19
+#### Literatur 
 
-
-#### Kurswoche 
-
-9
-
-
-#### Datum_Beginn 
-
-2022-05-09
-
-
-#### Titel 
-
-Naive Bayes
+- Rhys, Kap. 6
 
 
 
@@ -784,24 +654,10 @@ Naive Bayes
 ### Entscheidungsbäume
 
 
-#### KW 
 
-20
+#### Literatur 
 
-
-#### Kurswoche 
-
-10
-
-
-#### Datum_Beginn 
-
-2022-05-16
-
-
-#### Titel 
-
-Entscheidungsbäume
+- Rhys, Kap. 7
 
 
 
@@ -813,24 +669,10 @@ Entscheidungsbäume
 ### Zufallswälder
 
 
-#### KW 
 
-21
+#### Literatur 
 
-
-#### Kurswoche 
-
-11
-
-
-#### Datum_Beginn 
-
-2022-05-23
-
-
-#### Titel 
-
-Zufallswälder
+- Rhys, Kap. 8
 
 
 
@@ -842,26 +684,10 @@ Zufallswälder
 ### Fallstudie
 
 
-#### KW 
 
-22
+#### Literatur 
 
-
-#### Kurswoche 
-
-11
-
-
-#### Datum_Beginn 
-
-2022-05-30
-
-
-#### Titel 
-
-Fallstudie
-
-
+- Rhys, Kap.9
 
 
 
@@ -874,28 +700,9 @@ Fallstudie
 
 
 
+
+
 ### Wiederholung
-
-
-#### KW 
-
-23
-
-
-#### Kurswoche 
-
-12
-
-
-#### Datum_Beginn 
-
-2022-06-06
-
-
-#### Titel 
-
-Wiederholung
-
 
 
 
@@ -908,27 +715,15 @@ Wiederholung
 
 
 
+
+
 ### GAM
 
 
-#### KW 
 
-24
+#### Literatur 
 
-
-#### Kurswoche 
-
-13
-
-
-#### Datum_Beginn 
-
-2022-06-13
-
-
-#### Titel 
-
-GAM
+- Rhys, Kap. 10
 
 
 
@@ -940,24 +735,10 @@ GAM
 ### Lasso und Co
 
 
-#### KW 
 
-25
+#### Literatur 
 
-
-#### Kurswoche 
-
-14
-
-
-#### Datum_Beginn 
-
-2022-06-20
-
-
-#### Titel 
-
-Lasso und Co
+- Rhys, Kap. 11
 
 
 
@@ -969,35 +750,20 @@ Lasso und Co
 ### Vertiefung
 
 
-#### KW 
 
-26
+#### Literatur 
 
-
-#### Kurswoche 
-
-15
-
-
-#### Datum_Beginn 
-
-2022-06-27
-
-
-#### Titel 
-
-Vertiefung
-
-
-
-
-#### Vertiefung 
-
-- [Wie man eine Data-Science-Projekt strukturiert](https://medium.com/swlh/how-to-structure-a-python-based-data-science-project-a-short-tutorial-for-beginners-7e00bff14f56)
+- Rhys, Kap. 12
 
 
 
 #### Hinweise 
 
 - Nach dieser Woche endet der Unterricht.
+
+
+
+#### Vertiefung 
+
+- [Wie man eine Data-Science-Projekt strukturiert](https://medium.com/swlh/how-to-structure-a-python-based-data-science-project-a-short-tutorial-for-beginners-7e00bff14f56)
 

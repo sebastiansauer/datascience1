@@ -41,7 +41,15 @@ content_file <- here::here("_modul-ueberblick.yaml")
 stopifnot(file.exists(course_dates_file))
 stopifnot(file.exists(content_file))
 
-descriptors <- c("KW", "Kurswoche", "Datum_Beginn", "Titel", "Lernziele", "Vorbereitung", "Aufgaben", "Vertiefung", "Hinweise")
+descriptors <- c(
+ # "Titel", 
+  "Lernziele", 
+  "Literatur",
+  "Vorbereitung", 
+  "Aufgaben", 
+  "Vertiefung", 
+  "Hinweise"
+  )
 
 #debug(render_course_outline)
 render_course_outline(course_dates_file, content_file, 

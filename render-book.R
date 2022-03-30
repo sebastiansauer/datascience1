@@ -1,6 +1,9 @@
-bookdown::preview_chapter("03-Thema01.Rmd")
-bookdown::preview_chapter("01-Modulueberblick.Rmd")
-bookdown::preview_chapter("02-Modulzeitplan.Rmd")
+bookdown::preview_chapter("40-Thema01.Rmd")
+bookdown::preview_chapter("20-Modulueberblick.Rmd")
+
+
+
+bookdown::render_book("index.Rmd", output_format = "bookdown::bs4_book")
 
 bookdown::render_book("index.Rmd", output_format = "bookdown::gitbook")
 bookdown::render_book("index.Rmd", output_format = "bookdown::pdf_book")
