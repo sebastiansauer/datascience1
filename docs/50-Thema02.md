@@ -670,13 +670,119 @@ Weiteres zu `map()` findet sich z.B. in @r4ds, [Kapitel 21.5](https://r4ds.had.c
 ## Listenspalten
 
 
+### Wozu Listenspalten?
+
+Listenspalten sind immer dann sinnvoll,
+wenn eine einfache Tabelle nicht komplex genug für unsere Daten ist.
+
+Zwei Fälle stechen dabei ins Auge:
+
+1. Unsere Datenstruktur ist nicht rechteckig
+2. In einer Zelle der Tabelle soll mehr als ein einzelner Wert stehen: vielleicht ein Vektor, eine Liste oder eine Tabelle
+
+
+Der erstere Fall (nicht reckeckig) ließe sich noch einfach lösen,
+in dem man mit `NA` auffüllt.
+
+Der zweite Fall verlangt schlichtweg nach komplexeren Datenstrukturen.
+
+
 [Kap. 25.3](https://r4ds.had.co.nz/many-models.html?q=list#creating-list-columns) aus @r4ds bietet einen guten Einstieg in das Konzept von Listenspalten (list-columns) in R.
 
 
+### Beispiele für Listenspalten
 
 
+Wenn wir mit `tidymodels` arbeiten,
+werden wir mit Listenspalten zu tun haben.
+Daher ist es praktisch, sich schon mal damit zu beschäftigen.
+
+Hier ein Beispiel für eine $v=3$-fache Kreuzvalidierung:
 
 
+```
+## #  3-fold cross-validation 
+## # A tibble: 3 × 2
+##   splits          id   
+##   <list>          <chr>
+## 1 <split [21/11]> Fold1
+## 2 <split [21/11]> Fold2
+## 3 <split [22/10]> Fold3
+```
+
+Betrachten wir das Objekt `mtcars_cv` näher.
+Die Musik spielt in der 1. Spalte.
+
+Lesen wir den Inhalt der 1. Spalte, 1 Zeile aus (nennen wir das mal "Position 1,1"):
+
+
+```
+## <Analysis/Assess/Total>
+## <21/11/32>
+```
+
+In dieser Zelle findet sich eine Aufteilung des Komplettdatensatzes in den Analyseteil (Analysis sample) und den Assessmentteil (Assessment Sample).
+
+Schauen wir jetzt in dieses Objekt näher an.
+Das können wir mit `str()` tun.
+`str()` zeigt uns die Strktur eines Objekts.
+
+
+```
+## List of 4
+##  $ data  :'data.frame':	32 obs. of  11 variables:
+##   ..$ mpg : num [1:32] 21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 ...
+##   ..$ cyl : num [1:32] 6 6 4 6 8 6 8 4 4 6 ...
+##   ..$ disp: num [1:32] 160 160 108 258 360 ...
+##   ..$ hp  : num [1:32] 110 110 93 110 175 105 245 62 95 123 ...
+##   ..$ drat: num [1:32] 3.9 3.9 3.85 3.08 3.15 2.76 3.21 3.69 3.92 3.92 ...
+##   ..$ wt  : num [1:32] 2.62 2.88 2.32 3.21 3.44 ...
+##   ..$ qsec: num [1:32] 16.5 17 18.6 19.4 17 ...
+##   ..$ vs  : num [1:32] 0 0 1 1 0 1 0 1 1 1 ...
+##   ..$ am  : num [1:32] 1 1 1 0 0 0 0 0 0 0 ...
+##   ..$ gear: num [1:32] 4 4 4 3 3 3 3 4 4 4 ...
+##   ..$ carb: num [1:32] 4 4 1 1 2 1 4 2 2 4 ...
+##  $ in_id : int [1:21] 2 3 10 11 12 13 14 15 17 18 ...
+##  $ out_id: logi NA
+##  $ id    : tibble [1 × 1] (S3: tbl_df/tbl/data.frame)
+##   ..$ id: chr "Fold1"
+##  - attr(*, "class")= chr [1:2] "vfold_split" "rsplit"
+```
+
+Oh! `pos11` ist eine Liste, und zwar eine durchaus komplexe.
+Wir müssen erkennen,
+dass in einer einzelnen Zelle dieses Dataframes viel mehr steht,
+als ein Skalar bzw. ein einzelnes, atomares Element.
+
+Damit handelt es sich bei Spalte 1 dieses Dataframes (`mtcars_cv`) also um eine Listenspalte.
+
+
+Üben wir uns noch etwas im Indizieren.
+
+Sprechen wir in `pos11` das erste Element an (`data`) und davon das erste Element:
+
+
+```
+##  [1] 21.0 21.0 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 17.8 16.4 17.3 15.2 10.4
+## [16] 10.4 14.7 32.4 30.4 33.9 21.5 15.5 15.2 13.3 19.2 27.3 26.0 30.4 15.8 19.7
+## [31] 15.0 21.4
+```
+
+Wir haben hier die doppelten Eckklammern benutzt, um den "eigentlichen" oder "inneren" Vektor zu bekommen, nicht die "außen" herumgewickelte Liste.
+Zur Erinnerung: Ein Datafram ist ein Spezialfall einer Liste, also auch eine Liste, nur eine mit bestimmten Eigenschaften.
+
+Zum Vergleich indizieren wir mal mit einer einfachen Eckklammer:
+
+
+```
+##                    mpg
+## Mazda RX4         21.0
+## Mazda RX4 Wag     21.0
+## Datsun 710        22.8
+## Hornet 4 Drive    21.4
+## Hornet Sportabout 18.7
+## Valiant           18.1
+```
 
 ## Aufgaben
 
@@ -1016,7 +1122,7 @@ Weiteres zu `map()` findet sich z.B. in @r4ds, [Kapitel 21.5](https://r4ds.had.c
 
 
 
-
+<!-- # Vertiefung -->
 
 
 

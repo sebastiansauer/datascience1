@@ -422,13 +422,88 @@ Weiteres zu `map()` findet sich z.B. in @r4ds, [Kapitel 21.5](https://r4ds.had.c
 ## Listenspalten
 
 
+### Wozu Listenspalten?
+
+Listenspalten sind immer dann sinnvoll,
+wenn eine einfache Tabelle nicht komplex genug für unsere Daten ist.
+
+Zwei Fälle stechen dabei ins Auge:
+
+1. Unsere Datenstruktur ist nicht rechteckig
+2. In einer Zelle der Tabelle soll mehr als ein einzelner Wert stehen: vielleicht ein Vektor, eine Liste oder eine Tabelle
+
+
+Der erstere Fall (nicht reckeckig) ließe sich noch einfach lösen,
+in dem man mit `NA` auffüllt.
+
+Der zweite Fall verlangt schlichtweg nach komplexeren Datenstrukturen.
+
+
 [Kap. 25.3](https://r4ds.had.co.nz/many-models.html?q=list#creating-list-columns) aus @r4ds bietet einen guten Einstieg in das Konzept von Listenspalten (list-columns) in R.
 
 
+### Beispiele für Listenspalten
 
 
+Wenn wir mit `tidymodels` arbeiten,
+werden wir mit Listenspalten zu tun haben.
+Daher ist es praktisch, sich schon mal damit zu beschäftigen.
+
+Hier ein Beispiel für eine $v=3$-fache Kreuzvalidierung:
+
+```{r}
+library(tidymodels)
+mtcars_cv <-
+  vfold_cv(mtcars, v = 3)
+
+mtcars_cv
+```
+
+Betrachten wir das Objekt `mtcars_cv` näher.
+Die Musik spielt in der 1. Spalte.
+
+Lesen wir den Inhalt der 1. Spalte, 1 Zeile aus (nennen wir das mal "Position 1,1"):
+
+```{r}
+pos11 <- mtcars_cv[[1]][[1]]
+pos11
+```
+
+In dieser Zelle findet sich eine Aufteilung des Komplettdatensatzes in den Analyseteil (Analysis sample) und den Assessmentteil (Assessment Sample).
+
+Schauen wir jetzt in dieses Objekt näher an.
+Das können wir mit `str()` tun.
+`str()` zeigt uns die Strktur eines Objekts.
+
+```{r}
+str(pos11)
+```
+
+Oh! `pos11` ist eine Liste, und zwar eine durchaus komplexe.
+Wir müssen erkennen,
+dass in einer einzelnen Zelle dieses Dataframes viel mehr steht,
+als ein Skalar bzw. ein einzelnes, atomares Element.
+
+Damit handelt es sich bei Spalte 1 dieses Dataframes (`mtcars_cv`) also um eine Listenspalte.
 
 
+Üben wir uns noch etwas im Indizieren.
+
+Sprechen wir in `pos11` das erste Element an (`data`) und davon das erste Element:
+
+```{r}
+pos11[["data"]][[1]]
+```
+
+Wir haben hier die doppelten Eckklammern benutzt, um den "eigentlichen" oder "inneren" Vektor zu bekommen, nicht die "außen" herumgewickelte Liste.
+Zur Erinnerung: Ein Datafram ist ein Spezialfall einer Liste, also auch eine Liste, nur eine mit bestimmten Eigenschaften.
+
+Zum Vergleich indizieren wir mal mit einer einfachen Eckklammer:
+
+```{r}
+pos11[["data"]][1] %>% 
+  head()
+```
 
 ## Aufgaben
 
@@ -440,7 +515,7 @@ Weiteres zu `map()` findet sich z.B. in @r4ds, [Kapitel 21.5](https://r4ds.had.c
 
 
 
-
+<!-- # Vertiefung -->
 
 
 ```{r render-outline-vertiefung, results = "asis", eval = FALSE, echo = FALSE, message = FALSE}
@@ -448,8 +523,8 @@ Weiteres zu `map()` findet sich z.B. in @r4ds, [Kapitel 21.5](https://r4ds.had.c
 
 render_section(course_dates_file,
                content_file,
-               id = 1, 
-               name = "Vetiefung",
+               i = 1, 
+               name = "Vertiefung",
                header_level = 1)
 ```
 

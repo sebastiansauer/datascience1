@@ -142,5 +142,7 @@ across
 map
 weiterführende-hinweise-1
 listenspalten
+wozu-listenspalten
+beispiele-für-listenspalten
 aufgaben-3
 literatur-14
