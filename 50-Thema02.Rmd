@@ -91,6 +91,15 @@ Vektoren können von folgenden Typen sein:
 Kommazahlen und Ganze Zahlen zusammen bilden den Typ `numeric` (numerisch) in R.
 
 
+
+Den Typ eines Vektors kann man mit `typeof()` ausgeben lassen:
+
+```{r}
+typeof(ein_vektor)
+```
+
+
+
 #### Faktoren
 
 
@@ -168,6 +177,22 @@ Aber *nicht* so:
 ```{r error=TRUE,  echo = TRUE}
 ein_vektor[1,2]
 ```
+
+Man darf Vektoren auch wie Listen ansprechen, also eine doppelte Eckklammer zum Indizieren verwenden
+
+```{r}
+ein_vektor[[2]]
+```
+
+Der Grund ist,
+dass Listen auch Vektoren sind, nur eben ein besonderer Fall eines Vektors:
+
+
+```{r}
+is.vector(eine_liste)
+```
+
+
 
 In @modar, Kap. 5.3.1 findet man weitere Indizierungsmöglichkeiten für reine Vektoren.
 
@@ -447,6 +472,8 @@ Der zweite Fall verlangt schlichtweg nach komplexeren Datenstrukturen.
 ### Beispiele für Listenspalten
 
 
+#### tidymodel
+
 Wenn wir mit `tidymodels` arbeiten,
 werden wir mit Listenspalten zu tun haben.
 Daher ist es praktisch, sich schon mal damit zu beschäftigen.
@@ -512,11 +539,175 @@ Mit `pluck()` bekommen wir das gleiche Ergebnis,
 nur etwas komfortabler,
 da wir keine Eckklammern tippen müssen:
 
-```{r}
+```{r echo = TRUE}
 pluck(pos11, "data", 1, 1)
 ```
 
 Wie man sieht, können wir beliebig tief in das Objekt hineinindizieren.
+
+
+
+#### Kurs DataScience1
+
+Ein Kurs, wie dieser, kann anhand einer "Deskriptoren" wie Titel der Inhalte, Lernziele, Literatur und so weiter zusammmengefasst werden.
+Diese Deskriptoren kann man wiederum jeder Kurswoche oder jedem Kursabschnitt zuordnen, so dass eine zweidimensionale Struktur resultiert. Eine Tabelle, einfach gesagt, etwa so:
+
+
+
+```{r}
+tibble::tribble(
+  ~Nr,   ~Titel,   ~Literatur,   ~Aufgaben,
+   1L, "Titel1", "Literatur1", "Aufgaben1",
+   2L, "Titel2", "Literatur2", "Aufgaben2",
+   3L, "Titel3", "Literatur3", "Aufgaben3"
+  ) %>% 
+  gt::gt()
+```
+
+
+Wie man sieht, entspricht jede Spalte einem Deskriptor des Kurses,
+und jede Zeile entspricht einem Thema (oder Woche oder Abschnitt) des Kurses.
+
+
+Jetzt ist es nur so,
+dass einzelne Zellen dieser Tabelle nicht aus nur einem Element bestehen.
+So könnte etwa "Aufgaben1" aus mehreren Aufgaben bestehen, 
+die jeweils wiederum aus mehreren (Text-)Elementen bestehen. 
+Oder "Literatur2" besteht vielleicht aus zwei Literaturquellen.
+
+Kurz gesagt, wir brauchen eine Tabelle,
+die erlaubt, in einer Zelle mehr als ein einzelnes Element zu packen.
+Listenspalten erlauben das.
+
+Schauen wir uns die "Mastertabelle" dieses Kurses an zur Illustration.
+
+Zunächst `source`n wir die nötigen Funktionen.
+
+```{r echo = TRUE}
+source("https://raw.githubusercontent.com/sebastiansauer/Lehre/main/R-Code/render-course-sections.R")
+```
+
+
+In Ihrem `Environment` sollten Sie jetzt die gesourcten Funktionen sehen.
+Mit Klick auf den Funktionsnamen können Sie diese Funktionen auch betrachten.
+
+Die Deskriptoren des Kurses speisen sich aus zwei Textdateien, gespeichert im sog. YAML-Format, ein einfaches Textformat, und hier nicht weiter von Belang.
+
+Zum einen eine Datei mit den Datumsangaben:
+
+```{r echo = TRUE}
+dates_file <- "https://raw.githubusercontent.com/sebastiansauer/datascience1/main/course-dates.yaml"
+```
+
+
+Zum anderen eine Datei mit den Deskriptoren,
+die unabhängig vom Datum sind:
+
+```{r echo = TRUE}
+course_content_file <- "https://raw.githubusercontent.com/sebastiansauer/datascience1/main/_modul-ueberblick.yaml"
+```
+
+
+Im [Githup-Repo](https://github.com/sebastiansauer/datascience1) dieses Kurses können Sie die Dateien komfortabel betrachten.
+
+
+Die "Mastertabelle" kann man mit folgender Funktion erstellen:
+
+
+```{r echo = TRUE}
+mastertable <- build_master_course_table(course_dates_file = dates_file,
+                                         content_file = course_content_file)
+```
+
+Betrachten Sie die Tabelle in Ruhe!
+Sie werden sehen, dass einige Spalten komplex sind, 
+also mehr als nur einen einzelnen Wert enthalten:
+
+
+```{r echo = TRUE}
+mastertable[["Vorbereitung"]][[1]]
+```
+
+
+Gerade haben wir aus dem Objekt `mastertable`, ein Dataframe, 
+die Spalte mit dem Namen *Vorbereitung*  ausgelesen und aus dieser Spalte das erste erste Element.
+Dieses erste Element ist ein Textvektor der Länge 3.
+
+Daraus könnten wir z.B. das zweite Element auslesen:
+
+
+
+```{r echo = TRUE}
+mastertable[["Vorbereitung"]][[1]][2]
+```
+
+
+Was würde passieren, wenn wir anstelle der doppelten Eckklammer einfache Eckklammern verwenden würden?
+
+
+
+```{r echo = TRUE}
+mastertable["Vorbereitung"] %>% class()
+mastertable[["Vorbereitung"]] %>% class()
+```
+
+Das macht noch keinen großen Unterschied,
+aber schauen wir mal weiter.
+
+Wenn wir das erste Element der Spalte "Vorbereitung" mit *doppelter* Eckklammer ansprechen, bekommen wir einen Text-Vektor (der Länge drei) zurück.
+
+```{r echo = TRUE}
+mastertable[["Vorbereitung"]][[1]]
+```
+
+Jetzt können wir, wie oben getan,
+diese einzelnen Elemente ansprechen.
+
+
+Aber: Wenn wir das erste Element der Spalte "Vorbereitung" mit einfacher Eckklammer ansprechen, bekommen wir eine Liste *mit einem Element* zurück. 
+
+```{r echo = TRUE}
+mastertable[["Vorbereitung"]][1]
+```
+
+Wir können also nicht (ohne weiteres "Abschälen") z.B. das zweite Element des Text-Vektors ("Installieren Sie...") auslesen:
+
+```{r error = TRUE, echo = TRUE}
+mastertable[["Vorbereitung"]][1] %>% pluck(2)
+```
+
+
+Wenn Sie sich über `pluck()` wundern, 
+Sie hätten synonym auch schreiben können:
+
+```{r error = TRUE, echo = TRUE}
+mastertable[["Vorbereitung"]][1][2]
+```
+
+
+Da die Liste nur aus einem Element besteht,
+könnten wir z.B. nicht das zweite Element der Liste ansprechen:
+
+```{r error = TRUE, echo = TRUE}
+mastertable[["Vorbereitung"]][1][[2]]
+```
+
+
+Haben wir aber die doppelte Eckklammer verwendet,
+so bekommen wir einen Vektor der Länge drei zurück (vom Typ Text),
+und daher können wir die Elemente 1 bis 3 ansprechen:
+
+```{r error = TRUE, echo = TRUE}
+mastertable[["Vorbereitung"]][[1]][2]
+```
+
+Dabei ist es egal, ob Sie einfache oder doppelte Eckklammern benutzen,
+da Listen auch Vektoren sind.   
+
+
+
+
+
 
 
 

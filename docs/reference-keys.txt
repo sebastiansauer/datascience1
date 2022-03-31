@@ -144,5 +144,7 @@ weiterführende-hinweise-1
 listenspalten
 wozu-listenspalten
 beispiele-für-listenspalten
+tidymodel
+kurs-datascience1
 aufgaben-3
 literatur-14

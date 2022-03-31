@@ -114,6 +114,16 @@ Vektoren können von folgenden Typen sein:
 Kommazahlen und Ganze Zahlen zusammen bilden den Typ `numeric` (numerisch) in R.
 
 
+
+Den Typ eines Vektors kann man mit `typeof()` ausgeben lassen:
+
+
+```
+## [1] "double"
+```
+
+
+
 #### Faktoren
 
 
@@ -237,6 +247,24 @@ ein_vektor[1,2]
 ```
 ## Error in ein_vektor[1, 2]: incorrect number of dimensions
 ```
+
+Man darf Vektoren auch wie Listen ansprechen, also eine doppelte Eckklammer zum Indizieren verwenden
+
+
+```
+## [1] 2
+```
+
+Der Grund ist,
+dass Listen auch Vektoren sind, nur eben ein besonderer Fall eines Vektors:
+
+
+
+```
+## [1] TRUE
+```
+
+
 
 In @modar, Kap. 5.3.1 findet man weitere Indizierungsmöglichkeiten für reine Vektoren.
 
@@ -695,6 +723,8 @@ Der zweite Fall verlangt schlichtweg nach komplexeren Datenstrukturen.
 ### Beispiele für Listenspalten
 
 
+#### tidymodel
+
 Wenn wir mit `tidymodels` arbeiten,
 werden wir mit Listenspalten zu tun haben.
 Daher ist es praktisch, sich schon mal damit zu beschäftigen.
@@ -761,7 +791,7 @@ str(pos11)
 ##   ..$ am  : num [1:32] 1 1 1 0 0 0 0 0 0 0 ...
 ##   ..$ gear: num [1:32] 4 4 4 3 3 3 3 4 4 4 ...
 ##   ..$ carb: num [1:32] 4 4 1 1 2 1 4 2 2 4 ...
-##  $ in_id : int [1:21] 2 5 6 7 8 10 13 14 16 17 ...
+##  $ in_id : int [1:21] 1 2 3 4 5 6 7 10 11 14 ...
 ##  $ out_id: logi NA
 ##  $ id    : tibble [1 × 1] (S3: tbl_df/tbl/data.frame)
 ##   ..$ id: chr "Fold1"
@@ -818,11 +848,603 @@ nur etwas komfortabler,
 da wir keine Eckklammern tippen müssen:
 
 
+```r
+pluck(pos11, "data", 1, 1)
+```
+
 ```
 ## [1] 21
 ```
 
 Wie man sieht, können wir beliebig tief in das Objekt hineinindizieren.
+
+
+
+#### Kurs DataScience1
+
+Ein Kurs, wie dieser, kann anhand einer "Deskriptoren" wie Titel der Inhalte, Lernziele, Literatur und so weiter zusammmengefasst werden.
+Diese Deskriptoren kann man wiederum jeder Kurswoche oder jedem Kursabschnitt zuordnen, so dass eine zweidimensionale Struktur resultiert. Eine Tabelle, einfach gesagt, etwa so:
+
+
+
+
+```{=html}
+<div id="whromxdhri" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#whromxdhri .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#whromxdhri .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#whromxdhri .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#whromxdhri .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#whromxdhri .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#whromxdhri .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#whromxdhri .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#whromxdhri .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#whromxdhri .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#whromxdhri .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#whromxdhri .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#whromxdhri .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#whromxdhri .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#whromxdhri .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#whromxdhri .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#whromxdhri .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#whromxdhri .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#whromxdhri .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#whromxdhri .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#whromxdhri .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#whromxdhri .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#whromxdhri .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#whromxdhri .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#whromxdhri .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#whromxdhri .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#whromxdhri .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#whromxdhri .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#whromxdhri .gt_left {
+  text-align: left;
+}
+
+#whromxdhri .gt_center {
+  text-align: center;
+}
+
+#whromxdhri .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#whromxdhri .gt_font_normal {
+  font-weight: normal;
+}
+
+#whromxdhri .gt_font_bold {
+  font-weight: bold;
+}
+
+#whromxdhri .gt_font_italic {
+  font-style: italic;
+}
+
+#whromxdhri .gt_super {
+  font-size: 65%;
+}
+
+#whromxdhri .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 65%;
+}
+</style>
+<table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Nr</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Titel</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Literatur</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Aufgaben</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_right">1</td>
+<td class="gt_row gt_left">Titel1</td>
+<td class="gt_row gt_left">Literatur1</td>
+<td class="gt_row gt_left">Aufgaben1</td></tr>
+    <tr><td class="gt_row gt_right">2</td>
+<td class="gt_row gt_left">Titel2</td>
+<td class="gt_row gt_left">Literatur2</td>
+<td class="gt_row gt_left">Aufgaben2</td></tr>
+    <tr><td class="gt_row gt_right">3</td>
+<td class="gt_row gt_left">Titel3</td>
+<td class="gt_row gt_left">Literatur3</td>
+<td class="gt_row gt_left">Aufgaben3</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+```
+
+
+Wie man sieht, entspricht jede Spalte einem Deskriptor des Kurses,
+und jede Zeile entspricht einem Thema (oder Woche oder Abschnitt) des Kurses.
+
+
+Jetzt ist es nur so,
+dass einzelne Zellen dieser Tabelle nicht aus nur einem Element bestehen.
+So könnte etwa "Aufgaben1" aus mehreren Aufgaben bestehen, 
+die jeweils wiederum aus mehreren (Text-)Elementen bestehen. 
+Oder "Literatur2" besteht vielleicht aus zwei Literaturquellen.
+
+Kurz gesagt, wir brauchen eine Tabelle,
+die erlaubt, in einer Zelle mehr als ein einzelnes Element zu packen.
+Listenspalten erlauben das.
+
+Schauen wir uns die "Mastertabelle" dieses Kurses an zur Illustration.
+
+Zunächst `source`n wir die nötigen Funktionen.
+
+
+```r
+source("https://raw.githubusercontent.com/sebastiansauer/Lehre/main/R-Code/render-course-sections.R")
+```
+
+
+In Ihrem `Environment` sollten Sie jetzt die gesourcten Funktionen sehen.
+Mit Klick auf den Funktionsnamen können Sie diese Funktionen auch betrachten.
+
+Die Deskriptoren des Kurses speisen sich aus zwei Textdateien, gespeichert im sog. YAML-Format, ein einfaches Textformat, und hier nicht weiter von Belang.
+
+Zum einen eine Datei mit den Datumsangaben:
+
+
+```r
+dates_file <- "https://raw.githubusercontent.com/sebastiansauer/datascience1/main/course-dates.yaml"
+```
+
+
+Zum anderen eine Datei mit den Deskriptoren,
+die unabhängig vom Datum sind:
+
+
+```r
+course_content_file <- "https://raw.githubusercontent.com/sebastiansauer/datascience1/main/_modul-ueberblick.yaml"
+```
+
+
+Im [Githup-Repo](https://github.com/sebastiansauer/datascience1) dieses Kurses können Sie die Dateien komfortabel betrachten.
+
+
+Die "Mastertabelle" kann man mit folgender Funktion erstellen:
+
+
+
+```r
+mastertable <- build_master_course_table(course_dates_file = dates_file,
+                                         content_file = course_content_file)
+```
+
+Betrachten Sie die Tabelle in Ruhe!
+Sie werden sehen, dass einige Spalten komplex sind, 
+also mehr als nur einen einzelnen Wert enthalten:
+
+
+
+```r
+mastertable[["Vorbereitung"]][[1]]
+```
+
+```
+## [1] "Lesen Sie die Hinweise zum Modul."                                       
+## [2] "Installieren (oder Updaten) Sie die für dieses Modul angegeben Software."
+## [3] "Lesen Sie die Literatur."
+```
+
+
+Gerade haben wir aus dem Objekt `mastertable`, ein Dataframe, 
+die Spalte mit dem Namen *Vorbereitung*  ausgelesen und aus dieser Spalte das erste erste Element.
+Dieses erste Element ist ein Textvektor der Länge 3.
+
+Daraus könnten wir z.B. das zweite Element auslesen:
+
+
+
+
+```r
+mastertable[["Vorbereitung"]][[1]][2]
+```
+
+```
+## [1] "Installieren (oder Updaten) Sie die für dieses Modul angegeben Software."
+```
+
+
+Was würde passieren, wenn wir anstelle der doppelten Eckklammer einfache Eckklammern verwenden würden?
+
+
+
+
+```r
+mastertable["Vorbereitung"] %>% class()
+```
+
+```
+## [1] "tbl_df"     "tbl"        "data.frame"
+```
+
+```r
+mastertable[["Vorbereitung"]] %>% class()
+```
+
+```
+## [1] "list"
+```
+
+Das macht noch keinen großen Unterschied,
+aber schauen wir mal weiter.
+
+Wenn wir das erste Element der Spalte "Vorbereitung" mit *doppelter* Eckklammer ansprechen, bekommen wir einen Text-Vektor (der Länge drei) zurück.
+
+
+```r
+mastertable[["Vorbereitung"]][[1]]
+```
+
+```
+## [1] "Lesen Sie die Hinweise zum Modul."                                       
+## [2] "Installieren (oder Updaten) Sie die für dieses Modul angegeben Software."
+## [3] "Lesen Sie die Literatur."
+```
+
+Jetzt können wir, wie oben getan,
+diese einzelnen Elemente ansprechen.
+
+
+Aber: Wenn wir das erste Element der Spalte "Vorbereitung" mit einfacher Eckklammer ansprechen, bekommen wir eine Liste *mit einem Element* zurück. 
+
+
+```r
+mastertable[["Vorbereitung"]][1]
+```
+
+```
+## [[1]]
+## [1] "Lesen Sie die Hinweise zum Modul."                                       
+## [2] "Installieren (oder Updaten) Sie die für dieses Modul angegeben Software."
+## [3] "Lesen Sie die Literatur."
+```
+
+Wir können also nicht (ohne weiteres "Abschälen") z.B. das zweite Element des Text-Vektors ("Installieren Sie...") auslesen:
+
+
+```r
+mastertable[["Vorbereitung"]][1] %>% pluck(2)
+```
+
+```
+## NULL
+```
+
+
+Wenn Sie sich über `pluck()` wundern, 
+Sie hätten synonym auch schreiben können:
+
+
+```r
+mastertable[["Vorbereitung"]][1][2]
+```
+
+```
+## [[1]]
+## NULL
+```
+
+
+Da die Liste nur aus einem Element besteht,
+könnten wir z.B. nicht das zweite Element der Liste ansprechen:
+
+
+```r
+mastertable[["Vorbereitung"]][1][[2]]
+```
+
+```
+## Error in mastertable[["Vorbereitung"]][1][[2]]: subscript out of bounds
+```
+
+
+Haben wir aber die doppelte Eckklammer verwendet,
+so bekommen wir einen Vektor der Länge drei zurück (vom Typ Text),
+und daher können wir die Elemente 1 bis 3 ansprechen:
+
+
+```r
+mastertable[["Vorbereitung"]][[1]][2]
+```
+
+```
+## [1] "Installieren (oder Updaten) Sie die für dieses Modul angegeben Software."
+```
+
+Dabei ist es egal, ob Sie einfache oder doppelte Eckklammern benutzen,
+da Listen auch Vektoren sind.   
+
+
+
+
+
 
 
 
