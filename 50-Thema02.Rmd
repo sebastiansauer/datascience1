@@ -1,3 +1,8 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
 
 
 
@@ -193,6 +198,16 @@ is.vector(eine_liste)
 ```
 
 
+Was passiert, wenn man bei einem Vektor der Länge 3 das 4. Element indiziert?
+
+```{r echo = TRUE}
+ein_vektor[4]
+```
+
+Ein schnödes `NA` ist die Antwort. Das ist interessant: 
+Wir bekommen keine Fehlermeldung, sondern den Hinweis,
+das angesprochene Element sei leer bzw. nicht verfügbar.
+
 
 In @modar, Kap. 5.3.1 findet man weitere Indizierungsmöglichkeiten für reine Vektoren.
 
@@ -215,6 +230,9 @@ eine_liste[1]
 eine_liste[2]
 ```
 
+Das hat den technischen Hintergrund,
+dass Listen als eine bestimmte Art von Vektoren implementiert sind.
+
 
 Mann kann auch die "doppelte Eckklammer", `[[` zum Auslesen verwenden;
 dann wird anstelle einer Liste die einfachere Struktur eines Vektors zurückgegeben:
@@ -223,6 +241,11 @@ dann wird anstelle einer Liste die einfachere Struktur eines Vektors zurückgege
 ```{r echo = TRUE}
 eine_liste[[1]]
 ```
+
+Man könnte sagen,
+die "äußere Schicht" des Objekts, die Liste,
+wird abgeschält, und man bekommnt die "innere" Schicht,
+den Vektor.
 
 
 Mann die Elemente der Liste entweder mit ihrer Positionsnummer (1, 2, ...) oder,
@@ -267,6 +290,26 @@ Und jetzt aus dem 4. Element das 1. Element:
 pluck(eine_liste, 4, 1)
 ```
 
+
+Probieren Sie mal, aus einer Liste der Länge 5 das 6. Element auszulesen:
+
+```{r echo = TRUE}
+eine_liste %>% length()
+```
+
+```{r echo = TRUE, error = TRUE}
+eine_liste[[6]]
+```
+
+Unser Versuch wird mit einer Fehlermeldung quittiert.
+
+
+Sprechen wir die Liste wie einen (atomaren) Vektor an,
+bekommen wir hingegen ein `NA` bzw. ein `NULL`:
+
+```{r echo = TRUE, error = TRUE}
+eine_liste[6]
+```
 
 #### Tibbles
 
@@ -524,8 +567,12 @@ Sprechen wir in `pos11` das erste Element an (`data`) und davon das erste Elemen
 pos11[["data"]][[1]]
 ```
 
-Wir haben hier die doppelten Eckklammern benutzt, um den "eigentlichen" oder "inneren" Vektor zu bekommen, nicht die "außen" herumgewickelte Liste.
-Zur Erinnerung: Ein Datafram ist ein Spezialfall einer Liste, also auch eine Liste, nur eine mit bestimmten Eigenschaften.
+Wir haben hier die doppelten Eckklammern benutzt, 
+um den "eigentlichen" oder "inneren" Vektor zu bekommen, 
+nicht die "außen" herumgewickelte Liste.
+Zur Erinnerung: 
+Ein Dataframe ist ein Spezialfall einer Liste, 
+also auch eine Liste, nur eine mit bestimmten Eigenschaften.
 
 Zum Vergleich indizieren wir mal mit einer einfachen Eckklammer:
 
@@ -550,7 +597,9 @@ Wie man sieht, können wir beliebig tief in das Objekt hineinindizieren.
 #### Kurs DataScience1
 
 Ein Kurs, wie dieser, kann anhand einer "Deskriptoren" wie Titel der Inhalte, Lernziele, Literatur und so weiter zusammmengefasst werden.
-Diese Deskriptoren kann man wiederum jeder Kurswoche oder jedem Kursabschnitt zuordnen, so dass eine zweidimensionale Struktur resultiert. Eine Tabelle, einfach gesagt, etwa so:
+Diese Deskriptoren kann man wiederum jeder Kurswoche oder jedem Kursabschnitt zuordnen, 
+so dass eine zweidimensionale Struktur resultiert. 
+Eine Tabelle, einfach gesagt, etwa so:
 
 
 
@@ -608,7 +657,8 @@ course_content_file <- "https://raw.githubusercontent.com/sebastiansauer/datasci
 ```
 
 
-Im [Githup-Repo](https://github.com/sebastiansauer/datascience1) dieses Kurses können Sie die Dateien komfortabel betrachten.
+Im [Githup-Repo](https://github.com/sebastiansauer/datascience1) 
+dieses Kurses können Sie die Dateien komfortabel betrachten.
 
 
 Die "Mastertabelle" kann man mit folgender Funktion erstellen:
@@ -654,7 +704,8 @@ mastertable[["Vorbereitung"]] %>% class()
 Das macht noch keinen großen Unterschied,
 aber schauen wir mal weiter.
 
-Wenn wir das erste Element der Spalte "Vorbereitung" mit *doppelter* Eckklammer ansprechen, bekommen wir einen Text-Vektor (der Länge drei) zurück.
+Wenn wir das erste Element der Spalte "Vorbereitung" mit *doppelter* Eckklammer ansprechen, 
+bekommen wir einen Text-Vektor (der Länge drei) zurück.
 
 ```{r echo = TRUE}
 mastertable[["Vorbereitung"]][[1]]
@@ -670,7 +721,8 @@ Aber: Wenn wir das erste Element der Spalte "Vorbereitung" mit einfacher Eckklam
 mastertable[["Vorbereitung"]][1]
 ```
 
-Wir können also nicht (ohne weiteres "Abschälen") z.B. das zweite Element des Text-Vektors ("Installieren Sie...") auslesen:
+Wir können also nicht (ohne weiteres "Abschälen") 
+z.B. das zweite Element des Text-Vektors ("Installieren Sie...") auslesen:
 
 ```{r error = TRUE, echo = TRUE}
 mastertable[["Vorbereitung"]][1] %>% pluck(2)

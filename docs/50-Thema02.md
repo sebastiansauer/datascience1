@@ -1,3 +1,8 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
 
 
 
@@ -265,6 +270,21 @@ dass Listen auch Vektoren sind, nur eben ein besonderer Fall eines Vektors:
 ```
 
 
+Was passiert, wenn man bei einem Vektor der Länge 3 das 4. Element indiziert?
+
+
+```r
+ein_vektor[4]
+```
+
+```
+## [1] NA
+```
+
+Ein schnödes `NA` ist die Antwort. Das ist interessant: 
+Wir bekommen keine Fehlermeldung, sondern den Hinweis,
+das angesprochene Element sei leer bzw. nicht verfügbar.
+
 
 In @modar, Kap. 5.3.1 findet man weitere Indizierungsmöglichkeiten für reine Vektoren.
 
@@ -311,6 +331,9 @@ eine_liste[2]
 ## [1] 1
 ```
 
+Das hat den technischen Hintergrund,
+dass Listen als eine bestimmte Art von Vektoren implementiert sind.
+
 
 Mann kann auch die "doppelte Eckklammer", `[[` zum Auslesen verwenden;
 dann wird anstelle einer Liste die einfachere Struktur eines Vektors zurückgegeben:
@@ -324,6 +347,11 @@ eine_liste[[1]]
 ```
 ## [1] "Einführung"
 ```
+
+Man könnte sagen,
+die "äußere Schicht" des Objekts, die Liste,
+wird abgeschält, und man bekommnt die "innere" Schicht,
+den Vektor.
 
 
 Mann die Elemente der Liste entweder mit ihrer Positionsnummer (1, 2, ...) oder,
@@ -393,6 +421,42 @@ pluck(eine_liste, 4, 1)
 ## [1] "dies"
 ```
 
+
+Probieren Sie mal, aus einer Liste der Länge 5 das 6. Element auszulesen:
+
+
+```r
+eine_liste %>% length()
+```
+
+```
+## [1] 5
+```
+
+
+```r
+eine_liste[[6]]
+```
+
+```
+## Error in eine_liste[[6]]: subscript out of bounds
+```
+
+Unser Versuch wird mit einer Fehlermeldung quittiert.
+
+
+Sprechen wir die Liste wie einen (atomaren) Vektor an,
+bekommen wir hingegen ein `NA` bzw. ein `NULL`:
+
+
+```r
+eine_liste[6]
+```
+
+```
+## $<NA>
+## NULL
+```
 
 #### Tibbles
 
@@ -791,7 +855,7 @@ str(pos11)
 ##   ..$ am  : num [1:32] 1 1 1 0 0 0 0 0 0 0 ...
 ##   ..$ gear: num [1:32] 4 4 4 3 3 3 3 4 4 4 ...
 ##   ..$ carb: num [1:32] 4 4 1 1 2 1 4 2 2 4 ...
-##  $ in_id : int [1:21] 1 2 3 4 5 6 7 10 11 14 ...
+##  $ in_id : int [1:21] 1 2 3 4 6 7 9 13 15 17 ...
 ##  $ out_id: logi NA
 ##  $ id    : tibble [1 × 1] (S3: tbl_df/tbl/data.frame)
 ##   ..$ id: chr "Fold1"
@@ -821,8 +885,12 @@ pos11[["data"]][[1]]
 ## [31] 15.0 21.4
 ```
 
-Wir haben hier die doppelten Eckklammern benutzt, um den "eigentlichen" oder "inneren" Vektor zu bekommen, nicht die "außen" herumgewickelte Liste.
-Zur Erinnerung: Ein Datafram ist ein Spezialfall einer Liste, also auch eine Liste, nur eine mit bestimmten Eigenschaften.
+Wir haben hier die doppelten Eckklammern benutzt, 
+um den "eigentlichen" oder "inneren" Vektor zu bekommen, 
+nicht die "außen" herumgewickelte Liste.
+Zur Erinnerung: 
+Ein Dataframe ist ein Spezialfall einer Liste, 
+also auch eine Liste, nur eine mit bestimmten Eigenschaften.
 
 Zum Vergleich indizieren wir mal mit einer einfachen Eckklammer:
 
@@ -863,18 +931,20 @@ Wie man sieht, können wir beliebig tief in das Objekt hineinindizieren.
 #### Kurs DataScience1
 
 Ein Kurs, wie dieser, kann anhand einer "Deskriptoren" wie Titel der Inhalte, Lernziele, Literatur und so weiter zusammmengefasst werden.
-Diese Deskriptoren kann man wiederum jeder Kurswoche oder jedem Kursabschnitt zuordnen, so dass eine zweidimensionale Struktur resultiert. Eine Tabelle, einfach gesagt, etwa so:
+Diese Deskriptoren kann man wiederum jeder Kurswoche oder jedem Kursabschnitt zuordnen, 
+so dass eine zweidimensionale Struktur resultiert. 
+Eine Tabelle, einfach gesagt, etwa so:
 
 
 
 
 ```{=html}
-<div id="whromxdhri" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="bedjccmcpn" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#whromxdhri .gt_table {
+#bedjccmcpn .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -899,7 +969,7 @@ Diese Deskriptoren kann man wiederum jeder Kurswoche oder jedem Kursabschnitt zu
   border-left-color: #D3D3D3;
 }
 
-#whromxdhri .gt_heading {
+#bedjccmcpn .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -911,7 +981,7 @@ Diese Deskriptoren kann man wiederum jeder Kurswoche oder jedem Kursabschnitt zu
   border-right-color: #D3D3D3;
 }
 
-#whromxdhri .gt_title {
+#bedjccmcpn .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -921,7 +991,7 @@ Diese Deskriptoren kann man wiederum jeder Kurswoche oder jedem Kursabschnitt zu
   border-bottom-width: 0;
 }
 
-#whromxdhri .gt_subtitle {
+#bedjccmcpn .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -931,13 +1001,13 @@ Diese Deskriptoren kann man wiederum jeder Kurswoche oder jedem Kursabschnitt zu
   border-top-width: 0;
 }
 
-#whromxdhri .gt_bottom_border {
+#bedjccmcpn .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#whromxdhri .gt_col_headings {
+#bedjccmcpn .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -952,7 +1022,7 @@ Diese Deskriptoren kann man wiederum jeder Kurswoche oder jedem Kursabschnitt zu
   border-right-color: #D3D3D3;
 }
 
-#whromxdhri .gt_col_heading {
+#bedjccmcpn .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -972,7 +1042,7 @@ Diese Deskriptoren kann man wiederum jeder Kurswoche oder jedem Kursabschnitt zu
   overflow-x: hidden;
 }
 
-#whromxdhri .gt_column_spanner_outer {
+#bedjccmcpn .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -984,15 +1054,15 @@ Diese Deskriptoren kann man wiederum jeder Kurswoche oder jedem Kursabschnitt zu
   padding-right: 4px;
 }
 
-#whromxdhri .gt_column_spanner_outer:first-child {
+#bedjccmcpn .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#whromxdhri .gt_column_spanner_outer:last-child {
+#bedjccmcpn .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#whromxdhri .gt_column_spanner {
+#bedjccmcpn .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1004,7 +1074,7 @@ Diese Deskriptoren kann man wiederum jeder Kurswoche oder jedem Kursabschnitt zu
   width: 100%;
 }
 
-#whromxdhri .gt_group_heading {
+#bedjccmcpn .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1026,7 +1096,7 @@ Diese Deskriptoren kann man wiederum jeder Kurswoche oder jedem Kursabschnitt zu
   vertical-align: middle;
 }
 
-#whromxdhri .gt_empty_group_heading {
+#bedjccmcpn .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1041,15 +1111,15 @@ Diese Deskriptoren kann man wiederum jeder Kurswoche oder jedem Kursabschnitt zu
   vertical-align: middle;
 }
 
-#whromxdhri .gt_from_md > :first-child {
+#bedjccmcpn .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#whromxdhri .gt_from_md > :last-child {
+#bedjccmcpn .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#whromxdhri .gt_row {
+#bedjccmcpn .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1068,7 +1138,7 @@ Diese Deskriptoren kann man wiederum jeder Kurswoche oder jedem Kursabschnitt zu
   overflow-x: hidden;
 }
 
-#whromxdhri .gt_stub {
+#bedjccmcpn .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1080,7 +1150,7 @@ Diese Deskriptoren kann man wiederum jeder Kurswoche oder jedem Kursabschnitt zu
   padding-left: 12px;
 }
 
-#whromxdhri .gt_summary_row {
+#bedjccmcpn .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1090,7 +1160,7 @@ Diese Deskriptoren kann man wiederum jeder Kurswoche oder jedem Kursabschnitt zu
   padding-right: 5px;
 }
 
-#whromxdhri .gt_first_summary_row {
+#bedjccmcpn .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1100,7 +1170,7 @@ Diese Deskriptoren kann man wiederum jeder Kurswoche oder jedem Kursabschnitt zu
   border-top-color: #D3D3D3;
 }
 
-#whromxdhri .gt_grand_summary_row {
+#bedjccmcpn .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1110,7 +1180,7 @@ Diese Deskriptoren kann man wiederum jeder Kurswoche oder jedem Kursabschnitt zu
   padding-right: 5px;
 }
 
-#whromxdhri .gt_first_grand_summary_row {
+#bedjccmcpn .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1120,11 +1190,11 @@ Diese Deskriptoren kann man wiederum jeder Kurswoche oder jedem Kursabschnitt zu
   border-top-color: #D3D3D3;
 }
 
-#whromxdhri .gt_striped {
+#bedjccmcpn .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#whromxdhri .gt_table_body {
+#bedjccmcpn .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1133,7 +1203,7 @@ Diese Deskriptoren kann man wiederum jeder Kurswoche oder jedem Kursabschnitt zu
   border-bottom-color: #D3D3D3;
 }
 
-#whromxdhri .gt_footnotes {
+#bedjccmcpn .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1147,13 +1217,13 @@ Diese Deskriptoren kann man wiederum jeder Kurswoche oder jedem Kursabschnitt zu
   border-right-color: #D3D3D3;
 }
 
-#whromxdhri .gt_footnote {
+#bedjccmcpn .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#whromxdhri .gt_sourcenotes {
+#bedjccmcpn .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1167,41 +1237,41 @@ Diese Deskriptoren kann man wiederum jeder Kurswoche oder jedem Kursabschnitt zu
   border-right-color: #D3D3D3;
 }
 
-#whromxdhri .gt_sourcenote {
+#bedjccmcpn .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#whromxdhri .gt_left {
+#bedjccmcpn .gt_left {
   text-align: left;
 }
 
-#whromxdhri .gt_center {
+#bedjccmcpn .gt_center {
   text-align: center;
 }
 
-#whromxdhri .gt_right {
+#bedjccmcpn .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#whromxdhri .gt_font_normal {
+#bedjccmcpn .gt_font_normal {
   font-weight: normal;
 }
 
-#whromxdhri .gt_font_bold {
+#bedjccmcpn .gt_font_bold {
   font-weight: bold;
 }
 
-#whromxdhri .gt_font_italic {
+#bedjccmcpn .gt_font_italic {
   font-style: italic;
 }
 
-#whromxdhri .gt_super {
+#bedjccmcpn .gt_super {
   font-size: 65%;
 }
 
-#whromxdhri .gt_footnote_marks {
+#bedjccmcpn .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -1284,7 +1354,8 @@ course_content_file <- "https://raw.githubusercontent.com/sebastiansauer/datasci
 ```
 
 
-Im [Githup-Repo](https://github.com/sebastiansauer/datascience1) dieses Kurses können Sie die Dateien komfortabel betrachten.
+Im [Githup-Repo](https://github.com/sebastiansauer/datascience1) 
+dieses Kurses können Sie die Dateien komfortabel betrachten.
 
 
 Die "Mastertabelle" kann man mit folgender Funktion erstellen:
@@ -1355,7 +1426,8 @@ mastertable[["Vorbereitung"]] %>% class()
 Das macht noch keinen großen Unterschied,
 aber schauen wir mal weiter.
 
-Wenn wir das erste Element der Spalte "Vorbereitung" mit *doppelter* Eckklammer ansprechen, bekommen wir einen Text-Vektor (der Länge drei) zurück.
+Wenn wir das erste Element der Spalte "Vorbereitung" mit *doppelter* Eckklammer ansprechen, 
+bekommen wir einen Text-Vektor (der Länge drei) zurück.
 
 
 ```r
@@ -1386,7 +1458,8 @@ mastertable[["Vorbereitung"]][1]
 ## [3] "Lesen Sie die Literatur."
 ```
 
-Wir können also nicht (ohne weiteres "Abschälen") z.B. das zweite Element des Text-Vektors ("Installieren Sie...") auslesen:
+Wir können also nicht (ohne weiteres "Abschälen") 
+z.B. das zweite Element des Text-Vektors ("Installieren Sie...") auslesen:
 
 
 ```r
