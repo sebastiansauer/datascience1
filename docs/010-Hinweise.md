@@ -1,8 +1,101 @@
-# Modulüberblick
+
+<!-- # (PART) Organisatorisches {-} -->
+
+# Hinweise 
 
 
 
 
+
+
+<a href="https://imgflip.com/i/689g8g"><img src="https://i.imgflip.com/689g8g.jpg" width="300" title="made at imgflip.com"/></a><div><a href="https://imgflip.com/memegenerator">from Imgflip Meme Generator</a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Was Sie hier lernen und wozu das gut ist
+
+Alle Welt spricht von Big Data, aber ohne die Analyse sind die großen Daten nur großes Rauschen. Was letztlich interessiert, sind die Erkenntnisse, die Einblicke, nicht die Daten an sich. 
+Dabei ist es egal, ob die Daten groß oder klein sind. 
+Natürlich erlauben die heutigen Datenmengen im Verbund mit leistungsfähigen Rechnern und neuen Analysemethoden ein Verständnis, 
+das vor Kurzem noch nicht möglich war. 
+Und wir stehen erst am Anfang dieser Entwicklung. 
+Vielleicht handelt es sich bei diesem Feld um eines der dynamischsten Fachgebiete der heutigen Zeit. 
+Sie sind dabei: Sie lernen einiges Handwerkszeugs des "Datenwissenschaftlers". 
+Wir konzentrieren uns auf das vielleicht bekannteste Teilgebiet: 
+Ereignisse vorhersagen auf Basis von hoch strukturierten Daten 
+und geeigneter Algorithmen und Verfahren.
+Nach diesem Kurs sollten Sie in der Lage sein,
+typisches Gebabbel des Fachgebiet mit Lässigkeit mitzumachen.
+Ach ja, und mit einigem Erfolg Vorhersagemodelle entwickeln.
+
+
+
+
+## Lernziele
+
+Nach diesem Kurs sollten Sie
+
+- grundlegende Konzepte des statistischen Lernens verstehen und mit R anwenden können
+- gängige Prognose-Algorithmen kennen, in Grundzügen verstehen und mit R anwenden können
+- die Güte und Grenze von Prognosemodellen einschätzen können
+
+
+## Voraussetzungen
+
+Um von diesem Kurs am besten zu profitieren,
+sollten Sie folgendes Wissen mitbringen:
+
+
+- grundlegende Kenntnisse im Umgang mit R, möglichst auch mit dem tidyverse
+- grundlegende Kenntnisse der deskriptiven Statistik
+- grundlegende Kenntnis der Regressionsanalyse
+
+
+
+
+
+## Lernhilfen
+
+
+
+
+
+### Software
+
+- Installieren Sie [R und seine Freunde](https://data-se.netlify.app/2021/11/30/installation-von-r-und-seiner-freunde/).
+- Installieren Sie die folgende R-Pakete:
+    - tidyverse
+    - tidymodels
+    - weitere Pakete werden im Unterricht bekannt gegeben (es schadet aber nichts, jetzt schon Pakete nach eigenem Ermessen zu installieren)
+- [R Syntax aus dem Unterricht](https://github.com/sebastiansauer/Lehre) findet sich im Github-Repo bzw. Ordner zum jeweiligen Semester.
+
+
+
+### Videos
+
+- [Playlist zu den Themen](https://youtube.com/playlist?list=PLRR4REmBgpIGv1e4hZ8asrL3qVBe5LcKp)
+- Auf dem [YouTube-Kanal des Autors](https://www.youtube.com/channel/UCkvdtj8maE7g-SOCh4aDB9g) finden sich eine Reihe von Videos mit Bezug zum Inhalt dieses Buches.
+
+
+
+### Online-Zusammenarbeit
+
+Hier finden Sie einige Werkzeuge, 
+die das Online-Zusammenarbeiten vereinfachen: 
+
+- [Frag-Jetzt-Raum zum anonymen Fragen stellen während des Unterrichts](https://frag.jetzt/home). Der Keycode wird Ihnen vom Dozenten bereitgestellt.
+- [Padlet](https://de.padlet.com/) zum einfachen (und anonymen) Hochladen von Arbeitsergebnissen der Studentis im Unterricht. Wir nutzen es als eine Art Pinwand zum Sammeln von Arbeitsbeiträgen. Die Zugangsdaten stellt Ihnen der Dozent bereit.
 
 
 
@@ -14,12 +107,12 @@
 
 
 ```{=html}
-<div id="lrnvbootkz" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="inyxrupgto" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#lrnvbootkz .gt_table {
+#inyxrupgto .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -44,7 +137,7 @@
   border-left-color: #D3D3D3;
 }
 
-#lrnvbootkz .gt_heading {
+#inyxrupgto .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -56,7 +149,7 @@
   border-right-color: #D3D3D3;
 }
 
-#lrnvbootkz .gt_title {
+#inyxrupgto .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -66,7 +159,7 @@
   border-bottom-width: 0;
 }
 
-#lrnvbootkz .gt_subtitle {
+#inyxrupgto .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -76,13 +169,13 @@
   border-top-width: 0;
 }
 
-#lrnvbootkz .gt_bottom_border {
+#inyxrupgto .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#lrnvbootkz .gt_col_headings {
+#inyxrupgto .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -97,7 +190,7 @@
   border-right-color: #D3D3D3;
 }
 
-#lrnvbootkz .gt_col_heading {
+#inyxrupgto .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -117,7 +210,7 @@
   overflow-x: hidden;
 }
 
-#lrnvbootkz .gt_column_spanner_outer {
+#inyxrupgto .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -129,15 +222,15 @@
   padding-right: 4px;
 }
 
-#lrnvbootkz .gt_column_spanner_outer:first-child {
+#inyxrupgto .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#lrnvbootkz .gt_column_spanner_outer:last-child {
+#inyxrupgto .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#lrnvbootkz .gt_column_spanner {
+#inyxrupgto .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -149,7 +242,7 @@
   width: 100%;
 }
 
-#lrnvbootkz .gt_group_heading {
+#inyxrupgto .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -171,7 +264,7 @@
   vertical-align: middle;
 }
 
-#lrnvbootkz .gt_empty_group_heading {
+#inyxrupgto .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -186,15 +279,15 @@
   vertical-align: middle;
 }
 
-#lrnvbootkz .gt_from_md > :first-child {
+#inyxrupgto .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#lrnvbootkz .gt_from_md > :last-child {
+#inyxrupgto .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#lrnvbootkz .gt_row {
+#inyxrupgto .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -213,7 +306,7 @@
   overflow-x: hidden;
 }
 
-#lrnvbootkz .gt_stub {
+#inyxrupgto .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -225,7 +318,7 @@
   padding-left: 12px;
 }
 
-#lrnvbootkz .gt_summary_row {
+#inyxrupgto .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -235,7 +328,7 @@
   padding-right: 5px;
 }
 
-#lrnvbootkz .gt_first_summary_row {
+#inyxrupgto .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -245,7 +338,7 @@
   border-top-color: #D3D3D3;
 }
 
-#lrnvbootkz .gt_grand_summary_row {
+#inyxrupgto .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -255,7 +348,7 @@
   padding-right: 5px;
 }
 
-#lrnvbootkz .gt_first_grand_summary_row {
+#inyxrupgto .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -265,11 +358,11 @@
   border-top-color: #D3D3D3;
 }
 
-#lrnvbootkz .gt_striped {
+#inyxrupgto .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#lrnvbootkz .gt_table_body {
+#inyxrupgto .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -278,7 +371,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#lrnvbootkz .gt_footnotes {
+#inyxrupgto .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -292,13 +385,13 @@
   border-right-color: #D3D3D3;
 }
 
-#lrnvbootkz .gt_footnote {
+#inyxrupgto .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#lrnvbootkz .gt_sourcenotes {
+#inyxrupgto .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -312,41 +405,41 @@
   border-right-color: #D3D3D3;
 }
 
-#lrnvbootkz .gt_sourcenote {
+#inyxrupgto .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#lrnvbootkz .gt_left {
+#inyxrupgto .gt_left {
   text-align: left;
 }
 
-#lrnvbootkz .gt_center {
+#inyxrupgto .gt_center {
   text-align: center;
 }
 
-#lrnvbootkz .gt_right {
+#inyxrupgto .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#lrnvbootkz .gt_font_normal {
+#inyxrupgto .gt_font_normal {
   font-weight: normal;
 }
 
-#lrnvbootkz .gt_font_bold {
+#inyxrupgto .gt_font_bold {
   font-weight: bold;
 }
 
-#lrnvbootkz .gt_font_italic {
+#inyxrupgto .gt_font_italic {
   font-style: italic;
 }
 
-#lrnvbootkz .gt_super {
+#inyxrupgto .gt_super {
   font-size: 65%;
 }
 
-#lrnvbootkz .gt_footnote_marks {
+#inyxrupgto .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -447,344 +540,76 @@
 ```
 
 
-## Beschreibung der Themen
 
 
-### Grundkonzepte
 
-#### Vorbereitung 
+## Literatur
 
-- Lesen Sie die Hinweise zum Modul.
-- Installieren (oder Updaten) Sie die für dieses Modul angegeben Software.
-- Lesen Sie die Literatur.
+Zentrale Kursliteratur für die theoretischen Konzepte ist @rhys.
+Bitte prüfen Sie, ob das Buch in einer Bibliothek verfügbar ist.
+Die praktische Umsetzung in R basiert auf @silge_tidy_2022 (dem "Tidymodels-Konzept"); 
+das Buch ist frei online verfügbar. 
+Eine theoretische Konzepte sind @islr entnommen; 
+dieser Text ist frei online verfügbar. 
+@islr haben ein weithin renommiertes und sehr bekanntes Buch verfasst.
+Es ist allerdings etwas anspruchsvoller aus @rhys,
+daher steht es nicht im Fokus dieses Kurses,
+aber einige Schwenker zu Inhalten von @islr gibt es. Schauen Sie mal rein,
+das Buch ist gut!
 
+In einigen Punkten ist weiterhin @modar hilfreich; 
+das Buch ist über SpringerLink in Ihrer Hochschul-Bibliothek verfügbar. Eine gute Ergänzung ist das "Lab-Buch" von @islrtidy.
+In dem Buch wird das Lehrbuch @islr in Tidymodels-Konzepte übersetzt; durchaus nett!
 
 
-#### Lernziele 
 
-- Sie können erläutern, was man unter statistischem Lernen versteht.
-- Sie wissen, war Overfitting ist, wie es entsteht, und wie es vermieden werden kann.
-- Sie kennen verschiedenen Arten von statistischem Lernen und können Algorithmen zu diesen Arten zuordnen.
 
 
 
-#### Literatur 
 
-- Rhys, Kap. 1
-- evtl. Sauer, Kap. 15
 
+## FAQ
 
 
-#### Hinweise 
 
-- Bitte beachten Sie die Hinweise zum Präsenzunterricht und der Streamingoption.
-- Bitte stellen Sie sicher, dass Sie einen einsatzbereiten Computer haben und dass die angegebene Software (in aktueller Version) läuft.
 
 
+- *Folien*
+    - Frage: Gibt es ein Folienskript?
+    - Antwort: Wo es einfache, gute Literatur gibt, gibt es kein Skript. Wo es keine gute oder keine einfach zugängliche Literatur gibt, dort gibt es ein Skript.
+    
+- *Englisch*
+    - Ist die Literatur auf Englisch?
+    - Ja. Allerdings ist die Literatur gut zugänglich. Das Englisch ist nicht schwer. Bedenken Sie: Englisch ist die lingua franca in Wissenschaft und Wirtschaft. Ein solides Verständnis englischer (geschriebener) Sprache ist für eine gute Ausbildung unerlässlich. Zu dem sollte die Kursliteratur fachlich passende und gute Bücher umfassen; oft sind das englische Titel. 
+    
+- *Anstrengend*
+    - Ist der Kurs sehr anstrengend, aufwändig?
+    - Der Kurs hat ein mittleres Anspruchsniveau. 
+    
+- *Mathe*
+    - Muss man ein Mathe-Crack sein, um eine gute Note zu erreichen?
+    - Nein. Mathe steht nicht im Vordergrund. Schauen Sie sich die Literatur an, sie werden wenig Mathe darin finden.
+    
+- *Prüfungsliteratur*
+    - Welche Literatur ist prüfungsrelevant?
+    - Die Prüfung ist angewandt, z.B. ein Prognosewettbewerb. Es wird keine Klausur geben, in der reines Wissen abgefragt wird.
 
-#### Vertiefung 
 
-- [Verdienst einer deutschen Data Scientistin](https://www.zeit.de/arbeit/2020-10/data-scientist-gehalt-geldanlage-programmieren-kontoauszug)
-- [Weitere Fallstudie zum Thema Regression auf Kaggle](https://www.kaggle.com/micahshull/r-bike-sharing-linear-regression)
-- [Crashkurs Data Science (Coursera, Johns Hopkins University) mit 'Star-Dozenten'](https://www.coursera.org/learn/data-science-course)
-- [Arbeiten Sie diese Regressionsfallstudie (zum Thema Gehalt) auf Kaggle auf](https://www.kaggle.com/pranjalpandey12/performing-simple-linear-regression-in-r)
-- [Werfen Sie einen Blick in diese Fallstudie auf Kaggle zum Thema Hauspreise](https://www.kaggle.com/lazaro97/data-preprocessing-and-linear-regression-with-r)
-- [Wiederholen Sie unser Vorgehen in der Fallstudie zu den Flugverspätungen](https://data-se.netlify.app/2021/03/10/fallstudie-modellierung-von-flugversp%C3%A4tungen/)
+- *Nur R?*
+    - Wird nur R in dem Kurs gelehrt? Andere Programmiersprachen sind doch auch wichtig.
+    - In der Datenanalyse gibt es zwei zentrale Programmiersprachen, R und Python. Beide sind gut und beide werden viel verwendet. In einer Grundausbildung sollte man sich auf eine Sprache begrenzen, da sonst den Sprachen zu viel Zeit eingeräumt werden muss. Wichtiger als eine zweite Programmiersprache zu lernen, mit der man nicht viel mehr kann als mit der ersten, ist es, die Inhalte des Fachs zu lernen.
+    
+    
 
 
 
-#### Aufgaben 
 
-- [Machen Sie sich mit 'Kaggle' vertraut](https://www.kaggle.com/)
-- [Bearbeiten Sie die Fallstudie 'TitaRnic' auf Kaggle](https://www.kaggle.com/code/headsortails/tidy-titarnic/report)
 
 
 
 
 
-### R, 2. Blick
 
-#### Vorbereitung 
 
-- Lesen Sie die Literatur.
 
-
-
-#### Lernziele 
-
-- Sie können Funktionen, in R schreiben.
-- Sie können Datensätze vom Lang- und Breit-Format wechseln.
-- Sie können Wiederholungsstrukturen wie Mapping-Funktionen anwenden.
-- Sie können eine dplyr-Funktion auf mehrere Spalten gleichzeitig anwenden.
-
-
-
-#### Literatur 
-
-- Rhys, Kap. 2
-
-
-
-
-
-#### Aufgaben 
-
-- [Aufgaben](https://sebastiansauer.github.io/datascience1/r-zweiter-blick.html#aufgaben-2)
-- [Lernen Sie Wiederholungsstrukturen mit ggplot](https://data-se.netlify.app/2021/02/06/plotting-multiple-plots-using-purrr-map-and-ggplot/)
-
-
-
-
-
-### R, 2. Blick - Fortsetzung
-
-
-
-
-#### Hinweise 
-
-- Fortsetzung der Inhalte des vorherigen Themas
-
-
-
-
-#### Aufgaben 
-
-- [Fallstudie Flugverspätungen](https://data-se.netlify.app/2021/03/10/fallstudie-modellierung-von-flugversp%C3%A4tungen/)
-
-
-
-
-
-### tidymodels, 1. Blick
-
-#### Vorbereitung 
-
-- Lesen Sie [TMWR, Kapitel 1](https://www.tmwr.org/software-modeling.html)
-- Lesen Sie übrige Literatur zu diesem Thema
-
-
-
-#### Lernziele 
-
-- Sie sind in der Lage, Regressionsmodelle mit dem tidymodels-Ansatz zu spezifizieren
-
-
-
-#### Literatur 
-
-- TMWR, Kap. 1, 5, 6, 7
-
-
-
-
-
-#### Aufgaben 
-
-- [Fallstudie Seegurken](https://www.tidymodels.org/start/models/)
-
-
-
-
-
-### kNN
-
-
-
-#### Literatur 
-
-- Rhys, Kap. 3
-
-
-
-
-
-
-
-
-### Statistisches Lernen
-
-
-
-#### Literatur 
-
-- Rhys, Kap. 3
-
-
-
-#### Hinweise 
-
-- In dieser Woche fällt die Übung aus (Ostern).
-
-
-
-#### Vertiefung 
-
-- [Fields arranged by purity, xkcd 435](https://xkcd.com/435/)
-
-
-
-
-
-
-### Wiederholung
-
-
-
-
-#### Hinweise 
-
-- In dieser Woche fällt die Vorlesung aus (Ostern).
-
-
-
-
-
-
-
-### Logistische Regression
-
-
-
-#### Literatur 
-
-- Rhys, Kap. 4
-
-
-
-
-
-
-
-
-### Naive Bayes
-
-
-
-#### Literatur 
-
-- Rhys, Kap. 6
-
-
-
-
-
-
-
-
-### Entscheidungsbäume
-
-
-
-#### Literatur 
-
-- Rhys, Kap. 7
-
-
-
-
-
-
-
-
-### Zufallswälder
-
-
-
-#### Literatur 
-
-- Rhys, Kap. 8
-
-
-
-
-
-
-
-
-### Fallstudie
-
-
-
-#### Literatur 
-
-- Rhys, Kap.9
-
-
-
-#### Hinweise 
-
-- Nächste Woche ist Blockwoche; es findet kein regulärer Unterricht statt.
-- Diese Woche fällt die Übung aus.
-
-
-
-
-
-
-
-### Wiederholung
-
-
-
-
-#### Hinweise 
-
-- In dieser Woche fällt die Vorlesung aus (Pfingsten).
-
-
-
-
-
-
-
-### GAM
-
-
-
-#### Literatur 
-
-- Rhys, Kap. 10
-
-
-
-
-
-
-
-
-### Lasso und Co
-
-
-
-#### Literatur 
-
-- Rhys, Kap. 11
-
-
-
-
-
-
-
-
-### Vertiefung
-
-
-
-#### Literatur 
-
-- Rhys, Kap. 12
-
-
-
-#### Hinweise 
-
-- Nach dieser Woche endet der Unterricht.
-
-
-
-#### Vertiefung 
-
-- [Wie man eine Data-Science-Projekt strukturiert](https://medium.com/swlh/how-to-structure-a-python-based-data-science-project-a-short-tutorial-for-beginners-7e00bff14f56)
 

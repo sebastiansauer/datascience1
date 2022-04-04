@@ -1,5 +1,6 @@
 bookdown::preview_chapter("40-Thema01.Rmd")
 bookdown::preview_chapter("20-Modulueberblick.Rmd")
+bookdown::preview_chapter("060-tidymodels1.Rmd")
 
 
 

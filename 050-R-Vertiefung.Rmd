@@ -1,9 +1,3 @@
----
-output: html_document
-editor_options: 
-  chunk_output_type: console
----
-
 
 
 
@@ -767,6 +761,7 @@ da Listen auch Vektoren sind.
 
 ```{r child = "Aufgaben/Thema2-Loesungen1.markdown", results='asis'}
 
+ 
 ```
 
 

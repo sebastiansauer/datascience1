@@ -47,18 +47,31 @@ thema2:
 thema3:
   Titel: "R, 2. Blick - Fortsetzung"
   Hinweise:
-    - Fortsetzung der Inhalte des vorherigen Themas 
+    - Fortsetzung der Inhalte des vorherigen Themas
+  Aufgaben:
+    - "[Fallstudie Flugverspätungen](https://data-se.netlify.app/2021/03/10/fallstudie-modellierung-von-flugversp%C3%A4tungen/)"
     
     
 
 thema3a:
-  Titel: "tidymodels"
+  Titel: "tidymodels, 1. Blick"
+  Lernziele:
+    - "Sie sind in der Lage, Regressionsmodelle mit dem tidymodels-Ansatz zu spezifizieren"
+  Vorbereitung:
+    - "Lesen Sie [TMWR, Kapitel 1](https://www.tmwr.org/software-modeling.html)"
+    - "Lesen Sie übrige Literatur zu diesem Thema"
   Literatur:
-    - TMWR
-
+    - "TMWR, Kap. 1, 5, 6, 7, 8, 9"
+  Aufgaben:
+    - "[Fallstudie Seegurken](https://www.tidymodels.org/start/models/)"
 
 thema4:
-  Titel: "kNN"
+  Titel: "Klassifikation am Beispiel von kNN"
+  Lernziele:
+    - "Sie sind in der Lage, einfache Klassifikationsmodelle zu spezifizieren mit tidymodels"
+    - "Sie können den knn-Algorithmus erläutern"
+    - "Sie können den knn-Algorithmus in tidymodels anwenden"
+    - "Sie können die Gütemetriken von Klassifikationsmodellen einschätzen"
 
   Literatur:
     - "Rhys, Kap. 3"
