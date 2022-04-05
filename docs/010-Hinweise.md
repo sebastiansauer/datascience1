@@ -107,12 +107,12 @@ die das Online-Zusammenarbeiten vereinfachen:
 
 
 ```{=html}
-<div id="inyxrupgto" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="noyqlinnmh" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#inyxrupgto .gt_table {
+#noyqlinnmh .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -137,7 +137,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-left-color: #D3D3D3;
 }
 
-#inyxrupgto .gt_heading {
+#noyqlinnmh .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -149,7 +149,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-right-color: #D3D3D3;
 }
 
-#inyxrupgto .gt_title {
+#noyqlinnmh .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -159,7 +159,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-bottom-width: 0;
 }
 
-#inyxrupgto .gt_subtitle {
+#noyqlinnmh .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -169,13 +169,13 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-top-width: 0;
 }
 
-#inyxrupgto .gt_bottom_border {
+#noyqlinnmh .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#inyxrupgto .gt_col_headings {
+#noyqlinnmh .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -190,7 +190,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-right-color: #D3D3D3;
 }
 
-#inyxrupgto .gt_col_heading {
+#noyqlinnmh .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -210,7 +210,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   overflow-x: hidden;
 }
 
-#inyxrupgto .gt_column_spanner_outer {
+#noyqlinnmh .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -222,15 +222,15 @@ die das Online-Zusammenarbeiten vereinfachen:
   padding-right: 4px;
 }
 
-#inyxrupgto .gt_column_spanner_outer:first-child {
+#noyqlinnmh .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#inyxrupgto .gt_column_spanner_outer:last-child {
+#noyqlinnmh .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#inyxrupgto .gt_column_spanner {
+#noyqlinnmh .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -242,7 +242,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   width: 100%;
 }
 
-#inyxrupgto .gt_group_heading {
+#noyqlinnmh .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -264,7 +264,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   vertical-align: middle;
 }
 
-#inyxrupgto .gt_empty_group_heading {
+#noyqlinnmh .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -279,15 +279,15 @@ die das Online-Zusammenarbeiten vereinfachen:
   vertical-align: middle;
 }
 
-#inyxrupgto .gt_from_md > :first-child {
+#noyqlinnmh .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#inyxrupgto .gt_from_md > :last-child {
+#noyqlinnmh .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#inyxrupgto .gt_row {
+#noyqlinnmh .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -306,7 +306,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   overflow-x: hidden;
 }
 
-#inyxrupgto .gt_stub {
+#noyqlinnmh .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -318,7 +318,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   padding-left: 12px;
 }
 
-#inyxrupgto .gt_summary_row {
+#noyqlinnmh .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -328,7 +328,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   padding-right: 5px;
 }
 
-#inyxrupgto .gt_first_summary_row {
+#noyqlinnmh .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -338,7 +338,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-top-color: #D3D3D3;
 }
 
-#inyxrupgto .gt_grand_summary_row {
+#noyqlinnmh .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -348,7 +348,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   padding-right: 5px;
 }
 
-#inyxrupgto .gt_first_grand_summary_row {
+#noyqlinnmh .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -358,11 +358,11 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-top-color: #D3D3D3;
 }
 
-#inyxrupgto .gt_striped {
+#noyqlinnmh .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#inyxrupgto .gt_table_body {
+#noyqlinnmh .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -371,7 +371,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-bottom-color: #D3D3D3;
 }
 
-#inyxrupgto .gt_footnotes {
+#noyqlinnmh .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -385,13 +385,13 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-right-color: #D3D3D3;
 }
 
-#inyxrupgto .gt_footnote {
+#noyqlinnmh .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#inyxrupgto .gt_sourcenotes {
+#noyqlinnmh .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -405,41 +405,41 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-right-color: #D3D3D3;
 }
 
-#inyxrupgto .gt_sourcenote {
+#noyqlinnmh .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#inyxrupgto .gt_left {
+#noyqlinnmh .gt_left {
   text-align: left;
 }
 
-#inyxrupgto .gt_center {
+#noyqlinnmh .gt_center {
   text-align: center;
 }
 
-#inyxrupgto .gt_right {
+#noyqlinnmh .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#inyxrupgto .gt_font_normal {
+#noyqlinnmh .gt_font_normal {
   font-weight: normal;
 }
 
-#inyxrupgto .gt_font_bold {
+#noyqlinnmh .gt_font_bold {
   font-weight: bold;
 }
 
-#inyxrupgto .gt_font_italic {
+#noyqlinnmh .gt_font_italic {
   font-style: italic;
 }
 
-#inyxrupgto .gt_super {
+#noyqlinnmh .gt_super {
   font-size: 65%;
 }
 
-#inyxrupgto .gt_footnote_marks {
+#noyqlinnmh .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -479,7 +479,7 @@ die das Online-Zusammenarbeiten vereinfachen:
 <td class="gt_row gt_left">2022-04-10</td></tr>
     <tr><td class="gt_row gt_right">5</td>
 <td class="gt_row gt_right">15</td>
-<td class="gt_row gt_left">kNN</td>
+<td class="gt_row gt_left">Klassifikation am Beispiel von kNN</td>
 <td class="gt_row gt_left">2022-04-11</td>
 <td class="gt_row gt_left">2022-04-17</td></tr>
     <tr><td class="gt_row gt_right">6</td>

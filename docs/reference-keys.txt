@@ -58,7 +58,8 @@ vorbereitung-2
 lernziele-3
 literatur-3
 aufgaben-3
-knn
+klassifikation-am-beispiel-von-knn
+lernziele-4
 literatur-4
 statistisches-lernen
 literatur-5
