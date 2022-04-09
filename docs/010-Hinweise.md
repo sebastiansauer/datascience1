@@ -107,12 +107,12 @@ die das Online-Zusammenarbeiten vereinfachen:
 
 
 ```{=html}
-<div id="noyqlinnmh" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="isvcticmid" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#noyqlinnmh .gt_table {
+#isvcticmid .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -137,7 +137,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-left-color: #D3D3D3;
 }
 
-#noyqlinnmh .gt_heading {
+#isvcticmid .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -149,7 +149,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-right-color: #D3D3D3;
 }
 
-#noyqlinnmh .gt_title {
+#isvcticmid .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -159,7 +159,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-bottom-width: 0;
 }
 
-#noyqlinnmh .gt_subtitle {
+#isvcticmid .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -169,13 +169,13 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-top-width: 0;
 }
 
-#noyqlinnmh .gt_bottom_border {
+#isvcticmid .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#noyqlinnmh .gt_col_headings {
+#isvcticmid .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -190,7 +190,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-right-color: #D3D3D3;
 }
 
-#noyqlinnmh .gt_col_heading {
+#isvcticmid .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -210,7 +210,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   overflow-x: hidden;
 }
 
-#noyqlinnmh .gt_column_spanner_outer {
+#isvcticmid .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -222,15 +222,15 @@ die das Online-Zusammenarbeiten vereinfachen:
   padding-right: 4px;
 }
 
-#noyqlinnmh .gt_column_spanner_outer:first-child {
+#isvcticmid .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#noyqlinnmh .gt_column_spanner_outer:last-child {
+#isvcticmid .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#noyqlinnmh .gt_column_spanner {
+#isvcticmid .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -242,7 +242,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   width: 100%;
 }
 
-#noyqlinnmh .gt_group_heading {
+#isvcticmid .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -264,7 +264,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   vertical-align: middle;
 }
 
-#noyqlinnmh .gt_empty_group_heading {
+#isvcticmid .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -279,15 +279,15 @@ die das Online-Zusammenarbeiten vereinfachen:
   vertical-align: middle;
 }
 
-#noyqlinnmh .gt_from_md > :first-child {
+#isvcticmid .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#noyqlinnmh .gt_from_md > :last-child {
+#isvcticmid .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#noyqlinnmh .gt_row {
+#isvcticmid .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -306,7 +306,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   overflow-x: hidden;
 }
 
-#noyqlinnmh .gt_stub {
+#isvcticmid .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -318,7 +318,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   padding-left: 12px;
 }
 
-#noyqlinnmh .gt_summary_row {
+#isvcticmid .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -328,7 +328,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   padding-right: 5px;
 }
 
-#noyqlinnmh .gt_first_summary_row {
+#isvcticmid .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -338,7 +338,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-top-color: #D3D3D3;
 }
 
-#noyqlinnmh .gt_grand_summary_row {
+#isvcticmid .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -348,7 +348,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   padding-right: 5px;
 }
 
-#noyqlinnmh .gt_first_grand_summary_row {
+#isvcticmid .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -358,11 +358,11 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-top-color: #D3D3D3;
 }
 
-#noyqlinnmh .gt_striped {
+#isvcticmid .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#noyqlinnmh .gt_table_body {
+#isvcticmid .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -371,7 +371,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-bottom-color: #D3D3D3;
 }
 
-#noyqlinnmh .gt_footnotes {
+#isvcticmid .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -385,13 +385,13 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-right-color: #D3D3D3;
 }
 
-#noyqlinnmh .gt_footnote {
+#isvcticmid .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#noyqlinnmh .gt_sourcenotes {
+#isvcticmid .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -405,41 +405,41 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-right-color: #D3D3D3;
 }
 
-#noyqlinnmh .gt_sourcenote {
+#isvcticmid .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#noyqlinnmh .gt_left {
+#isvcticmid .gt_left {
   text-align: left;
 }
 
-#noyqlinnmh .gt_center {
+#isvcticmid .gt_center {
   text-align: center;
 }
 
-#noyqlinnmh .gt_right {
+#isvcticmid .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#noyqlinnmh .gt_font_normal {
+#isvcticmid .gt_font_normal {
   font-weight: normal;
 }
 
-#noyqlinnmh .gt_font_bold {
+#isvcticmid .gt_font_bold {
   font-weight: bold;
 }
 
-#noyqlinnmh .gt_font_italic {
+#isvcticmid .gt_font_italic {
   font-style: italic;
 }
 
-#noyqlinnmh .gt_super {
+#isvcticmid .gt_super {
   font-size: 65%;
 }
 
-#noyqlinnmh .gt_footnote_marks {
+#isvcticmid .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -549,8 +549,11 @@ Zentrale Kursliteratur für die theoretischen Konzepte ist @rhys.
 Bitte prüfen Sie, ob das Buch in einer Bibliothek verfügbar ist.
 Die praktische Umsetzung in R basiert auf @silge_tidy_2022 (dem "Tidymodels-Konzept"); 
 das Buch ist frei online verfügbar. 
-Eine theoretische Konzepte sind @islr entnommen; 
-dieser Text ist frei online verfügbar. 
+
+Eine gute Ergänzung ist das Lehrbuch von @timbers_data_2022,
+welches grundlegende Data-Science-Konzepte erläutert und mit tidymodels umsetzt.
+
+
 @islr haben ein weithin renommiertes und sehr bekanntes Buch verfasst.
 Es ist allerdings etwas anspruchsvoller aus @rhys,
 daher steht es nicht im Fokus dieses Kurses,

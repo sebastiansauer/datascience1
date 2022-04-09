@@ -1,0 +1,8 @@
+Name,Definition,Synonyme
+FP-Rate,FP/N,"Alphafehler, Typ-1-Fehler, 1-Spezifität, Fehlalarm"
+RP-Rate,RP/N,"Power, Sensitivität, 1-Betafehler, Recall"
+FN-Rate,FN/N,"Fehlender Alarm, Befafehler"
+RN-Rate,RN/N,"Spezifität, 1-Alphafehler"
+Pos. Vorhersagewert,RP/P*,"Präzision, Relevanz"
+Neg. Vorhersagewert,RN/N*,Segreganz
+Richtigkeit,(RP+RN)/(N+P),"Korrektklassifikationsrate, Gesamtgenauigkeit"

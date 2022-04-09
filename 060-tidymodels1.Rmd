@@ -76,7 +76,7 @@ Der Test-Datensatz wird nur *einmal* verwendet, und zwar zur Überprüfung der M
 
 <!-- [Quelle](https://gist.github.com/sebastiansauer/be53bfc193fd3c144a430b7d3b922310) -->
 
-```{r echo = FALSE, fig.align="center"}
+```{r echo = FALSE, fig.align="center", out.height="200px"}
 x <- c(80, 20)
 x_lab <- c("Train", "Test")
 pie(x, x_lab)
@@ -604,4 +604,23 @@ ames_recipe
 
 Mehr zu Rezepten findet sich [hier](https://recipes.tidymodels.org/).
 Ein Überblick zu allen Schritten der Vorverarbeitung findet sich [hier](https://recipes.tidymodels.org/articles/recipes.html).
+
+
+
+
+
+
+
+
+
+```{r render-outline-a-thema3, results = "asis", eval = FALSE, echo = FALSE, message = FALSE}
+
+
+render_section(course_dates_file,
+               content_file,
+               i = 4, 
+               name = "Aufgaben",
+               header_level = 1)
+```
+
 
