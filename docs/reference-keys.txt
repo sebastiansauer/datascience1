@@ -33,6 +33,7 @@ fig:cancer5
 fig:pyth1
 fig:pyth2
 tab:class-stats
+fig:resampling
 hinweise
 was-sie-hier-lernen-und-wozu-das-gut-ist
 lernziele
@@ -204,3 +205,6 @@ modellgüte-1
 visualisierung
 kennzahlen-der-klassifikation
 krebstest-beispiel
+tidymodels-2
+resampling
+illustration-des-resampling
