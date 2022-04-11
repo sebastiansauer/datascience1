@@ -178,7 +178,7 @@ ML kann man auffassen als eine Menge an Verfahren, um $f$ zu schätzen.
 
 Ein Beispiel ist in Abb. \@ref(fig:statlearning) gezeigt [@islr].
 
-```{r statlearning, fig.cap = "Vorhersage des Einkommens durch Ausbildungsjahre"}
+```{r statlearning, fig.cap = "Vorhersage des Einkommens durch Ausbildungsjahre", out.width = "50%"}
 knitr::include_graphics("img/2-2.png")
 ```
 
@@ -416,7 +416,7 @@ knitr::include_graphics("img/ungeleitetes_Modellieren_crop.png")
 
 Man kann vier Ziele des ML unterscheiden, s. Abb. \@ref(fig:ziele).
 
-```{r ziele, fig.cap="Ziele des maschinellen Lernens", echo = FALSE}
+```{r ziele, fig.cap="Ziele des maschinellen Lernens", echo = FALSE, fig.asp = .5}
 DiagrammeR::mermaid("
 graph TD
   ML[Maschinelles Lernen]
@@ -429,7 +429,7 @@ graph TD
   ML --> B
   ML --> DimRed
 ",
-height = 450
+height = 350
 )
 ```
 

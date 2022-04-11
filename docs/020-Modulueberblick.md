@@ -14,12 +14,12 @@
 
 
 ```{=html}
-<div id="hfvuqwnqzz" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="piakhuuiyo" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#hfvuqwnqzz .gt_table {
+#piakhuuiyo .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -44,7 +44,7 @@
   border-left-color: #D3D3D3;
 }
 
-#hfvuqwnqzz .gt_heading {
+#piakhuuiyo .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -56,7 +56,7 @@
   border-right-color: #D3D3D3;
 }
 
-#hfvuqwnqzz .gt_title {
+#piakhuuiyo .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -66,7 +66,7 @@
   border-bottom-width: 0;
 }
 
-#hfvuqwnqzz .gt_subtitle {
+#piakhuuiyo .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -76,13 +76,13 @@
   border-top-width: 0;
 }
 
-#hfvuqwnqzz .gt_bottom_border {
+#piakhuuiyo .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#hfvuqwnqzz .gt_col_headings {
+#piakhuuiyo .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -97,7 +97,7 @@
   border-right-color: #D3D3D3;
 }
 
-#hfvuqwnqzz .gt_col_heading {
+#piakhuuiyo .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -117,7 +117,7 @@
   overflow-x: hidden;
 }
 
-#hfvuqwnqzz .gt_column_spanner_outer {
+#piakhuuiyo .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -129,15 +129,15 @@
   padding-right: 4px;
 }
 
-#hfvuqwnqzz .gt_column_spanner_outer:first-child {
+#piakhuuiyo .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#hfvuqwnqzz .gt_column_spanner_outer:last-child {
+#piakhuuiyo .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#hfvuqwnqzz .gt_column_spanner {
+#piakhuuiyo .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -149,7 +149,7 @@
   width: 100%;
 }
 
-#hfvuqwnqzz .gt_group_heading {
+#piakhuuiyo .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -171,7 +171,7 @@
   vertical-align: middle;
 }
 
-#hfvuqwnqzz .gt_empty_group_heading {
+#piakhuuiyo .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -186,15 +186,15 @@
   vertical-align: middle;
 }
 
-#hfvuqwnqzz .gt_from_md > :first-child {
+#piakhuuiyo .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#hfvuqwnqzz .gt_from_md > :last-child {
+#piakhuuiyo .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#hfvuqwnqzz .gt_row {
+#piakhuuiyo .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -213,7 +213,7 @@
   overflow-x: hidden;
 }
 
-#hfvuqwnqzz .gt_stub {
+#piakhuuiyo .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -225,7 +225,7 @@
   padding-left: 12px;
 }
 
-#hfvuqwnqzz .gt_summary_row {
+#piakhuuiyo .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -235,7 +235,7 @@
   padding-right: 5px;
 }
 
-#hfvuqwnqzz .gt_first_summary_row {
+#piakhuuiyo .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -245,7 +245,7 @@
   border-top-color: #D3D3D3;
 }
 
-#hfvuqwnqzz .gt_grand_summary_row {
+#piakhuuiyo .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -255,7 +255,7 @@
   padding-right: 5px;
 }
 
-#hfvuqwnqzz .gt_first_grand_summary_row {
+#piakhuuiyo .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -265,11 +265,11 @@
   border-top-color: #D3D3D3;
 }
 
-#hfvuqwnqzz .gt_striped {
+#piakhuuiyo .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#hfvuqwnqzz .gt_table_body {
+#piakhuuiyo .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -278,7 +278,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#hfvuqwnqzz .gt_footnotes {
+#piakhuuiyo .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -292,13 +292,13 @@
   border-right-color: #D3D3D3;
 }
 
-#hfvuqwnqzz .gt_footnote {
+#piakhuuiyo .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#hfvuqwnqzz .gt_sourcenotes {
+#piakhuuiyo .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -312,41 +312,41 @@
   border-right-color: #D3D3D3;
 }
 
-#hfvuqwnqzz .gt_sourcenote {
+#piakhuuiyo .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#hfvuqwnqzz .gt_left {
+#piakhuuiyo .gt_left {
   text-align: left;
 }
 
-#hfvuqwnqzz .gt_center {
+#piakhuuiyo .gt_center {
   text-align: center;
 }
 
-#hfvuqwnqzz .gt_right {
+#piakhuuiyo .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#hfvuqwnqzz .gt_font_normal {
+#piakhuuiyo .gt_font_normal {
   font-weight: normal;
 }
 
-#hfvuqwnqzz .gt_font_bold {
+#piakhuuiyo .gt_font_bold {
   font-weight: bold;
 }
 
-#hfvuqwnqzz .gt_font_italic {
+#piakhuuiyo .gt_font_italic {
   font-style: italic;
 }
 
-#hfvuqwnqzz .gt_super {
+#piakhuuiyo .gt_super {
   font-size: 65%;
 }
 
-#hfvuqwnqzz .gt_footnote_marks {
+#piakhuuiyo .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -605,6 +605,11 @@
 - [Timbers et al., Kap. 5](https://datasciencebook.ca/classification.html#classification)
 
 
+
+
+#### Vertiefung 
+
+- [Fallstudie zur Modellierung einer logististischen Regression mit tidymodels](https://onezero.blog/modelling-binary-logistic-regression-using-tidymodels-library-in-r-part-1/)
 
 
 

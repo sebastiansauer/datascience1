@@ -1,5 +1,5 @@
-bookdown::preview_chapter("40-Thema01.Rmd")
 bookdown::preview_chapter("20-Modulueberblick.Rmd")
+bookdown::preview_chapter("040-Grundkonzepte.Rmd")
 bookdown::preview_chapter("060-tidymodels1.Rmd")
 bookdown::preview_chapter("070-knn.Rmd")
 bookdown::preview_chapter("080-tidymodels2.Rmd")

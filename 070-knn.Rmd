@@ -120,7 +120,7 @@ also nach der am besten passenden Diagnose (maligne oder benigne),
 s. Abb. \@ref(fig:cancer2), wieder aus @timbers_data_2022.
 Ihr Quellcode für dieses Diagramm (und das ganze Kapitel) findet sich [hier](https://github.com/UBC-DSCI/introduction-to-datascience/blob/master/classification1.Rmd).
 
-```{r cancer2, fig.cap = "Ein neuer Fall, bisher unklassifiziert", echo = TRUE}
+```{r cancer2, fig.cap = "Ein neuer Fall, bisher unklassifiziert", echo = FALSE}
 new_point <- c(2, 4)
 attrs <- c("Perimeter", "Concavity")
 
@@ -194,7 +194,7 @@ der mit Pythagoras berechnet werden kann, s. Abb. \@ref(fig:pyth1) aus @modar.
 
 
 ```{r pyth1, echo = FALSE, fig.cap = "Euklidischer Abstand wird mit der Regel von Pythagoras berechnet"}
-knitr::include_graphics("/Users/sebastiansaueruser/Google Drive/research/Publikationen/In_Arbeit/Statistik__21/images/cluster/distanz_crop.png")
+knitr::include_graphics("img/distanz_crop.png")
 ```
 
 Wie war das noch mal?
@@ -215,8 +215,18 @@ In mehr als 2 Dimensionen wird es aber schwierig für das Auge, wie ein [Beispie
 Allerdings kann man den guten alten Pythagoras auch auf Dreiecke mit mehr als zwei Dimensionen anwenden, s. Abb. \@ref(fig:pyth2) aus @modar, Kap. 21.1.2.
 
 
-```{r pyth2, echo = FALSE, fig.cap = "Pythagoras aufgebohrt"}
-knitr::include_graphics("/Users/sebastiansaueruser/Google Drive/research/Publikationen/In_Arbeit/Statistik__21/images/cluster/pythagoras_crop.png")
+<!-- ```{r pyth2, echo = FALSE, fig.cap = "Pythagoras aufgebohrt"} -->
+<!-- knitr::include_graphics("img/pythagoras_crop.png") -->
+<!-- ``` -->
+
+
+
+```{r pyth2, echo = FALSE, fig.cap = "Pythagoras in der Ebene (links) und in 3D (rechts)", out.width = "45%"}
+
+imgs <- c("img/pythagoras-crop.png",
+          "img/pythagoras2-crop.png")
+
+knitr::include_graphics(imgs)
 ```
 
 Bleiben wir beim Beispiel von Anna und Berta und nehmen wir eine dritte Variable 

@@ -136,32 +136,6 @@ in die Berechnung der Nähe (bzw. Abstand) eingeht.</p>
 also nach der am besten passenden Diagnose (maligne oder benigne),
 s. Abb. <a href="k-n%C3%A4chste-nachbarn.html#fig:cancer2">7.3</a>, wieder aus <span class="citation">Timbers, Campbell, and Lee (<a href="references.html#ref-timbers_data_2022" role="doc-biblioref">2022</a>)</span>.
 Ihr Quellcode für dieses Diagramm (und das ganze Kapitel) findet sich <a href="https://github.com/UBC-DSCI/introduction-to-datascience/blob/master/classification1.Rmd">hier</a>.</p>
-<div class="sourceCode" id="cb206"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">new_point</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span><span class="op">)</span>
-<span class="va">attrs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Perimeter"</span>, <span class="st">"Concavity"</span><span class="op">)</span>
-
-<span class="va">perim_concav_with_new_point</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">cancer</span>, 
-                                          <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>Perimeter <span class="op">=</span> <span class="va">new_point</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, 
-                                                 Concavity <span class="op">=</span> <span class="va">new_point</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, 
-                                                 Class <span class="op">=</span> <span class="st">"unknown"</span><span class="op">)</span><span class="op">)</span> |&gt;
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Perimeter</span>, 
-             y <span class="op">=</span> <span class="va">Concavity</span>, 
-             color <span class="op">=</span> <span class="va">Class</span>, 
-             shape <span class="op">=</span> <span class="va">Class</span>, 
-             size <span class="op">=</span> <span class="va">Class</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.6</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"Diagnosis"</span>, x <span class="op">=</span> <span class="st">"Durchmesser (z)"</span>, 
-       y <span class="op">=</span> <span class="st">"Konkavität (z)"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_color_manual</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Diagnose"</span>, 
-                     labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Benign"</span>, <span class="st">"Malign"</span>, <span class="st">"Unbekannt"</span><span class="op">)</span>, 
-                     values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"steelblue2"</span>, <span class="st">"orange2"</span>, <span class="st">"red"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_shape_manual</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Diagnose"</span>, 
-                     labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Benign"</span>, <span class="st">"Malign"</span>, <span class="st">"Unbekannt"</span><span class="op">)</span>,
-                     values<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">16</span>, <span class="fl">16</span>, <span class="fl">18</span><span class="op">)</span><span class="op">)</span><span class="op">+</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_size_manual</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Diagnose"</span>, 
-                    labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Benign"</span>, <span class="st">"Malign"</span>, <span class="st">"Unbekannt"</span><span class="op">)</span>,
-                    values<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">2.5</span><span class="op">)</span><span class="op">)</span>
-<span class="va">perim_concav_with_new_point</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:cancer2"></span>
 <img src="chunk-img/tidymodelscancer2-1.png" alt="Ein neuer Fall, bisher unklassifiziert" width="70%"><p class="caption">
@@ -210,7 +184,7 @@ um die Nähe bzw. Distanz der Nachbarn zum zu klassifizieren Fall zu berechnen.<
 der mit Pythagoras berechnet werden kann, s. Abb. <a href="k-n%C3%A4chste-nachbarn.html#fig:pyth1">7.7</a> aus <span class="citation">Sauer (<a href="references.html#ref-modar" role="doc-biblioref">2019</a>)</span>.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:pyth1"></span>
-<img src="/Users/sebastiansaueruser/Google%20Drive/research/Publikationen/In_Arbeit/Statistik__21/images/cluster/distanz_crop.png" alt="Euklidischer Abstand wird mit der Regel von Pythagoras berechnet" width="70%"><p class="caption">
+<img src="img/distanz_crop.png" alt="Euklidischer Abstand wird mit der Regel von Pythagoras berechnet" width="70%"><p class="caption">
 Figure 7.7: Euklidischer Abstand wird mit der Regel von Pythagoras berechnet
 </p>
 </div>
@@ -222,10 +196,13 @@ Figure 7.7: Euklidischer Abstand wird mit der Regel von Pythagoras berechnet
 <p>Im 2D-Raum ist das so einfach, dass man das (fat) mit bloßem Augenschein entscheiden kann.
 In mehr als 2 Dimensionen wird es aber schwierig für das Auge, wie ein <a href="https://datasciencebook.ca/classification.html#more-than-two-explanatory-variables">Beispiel</a> aus <span class="citation">Timbers, Campbell, and Lee (<a href="references.html#ref-timbers_data_2022" role="doc-biblioref">2022</a>)</span> zeigt.</p>
 <p>Allerdings kann man den guten alten Pythagoras auch auf Dreiecke mit mehr als zwei Dimensionen anwenden, s. Abb. <a href="k-n%C3%A4chste-nachbarn.html#fig:pyth2">7.8</a> aus <span class="citation">Sauer (<a href="references.html#ref-modar" role="doc-biblioref">2019</a>)</span>, Kap. 21.1.2.</p>
+<!-- ```{r pyth2, echo = FALSE, fig.cap = "Pythagoras aufgebohrt"} -->
+<!-- knitr::include_graphics("img/pythagoras_crop.png") -->
+<!-- ``` -->
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:pyth2"></span>
-<img src="/Users/sebastiansaueruser/Google%20Drive/research/Publikationen/In_Arbeit/Statistik__21/images/cluster/pythagoras_crop.png" alt="Pythagoras aufgebohrt" width="70%"><p class="caption">
-Figure 7.8: Pythagoras aufgebohrt
+<img src="img/pythagoras-crop.png" alt="Pythagoras in der Ebene (links) und in 3D (rechts)" width="45%"><img src="img/pythagoras2-crop.png" alt="Pythagoras in der Ebene (links) und in 3D (rechts)" width="45%"><p class="caption">
+Figure 7.8: Pythagoras in der Ebene (links) und in 3D (rechts)
 </p>
 </div>
 <p>Bleiben wir beim Beispiel von Anna und Berta und nehmen wir eine dritte Variable
@@ -252,11 +229,11 @@ e &amp;= \sqrt{29} \approx 5.4
 <p>Eine Anwendung von kNN mit Tidymodels ist in <span class="citation">Timbers, Campbell, and Lee (<a href="references.html#ref-timbers_data_2022" role="doc-biblioref">2022</a>)</span>, Kap. 5.6, <a href="https://datasciencebook.ca/classification.html#k-nearest-neighbors-with-tidymodels">hier</a> beschrieben.</p>
 <p>Die Daten aus <span class="citation">Timbers, Campbell, and Lee (<a href="references.html#ref-timbers_data_2022" role="doc-biblioref">2022</a>)</span> finden sich <a href="https://github.com/UBC-DSCI/introduction-to-datascience/tree/master/data">in diesem Github-Repo</a>-</p>
 <p>Die (z-transformierten) Daten zur Tumorklassifikation können <a href="https://raw.githubusercontent.com/UBC-DSCI/data-science-a-first-intro-worksheets/main/worksheet_classification1/data/clean-wdbc-data.csv">hier</a> bezogen werden.</p>
-<div class="sourceCode" id="cb207"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb206"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">data_url</span> <span class="op">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/UBC-DSCI/introduction-to-datascience/master/data/wdbc.csv"</span>
 <span class="va">cancer</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="va">data_url</span><span class="op">)</span></code></pre></div>
 <p><span class="citation">Timbers, Campbell, and Lee (<a href="references.html#ref-timbers_data_2022" role="doc-biblioref">2022</a>)</span> verwenden in Kap. 5 auch noch nicht standardisierte Daten, <code>unscales_wdbc.csv</code>, die <a href="https://raw.githubusercontent.com/UBC-DSCI/introduction-to-datascience/master/data/unscaled_wdbc.csv">hier</a> als CSV-Datei heruntergeladen werden können.</p>
-<div class="sourceCode" id="cb208"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb207"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">cancer_unscales_path</span> <span class="op">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/UBC-DSCI/introduction-to-datascience/master/data/unscaled_wdbc.csv"</span>
 
 <span class="va">unscaled_cancer</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="va">cancer_unscales_path</span><span class="op">)</span> |&gt;
@@ -282,7 +259,7 @@ e &amp;= \sqrt{29} \approx 5.4
 <h3>
 <span class="header-section-number">7.4.2</span> Rezept definieren<a class="anchor" aria-label="anchor" href="#rezept-definieren"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb210"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb209"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">uc_recipe</span> <span class="op">&lt;-</span> <span class="fu">recipe</span><span class="op">(</span><span class="va">Class</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">unscaled_cancer</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">uc_recipe</span><span class="op">)</span></code></pre></div>
 <pre><code>## Recipe
@@ -293,7 +270,7 @@ e &amp;= \sqrt{29} \approx 5.4
 ##    outcome          1
 ##  predictor          2</code></pre>
 <p>Und jetzt die z-Transformation:</p>
-<div class="sourceCode" id="cb212"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb211"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">uc_recipe</span> <span class="op">&lt;-</span> 
   <span class="va">uc_recipe</span> |&gt;
   <span class="fu">step_scale</span><span class="op">(</span><span class="fu">all_predictors</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> |&gt;
@@ -305,7 +282,7 @@ das für uns besorgen.</p>
 <h3>
 <span class="header-section-number">7.4.3</span> Modell definieren<a class="anchor" aria-label="anchor" href="#modell-definieren"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb213"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb212"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">knn_spec</span> <span class="op">&lt;-</span> <span class="fu">nearest_neighbor</span><span class="op">(</span>weight_func <span class="op">=</span> <span class="st">"rectangular"</span>, neighbors <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> |&gt;
   <span class="fu">set_engine</span><span class="op">(</span><span class="st">"kknn"</span><span class="op">)</span> |&gt;
   <span class="fu">set_mode</span><span class="op">(</span><span class="st">"classification"</span><span class="op">)</span>
@@ -322,7 +299,7 @@ das für uns besorgen.</p>
 <h3>
 <span class="header-section-number">7.4.4</span> Workflow definieren<a class="anchor" aria-label="anchor" href="#workflow-definieren"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb215"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb214"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">knn_fit</span> <span class="op">&lt;-</span> <span class="fu">workflow</span><span class="op">(</span><span class="op">)</span> |&gt;
   <span class="fu">add_recipe</span><span class="op">(</span><span class="va">uc_recipe</span><span class="op">)</span> |&gt;
   <span class="fu">add_model</span><span class="op">(</span><span class="va">knn_spec</span><span class="op">)</span> |&gt;
@@ -353,7 +330,7 @@ das für uns besorgen.</p>
 <h3>
 <span class="header-section-number">7.4.5</span> Vorhersagen<a class="anchor" aria-label="anchor" href="#vorhersagen-1"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb217"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb216"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">new_observation</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>Area <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">500</span>, <span class="fl">1500</span><span class="op">)</span>, Smoothness <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.075</span>, <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span>
 <span class="va">prediction</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">knn_fit</span>, <span class="va">new_observation</span><span class="op">)</span>
 
@@ -372,7 +349,7 @@ das für uns besorgen.</p>
 <p>Im Kapitel 5 greifen <span class="citation">Timbers, Campbell, and Lee (<a href="references.html#ref-timbers_data_2022" role="doc-biblioref">2022</a>)</span> die Aufteilung in Train- vs. Test-Sample noch nicht auf (aber in Kapitel 6).</p>
 <p>Da in diesem Kurs diese Aufteilung aber schon besprochen wurde,
 soll dies hier auch dargestellt werden.</p>
-<div class="sourceCode" id="cb219"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb218"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">cancer_split</span> <span class="op">&lt;-</span> <span class="fu">initial_split</span><span class="op">(</span><span class="va">cancer</span>, prop <span class="op">=</span> <span class="fl">0.75</span>, strata <span class="op">=</span> <span class="va">Class</span><span class="op">)</span>
 <span class="va">cancer_train</span> <span class="op">&lt;-</span> <span class="fu">training</span><span class="op">(</span><span class="va">cancer_split</span><span class="op">)</span>
 <span class="va">cancer_test</span> <span class="op">&lt;-</span> <span class="fu">testing</span><span class="op">(</span><span class="va">cancer_split</span><span class="op">)</span> </code></pre></div>
@@ -380,7 +357,7 @@ soll dies hier auch dargestellt werden.</p>
 <h3>
 <span class="header-section-number">7.5.1</span> Rezept definieren<a class="anchor" aria-label="anchor" href="#rezept-definieren-1"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb220"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb219"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">cancer_recipe</span> <span class="op">&lt;-</span> <span class="fu">recipe</span><span class="op">(</span><span class="va">Class</span> <span class="op">~</span> <span class="va">Smoothness</span> <span class="op">+</span> <span class="va">Concavity</span>, data <span class="op">=</span> <span class="va">cancer_train</span><span class="op">)</span> |&gt;
   <span class="fu">step_scale</span><span class="op">(</span><span class="fu">all_predictors</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> |&gt;
   <span class="fu">step_center</span><span class="op">(</span><span class="fu">all_predictors</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
@@ -389,7 +366,7 @@ soll dies hier auch dargestellt werden.</p>
 <h3>
 <span class="header-section-number">7.5.2</span> Modell definieren<a class="anchor" aria-label="anchor" href="#modell-definieren-1"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb221"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb220"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">knn_spec</span> <span class="op">&lt;-</span> <span class="fu">nearest_neighbor</span><span class="op">(</span>weight_func <span class="op">=</span> <span class="st">"rectangular"</span>, neighbors <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> |&gt;
   <span class="fu">set_engine</span><span class="op">(</span><span class="st">"kknn"</span><span class="op">)</span> |&gt;
   <span class="fu">set_mode</span><span class="op">(</span><span class="st">"classification"</span><span class="op">)</span></code></pre></div>
@@ -398,7 +375,7 @@ soll dies hier auch dargestellt werden.</p>
 <h3>
 <span class="header-section-number">7.5.3</span> Workflow definieren<a class="anchor" aria-label="anchor" href="#workflow-definieren-1"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb222"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb221"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">knn_fit</span> <span class="op">&lt;-</span> <span class="fu">workflow</span><span class="op">(</span><span class="op">)</span> |&gt;
   <span class="fu">add_recipe</span><span class="op">(</span><span class="va">cancer_recipe</span><span class="op">)</span> |&gt;
   <span class="fu">add_model</span><span class="op">(</span><span class="va">knn_spec</span><span class="op">)</span> |&gt;
@@ -421,7 +398,7 @@ soll dies hier auch dargestellt werden.</p>
 ## kknn::train.kknn(formula = ..y ~ ., data = data, ks = min_rows(3,     data, 5), kernel = ~"rectangular")
 ## 
 ## Type of response variable: nominal
-## Minimal misclassification: 0.1220657
+## Minimal misclassification: 0.1338028
 ## Best kernel: rectangular
 ## Best k: 3</code></pre>
 </div>
@@ -431,7 +408,7 @@ soll dies hier auch dargestellt werden.</p>
 </h3>
 <p>Im Gegensatz zu <span class="citation">Timbers, Campbell, and Lee (<a href="references.html#ref-timbers_data_2022" role="doc-biblioref">2022</a>)</span> verwenden wir hier <code>last_fit()</code> und <code>collect_metrics()</code>,
 da wir dies bereits eingeführt haben und künftig darauf aufbauen werden.</p>
-<div class="sourceCode" id="cb224"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb223"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">cancer_test_fit</span> <span class="op">&lt;-</span> <span class="fu">last_fit</span><span class="op">(</span><span class="va">knn_fit</span>, <span class="va">cancer_split</span><span class="op">)</span>
 
 <span class="va">cancer_test_fit</span></code></pre></div>
@@ -446,22 +423,22 @@ da wir dies bereits eingeführt haben und künftig darauf aufbauen werden.</p>
 <h3>
 <span class="header-section-number">7.5.5</span> Modellgüte<a class="anchor" aria-label="anchor" href="#modellg%C3%BCte-1"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb226"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb225"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">cancer_test_fit</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu">collect_metrics</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 4
 ##   .metric  .estimator .estimate .config             
 ##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;               
-## 1 accuracy binary         0.888 Preprocessor1_Model1
-## 2 roc_auc  binary         0.912 Preprocessor1_Model1</code></pre>
+## 1 accuracy binary         0.895 Preprocessor1_Model1
+## 2 roc_auc  binary         0.921 Preprocessor1_Model1</code></pre>
 <p>Die eigentlichen Predictions stecken in der Listenspalte <code>.predictions</code> im Fit-Objekt:</p>
-<div class="sourceCode" id="cb228"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb227"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">cancer_test_fit</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "splits"       "id"           ".metrics"     ".notes"       ".predictions"
 ## [6] ".workflow"</code></pre>
 <p>Genau genommen ist <code>.predictions</code> eine Spalte, in der in jeder Zeile (und damit Zelle) eine Tabelle (Tibble) steht.
 Wir haben nur eine Zeile und wollen das erste Element dieser Spalte herausziehen.
 Da hilft <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck()</a></code>:</p>
-<div class="sourceCode" id="cb230"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb229"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">cancer_test_predictions</span> <span class="op">&lt;-</span> 
 <span class="va">cancer_test_fit</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span><span class="op">(</span><span class="st">".predictions"</span>, <span class="fl">1</span><span class="op">)</span>
@@ -472,14 +449,14 @@ Da hilft <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck(
 <span class="va">confusion</span></code></pre></div>
 <pre><code>##           Truth
 ## Prediction  B  M
-##          B 83  9
-##          M  7 44</code></pre>
+##          B 87 12
+##          M  3 41</code></pre>
 </div>
 <div id="visualisierung" class="section level3" number="7.5.6">
 <h3>
 <span class="header-section-number">7.5.6</span> Visualisierung<a class="anchor" aria-label="anchor" href="#visualisierung"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb232"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb231"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot</a></span><span class="op">(</span><span class="va">confusion</span>, type <span class="op">=</span> <span class="st">"mosaic"</span><span class="op">)</span>
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot</a></span><span class="op">(</span><span class="va">confusion</span>, type <span class="op">=</span> <span class="st">"heatmap"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Beobachtung"</span>,
@@ -494,12 +471,12 @@ Da hilft <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck(
 </h2>
 <p>In <span class="citation">Sauer (<a href="references.html#ref-modar" role="doc-biblioref">2019</a>)</span>, Kap. 19.6, findet sich einige Erklärung zu Kennzahlen der Klassifikationsgüte.</p>
 <p>Ein Test kann vier verschiedenen Ergebnisse haben:</p>
-<div id="xwedcyetqr" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="pehhppqunu" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#xwedcyetqr .gt_table {
+#pehhppqunu .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -524,7 +501,7 @@ Da hilft <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck(
   border-left-color: #D3D3D3;
 }
 
-#xwedcyetqr .gt_heading {
+#pehhppqunu .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -536,7 +513,7 @@ Da hilft <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck(
   border-right-color: #D3D3D3;
 }
 
-#xwedcyetqr .gt_title {
+#pehhppqunu .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -546,7 +523,7 @@ Da hilft <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck(
   border-bottom-width: 0;
 }
 
-#xwedcyetqr .gt_subtitle {
+#pehhppqunu .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -556,13 +533,13 @@ Da hilft <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck(
   border-top-width: 0;
 }
 
-#xwedcyetqr .gt_bottom_border {
+#pehhppqunu .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#xwedcyetqr .gt_col_headings {
+#pehhppqunu .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -577,7 +554,7 @@ Da hilft <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck(
   border-right-color: #D3D3D3;
 }
 
-#xwedcyetqr .gt_col_heading {
+#pehhppqunu .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -597,7 +574,7 @@ Da hilft <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck(
   overflow-x: hidden;
 }
 
-#xwedcyetqr .gt_column_spanner_outer {
+#pehhppqunu .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -609,15 +586,15 @@ Da hilft <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck(
   padding-right: 4px;
 }
 
-#xwedcyetqr .gt_column_spanner_outer:first-child {
+#pehhppqunu .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#xwedcyetqr .gt_column_spanner_outer:last-child {
+#pehhppqunu .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#xwedcyetqr .gt_column_spanner {
+#pehhppqunu .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -629,7 +606,7 @@ Da hilft <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck(
   width: 100%;
 }
 
-#xwedcyetqr .gt_group_heading {
+#pehhppqunu .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -651,7 +628,7 @@ Da hilft <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck(
   vertical-align: middle;
 }
 
-#xwedcyetqr .gt_empty_group_heading {
+#pehhppqunu .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -666,15 +643,15 @@ Da hilft <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck(
   vertical-align: middle;
 }
 
-#xwedcyetqr .gt_from_md > :first-child {
+#pehhppqunu .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#xwedcyetqr .gt_from_md > :last-child {
+#pehhppqunu .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#xwedcyetqr .gt_row {
+#pehhppqunu .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -693,7 +670,7 @@ Da hilft <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck(
   overflow-x: hidden;
 }
 
-#xwedcyetqr .gt_stub {
+#pehhppqunu .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -705,7 +682,7 @@ Da hilft <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck(
   padding-left: 12px;
 }
 
-#xwedcyetqr .gt_summary_row {
+#pehhppqunu .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -715,7 +692,7 @@ Da hilft <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck(
   padding-right: 5px;
 }
 
-#xwedcyetqr .gt_first_summary_row {
+#pehhppqunu .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -725,7 +702,7 @@ Da hilft <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck(
   border-top-color: #D3D3D3;
 }
 
-#xwedcyetqr .gt_grand_summary_row {
+#pehhppqunu .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -735,7 +712,7 @@ Da hilft <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck(
   padding-right: 5px;
 }
 
-#xwedcyetqr .gt_first_grand_summary_row {
+#pehhppqunu .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -745,11 +722,11 @@ Da hilft <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck(
   border-top-color: #D3D3D3;
 }
 
-#xwedcyetqr .gt_striped {
+#pehhppqunu .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#xwedcyetqr .gt_table_body {
+#pehhppqunu .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -758,7 +735,7 @@ Da hilft <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck(
   border-bottom-color: #D3D3D3;
 }
 
-#xwedcyetqr .gt_footnotes {
+#pehhppqunu .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -772,13 +749,13 @@ Da hilft <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck(
   border-right-color: #D3D3D3;
 }
 
-#xwedcyetqr .gt_footnote {
+#pehhppqunu .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#xwedcyetqr .gt_sourcenotes {
+#pehhppqunu .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -792,41 +769,41 @@ Da hilft <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck(
   border-right-color: #D3D3D3;
 }
 
-#xwedcyetqr .gt_sourcenote {
+#pehhppqunu .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#xwedcyetqr .gt_left {
+#pehhppqunu .gt_left {
   text-align: left;
 }
 
-#xwedcyetqr .gt_center {
+#pehhppqunu .gt_center {
   text-align: center;
 }
 
-#xwedcyetqr .gt_right {
+#pehhppqunu .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#xwedcyetqr .gt_font_normal {
+#pehhppqunu .gt_font_normal {
   font-weight: normal;
 }
 
-#xwedcyetqr .gt_font_bold {
+#pehhppqunu .gt_font_bold {
   font-weight: bold;
 }
 
-#xwedcyetqr .gt_font_italic {
+#pehhppqunu .gt_font_italic {
   font-style: italic;
 }
 
-#xwedcyetqr .gt_super {
+#pehhppqunu .gt_super {
   font-size: 65%;
 }
 
-#xwedcyetqr .gt_footnote_marks {
+#pehhppqunu .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -867,12 +844,12 @@ Da hilft <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck(
 <p>Es gibt eine verwirrende Vielfalt von Kennzahlen,
 um die Güte einer Klassifikation einzuschätzen.
 Hier sind einige davon:</p>
-<div id="yipdtzoybk" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="qoehjvpgyk" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#yipdtzoybk .gt_table {
+#qoehjvpgyk .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -897,7 +874,7 @@ Hier sind einige davon:</p>
   border-left-color: #D3D3D3;
 }
 
-#yipdtzoybk .gt_heading {
+#qoehjvpgyk .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -909,7 +886,7 @@ Hier sind einige davon:</p>
   border-right-color: #D3D3D3;
 }
 
-#yipdtzoybk .gt_title {
+#qoehjvpgyk .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -919,7 +896,7 @@ Hier sind einige davon:</p>
   border-bottom-width: 0;
 }
 
-#yipdtzoybk .gt_subtitle {
+#qoehjvpgyk .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -929,13 +906,13 @@ Hier sind einige davon:</p>
   border-top-width: 0;
 }
 
-#yipdtzoybk .gt_bottom_border {
+#qoehjvpgyk .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#yipdtzoybk .gt_col_headings {
+#qoehjvpgyk .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -950,7 +927,7 @@ Hier sind einige davon:</p>
   border-right-color: #D3D3D3;
 }
 
-#yipdtzoybk .gt_col_heading {
+#qoehjvpgyk .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -970,7 +947,7 @@ Hier sind einige davon:</p>
   overflow-x: hidden;
 }
 
-#yipdtzoybk .gt_column_spanner_outer {
+#qoehjvpgyk .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -982,15 +959,15 @@ Hier sind einige davon:</p>
   padding-right: 4px;
 }
 
-#yipdtzoybk .gt_column_spanner_outer:first-child {
+#qoehjvpgyk .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#yipdtzoybk .gt_column_spanner_outer:last-child {
+#qoehjvpgyk .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#yipdtzoybk .gt_column_spanner {
+#qoehjvpgyk .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1002,7 +979,7 @@ Hier sind einige davon:</p>
   width: 100%;
 }
 
-#yipdtzoybk .gt_group_heading {
+#qoehjvpgyk .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1024,7 +1001,7 @@ Hier sind einige davon:</p>
   vertical-align: middle;
 }
 
-#yipdtzoybk .gt_empty_group_heading {
+#qoehjvpgyk .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1039,15 +1016,15 @@ Hier sind einige davon:</p>
   vertical-align: middle;
 }
 
-#yipdtzoybk .gt_from_md > :first-child {
+#qoehjvpgyk .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#yipdtzoybk .gt_from_md > :last-child {
+#qoehjvpgyk .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#yipdtzoybk .gt_row {
+#qoehjvpgyk .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1066,7 +1043,7 @@ Hier sind einige davon:</p>
   overflow-x: hidden;
 }
 
-#yipdtzoybk .gt_stub {
+#qoehjvpgyk .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1078,7 +1055,7 @@ Hier sind einige davon:</p>
   padding-left: 12px;
 }
 
-#yipdtzoybk .gt_summary_row {
+#qoehjvpgyk .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1088,7 +1065,7 @@ Hier sind einige davon:</p>
   padding-right: 5px;
 }
 
-#yipdtzoybk .gt_first_summary_row {
+#qoehjvpgyk .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1098,7 +1075,7 @@ Hier sind einige davon:</p>
   border-top-color: #D3D3D3;
 }
 
-#yipdtzoybk .gt_grand_summary_row {
+#qoehjvpgyk .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1108,7 +1085,7 @@ Hier sind einige davon:</p>
   padding-right: 5px;
 }
 
-#yipdtzoybk .gt_first_grand_summary_row {
+#qoehjvpgyk .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1118,11 +1095,11 @@ Hier sind einige davon:</p>
   border-top-color: #D3D3D3;
 }
 
-#yipdtzoybk .gt_striped {
+#qoehjvpgyk .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#yipdtzoybk .gt_table_body {
+#qoehjvpgyk .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1131,7 +1108,7 @@ Hier sind einige davon:</p>
   border-bottom-color: #D3D3D3;
 }
 
-#yipdtzoybk .gt_footnotes {
+#qoehjvpgyk .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1145,13 +1122,13 @@ Hier sind einige davon:</p>
   border-right-color: #D3D3D3;
 }
 
-#yipdtzoybk .gt_footnote {
+#qoehjvpgyk .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#yipdtzoybk .gt_sourcenotes {
+#qoehjvpgyk .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1165,41 +1142,41 @@ Hier sind einige davon:</p>
   border-right-color: #D3D3D3;
 }
 
-#yipdtzoybk .gt_sourcenote {
+#qoehjvpgyk .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#yipdtzoybk .gt_left {
+#qoehjvpgyk .gt_left {
   text-align: left;
 }
 
-#yipdtzoybk .gt_center {
+#qoehjvpgyk .gt_center {
   text-align: center;
 }
 
-#yipdtzoybk .gt_right {
+#qoehjvpgyk .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#yipdtzoybk .gt_font_normal {
+#qoehjvpgyk .gt_font_normal {
   font-weight: normal;
 }
 
-#yipdtzoybk .gt_font_bold {
+#qoehjvpgyk .gt_font_bold {
   font-weight: bold;
 }
 
-#yipdtzoybk .gt_font_italic {
+#qoehjvpgyk .gt_font_italic {
   font-style: italic;
 }
 
-#yipdtzoybk .gt_super {
+#qoehjvpgyk .gt_super {
   font-size: 65%;
 }
 
-#yipdtzoybk .gt_footnote_marks {
+#qoehjvpgyk .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -1274,48 +1251,48 @@ Daten.</p>
 Berechnen wir einige Kennzahlen.</p>
 <p>Da die Funktionen zur Klassifikation stets einen Faktor wollen,
 wandeln wir die relevanten Spalten zuerst in einen Faktor um (aktuell sind es numerische Spalten).</p>
-<div class="sourceCode" id="cb234"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb233"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">krebstest</span> <span class="op">&lt;-</span>
   <span class="va">krebstest</span>  <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Krebs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">Krebs</span><span class="op">)</span>,
          Test <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">Test</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Gesamtgenauigkeit:</p>
-<div class="sourceCode" id="cb235"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb234"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">accuracy</span><span class="op">(</span><span class="va">krebstest</span>, truth <span class="op">=</span> <span class="va">Krebs</span>, estimate <span class="op">=</span> <span class="va">Test</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 3
 ##   .metric  .estimator .estimate
 ##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
 ## 1 accuracy binary          0.87</code></pre>
 <p>Sensitivität:</p>
-<div class="sourceCode" id="cb237"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb236"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">sens</span><span class="op">(</span><span class="va">krebstest</span>, truth <span class="op">=</span> <span class="va">Krebs</span>, estimate <span class="op">=</span> <span class="va">Test</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 3
 ##   .metric .estimator .estimate
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
 ## 1 sens    binary         0.884</code></pre>
 <p>Spezifität:</p>
-<div class="sourceCode" id="cb239"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb238"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://readr.tidyverse.org/reference/spec.html">spec</a></span><span class="op">(</span><span class="va">krebstest</span>, truth <span class="op">=</span> <span class="va">Krebs</span>, estimate <span class="op">=</span> <span class="va">Test</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 3
 ##   .metric .estimator .estimate
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
 ## 1 spec    binary           0.6</code></pre>
 <p>Kappa:</p>
-<div class="sourceCode" id="cb241"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb240"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">kap</span><span class="op">(</span><span class="va">krebstest</span>, truth <span class="op">=</span> <span class="va">Krebs</span>, estimate <span class="op">=</span> <span class="va">Test</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 3
 ##   .metric .estimator .estimate
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
 ## 1 kap     binary         0.261</code></pre>
 <p>Positiver Vorhersagewert:</p>
-<div class="sourceCode" id="cb243"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb242"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ppv</span><span class="op">(</span><span class="va">krebstest</span>, truth <span class="op">=</span> <span class="va">Krebs</span>, estimate <span class="op">=</span> <span class="va">Test</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 3
 ##   .metric .estimator .estimate
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
 ## 1 ppv     binary         0.977</code></pre>
 <p>Negativer Vorhersagewert:</p>
-<div class="sourceCode" id="cb245"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb244"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">npv</span><span class="op">(</span><span class="va">krebstest</span>, truth <span class="op">=</span> <span class="va">Krebs</span>, estimate <span class="op">=</span> <span class="va">Test</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 3
 ##   .metric .estimator .estimate
@@ -1376,7 +1353,7 @@ Wahrscheinlichkeit, in Wahrheit krank zu sein gering, zum Glück!</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-04-11 15:32:35.</p>
+    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-04-11 20:40:29.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

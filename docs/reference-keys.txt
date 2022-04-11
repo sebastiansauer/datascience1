@@ -71,11 +71,12 @@ aufgaben-3
 klassifikation-am-beispiel-von-knn
 lernziele-4
 literatur-4
+vertiefung-1
 aufgaben-4
 statistisches-lernen
 literatur-5
 hinweise-3
-vertiefung-1
+vertiefung-2
 wiederholung
 hinweise-4
 logistische-regression
@@ -95,10 +96,10 @@ gam
 literatur-11
 lasso-und-co
 literatur-12
-vertiefung-2
+vertiefung-3
 literatur-13
 hinweise-7
-vertiefung-3
+vertiefung-4
 prüfung
 prüfungleistung
 tldr-zusammenfassung
@@ -138,7 +139,7 @@ ziele-des-ml
 no-free-lunch
 bias-varianz-abwägung
 aufgaben-5
-vertiefung-4
+vertiefung-5
 r-zweiter-blick
 objekttypen-in-r
 überblick
