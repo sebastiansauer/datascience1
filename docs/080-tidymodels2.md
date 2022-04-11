@@ -37,3 +37,4 @@ Es gibt eine Reihe vergleichbarer Illustrationen in anderen Büchern:
 - [Silge & Kuhn, 2022, Abb. 10.1](https://datasciencebook.ca/img/cv.png)
 - [Silge & Kuhn, 2022, Abb. 10.2](https://www.tmwr.org/premade/three-CV.svg)
 - [Silge & Kuhn, 2022, Abb. 10.3](https://www.tmwr.org/premade/three-CV-iter.svg)
+- James, Witten, hastie & Tishirani, 2021, Abb. 5.3

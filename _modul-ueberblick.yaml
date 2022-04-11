@@ -76,7 +76,8 @@ thema4:
   Literatur:
     - "Rhys, Kap. 3"
     - "[Timbers et al., Kap. 5](https://datasciencebook.ca/classification.html#classification)"
-
+  Aufgaben:
+    - "Arbeiten Sie sich so gut als möglich durch [diese Analyse zum Verlauf von Covid-Fällen](https://github.com/sebastiansauer/covid-icu)"
 
 thema5:
   Titel: "Statistisches Lernen"

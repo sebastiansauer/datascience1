@@ -71,6 +71,7 @@ aufgaben-3
 klassifikation-am-beispiel-von-knn
 lernziele-4
 literatur-4
+aufgaben-4
 statistisches-lernen
 literatur-5
 hinweise-3
@@ -136,7 +137,7 @@ ziele-des-ml
 über--vs.-unteranpassung
 no-free-lunch
 bias-varianz-abwägung
-aufgaben-4
+aufgaben-5
 vertiefung-4
 r-zweiter-blick
 objekttypen-in-r
@@ -163,7 +164,7 @@ wozu-listenspalten
 beispiele-für-listenspalten
 tidymodel
 kurs-datascience1
-aufgaben-5
+aufgaben-6
 literatur-14
 tidymodels-1
 daten
