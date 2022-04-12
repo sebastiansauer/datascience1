@@ -14,12 +14,12 @@
 
 
 ```{=html}
-<div id="piakhuuiyo" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="bhllvmeetl" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#piakhuuiyo .gt_table {
+#bhllvmeetl .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -44,7 +44,7 @@
   border-left-color: #D3D3D3;
 }
 
-#piakhuuiyo .gt_heading {
+#bhllvmeetl .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -56,7 +56,7 @@
   border-right-color: #D3D3D3;
 }
 
-#piakhuuiyo .gt_title {
+#bhllvmeetl .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -66,7 +66,7 @@
   border-bottom-width: 0;
 }
 
-#piakhuuiyo .gt_subtitle {
+#bhllvmeetl .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -76,13 +76,13 @@
   border-top-width: 0;
 }
 
-#piakhuuiyo .gt_bottom_border {
+#bhllvmeetl .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#piakhuuiyo .gt_col_headings {
+#bhllvmeetl .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -97,7 +97,7 @@
   border-right-color: #D3D3D3;
 }
 
-#piakhuuiyo .gt_col_heading {
+#bhllvmeetl .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -117,7 +117,7 @@
   overflow-x: hidden;
 }
 
-#piakhuuiyo .gt_column_spanner_outer {
+#bhllvmeetl .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -129,15 +129,15 @@
   padding-right: 4px;
 }
 
-#piakhuuiyo .gt_column_spanner_outer:first-child {
+#bhllvmeetl .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#piakhuuiyo .gt_column_spanner_outer:last-child {
+#bhllvmeetl .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#piakhuuiyo .gt_column_spanner {
+#bhllvmeetl .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -149,7 +149,7 @@
   width: 100%;
 }
 
-#piakhuuiyo .gt_group_heading {
+#bhllvmeetl .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -171,7 +171,7 @@
   vertical-align: middle;
 }
 
-#piakhuuiyo .gt_empty_group_heading {
+#bhllvmeetl .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -186,15 +186,15 @@
   vertical-align: middle;
 }
 
-#piakhuuiyo .gt_from_md > :first-child {
+#bhllvmeetl .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#piakhuuiyo .gt_from_md > :last-child {
+#bhllvmeetl .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#piakhuuiyo .gt_row {
+#bhllvmeetl .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -213,7 +213,7 @@
   overflow-x: hidden;
 }
 
-#piakhuuiyo .gt_stub {
+#bhllvmeetl .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -225,7 +225,7 @@
   padding-left: 12px;
 }
 
-#piakhuuiyo .gt_summary_row {
+#bhllvmeetl .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -235,7 +235,7 @@
   padding-right: 5px;
 }
 
-#piakhuuiyo .gt_first_summary_row {
+#bhllvmeetl .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -245,7 +245,7 @@
   border-top-color: #D3D3D3;
 }
 
-#piakhuuiyo .gt_grand_summary_row {
+#bhllvmeetl .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -255,7 +255,7 @@
   padding-right: 5px;
 }
 
-#piakhuuiyo .gt_first_grand_summary_row {
+#bhllvmeetl .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -265,11 +265,11 @@
   border-top-color: #D3D3D3;
 }
 
-#piakhuuiyo .gt_striped {
+#bhllvmeetl .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#piakhuuiyo .gt_table_body {
+#bhllvmeetl .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -278,7 +278,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#piakhuuiyo .gt_footnotes {
+#bhllvmeetl .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -292,13 +292,13 @@
   border-right-color: #D3D3D3;
 }
 
-#piakhuuiyo .gt_footnote {
+#bhllvmeetl .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#piakhuuiyo .gt_sourcenotes {
+#bhllvmeetl .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -312,41 +312,41 @@
   border-right-color: #D3D3D3;
 }
 
-#piakhuuiyo .gt_sourcenote {
+#bhllvmeetl .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#piakhuuiyo .gt_left {
+#bhllvmeetl .gt_left {
   text-align: left;
 }
 
-#piakhuuiyo .gt_center {
+#bhllvmeetl .gt_center {
   text-align: center;
 }
 
-#piakhuuiyo .gt_right {
+#bhllvmeetl .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#piakhuuiyo .gt_font_normal {
+#bhllvmeetl .gt_font_normal {
   font-weight: normal;
 }
 
-#piakhuuiyo .gt_font_bold {
+#bhllvmeetl .gt_font_bold {
   font-weight: bold;
 }
 
-#piakhuuiyo .gt_font_italic {
+#bhllvmeetl .gt_font_italic {
   font-style: italic;
 }
 
-#piakhuuiyo .gt_super {
+#bhllvmeetl .gt_super {
   font-size: 65%;
 }
 
-#piakhuuiyo .gt_footnote_marks {
+#bhllvmeetl .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -391,12 +391,12 @@
 <td class="gt_row gt_left">2022-04-17</td></tr>
     <tr><td class="gt_row gt_right">6</td>
 <td class="gt_row gt_right">16</td>
-<td class="gt_row gt_left">Statistisches Lernen</td>
+<td class="gt_row gt_left">Wiederholung</td>
 <td class="gt_row gt_left">2022-04-18</td>
 <td class="gt_row gt_left">2022-04-24</td></tr>
     <tr><td class="gt_row gt_right">7</td>
 <td class="gt_row gt_right">17</td>
-<td class="gt_row gt_left">Wiederholung</td>
+<td class="gt_row gt_left">Statistisches Lernen</td>
 <td class="gt_row gt_left">2022-04-25</td>
 <td class="gt_row gt_left">2022-05-01</td></tr>
     <tr><td class="gt_row gt_right">8</td>
@@ -621,6 +621,22 @@
 
 
 
+### Wiederholung
+
+
+
+
+#### Hinweise 
+
+- In dieser Woche fällt die Vorlesung aus (Ostern).
+- Wiederholen Sie in dieser Zeit den bisherigen Stoff, um etwaige individuelle Wissenslücken zu schließen.
+
+
+
+
+
+
+
 ### Statistisches Lernen
 
 
@@ -640,21 +656,6 @@
 #### Vertiefung 
 
 - [Fields arranged by purity, xkcd 435](https://xkcd.com/435/)
-
-
-
-
-
-
-### Wiederholung
-
-
-
-
-#### Hinweise 
-
-- In dieser Woche fällt die Vorlesung aus (Ostern).
-
 
 
 

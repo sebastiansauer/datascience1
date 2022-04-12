@@ -83,6 +83,17 @@ thema4:
 
 
 thema5:
+  Titel: "Wiederholung"
+
+  Hinweise: 
+    - In dieser Woche fällt die Vorlesung aus (Ostern).
+    - "Wiederholen Sie in dieser Zeit den bisherigen Stoff, um etwaige individuelle Wissenslücken zu schließen."
+ 
+
+
+
+
+thema6:
   Titel: "Statistisches Lernen"
 
   Hinweise:
@@ -93,12 +104,6 @@ thema5:
     - "[Fields arranged by purity, xkcd 435](https://xkcd.com/435/)"
 
 
-thema6:
-  Titel: "Wiederholung"
-
-  Hinweise: 
-    - In dieser Woche fällt die Vorlesung aus (Ostern).
- 
 
 
 thema7:
@@ -133,7 +138,7 @@ thema11:
   Titel: "Fallstudie"
 
   Hinweise:
-    - Nächste Woche ist Blockwoche; es findet kein regulärer Unterricht statt.
+    - Nächste Woche ist Blockwoche, zu der kein regulärer Unterricht stattfindet.
     - Diese Woche fällt die Übung aus.
   Literatur:
     - "Rhys, Kap.9"

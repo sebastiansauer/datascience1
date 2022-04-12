@@ -107,7 +107,7 @@ der jeder Beobachtung die Zuteilung zu Train- bzw. zum Test-Datensatz zuweist:</
 Aber eben auch der Index, der bestimmt, welche Beobachtung im Train-Set landet:</p>
 <div class="sourceCode" id="cb146"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ames_split</span><span class="op">$</span><span class="va">in_id</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></code></pre></div>
-<pre><code>##  [1]  2 27 28 30 31 32 33 35 78 79</code></pre>
+<pre><code>##  [1]  2 27 28 30 32 35 78 79 84 87</code></pre>
 <div class="sourceCode" id="cb148"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">ames_split</span><span class="op">$</span><span class="va">in_id</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 2342</code></pre>
@@ -137,8 +137,8 @@ zu der z.B. das R-Paket <code>dplyr</code> gehört.</p>
 <p>Ein (statistisches) Modell wird in Tidymodels mit drei Elementen spezifiziert, vgl. Abb. <a href="tidymodels-1.html#fig:tidymodels-def">6.1</a>.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:tidymodels-def"></span>
-<div id="htmlwidget-8c75af591531b4e56f74" style="width:100%;height:300px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-8c75af591531b4e56f74">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: leftright\n[Modell|\n  [type (Algorithmus)|\n    [Regression] \n    [Neuronale Netze] \n    [...]\n  ]  \n  [engine (Implementierung)|\n    [lm]\n    [stan_glm]\n    [...]\n  ]\n  [mode (modus)|\n    [regression]\n    [classification]\n  ]\n  \n]\n","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
+<div id="htmlwidget-325febd7d5b0ad4d985a" style="width:100%;height:300px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-325febd7d5b0ad4d985a">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: leftright\n[Modell|\n  [type (Algorithmus)|\n    [Regression] \n    [Neuronale Netze] \n    [...]\n  ]  \n  [engine (Implementierung)|\n    [lm]\n    [stan_glm]\n    [...]\n  ]\n  [mode (modus)|\n    [regression]\n    [classification]\n  ]\n  \n]\n","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
 Figure 6.1: Definition eines Models in tidymodels
 </p>
 </div>
@@ -190,12 +190,12 @@ Schauen wir uns also zunächst diese an.</p>
 <pre><code>## # A tibble: 6 × 1
 ##   .pred
 ##   &lt;dbl&gt;
-## 1  5.24
-## 2  5.23
-## 3  5.32
-## 4  5.32
-## 5  5.29
-## 6  5.27</code></pre>
+## 1  5.23
+## 2  5.27
+## 3  5.27
+## 4  5.24
+## 5  5.25
+## 6  5.25</code></pre>
 <p>Die Syntax lautet <code>predict(modell, daten_zum_vorhersagen)</code>.</p>
 </div>
 <div id="vorhersagen-im-train-datensatz" class="section level3" number="6.3.4">
@@ -224,7 +224,7 @@ so wird ein Überblick an relevanten Modellergebnissen am Bildschirm gedruckt:</
 ## 
 ## Coefficients:
 ## (Intercept)    Longitude     Latitude  
-##    -312.640       -2.111        2.860</code></pre>
+##    -310.086       -2.063        2.906</code></pre>
 <p>Innerhalb des Ergebnisobjekts findet sich eine Liste namens <code>fit</code>,
 in der die Koeffizienten (der “Fit”) abgelegt sind:</p>
 <div class="sourceCode" id="cb157"><pre class="downlit sourceCode r">
@@ -235,7 +235,7 @@ in der die Koeffizienten (der “Fit”) abgelegt sind:</p>
 ## 
 ## Coefficients:
 ## (Intercept)    Longitude     Latitude  
-##    -312.640       -2.111        2.860</code></pre>
+##    -310.086       -2.063        2.906</code></pre>
 <p>Zum Herausholen dieser Infos kann man auch die Funktion <code>extract_fit_engine()</code> verwenden:</p>
 <div class="sourceCode" id="cb159"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">lm_fit</span> <span class="op">&lt;-</span>
@@ -249,14 +249,14 @@ in der die Koeffizienten (der “Fit”) abgelegt sind:</p>
 ## 
 ## Coefficients:
 ## (Intercept)    Longitude     Latitude  
-##    -312.640       -2.111        2.860</code></pre>
+##    -310.086       -2.063        2.906</code></pre>
 <p>Das extrahierte Objekt ist, in diesem Fall,
 das typische <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> Objekt.
 Entsprechend kann man daruaf <code><a href="https://rdrr.io/r/stats/coef.html">coef()</a></code> oder <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> anwenden.</p>
 <div class="sourceCode" id="cb161"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">lm_fit</span><span class="op">)</span></code></pre></div>
 <pre><code>## (Intercept)   Longitude    Latitude 
-## -312.639997   -2.110564    2.860063</code></pre>
+## -310.085647   -2.062607    2.906142</code></pre>
 <div class="sourceCode" id="cb163"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">lm_fit</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
@@ -265,19 +265,19 @@ Entsprechend kann man daruaf <code><a href="https://rdrr.io/r/stats/coef.html">c
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -1.02585 -0.09578 -0.01422  0.09824  0.57696 
+## -1.02176 -0.09826 -0.01547  0.10105  0.57639 
 ## 
 ## Coefficients:
 ##              Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -312.6400    14.4527  -21.63   &lt;2e-16 ***
-## Longitude     -2.1106     0.1291  -16.35   &lt;2e-16 ***
-## Latitude       2.8601     0.1796   15.93   &lt;2e-16 ***
+## (Intercept) -310.0856    14.4383  -21.48   &lt;2e-16 ***
+## Longitude     -2.0626     0.1291  -15.97   &lt;2e-16 ***
+## Latitude       2.9061     0.1801   16.13   &lt;2e-16 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 0.1606 on 2339 degrees of freedom
-## Multiple R-squared:  0.1776, Adjusted R-squared:  0.1769 
-## F-statistic: 252.5 on 2 and 2339 DF,  p-value: &lt; 2.2e-16</code></pre>
+## Residual standard error: 0.1603 on 2339 degrees of freedom
+## Multiple R-squared:  0.1767, Adjusted R-squared:  0.176 
+## F-statistic:   251 on 2 and 2339 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Schicker sind die Pendant-Befehle aus <code>broom</code>,
 die jeweils einen Tibble zuückliefern:</p>
 <div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
@@ -286,15 +286,15 @@ die jeweils einen Tibble zuückliefern:</p>
 <pre><code>## # A tibble: 3 × 5
 ##   term        estimate std.error statistic  p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
-## 1 (Intercept)  -313.      14.5       -21.6 9.49e-95
-## 2 Longitude      -2.11     0.129     -16.4 5.55e-57
-## 3 Latitude        2.86     0.180      15.9 2.68e-54</code></pre>
+## 1 (Intercept)  -310.      14.4       -21.5 1.56e-93
+## 2 Longitude      -2.06     0.129     -16.0 1.39e-54
+## 3 Latitude        2.91     0.180      16.1 1.35e-55</code></pre>
 <div class="sourceCode" id="cb167"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://generics.r-lib.org/reference/glance.html">glance</a></span><span class="op">(</span><span class="va">lm_fit</span><span class="op">)</span> <span class="co"># Modellgüte</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 12
-##   r.squared adj.r.squared sigma statistic   p.value    df logLik    AIC    BIC
-##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-## 1     0.178         0.177 0.161      252. 5.17e-100     2   961. -1915. -1892.
+##   r.squared adj.r.squared sigma statistic  p.value    df logLik    AIC    BIC
+##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1     0.177         0.176 0.160      251. 1.79e-99     2   965. -1923. -1900.
 ## # … with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
 </div>
 <div id="parsnip-rstudio-add-in" class="section level3" number="6.3.6">
@@ -318,8 +318,8 @@ Nett!</p>
 </h3>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:tidymodels-workflow"></span>
-<div id="htmlwidget-a375a941600c92dd0470" style="width:100%;height:500px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a375a941600c92dd0470">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n[Workflow|\n  [preprocessing|\n   Vorverarbeitung;\n   Imputation;\n   Transformation;\n   Prädiktorwahl\n   AV-Wahl\n   ...\n  \n  ]\n  [fitting |\n    Modell berechnen\n    ...\n  ]\n  [postprocessing|\n    Grenzwerte für Klass. festlegen\n    ...\n  ]\n]\n","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
+<div id="htmlwidget-092b87296dc847ffefb5" style="width:100%;height:500px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-092b87296dc847ffefb5">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n[Workflow|\n  [preprocessing|\n   Vorverarbeitung;\n   Imputation;\n   Transformation;\n   Prädiktorwahl\n   AV-Wahl\n   ...\n  \n  ]\n  [fitting |\n    Modell berechnen\n    ...\n  ]\n  [postprocessing|\n    Grenzwerte für Klass. festlegen\n    ...\n  ]\n]\n","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
 Figure 6.2: Definition eines Models in tidymodels
 </p>
 </div>
@@ -383,7 +383,7 @@ aus Sicht von Tidymodels.</p>
 ## 
 ## Coefficients:
 ## (Intercept)    Longitude     Latitude  
-##    -312.640       -2.111        2.860</code></pre>
+##    -310.086       -2.063        2.906</code></pre>
 </div>
 <div id="vorhersage-mit-einem-workflow" class="section level3" number="6.4.3">
 <h3>
@@ -418,11 +418,11 @@ Besonders interessant erscheinen natürlich die Listenspalten <code>.metrics</co
 <pre><code>## # A tibble: 5 × 5
 ##   id               .pred  .row Sale_Price .config             
 ##   &lt;chr&gt;            &lt;dbl&gt; &lt;int&gt;      &lt;dbl&gt; &lt;chr&gt;               
-## 1 train/test split  5.24    29       5.26 Preprocessor1_Model1
-## 2 train/test split  5.23    34       5.18 Preprocessor1_Model1
-## 3 train/test split  5.32    38       5.49 Preprocessor1_Model1
-## 4 train/test split  5.32    45       5.79 Preprocessor1_Model1
-## 5 train/test split  5.29    65       5.34 Preprocessor1_Model1</code></pre>
+## 1 train/test split  5.23     1       5.33 Preprocessor1_Model1
+## 2 train/test split  5.27    12       5.27 Preprocessor1_Model1
+## 3 train/test split  5.27    16       5.73 Preprocessor1_Model1
+## 4 train/test split  5.24    19       5.15 Preprocessor1_Model1
+## 5 train/test split  5.25    22       5.23 Preprocessor1_Model1</code></pre>
 </div>
 <div id="modellgüte" class="section level3" number="6.4.4">
 <h3>
@@ -434,12 +434,12 @@ die schon fertig berechnet im Objekt <code>final_lm_res</code> liegen und mit
 <code>collect_metrics</code> herausgenommen werden können:</p>
 <div class="sourceCode" id="cb184"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">lm_metrics</span> <span class="op">&lt;-</span> <span class="fu">collect_metrics</span><span class="op">(</span><span class="va">final_lm_res</span><span class="op">)</span></code></pre></div>
-<div id="mvpzvrufpu" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="slxvqnnyjl" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#mvpzvrufpu .gt_table {
+#slxvqnnyjl .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -464,7 +464,7 @@ die schon fertig berechnet im Objekt <code>final_lm_res</code> liegen und mit
   border-left-color: #D3D3D3;
 }
 
-#mvpzvrufpu .gt_heading {
+#slxvqnnyjl .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -476,7 +476,7 @@ die schon fertig berechnet im Objekt <code>final_lm_res</code> liegen und mit
   border-right-color: #D3D3D3;
 }
 
-#mvpzvrufpu .gt_title {
+#slxvqnnyjl .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -486,7 +486,7 @@ die schon fertig berechnet im Objekt <code>final_lm_res</code> liegen und mit
   border-bottom-width: 0;
 }
 
-#mvpzvrufpu .gt_subtitle {
+#slxvqnnyjl .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -496,13 +496,13 @@ die schon fertig berechnet im Objekt <code>final_lm_res</code> liegen und mit
   border-top-width: 0;
 }
 
-#mvpzvrufpu .gt_bottom_border {
+#slxvqnnyjl .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#mvpzvrufpu .gt_col_headings {
+#slxvqnnyjl .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -517,7 +517,7 @@ die schon fertig berechnet im Objekt <code>final_lm_res</code> liegen und mit
   border-right-color: #D3D3D3;
 }
 
-#mvpzvrufpu .gt_col_heading {
+#slxvqnnyjl .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -537,7 +537,7 @@ die schon fertig berechnet im Objekt <code>final_lm_res</code> liegen und mit
   overflow-x: hidden;
 }
 
-#mvpzvrufpu .gt_column_spanner_outer {
+#slxvqnnyjl .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -549,15 +549,15 @@ die schon fertig berechnet im Objekt <code>final_lm_res</code> liegen und mit
   padding-right: 4px;
 }
 
-#mvpzvrufpu .gt_column_spanner_outer:first-child {
+#slxvqnnyjl .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#mvpzvrufpu .gt_column_spanner_outer:last-child {
+#slxvqnnyjl .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#mvpzvrufpu .gt_column_spanner {
+#slxvqnnyjl .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -569,7 +569,7 @@ die schon fertig berechnet im Objekt <code>final_lm_res</code> liegen und mit
   width: 100%;
 }
 
-#mvpzvrufpu .gt_group_heading {
+#slxvqnnyjl .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -591,7 +591,7 @@ die schon fertig berechnet im Objekt <code>final_lm_res</code> liegen und mit
   vertical-align: middle;
 }
 
-#mvpzvrufpu .gt_empty_group_heading {
+#slxvqnnyjl .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -606,15 +606,15 @@ die schon fertig berechnet im Objekt <code>final_lm_res</code> liegen und mit
   vertical-align: middle;
 }
 
-#mvpzvrufpu .gt_from_md > :first-child {
+#slxvqnnyjl .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#mvpzvrufpu .gt_from_md > :last-child {
+#slxvqnnyjl .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#mvpzvrufpu .gt_row {
+#slxvqnnyjl .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -633,7 +633,7 @@ die schon fertig berechnet im Objekt <code>final_lm_res</code> liegen und mit
   overflow-x: hidden;
 }
 
-#mvpzvrufpu .gt_stub {
+#slxvqnnyjl .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -645,7 +645,7 @@ die schon fertig berechnet im Objekt <code>final_lm_res</code> liegen und mit
   padding-left: 12px;
 }
 
-#mvpzvrufpu .gt_summary_row {
+#slxvqnnyjl .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -655,7 +655,7 @@ die schon fertig berechnet im Objekt <code>final_lm_res</code> liegen und mit
   padding-right: 5px;
 }
 
-#mvpzvrufpu .gt_first_summary_row {
+#slxvqnnyjl .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -665,7 +665,7 @@ die schon fertig berechnet im Objekt <code>final_lm_res</code> liegen und mit
   border-top-color: #D3D3D3;
 }
 
-#mvpzvrufpu .gt_grand_summary_row {
+#slxvqnnyjl .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -675,7 +675,7 @@ die schon fertig berechnet im Objekt <code>final_lm_res</code> liegen und mit
   padding-right: 5px;
 }
 
-#mvpzvrufpu .gt_first_grand_summary_row {
+#slxvqnnyjl .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -685,11 +685,11 @@ die schon fertig berechnet im Objekt <code>final_lm_res</code> liegen und mit
   border-top-color: #D3D3D3;
 }
 
-#mvpzvrufpu .gt_striped {
+#slxvqnnyjl .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#mvpzvrufpu .gt_table_body {
+#slxvqnnyjl .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -698,7 +698,7 @@ die schon fertig berechnet im Objekt <code>final_lm_res</code> liegen und mit
   border-bottom-color: #D3D3D3;
 }
 
-#mvpzvrufpu .gt_footnotes {
+#slxvqnnyjl .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -712,13 +712,13 @@ die schon fertig berechnet im Objekt <code>final_lm_res</code> liegen und mit
   border-right-color: #D3D3D3;
 }
 
-#mvpzvrufpu .gt_footnote {
+#slxvqnnyjl .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#mvpzvrufpu .gt_sourcenotes {
+#slxvqnnyjl .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -732,41 +732,41 @@ die schon fertig berechnet im Objekt <code>final_lm_res</code> liegen und mit
   border-right-color: #D3D3D3;
 }
 
-#mvpzvrufpu .gt_sourcenote {
+#slxvqnnyjl .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#mvpzvrufpu .gt_left {
+#slxvqnnyjl .gt_left {
   text-align: left;
 }
 
-#mvpzvrufpu .gt_center {
+#slxvqnnyjl .gt_center {
   text-align: center;
 }
 
-#mvpzvrufpu .gt_right {
+#slxvqnnyjl .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#mvpzvrufpu .gt_font_normal {
+#slxvqnnyjl .gt_font_normal {
   font-weight: normal;
 }
 
-#mvpzvrufpu .gt_font_bold {
+#slxvqnnyjl .gt_font_bold {
   font-weight: bold;
 }
 
-#mvpzvrufpu .gt_font_italic {
+#slxvqnnyjl .gt_font_italic {
   font-style: italic;
 }
 
-#mvpzvrufpu .gt_super {
+#slxvqnnyjl .gt_super {
   font-size: 65%;
 }
 
-#mvpzvrufpu .gt_footnote_marks {
+#slxvqnnyjl .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -783,14 +783,14 @@ die schon fertig berechnet im Objekt <code>final_lm_res</code> liegen und mit
 <tr>
 <td class="gt_row gt_left">rmse</td>
 <td class="gt_row gt_left">standard</td>
-<td class="gt_row gt_right">1.63 × 10<sup class="gt_super">−1</sup>
+<td class="gt_row gt_right">1.64 × 10<sup class="gt_super">−1</sup>
 </td>
 <td class="gt_row gt_left">Preprocessor1_Model1</td>
 </tr>
 <tr>
 <td class="gt_row gt_left">rsq</td>
 <td class="gt_row gt_left">standard</td>
-<td class="gt_row gt_right">1.52 × 10<sup class="gt_super">−1</sup>
+<td class="gt_row gt_right">1.56 × 10<sup class="gt_super">−1</sup>
 </td>
 <td class="gt_row gt_left">Preprocessor1_Model1</td>
 </tr>
@@ -808,9 +808,9 @@ welche Metriken der Modellgüte man bekommen möchte:</p>
 <pre><code>## # A tibble: 3 × 3
 ##   .metric .estimator .estimate
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-## 1 rmse    standard       0.163
-## 2 rsq     standard       0.152
-## 3 mae     standard       0.125</code></pre>
+## 1 rmse    standard       0.164
+## 2 rsq     standard       0.156
+## 3 mae     standard       0.124</code></pre>
 </div>
 <div id="vorhersage-von-hand" class="section level3" number="6.4.5">
 <h3>
@@ -824,11 +824,11 @@ wenn man direktere Kontrolle haben möchte als mit <code>last_fit</code> und <co
 <pre><code>## # A tibble: 5 × 1
 ##   .pred
 ##   &lt;dbl&gt;
-## 1  5.24
-## 2  5.23
-## 3  5.32
-## 4  5.32
-## 5  5.29</code></pre>
+## 1  5.23
+## 2  5.27
+## 3  5.27
+## 4  5.24
+## 5  5.25</code></pre>
 <p>Jetzt binden wir die Spalten zusammen, also die “Wahrheit” (<span class="math inline">\(y\)</span>) und die Vorhersagen:</p>
 <div class="sourceCode" id="cb190"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ames_test_small2</span> <span class="op">&lt;-</span> 
@@ -845,7 +845,7 @@ wenn man direktere Kontrolle haben möchte als mit <code>last_fit</code> und <co
 <pre><code>## # A tibble: 1 × 3
 ##   .metric .estimator .estimate
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-## 1 rsq     standard       0.698</code></pre>
+## 1 rsq     standard       0.104</code></pre>
 <p>Andere Koeffizienten der Modellgüte können mit <code>rmse</code> oder <code>mae</code> abgerufen werden.</p>
 </div>
 </div>
@@ -928,8 +928,8 @@ sondern mit einem Rezept:</p>
 <pre><code>## # A tibble: 2 × 4
 ##   .metric .estimator .estimate .config             
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;               
-## 1 rmse    standard      0.0804 Preprocessor1_Model1
-## 2 rsq     standard      0.794  Preprocessor1_Model1</code></pre>
+## 1 rmse    standard      0.0840 Preprocessor1_Model1
+## 2 rsq     standard      0.779  Preprocessor1_Model1</code></pre>
 </div>
 <div id="spaltenrollen" class="section level3" number="6.5.3">
 <h3>
@@ -1022,7 +1022,7 @@ Ein Überblick zu allen Schritten der Vorverarbeitung findet sich <a href="https
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-04-11 20:40:29.</p>
+    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-04-12 21:34:30.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

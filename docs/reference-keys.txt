@@ -73,12 +73,12 @@ lernziele-4
 literatur-4
 vertiefung-1
 aufgaben-4
+wiederholung
+hinweise-3
 statistisches-lernen
 literatur-5
-hinweise-3
-vertiefung-2
-wiederholung
 hinweise-4
+vertiefung-2
 logistische-regression
 literatur-6
 naive-bayes
