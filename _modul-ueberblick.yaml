@@ -50,7 +50,9 @@ thema3:
     - Fortsetzung der Inhalte des vorherigen Themas
   Aufgaben:
     - "[Fallstudie Flugverspätungen](https://data-se.netlify.app/2021/03/10/fallstudie-modellierung-von-flugversp%C3%A4tungen/)"
-    
+    - "[Fallstudie Getreideernte](https://juliasilge.com/blog/crop-yields/)" 
+  Vertiefung:
+    - "[Funktionale Programmierung mit R](https://albert-rapp.de/post/2021-09-16-similar-data-and-list-like-columns/)"
     
 
 thema3a:
@@ -79,8 +81,9 @@ thema4:
   Aufgaben:
     - "Arbeiten Sie sich so gut als möglich durch [diese Analyse zum Verlauf von Covid-Fällen](https://github.com/sebastiansauer/covid-icu)"
   Vertiefung:
+    - "[Sehr einfache Fallstudie zur Modellierung einer Regression mit tidymodels[(https://juliasilge.com/blog/student-debt/)"
     - "[Fallstudie zur Modellierung einer logististischen Regression mit tidymodels](https://onezero.blog/modelling-binary-logistic-regression-using-tidymodels-library-in-r-part-1/)"
-
+    - "[Fallstudie zu Vulkanausbrüchen](https://juliasilge.com/blog/multinomial-volcano-eruptions/)"
 
 thema5:
   Titel: "Wiederholung"
@@ -88,7 +91,8 @@ thema5:
   Hinweise: 
     - In dieser Woche fällt die Vorlesung aus (Ostern).
     - "Wiederholen Sie in dieser Zeit den bisherigen Stoff, um etwaige individuelle Wissenslücken zu schließen."
- 
+  Aufgaben:
+    - "[Fallstudie Himalaya](https://juliasilge.com/blog/himalayan-climbing/)"
 
 
 
@@ -110,7 +114,8 @@ thema7:
   Titel: "Logistische Regression"
   Literatur:
     - "Rhys, Kap. 4"
-
+  Aufgaben:
+    - "[Fallstudien zu Studiengebühren](https://juliasilge.com/blog/tuition-resampling/)"
 
 
 thema8:
@@ -176,7 +181,7 @@ thema15:
     - Nach dieser Woche endet der Unterricht.
   Vertiefung:
     - "[Wie man eine Data-Science-Projekt strukturiert](https://medium.com/swlh/how-to-structure-a-python-based-data-science-project-a-short-tutorial-for-beginners-7e00bff14f56)"
-
+    - "[Hausmeisterarbeit mit {{janitor}}](https://albert-rapp.de/post/2022-01-12-janitor-showcase/)"
 
 
 

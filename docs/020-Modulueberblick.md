@@ -14,12 +14,12 @@
 
 
 ```{=html}
-<div id="bhllvmeetl" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="bpcxfzfvbd" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#bhllvmeetl .gt_table {
+#bpcxfzfvbd .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -44,7 +44,7 @@
   border-left-color: #D3D3D3;
 }
 
-#bhllvmeetl .gt_heading {
+#bpcxfzfvbd .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -56,7 +56,7 @@
   border-right-color: #D3D3D3;
 }
 
-#bhllvmeetl .gt_title {
+#bpcxfzfvbd .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -66,7 +66,7 @@
   border-bottom-width: 0;
 }
 
-#bhllvmeetl .gt_subtitle {
+#bpcxfzfvbd .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -76,13 +76,13 @@
   border-top-width: 0;
 }
 
-#bhllvmeetl .gt_bottom_border {
+#bpcxfzfvbd .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#bhllvmeetl .gt_col_headings {
+#bpcxfzfvbd .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -97,7 +97,7 @@
   border-right-color: #D3D3D3;
 }
 
-#bhllvmeetl .gt_col_heading {
+#bpcxfzfvbd .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -117,7 +117,7 @@
   overflow-x: hidden;
 }
 
-#bhllvmeetl .gt_column_spanner_outer {
+#bpcxfzfvbd .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -129,15 +129,15 @@
   padding-right: 4px;
 }
 
-#bhllvmeetl .gt_column_spanner_outer:first-child {
+#bpcxfzfvbd .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#bhllvmeetl .gt_column_spanner_outer:last-child {
+#bpcxfzfvbd .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#bhllvmeetl .gt_column_spanner {
+#bpcxfzfvbd .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -149,7 +149,7 @@
   width: 100%;
 }
 
-#bhllvmeetl .gt_group_heading {
+#bpcxfzfvbd .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -171,7 +171,7 @@
   vertical-align: middle;
 }
 
-#bhllvmeetl .gt_empty_group_heading {
+#bpcxfzfvbd .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -186,15 +186,15 @@
   vertical-align: middle;
 }
 
-#bhllvmeetl .gt_from_md > :first-child {
+#bpcxfzfvbd .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#bhllvmeetl .gt_from_md > :last-child {
+#bpcxfzfvbd .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#bhllvmeetl .gt_row {
+#bpcxfzfvbd .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -213,7 +213,7 @@
   overflow-x: hidden;
 }
 
-#bhllvmeetl .gt_stub {
+#bpcxfzfvbd .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -225,7 +225,7 @@
   padding-left: 12px;
 }
 
-#bhllvmeetl .gt_summary_row {
+#bpcxfzfvbd .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -235,7 +235,7 @@
   padding-right: 5px;
 }
 
-#bhllvmeetl .gt_first_summary_row {
+#bpcxfzfvbd .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -245,7 +245,7 @@
   border-top-color: #D3D3D3;
 }
 
-#bhllvmeetl .gt_grand_summary_row {
+#bpcxfzfvbd .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -255,7 +255,7 @@
   padding-right: 5px;
 }
 
-#bhllvmeetl .gt_first_grand_summary_row {
+#bpcxfzfvbd .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -265,11 +265,11 @@
   border-top-color: #D3D3D3;
 }
 
-#bhllvmeetl .gt_striped {
+#bpcxfzfvbd .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#bhllvmeetl .gt_table_body {
+#bpcxfzfvbd .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -278,7 +278,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#bhllvmeetl .gt_footnotes {
+#bpcxfzfvbd .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -292,13 +292,13 @@
   border-right-color: #D3D3D3;
 }
 
-#bhllvmeetl .gt_footnote {
+#bpcxfzfvbd .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#bhllvmeetl .gt_sourcenotes {
+#bpcxfzfvbd .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -312,41 +312,41 @@
   border-right-color: #D3D3D3;
 }
 
-#bhllvmeetl .gt_sourcenote {
+#bpcxfzfvbd .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#bhllvmeetl .gt_left {
+#bpcxfzfvbd .gt_left {
   text-align: left;
 }
 
-#bhllvmeetl .gt_center {
+#bpcxfzfvbd .gt_center {
   text-align: center;
 }
 
-#bhllvmeetl .gt_right {
+#bpcxfzfvbd .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#bhllvmeetl .gt_font_normal {
+#bpcxfzfvbd .gt_font_normal {
   font-weight: normal;
 }
 
-#bhllvmeetl .gt_font_bold {
+#bpcxfzfvbd .gt_font_bold {
   font-weight: bold;
 }
 
-#bhllvmeetl .gt_font_italic {
+#bpcxfzfvbd .gt_font_italic {
   font-style: italic;
 }
 
-#bhllvmeetl .gt_super {
+#bpcxfzfvbd .gt_super {
   font-size: 65%;
 }
 
-#bhllvmeetl .gt_footnote_marks {
+#bpcxfzfvbd .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -547,10 +547,16 @@
 
 
 
+#### Vertiefung 
+
+- [Funktionale Programmierung mit R](https://albert-rapp.de/post/2021-09-16-similar-data-and-list-like-columns/)
+
+
 
 #### Aufgaben 
 
 - [Fallstudie Flugverspätungen](https://data-se.netlify.app/2021/03/10/fallstudie-modellierung-von-flugversp%C3%A4tungen/)
+- [Fallstudie Getreideernte](https://juliasilge.com/blog/crop-yields/)
 
 
 
@@ -609,7 +615,9 @@
 
 #### Vertiefung 
 
+- [Sehr einfache Fallstudie zur Modellierung einer Regression mit tidymodels[(https://juliasilge.com/blog/student-debt/)
 - [Fallstudie zur Modellierung einer logististischen Regression mit tidymodels](https://onezero.blog/modelling-binary-logistic-regression-using-tidymodels-library-in-r-part-1/)
+- [Fallstudie zu Vulkanausbrüchen](https://juliasilge.com/blog/multinomial-volcano-eruptions/)
 
 
 
@@ -632,6 +640,11 @@
 - Wiederholen Sie in dieser Zeit den bisherigen Stoff, um etwaige individuelle Wissenslücken zu schließen.
 
 
+
+
+#### Aufgaben 
+
+- [Fallstudie Himalaya](https://juliasilge.com/blog/himalayan-climbing/)
 
 
 
@@ -734,7 +747,7 @@
 
 #### Hinweise 
 
-- Nächste Woche ist Blockwoche; es findet kein regulärer Unterricht statt.
+- Nächste Woche ist Blockwoche, zu der kein regulärer Unterricht stattfindet.
 - Diese Woche fällt die Übung aus.
 
 
@@ -807,4 +820,5 @@
 #### Vertiefung 
 
 - [Wie man eine Data-Science-Projekt strukturiert](https://medium.com/swlh/how-to-structure-a-python-based-data-science-project-a-short-tutorial-for-beginners-7e00bff14f56)
+- [Hausmeisterarbeit mit {{janitor}}](https://albert-rapp.de/post/2022-01-12-janitor-showcase/)
 
