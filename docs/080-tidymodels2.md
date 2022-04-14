@@ -18,7 +18,6 @@ Benötigte R-Pakete:
 library(tidyverse)
 library(tidymodels)
 library(tune)
-library(AmesHousing)
 ```
 
 
@@ -29,6 +28,91 @@ daher empfiehlt der Autor, Max Kuhn, die Version des Pakets von Github zu instal
 ```r
 devtools::install_github("tidymodels/tune")
 ```
+
+
+
+## tidymodels
+
+
+### Datensatz aufteilen
+
+
+
+```r
+data(ames)
+
+set.seed(4595)
+data_split <- initial_split(ames, strata = "Sale_Price")
+
+ames_train <- training(data_split)
+ames_test <- testing(data_split)
+```
+
+
+### Rezept, Modell und Workflow definieren
+
+In gewohnter Weise definieren wir den Workflow
+mit einem kNN-Modell.
+
+
+```r
+ames_rec <-
+  recipe(Sale_Price ~ ., data = ames_train) %>%
+  step_log(Sale_Price, base = 10) %>%
+  step_other(Neighborhood, threshold = .1)  %>%
+  step_dummy(all_nominal()) %>%
+  step_zv(all_predictors()) 
+
+knn_model <-
+  nearest_neighbor(
+    mode = "regression",
+  ) %>%
+  set_engine("kknn")
+
+ames_wflow <-
+  workflow() %>%
+  add_recipe(ames_rec) %>%
+  add_model(knn_model)
+```
+
+Das kNN-Modell ist noch *nicht* *berechnet*,
+es ist nur ein "Rezept" erstellt:
+
+
+```r
+knn_model
+```
+
+```
+## K-Nearest Neighbor Model Specification (regression)
+## 
+## Computational engine: kknn
+```
+
+
+```r
+ames_wflow
+```
+
+```
+## ══ Workflow ════════════════════════════════════════════════════════════════════
+## Preprocessor: Recipe
+## Model: nearest_neighbor()
+## 
+## ── Preprocessor ────────────────────────────────────────────────────────────────
+## 4 Recipe Steps
+## 
+## • step_log()
+## • step_other()
+## • step_dummy()
+## • step_zv()
+## 
+## ── Model ───────────────────────────────────────────────────────────────────────
+## K-Nearest Neighbor Model Specification (regression)
+## 
+## Computational engine: kknn
+```
+
 
 
 ## Resampling
@@ -235,6 +319,7 @@ Achtung: Bei randlastigen Verteilungen darf man dieses schöne, wohlerzogene Ver
 
 
 
+
 ## Über- und Unteranpassung an einem Beispiel
 
 
@@ -258,7 +343,188 @@ Abb. \@ref(fig:overfitting-4-plots) zeigt:
 
 
 
+## CV in tidymodels
+
+### CV definieren
+
+So kann man eine *einfache* v-fache Kreuzvalidierung in Tidymodels auszeichnen:
+
+
+```r
+set.seed(2453)
+ames_folds <- vfold_cv(ames_train, strata = "Sale_Price")
+ames_folds
+```
+
+```
+## #  10-fold cross-validation using stratification 
+## # A tibble: 10 × 2
+##    splits             id    
+##    <list>             <chr> 
+##  1 <split [1976/221]> Fold01
+##  2 <split [1976/221]> Fold02
+##  3 <split [1976/221]> Fold03
+##  4 <split [1976/221]> Fold04
+##  5 <split [1977/220]> Fold05
+##  6 <split [1977/220]> Fold06
+##  7 <split [1978/219]> Fold07
+##  8 <split [1978/219]> Fold08
+##  9 <split [1979/218]> Fold09
+## 10 <split [1980/217]> Fold10
+```
+
+Werfen wir einen Blick in die Spalte `splits`, erste Zeile:
+
+
+```r
+ames_folds %>% pluck(1, 1)
+```
+
+```
+## <Analysis/Assess/Total>
+## <1976/221/2197>
+```
+
+
+Möchte man die Defaults vpn `vfold_cv` wissen, schaut man in der Hilfe nach: `?vfold_cv`:
+
+
+`vfold_cv(data, v = 10, repeats = 1, strata = NULL, breaks = 4, pool = 0.1, ...)` 
+
+
+Probieren wir $v=5$ und $r=2$:
+
+
+```r
+ames_folds_rep <- vfold_cv(ames_train, 
+                           strata = "Sale_Price", 
+                           v = 5,
+                           repeats = 2)
+ames_folds_rep
+```
+
+```
+## #  5-fold cross-validation repeated 2 times using stratification 
+## # A tibble: 10 × 3
+##    splits             id      id2  
+##    <list>             <chr>   <chr>
+##  1 <split [1756/441]> Repeat1 Fold1
+##  2 <split [1757/440]> Repeat1 Fold2
+##  3 <split [1757/440]> Repeat1 Fold3
+##  4 <split [1758/439]> Repeat1 Fold4
+##  5 <split [1760/437]> Repeat1 Fold5
+##  6 <split [1756/441]> Repeat2 Fold1
+##  7 <split [1757/440]> Repeat2 Fold2
+##  8 <split [1757/440]> Repeat2 Fold3
+##  9 <split [1758/439]> Repeat2 Fold4
+## 10 <split [1760/437]> Repeat2 Fold5
+```
+
+
+### Resamples fitten
+
+
+Hat unser Computer mehrere Rechenkerne, dann können wir diese nutzen und die Berechnungen beschleunigen.
+Im Standard wird sonst nur ein Kern verwendet.
+
+
+```r
+mycores <- parallel::detectCores(logical = FALSE)
+mycores
+```
+
+```
+## [1] 4
+```
+
+Auf Unix/MacOC-Systemen kann man dann die Anzahl der parallen Kerne so einstellen:
+
+
+```r
+library(doMC)
+registerDoMC(cores = mycores)
+```
+
+
+
+So, und jetzt fitten wir die Resamples und trachten die Modellgüte in den Resamples:
+
+
+
+```r
+ames_resamples_fit <- 
+  ames_wflow %>% 
+  fit_resamples(ames_folds)
+
+ ames_resamples_fit %>%
+  collect_metrics()
+```
+
+```
+## # A tibble: 2 × 6
+##   .metric .estimator   mean     n std_err .config             
+##   <chr>   <chr>       <dbl> <int>   <dbl> <chr>               
+## 1 rmse    standard   0.0928    10 0.00187 Preprocessor1_Model1
+## 2 rsq     standard   0.722     10 0.00864 Preprocessor1_Model1
+```
+
+
+
+Natürlich interessiert uns primär die Modellgüte im Test-Sample:
+
+
+
+```r
+final_ames <-
+  last_fit(ames_wflow, data_split)
+```
+
+
+```r
+final_ames %>% 
+  collect_metrics()
+```
+
+```
+## # A tibble: 2 × 4
+##   .metric .estimator .estimate .config             
+##   <chr>   <chr>          <dbl> <chr>               
+## 1 rmse    standard       0.103 Preprocessor1_Model1
+## 2 rsq     standard       0.678 Preprocessor1_Model1
+```
+
+
 ## Tuning
+
+### Tuning auszeichnen
+
+In der Modellspezifikation des Modells können wir mit `tune()` auszeichnen,
+welche Parameter wir tunen möchten. 
+Wir könenn
+
+
+```r
+knn_model <-
+  nearest_neighbor(
+    mode = "regression",
+    neighbors = tune()
+  ) %>%
+  set_engine("kknn")
+```
+
+
+Wir können dem Tuningparameter auch einen Namen (ID/Laben) geben, z.B. "K":
+
+
+```r
+knn_model <-
+  nearest_neighbor(
+    mode = "regression",
+    neighbors = tune("K")
+  ) %>%
+  set_engine("kknn")
+```
+
 
 ### Grid Search vs. Iterative Search
 
@@ -314,95 +580,6 @@ In `tidymodels` kann man mit `tune()` angeben, dass man einen bestimmten Paramet
 
 ## Tuning mit Tidymodels
 
-### Tuning definieren mit tidymodels für kNN
-
-
-#### Datensatz aufteilen
-
-
-
-```r
-ames <- make_ames()
-
-set.seed(4595)
-data_split <- initial_split(ames, strata = "Sale_Price")
-
-ames_train <- training(data_split)
-ames_test <- testing(data_split)
-
-set.seed(2453)
-rs_splits <- vfold_cv(ames_train, strata = "Sale_Price")
-```
-
-
-#### Rezept, Modell und Workflow definieren
-
-
-```r
-ames_rec <-
-  recipe(Sale_Price ~ ., data = ames_train) %>%
-  step_log(Sale_Price, base = 10) %>%
-  step_other(Neighborhood, threshold = .1)  %>%
-  step_dummy(all_nominal()) %>%
-  step_zv(all_predictors()) 
-
-knn_model <-
-  nearest_neighbor(
-    mode = "regression",
-    neighbors = tune("K")
-  ) %>%
-  set_engine("kknn")
-
-ames_wflow <-
-  workflow() %>%
-  add_recipe(ames_rec) %>%
-  add_model(knn_model)
-```
-
-Das kNN-Modell ist noch nicht berechnet,
-es ist nur ein "Rezept" erstellt:
-
-
-```r
-knn_model
-```
-
-```
-## K-Nearest Neighbor Model Specification (regression)
-## 
-## Main Arguments:
-##   neighbors = tune("K")
-## 
-## Computational engine: kknn
-```
-
-
-```r
-ames_wflow
-```
-
-```
-## ══ Workflow ════════════════════════════════════════════════════════════════════
-## Preprocessor: Recipe
-## Model: nearest_neighbor()
-## 
-## ── Preprocessor ────────────────────────────────────────────────────────────────
-## 4 Recipe Steps
-## 
-## • step_log()
-## • step_other()
-## • step_dummy()
-## • step_zv()
-## 
-## ── Model ───────────────────────────────────────────────────────────────────────
-## K-Nearest Neighbor Model Specification (regression)
-## 
-## Main Arguments:
-##   neighbors = tune("K")
-## 
-## Computational engine: kknn
-```
-
 #### Tuningparameter betrachten
 
 
@@ -413,7 +590,7 @@ kann man `extract_parameter_set_dials()` aufrufen:
 
 
 ```r
-extract_parameter_set_dials(ames_wflow)
+extract_parameter_set_dials(knn_model)
 ```
 
 ```
@@ -437,13 +614,23 @@ auf welchen Wertebereich `tidymodels` den Parameter $K$ begrenzt hat:
 
 
 ```r
-ames_wflow %>% 
+knn_model %>% 
   extract_parameter_dials("K")
 ```
 
 ```
 ## # Nearest Neighbors (quantitative)
 ## Range: [1, 15]
+```
+
+
+Aktualisieren wir mal unseren Workflow entsprechend:
+
+
+```r
+ames_wflow <-
+  ames_wflow %>% 
+  update_model(knn_model)
 ```
 
 
@@ -514,9 +701,8 @@ Für jeden Wert des Tuningparameters wird ein Modell berechnet:
 ames_grid_search <-
   tune_grid(
     ames_wflow,
-    resamples = rs_splits
+    resamples = ames_folds
   )
-
 ames_grid_search
 ```
 
@@ -526,16 +712,16 @@ ames_grid_search
 ## # A tibble: 10 × 4
 ##    splits             id     .metrics          .notes          
 ##    <list>             <chr>  <list>            <list>          
-##  1 <split [1976/221]> Fold01 <tibble [18 × 5]> <tibble [0 × 3]>
-##  2 <split [1976/221]> Fold02 <tibble [18 × 5]> <tibble [0 × 3]>
-##  3 <split [1976/221]> Fold03 <tibble [18 × 5]> <tibble [0 × 3]>
-##  4 <split [1976/221]> Fold04 <tibble [18 × 5]> <tibble [0 × 3]>
-##  5 <split [1977/220]> Fold05 <tibble [18 × 5]> <tibble [0 × 3]>
-##  6 <split [1977/220]> Fold06 <tibble [18 × 5]> <tibble [0 × 3]>
-##  7 <split [1978/219]> Fold07 <tibble [18 × 5]> <tibble [0 × 3]>
-##  8 <split [1978/219]> Fold08 <tibble [18 × 5]> <tibble [0 × 3]>
-##  9 <split [1979/218]> Fold09 <tibble [18 × 5]> <tibble [0 × 3]>
-## 10 <split [1980/217]> Fold10 <tibble [18 × 5]> <tibble [0 × 3]>
+##  1 <split [1976/221]> Fold01 <tibble [16 × 5]> <tibble [0 × 3]>
+##  2 <split [1976/221]> Fold02 <tibble [16 × 5]> <tibble [0 × 3]>
+##  3 <split [1976/221]> Fold03 <tibble [16 × 5]> <tibble [0 × 3]>
+##  4 <split [1976/221]> Fold04 <tibble [16 × 5]> <tibble [0 × 3]>
+##  5 <split [1977/220]> Fold05 <tibble [16 × 5]> <tibble [0 × 3]>
+##  6 <split [1977/220]> Fold06 <tibble [16 × 5]> <tibble [0 × 3]>
+##  7 <split [1978/219]> Fold07 <tibble [16 × 5]> <tibble [0 × 3]>
+##  8 <split [1978/219]> Fold08 <tibble [16 × 5]> <tibble [0 × 3]>
+##  9 <split [1979/218]> Fold09 <tibble [16 × 5]> <tibble [0 × 3]>
+## 10 <split [1980/217]> Fold10 <tibble [16 × 5]> <tibble [0 × 3]>
 ```
 
 Im Default berechnet `tiymodels` 10 Kandidatenmodelle.
@@ -549,27 +735,25 @@ ames_grid_search %>%
 ```
 
 ```
-## # A tibble: 18 × 7
+## # A tibble: 16 × 7
 ##        K .metric .estimator   mean     n std_err .config             
 ##    <int> <chr>   <chr>       <dbl> <int>   <dbl> <chr>               
-##  1     2 rmse    standard   0.0946    10 0.00198 Preprocessor1_Model1
-##  2     2 rsq     standard   0.716     10 0.00959 Preprocessor1_Model1
-##  3     3 rmse    standard   0.0901    10 0.00214 Preprocessor1_Model2
-##  4     3 rsq     standard   0.739     10 0.00925 Preprocessor1_Model2
-##  5     5 rmse    standard   0.0855    10 0.00234 Preprocessor1_Model3
-##  6     5 rsq     standard   0.764     10 0.00961 Preprocessor1_Model3
-##  7     6 rmse    standard   0.0842    10 0.00239 Preprocessor1_Model4
-##  8     6 rsq     standard   0.772     10 0.00968 Preprocessor1_Model4
-##  9     8 rmse    standard   0.0825    10 0.00241 Preprocessor1_Model5
-## 10     8 rsq     standard   0.783     10 0.00958 Preprocessor1_Model5
-## 11     9 rmse    standard   0.0819    10 0.00241 Preprocessor1_Model6
-## 12     9 rsq     standard   0.786     10 0.00952 Preprocessor1_Model6
-## 13    10 rmse    standard   0.0814    10 0.00242 Preprocessor1_Model7
-## 14    10 rsq     standard   0.790     10 0.00951 Preprocessor1_Model7
-## 15    12 rmse    standard   0.0807    10 0.00243 Preprocessor1_Model8
-## 16    12 rsq     standard   0.795     10 0.00948 Preprocessor1_Model8
-## 17    14 rmse    standard   0.0803    10 0.00245 Preprocessor1_Model9
-## 18    14 rsq     standard   0.799     10 0.00950 Preprocessor1_Model9
+##  1     2 rmse    standard   0.103     10 0.00213 Preprocessor1_Model1
+##  2     2 rsq     standard   0.662     10 0.0112  Preprocessor1_Model1
+##  3     4 rmse    standard   0.0950    10 0.00188 Preprocessor1_Model2
+##  4     4 rsq     standard   0.708     10 0.00916 Preprocessor1_Model2
+##  5     6 rmse    standard   0.0912    10 0.00189 Preprocessor1_Model3
+##  6     6 rsq     standard   0.732     10 0.00842 Preprocessor1_Model3
+##  7     7 rmse    standard   0.0900    10 0.00192 Preprocessor1_Model4
+##  8     7 rsq     standard   0.740     10 0.00829 Preprocessor1_Model4
+##  9     9 rmse    standard   0.0883    10 0.00201 Preprocessor1_Model5
+## 10     9 rsq     standard   0.752     10 0.00827 Preprocessor1_Model5
+## 11    11 rmse    standard   0.0872    10 0.00211 Preprocessor1_Model6
+## 12    11 rsq     standard   0.761     10 0.00845 Preprocessor1_Model6
+## 13    13 rmse    standard   0.0865    10 0.00217 Preprocessor1_Model7
+## 14    13 rsq     standard   0.767     10 0.00848 Preprocessor1_Model7
+## 15    15 rmse    standard   0.0861    10 0.00221 Preprocessor1_Model8
+## 16    15 rsq     standard   0.772     10 0.00850 Preprocessor1_Model8
 ```
 
 Das können wir uns einfach visualisieren lassen:
@@ -579,7 +763,7 @@ Das können wir uns einfach visualisieren lassen:
 autoplot(ames_grid_search)
 ```
 
-<img src="080-tidymodels2_files/figure-html/unnamed-chunk-8-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="080-tidymodels2_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;" />
 
 
 Auf Basis dieser Ergebnisse könnte es Sinn machen, 
@@ -598,11 +782,11 @@ show_best(ames_grid_search)
 ## # A tibble: 5 × 7
 ##       K .metric .estimator   mean     n std_err .config             
 ##   <int> <chr>   <chr>       <dbl> <int>   <dbl> <chr>               
-## 1    14 rmse    standard   0.0803    10 0.00245 Preprocessor1_Model9
-## 2    12 rmse    standard   0.0807    10 0.00243 Preprocessor1_Model8
-## 3    10 rmse    standard   0.0814    10 0.00242 Preprocessor1_Model7
-## 4     9 rmse    standard   0.0819    10 0.00241 Preprocessor1_Model6
-## 5     8 rmse    standard   0.0825    10 0.00241 Preprocessor1_Model5
+## 1    15 rmse    standard   0.0861    10 0.00221 Preprocessor1_Model8
+## 2    13 rmse    standard   0.0865    10 0.00217 Preprocessor1_Model7
+## 3    11 rmse    standard   0.0872    10 0.00211 Preprocessor1_Model6
+## 4     9 rmse    standard   0.0883    10 0.00201 Preprocessor1_Model5
+## 5     7 rmse    standard   0.0900    10 0.00192 Preprocessor1_Model4
 ```
 
 
@@ -617,7 +801,7 @@ select_best(ames_grid_search)
 ## # A tibble: 1 × 2
 ##       K .config             
 ##   <int> <chr>               
-## 1    14 Preprocessor1_Model9
+## 1    15 Preprocessor1_Model8
 ```
 
 Ok,
@@ -740,8 +924,8 @@ collect_metrics(final_ames_knn_fit)
 ## # A tibble: 2 × 4
 ##   .metric .estimator .estimate .config             
 ##   <chr>   <chr>          <dbl> <chr>               
-## 1 rmse    standard      0.0867 Preprocessor1_Model1
-## 2 rsq     standard      0.780  Preprocessor1_Model1
+## 1 rmse    standard      0.0951 Preprocessor1_Model1
+## 2 rsq     standard      0.736  Preprocessor1_Model1
 ```
 
 

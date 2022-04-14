@@ -32,7 +32,6 @@ Benötigte R-Pakete:
 library(tidyverse)
 library(tidymodels)
 library(tune)
-library(AmesHousing)
 ```
 
 
@@ -42,6 +41,62 @@ daher empfiehlt der Autor, Max Kuhn, die Version des Pakets von Github zu instal
 ```{r eval = FALSE, echo = TRUE}
 devtools::install_github("tidymodels/tune")
 ```
+
+
+
+## tidymodels
+
+
+### Datensatz aufteilen
+
+
+```{r ames-split}
+data(ames)
+
+set.seed(4595)
+data_split <- initial_split(ames, strata = "Sale_Price")
+
+ames_train <- training(data_split)
+ames_test <- testing(data_split)
+```
+
+
+### Rezept, Modell und Workflow definieren
+
+In gewohnter Weise definieren wir den Workflow
+mit einem kNN-Modell.
+
+```{r ames-wf}
+ames_rec <-
+  recipe(Sale_Price ~ ., data = ames_train) %>%
+  step_log(Sale_Price, base = 10) %>%
+  step_other(Neighborhood, threshold = .1)  %>%
+  step_dummy(all_nominal()) %>%
+  step_zv(all_predictors()) 
+
+knn_model <-
+  nearest_neighbor(
+    mode = "regression",
+  ) %>%
+  set_engine("kknn")
+
+ames_wflow <-
+  workflow() %>%
+  add_recipe(ames_rec) %>%
+  add_model(knn_model)
+```
+
+Das kNN-Modell ist noch *nicht* *berechnet*,
+es ist nur ein "Rezept" erstellt:
+
+```{r}
+knn_model
+```
+
+```{r}
+ames_wflow
+```
+
 
 
 ## Resampling
@@ -238,6 +293,7 @@ Achtung: Bei randlastigen Verteilungen darf man dieses schöne, wohlerzogene Ver
 
 
 
+
 ## Über- und Unteranpassung an einem Beispiel
 
 
@@ -297,7 +353,119 @@ Abb. \@ref(fig:overfitting-4-plots) zeigt:
 
 
 
+## CV in tidymodels
+
+### CV definieren
+
+So kann man eine *einfache* v-fache Kreuzvalidierung in Tidymodels auszeichnen:
+
+```{r}
+set.seed(2453)
+ames_folds <- vfold_cv(ames_train, strata = "Sale_Price")
+ames_folds
+```
+
+Werfen wir einen Blick in die Spalte `splits`, erste Zeile:
+
+```{r}
+ames_folds %>% pluck(1, 1)
+```
+
+
+Möchte man die Defaults vpn `vfold_cv` wissen, schaut man in der Hilfe nach: `?vfold_cv`:
+
+
+`vfold_cv(data, v = 10, repeats = 1, strata = NULL, breaks = 4, pool = 0.1, ...)` 
+
+
+Probieren wir $v=5$ und $r=2$:
+
+```{r}
+ames_folds_rep <- vfold_cv(ames_train, 
+                           strata = "Sale_Price", 
+                           v = 5,
+                           repeats = 2)
+ames_folds_rep
+```
+
+
+### Resamples fitten
+
+
+Hat unser Computer mehrere Rechenkerne, dann können wir diese nutzen und die Berechnungen beschleunigen.
+Im Standard wird sonst nur ein Kern verwendet.
+
+```{r}
+mycores <- parallel::detectCores(logical = FALSE)
+mycores
+```
+
+Auf Unix/MacOC-Systemen kann man dann die Anzahl der parallen Kerne so einstellen:
+
+```{r}
+library(doMC)
+registerDoMC(cores = mycores)
+```
+
+
+
+So, und jetzt fitten wir die Resamples und trachten die Modellgüte in den Resamples:
+
+
+```{r}
+ames_resamples_fit <- 
+  ames_wflow %>% 
+  fit_resamples(ames_folds)
+
+ ames_resamples_fit %>%
+  collect_metrics()
+```
+
+
+
+Natürlich interessiert uns primär die Modellgüte im Test-Sample:
+
+
+```{r}
+final_ames <-
+  last_fit(ames_wflow, data_split)
+```
+
+```{r}
+final_ames %>% 
+  collect_metrics()
+```
+
+
 ## Tuning
+
+### Tuning auszeichnen
+
+In der Modellspezifikation des Modells können wir mit `tune()` auszeichnen,
+welche Parameter wir tunen möchten. 
+Wir könenn
+
+```{r}
+knn_model <-
+  nearest_neighbor(
+    mode = "regression",
+    neighbors = tune()
+  ) %>%
+  set_engine("kknn")
+```
+
+
+Wir können dem Tuningparameter auch einen Namen (ID/Laben) geben, z.B. "K":
+
+```{r}
+knn_model <-
+  nearest_neighbor(
+    mode = "regression",
+    neighbors = tune("K")
+  ) %>%
+  set_engine("kknn")
+```
+
 
 ### Grid Search vs. Iterative Search
 
@@ -351,60 +519,6 @@ In `tidymodels` kann man mit `tune()` angeben, dass man einen bestimmten Paramet
 
 ## Tuning mit Tidymodels
 
-### Tuning definieren mit tidymodels für kNN
-
-
-#### Datensatz aufteilen
-
-
-```{r ames-split}
-ames <- make_ames()
-
-set.seed(4595)
-data_split <- initial_split(ames, strata = "Sale_Price")
-
-ames_train <- training(data_split)
-ames_test <- testing(data_split)
-
-set.seed(2453)
-rs_splits <- vfold_cv(ames_train, strata = "Sale_Price")
-```
-
-
-#### Rezept, Modell und Workflow definieren
-
-```{r ames-wf}
-ames_rec <-
-  recipe(Sale_Price ~ ., data = ames_train) %>%
-  step_log(Sale_Price, base = 10) %>%
-  step_other(Neighborhood, threshold = .1)  %>%
-  step_dummy(all_nominal()) %>%
-  step_zv(all_predictors()) 
-
-knn_model <-
-  nearest_neighbor(
-    mode = "regression",
-    neighbors = tune("K")
-  ) %>%
-  set_engine("kknn")
-
-ames_wflow <-
-  workflow() %>%
-  add_recipe(ames_rec) %>%
-  add_model(knn_model)
-```
-
-Das kNN-Modell ist noch nicht berechnet,
-es ist nur ein "Rezept" erstellt:
-
-```{r}
-knn_model
-```
-
-```{r}
-ames_wflow
-```
-
 #### Tuningparameter betrachten
 
 
@@ -414,7 +528,7 @@ welche und wie viele Tuningparameter tidymodels in einem Modell berücksichtigt,
 kann man `extract_parameter_set_dials()` aufrufen:
 
 ```{r}
-extract_parameter_set_dials(ames_wflow)
+extract_parameter_set_dials(knn_model)
 ```
 
 Die Ausgabe informiert uns,
@@ -430,8 +544,17 @@ auf welchen Wertebereich `tidymodels` den Parameter $K$ begrenzt hat:
 
 
 ```{r}
-ames_wflow %>% 
+knn_model %>% 
   extract_parameter_dials("K")
+```
+
+
+Aktualisieren wir mal unseren Workflow entsprechend:
+
+```{r}
+ames_wflow <-
+  ames_wflow %>% 
+  update_model(knn_model)
 ```
 
 
@@ -492,9 +615,8 @@ Für jeden Wert des Tuningparameters wird ein Modell berechnet:
 ames_grid_search <-
   tune_grid(
     ames_wflow,
-    resamples = rs_splits
+    resamples = ames_folds
   )
-
 ames_grid_search
 ```
 

@@ -85,8 +85,8 @@ Dieser “Dreiklang” ist in folgendem Venn-Diagramm dargestellt.</p>
 <p><em>Maschinelles Lernen</em> (ML), oft auch (synonym) als <em>statistisches Lernen</em> (statistical learning) bezeichnet, ist ein Teilgebiet der <em>künstlichen Intelligenz</em> (KI; artificial intelligence, AI) <span class="citation">(<a href="references.html#ref-rhys" role="doc-biblioref">Rhys 2020</a>)</span>. ML wird auch als <em>data-based</em> bezeichnet in Abgrenzung von <em>rule-based</em>, was auch als “klassische KI” bezeichnet wird, vgl. Abb. <a href="grundkonzepte-1.html#fig:ai-ml2">4.1</a>.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ai-ml2"></span>
-<div id="htmlwidget-6ecee992c5dec8ee1b13" style="width:100%;height:250px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-6ecee992c5dec8ee1b13">{"x":{"diagram":"\ndigraph D {\n\n    node [fontname=\"Arial\"];\n\n    node_A [shape=record    label=\"{KI|{rule-based|data-based}}\"];\n\n\n}\n\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><p class="caption">
+<div id="htmlwidget-6cddeaa3acb37ada23cb" style="width:100%;height:250px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6cddeaa3acb37ada23cb">{"x":{"diagram":"\ndigraph D {\n\n    node [fontname=\"Arial\"];\n\n    node_A [shape=record    label=\"{KI|{rule-based|data-based}}\"];\n\n\n}\n\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><p class="caption">
 Figure 4.1: KI und Maschinelles Lernen
 </p>
 </div>
@@ -97,8 +97,8 @@ Ein Kochrezept ist ein klassisches Beispiel für einen Algorithmus.</p>
 <p>Es gibt viele ML-Algorithmen, vgl. Abb. <a href="grundkonzepte-1.html#fig:algos">4.2</a>.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:algos"></span>
-<div id="htmlwidget-67c3f3f981e5702e2442" style="width:100%;height:350px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-67c3f3f981e5702e2442">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: leftright\n[KI|\n  [ML|\n    [Regression] \n    [Neuronale Netze] \n    [...]\n  ]  \n  \n]\n","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
+<div id="htmlwidget-72acfd5eb93df0ba991f" style="width:100%;height:350px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-72acfd5eb93df0ba991f">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: leftright\n[KI|\n  [ML|\n    [Regression] \n    [Neuronale Netze] \n    [...]\n  ]  \n  \n]\n","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
 Figure 4.2: ML-Matroschka
 </p>
 </div>
@@ -129,13 +129,13 @@ Nutzer füttern Daten in dieses System. Das System leitet dann daraus Antworten 
 <p>Sicherlich könnte man das schlauer programmieren, vielleicht so:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">d</span> <span class="op">&lt;-</span> 
-  <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>
+  <span class="fu">tibble</span><span class="op">(</span>
   lernzeit <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">20</span><span class="op">)</span>,
   schlauer_nebensitzer <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span><span class="op">)</span>
 <span class="op">)</span>
 
-<span class="va">d</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>bestanden <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">lernzeit</span> <span class="op">&gt;</span> <span class="fl">10</span> <span class="op">|</span> <span class="va">schlauer_nebensitzer</span> <span class="op">==</span> <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="va">d</span> <span class="op">%&gt;%</span> 
+  <span class="fu">mutate</span><span class="op">(</span>bestanden <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">lernzeit</span> <span class="op">&gt;</span> <span class="fl">10</span> <span class="op">|</span> <span class="va">schlauer_nebensitzer</span> <span class="op">==</span> <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 4 × 3
 ##   lernzeit schlauer_nebensitzer bestanden
 ##      &lt;dbl&gt; &lt;lgl&gt;                &lt;lgl&gt;    
@@ -189,8 +189,8 @@ Figure 4.4: Vorhersage des Einkommens als Funktion von Ausbildungsjahren und Die
 ML-Systeme werden mit Daten und Antworten gefüttert und liefern Regeln zurück, vgl. Abb. <a href="grundkonzepte-1.html#fig:ki-ml2">4.5</a>.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ki-ml2"></span>
-<div id="htmlwidget-c3159ea083a8cdb93d56" style="width:100%;height:450px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-c3159ea083a8cdb93d56">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: leftright\n  [rule-based|\n  [Daten] -> [Antworten]\n  [Regeln] -> [Antworten]\n]\n  [data-based|\n  [Daten] -> [Regeln]\n  [Antworten] -> [Regeln]\n]  \n  ","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
+<div id="htmlwidget-8ce74442dd417c496c88" style="width:100%;height:450px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8ce74442dd417c496c88">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: leftright\n  [rule-based|\n  [Daten] -> [Antworten]\n  [Regeln] -> [Antworten]\n]\n  [data-based|\n  [Daten] -> [Regeln]\n  [Antworten] -> [Regeln]\n]  \n  ","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
 Figure 4.5: Vergleich von klassischer KI und ML
 </p>
 </div>
@@ -250,8 +250,8 @@ anhand dessen die Beziehung zwischen <span class="math inline">\(X\)</span> und 
 Eine typische Gliederung unterscheidet in <em>supervidierte</em> (geleitete) und <em>nicht-supervidierte</em> (ungeleitete) Algorithmen, s. Abb. <a href="grundkonzepte-1.html#fig:taxonomie">4.8</a>.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:taxonomie"></span>
-<div id="htmlwidget-05e1cd64ec931d7d4a8e" style="width:100%;height:250px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-05e1cd64ec931d7d4a8e">{"x":{"diagram":"\ngraph LR\n  ML[Maschinelles Lernen]\n  SL[Supervidiertes Lernen]\n  NSL[Nicht-supervidiertes Lernen]\n  Re[Regression]\n  Class[Klassifikation]\n  DimRed[Dimensionsreduktion]\n  Clust[Clustering]\n  ML --> SL\n  ML --> NSL\n  SL --> Re\n  SL --> Class\n  NSL --> DimRed\n  NSL --> Clust\n"},"evals":[],"jsHooks":[]}</script><p class="caption">
+<div id="htmlwidget-fed5651426be038d3265" style="width:100%;height:250px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-fed5651426be038d3265">{"x":{"diagram":"\ngraph LR\n  ML[Maschinelles Lernen]\n  SL[Supervidiertes Lernen]\n  NSL[Nicht-supervidiertes Lernen]\n  Re[Regression]\n  Class[Klassifikation]\n  DimRed[Dimensionsreduktion]\n  Clust[Clustering]\n  ML --> SL\n  ML --> NSL\n  SL --> Re\n  SL --> Class\n  NSL --> DimRed\n  NSL --> Clust\n"},"evals":[],"jsHooks":[]}</script><p class="caption">
 Figure 4.8: Taxonomie der Arten des maschinellen Lernens
 </p>
 </div>
@@ -262,8 +262,8 @@ Figure 4.8: Taxonomie der Arten des maschinellen Lernens
 <p>Die zwei Phasen des geleiteten Lernens sind in Abb. <a href="grundkonzepte-1.html#fig:supervid">4.9</a> dargestellt.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:supervid"></span>
-<div id="htmlwidget-6381841cbc78868e0cca" style="width:100%;height:550px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-6381841cbc78868e0cca">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n\n[Lernphase|\n[Daten mit Antwort] -> [Geleiteter Algorithmus]\n[Geleiteter Algorithmus] -> [Modell]\n]\n\n[Vorhersagephase|\n[Neue Daten, ohne Antwort] -> [Modell]\n[Modell] -> [Antworten]\n]\n\n","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
+<div id="htmlwidget-dbeeeefff3b6c711a723" style="width:100%;height:550px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-dbeeeefff3b6c711a723">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n\n[Lernphase|\n[Daten mit Antwort] -> [Geleiteter Algorithmus]\n[Geleiteter Algorithmus] -> [Modell]\n]\n\n[Vorhersagephase|\n[Neue Daten, ohne Antwort] -> [Modell]\n[Modell] -> [Antworten]\n]\n\n","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
 Figure 4.9: Geleitetes Lernen geschieht in zwei Phasen
 </p>
 </div>
@@ -306,8 +306,8 @@ wenn tatsächlicher Wert und vorhergesagter Wert identisch sind.</p>
 <p>Die zwei Phasen des ungeleiteten Lernens sind in Abb. <a href="grundkonzepte-1.html#fig:unsuper">4.10</a> dargestellt.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:unsuper"></span>
-<div id="htmlwidget-1d2c0fa702fcf10dc68d" style="width:100%;height:450px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1d2c0fa702fcf10dc68d">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n\n[Lernphase|\n[Daten ohne Antwort] -> [Ungeleiteter Algorithmus]\n[Ungeleiteter Algorithmus] -> [Modell]\n]\n\n[Vorhersagephase|\n[Neue Daten, ohne Antwort] -> [Modell]\n[Modell] -> [Zuordnung zu den Regeln des Modells]\n]\n\n","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
+<div id="htmlwidget-6426f7c484766ffcddc1" style="width:100%;height:450px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6426f7c484766ffcddc1">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n\n[Lernphase|\n[Daten ohne Antwort] -> [Ungeleiteter Algorithmus]\n[Ungeleiteter Algorithmus] -> [Modell]\n]\n\n[Vorhersagephase|\n[Neue Daten, ohne Antwort] -> [Modell]\n[Modell] -> [Zuordnung zu den Regeln des Modells]\n]\n\n","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
 Figure 4.10: Die zwei Phasen des ungeleiteten Lernens
 </p>
 </div>
@@ -331,8 +331,8 @@ Figure 4.11: Zwei Arten von ungeleitetem Modellieren
 <p>Man kann vier Ziele des ML unterscheiden, s. Abb. <a href="grundkonzepte-1.html#fig:ziele">4.12</a>.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ziele"></span>
-<div id="htmlwidget-fc954d636aaf02752188" style="width:100%;height:350px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-fc954d636aaf02752188">{"x":{"diagram":"\ngraph TD\n  ML[Maschinelles Lernen]\n  V[Vorhersage]\n  E[Erklärung/kausal]\n  B[Beschreibung]\n  DimRed[Dimensionsreduktion]\n  ML --> V\n  ML --> E\n  ML --> B\n  ML --> DimRed\n"},"evals":[],"jsHooks":[]}</script><p class="caption">
+<div id="htmlwidget-b20d4bc5ebe5a111a58a" style="width:100%;height:350px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b20d4bc5ebe5a111a58a">{"x":{"diagram":"\ngraph TD\n  ML[Maschinelles Lernen]\n  V[Vorhersage]\n  E[Erklärung/kausal]\n  B[Beschreibung]\n  DimRed[Dimensionsreduktion]\n  ML --> V\n  ML --> E\n  ML --> B\n  ML --> DimRed\n"},"evals":[],"jsHooks":[]}</script><p class="caption">
 Figure 4.12: Ziele des maschinellen Lernens
 </p>
 </div>
@@ -430,9 +430,9 @@ Figure 4.18: Abwängung von Bias vs. Varianz
 </div>
 <!-- ## Aufgaben -->
 </div>
-<div id="aufgaben-6" class="section level2" number="4.9">
+<div id="aufgaben-7" class="section level2" number="4.9">
 <h2>
-<span class="header-section-number">4.9</span> Aufgaben<a class="anchor" aria-label="anchor" href="#aufgaben-6"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.9</span> Aufgaben<a class="anchor" aria-label="anchor" href="#aufgaben-7"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li><a href="https://www.kaggle.com/">Machen Sie sich mit ‘Kaggle’ vertraut</a></li>
@@ -484,7 +484,7 @@ Figure 4.18: Abwängung von Bias vs. Varianz
 <li><a class="nav-link" href="#%C3%BCber--vs.-unteranpassung"><span class="header-section-number">4.6</span> Über- vs. Unteranpassung</a></li>
 <li><a class="nav-link" href="#no-free-lunch"><span class="header-section-number">4.7</span> No free lunch</a></li>
 <li><a class="nav-link" href="#bias-varianz-abw%C3%A4gung"><span class="header-section-number">4.8</span> Bias-Varianz-Abwägung</a></li>
-<li><a class="nav-link" href="#aufgaben-6"><span class="header-section-number">4.9</span> Aufgaben</a></li>
+<li><a class="nav-link" href="#aufgaben-7"><span class="header-section-number">4.9</span> Aufgaben</a></li>
 <li><a class="nav-link" href="#vertiefung-6"><span class="header-section-number">4.10</span> Vertiefung</a></li>
 </ul>
 
@@ -503,7 +503,7 @@ Figure 4.18: Abwängung von Bias vs. Varianz
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-04-14 16:12:34.</p>
+    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-04-14 16:57:19.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

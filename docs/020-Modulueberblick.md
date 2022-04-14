@@ -14,12 +14,12 @@
 
 
 ```{=html}
-<div id="bpcxfzfvbd" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="bbsifwfiac" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#bpcxfzfvbd .gt_table {
+#bbsifwfiac .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -44,7 +44,7 @@
   border-left-color: #D3D3D3;
 }
 
-#bpcxfzfvbd .gt_heading {
+#bbsifwfiac .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -56,7 +56,7 @@
   border-right-color: #D3D3D3;
 }
 
-#bpcxfzfvbd .gt_title {
+#bbsifwfiac .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -66,7 +66,7 @@
   border-bottom-width: 0;
 }
 
-#bpcxfzfvbd .gt_subtitle {
+#bbsifwfiac .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -76,13 +76,13 @@
   border-top-width: 0;
 }
 
-#bpcxfzfvbd .gt_bottom_border {
+#bbsifwfiac .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#bpcxfzfvbd .gt_col_headings {
+#bbsifwfiac .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -97,7 +97,7 @@
   border-right-color: #D3D3D3;
 }
 
-#bpcxfzfvbd .gt_col_heading {
+#bbsifwfiac .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -117,7 +117,7 @@
   overflow-x: hidden;
 }
 
-#bpcxfzfvbd .gt_column_spanner_outer {
+#bbsifwfiac .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -129,15 +129,15 @@
   padding-right: 4px;
 }
 
-#bpcxfzfvbd .gt_column_spanner_outer:first-child {
+#bbsifwfiac .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#bpcxfzfvbd .gt_column_spanner_outer:last-child {
+#bbsifwfiac .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#bpcxfzfvbd .gt_column_spanner {
+#bbsifwfiac .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -149,7 +149,7 @@
   width: 100%;
 }
 
-#bpcxfzfvbd .gt_group_heading {
+#bbsifwfiac .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -171,7 +171,7 @@
   vertical-align: middle;
 }
 
-#bpcxfzfvbd .gt_empty_group_heading {
+#bbsifwfiac .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -186,15 +186,15 @@
   vertical-align: middle;
 }
 
-#bpcxfzfvbd .gt_from_md > :first-child {
+#bbsifwfiac .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#bpcxfzfvbd .gt_from_md > :last-child {
+#bbsifwfiac .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#bpcxfzfvbd .gt_row {
+#bbsifwfiac .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -213,7 +213,7 @@
   overflow-x: hidden;
 }
 
-#bpcxfzfvbd .gt_stub {
+#bbsifwfiac .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -225,7 +225,7 @@
   padding-left: 12px;
 }
 
-#bpcxfzfvbd .gt_summary_row {
+#bbsifwfiac .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -235,7 +235,7 @@
   padding-right: 5px;
 }
 
-#bpcxfzfvbd .gt_first_summary_row {
+#bbsifwfiac .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -245,7 +245,7 @@
   border-top-color: #D3D3D3;
 }
 
-#bpcxfzfvbd .gt_grand_summary_row {
+#bbsifwfiac .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -255,7 +255,7 @@
   padding-right: 5px;
 }
 
-#bpcxfzfvbd .gt_first_grand_summary_row {
+#bbsifwfiac .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -265,11 +265,11 @@
   border-top-color: #D3D3D3;
 }
 
-#bpcxfzfvbd .gt_striped {
+#bbsifwfiac .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#bpcxfzfvbd .gt_table_body {
+#bbsifwfiac .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -278,7 +278,7 @@
   border-bottom-color: #D3D3D3;
 }
 
-#bpcxfzfvbd .gt_footnotes {
+#bbsifwfiac .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -292,13 +292,13 @@
   border-right-color: #D3D3D3;
 }
 
-#bpcxfzfvbd .gt_footnote {
+#bbsifwfiac .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#bpcxfzfvbd .gt_sourcenotes {
+#bbsifwfiac .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -312,41 +312,41 @@
   border-right-color: #D3D3D3;
 }
 
-#bpcxfzfvbd .gt_sourcenote {
+#bbsifwfiac .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#bpcxfzfvbd .gt_left {
+#bbsifwfiac .gt_left {
   text-align: left;
 }
 
-#bpcxfzfvbd .gt_center {
+#bbsifwfiac .gt_center {
   text-align: center;
 }
 
-#bpcxfzfvbd .gt_right {
+#bbsifwfiac .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#bpcxfzfvbd .gt_font_normal {
+#bbsifwfiac .gt_font_normal {
   font-weight: normal;
 }
 
-#bpcxfzfvbd .gt_font_bold {
+#bbsifwfiac .gt_font_bold {
   font-weight: bold;
 }
 
-#bpcxfzfvbd .gt_font_italic {
+#bbsifwfiac .gt_font_italic {
   font-style: italic;
 }
 
-#bpcxfzfvbd .gt_super {
+#bbsifwfiac .gt_super {
   font-size: 65%;
 }
 
-#bpcxfzfvbd .gt_footnote_marks {
+#bbsifwfiac .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -657,6 +657,7 @@
 #### Literatur 
 
 - Rhys, Kap. 3
+- TMWR, Kap. 10, 12
 
 
 
@@ -685,6 +686,11 @@
 
 
 
+
+
+#### Aufgaben 
+
+- [Fallstudien zu Studiengebühren](https://juliasilge.com/blog/tuition-resampling/)
 
 
 

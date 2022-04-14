@@ -6,14 +6,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Kapitel 8 Statistisches Lernen, 2 | DataScience1</title>
 <meta name="author" content="Sebastian Sauer">
-<meta name="description" content="Benötigte R-Pakete: library(tidyverse) library(tidymodels) library(tune) library(AmesHousing) Das Paket tune auf CRAN hat einen Bug3, daher empfiehlt der Autor, Max Kuhn, die Version des Pakets...">
+<meta name="description" content="Benötigte R-Pakete: library(tidyverse) library(tidymodels) library(tune) Das Paket tune auf CRAN hat einen Bug3, daher empfiehlt der Autor, Max Kuhn, die Version des Pakets von Github zu...">
 <meta name="generator" content="bookdown 0.24.2 with bs4_book()">
 <meta property="og:title" content="Kapitel 8 Statistisches Lernen, 2 | DataScience1">
 <meta property="og:type" content="book">
-<meta property="og:description" content="Benötigte R-Pakete: library(tidyverse) library(tidymodels) library(tune) library(AmesHousing) Das Paket tune auf CRAN hat einen Bug3, daher empfiehlt der Autor, Max Kuhn, die Version des Pakets...">
+<meta property="og:description" content="Benötigte R-Pakete: library(tidyverse) library(tidymodels) library(tune) Das Paket tune auf CRAN hat einen Bug3, daher empfiehlt der Autor, Max Kuhn, die Version des Pakets von Github zu...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kapitel 8 Statistisches Lernen, 2 | DataScience1">
-<meta name="twitter:description" content="Benötigte R-Pakete: library(tidyverse) library(tidymodels) library(tune) library(AmesHousing) Das Paket tune auf CRAN hat einen Bug3, daher empfiehlt der Autor, Max Kuhn, die Version des Pakets...">
+<meta name="twitter:description" content="Benötigte R-Pakete: library(tidyverse) library(tidymodels) library(tune) Das Paket tune auf CRAN hat einen Bug3, daher empfiehlt der Autor, Max Kuhn, die Version des Pakets von Github zu...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -68,15 +68,82 @@
 <div class="sourceCode" id="cb246"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tune.tidymodels.org/">tune</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/topepo/AmesHousing">AmesHousing</a></span><span class="op">)</span></code></pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tune.tidymodels.org/">tune</a></span><span class="op">)</span></code></pre></div>
 <p>Das Paket <code>tune</code> auf CRAN hat einen Bug<a href="references.html#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>,
 daher empfiehlt der Autor, Max Kuhn, die Version des Pakets von Github zu installieren:</p>
 <div class="sourceCode" id="cb247"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"tidymodels/tune"</span><span class="op">)</span></code></pre></div>
-<div id="resampling" class="section level2" number="8.1">
+<div id="tidymodels" class="section level2" number="8.1">
 <h2>
-<span class="header-section-number">8.1</span> Resampling<a class="anchor" aria-label="anchor" href="#resampling"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.1</span> tidymodels<a class="anchor" aria-label="anchor" href="#tidymodels"><i class="fas fa-link"></i></a>
+</h2>
+<div id="datensatz-aufteilen" class="section level3" number="8.1.1">
+<h3>
+<span class="header-section-number">8.1.1</span> Datensatz aufteilen<a class="anchor" aria-label="anchor" href="#datensatz-aufteilen"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb248"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">ames</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">4595</span><span class="op">)</span>
+<span class="va">data_split</span> <span class="op">&lt;-</span> <span class="fu">initial_split</span><span class="op">(</span><span class="va">ames</span>, strata <span class="op">=</span> <span class="st">"Sale_Price"</span><span class="op">)</span>
+
+<span class="va">ames_train</span> <span class="op">&lt;-</span> <span class="fu">training</span><span class="op">(</span><span class="va">data_split</span><span class="op">)</span>
+<span class="va">ames_test</span> <span class="op">&lt;-</span> <span class="fu">testing</span><span class="op">(</span><span class="va">data_split</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="rezept-modell-und-workflow-definieren" class="section level3" number="8.1.2">
+<h3>
+<span class="header-section-number">8.1.2</span> Rezept, Modell und Workflow definieren<a class="anchor" aria-label="anchor" href="#rezept-modell-und-workflow-definieren"><i class="fas fa-link"></i></a>
+</h3>
+<p>In gewohnter Weise definieren wir den Workflow
+mit einem kNN-Modell.</p>
+<div class="sourceCode" id="cb249"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">ames_rec</span> <span class="op">&lt;-</span>
+  <span class="fu">recipe</span><span class="op">(</span><span class="va">Sale_Price</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">ames_train</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">step_log</span><span class="op">(</span><span class="va">Sale_Price</span>, base <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">step_other</span><span class="op">(</span><span class="va">Neighborhood</span>, threshold <span class="op">=</span> <span class="fl">.1</span><span class="op">)</span>  <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">step_dummy</span><span class="op">(</span><span class="fu">all_nominal</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">step_zv</span><span class="op">(</span><span class="fu">all_predictors</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> 
+
+<span class="va">knn_model</span> <span class="op">&lt;-</span>
+  <span class="fu">nearest_neighbor</span><span class="op">(</span>
+    mode <span class="op">=</span> <span class="st">"regression"</span>,
+  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">set_engine</span><span class="op">(</span><span class="st">"kknn"</span><span class="op">)</span>
+
+<span class="va">ames_wflow</span> <span class="op">&lt;-</span>
+  <span class="fu">workflow</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">add_recipe</span><span class="op">(</span><span class="va">ames_rec</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">add_model</span><span class="op">(</span><span class="va">knn_model</span><span class="op">)</span></code></pre></div>
+<p>Das kNN-Modell ist noch <em>nicht</em> <em>berechnet</em>,
+es ist nur ein “Rezept” erstellt:</p>
+<div class="sourceCode" id="cb250"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">knn_model</span></code></pre></div>
+<pre><code>## K-Nearest Neighbor Model Specification (regression)
+## 
+## Computational engine: kknn</code></pre>
+<div class="sourceCode" id="cb252"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">ames_wflow</span></code></pre></div>
+<pre><code>## ══ Workflow ════════════════════════════════════════════════════════════════════
+## Preprocessor: Recipe
+## Model: nearest_neighbor()
+## 
+## ── Preprocessor ────────────────────────────────────────────────────────────────
+## 4 Recipe Steps
+## 
+## • step_log()
+## • step_other()
+## • step_dummy()
+## • step_zv()
+## 
+## ── Model ───────────────────────────────────────────────────────────────────────
+## K-Nearest Neighbor Model Specification (regression)
+## 
+## Computational engine: kknn</code></pre>
+</div>
+</div>
+<div id="resampling" class="section level2" number="8.2">
+<h2>
+<span class="header-section-number">8.2</span> Resampling<a class="anchor" aria-label="anchor" href="#resampling"><i class="fas fa-link"></i></a>
 </h2>
 <p>Vergleichen Sie die drei Fälle, die sich in der Nutzung von Train- und Test-Sample unterscheiden:</p>
 <ol style="list-style-type: decimal">
@@ -86,9 +153,9 @@ daher empfiehlt der Autor, Max Kuhn, die Version des Pakets von Github zu instal
 </ol>
 <p>Welchen der drei Fälle finden Sie am sinnvollsten? Warum?</p>
 </div>
-<div id="illustration-des-resampling" class="section level2" number="8.2">
+<div id="illustration-des-resampling" class="section level2" number="8.3">
 <h2>
-<span class="header-section-number">8.2</span> Illustration des Resampling<a class="anchor" aria-label="anchor" href="#illustration-des-resampling"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.3</span> Illustration des Resampling<a class="anchor" aria-label="anchor" href="#illustration-des-resampling"><i class="fas fa-link"></i></a>
 </h2>
 <p><em>Resampling</em> stellt einen Oberbegriff dar; <em>Kreuzvalidierung</em> ist ein Unterbegriff dazu.
 Es gibt noch andere Arten des Resampling, etwa <em>Bootstrapping</em> oder <em>Leave-One-Out-Cross-Validation</em> (LOOCV).</p>
@@ -96,9 +163,9 @@ Es gibt noch andere Arten des Resampling, etwa <em>Bootstrapping</em> oder <em>L
 da es eines der wichtigsten und vielleicht das Wichtigste ist.
 In vielen Quellen finden sich Erläuterungen anderer Verfahren dargestellt,
 etwa in <span class="citation">Silge and Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span>, <span class="citation">James et al. (<a href="references.html#ref-islr" role="doc-biblioref">2021</a>)</span> oder <span class="citation">Rhys (<a href="references.html#ref-rhys" role="doc-biblioref">2020</a>)</span>.</p>
-<div id="einfache-v-fache-kreuzvalidierung" class="section level3" number="8.2.1">
+<div id="einfache-v-fache-kreuzvalidierung" class="section level3" number="8.3.1">
 <h3>
-<span class="header-section-number">8.2.1</span> Einfache v-fache Kreuzvalidierung<a class="anchor" aria-label="anchor" href="#einfache-v-fache-kreuzvalidierung"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.3.1</span> Einfache v-fache Kreuzvalidierung<a class="anchor" aria-label="anchor" href="#einfache-v-fache-kreuzvalidierung"><i class="fas fa-link"></i></a>
 </h3>
 <p>Abb. <a href="statistisches-lernen-2.html#fig:resampling">8.1</a> illustriert die zufällige Aufteilung von <span class="math inline">\(n=10\)</span> Fällen der Originalstrichprobe auf eine Train- bzw. Test-Stichpobe.
 Man spricht von <em>Kreuzvalidierung</em> (cross validation, CV).</p>
@@ -132,9 +199,9 @@ bei randlastigen Verteilungen leider nicht mehr <span class="citation">(<a href=
 <p>Häufig werden <span class="math inline">\(v=10\)</span> Faltungen verwendet,
 was sich empirisch als guter Kompromiss von Rechenaufwand und Fehlerreduktion herausgestellt hat.</p>
 </div>
-<div id="wiederholte-kreuzvalidierung" class="section level3" number="8.2.2">
+<div id="wiederholte-kreuzvalidierung" class="section level3" number="8.3.2">
 <h3>
-<span class="header-section-number">8.2.2</span> Wiederholte Kreuzvalidierung<a class="anchor" aria-label="anchor" href="#wiederholte-kreuzvalidierung"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.3.2</span> Wiederholte Kreuzvalidierung<a class="anchor" aria-label="anchor" href="#wiederholte-kreuzvalidierung"><i class="fas fa-link"></i></a>
 </h3>
 <p>Die <span class="math inline">\(r\)</span>-fach wiederholte Kreuzvalidierung wiederholte die einfache Kreuzvalidierung mehrfach (nämlich <span class="math inline">\(r=4\)</span> mal),
 <span class="citation">Sauer (<a href="references.html#ref-modar" role="doc-biblioref">2019</a>)</span> stellt das Resampling so dar (S. 259), s. Abb. <a href="statistisches-lernen-2.html#fig:cvrep">8.3</a>.</p>
@@ -166,9 +233,9 @@ Dann sind die Quantile bekannt und man kann die Streuung der Schätzers,
 einfach schätzen:</p>
 <p><span class="math display">\[{\displaystyle {\sigma }_{\bar {x}}\ ={\frac {\sigma }{\sqrt {n}}}}\]</span></p>
 </div>
-<div id="resampling-passiert-im-train-sample" class="section level3" number="8.2.3">
+<div id="resampling-passiert-im-train-sample" class="section level3" number="8.3.3">
 <h3>
-<span class="header-section-number">8.2.3</span> Resampling passiert im Train-Sample<a class="anchor" aria-label="anchor" href="#resampling-passiert-im-train-sample"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.3.3</span> Resampling passiert im Train-Sample<a class="anchor" aria-label="anchor" href="#resampling-passiert-im-train-sample"><i class="fas fa-link"></i></a>
 </h3>
 <p>Wichtig zu beachten ist, dass
 die Resampling nur im Train-Sample stattfindet.
@@ -185,9 +252,9 @@ wird das Modell im <em>Analyse-Sample</em> berechnet (gefittet),
 und im <em>Assessment-Sample</em> auf Modellgüte hin überprüft.</p>
 <p>Die letztliche Modellgüte ist dann die Zusammenfassung (Mittelwert) der einzelnen Resamples.</p>
 </div>
-<div id="andere-illustrationen" class="section level3" number="8.2.4">
+<div id="andere-illustrationen" class="section level3" number="8.3.4">
 <h3>
-<span class="header-section-number">8.2.4</span> Andere Illustrationen<a class="anchor" aria-label="anchor" href="#andere-illustrationen"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.3.4</span> Andere Illustrationen<a class="anchor" aria-label="anchor" href="#andere-illustrationen"><i class="fas fa-link"></i></a>
 </h3>
 <p>Es gibt eine Reihe vergleichbarer Illustrationen in anderen Büchern:</p>
 <ul>
@@ -199,16 +266,16 @@ und im <em>Assessment-Sample</em> auf Modellgüte hin überprüft.</p>
 </ul>
 </div>
 </div>
-<div id="gesetz-der-großen-zahl" class="section level2" number="8.3">
+<div id="gesetz-der-großen-zahl" class="section level2" number="8.4">
 <h2>
-<span class="header-section-number">8.3</span> Gesetz der großen Zahl<a class="anchor" aria-label="anchor" href="#gesetz-der-gro%C3%9Fen-zahl"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.4</span> Gesetz der großen Zahl<a class="anchor" aria-label="anchor" href="#gesetz-der-gro%C3%9Fen-zahl"><i class="fas fa-link"></i></a>
 </h2>
 <p>Nach dem <em>Gesetz der großen Zahl</em> (Law of Large Numbers) sollte sich der Mittelwert einer großen Stichprobe
 dem theoretischen Mittelwert der zugrundeliegenden Verteilung (Population, datengeneriender Prozess)
 sehr nahe kommen.</p>
 <p><span class="math display">\[\displaystyle \lim _{n\to \infty }\sum _{i=1}^{n}{\frac {X_{i}}{n}}={\overline {X}}\]</span></p>
 <p>David Salazar visualisiert das folgendermaßen in <a href="https://david-salazar.github.io/2020/04/17/fat-vs-thin-does-lln-work/">diesem Post</a> seines lesenswerten <a href="https://david-salazar.github.io/">Blogs</a>, s. Abb. <a href="statistisches-lernen-2.html#fig:lln">8.6</a>.</p>
-<div class="sourceCode" id="cb248"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb254"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># source: https://david-salazar.github.io/2020/04/17/fat-vs-thin-does-lln-work/</span>
 <span class="va">samples</span> <span class="op">&lt;-</span> <span class="fl">1000</span>
 
@@ -245,9 +312,9 @@ Figure 8.6: Gesetz der großen Zahl
 immer mehr dem theoretischen Mittelwert, 0, an.</p>
 <p>Achtung: Bei randlastigen Verteilungen darf man dieses schöne, wohlerzogene Verhalten nicht erwarten <span class="citation">(<a href="references.html#ref-fattails" role="doc-biblioref">Taleb 2019</a>)</span>.</p>
 </div>
-<div id="über--und-unteranpassung-an-einem-beispiel" class="section level2" number="8.4">
+<div id="über--und-unteranpassung-an-einem-beispiel" class="section level2" number="8.5">
 <h2>
-<span class="header-section-number">8.4</span> Über- und Unteranpassung an einem Beispiel<a class="anchor" aria-label="anchor" href="#%C3%BCber--und-unteranpassung-an-einem-beispiel"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.5</span> Über- und Unteranpassung an einem Beispiel<a class="anchor" aria-label="anchor" href="#%C3%BCber--und-unteranpassung-an-einem-beispiel"><i class="fas fa-link"></i></a>
 </h2>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:overfitting-4-plots"></span>
@@ -264,13 +331,133 @@ Figure 8.7: Welches Modell (Teile C-E) passt am besten zu den Daten (Teil B)? Di
 <li>Teil <em>E</em>: Ein Modell mittlerer Komplexität. Keine Überanpassung, keine Unteranpassung. Vorhersagen in einer neuen Stichprobe (basierend auf dem datengenerierenden Prozess aus A) werden gut sein.</li>
 </ul>
 </div>
-<div id="tuning" class="section level2" number="8.5">
+<div id="cv-in-tidymodels" class="section level2" number="8.6">
 <h2>
-<span class="header-section-number">8.5</span> Tuning<a class="anchor" aria-label="anchor" href="#tuning"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.6</span> CV in tidymodels<a class="anchor" aria-label="anchor" href="#cv-in-tidymodels"><i class="fas fa-link"></i></a>
 </h2>
-<div id="grid-search-vs.-iterative-search" class="section level3" number="8.5.1">
+<div id="cv-definieren" class="section level3" number="8.6.1">
 <h3>
-<span class="header-section-number">8.5.1</span> Grid Search vs. Iterative Search<a class="anchor" aria-label="anchor" href="#grid-search-vs.-iterative-search"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.6.1</span> CV definieren<a class="anchor" aria-label="anchor" href="#cv-definieren"><i class="fas fa-link"></i></a>
+</h3>
+<p>So kann man eine <em>einfache</em> v-fache Kreuzvalidierung in Tidymodels auszeichnen:</p>
+<div class="sourceCode" id="cb255"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">2453</span><span class="op">)</span>
+<span class="va">ames_folds</span> <span class="op">&lt;-</span> <span class="fu">vfold_cv</span><span class="op">(</span><span class="va">ames_train</span>, strata <span class="op">=</span> <span class="st">"Sale_Price"</span><span class="op">)</span>
+<span class="va">ames_folds</span></code></pre></div>
+<pre><code>## #  10-fold cross-validation using stratification 
+## # A tibble: 10 × 2
+##    splits             id    
+##    &lt;list&gt;             &lt;chr&gt; 
+##  1 &lt;split [1976/221]&gt; Fold01
+##  2 &lt;split [1976/221]&gt; Fold02
+##  3 &lt;split [1976/221]&gt; Fold03
+##  4 &lt;split [1976/221]&gt; Fold04
+##  5 &lt;split [1977/220]&gt; Fold05
+##  6 &lt;split [1977/220]&gt; Fold06
+##  7 &lt;split [1978/219]&gt; Fold07
+##  8 &lt;split [1978/219]&gt; Fold08
+##  9 &lt;split [1979/218]&gt; Fold09
+## 10 &lt;split [1980/217]&gt; Fold10</code></pre>
+<p>Werfen wir einen Blick in die Spalte <code>splits</code>, erste Zeile:</p>
+<div class="sourceCode" id="cb257"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">ames_folds</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span></code></pre></div>
+<pre><code>## &lt;Analysis/Assess/Total&gt;
+## &lt;1976/221/2197&gt;</code></pre>
+<p>Möchte man die Defaults vpn <code>vfold_cv</code> wissen, schaut man in der Hilfe nach: <code>?vfold_cv</code>:</p>
+<p><code>vfold_cv(data, v = 10, repeats = 1, strata = NULL, breaks = 4, pool = 0.1, ...)</code></p>
+<p>Probieren wir <span class="math inline">\(v=5\)</span> und <span class="math inline">\(r=2\)</span>:</p>
+<div class="sourceCode" id="cb259"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">ames_folds_rep</span> <span class="op">&lt;-</span> <span class="fu">vfold_cv</span><span class="op">(</span><span class="va">ames_train</span>, 
+                           strata <span class="op">=</span> <span class="st">"Sale_Price"</span>, 
+                           v <span class="op">=</span> <span class="fl">5</span>,
+                           repeats <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+<span class="va">ames_folds_rep</span></code></pre></div>
+<pre><code>## #  5-fold cross-validation repeated 2 times using stratification 
+## # A tibble: 10 × 3
+##    splits             id      id2  
+##    &lt;list&gt;             &lt;chr&gt;   &lt;chr&gt;
+##  1 &lt;split [1756/441]&gt; Repeat1 Fold1
+##  2 &lt;split [1757/440]&gt; Repeat1 Fold2
+##  3 &lt;split [1757/440]&gt; Repeat1 Fold3
+##  4 &lt;split [1758/439]&gt; Repeat1 Fold4
+##  5 &lt;split [1760/437]&gt; Repeat1 Fold5
+##  6 &lt;split [1756/441]&gt; Repeat2 Fold1
+##  7 &lt;split [1757/440]&gt; Repeat2 Fold2
+##  8 &lt;split [1757/440]&gt; Repeat2 Fold3
+##  9 &lt;split [1758/439]&gt; Repeat2 Fold4
+## 10 &lt;split [1760/437]&gt; Repeat2 Fold5</code></pre>
+</div>
+<div id="resamples-fitten" class="section level3" number="8.6.2">
+<h3>
+<span class="header-section-number">8.6.2</span> Resamples fitten<a class="anchor" aria-label="anchor" href="#resamples-fitten"><i class="fas fa-link"></i></a>
+</h3>
+<p>Hat unser Computer mehrere Rechenkerne, dann können wir diese nutzen und die Berechnungen beschleunigen.
+Im Standard wird sonst nur ein Kern verwendet.</p>
+<div class="sourceCode" id="cb261"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mycores</span> <span class="op">&lt;-</span> <span class="fu">parallel</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/parallel/detectCores.html">detectCores</a></span><span class="op">(</span>logical <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="va">mycores</span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<p>Auf Unix/MacOC-Systemen kann man dann die Anzahl der parallen Kerne so einstellen:</p>
+<div class="sourceCode" id="cb263"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">doMC</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/doMC/man/registerDoMC.html">registerDoMC</a></span><span class="op">(</span>cores <span class="op">=</span> <span class="va">mycores</span><span class="op">)</span></code></pre></div>
+<p>So, und jetzt fitten wir die Resamples und trachten die Modellgüte in den Resamples:</p>
+<div class="sourceCode" id="cb264"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">ames_resamples_fit</span> <span class="op">&lt;-</span> 
+  <span class="va">ames_wflow</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tune.tidymodels.org/reference/fit_resamples.html">fit_resamples</a></span><span class="op">(</span><span class="va">ames_folds</span><span class="op">)</span>
+
+ <span class="va">ames_resamples_fit</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://tune.tidymodels.org/reference/collect_predictions.html">collect_metrics</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 6
+##   .metric .estimator   mean     n std_err .config             
+##   &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;               
+## 1 rmse    standard   0.0928    10 0.00187 Preprocessor1_Model1
+## 2 rsq     standard   0.722     10 0.00864 Preprocessor1_Model1</code></pre>
+<p>Natürlich interessiert uns primär die Modellgüte im Test-Sample:</p>
+<div class="sourceCode" id="cb266"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">final_ames</span> <span class="op">&lt;-</span>
+  <span class="fu"><a href="https://tune.tidymodels.org/reference/last_fit.html">last_fit</a></span><span class="op">(</span><span class="va">ames_wflow</span>, <span class="va">data_split</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">final_ames</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tune.tidymodels.org/reference/collect_predictions.html">collect_metrics</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 4
+##   .metric .estimator .estimate .config             
+##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;               
+## 1 rmse    standard       0.103 Preprocessor1_Model1
+## 2 rsq     standard       0.678 Preprocessor1_Model1</code></pre>
+</div>
+</div>
+<div id="tuning" class="section level2" number="8.7">
+<h2>
+<span class="header-section-number">8.7</span> Tuning<a class="anchor" aria-label="anchor" href="#tuning"><i class="fas fa-link"></i></a>
+</h2>
+<div id="tuning-auszeichnen" class="section level3" number="8.7.1">
+<h3>
+<span class="header-section-number">8.7.1</span> Tuning auszeichnen<a class="anchor" aria-label="anchor" href="#tuning-auszeichnen"><i class="fas fa-link"></i></a>
+</h3>
+<p>In der Modellspezifikation des Modells können wir mit <code><a href="https://rdrr.io/pkg/hardhat/man/tune.html">tune()</a></code> auszeichnen,
+welche Parameter wir tunen möchten.
+Wir könenn</p>
+<div class="sourceCode" id="cb269"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">knn_model</span> <span class="op">&lt;-</span>
+  <span class="fu">nearest_neighbor</span><span class="op">(</span>
+    mode <span class="op">=</span> <span class="st">"regression"</span>,
+    neighbors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/hardhat/man/tune.html">tune</a></span><span class="op">(</span><span class="op">)</span>
+  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">set_engine</span><span class="op">(</span><span class="st">"kknn"</span><span class="op">)</span></code></pre></div>
+<p>Wir können dem Tuningparameter auch einen Namen (ID/Laben) geben, z.B. “K”:</p>
+<div class="sourceCode" id="cb270"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">knn_model</span> <span class="op">&lt;-</span>
+  <span class="fu">nearest_neighbor</span><span class="op">(</span>
+    mode <span class="op">=</span> <span class="st">"regression"</span>,
+    neighbors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/hardhat/man/tune.html">tune</a></span><span class="op">(</span><span class="st">"K"</span><span class="op">)</span>
+  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">set_engine</span><span class="op">(</span><span class="st">"kknn"</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="grid-search-vs.-iterative-search" class="section level3" number="8.7.2">
+<h3>
+<span class="header-section-number">8.7.2</span> Grid Search vs. Iterative Search<a class="anchor" aria-label="anchor" href="#grid-search-vs.-iterative-search"><i class="fas fa-link"></i></a>
 </h3>
 <p>Im K-Nächste-Nachbarn-Modell ist der vorhergesagt Wert, <span class="math inline">\(\hat{y}\)</span> für eine neue Beobachtung <span class="math inline">\(x_0\)</span> wie folgt definiert:</p>
 <p><span class="math display">\[
@@ -309,94 +496,19 @@ Figure 8.9: Links: Grid Search. Rechts: Iterative Search2
 <code>tidymodels</code> führt das dann ohne weiteres Federlesens für uns durch.</p>
 </div>
 </div>
-<div id="tuning-mit-tidymodels" class="section level2" number="8.6">
+<div id="tuning-mit-tidymodels" class="section level2" number="8.8">
 <h2>
-<span class="header-section-number">8.6</span> Tuning mit Tidymodels<a class="anchor" aria-label="anchor" href="#tuning-mit-tidymodels"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.8</span> Tuning mit Tidymodels<a class="anchor" aria-label="anchor" href="#tuning-mit-tidymodels"><i class="fas fa-link"></i></a>
 </h2>
-<div id="tuning-definieren-mit-tidymodels-für-knn" class="section level3" number="8.6.1">
-<h3>
-<span class="header-section-number">8.6.1</span> Tuning definieren mit tidymodels für kNN<a class="anchor" aria-label="anchor" href="#tuning-definieren-mit-tidymodels-f%C3%BCr-knn"><i class="fas fa-link"></i></a>
-</h3>
-<div id="datensatz-aufteilen" class="section level4" number="8.6.1.1">
+<div id="tuningparameter-betrachten" class="section level4" number="8.8.0.1">
 <h4>
-<span class="header-section-number">8.6.1.1</span> Datensatz aufteilen<a class="anchor" aria-label="anchor" href="#datensatz-aufteilen"><i class="fas fa-link"></i></a>
-</h4>
-<div class="sourceCode" id="cb249"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ames</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/AmesHousing/man/make_ames.html">make_ames</a></span><span class="op">(</span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">4595</span><span class="op">)</span>
-<span class="va">data_split</span> <span class="op">&lt;-</span> <span class="fu">initial_split</span><span class="op">(</span><span class="va">ames</span>, strata <span class="op">=</span> <span class="st">"Sale_Price"</span><span class="op">)</span>
-
-<span class="va">ames_train</span> <span class="op">&lt;-</span> <span class="fu">training</span><span class="op">(</span><span class="va">data_split</span><span class="op">)</span>
-<span class="va">ames_test</span> <span class="op">&lt;-</span> <span class="fu">testing</span><span class="op">(</span><span class="va">data_split</span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">2453</span><span class="op">)</span>
-<span class="va">rs_splits</span> <span class="op">&lt;-</span> <span class="fu">vfold_cv</span><span class="op">(</span><span class="va">ames_train</span>, strata <span class="op">=</span> <span class="st">"Sale_Price"</span><span class="op">)</span></code></pre></div>
-</div>
-<div id="rezept-modell-und-workflow-definieren" class="section level4" number="8.6.1.2">
-<h4>
-<span class="header-section-number">8.6.1.2</span> Rezept, Modell und Workflow definieren<a class="anchor" aria-label="anchor" href="#rezept-modell-und-workflow-definieren"><i class="fas fa-link"></i></a>
-</h4>
-<div class="sourceCode" id="cb250"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ames_rec</span> <span class="op">&lt;-</span>
-  <span class="fu">recipe</span><span class="op">(</span><span class="va">Sale_Price</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">ames_train</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">step_log</span><span class="op">(</span><span class="va">Sale_Price</span>, base <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">step_other</span><span class="op">(</span><span class="va">Neighborhood</span>, threshold <span class="op">=</span> <span class="fl">.1</span><span class="op">)</span>  <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">step_dummy</span><span class="op">(</span><span class="fu">all_nominal</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">step_zv</span><span class="op">(</span><span class="fu">all_predictors</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> 
-
-<span class="va">knn_model</span> <span class="op">&lt;-</span>
-  <span class="fu">nearest_neighbor</span><span class="op">(</span>
-    mode <span class="op">=</span> <span class="st">"regression"</span>,
-    neighbors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/hardhat/man/tune.html">tune</a></span><span class="op">(</span><span class="st">"K"</span><span class="op">)</span>
-  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">set_engine</span><span class="op">(</span><span class="st">"kknn"</span><span class="op">)</span>
-
-<span class="va">ames_wflow</span> <span class="op">&lt;-</span>
-  <span class="fu">workflow</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">add_recipe</span><span class="op">(</span><span class="va">ames_rec</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">add_model</span><span class="op">(</span><span class="va">knn_model</span><span class="op">)</span></code></pre></div>
-<p>Das kNN-Modell ist noch nicht berechnet,
-es ist nur ein “Rezept” erstellt:</p>
-<div class="sourceCode" id="cb251"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">knn_model</span></code></pre></div>
-<pre><code>## K-Nearest Neighbor Model Specification (regression)
-## 
-## Main Arguments:
-##   neighbors = tune("K")
-## 
-## Computational engine: kknn</code></pre>
-<div class="sourceCode" id="cb253"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ames_wflow</span></code></pre></div>
-<pre><code>## ══ Workflow ════════════════════════════════════════════════════════════════════
-## Preprocessor: Recipe
-## Model: nearest_neighbor()
-## 
-## ── Preprocessor ────────────────────────────────────────────────────────────────
-## 4 Recipe Steps
-## 
-## • step_log()
-## • step_other()
-## • step_dummy()
-## • step_zv()
-## 
-## ── Model ───────────────────────────────────────────────────────────────────────
-## K-Nearest Neighbor Model Specification (regression)
-## 
-## Main Arguments:
-##   neighbors = tune("K")
-## 
-## Computational engine: kknn</code></pre>
-</div>
-<div id="tuningparameter-betrachten" class="section level4" number="8.6.1.3">
-<h4>
-<span class="header-section-number">8.6.1.3</span> Tuningparameter betrachten<a class="anchor" aria-label="anchor" href="#tuningparameter-betrachten"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.8.0.1</span> Tuningparameter betrachten<a class="anchor" aria-label="anchor" href="#tuningparameter-betrachten"><i class="fas fa-link"></i></a>
 </h4>
 <p>Möchte man wissen,
 welche und wie viele Tuningparameter tidymodels in einem Modell berücksichtigt,
 kann man <code><a href="https://rdrr.io/pkg/hardhat/man/hardhat-extract.html">extract_parameter_set_dials()</a></code> aufrufen:</p>
-<div class="sourceCode" id="cb255"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/hardhat/man/hardhat-extract.html">extract_parameter_set_dials</a></span><span class="op">(</span><span class="va">ames_wflow</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb271"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/hardhat/man/hardhat-extract.html">extract_parameter_set_dials</a></span><span class="op">(</span><span class="va">knn_model</span><span class="op">)</span></code></pre></div>
 <pre><code>## Collection of 1 parameters for tuning
 ## 
 ##  identifier      type    object
@@ -408,15 +520,20 @@ Außerdem sollen die Anzahl der Nachbarn getunt werden.
 Der Tuningparameter ist numerisch; das sieht man an <code>nparam[+]</code>.</p>
 <p>Schauen wir uns mal an,
 auf welchen Wertebereich <code>tidymodels</code> den Parameter <span class="math inline">\(K\)</span> begrenzt hat:</p>
-<div class="sourceCode" id="cb257"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ames_wflow</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+<div class="sourceCode" id="cb273"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">knn_model</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu">extract_parameter_dials</span><span class="op">(</span><span class="st">"K"</span><span class="op">)</span></code></pre></div>
 <pre><code>## # Nearest Neighbors (quantitative)
 ## Range: [1, 15]</code></pre>
+<p>Aktualisieren wir mal unseren Workflow entsprechend:</p>
+<div class="sourceCode" id="cb275"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">ames_wflow</span> <span class="op">&lt;-</span>
+  <span class="va">ames_wflow</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu">update_model</span><span class="op">(</span><span class="va">knn_model</span><span class="op">)</span></code></pre></div>
 <p>Wir können auch Einfluss nehmen und angeben,
 dass die Grenzen des Wertebereichs zwischen 1 und 50 liegen soll
 (für den Tuningparameter <code>neighbors</code>):</p>
-<div class="sourceCode" id="cb259"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb276"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ames_set</span> <span class="op">&lt;-</span>
   <span class="fu"><a href="https://rdrr.io/pkg/hardhat/man/hardhat-extract.html">extract_parameter_set_dials</a></span><span class="op">(</span><span class="va">ames_wflow</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/r/stats/update.html">update</a></span><span class="op">(</span>K <span class="op">=</span> <span class="fu">neighbors</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">50</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
@@ -427,10 +544,9 @@ dass die Grenzen des Wertebereichs zwischen 1 und 50 liegen soll
 ##  identifier      type    object
 ##           K neighbors nparam[+]</code></pre>
 </div>
-</div>
-<div id="datenabhängige-tuningparameter" class="section level3" number="8.6.2">
+<div id="datenabhängige-tuningparameter" class="section level3" number="8.8.1">
 <h3>
-<span class="header-section-number">8.6.2</span> Datenabhängige Tuningparameter<a class="anchor" aria-label="anchor" href="#datenabh%C3%A4ngige-tuningparameter"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.8.1</span> Datenabhängige Tuningparameter<a class="anchor" aria-label="anchor" href="#datenabh%C3%A4ngige-tuningparameter"><i class="fas fa-link"></i></a>
 </h3>
 <p>Manche Tuningparameter kann man nur bestimmen,
 wenn man den Datensatz kennt.
@@ -445,7 +561,7 @@ sondern lieber den Computer anweisen, und sinngemäß sagen:
 “Warte mal mit der Bestimmung der Werte der Tuningparameter,
 bis du den Datensatz bzw. dessen Dimensionen kennst. Merk dir,
 dass du, wenn du den Datensatz kennst, die Werte des Tuningparameter noch ändern musst. Und tu das dann auch.” Dazu später mehr.</p>
-<div class="sourceCode" id="cb261"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb278"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ames_set</span> <span class="op">&lt;-</span>
   <span class="fu">workflow</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu">add_model</span><span class="op">(</span><span class="va">knn_model</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
@@ -453,101 +569,98 @@ dass du, wenn du den Datensatz kennst, die Werte des Tuningparameter noch änder
   <span class="fu"><a href="https://rdrr.io/pkg/hardhat/man/hardhat-extract.html">extract_parameter_set_dials</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu">finalize</span><span class="op">(</span><span class="va">ames_train</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="modelle-mit-tuning-berechnen" class="section level3" number="8.6.3">
+<div id="modelle-mit-tuning-berechnen" class="section level3" number="8.8.2">
 <h3>
-<span class="header-section-number">8.6.3</span> Modelle mit Tuning berechnen<a class="anchor" aria-label="anchor" href="#modelle-mit-tuning-berechnen"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.8.2</span> Modelle mit Tuning berechnen<a class="anchor" aria-label="anchor" href="#modelle-mit-tuning-berechnen"><i class="fas fa-link"></i></a>
 </h3>
 <p>Nachdem wir die Tuningwerte bestimmt haben,
 können wir jetzt das Modell berechnen:
 Für jeden Wert des Tuningparameters wird ein Modell berechnet:</p>
-<div class="sourceCode" id="cb262"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb279"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ames_grid_search</span> <span class="op">&lt;-</span>
   <span class="fu"><a href="https://tune.tidymodels.org/reference/tune_grid.html">tune_grid</a></span><span class="op">(</span>
     <span class="va">ames_wflow</span>,
-    resamples <span class="op">=</span> <span class="va">rs_splits</span>
+    resamples <span class="op">=</span> <span class="va">ames_folds</span>
   <span class="op">)</span>
-
 <span class="va">ames_grid_search</span></code></pre></div>
 <pre><code>## # Tuning results
 ## # 10-fold cross-validation using stratification 
 ## # A tibble: 10 × 4
 ##    splits             id     .metrics          .notes          
 ##    &lt;list&gt;             &lt;chr&gt;  &lt;list&gt;            &lt;list&gt;          
-##  1 &lt;split [1976/221]&gt; Fold01 &lt;tibble [18 × 5]&gt; &lt;tibble [0 × 3]&gt;
-##  2 &lt;split [1976/221]&gt; Fold02 &lt;tibble [18 × 5]&gt; &lt;tibble [0 × 3]&gt;
-##  3 &lt;split [1976/221]&gt; Fold03 &lt;tibble [18 × 5]&gt; &lt;tibble [0 × 3]&gt;
-##  4 &lt;split [1976/221]&gt; Fold04 &lt;tibble [18 × 5]&gt; &lt;tibble [0 × 3]&gt;
-##  5 &lt;split [1977/220]&gt; Fold05 &lt;tibble [18 × 5]&gt; &lt;tibble [0 × 3]&gt;
-##  6 &lt;split [1977/220]&gt; Fold06 &lt;tibble [18 × 5]&gt; &lt;tibble [0 × 3]&gt;
-##  7 &lt;split [1978/219]&gt; Fold07 &lt;tibble [18 × 5]&gt; &lt;tibble [0 × 3]&gt;
-##  8 &lt;split [1978/219]&gt; Fold08 &lt;tibble [18 × 5]&gt; &lt;tibble [0 × 3]&gt;
-##  9 &lt;split [1979/218]&gt; Fold09 &lt;tibble [18 × 5]&gt; &lt;tibble [0 × 3]&gt;
-## 10 &lt;split [1980/217]&gt; Fold10 &lt;tibble [18 × 5]&gt; &lt;tibble [0 × 3]&gt;</code></pre>
+##  1 &lt;split [1976/221]&gt; Fold01 &lt;tibble [16 × 5]&gt; &lt;tibble [0 × 3]&gt;
+##  2 &lt;split [1976/221]&gt; Fold02 &lt;tibble [16 × 5]&gt; &lt;tibble [0 × 3]&gt;
+##  3 &lt;split [1976/221]&gt; Fold03 &lt;tibble [16 × 5]&gt; &lt;tibble [0 × 3]&gt;
+##  4 &lt;split [1976/221]&gt; Fold04 &lt;tibble [16 × 5]&gt; &lt;tibble [0 × 3]&gt;
+##  5 &lt;split [1977/220]&gt; Fold05 &lt;tibble [16 × 5]&gt; &lt;tibble [0 × 3]&gt;
+##  6 &lt;split [1977/220]&gt; Fold06 &lt;tibble [16 × 5]&gt; &lt;tibble [0 × 3]&gt;
+##  7 &lt;split [1978/219]&gt; Fold07 &lt;tibble [16 × 5]&gt; &lt;tibble [0 × 3]&gt;
+##  8 &lt;split [1978/219]&gt; Fold08 &lt;tibble [16 × 5]&gt; &lt;tibble [0 × 3]&gt;
+##  9 &lt;split [1979/218]&gt; Fold09 &lt;tibble [16 × 5]&gt; &lt;tibble [0 × 3]&gt;
+## 10 &lt;split [1980/217]&gt; Fold10 &lt;tibble [16 × 5]&gt; &lt;tibble [0 × 3]&gt;</code></pre>
 <p>Im Default berechnet <code>tiymodels</code> 10 Kandidatenmodelle.</p>
 <p>Die Spalte <code>.metrics</code> beinhaltet die Modellgüte für jedes Kandidatenmodell.</p>
-<div class="sourceCode" id="cb264"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb281"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ames_grid_search</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://tune.tidymodels.org/reference/collect_predictions.html">collect_metrics</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 18 × 7
+<pre><code>## # A tibble: 16 × 7
 ##        K .metric .estimator   mean     n std_err .config             
 ##    &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;               
-##  1     2 rmse    standard   0.0946    10 0.00198 Preprocessor1_Model1
-##  2     2 rsq     standard   0.716     10 0.00959 Preprocessor1_Model1
-##  3     3 rmse    standard   0.0901    10 0.00214 Preprocessor1_Model2
-##  4     3 rsq     standard   0.739     10 0.00925 Preprocessor1_Model2
-##  5     5 rmse    standard   0.0855    10 0.00234 Preprocessor1_Model3
-##  6     5 rsq     standard   0.764     10 0.00961 Preprocessor1_Model3
-##  7     6 rmse    standard   0.0842    10 0.00239 Preprocessor1_Model4
-##  8     6 rsq     standard   0.772     10 0.00968 Preprocessor1_Model4
-##  9     8 rmse    standard   0.0825    10 0.00241 Preprocessor1_Model5
-## 10     8 rsq     standard   0.783     10 0.00958 Preprocessor1_Model5
-## 11     9 rmse    standard   0.0819    10 0.00241 Preprocessor1_Model6
-## 12     9 rsq     standard   0.786     10 0.00952 Preprocessor1_Model6
-## 13    10 rmse    standard   0.0814    10 0.00242 Preprocessor1_Model7
-## 14    10 rsq     standard   0.790     10 0.00951 Preprocessor1_Model7
-## 15    12 rmse    standard   0.0807    10 0.00243 Preprocessor1_Model8
-## 16    12 rsq     standard   0.795     10 0.00948 Preprocessor1_Model8
-## 17    14 rmse    standard   0.0803    10 0.00245 Preprocessor1_Model9
-## 18    14 rsq     standard   0.799     10 0.00950 Preprocessor1_Model9</code></pre>
+##  1     2 rmse    standard   0.103     10 0.00213 Preprocessor1_Model1
+##  2     2 rsq     standard   0.662     10 0.0112  Preprocessor1_Model1
+##  3     4 rmse    standard   0.0950    10 0.00188 Preprocessor1_Model2
+##  4     4 rsq     standard   0.708     10 0.00916 Preprocessor1_Model2
+##  5     6 rmse    standard   0.0912    10 0.00189 Preprocessor1_Model3
+##  6     6 rsq     standard   0.732     10 0.00842 Preprocessor1_Model3
+##  7     7 rmse    standard   0.0900    10 0.00192 Preprocessor1_Model4
+##  8     7 rsq     standard   0.740     10 0.00829 Preprocessor1_Model4
+##  9     9 rmse    standard   0.0883    10 0.00201 Preprocessor1_Model5
+## 10     9 rsq     standard   0.752     10 0.00827 Preprocessor1_Model5
+## 11    11 rmse    standard   0.0872    10 0.00211 Preprocessor1_Model6
+## 12    11 rsq     standard   0.761     10 0.00845 Preprocessor1_Model6
+## 13    13 rmse    standard   0.0865    10 0.00217 Preprocessor1_Model7
+## 14    13 rsq     standard   0.767     10 0.00848 Preprocessor1_Model7
+## 15    15 rmse    standard   0.0861    10 0.00221 Preprocessor1_Model8
+## 16    15 rsq     standard   0.772     10 0.00850 Preprocessor1_Model8</code></pre>
 <p>Das können wir uns einfach visualisieren lassen:</p>
-<div class="sourceCode" id="cb266"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb283"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot</a></span><span class="op">(</span><span class="va">ames_grid_search</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="080-tidymodels2_files/figure-html/unnamed-chunk-8-1.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="080-tidymodels2_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;"></div>
 <p>Auf Basis dieser Ergebnisse könnte es Sinn machen,
 noch größere Werte für <span class="math inline">\(K\)</span> zu überprüfen.</p>
 </div>
-<div id="vorhersage-im-test-sample" class="section level3" number="8.6.4">
+<div id="vorhersage-im-test-sample" class="section level3" number="8.8.3">
 <h3>
-<span class="header-section-number">8.6.4</span> Vorhersage im Test-Sample<a class="anchor" aria-label="anchor" href="#vorhersage-im-test-sample"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.8.3</span> Vorhersage im Test-Sample<a class="anchor" aria-label="anchor" href="#vorhersage-im-test-sample"><i class="fas fa-link"></i></a>
 </h3>
 <p>Welches Modellkandidat war jetzt am besten?</p>
-<div class="sourceCode" id="cb267"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb284"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://tune.tidymodels.org/reference/show_best.html">show_best</a></span><span class="op">(</span><span class="va">ames_grid_search</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 5 × 7
 ##       K .metric .estimator   mean     n std_err .config             
 ##   &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;               
-## 1    14 rmse    standard   0.0803    10 0.00245 Preprocessor1_Model9
-## 2    12 rmse    standard   0.0807    10 0.00243 Preprocessor1_Model8
-## 3    10 rmse    standard   0.0814    10 0.00242 Preprocessor1_Model7
-## 4     9 rmse    standard   0.0819    10 0.00241 Preprocessor1_Model6
-## 5     8 rmse    standard   0.0825    10 0.00241 Preprocessor1_Model5</code></pre>
+## 1    15 rmse    standard   0.0861    10 0.00221 Preprocessor1_Model8
+## 2    13 rmse    standard   0.0865    10 0.00217 Preprocessor1_Model7
+## 3    11 rmse    standard   0.0872    10 0.00211 Preprocessor1_Model6
+## 4     9 rmse    standard   0.0883    10 0.00201 Preprocessor1_Model5
+## 5     7 rmse    standard   0.0900    10 0.00192 Preprocessor1_Model4</code></pre>
 <p>Wählen wir jetzt mal das beste Modell aus (im Sinne des Optimierungskriteriusms):</p>
-<div class="sourceCode" id="cb269"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb286"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://tune.tidymodels.org/reference/show_best.html">select_best</a></span><span class="op">(</span><span class="va">ames_grid_search</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 2
 ##       K .config             
 ##   &lt;int&gt; &lt;chr&gt;               
-## 1    14 Preprocessor1_Model9</code></pre>
+## 1    15 Preprocessor1_Model8</code></pre>
 <p>Ok,
 notieren wir uns die Kombination der Tuningparameterwerte
 im besten Kandiatenmodell.
 In diesem Fall hat das Modull nur einen Tuningparameter:</p>
-<div class="sourceCode" id="cb271"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb288"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ames_knn_best_params</span> <span class="op">&lt;-</span>
   <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>K <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></code></pre></div>
 <p>Unser Workflow weiß noch nicht,
 welche Tuningparameterwerte am besten sind:</p>
-<div class="sourceCode" id="cb272"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb289"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ames_wflow</span></code></pre></div>
 <pre><code>## ══ Workflow ════════════════════════════════════════════════════════════════════
 ## Preprocessor: Recipe
@@ -574,7 +687,7 @@ Das haben wir jetzt ja erledigt.
 Wir wollen für das Test-Sample nur noch einen Wert,
 eben aus dem besten Kandidatenmodell,
 verwenden:</p>
-<div class="sourceCode" id="cb274"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb291"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ames_final_wflow</span> <span class="op">&lt;-</span>
   <span class="va">ames_wflow</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://tune.tidymodels.org/reference/finalize_model.html">finalize_workflow</a></span><span class="op">(</span><span class="va">ames_knn_best_params</span><span class="op">)</span>
@@ -606,7 +719,7 @@ also das Modell auf das ganze Train-Sample anwenden -
 nicht nur auf ein Analysis-Sample.
 Und mit den dann resultierenden Modellkoeffizienten sagen
 wir das TestSample vorher:</p>
-<div class="sourceCode" id="cb276"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb293"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">final_ames_knn_fit</span> <span class="op">&lt;-</span>
   <span class="fu"><a href="https://tune.tidymodels.org/reference/last_fit.html">last_fit</a></span><span class="op">(</span><span class="va">ames_final_wflow</span>, <span class="va">data_split</span><span class="op">)</span>
 
@@ -618,13 +731,13 @@ wir das TestSample vorher:</p>
 ##   &lt;list&gt;             &lt;chr&gt;            &lt;list&gt;   &lt;list&gt;   &lt;list&gt;       &lt;list&gt;    
 ## 1 &lt;split [2197/733]&gt; train/test split &lt;tibble&gt; &lt;tibble&gt; &lt;tibble&gt;     &lt;workflow&gt;</code></pre>
 <p>Holen wir uns die Modellgüte:</p>
-<div class="sourceCode" id="cb278"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb295"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://tune.tidymodels.org/reference/collect_predictions.html">collect_metrics</a></span><span class="op">(</span><span class="va">final_ames_knn_fit</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 4
 ##   .metric .estimator .estimate .config             
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;               
-## 1 rmse    standard      0.0867 Preprocessor1_Model1
-## 2 rsq     standard      0.780  Preprocessor1_Model1</code></pre>
+## 1 rmse    standard      0.0951 Preprocessor1_Model1
+## 2 rsq     standard      0.736  Preprocessor1_Model1</code></pre>
 <!-- ### Vorhersage von Hand -->
 <!-- Natürlich könnten wir auch "von Hand" vorhersagen: -->
 <!-- ```{r ames-fit-von-hand} -->
@@ -683,26 +796,40 @@ wir das TestSample vorher:</p>
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#statistisches-lernen-2"><span class="header-section-number">8</span> Statistisches Lernen, 2</a></li>
-<li><a class="nav-link" href="#resampling"><span class="header-section-number">8.1</span> Resampling</a></li>
 <li>
-<a class="nav-link" href="#illustration-des-resampling"><span class="header-section-number">8.2</span> Illustration des Resampling</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#einfache-v-fache-kreuzvalidierung"><span class="header-section-number">8.2.1</span> Einfache v-fache Kreuzvalidierung</a></li>
-<li><a class="nav-link" href="#wiederholte-kreuzvalidierung"><span class="header-section-number">8.2.2</span> Wiederholte Kreuzvalidierung</a></li>
-<li><a class="nav-link" href="#resampling-passiert-im-train-sample"><span class="header-section-number">8.2.3</span> Resampling passiert im Train-Sample</a></li>
-<li><a class="nav-link" href="#andere-illustrationen"><span class="header-section-number">8.2.4</span> Andere Illustrationen</a></li>
+<a class="nav-link" href="#tidymodels"><span class="header-section-number">8.1</span> tidymodels</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#datensatz-aufteilen"><span class="header-section-number">8.1.1</span> Datensatz aufteilen</a></li>
+<li><a class="nav-link" href="#rezept-modell-und-workflow-definieren"><span class="header-section-number">8.1.2</span> Rezept, Modell und Workflow definieren</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#gesetz-der-gro%C3%9Fen-zahl"><span class="header-section-number">8.3</span> Gesetz der großen Zahl</a></li>
-<li><a class="nav-link" href="#%C3%BCber--und-unteranpassung-an-einem-beispiel"><span class="header-section-number">8.4</span> Über- und Unteranpassung an einem Beispiel</a></li>
+<li><a class="nav-link" href="#resampling"><span class="header-section-number">8.2</span> Resampling</a></li>
 <li>
-<a class="nav-link" href="#tuning"><span class="header-section-number">8.5</span> Tuning</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#grid-search-vs.-iterative-search"><span class="header-section-number">8.5.1</span> Grid Search vs. Iterative Search</a></li></ul>
+<a class="nav-link" href="#illustration-des-resampling"><span class="header-section-number">8.3</span> Illustration des Resampling</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#einfache-v-fache-kreuzvalidierung"><span class="header-section-number">8.3.1</span> Einfache v-fache Kreuzvalidierung</a></li>
+<li><a class="nav-link" href="#wiederholte-kreuzvalidierung"><span class="header-section-number">8.3.2</span> Wiederholte Kreuzvalidierung</a></li>
+<li><a class="nav-link" href="#resampling-passiert-im-train-sample"><span class="header-section-number">8.3.3</span> Resampling passiert im Train-Sample</a></li>
+<li><a class="nav-link" href="#andere-illustrationen"><span class="header-section-number">8.3.4</span> Andere Illustrationen</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#gesetz-der-gro%C3%9Fen-zahl"><span class="header-section-number">8.4</span> Gesetz der großen Zahl</a></li>
+<li><a class="nav-link" href="#%C3%BCber--und-unteranpassung-an-einem-beispiel"><span class="header-section-number">8.5</span> Über- und Unteranpassung an einem Beispiel</a></li>
+<li>
+<a class="nav-link" href="#cv-in-tidymodels"><span class="header-section-number">8.6</span> CV in tidymodels</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#cv-definieren"><span class="header-section-number">8.6.1</span> CV definieren</a></li>
+<li><a class="nav-link" href="#resamples-fitten"><span class="header-section-number">8.6.2</span> Resamples fitten</a></li>
+</ul>
 </li>
 <li>
-<a class="nav-link" href="#tuning-mit-tidymodels"><span class="header-section-number">8.6</span> Tuning mit Tidymodels</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#tuning-definieren-mit-tidymodels-f%C3%BCr-knn"><span class="header-section-number">8.6.1</span> Tuning definieren mit tidymodels für kNN</a></li>
-<li><a class="nav-link" href="#datenabh%C3%A4ngige-tuningparameter"><span class="header-section-number">8.6.2</span> Datenabhängige Tuningparameter</a></li>
-<li><a class="nav-link" href="#modelle-mit-tuning-berechnen"><span class="header-section-number">8.6.3</span> Modelle mit Tuning berechnen</a></li>
-<li><a class="nav-link" href="#vorhersage-im-test-sample"><span class="header-section-number">8.6.4</span> Vorhersage im Test-Sample</a></li>
+<a class="nav-link" href="#tuning"><span class="header-section-number">8.7</span> Tuning</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#tuning-auszeichnen"><span class="header-section-number">8.7.1</span> Tuning auszeichnen</a></li>
+<li><a class="nav-link" href="#grid-search-vs.-iterative-search"><span class="header-section-number">8.7.2</span> Grid Search vs. Iterative Search</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#tuning-mit-tidymodels"><span class="header-section-number">8.8</span> Tuning mit Tidymodels</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#datenabh%C3%A4ngige-tuningparameter"><span class="header-section-number">8.8.1</span> Datenabhängige Tuningparameter</a></li>
+<li><a class="nav-link" href="#modelle-mit-tuning-berechnen"><span class="header-section-number">8.8.2</span> Modelle mit Tuning berechnen</a></li>
+<li><a class="nav-link" href="#vorhersage-im-test-sample"><span class="header-section-number">8.8.3</span> Vorhersage im Test-Sample</a></li>
 </ul>
 </li>
 </ul>
@@ -722,7 +849,7 @@ wir das TestSample vorher:</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-04-14 16:12:34.</p>
+    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-04-14 16:57:19.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

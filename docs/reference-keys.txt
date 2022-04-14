@@ -91,6 +91,7 @@ hinweise-4
 vertiefung-3
 logistische-regression
 literatur-6
+aufgaben-6
 naive-bayes
 literatur-7
 entscheidungsbäume
@@ -148,7 +149,7 @@ ziele-des-ml
 über--vs.-unteranpassung
 no-free-lunch
 bias-varianz-abwägung
-aufgaben-6
+aufgaben-7
 vertiefung-6
 r-zweiter-blick
 objekttypen-in-r
@@ -175,7 +176,7 @@ wozu-listenspalten
 beispiele-für-listenspalten
 tidymodel
 kurs-datascience1
-aufgaben-7
+aufgaben-8
 literatur-14
 tidymodels-1
 daten
@@ -218,6 +219,9 @@ visualisierung
 kennzahlen-der-klassifikation
 krebstest-beispiel
 statistisches-lernen-2
+tidymodels
+datensatz-aufteilen
+rezept-modell-und-workflow-definieren
 resampling
 illustration-des-resampling
 einfache-v-fache-kreuzvalidierung
@@ -226,12 +230,13 @@ resampling-passiert-im-train-sample
 andere-illustrationen
 gesetz-der-großen-zahl
 über--und-unteranpassung-an-einem-beispiel
+cv-in-tidymodels
+cv-definieren
+resamples-fitten
 tuning
+tuning-auszeichnen
 grid-search-vs.-iterative-search
 tuning-mit-tidymodels
-tuning-definieren-mit-tidymodels-für-knn
-datensatz-aufteilen
-rezept-modell-und-workflow-definieren
 tuningparameter-betrachten
 datenabhängige-tuningparameter
 modelle-mit-tuning-berechnen
