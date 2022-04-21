@@ -23,23 +23,6 @@
 
 
 
-## Was Sie hier lernen und wozu das gut ist
-
-Alle Welt spricht von Big Data, aber ohne die Analyse sind die großen Daten nur großes Rauschen. Was letztlich interessiert, sind die Erkenntnisse, die Einblicke, nicht die Daten an sich. 
-Dabei ist es egal, ob die Daten groß oder klein sind. 
-Natürlich erlauben die heutigen Datenmengen im Verbund mit leistungsfähigen Rechnern und neuen Analysemethoden ein Verständnis, 
-das vor Kurzem noch nicht möglich war. 
-Und wir stehen erst am Anfang dieser Entwicklung. 
-Vielleicht handelt es sich bei diesem Feld um eines der dynamischsten Fachgebiete der heutigen Zeit. 
-Sie sind dabei: Sie lernen einiges Handwerkszeugs des "Datenwissenschaftlers". 
-Wir konzentrieren uns auf das vielleicht bekannteste Teilgebiet: 
-Ereignisse vorhersagen auf Basis von hoch strukturierten Daten 
-und geeigneter Algorithmen und Verfahren.
-Nach diesem Kurs sollten Sie in der Lage sein,
-typisches Gebabbel des Fachgebiet mit Lässigkeit mitzumachen.
-Ach ja, und mit einigem Erfolg Vorhersagemodelle entwickeln.
-
-
 
 
 ## Lernziele
@@ -107,12 +90,12 @@ die das Online-Zusammenarbeiten vereinfachen:
 
 
 ```{=html}
-<div id="whavdczlkr" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="lvvdsahpaz" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#whavdczlkr .gt_table {
+#lvvdsahpaz .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -137,7 +120,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-left-color: #D3D3D3;
 }
 
-#whavdczlkr .gt_heading {
+#lvvdsahpaz .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -149,7 +132,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-right-color: #D3D3D3;
 }
 
-#whavdczlkr .gt_title {
+#lvvdsahpaz .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -159,7 +142,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-bottom-width: 0;
 }
 
-#whavdczlkr .gt_subtitle {
+#lvvdsahpaz .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -169,13 +152,13 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-top-width: 0;
 }
 
-#whavdczlkr .gt_bottom_border {
+#lvvdsahpaz .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#whavdczlkr .gt_col_headings {
+#lvvdsahpaz .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -190,7 +173,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-right-color: #D3D3D3;
 }
 
-#whavdczlkr .gt_col_heading {
+#lvvdsahpaz .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -210,7 +193,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   overflow-x: hidden;
 }
 
-#whavdczlkr .gt_column_spanner_outer {
+#lvvdsahpaz .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -222,15 +205,15 @@ die das Online-Zusammenarbeiten vereinfachen:
   padding-right: 4px;
 }
 
-#whavdczlkr .gt_column_spanner_outer:first-child {
+#lvvdsahpaz .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#whavdczlkr .gt_column_spanner_outer:last-child {
+#lvvdsahpaz .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#whavdczlkr .gt_column_spanner {
+#lvvdsahpaz .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -242,7 +225,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   width: 100%;
 }
 
-#whavdczlkr .gt_group_heading {
+#lvvdsahpaz .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -264,7 +247,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   vertical-align: middle;
 }
 
-#whavdczlkr .gt_empty_group_heading {
+#lvvdsahpaz .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -279,15 +262,15 @@ die das Online-Zusammenarbeiten vereinfachen:
   vertical-align: middle;
 }
 
-#whavdczlkr .gt_from_md > :first-child {
+#lvvdsahpaz .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#whavdczlkr .gt_from_md > :last-child {
+#lvvdsahpaz .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#whavdczlkr .gt_row {
+#lvvdsahpaz .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -306,7 +289,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   overflow-x: hidden;
 }
 
-#whavdczlkr .gt_stub {
+#lvvdsahpaz .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -318,7 +301,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   padding-left: 12px;
 }
 
-#whavdczlkr .gt_summary_row {
+#lvvdsahpaz .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -328,7 +311,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   padding-right: 5px;
 }
 
-#whavdczlkr .gt_first_summary_row {
+#lvvdsahpaz .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -338,7 +321,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-top-color: #D3D3D3;
 }
 
-#whavdczlkr .gt_grand_summary_row {
+#lvvdsahpaz .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -348,7 +331,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   padding-right: 5px;
 }
 
-#whavdczlkr .gt_first_grand_summary_row {
+#lvvdsahpaz .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -358,11 +341,11 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-top-color: #D3D3D3;
 }
 
-#whavdczlkr .gt_striped {
+#lvvdsahpaz .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#whavdczlkr .gt_table_body {
+#lvvdsahpaz .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -371,7 +354,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-bottom-color: #D3D3D3;
 }
 
-#whavdczlkr .gt_footnotes {
+#lvvdsahpaz .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -385,13 +368,13 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-right-color: #D3D3D3;
 }
 
-#whavdczlkr .gt_footnote {
+#lvvdsahpaz .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#whavdczlkr .gt_sourcenotes {
+#lvvdsahpaz .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -405,41 +388,41 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-right-color: #D3D3D3;
 }
 
-#whavdczlkr .gt_sourcenote {
+#lvvdsahpaz .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#whavdczlkr .gt_left {
+#lvvdsahpaz .gt_left {
   text-align: left;
 }
 
-#whavdczlkr .gt_center {
+#lvvdsahpaz .gt_center {
   text-align: center;
 }
 
-#whavdczlkr .gt_right {
+#lvvdsahpaz .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#whavdczlkr .gt_font_normal {
+#lvvdsahpaz .gt_font_normal {
   font-weight: normal;
 }
 
-#whavdczlkr .gt_font_bold {
+#lvvdsahpaz .gt_font_bold {
   font-weight: bold;
 }
 
-#whavdczlkr .gt_font_italic {
+#lvvdsahpaz .gt_font_italic {
   font-style: italic;
 }
 
-#whavdczlkr .gt_super {
+#lvvdsahpaz .gt_super {
   font-size: 65%;
 }
 
-#whavdczlkr .gt_footnote_marks {
+#lvvdsahpaz .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;

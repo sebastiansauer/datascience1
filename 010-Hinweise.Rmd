@@ -29,23 +29,6 @@ source("https://raw.githubusercontent.com/sebastiansauer/Lehre/main/R-Code/rende
 
 
 
-## Was Sie hier lernen und wozu das gut ist
-
-Alle Welt spricht von Big Data, aber ohne die Analyse sind die großen Daten nur großes Rauschen. Was letztlich interessiert, sind die Erkenntnisse, die Einblicke, nicht die Daten an sich. 
-Dabei ist es egal, ob die Daten groß oder klein sind. 
-Natürlich erlauben die heutigen Datenmengen im Verbund mit leistungsfähigen Rechnern und neuen Analysemethoden ein Verständnis, 
-das vor Kurzem noch nicht möglich war. 
-Und wir stehen erst am Anfang dieser Entwicklung. 
-Vielleicht handelt es sich bei diesem Feld um eines der dynamischsten Fachgebiete der heutigen Zeit. 
-Sie sind dabei: Sie lernen einiges Handwerkszeugs des "Datenwissenschaftlers". 
-Wir konzentrieren uns auf das vielleicht bekannteste Teilgebiet: 
-Ereignisse vorhersagen auf Basis von hoch strukturierten Daten 
-und geeigneter Algorithmen und Verfahren.
-Nach diesem Kurs sollten Sie in der Lage sein,
-typisches Gebabbel des Fachgebiet mit Lässigkeit mitzumachen.
-Ach ja, und mit einigem Erfolg Vorhersagemodelle entwickeln.
-
-
 
 
 ## Lernziele

@@ -42,8 +42,9 @@ fig:lln
 fig:overfitting-4-plots
 fig:nnoverfit
 fig:tuning1
-hinweise
 was-sie-hier-lernen-und-wozu-das-gut-ist
+technische-details
+hinweise
 lernziele
 voraussetzungen
 lernhilfen
