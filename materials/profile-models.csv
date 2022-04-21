@@ -1,0 +1,5 @@
+Merkmal,Logistische Regression,kNN,Lineare Regression
+Klassifikation,ja,ja,nein
+Regression,nein,ja,ja
+Lerntyp,überwacht,überwacht,überwacht
+parametrisch,ja,nein,ja

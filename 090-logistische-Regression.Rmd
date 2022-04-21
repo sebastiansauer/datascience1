@@ -1,0 +1,790 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+# Logistische Regression
+
+
+```{r global-knitr-options, include=FALSE}
+  knitr::opts_chunk$set(
+  fig.pos = 'H',
+  fig.asp = 0.618,
+  fig.align='center',
+  fig.width = 5,
+  out.width = "100%",
+  fig.cap = "", 
+  fig.path = "chunk-img/tidymodels",
+  dpi = 300,
+  # tidy = TRUE,
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  cache = FALSE,
+  fig.show = "hold")
+```
+
+Benötigte R-Pakete für dieses Kapitel:
+
+```{r}
+library(tidyverse)
+library(tidymodels)
+library(datawizard)
+```
+
+
+```{r echo = FALSE}
+library(gt)
+library(nomnoml)
+library(patchwork)
+```
+
+
+
+## Intuitive Erklärung
+
+Die *logistische Reression* ist ein Spezialfall des linearen Modells (lineare Regression),
+der für *binäre* (dichotom) AV eingesetzt wird (es gibt auch eine Variante für multinominale AV). 
+Es können eine oder mehrere UV in eine logistische Regression einfließen,
+mit beliebigem Skalenniveau.
+
+Beispiele für  Forschungsfragen, die mit der logistischen Regression modelliert werden sind:
+
+- Welche Faktoren sind prädiktiv, um vorherzusagen, ob jemand einen Kredit zurückzahlen kann oder nicht?
+- Haben weibliche Passagiere aus der 1. Klasse eine höhere Überlebenschance als andere Personen auf der Titanic?
+- Welche Faktoren hängen damit zusammen, ob ein Kunde eine Webseite verlässt, bevor er einen Kauf abschließt?
+
+
+
+Der Name stammt von der [logistischen Funktion](https://en.wikipedia.org/wiki/Logistic_function),
+die man in der einfachsten Form so darstellen kann:
+
+$$f(x) = \frac{x}{1+e^{-x}}$$
+
+Da die AV als dichotom modelliert wird, spricht man von einer *Klassifikation*.
+
+
+Allerdings ist das Modell reichhaltiger als eine bloße Klassifikation,
+die (im binären Fall) nur 1 Bit Information liefert: "ja" vs. "nein" bzw. 0 vs. 1.
+
+Das Modell liefert nämlich nicht nur eine Klassifikation zurück,
+sondern auch eine *Indikation der Stärke* (epistemologisch) der Klassenzugehörigkeit.
+
+Einfach gesagt heißt das, 
+dass die logistische Regression eine Wahrscheinlichkeit der Klassenzugehörigkeit zurückliefert.
+
+
+
+
+```{r logist-regr, echo = FALSE, fig.cap = "Definition eines Models in tidymodels", out.width="100%"}
+d <- 
+"#direction: right
+ [Daten] -> [Modell] 
+ [Modell] -> [Wskt] 
+ [Wskt] -> [Klassifikation]
+"
+nomnoml(d, height = 300)
+```
+
+## Profil
+
+Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:prof-logist).
+
+
+```{r prof-logist, echo = FALSE}
+d <- read_csv("materials/profile-models.csv")
+d %>% 
+  select(1, 2) %>% 
+  gt::gt(caption = "Profil der logistischen Regression")
+```
+
+
+
+## Warum nicht die lineare Regression verwenden?
+
+
+*Forschungsfrage*: Kann man anhand des Spritverbrauchs vorhersagen, ob ein Auto eine Automatik- bzw. ein manuelle Schaltung hat? Anders gesagt: Hängen Spritverbrauch und Getriebeart? (Datensatz `mtcars`)
+
+```{r}
+data(mtcars)
+d <-
+  mtcars %>% 
+  mutate(mpg_z = standardize(mpg),
+         iv = mpg_z,
+         dv = am)
+
+m81 <- lm(dv ~ iv, data = d)
+coef(m81)
+```
+
+
+```{r echo = FALSE}
+d %>% 
+  ggplot(aes(x = iv, y = dv)) +
+  geom_point() +
+  geom_hline(yintercept = 0.5, color = "white", size = 2) +
+  geom_abline(intercept = coef(m81)[1],
+              slope = coef(m81)[2],
+              color = "blue") 
+```
+
+
+$Pr(\text{am}=1|m91,\text{mpg_z}=0) = 0.46$: 
+Die Wahrscheinlichkeit einer manuelle Schaltung, 
+gegeben einem durchschnittlichen Verbrauch (und dem Modell `m81`) liegt bei knapp 50%.
+
+
+
+### Lineare Modelle running wild
+
+Wie groß ist die Wahrscheinlichkeit für eine manuelle Schaltung ...
+
+
+
+- ... bei `mpg_z = -2`?
+
+```{r echo = TRUE}
+predict(m81, newdata = data.frame(iv = -2))
+```
+
+$Pr(\hat{y})<0$ macht keinen Sinn. ⚡ 
+
+
+- ... bei `mpg_z = +2`?
+
+```{r echo = TRUE}
+predict(m81, newdata = data.frame(iv = +2))
+```
+
+
+
+
+
+$Pr(\hat{y})>1$ macht keinen Sinn. ⚡ 
+
+
+
+Schauen Sie sich mal die Vorhersage an für `mpg_z=5` 🤯 
+
+
+### Wir müssen die Regressionsgerade umbiegen
+
+... wenn der vorhergesagte Wert eine Wahrscheinlichkeit, $p_i$, ist.
+
+
+```{r echo = FALSE}
+s_fun <- function(x) exp(x) / (1 + exp(x))
+
+plot_logist_regr <- 
+  ggplot(tibble(x=c(-2,2))) +
+  aes(x=x) +
+  geom_abline(slope = .25,
+              intercept = 0.5) +
+  labs(x = "x",
+       y = "Pr(y=1)=p") +
+  geom_hline(yintercept = c(0,1), linetype = "dotted") +
+  scale_x_continuous(limits = c(-5,5)) +
+  scale_y_continuous(limits = c(-0.5, 1.5)) +
+  stat_function( fun = s_fun, color = "blue", size = 2) +
+  geom_rect(xmin = -Inf,
+            xmax = +Inf,
+            ymin = 1,
+            ymax = +Inf,
+            fill = "Red",
+            alpha = .2) +
+  geom_rect(xmin = -Inf,
+            xmax = +Inf,
+            ymin = 0,
+            ymax = -Inf,
+            fill = "Red",
+            alpha = .2)
+
+plot_logist_regr
+```
+
+
+Die *schwarze* Gerade verlässt den Wertebereich der Wahrscheinlichkeit.
+Die *blaue* Kurve, $\mathcal{f}$, bleibt im erlaubten Bereich, $Pr(y) \in [0,1]$.
+Wir müssen also die linke oder die rechte Seite des linearen Modells transformieren:
+$p_i = f(\alpha + \beta \cdot x)$ bzw.:
+
+$f(p) = \alpha + \beta \cdot x$
+
+$\mathcal{f}$ nennt man eine *Link-Funktion*.
+
+
+
+
+
+### Verallgemeinerte lineare Modelle zur Rettung
+
+Für metrische AV mit theoretisch unendlichen Grenzen des Wertebereichs haben wir bisher eine Normalverteilung verwendet:
+
+$$y_i \sim \mathcal{N}(\mu_i, \sigma)$$
+
+Dann ist die Normalverteilung eine voraussetzungsarme Wahl (maximiert die Entropie).
+
+Aber wenn die AV *binär* ist bzw. *Häufigkeiten* modelliert, 
+braucht man eine Variable die nur positive Werte zulässt.
+
+Diese Verallgemeinerung des linearen Modells bezeichnet man als *verallgemeinertes lineares Modell* (generalized linear model, GLM).
+
+Im Falle einer binären (bzw. dichotomen) AV liegt eine bestimmte Form des GLM vor,
+die man als *logistische Regression* bezeichnet.
+
+
+
+
+
+
+## Der Logit-Link
+
+Der *Logit-Link* wird auch $\mathcal{L}$, `logit`, Log-Odds oder Logit-Funktion genannt.
+
+Er "biegt" die lineare Funktion in die richtige Form.
+
+Der Logit-Link ordnet einen Parameter, der als Wahrscheinlichkeitsmasse definiert ist (und daher im Bereich von 0 bis 1 liegt), einem linearen Modell zu (das jeden beliebigen reellen Wert annehmen kann):
+
+$$
+\begin{align}
+    \text{logit}(p_i) &= \alpha + \beta x_i
+\end{align}
+$$
+
+
+
+
+
+- Die Logit-Funktion $\mathcal{L}$ ist definiert als der (natürliche) Logarithmus des Verhältnisses der Wahrscheinlichkeit zu Gegenwahrscheinlichkeit:
+
+$$\mathcal{L} = \text{log} \frac{p_i}{1-p_i}$$
+
+- Das Verhältnis der Wahrscheinlichkeit zu Gegenwahrscheinlichkeit nennt man auch *Odds*.
+
+- Also:
+
+$$\mathcal{L} = \text{log} \frac{p_i}{1-p_i} = \alpha + \beta x_i$$
+
+
+## Aber warum?
+
+*Forschungsfrage*: Hängt das Überleben (statistisch) auf der Titanic vom Geschlecht ab?
+
+
+Wie war eigentlich *insgesamt*, also ohne auf einen (oder mehrere) Prädiktoren zu bedingen, die Überlebenswahrscheinlichkeit?
+
+```{r m82}
+data(titanic_train, package = "titanic")
+
+m82 <- lm(Survived ~ 1, data = titanic_train)
+coef(m82)
+```
+
+Die Wahrscheinlichkeit zu Überleben $Pr(y=1)$ lag bei einem guten Drittel (0.38).
+
+Das hätte man auch so ausrechnen:
+
+```{r}
+titanic_train %>% 
+  count(Survived) %>% 
+   mutate(prop = n/sum(n))
+```
+
+
+Anders gesagt: $p(y=1) = \frac{549}{549+342} \approx 0.38$
+
+
+### tidymodels, m83
+
+
+Berechnen wir jetzt ein lineares Modell für die AV `Survived` mit dem Geschlecht als Pädiktor:
+
+```{r d}
+d <-
+  titanic_train %>% 
+  filter(Fare > 0) %>% 
+  mutate(iv = log(Fare),
+         dv = factor(Survived))
+```
+
+
+Die Faktorstufen, genannt `levels` von `Survived` sind:
+
+```{r}
+levels(d$dv)
+```
+
+Und zwar genau in dieser Reihenfolge.
+
+
+## m83, glm
+
+Die klassische Methoden in R, ein logistisches Modell zu berechnen, ist
+mit der Funktion `glm()`.
+Tidymodels greift intern auf diese Funktion zurück.
+Daher sind die Ergebnisse numerisch identisch.
+
+```{r m83-glm}
+lm83 <- glm(dv ~ iv, data = d, family = "binomial")
+coef(lm83)
+```
+
+
+*Achtung*! Bei tidymodels muss bei einer Klassifikation die AV vom Type `factor` sein.
+Außerdem wird bei `tidymodels`, im Gegensatz zu `(g)lm` nicht die zweite,
+sondern die *erste* als Ereignis modelliert wird.
+
+Daher wechseln wir die *ref*erenzkategorie, wir "re-leveln", mit `relevel()`:
+
+```{r}
+d2 <-
+  titanic_train %>% 
+  filter(Fare > 0) %>% 
+  mutate(iv = log(Fare),
+         dv = factor(Survived),
+         dv = relevel(dv, ref = "1"))
+```
+
+Jetzt berechnen wir das Modell in gewohnter Weise.
+
+```{r}
+m83_mod <-
+  logistic_reg()
+
+m83_rec <-
+  recipe(dv ~ iv, data = d2)
+
+m83_wf <-
+  workflow() %>% 
+  add_model(m83_mod) %>% 
+  add_recipe(m83_rec)
+
+m83_fit <-
+  fit(m83_wf, data = d2)
+```
+
+
+Hier sind die Koeffizienten:
+
+```{r m83-coefs}
+m83_fit %>% 
+  tidy() %>% 
+  gt() %>% 
+  fmt_number(where(is.numeric))
+
+coefm83 <-
+  m83_fit %>% 
+  tidy() %>% 
+  pull(2)
+coefm83
+```
+
+
+
+
+In Abb. \@ref(fig:m83-plot) ist das Modell und die Daten visualisiert.
+
+
+```{r m83-plot, echo = FALSE, fig.cap = "m83 und die Titanic-Daten"}
+d2 %>% 
+  ggplot(aes(x = iv, y = Survived)) +
+  geom_hline(yintercept = 0.5, color = "white", size = 2) +
+  geom_jitter(alpha = .5) +
+  geom_abline(intercept = coefm83[1],
+              slope = coefm83[2],
+              color = "blue") +
+  scale_x_continuous(limits = c(0, 10)) +
+  labs(y = "Wahrscheinlichkeit")
+```
+
+
+
+Definieren wir als $y=1$ das zu modellierende Ereignis, hier "Überleben auf der Titanic" (hat also überlebt). 
+
+
+Wie wir oben schon gesehen haben, funktioniert die lineare Regression nicht einwandfrei bei binären (oder dichotomen) AV.
+
+### Wahrscheinlichkeit in Odds
+
+Probieren wir Folgendes: Rechnen wir die Wahrscheinlichkeit zu Überlegen für $y$, kurz $p$, in *Odds* (Chancen) um.
+
+$odds = \frac{p}{1-p}$
+
+In R:
+
+```{r}
+odds <- 0.38 / 0.62
+odds
+```
+
+Bildlich gesprochen sagen die Odds: für 38 Menschen, die überlebt haben, kommen (ca.) 62 Menschen, die nicht überlebt haben, s. Abb. \@ref(fig:odds1).
+
+
+```{r odds1, fig.cap = "Odds: 38 zu 62"}
+d2_odds <-
+  tibble(x = c(rep("0", 38), rep("1", 62)),
+         y = c(rep(1, 38), rep(1, 62)))
+
+d2_odds %>% 
+  ggplot(aes(x, y)) +
+  geom_jitter(width = .2, alpha = .7)
+```
+
+
+Plotten wir die Odds als Funktion der UV, s. Abb. \@ref(fig:odds2).
+
+```{r eval = FALSE, echo = FALSE}
+# d3 <-
+#   d2 %>% 
+#   bind_cols(predict(m83_fit, new_data = tibble(iv = iv)))
+```
+
+
+
+
+
+```{r odds2, echo = FALSE, fig.cap = "Odds als Funktion der UV"}
+d_pred <-
+  tibble(iv = seq(0, 10, by = .1))
+         
+d_pred <-
+  d_pred %>% 
+  mutate(logit = predict(m83_fit, new_data = d_pred, type = "raw")) %>% 
+  mutate(odds = exp(logit))
+
+d_pred %>% 
+  ggplot(aes(x = iv, y = odds)) +
+  geom_jitter(alpha = .5) +
+  labs(y = "Odds")
+```
+
+
+Wir sind noch nicht am Ziel;
+die Variable ist noch nicht "richtig gebogen".
+
+
+### Von Odds zu Log-Odds
+
+Wenn wir jetzt den Logarithmus berechnen der Log-Odds bekommen wir eine "brav gebogenen" Funktion, die Log-Odds, $\mathcal{L}$, als Funktion der UV, s. Abb. \@ref(fig:logit2).
+
+
+$$\mathcal{L} = log (odds) = log \left(\frac{p}{1-p}\right)$$
+
+```{r logit2, echo = FALSE, fig.cap = "Logit als Funktion der UV"}
+d_pred %>% 
+  ggplot(aes(x = iv, y = logit)) +
+  geom_jitter(alpha = .5) +
+  labs(y = "Logit")
+```
+
+Linear!
+
+
+Es gilt also:
+
+$$\text {log-odds} = b_0 + b_1x$$
+
+
+
+
+Log-Odds (Log-Odds) bezeichnet man auch als *Logits*.
+
+
+
+## Inverser Logit
+
+Um nach $p$ aufzulösen, müssen wir einige Algebra bemühen:
+
+$$
+\begin{align}
+\text{log} \frac{p}{1-p} &= \alpha + \beta x & & \text{Exponentieren}\\
+\frac{p}{1-p} &= e^{\alpha + \beta x} \\
+p_i &= e^{\alpha + \beta x_i} (1-p) & & \text{Zur Vereinfachung: } x := e^{\alpha + \beta x_i} \\
+p_i &= x (1-p) \\
+&= x - xp \\
+p + px &= x \\
+p(1+x) &= x \\
+p &= \frac{x} {1+x} & & \text{Lösen wir x wieder auf.} \\
+p &= \frac{e^{\alpha + \beta x_i}}{1 + e^{\alpha + \beta x_i}} = \mathcal{L}^{-1}
+\end{align}
+$$
+
+
+
+Diese Funktion nennt man auch *inverser Logit*, $\text{logit}^{-1}, \mathcal{L}^{-1}$.
+
+
+Zum Glück macht das alles die Rechenmaschine für uns 😄.
+
+
+
+## Vom Logit zur Klasse
+
+
+Praktisch können wir uns die Logits und ihre zugehörige Wahrscheinlichkeit einfach ausgeben lassen mit R. Und die vorhergesagte Klasse (`.pred_class`) auch:
+
+
+```{r d3}
+d3 <-
+  d2 %>% 
+  bind_cols(predict(m83_fit, new_data = d2, type = "prob")) %>% 
+  bind_cols(predict(m83_fit, new_data = d2)) %>%  # Klasse
+  bind_cols(logits = predict(m83_fit, new_data = d2, type = "raw"))  # Logits
+  
+d3 %>% 
+  slice_head(n = 3) %>% 
+  select(Name, last_col())
+```
+
+
+### Grenzwert wechseln
+
+Im Standard wird 50% als Grenzwert für die vorhergesagte Klasse $c$ genommen:
+
+- wenn $p <= .5 \rightarrow c = 0$
+- wenn $p > .5 \rightarrow c = 1$
+
+Man kann aber den Grenzwert beliebig wählen, um Kosten-Nutzen-Abwägungen zu optimieren;
+mehr dazu findet sich z.B. [hier](https://probably.tidymodels.org/articles/where-to-use.html).
+
+
+## Logit und Inverser Logit
+
+
+
+### Logit
+$(0,1) \rightarrow (-\infty, +\infty)$
+
+```{r dpi = 300}
+ggplot() +
+  annotate("segment", 
+           x = 0,
+           xend = 0,
+           y = 0,
+           yend = 1) +
+  scale_x_continuous(breaks = c(0,1), labels = c("p", "Logit")) +
+  scale_y_continuous(breaks = NULL) +
+  annotate("label",
+           x = c(0, 0),
+             y = c(0, 1),
+             label = c("0", "1")) +
+  annotate("segment", 
+           x = 1,
+           xend = 1,
+           y = -1,
+           yend = 2) +
+  annotate("segment", 
+           x = 1,
+           xend = 1,
+           y = -2,
+           yend = 3,
+           linetype = "dotted") +
+  annotate("label",
+           x = c(1, 1),
+             y = c(-2, 3),
+             label = c("-∞", "+∞")) +
+  annotate("segment",
+           x = 0.02,
+           xend = 0.98,
+           y = 0,
+           yend = -2,
+           #linetype = "dotted",
+           size = 0.1,
+           arrow = arrow()) +
+  annotate("segment",
+           x = 0.02,
+           xend = 0.98,
+           y = 1,
+           yend = 3,
+           #linetype = "dotted",
+           size = 0.1,
+           arrow = arrow()) +
+  labs(x = "",
+       y = "") +
+  annotate("label",
+           x = c(1.01),
+             y = c(.5),
+             label = c("0"),
+           size = 4) +
+  labs(x = "",
+       y = "") +
+  annotate("label",
+           x = c(-0.01),
+             y = c(.5),
+             label = c("0.5"),
+           size = 4) +
+  annotate("segment",
+           x = 0.02,
+           xend = 0.98,
+           yend = .5,
+           y = .5,
+           #linetype = "dotted",
+           size = 0.1,
+           arrow = arrow())
+```
+
+
+
+
+Praktisch, um Wahrscheinlichkeit zu modellieren.
+
+$$p \rightarrow \fbox{logit} \rightarrow \alpha + \beta x$$
+
+
+### Inv-Logit
+
+$(-\infty, +\infty) \rightarrow (0,1)$
+
+```{r inv-logit-plot}
+ggplot() +
+  annotate("segment", 
+           x = 0,
+           xend = 0,
+           y = 0,
+           yend = 1) +
+  scale_x_continuous(breaks = c(0,1), labels = c("p", "Logit")) +
+  scale_y_continuous(breaks = NULL) +
+  annotate("label",
+           x = c(0, 0),
+             y = c(0, 1),
+             label = c("0", "1")) +
+  annotate("segment", 
+           x = 1,
+           xend = 1,
+           y = -1,
+           yend = 2) +
+  annotate("segment", 
+           x = 1,
+           xend = 1,
+           y = -2,
+           yend = 3,
+           linetype = "dotted") +
+  annotate("label",
+           x = c(1, 1),
+             y = c(-2, 3),
+             label = c("-∞", "+∞")) +
+  annotate("segment",
+           xend = 0.02,
+           x = 0.98,
+           yend = 0,
+           y = -2,
+           #linetype = "dotted",
+           size = 0.1,
+           arrow = arrow()) +
+  annotate("segment",
+           xend = 0.02,
+           x = 0.98,
+           yend = 1,
+           y = 3,
+           #linetype = "dotted",
+           size = 0.1,
+           arrow = arrow()) +
+  annotate("label",
+           x = c(1.01),
+             y = c(.5),
+             label = c("0"),
+           size = 3) +
+  labs(x = "",
+       y = "") +
+  annotate("label",
+           x = c(-0.01),
+             y = c(.5),
+             label = c("0.5"),
+           size = 3) +
+  annotate("segment",
+           xend = 0.02,
+           x = 0.98,
+           yend = .5,
+           y = .5,
+           #linetype = "dotted",
+           size = 0.1,
+           arrow = arrow())
+```
+
+Praktisch, um in Wahrscheinlichkeiten umzurechnen.
+
+$$p \leftarrow \fbox{inv-logit} \leftarrow \alpha + \beta x$$
+
+
+## Logistische Regression im Überblick
+
+- Eine Regression mit binomial verteilter AV und Logit-Link nennt man *logistische Regression*.
+
+- Man verwendet die logistische Regression um binomial verteilte AV zu modellieren, z.B.
+    - Wie hoch ist die Wahrscheinlichkeit, dass ein Kunde das Produkt kauft?
+    - Wie hoch ist die Wahrscheinlichkeit, dass ein Mitarbeiter kündigt?
+    - Wie hoch ist die Wahrscheinlichkeit, die Klausur zu bestehen?
+    
+- Die logistische Regression ist eine normale, lineare Regression für den Logit von $Pr(y=1)$, wobei $y$ (AV) binomialvereteilt mit $n=1$ angenommen wird:
+
+
+$$
+\begin{align}
+y_i &\sim \mathcal{B}(1, p_i) \\
+\text{logit}(p_i) &= \alpha + \beta x_i
+\end{align}
+$$
+
+
+
+- Da es sich um eine normale, lineare Regression handelt, sind alle bekannten Methoden und Techniken der linearen Regression zulässig.
+
+- Da Logits nicht einfach zu interpretieren sind, rechnet man nach der Berechnung des Modells den Logit häufig in Wahrscheinlichkeiten um.
+
+
+
+### Die Koeffizienten sind schwer zu interpretieren
+
+```{r logit-convert-plot, fig.asp=0.4}
+s_fun <- function(x) exp(x) / (1 + exp(x))
+inv_logist <- function(x) x
+
+p_logist1 <- 
+  ggplot(tibble(x=c(-2,2))) +
+  aes(x=x) +
+  labs(x = "x",
+       title = "Logistische Regression",
+       y = "Pr(y=1)=p") +
+  scale_x_continuous(limits = c(-3,3)) +
+  scale_y_continuous(limits = c(-0.5, 1.5)) +
+  stat_function( fun = plogis) 
+
+p_logist2 <- 
+  ggplot(tibble(x=c(-2,2))) +
+  aes(x=x) +
+  labs(x = "x",
+       title = "Lineare Regression",
+       y = "Logit") +
+  scale_x_continuous(limits = c(-3,3)) +
+  scale_y_continuous(limits = c(-5, 5)) +
+  stat_function(fun = inv_logist)  
+
+p_logist1 + p_logist2
+```
+
+
+
+
+- In der logistischen Regression gilt *nicht* mehr, dass eine konstante Veränderung in der UV mit einer konstanten Veränderung in der AV einhergeht.
+- Stattdessen geht eine konstante Veränderung in der UV mit einer konstanten Veränderung im *Logit* der AV einher.
+- Beim logistischen Modell hier gilt, dass in der Nähe von $x=0$ die größte Veränderung in $p$ von statten geht; je weiter weg von $x=0$, desto geringer ist die Veränderung in $p$.
+
+
+### Logits vs. Wahrscheinlichkeiten 
+
+```{r logit-konvert, echo = TRUE}
+konvert_logits <-
+  tibble(
+    logit = c( -10, -3, 
+              -2, -1, -0.5, -.25, 
+              0, 
+              .25, .5, 1, 2, 
+              3, 10),
+    p = rstanarm::invlogit(logit)
+  )  %>% 
+  gt() %>% 
+  fmt_number(everything(), decimals = 2)
+```
+
+
+
