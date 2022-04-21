@@ -3,7 +3,7 @@ title: "DataScience1"
 subtitle: Grundlagen der Prognosemodellierung 🔮🧰
 
 author: "Sebastian Sauer"
-date: "2022-04-21 14:24:08"
+date: "2022-04-21 14:39:48"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
