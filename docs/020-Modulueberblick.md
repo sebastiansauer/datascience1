@@ -13,30 +13,30 @@
 
 
 
-| ID| KW|Datum_Beginn |Titel_Link                                                                                              |
-|--:|--:|:------------|:-------------------------------------------------------------------------------------------------------|
-|  1| 11|2022-03-14   |[Statistisches Lernen 1](https://sebastiansauer.github.io/datascience1/statistisches-lernen-1.html)     |
-|  2| 12|2022-03-21   |[R, zweiter Blick](https://sebastiansauer.github.io/datascience1/r-zweiter-blick.html)                  |
-|  3| 13|2022-03-28   |[R, 2. Blick - Fortsetzung](https://sebastiansauer.github.io/datascience1/r-2-blick---fortsetzung.html) |
-|  4| 14|2022-04-04   |[tidymodels](https://sebastiansauer.github.io/datascience1/tidymodels.html)                             |
-|  5| 15|2022-04-11   |[kNN](https://sebastiansauer.github.io/datascience1/knn.html)                                           |
-|  6| 16|2022-04-18   |[Wiederholung](https://sebastiansauer.github.io/datascience1/wiederholung.html)                         |
-|  7| 17|2022-04-25   |[Statistisches Lernen, 2](https://sebastiansauer.github.io/datascience1/statistisches-lernen-2.html)    |
-|  8| 18|2022-05-02   |[Logistische Regression](https://sebastiansauer.github.io/datascience1/logistische-regression.html)     |
-|  9| 19|2022-05-09   |[Naive Bayes](https://sebastiansauer.github.io/datascience1/naive-bayes.html)                           |
-| 10| 20|2022-05-16   |[Entscheidungsbäume](https://sebastiansauer.github.io/datascience1/entscheidungsbäume.html)             |
-| 11| 21|2022-05-23   |[Zufallswälder](https://sebastiansauer.github.io/datascience1/zufallswälder.html)                       |
-| 12| 22|2022-05-30   |[Fallstudie](https://sebastiansauer.github.io/datascience1/fallstudie.html)                             |
-| 13| 23|2022-06-06   |[Wiederholung](https://sebastiansauer.github.io/datascience1/wiederholung.html)                         |
-| 14| 24|2022-06-13   |[GAM](https://sebastiansauer.github.io/datascience1/gam.html)                                           |
-| 15| 25|2022-06-20   |[Lasso und Co](https://sebastiansauer.github.io/datascience1/lasso-und-co.html)                         |
-| 16| 26|2022-06-27   |[Vertiefung](https://sebastiansauer.github.io/datascience1/vertiefung.html)                             |
+| ID| KW|Datum_Beginn |Titel_Link                                                                                                |
+|--:|--:|:------------|:---------------------------------------------------------------------------------------------------------|
+|  1| 11|2022-03-14   |[Statistisches Lernen](https://sebastiansauer.github.io/datascience1/statistisches-lernen-1.html)         |
+|  2| 12|2022-03-21   |[R, zweiter Blick](https://sebastiansauer.github.io/datascience1/r-zweiter-blick-1.html)                  |
+|  3| 13|2022-03-28   |[R, 2. Blick - Fortsetzung](https://sebastiansauer.github.io/datascience1/r-2-blick---fortsetzung-1.html) |
+|  4| 14|2022-04-04   |[tidymodels](https://sebastiansauer.github.io/datascience1/tidymodels-1.html)                             |
+|  5| 15|2022-04-11   |[kNN](https://sebastiansauer.github.io/datascience1/knn-1.html)                                           |
+|  6| 16|2022-04-18   |[Wiederholung](https://sebastiansauer.github.io/datascience1/wiederholung-1.html)                         |
+|  7| 17|2022-04-25   |[Resampling und Tuning](https://sebastiansauer.github.io/datascience1/resampling-und-tuning-1.html)       |
+|  8| 18|2022-05-02   |[Logistische Regression](https://sebastiansauer.github.io/datascience1/logistische-regression-1.html)     |
+|  9| 19|2022-05-09   |[Naive Bayes](https://sebastiansauer.github.io/datascience1/naive-bayes-1.html)                           |
+| 10| 20|2022-05-16   |[Entscheidungsbäume](https://sebastiansauer.github.io/datascience1/entscheidungsbäume-1.html)             |
+| 11| 21|2022-05-23   |[Zufallswälder](https://sebastiansauer.github.io/datascience1/zufallswälder-1.html)                       |
+| 12| 22|2022-05-30   |[Fallstudie](https://sebastiansauer.github.io/datascience1/fallstudie-1.html)                             |
+| 13| 23|2022-06-06   |[Wiederholung](https://sebastiansauer.github.io/datascience1/wiederholung-1.html)                         |
+| 14| 24|2022-06-13   |[GAM](https://sebastiansauer.github.io/datascience1/gam-1.html)                                           |
+| 15| 25|2022-06-20   |[Lasso und Co](https://sebastiansauer.github.io/datascience1/lasso-und-co-1.html)                         |
+| 16| 26|2022-06-27   |[Vertiefung](https://sebastiansauer.github.io/datascience1/vertiefung-1.html)                             |
 
 
 ## Beschreibung der Themen
 
 
-### Statistisches Lernen 1
+### Statistisches Lernen
 
 #### Vorbereitung 
 
@@ -236,7 +236,7 @@
 
 
 
-### Statistisches Lernen, 2
+### Resampling und Tuning
 
 
 

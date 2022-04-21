@@ -155,7 +155,7 @@ manchmal auch als "Faltungen" bezeichnet werden.
 
 
 <div class="figure" style="text-align: center">
-<img src="080-tidymodels2_files/figure-html/resampling-1.png" alt="Resampling: Eine Stichprobe wird mehrfach (hier 3 Mal) zu 70% in ein Train- und zu 30% in die Test-Stichprobe aufgeteilt" width="100%" />
+<img src="080-Resampling-Tuning_files/figure-html/resampling-1.png" alt="Resampling: Eine Stichprobe wird mehrfach (hier 3 Mal) zu 70% in ein Train- und zu 30% in die Test-Stichprobe aufgeteilt" width="100%" />
 <p class="caption">(\#fig:resampling)Resampling: Eine Stichprobe wird mehrfach (hier 3 Mal) zu 70% in ein Train- und zu 30% in die Test-Stichprobe aufgeteilt</p>
 </div>
 
@@ -307,7 +307,7 @@ thin_cum_mean %>%
 ```
 
 <div class="figure" style="text-align: center">
-<img src="080-tidymodels2_files/figure-html/lln-1.png" alt="Gesetz der großen Zahl" width="100%" />
+<img src="080-Resampling-Tuning_files/figure-html/lln-1.png" alt="Gesetz der großen Zahl" width="100%" />
 <p class="caption">(\#fig:lln)Gesetz der großen Zahl</p>
 </div>
 
@@ -329,7 +329,7 @@ Achtung: Bei randlastigen Verteilungen darf man dieses schöne, wohlerzogene Ver
 
 
 <div class="figure" style="text-align: center">
-<img src="080-tidymodels2_files/figure-html/overfitting-4-plots-1.png" alt="Welches Modell (Teile C-E) passt am besten zu den Daten (Teil B)? Die 'wahre Funktion', der datengenerierende Prozess ist im Teil A dargestellt" width="100%" />
+<img src="080-Resampling-Tuning_files/figure-html/overfitting-4-plots-1.png" alt="Welches Modell (Teile C-E) passt am besten zu den Daten (Teil B)? Die 'wahre Funktion', der datengenerierende Prozess ist im Teil A dargestellt" width="100%" />
 <p class="caption">(\#fig:overfitting-4-plots)Welches Modell (Teile C-E) passt am besten zu den Daten (Teil B)? Die 'wahre Funktion', der datengenerierende Prozess ist im Teil A dargestellt</p>
 </div>
 
@@ -763,7 +763,7 @@ Das können wir uns einfach visualisieren lassen:
 autoplot(ames_grid_search)
 ```
 
-<img src="080-tidymodels2_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="080-Resampling-Tuning_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;" />
 
 
 Auf Basis dieser Ergebnisse könnte es Sinn machen, 

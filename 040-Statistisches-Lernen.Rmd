@@ -1,6 +1,6 @@
 # (PART) Themen {-}
 
-# Statistisches Lernen 1 
+# Statistisches Lernen 
 
 
 ```{r global-knitr-options, include=FALSE}

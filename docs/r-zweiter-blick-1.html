@@ -47,11 +47,11 @@
 <li><a class="" href="modul%C3%BCberblick.html"><span class="header-section-number">2</span> Modulüberblick</a></li>
 <li><a class="" href="pr%C3%BCfung.html"><span class="header-section-number">3</span> Prüfung</a></li>
 <li class="book-part">Themen</li>
-<li><a class="" href="statistisches-lernen-1-1.html"><span class="header-section-number">4</span> Statistisches Lernen 1</a></li>
+<li><a class="" href="statistisches-lernen-1.html"><span class="header-section-number">4</span> Statistisches Lernen</a></li>
 <li><a class="active" href="r-zweiter-blick-1.html"><span class="header-section-number">5</span> R, zweiter Blick</a></li>
 <li><a class="" href="tidymodels-1.html"><span class="header-section-number">6</span> tidymodels</a></li>
 <li><a class="" href="knn-1.html"><span class="header-section-number">7</span> kNN</a></li>
-<li><a class="" href="statistisches-lernen-2-1.html"><span class="header-section-number">8</span> Statistisches Lernen 2</a></li>
+<li><a class="" href="resampling-und-tuning-1.html"><span class="header-section-number">8</span> Resampling und Tuning</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
 
@@ -622,7 +622,7 @@ Das können wir mit <code><a href="https://rdrr.io/r/utils/str.html">str()</a></
 ##   ..$ am  : num [1:32] 1 1 1 0 0 0 0 0 0 0 ...
 ##   ..$ gear: num [1:32] 4 4 4 3 3 3 3 4 4 4 ...
 ##   ..$ carb: num [1:32] 4 4 1 1 2 1 4 2 2 4 ...
-##  $ in_id : int [1:21] 1 3 4 5 6 10 12 14 16 17 ...
+##  $ in_id : int [1:21] 1 2 3 5 6 8 9 12 16 17 ...
 ##  $ out_id: logi NA
 ##  $ id    : tibble [1 × 1] (S3: tbl_df/tbl/data.frame)
 ##   ..$ id: chr "Fold1"
@@ -672,12 +672,12 @@ da wir keine Eckklammern tippen müssen:</p>
 Diese Deskriptoren kann man wiederum jeder Kurswoche oder jedem Kursabschnitt zuordnen,
 so dass eine zweidimensionale Struktur resultiert.
 Eine Tabelle, einfach gesagt, etwa so:</p>
-<div id="dmzfivqeyg" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="pxehfraaaq" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#dmzfivqeyg .gt_table {
+#pxehfraaaq .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -702,7 +702,7 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   border-left-color: #D3D3D3;
 }
 
-#dmzfivqeyg .gt_heading {
+#pxehfraaaq .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -714,7 +714,7 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   border-right-color: #D3D3D3;
 }
 
-#dmzfivqeyg .gt_title {
+#pxehfraaaq .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -724,7 +724,7 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   border-bottom-width: 0;
 }
 
-#dmzfivqeyg .gt_subtitle {
+#pxehfraaaq .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -734,13 +734,13 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   border-top-width: 0;
 }
 
-#dmzfivqeyg .gt_bottom_border {
+#pxehfraaaq .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#dmzfivqeyg .gt_col_headings {
+#pxehfraaaq .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -755,7 +755,7 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   border-right-color: #D3D3D3;
 }
 
-#dmzfivqeyg .gt_col_heading {
+#pxehfraaaq .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -775,7 +775,7 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   overflow-x: hidden;
 }
 
-#dmzfivqeyg .gt_column_spanner_outer {
+#pxehfraaaq .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -787,15 +787,15 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   padding-right: 4px;
 }
 
-#dmzfivqeyg .gt_column_spanner_outer:first-child {
+#pxehfraaaq .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#dmzfivqeyg .gt_column_spanner_outer:last-child {
+#pxehfraaaq .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#dmzfivqeyg .gt_column_spanner {
+#pxehfraaaq .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -807,7 +807,7 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   width: 100%;
 }
 
-#dmzfivqeyg .gt_group_heading {
+#pxehfraaaq .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -829,7 +829,7 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   vertical-align: middle;
 }
 
-#dmzfivqeyg .gt_empty_group_heading {
+#pxehfraaaq .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -844,15 +844,15 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   vertical-align: middle;
 }
 
-#dmzfivqeyg .gt_from_md > :first-child {
+#pxehfraaaq .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#dmzfivqeyg .gt_from_md > :last-child {
+#pxehfraaaq .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#dmzfivqeyg .gt_row {
+#pxehfraaaq .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -871,7 +871,7 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   overflow-x: hidden;
 }
 
-#dmzfivqeyg .gt_stub {
+#pxehfraaaq .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -883,7 +883,7 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   padding-left: 12px;
 }
 
-#dmzfivqeyg .gt_summary_row {
+#pxehfraaaq .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -893,7 +893,7 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   padding-right: 5px;
 }
 
-#dmzfivqeyg .gt_first_summary_row {
+#pxehfraaaq .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -903,7 +903,7 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   border-top-color: #D3D3D3;
 }
 
-#dmzfivqeyg .gt_grand_summary_row {
+#pxehfraaaq .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -913,7 +913,7 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   padding-right: 5px;
 }
 
-#dmzfivqeyg .gt_first_grand_summary_row {
+#pxehfraaaq .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -923,11 +923,11 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   border-top-color: #D3D3D3;
 }
 
-#dmzfivqeyg .gt_striped {
+#pxehfraaaq .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#dmzfivqeyg .gt_table_body {
+#pxehfraaaq .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -936,7 +936,7 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   border-bottom-color: #D3D3D3;
 }
 
-#dmzfivqeyg .gt_footnotes {
+#pxehfraaaq .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -950,13 +950,13 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   border-right-color: #D3D3D3;
 }
 
-#dmzfivqeyg .gt_footnote {
+#pxehfraaaq .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#dmzfivqeyg .gt_sourcenotes {
+#pxehfraaaq .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -970,41 +970,41 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   border-right-color: #D3D3D3;
 }
 
-#dmzfivqeyg .gt_sourcenote {
+#pxehfraaaq .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#dmzfivqeyg .gt_left {
+#pxehfraaaq .gt_left {
   text-align: left;
 }
 
-#dmzfivqeyg .gt_center {
+#pxehfraaaq .gt_center {
   text-align: center;
 }
 
-#dmzfivqeyg .gt_right {
+#pxehfraaaq .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#dmzfivqeyg .gt_font_normal {
+#pxehfraaaq .gt_font_normal {
   font-weight: normal;
 }
 
-#dmzfivqeyg .gt_font_bold {
+#pxehfraaaq .gt_font_bold {
   font-weight: bold;
 }
 
-#dmzfivqeyg .gt_font_italic {
+#pxehfraaaq .gt_font_italic {
   font-style: italic;
 }
 
-#dmzfivqeyg .gt_super {
+#pxehfraaaq .gt_super {
   font-size: 65%;
 }
 
-#dmzfivqeyg .gt_footnote_marks {
+#pxehfraaaq .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -1377,7 +1377,7 @@ Syntax.</li>
 </div>
 </div>
   <div class="chapter-nav">
-<div class="prev"><a href="statistisches-lernen-1-1.html"><span class="header-section-number">4</span> Statistisches Lernen 1</a></div>
+<div class="prev"><a href="statistisches-lernen-1.html"><span class="header-section-number">4</span> Statistisches Lernen</a></div>
 <div class="next"><a href="tidymodels-1.html"><span class="header-section-number">6</span> tidymodels</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
@@ -1426,7 +1426,7 @@ Syntax.</li>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-04-21 14:51:22.</p>
+    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-04-21 15:20:26.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

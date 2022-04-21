@@ -1,4 +1,4 @@
-# Statistisches Lernen 2 
+# Resampling und Tuning
 
 
 
@@ -12,7 +12,7 @@
   fig.align='center',
   fig.width = 5,
   out.width = "100%",
-  fig.cap = "", 
+  # fig.cap = "", 
   dpi = 300,
   # tidy = TRUE,
   echo = TRUE,

@@ -90,12 +90,12 @@ die das Online-Zusammenarbeiten vereinfachen:
 
 
 ```{=html}
-<div id="lvvdsahpaz" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="wybmceidte" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#lvvdsahpaz .gt_table {
+#wybmceidte .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -120,7 +120,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-left-color: #D3D3D3;
 }
 
-#lvvdsahpaz .gt_heading {
+#wybmceidte .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -132,7 +132,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-right-color: #D3D3D3;
 }
 
-#lvvdsahpaz .gt_title {
+#wybmceidte .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -142,7 +142,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-bottom-width: 0;
 }
 
-#lvvdsahpaz .gt_subtitle {
+#wybmceidte .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -152,13 +152,13 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-top-width: 0;
 }
 
-#lvvdsahpaz .gt_bottom_border {
+#wybmceidte .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#lvvdsahpaz .gt_col_headings {
+#wybmceidte .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -173,7 +173,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-right-color: #D3D3D3;
 }
 
-#lvvdsahpaz .gt_col_heading {
+#wybmceidte .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -193,7 +193,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   overflow-x: hidden;
 }
 
-#lvvdsahpaz .gt_column_spanner_outer {
+#wybmceidte .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -205,15 +205,15 @@ die das Online-Zusammenarbeiten vereinfachen:
   padding-right: 4px;
 }
 
-#lvvdsahpaz .gt_column_spanner_outer:first-child {
+#wybmceidte .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#lvvdsahpaz .gt_column_spanner_outer:last-child {
+#wybmceidte .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#lvvdsahpaz .gt_column_spanner {
+#wybmceidte .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -225,7 +225,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   width: 100%;
 }
 
-#lvvdsahpaz .gt_group_heading {
+#wybmceidte .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -247,7 +247,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   vertical-align: middle;
 }
 
-#lvvdsahpaz .gt_empty_group_heading {
+#wybmceidte .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -262,15 +262,15 @@ die das Online-Zusammenarbeiten vereinfachen:
   vertical-align: middle;
 }
 
-#lvvdsahpaz .gt_from_md > :first-child {
+#wybmceidte .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#lvvdsahpaz .gt_from_md > :last-child {
+#wybmceidte .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#lvvdsahpaz .gt_row {
+#wybmceidte .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -289,7 +289,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   overflow-x: hidden;
 }
 
-#lvvdsahpaz .gt_stub {
+#wybmceidte .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -301,7 +301,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   padding-left: 12px;
 }
 
-#lvvdsahpaz .gt_summary_row {
+#wybmceidte .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -311,7 +311,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   padding-right: 5px;
 }
 
-#lvvdsahpaz .gt_first_summary_row {
+#wybmceidte .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -321,7 +321,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-top-color: #D3D3D3;
 }
 
-#lvvdsahpaz .gt_grand_summary_row {
+#wybmceidte .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -331,7 +331,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   padding-right: 5px;
 }
 
-#lvvdsahpaz .gt_first_grand_summary_row {
+#wybmceidte .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -341,11 +341,11 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-top-color: #D3D3D3;
 }
 
-#lvvdsahpaz .gt_striped {
+#wybmceidte .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#lvvdsahpaz .gt_table_body {
+#wybmceidte .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -354,7 +354,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-bottom-color: #D3D3D3;
 }
 
-#lvvdsahpaz .gt_footnotes {
+#wybmceidte .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -368,13 +368,13 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-right-color: #D3D3D3;
 }
 
-#lvvdsahpaz .gt_footnote {
+#wybmceidte .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#lvvdsahpaz .gt_sourcenotes {
+#wybmceidte .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -388,41 +388,41 @@ die das Online-Zusammenarbeiten vereinfachen:
   border-right-color: #D3D3D3;
 }
 
-#lvvdsahpaz .gt_sourcenote {
+#wybmceidte .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#lvvdsahpaz .gt_left {
+#wybmceidte .gt_left {
   text-align: left;
 }
 
-#lvvdsahpaz .gt_center {
+#wybmceidte .gt_center {
   text-align: center;
 }
 
-#lvvdsahpaz .gt_right {
+#wybmceidte .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#lvvdsahpaz .gt_font_normal {
+#wybmceidte .gt_font_normal {
   font-weight: normal;
 }
 
-#lvvdsahpaz .gt_font_bold {
+#wybmceidte .gt_font_bold {
   font-weight: bold;
 }
 
-#lvvdsahpaz .gt_font_italic {
+#wybmceidte .gt_font_italic {
   font-style: italic;
 }
 
-#lvvdsahpaz .gt_super {
+#wybmceidte .gt_super {
   font-size: 65%;
 }
 
-#lvvdsahpaz .gt_footnote_marks {
+#wybmceidte .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -442,7 +442,7 @@ die das Online-Zusammenarbeiten vereinfachen:
   <tbody class="gt_table_body">
     <tr><td class="gt_row gt_right">1</td>
 <td class="gt_row gt_right">11</td>
-<td class="gt_row gt_left">Statistisches Lernen 1</td>
+<td class="gt_row gt_left">Statistisches Lernen</td>
 <td class="gt_row gt_left">2022-03-14</td>
 <td class="gt_row gt_left">2022-03-20</td></tr>
     <tr><td class="gt_row gt_right">2</td>
@@ -472,7 +472,7 @@ die das Online-Zusammenarbeiten vereinfachen:
 <td class="gt_row gt_left">2022-04-24</td></tr>
     <tr><td class="gt_row gt_right">7</td>
 <td class="gt_row gt_right">17</td>
-<td class="gt_row gt_left">Statistisches Lernen, 2</td>
+<td class="gt_row gt_left">Resampling und Tuning</td>
 <td class="gt_row gt_left">2022-04-25</td>
 <td class="gt_row gt_left">2022-05-01</td></tr>
     <tr><td class="gt_row gt_right">8</td>

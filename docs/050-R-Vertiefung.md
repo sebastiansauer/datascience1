@@ -849,7 +849,7 @@ str(pos11)
 ##   ..$ am  : num [1:32] 1 1 1 0 0 0 0 0 0 0 ...
 ##   ..$ gear: num [1:32] 4 4 4 3 3 3 3 4 4 4 ...
 ##   ..$ carb: num [1:32] 4 4 1 1 2 1 4 2 2 4 ...
-##  $ in_id : int [1:21] 1 3 4 5 6 10 12 14 16 17 ...
+##  $ in_id : int [1:21] 1 2 3 5 6 8 9 12 16 17 ...
 ##  $ out_id: logi NA
 ##  $ id    : tibble [1 × 1] (S3: tbl_df/tbl/data.frame)
 ##   ..$ id: chr "Fold1"
@@ -933,12 +933,12 @@ Eine Tabelle, einfach gesagt, etwa so:
 
 
 ```{=html}
-<div id="dmzfivqeyg" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="pxehfraaaq" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#dmzfivqeyg .gt_table {
+#pxehfraaaq .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -963,7 +963,7 @@ Eine Tabelle, einfach gesagt, etwa so:
   border-left-color: #D3D3D3;
 }
 
-#dmzfivqeyg .gt_heading {
+#pxehfraaaq .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -975,7 +975,7 @@ Eine Tabelle, einfach gesagt, etwa so:
   border-right-color: #D3D3D3;
 }
 
-#dmzfivqeyg .gt_title {
+#pxehfraaaq .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -985,7 +985,7 @@ Eine Tabelle, einfach gesagt, etwa so:
   border-bottom-width: 0;
 }
 
-#dmzfivqeyg .gt_subtitle {
+#pxehfraaaq .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -995,13 +995,13 @@ Eine Tabelle, einfach gesagt, etwa so:
   border-top-width: 0;
 }
 
-#dmzfivqeyg .gt_bottom_border {
+#pxehfraaaq .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#dmzfivqeyg .gt_col_headings {
+#pxehfraaaq .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1016,7 +1016,7 @@ Eine Tabelle, einfach gesagt, etwa so:
   border-right-color: #D3D3D3;
 }
 
-#dmzfivqeyg .gt_col_heading {
+#pxehfraaaq .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1036,7 +1036,7 @@ Eine Tabelle, einfach gesagt, etwa so:
   overflow-x: hidden;
 }
 
-#dmzfivqeyg .gt_column_spanner_outer {
+#pxehfraaaq .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1048,15 +1048,15 @@ Eine Tabelle, einfach gesagt, etwa so:
   padding-right: 4px;
 }
 
-#dmzfivqeyg .gt_column_spanner_outer:first-child {
+#pxehfraaaq .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#dmzfivqeyg .gt_column_spanner_outer:last-child {
+#pxehfraaaq .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#dmzfivqeyg .gt_column_spanner {
+#pxehfraaaq .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1068,7 +1068,7 @@ Eine Tabelle, einfach gesagt, etwa so:
   width: 100%;
 }
 
-#dmzfivqeyg .gt_group_heading {
+#pxehfraaaq .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1090,7 +1090,7 @@ Eine Tabelle, einfach gesagt, etwa so:
   vertical-align: middle;
 }
 
-#dmzfivqeyg .gt_empty_group_heading {
+#pxehfraaaq .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1105,15 +1105,15 @@ Eine Tabelle, einfach gesagt, etwa so:
   vertical-align: middle;
 }
 
-#dmzfivqeyg .gt_from_md > :first-child {
+#pxehfraaaq .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#dmzfivqeyg .gt_from_md > :last-child {
+#pxehfraaaq .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#dmzfivqeyg .gt_row {
+#pxehfraaaq .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1132,7 +1132,7 @@ Eine Tabelle, einfach gesagt, etwa so:
   overflow-x: hidden;
 }
 
-#dmzfivqeyg .gt_stub {
+#pxehfraaaq .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1144,7 +1144,7 @@ Eine Tabelle, einfach gesagt, etwa so:
   padding-left: 12px;
 }
 
-#dmzfivqeyg .gt_summary_row {
+#pxehfraaaq .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1154,7 +1154,7 @@ Eine Tabelle, einfach gesagt, etwa so:
   padding-right: 5px;
 }
 
-#dmzfivqeyg .gt_first_summary_row {
+#pxehfraaaq .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1164,7 +1164,7 @@ Eine Tabelle, einfach gesagt, etwa so:
   border-top-color: #D3D3D3;
 }
 
-#dmzfivqeyg .gt_grand_summary_row {
+#pxehfraaaq .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1174,7 +1174,7 @@ Eine Tabelle, einfach gesagt, etwa so:
   padding-right: 5px;
 }
 
-#dmzfivqeyg .gt_first_grand_summary_row {
+#pxehfraaaq .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1184,11 +1184,11 @@ Eine Tabelle, einfach gesagt, etwa so:
   border-top-color: #D3D3D3;
 }
 
-#dmzfivqeyg .gt_striped {
+#pxehfraaaq .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#dmzfivqeyg .gt_table_body {
+#pxehfraaaq .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1197,7 +1197,7 @@ Eine Tabelle, einfach gesagt, etwa so:
   border-bottom-color: #D3D3D3;
 }
 
-#dmzfivqeyg .gt_footnotes {
+#pxehfraaaq .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1211,13 +1211,13 @@ Eine Tabelle, einfach gesagt, etwa so:
   border-right-color: #D3D3D3;
 }
 
-#dmzfivqeyg .gt_footnote {
+#pxehfraaaq .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#dmzfivqeyg .gt_sourcenotes {
+#pxehfraaaq .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1231,41 +1231,41 @@ Eine Tabelle, einfach gesagt, etwa so:
   border-right-color: #D3D3D3;
 }
 
-#dmzfivqeyg .gt_sourcenote {
+#pxehfraaaq .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#dmzfivqeyg .gt_left {
+#pxehfraaaq .gt_left {
   text-align: left;
 }
 
-#dmzfivqeyg .gt_center {
+#pxehfraaaq .gt_center {
   text-align: center;
 }
 
-#dmzfivqeyg .gt_right {
+#pxehfraaaq .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#dmzfivqeyg .gt_font_normal {
+#pxehfraaaq .gt_font_normal {
   font-weight: normal;
 }
 
-#dmzfivqeyg .gt_font_bold {
+#pxehfraaaq .gt_font_bold {
   font-weight: bold;
 }
 
-#dmzfivqeyg .gt_font_italic {
+#pxehfraaaq .gt_font_italic {
   font-style: italic;
 }
 
-#dmzfivqeyg .gt_super {
+#pxehfraaaq .gt_super {
   font-size: 65%;
 }
 
-#dmzfivqeyg .gt_footnote_marks {
+#pxehfraaaq .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;

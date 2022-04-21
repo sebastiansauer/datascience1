@@ -1,5 +1,5 @@
 thema1:
-  Titel: "Statistisches Lernen 1"
+  Titel: "Statistisches Lernen"
   UnterTitel: "Einführung in Data Science"
   Vorbereitung:
     - Lesen Sie die Hinweise zum Modul.
@@ -98,7 +98,7 @@ thema5:
 
 
 thema6:
-  Titel: "Statistisches Lernen, 2"
+  Titel: "Resampling und Tuning"
 
   Hinweise:
     - In dieser Woche fällt die Übung aus (Ostern).

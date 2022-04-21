@@ -57,7 +57,7 @@ faq
 modulüberblick
 modulzeitplan-1
 beschreibung-der-themen
-statistisches-lernen-1
+statistisches-lernen
 vorbereitung
 lernziele-1
 literatur-1
@@ -86,7 +86,7 @@ aufgaben-4
 wiederholung
 hinweise-3
 aufgaben-5
-statistisches-lernen-2
+resampling-und-tuning
 literatur-5
 hinweise-4
 vertiefung-3
@@ -133,7 +133,7 @@ hinweise-8
 formalia
 wo-finde-ich-beispiele
 plagiatskontrolle
-statistisches-lernen-1-1
+statistisches-lernen-1
 was-ist-data-science
 was-ist-machine-learning
 rule-based
@@ -219,7 +219,7 @@ modellgüte-1
 visualisierung
 kennzahlen-der-klassifikation
 krebstest-beispiel
-statistisches-lernen-2-1
+resampling-und-tuning-1
 tidymodels-2
 datensatz-aufteilen
 rezept-modell-und-workflow-definieren
