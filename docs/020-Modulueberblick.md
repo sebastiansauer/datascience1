@@ -13,444 +13,30 @@
 
 
 
-```{=html}
-<div id="bbsifwfiac" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>html {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
-}
-
-#bbsifwfiac .gt_table {
-  display: table;
-  border-collapse: collapse;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#bbsifwfiac .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#bbsifwfiac .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#bbsifwfiac .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 0;
-  padding-bottom: 6px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#bbsifwfiac .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#bbsifwfiac .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#bbsifwfiac .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#bbsifwfiac .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#bbsifwfiac .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#bbsifwfiac .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#bbsifwfiac .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#bbsifwfiac .gt_group_heading {
-  padding: 8px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#bbsifwfiac .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#bbsifwfiac .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#bbsifwfiac .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#bbsifwfiac .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#bbsifwfiac .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 12px;
-}
-
-#bbsifwfiac .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#bbsifwfiac .gt_first_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-}
-
-#bbsifwfiac .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#bbsifwfiac .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#bbsifwfiac .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#bbsifwfiac .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#bbsifwfiac .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#bbsifwfiac .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding: 4px;
-}
-
-#bbsifwfiac .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#bbsifwfiac .gt_sourcenote {
-  font-size: 90%;
-  padding: 4px;
-}
-
-#bbsifwfiac .gt_left {
-  text-align: left;
-}
-
-#bbsifwfiac .gt_center {
-  text-align: center;
-}
-
-#bbsifwfiac .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#bbsifwfiac .gt_font_normal {
-  font-weight: normal;
-}
-
-#bbsifwfiac .gt_font_bold {
-  font-weight: bold;
-}
-
-#bbsifwfiac .gt_font_italic {
-  font-style: italic;
-}
-
-#bbsifwfiac .gt_super {
-  font-size: 65%;
-}
-
-#bbsifwfiac .gt_footnote_marks {
-  font-style: italic;
-  font-weight: normal;
-  font-size: 65%;
-}
-</style>
-<table class="gt_table">
-  
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Kurswoche</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">KW</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Titel</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Datum_Beginn</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Datum_Ende</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td class="gt_row gt_right">1</td>
-<td class="gt_row gt_right">11</td>
-<td class="gt_row gt_left">Grundkonzepte</td>
-<td class="gt_row gt_left">2022-03-14</td>
-<td class="gt_row gt_left">2022-03-20</td></tr>
-    <tr><td class="gt_row gt_right">2</td>
-<td class="gt_row gt_right">12</td>
-<td class="gt_row gt_left">R, 2. Blick</td>
-<td class="gt_row gt_left">2022-03-21</td>
-<td class="gt_row gt_left">2022-03-27</td></tr>
-    <tr><td class="gt_row gt_right">3</td>
-<td class="gt_row gt_right">13</td>
-<td class="gt_row gt_left">R, 2. Blick - Fortsetzung</td>
-<td class="gt_row gt_left">2022-03-28</td>
-<td class="gt_row gt_left">2022-04-03</td></tr>
-    <tr><td class="gt_row gt_right">4</td>
-<td class="gt_row gt_right">14</td>
-<td class="gt_row gt_left">tidymodels, 1. Blick</td>
-<td class="gt_row gt_left">2022-04-04</td>
-<td class="gt_row gt_left">2022-04-10</td></tr>
-    <tr><td class="gt_row gt_right">5</td>
-<td class="gt_row gt_right">15</td>
-<td class="gt_row gt_left">Klassifikation am Beispiel von kNN</td>
-<td class="gt_row gt_left">2022-04-11</td>
-<td class="gt_row gt_left">2022-04-17</td></tr>
-    <tr><td class="gt_row gt_right">6</td>
-<td class="gt_row gt_right">16</td>
-<td class="gt_row gt_left">Wiederholung</td>
-<td class="gt_row gt_left">2022-04-18</td>
-<td class="gt_row gt_left">2022-04-24</td></tr>
-    <tr><td class="gt_row gt_right">7</td>
-<td class="gt_row gt_right">17</td>
-<td class="gt_row gt_left">Statistisches Lernen</td>
-<td class="gt_row gt_left">2022-04-25</td>
-<td class="gt_row gt_left">2022-05-01</td></tr>
-    <tr><td class="gt_row gt_right">8</td>
-<td class="gt_row gt_right">18</td>
-<td class="gt_row gt_left">Logistische Regression</td>
-<td class="gt_row gt_left">2022-05-02</td>
-<td class="gt_row gt_left">2022-05-08</td></tr>
-    <tr><td class="gt_row gt_right">9</td>
-<td class="gt_row gt_right">19</td>
-<td class="gt_row gt_left">Naive Bayes</td>
-<td class="gt_row gt_left">2022-05-09</td>
-<td class="gt_row gt_left">2022-05-15</td></tr>
-    <tr><td class="gt_row gt_right">10</td>
-<td class="gt_row gt_right">20</td>
-<td class="gt_row gt_left">Entscheidungsbäume</td>
-<td class="gt_row gt_left">2022-05-16</td>
-<td class="gt_row gt_left">2022-05-22</td></tr>
-    <tr><td class="gt_row gt_right">11</td>
-<td class="gt_row gt_right">21</td>
-<td class="gt_row gt_left">Zufallswälder</td>
-<td class="gt_row gt_left">2022-05-23</td>
-<td class="gt_row gt_left">2022-05-29</td></tr>
-    <tr><td class="gt_row gt_right">12</td>
-<td class="gt_row gt_right">23</td>
-<td class="gt_row gt_left">Wiederholung</td>
-<td class="gt_row gt_left">2022-06-06</td>
-<td class="gt_row gt_left">2022-06-12</td></tr>
-    <tr><td class="gt_row gt_right">13</td>
-<td class="gt_row gt_right">24</td>
-<td class="gt_row gt_left">GAM</td>
-<td class="gt_row gt_left">2022-06-13</td>
-<td class="gt_row gt_left">2022-06-19</td></tr>
-    <tr><td class="gt_row gt_right">14</td>
-<td class="gt_row gt_right">25</td>
-<td class="gt_row gt_left">Lasso und Co</td>
-<td class="gt_row gt_left">2022-06-20</td>
-<td class="gt_row gt_left">2022-06-26</td></tr>
-    <tr><td class="gt_row gt_right">15</td>
-<td class="gt_row gt_right">26</td>
-<td class="gt_row gt_left">Vertiefung</td>
-<td class="gt_row gt_left">2022-06-27</td>
-<td class="gt_row gt_left">2022-07-03</td></tr>
-  </tbody>
-  
-  
-</table>
-</div>
-```
+| ID| KW|Datum_Beginn |Titel_Link                                                                                              |
+|--:|--:|:------------|:-------------------------------------------------------------------------------------------------------|
+|  1| 11|2022-03-14   |[Statistisches Lernen 1](https://sebastiansauer.github.io/datascience1/statistisches-lernen-1.html)     |
+|  2| 12|2022-03-21   |[R, zweiter Blick](https://sebastiansauer.github.io/datascience1/r-zweiter-blick.html)                  |
+|  3| 13|2022-03-28   |[R, 2. Blick - Fortsetzung](https://sebastiansauer.github.io/datascience1/r-2-blick---fortsetzung.html) |
+|  4| 14|2022-04-04   |[tidymodels](https://sebastiansauer.github.io/datascience1/tidymodels.html)                             |
+|  5| 15|2022-04-11   |[kNN](https://sebastiansauer.github.io/datascience1/knn.html)                                           |
+|  6| 16|2022-04-18   |[Wiederholung](https://sebastiansauer.github.io/datascience1/wiederholung.html)                         |
+|  7| 17|2022-04-25   |[Statistisches Lernen, 2](https://sebastiansauer.github.io/datascience1/statistisches-lernen-2.html)    |
+|  8| 18|2022-05-02   |[Logistische Regression](https://sebastiansauer.github.io/datascience1/logistische-regression.html)     |
+|  9| 19|2022-05-09   |[Naive Bayes](https://sebastiansauer.github.io/datascience1/naive-bayes.html)                           |
+| 10| 20|2022-05-16   |[Entscheidungsbäume](https://sebastiansauer.github.io/datascience1/entscheidungsbäume.html)             |
+| 11| 21|2022-05-23   |[Zufallswälder](https://sebastiansauer.github.io/datascience1/zufallswälder.html)                       |
+| 12| 22|2022-05-30   |[Fallstudie](https://sebastiansauer.github.io/datascience1/fallstudie.html)                             |
+| 13| 23|2022-06-06   |[Wiederholung](https://sebastiansauer.github.io/datascience1/wiederholung.html)                         |
+| 14| 24|2022-06-13   |[GAM](https://sebastiansauer.github.io/datascience1/gam.html)                                           |
+| 15| 25|2022-06-20   |[Lasso und Co](https://sebastiansauer.github.io/datascience1/lasso-und-co.html)                         |
+| 16| 26|2022-06-27   |[Vertiefung](https://sebastiansauer.github.io/datascience1/vertiefung.html)                             |
 
 
 ## Beschreibung der Themen
 
 
-### Grundkonzepte
+### Statistisches Lernen 1
 
 #### Vorbereitung 
 
@@ -502,7 +88,7 @@
 
 
 
-### R, 2. Blick
+### R, zweiter Blick
 
 #### Vorbereitung 
 
@@ -562,7 +148,7 @@
 
 
 
-### tidymodels, 1. Blick
+### tidymodels
 
 #### Vorbereitung 
 
@@ -593,7 +179,7 @@
 
 
 
-### Klassifikation am Beispiel von kNN
+### kNN
 
 
 #### Lernziele 
@@ -650,7 +236,7 @@
 
 
 
-### Statistisches Lernen
+### Statistisches Lernen, 2
 
 
 

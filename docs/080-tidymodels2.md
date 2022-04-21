@@ -1,4 +1,4 @@
-# Statistisches Lernen, 2 
+# Statistisches Lernen 2 
 
 
 

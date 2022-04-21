@@ -1,4 +1,7 @@
-# K-Nächste-Nachbarn
+# kNN
+
+
+In diesem Kapitel geht es um das Verfahren *KNN*, *K-Nächste-Nachbarn*.
 
 
 ```{r global-knitr-options, include=FALSE}

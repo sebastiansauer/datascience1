@@ -1,4 +1,4 @@
-# tidymodels 1
+# tidymodels
 
 
 ```{r global-knitr-options, include=FALSE}

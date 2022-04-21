@@ -1,6 +1,6 @@
 # (PART) Themen {-}
 
-# Grundkonzepte
+# Statistisches Lernen 1 
 
 
 ```{r global-knitr-options, include=FALSE}

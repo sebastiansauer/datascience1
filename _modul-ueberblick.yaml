@@ -1,5 +1,5 @@
 thema1:
-  Titel: "Grundkonzepte"
+  Titel: "Statistisches Lernen 1"
   UnterTitel: "Einführung in Data Science"
   Vorbereitung:
     - Lesen Sie die Hinweise zum Modul.
@@ -28,7 +28,7 @@ thema1:
     - "[Bearbeiten Sie die Fallstudie 'TitaRnic' auf Kaggle](https://www.kaggle.com/code/headsortails/tidy-titarnic/report)"
 
 thema2:
-  Titel: "R, 2. Blick"
+  Titel: "R, zweiter Blick"
 
   Literatur:
     - "Rhys, Kap. 2"
@@ -56,7 +56,7 @@ thema3:
     
 
 thema3a:
-  Titel: "tidymodels, 1. Blick"
+  Titel: "tidymodels"
   Lernziele:
     - "Sie sind in der Lage, Regressionsmodelle mit dem tidymodels-Ansatz zu spezifizieren"
   Vorbereitung:
@@ -68,7 +68,7 @@ thema3a:
     - "[Fallstudie Seegurken](https://www.tidymodels.org/start/models/)"
 
 thema4:
-  Titel: "Klassifikation am Beispiel von kNN"
+  Titel: "kNN"
   Lernziele:
     - "Sie sind in der Lage, einfache Klassifikationsmodelle zu spezifizieren mit tidymodels"
     - "Sie können den knn-Algorithmus erläutern"
@@ -98,7 +98,7 @@ thema5:
 
 
 thema6:
-  Titel: "Statistisches Lernen"
+  Titel: "Statistisches Lernen, 2"
 
   Hinweise:
     - In dieser Woche fällt die Übung aus (Ostern).
