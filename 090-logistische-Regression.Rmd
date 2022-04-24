@@ -40,6 +40,16 @@ library(patchwork)
 ```
 
 
+## Lernsteuerung
+
+<!-- Chapter Start sections: Lernziele, Literatur, Hinweise, ... -->
+
+```{r chapter-start-sections, echo = FALSE, results = "asis"}
+source("funs/chapter-start-sections.R")
+chapter_start_sections(title = "Logistische Regression")
+```
+
+
 
 ## Intuitive Erklärung
 
@@ -785,6 +795,40 @@ konvert_logits <-
   gt() %>% 
   fmt_number(everything(), decimals = 2)
 ```
+
+
+
+
+
+
+
+
+
+
+<!-- ## Aufgaben und Vertiefung -->
+
+
+
+
+```{r render-outline-vertiefung-aufgaben, results = "asis", echo = FALSE, message = FALSE}
+
+  render_section(course_dates_file,
+                 content_file,
+                 i = NULL, 
+                 title = "Logistische Regression",      
+                 name = "Aufgaben",
+                 header_level = 1)
+
+
+render_section(course_dates_file,
+               content_file,
+               i = NULL, 
+               title = "Logistische Regression",      
+               name = "Vertiefung",
+               header_level = 1)
+```
+
+
 
 
 

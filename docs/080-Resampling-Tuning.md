@@ -1,6 +1,7 @@
 # Resampling und Tuning
 
 
+Benötigte R-Pakete für dieses Kapitel:
 
 
 
@@ -11,23 +12,45 @@
 
 
 
-Benötigte R-Pakete:
+## Lernsteuerung
+
+<!-- Chapter Start sections: Lernziele, Literatur, Hinweise, ... -->
 
 
-```r
-library(tidyverse)
-library(tidymodels)
-library(tune)
-```
+### Literatur 
+
+- Rhys, Kap. 3
+- TMWR, Kap. 10, 12
 
 
-Das Paket `tune` auf CRAN hat einen Bug^[https://community.rstudio.com/t/trouble-using-extract-parameter-set-dials-in-tidy-models-with-r/131178],
-daher empfiehlt der Autor, Max Kuhn, die Version des Pakets von Github zu installieren:
+<!-- Das Paket `tune` auf CRAN hat einen Bug^[https://community.rstudio.com/t/trouble-using-extract-parameter-set-dials-in-tidy-models-with-r/131178], -->
+<!-- daher empfiehlt der Autor, Max Kuhn, die Version des Pakets von Github zu installieren: -->
+
+<!-- ```{r eval = FALSE, echo = TRUE} -->
+<!-- devtools::install_github("tidymodels/tune") -->
+<!-- ``` -->
 
 
-```r
-devtools::install_github("tidymodels/tune")
-```
+## Überblick
+
+
+
+
+
+
+Der Standardablauf des maschinellen Lernens ist in Abb. \@ref(fig:process1) dargestellt.
+Eine alternative, hilfreich Abbildung findet sich [hier](https://www.tmwr.org/resampling.html) in Kap. 10.2 in @silge_tidy_2022.
+
+
+
+
+
+
+<div class="figure" style="text-align: center">
+<img src="https://nomnoml.com/image.svg?source=%23direction%3A%20right%0A%5B%3Cdatabase%3E%20Gesamtdatensatz%5D%20-%3E%20%20%5BSplitte%20in%20Train-%20und%20Test-Sample%5D%0A%5BSplitte%20in%20Train-%20und%20Test-Sample%5D%20-%3E%20%5BF%C3%BCr%20jeden%20Modell-Kandidaten%20i%3D1%2C2%2C..%2Cn%20%7C%0A%20%20%5BTrain-Test%20Modellkandidat%20i%7C%0A%20%20%20%20%5BFitte%20in%20Train-Sample%5D%20-%3E%20%5BTeste%20im%20Assessment-Sample%5D%5D%0A%20%20%5D%20%0A%20%20%5BF%C3%BCr%20jeden%20Modell-Kandidaten%20i%3D1%2C2%2C..%2Cn%20%7C%0A%20%20%5BTrain-Test%20Modellkandidat%20i%7C%0A%20%20%20%20%5BFitte%20in%20Train-Sample%5D%20-%3E%20%5BTeste%20im%20Assessment-Sample%5D%5D%0A%20%20%5D%20-%3E%20%5BBestimme%20besten%20Modell-Kandidaten%5D%0A%20%20%5BBestimme%20besten%20Modell-Kandidaten%5D%20-%3E%20%5BFitte%20Modell%20im%20Train-Datensatz%5D%0A%20%20%5BFitte%20Modell%20im%20Train-Datensatz%5D%20-%3E%20%5BTest%20im%20Test-Datensatz%5D%0A%20%20%5BTest%20im%20Test-Datensatz%5D%20-%3E%20%5B%3Cend%3E%20Ende%5D" alt="Standardablauf des maschinellen Lernens mit Tuning und Resampling" width="100%" />
+<p class="caption">(\#fig:process1)Standardablauf des maschinellen Lernens mit Tuning und Resampling</p>
+</div>
+
 
 
 
@@ -1008,4 +1031,31 @@ collect_metrics(final_ames_knn_fit)
 <!-- ``` -->
 
 <!-- Und damit haben wir unsere Modellgüte für das Test-Sample. -->
+
+
+
+
+
+
+
+<!-- ## Aufgaben und Vertiefung -->
+
+
+
+
+## Aufgaben 
+
+- Arbeiten Sie sich so gut als möglich durch [diese Analyse zum Verlauf von Covid-Fällen](https://github.com/sebastiansauer/covid-icu)
+- [Fallstudie zur Modellierung einer logististischen Regression mit tidymodels](https://onezero.blog/modelling-binary-logistic-regression-using-tidymodels-library-in-r-part-1/)
+- [Fallstudie zu Vulkanausbrüchen](https://juliasilge.com/blog/multinomial-volcano-eruptions/)
+- [Fallstudie Himalaya](https://juliasilge.com/blog/himalayan-climbing/)
+
+
+
+## Vertiefung 
+
+- [Fields arranged by purity, xkcd 435](https://xkcd.com/435/)
+
+
+
 

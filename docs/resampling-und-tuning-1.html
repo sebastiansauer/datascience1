@@ -1,130 +1,531 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="" xml:lang="">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Kapitel 9 Resampling und Tuning | DataScience1</title>
-<meta name="author" content="Sebastian Sauer">
-<meta name="description" content="Benötigte R-Pakete: library(tidyverse) library(tidymodels) library(tune) Das Paket tune auf CRAN hat einen Bug3, daher empfiehlt der Autor, Max Kuhn, die Version des Pakets von Github zu...">
-<meta name="generator" content="bookdown 0.24.2 with bs4_book()">
-<meta property="og:title" content="Kapitel 9 Resampling und Tuning | DataScience1">
-<meta property="og:type" content="book">
-<meta property="og:description" content="Benötigte R-Pakete: library(tidyverse) library(tidymodels) library(tune) Das Paket tune auf CRAN hat einen Bug3, daher empfiehlt der Autor, Max Kuhn, die Version des Pakets von Github zu...">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Kapitel 9 Resampling und Tuning | DataScience1">
-<meta name="twitter:description" content="Benötigte R-Pakete: library(tidyverse) library(tidymodels) library(tune) Das Paket tune auf CRAN hat einen Bug3, daher empfiehlt der Autor, Max Kuhn, die Version des Pakets von Github zu...">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
-<script src="libs/grViz-binding-1.0.6.1/grViz.js"></script><script src="libs/es6shim-0.35.6/es6shim.js"></script><script src="libs/es7shim-6.0.0/es7shim.js"></script><script src="libs/graphre-0.1.3/graphre.js"></script><script src="libs/nomnoml-1.3.1/nomnoml.js"></script><script src="libs/nomnoml-binding-0.2.3/nomnoml.js"></script><script src="libs/d3-3.3.8/d3.min.js"></script><script src="libs/dagre-0.4.0/dagre-d3.min.js"></script><link href="libs/mermaid-0.3.0/dist/mermaid.css" rel="stylesheet">
-<script src="libs/mermaid-0.3.0/dist/mermaid.slim.min.js"></script><script src="libs/chromatography-0.1/chromatography.js"></script><script src="libs/DiagrammeR-binding-1.0.6.1/DiagrammeR.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="style-bs4.css">
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Kapitel 10 Resampling und Tuning | DataScience1</title>
+  <meta name="description" content="Grundlagen der Prognosemodellierung mit tidymodels" />
+  <meta name="generator" content="bookdown 0.24.2 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Kapitel 10 Resampling und Tuning | DataScience1" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Grundlagen der Prognosemodellierung mit tidymodels" />
+  <meta name="github-repo" content="sebastiansauer/datascience1" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Kapitel 10 Resampling und Tuning | DataScience1" />
+  
+  <meta name="twitter:description" content="Grundlagen der Prognosemodellierung mit tidymodels" />
+  
+
+<meta name="author" content="Sebastian Sauer" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="knn-1.html"/>
+<link rel="next" href="logistische-regression-1.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/viz-1.8.2/viz.js"></script>
+<link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+<script src="libs/grViz-binding-1.0.6.1/grViz.js"></script>
+<script src="libs/es6shim-0.35.6/es6shim.js"></script>
+<script src="libs/es7shim-6.0.0/es7shim.js"></script>
+<script src="libs/graphre-0.1.3/graphre.js"></script>
+<script src="libs/nomnoml-1.3.1/nomnoml.js"></script>
+<script src="libs/nomnoml-binding-0.2.3/nomnoml.js"></script>
+<script src="libs/d3-3.3.8/d3.min.js"></script>
+<script src="libs/dagre-0.4.0/dagre-d3.min.js"></script>
+<link href="libs/mermaid-0.3.0/dist/mermaid.css" rel="stylesheet" />
+<script src="libs/mermaid-0.3.0/dist/mermaid.slim.min.js"></script>
+<script src="libs/chromatography-0.1/chromatography.js"></script>
+<script src="libs/DiagrammeR-binding-1.0.6.1/DiagrammeR.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
-<body data-spy="scroll" data-target="#toc">
 
-<div class="container-fluid">
-<div class="row">
-  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+<body>
 
-    <div class="d-flex align-items-start justify-content-between">
-      <h1>
-        <a href="index.html" title="Grundlagen der Prognosemodellierung 🔮🧰">DataScience1</a>:
-        <small class="text-muted">Grundlagen der Prognosemodellierung 🔮🧰</small>
-      </h1>
-      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
-    </div>
 
-    <div id="main-nav" class="collapse-lg">
-      <form role="search">
-        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
-</form>
 
-      <nav aria-label="Table of contents"><h2>Table of contents</h2>
-        <ul class="book-toc list-unstyled">
-<li><a class="" href="index.html">Zu diesem Buch</a></li>
-<li><a class="" href="hinweise.html"><span class="header-section-number">1</span> Hinweise</a></li>
-<li><a class="" href="modul%C3%BCberblick.html"><span class="header-section-number">2</span> Modulüberblick</a></li>
-<li><a class="" href="pr%C3%BCfung.html"><span class="header-section-number">3</span> Prüfung</a></li>
-<li class="book-part">Themen</li>
-<li><a class="" href="statistisches-lernen-1.html"><span class="header-section-number">4</span> Statistisches Lernen</a></li>
-<li><a class="" href="r-zweiter-blick-1.html"><span class="header-section-number">5</span> R, zweiter Blick</a></li>
-<li><a class="" href="tidymodels-1.html"><span class="header-section-number">6</span> tidymodels</a></li>
-<li><a class="" href="tidymodels-2.html"><span class="header-section-number">7</span> tidymodels</a></li>
-<li><a class="" href="knn-1.html"><span class="header-section-number">8</span> kNN</a></li>
-<li><a class="active" href="resampling-und-tuning-1.html"><span class="header-section-number">9</span> Resampling und Tuning</a></li>
-<li><a class="" href="logistische-regression-1.html"><span class="header-section-number">10</span> Logistische Regression</a></li>
-<li><a class="" href="references.html">References</a></li>
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Science Grundlagen</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> description: “Ein Kurs zu den Grundlagen des statistischen Lernens mit einem Fokus auf Prognosemodelle für hoch strukturierte Daten”</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#was-sie-hier-lernen-und-wozu-das-gut-ist"><i class="fa fa-check"></i><b>1.1</b> Was Sie hier lernen und wozu das gut ist</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#technische-details"><i class="fa fa-check"></i><b>1.2</b> Technische Details</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="hinweise.html"><a href="hinweise.html"><i class="fa fa-check"></i><b>2</b> Hinweise</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="hinweise.html"><a href="hinweise.html#lernziele"><i class="fa fa-check"></i><b>2.1</b> Lernziele</a></li>
+<li class="chapter" data-level="2.2" data-path="hinweise.html"><a href="hinweise.html#voraussetzungen"><i class="fa fa-check"></i><b>2.2</b> Voraussetzungen</a></li>
+<li class="chapter" data-level="2.3" data-path="hinweise.html"><a href="hinweise.html#lernhilfen"><i class="fa fa-check"></i><b>2.3</b> Lernhilfen</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="hinweise.html"><a href="hinweise.html#software"><i class="fa fa-check"></i><b>2.3.1</b> Software</a></li>
+<li class="chapter" data-level="2.3.2" data-path="hinweise.html"><a href="hinweise.html#videos"><i class="fa fa-check"></i><b>2.3.2</b> Videos</a></li>
+<li class="chapter" data-level="2.3.3" data-path="hinweise.html"><a href="hinweise.html#online-zusammenarbeit"><i class="fa fa-check"></i><b>2.3.3</b> Online-Zusammenarbeit</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="hinweise.html"><a href="hinweise.html#modulzeitplan"><i class="fa fa-check"></i><b>2.4</b> Modulzeitplan</a></li>
+<li class="chapter" data-level="2.5" data-path="hinweise.html"><a href="hinweise.html#literatur"><i class="fa fa-check"></i><b>2.5</b> Literatur</a></li>
+<li class="chapter" data-level="2.6" data-path="hinweise.html"><a href="hinweise.html#faq"><i class="fa fa-check"></i><b>2.6</b> FAQ</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="modulüberblick.html"><a href="modulüberblick.html"><i class="fa fa-check"></i><b>3</b> Modulüberblick</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="modulüberblick.html"><a href="modulüberblick.html#modulzeitplan-1"><i class="fa fa-check"></i><b>3.1</b> Modulzeitplan</a></li>
+<li class="chapter" data-level="3.2" data-path="modulüberblick.html"><a href="modulüberblick.html#beschreibung-der-themen"><i class="fa fa-check"></i><b>3.2</b> Beschreibung der Themen</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="modulüberblick.html"><a href="modulüberblick.html#statistisches-lernen"><i class="fa fa-check"></i><b>3.2.1</b> Statistisches Lernen</a></li>
+<li class="chapter" data-level="3.2.2" data-path="modulüberblick.html"><a href="modulüberblick.html#r-zweiter-blick"><i class="fa fa-check"></i><b>3.2.2</b> R, zweiter Blick</a></li>
+<li class="chapter" data-level="3.2.3" data-path="modulüberblick.html"><a href="modulüberblick.html#r-2.-blick---fortsetzung"><i class="fa fa-check"></i><b>3.2.3</b> R, 2. Blick - Fortsetzung</a></li>
+<li class="chapter" data-level="3.2.4" data-path="modulüberblick.html"><a href="modulüberblick.html#tidymodels"><i class="fa fa-check"></i><b>3.2.4</b> tidymodels</a></li>
+<li class="chapter" data-level="3.2.5" data-path="modulüberblick.html"><a href="modulüberblick.html#knn"><i class="fa fa-check"></i><b>3.2.5</b> kNN</a></li>
+<li class="chapter" data-level="3.2.6" data-path="modulüberblick.html"><a href="modulüberblick.html#wiederholung"><i class="fa fa-check"></i><b>3.2.6</b> Wiederholung</a></li>
+<li class="chapter" data-level="3.2.7" data-path="modulüberblick.html"><a href="modulüberblick.html#resampling-und-tuning"><i class="fa fa-check"></i><b>3.2.7</b> Resampling und Tuning</a></li>
+<li class="chapter" data-level="3.2.8" data-path="modulüberblick.html"><a href="modulüberblick.html#logistische-regression"><i class="fa fa-check"></i><b>3.2.8</b> Logistische Regression</a></li>
+<li class="chapter" data-level="3.2.9" data-path="modulüberblick.html"><a href="modulüberblick.html#naive-bayes"><i class="fa fa-check"></i><b>3.2.9</b> Naive Bayes</a></li>
+<li class="chapter" data-level="3.2.10" data-path="modulüberblick.html"><a href="modulüberblick.html#entscheidungsbäume"><i class="fa fa-check"></i><b>3.2.10</b> Entscheidungsbäume</a></li>
+<li class="chapter" data-level="3.2.11" data-path="modulüberblick.html"><a href="modulüberblick.html#zufallswälder"><i class="fa fa-check"></i><b>3.2.11</b> Zufallswälder</a></li>
+<li class="chapter" data-level="3.2.12" data-path="modulüberblick.html"><a href="modulüberblick.html#fallstudie"><i class="fa fa-check"></i><b>3.2.12</b> Fallstudie</a></li>
+<li class="chapter" data-level="3.2.13" data-path="modulüberblick.html"><a href="modulüberblick.html#wiederholung-1"><i class="fa fa-check"></i><b>3.2.13</b> Wiederholung</a></li>
+<li class="chapter" data-level="3.2.14" data-path="modulüberblick.html"><a href="modulüberblick.html#gam"><i class="fa fa-check"></i><b>3.2.14</b> GAM</a></li>
+<li class="chapter" data-level="3.2.15" data-path="modulüberblick.html"><a href="modulüberblick.html#lasso-und-co"><i class="fa fa-check"></i><b>3.2.15</b> Lasso und Co</a></li>
+<li class="chapter" data-level="3.2.16" data-path="modulüberblick.html"><a href="modulüberblick.html#vertiefung-4"><i class="fa fa-check"></i><b>3.2.16</b> Vertiefung</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="prüfung.html"><a href="prüfung.html"><i class="fa fa-check"></i><b>4</b> Prüfung</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="prüfung.html"><a href="prüfung.html#prüfungleistung"><i class="fa fa-check"></i><b>4.1</b> Prüfungleistung</a></li>
+<li class="chapter" data-level="4.2" data-path="prüfung.html"><a href="prüfung.html#tldr-zusammenfassung"><i class="fa fa-check"></i><b>4.2</b> tl;dr: Zusammenfassung</a></li>
+<li class="chapter" data-level="4.3" data-path="prüfung.html"><a href="prüfung.html#vorhersage"><i class="fa fa-check"></i><b>4.3</b> Vorhersage</a></li>
+<li class="chapter" data-level="4.4" data-path="prüfung.html"><a href="prüfung.html#hauptziel-genaue-prognose"><i class="fa fa-check"></i><b>4.4</b> Hauptziel: Genaue Prognose</a></li>
+<li class="chapter" data-level="4.5" data-path="prüfung.html"><a href="prüfung.html#zum-aufbau-ihrer-prognosedatei-im-csv-format"><i class="fa fa-check"></i><b>4.5</b> Zum Aufbau Ihrer Prognosedatei im CSV-Format</a></li>
+<li class="chapter" data-level="4.6" data-path="prüfung.html"><a href="prüfung.html#einzureichende-dateien"><i class="fa fa-check"></i><b>4.6</b> Einzureichende Dateien</a></li>
+<li class="chapter" data-level="4.7" data-path="prüfung.html"><a href="prüfung.html#tipps"><i class="fa fa-check"></i><b>4.7</b> Tipps</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="prüfung.html"><a href="prüfung.html#tipps-für-eine-gute-prognose"><i class="fa fa-check"></i><b>4.7.1</b> Tipps für eine gute Prognose</a></li>
+<li class="chapter" data-level="4.7.2" data-path="prüfung.html"><a href="prüfung.html#tipps-zur-datenverarbeitung"><i class="fa fa-check"></i><b>4.7.2</b> Tipps zur Datenverarbeitung</a></li>
+<li class="chapter" data-level="4.7.3" data-path="prüfung.html"><a href="prüfung.html#tipps-zum-aufbau-des-analyseskripts"><i class="fa fa-check"></i><b>4.7.3</b> Tipps zum Aufbau des Analyseskripts</a></li>
+<li class="chapter" data-level="4.7.4" data-path="prüfung.html"><a href="prüfung.html#sonstiges"><i class="fa fa-check"></i><b>4.7.4</b> Sonstiges</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="prüfung.html"><a href="prüfung.html#bewertung"><i class="fa fa-check"></i><b>4.8</b> Bewertung</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="prüfung.html"><a href="prüfung.html#kriterien"><i class="fa fa-check"></i><b>4.8.1</b> Kriterien</a></li>
+<li class="chapter" data-level="4.8.2" data-path="prüfung.html"><a href="prüfung.html#kennzahl-der-modellgüte"><i class="fa fa-check"></i><b>4.8.2</b> Kennzahl der Modellgüte</a></li>
+<li class="chapter" data-level="4.8.3" data-path="prüfung.html"><a href="prüfung.html#notenstufen"><i class="fa fa-check"></i><b>4.8.3</b> Notenstufen</a></li>
+<li class="chapter" data-level="4.8.4" data-path="prüfung.html"><a href="prüfung.html#bewertungsprozess"><i class="fa fa-check"></i><b>4.8.4</b> Bewertungsprozess</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="prüfung.html"><a href="prüfung.html#hinweise-8"><i class="fa fa-check"></i><b>4.9</b> Hinweise</a></li>
+<li class="chapter" data-level="4.10" data-path="prüfung.html"><a href="prüfung.html#formalia"><i class="fa fa-check"></i><b>4.10</b> Formalia</a></li>
+<li class="chapter" data-level="4.11" data-path="prüfung.html"><a href="prüfung.html#wo-finde-ich-beispiele"><i class="fa fa-check"></i><b>4.11</b> Wo finde ich Beispiele?</a></li>
+<li class="chapter" data-level="4.12" data-path="prüfung.html"><a href="prüfung.html#plagiatskontrolle"><i class="fa fa-check"></i><b>4.12</b> Plagiatskontrolle</a></li>
+</ul></li>
+<li class="part"><span><b>I Themen</b></span></li>
+<li class="chapter" data-level="5" data-path="statistisches-lernen-1.html"><a href="statistisches-lernen-1.html"><i class="fa fa-check"></i><b>5</b> Statistisches Lernen</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="statistisches-lernen-1.html"><a href="statistisches-lernen-1.html#was-ist-data-science"><i class="fa fa-check"></i><b>5.1</b> Was ist Data Science?</a></li>
+<li class="chapter" data-level="5.2" data-path="statistisches-lernen-1.html"><a href="statistisches-lernen-1.html#was-ist-machine-learning"><i class="fa fa-check"></i><b>5.2</b> Was ist Machine Learning?</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="statistisches-lernen-1.html"><a href="statistisches-lernen-1.html#rule-based"><i class="fa fa-check"></i><b>5.2.1</b> Rule-based</a></li>
+<li class="chapter" data-level="5.2.2" data-path="statistisches-lernen-1.html"><a href="statistisches-lernen-1.html#data-based"><i class="fa fa-check"></i><b>5.2.2</b> Data-based</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="statistisches-lernen-1.html"><a href="statistisches-lernen-1.html#modell-vs.-algorithmus"><i class="fa fa-check"></i><b>5.3</b> Modell vs. Algorithmus</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="statistisches-lernen-1.html"><a href="statistisches-lernen-1.html#modell"><i class="fa fa-check"></i><b>5.3.1</b> Modell</a></li>
+<li class="chapter" data-level="5.3.2" data-path="statistisches-lernen-1.html"><a href="statistisches-lernen-1.html#beispiel-für-einen-ml-algorithmus"><i class="fa fa-check"></i><b>5.3.2</b> Beispiel für einen ML-Algorithmus</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="statistisches-lernen-1.html"><a href="statistisches-lernen-1.html#taxonomie"><i class="fa fa-check"></i><b>5.4</b> Taxonomie</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="statistisches-lernen-1.html"><a href="statistisches-lernen-1.html#geleitetes-lernen"><i class="fa fa-check"></i><b>5.4.1</b> Geleitetes Lernen</a></li>
+<li class="chapter" data-level="5.4.2" data-path="statistisches-lernen-1.html"><a href="statistisches-lernen-1.html#ungeleitetes-lernen"><i class="fa fa-check"></i><b>5.4.2</b> Ungeleitetes Lernen</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="statistisches-lernen-1.html"><a href="statistisches-lernen-1.html#ziele-des-ml"><i class="fa fa-check"></i><b>5.5</b> Ziele des ML</a></li>
+<li class="chapter" data-level="5.6" data-path="statistisches-lernen-1.html"><a href="statistisches-lernen-1.html#über--vs.-unteranpassung"><i class="fa fa-check"></i><b>5.6</b> Über- vs. Unteranpassung</a></li>
+<li class="chapter" data-level="5.7" data-path="statistisches-lernen-1.html"><a href="statistisches-lernen-1.html#no-free-lunch"><i class="fa fa-check"></i><b>5.7</b> No free lunch</a></li>
+<li class="chapter" data-level="5.8" data-path="statistisches-lernen-1.html"><a href="statistisches-lernen-1.html#bias-varianz-abwägung"><i class="fa fa-check"></i><b>5.8</b> Bias-Varianz-Abwägung</a></li>
+<li class="chapter" data-level="5.9" data-path="statistisches-lernen-1.html"><a href="statistisches-lernen-1.html#aufgaben-7"><i class="fa fa-check"></i><b>5.9</b> Aufgaben</a></li>
+<li class="chapter" data-level="5.10" data-path="statistisches-lernen-1.html"><a href="statistisches-lernen-1.html#vertiefung-6"><i class="fa fa-check"></i><b>5.10</b> Vertiefung</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="r-zweiter-blick-1.html"><a href="r-zweiter-blick-1.html"><i class="fa fa-check"></i><b>6</b> R, zweiter Blick</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="r-zweiter-blick-1.html"><a href="r-zweiter-blick-1.html#objekttypen-in-r"><i class="fa fa-check"></i><b>6.1</b> Objekttypen in R</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="r-zweiter-blick-1.html"><a href="r-zweiter-blick-1.html#überblick"><i class="fa fa-check"></i><b>6.1.1</b> Überblick</a></li>
+<li class="chapter" data-level="6.1.2" data-path="r-zweiter-blick-1.html"><a href="r-zweiter-blick-1.html#taxonomie-1"><i class="fa fa-check"></i><b>6.1.2</b> Taxonomie</a></li>
+<li class="chapter" data-level="6.1.3" data-path="r-zweiter-blick-1.html"><a href="r-zweiter-blick-1.html#indizieren"><i class="fa fa-check"></i><b>6.1.3</b> Indizieren</a></li>
+<li class="chapter" data-level="6.1.4" data-path="r-zweiter-blick-1.html"><a href="r-zweiter-blick-1.html#weiterführende-hinweise"><i class="fa fa-check"></i><b>6.1.4</b> Weiterführende Hinweise</a></li>
+<li class="chapter" data-level="6.1.5" data-path="r-zweiter-blick-1.html"><a href="r-zweiter-blick-1.html#indizieren-mit-dem-tidyverse"><i class="fa fa-check"></i><b>6.1.5</b> Indizieren mit dem Tidyverse</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="r-zweiter-blick-1.html"><a href="r-zweiter-blick-1.html#datensätze-von-lang-nach-breit-umformatieren"><i class="fa fa-check"></i><b>6.2</b> Datensätze von lang nach breit umformatieren</a></li>
+<li class="chapter" data-level="6.3" data-path="r-zweiter-blick-1.html"><a href="r-zweiter-blick-1.html#funktionen"><i class="fa fa-check"></i><b>6.3</b> Funktionen</a></li>
+<li class="chapter" data-level="6.4" data-path="r-zweiter-blick-1.html"><a href="r-zweiter-blick-1.html#wiederholungen-programmieren"><i class="fa fa-check"></i><b>6.4</b> Wiederholungen programmieren</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="r-zweiter-blick-1.html"><a href="r-zweiter-blick-1.html#across"><i class="fa fa-check"></i><b>6.4.1</b> <code>across()</code></a></li>
+<li class="chapter" data-level="6.4.2" data-path="r-zweiter-blick-1.html"><a href="r-zweiter-blick-1.html#map"><i class="fa fa-check"></i><b>6.4.2</b> <code>map()</code></a></li>
+<li class="chapter" data-level="6.4.3" data-path="r-zweiter-blick-1.html"><a href="r-zweiter-blick-1.html#weiterführende-hinweise-1"><i class="fa fa-check"></i><b>6.4.3</b> Weiterführende Hinweise</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="r-zweiter-blick-1.html"><a href="r-zweiter-blick-1.html#listenspalten"><i class="fa fa-check"></i><b>6.5</b> Listenspalten</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="r-zweiter-blick-1.html"><a href="r-zweiter-blick-1.html#wozu-listenspalten"><i class="fa fa-check"></i><b>6.5.1</b> Wozu Listenspalten?</a></li>
+<li class="chapter" data-level="6.5.2" data-path="r-zweiter-blick-1.html"><a href="r-zweiter-blick-1.html#beispiele-für-listenspalten"><i class="fa fa-check"></i><b>6.5.2</b> Beispiele für Listenspalten</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="r-zweiter-blick-1.html"><a href="r-zweiter-blick-1.html#aufgaben-8"><i class="fa fa-check"></i><b>6.6</b> Aufgaben</a></li>
+<li class="chapter" data-level="6.7" data-path="r-zweiter-blick-1.html"><a href="r-zweiter-blick-1.html#literatur-14"><i class="fa fa-check"></i><b>6.7</b> Literatur</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="tidymodels-1.html"><a href="tidymodels-1.html"><i class="fa fa-check"></i><b>7</b> tidymodels</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="tidymodels-1.html"><a href="tidymodels-1.html#daten"><i class="fa fa-check"></i><b>7.1</b> Daten</a></li>
+<li class="chapter" data-level="7.2" data-path="tidymodels-1.html"><a href="tidymodels-1.html#train--vs-test-datensatz-aufteilen"><i class="fa fa-check"></i><b>7.2</b> Train- vs Test-Datensatz aufteilen</a></li>
+<li class="chapter" data-level="7.3" data-path="tidymodels-1.html"><a href="tidymodels-1.html#grundlagen-der-modellierung-mit-tidymodels"><i class="fa fa-check"></i><b>7.3</b> Grundlagen der Modellierung mit tidymodels</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="tidymodels-1.html"><a href="tidymodels-1.html#modelle-spezifizieren"><i class="fa fa-check"></i><b>7.3.1</b> Modelle spezifizieren</a></li>
+<li class="chapter" data-level="7.3.2" data-path="tidymodels-1.html"><a href="tidymodels-1.html#modelle-berechnen"><i class="fa fa-check"></i><b>7.3.2</b> Modelle berechnen</a></li>
+<li class="chapter" data-level="7.3.3" data-path="tidymodels-1.html"><a href="tidymodels-1.html#vorhersagen"><i class="fa fa-check"></i><b>7.3.3</b> Vorhersagen</a></li>
+<li class="chapter" data-level="7.3.4" data-path="tidymodels-1.html"><a href="tidymodels-1.html#vorhersagen-im-train-datensatz"><i class="fa fa-check"></i><b>7.3.4</b> Vorhersagen im Train-Datensatz</a></li>
+<li class="chapter" data-level="7.3.5" data-path="tidymodels-1.html"><a href="tidymodels-1.html#modellkoeffizienten-im-train-datensatz"><i class="fa fa-check"></i><b>7.3.5</b> Modellkoeffizienten im Train-Datensatz</a></li>
+<li class="chapter" data-level="7.3.6" data-path="tidymodels-1.html"><a href="tidymodels-1.html#parsnip-rstudio-add-in"><i class="fa fa-check"></i><b>7.3.6</b> Parsnip RStudio add-in</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="tidymodels-1.html"><a href="tidymodels-1.html#workflows"><i class="fa fa-check"></i><b>7.4</b> Workflows</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="tidymodels-1.html"><a href="tidymodels-1.html#konzept-des-workflows-in-tidymodels"><i class="fa fa-check"></i><b>7.4.1</b> Konzept des Workflows in Tidymodels</a></li>
+<li class="chapter" data-level="7.4.2" data-path="tidymodels-1.html"><a href="tidymodels-1.html#einfaches-beispiel"><i class="fa fa-check"></i><b>7.4.2</b> Einfaches Beispiel</a></li>
+<li class="chapter" data-level="7.4.3" data-path="tidymodels-1.html"><a href="tidymodels-1.html#vorhersage-mit-einem-workflow"><i class="fa fa-check"></i><b>7.4.3</b> Vorhersage mit einem Workflow</a></li>
+<li class="chapter" data-level="7.4.4" data-path="tidymodels-1.html"><a href="tidymodels-1.html#modellgüte"><i class="fa fa-check"></i><b>7.4.4</b> Modellgüte</a></li>
+<li class="chapter" data-level="7.4.5" data-path="tidymodels-1.html"><a href="tidymodels-1.html#vorhersage-von-hand"><i class="fa fa-check"></i><b>7.4.5</b> Vorhersage von Hand</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="tidymodels-1.html"><a href="tidymodels-1.html#rezepte-zur-vorverarbeitung"><i class="fa fa-check"></i><b>7.5</b> Rezepte zur Vorverarbeitung</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="tidymodels-1.html"><a href="tidymodels-1.html#was-ist-rezept-und-wozu-ist-es-gut"><i class="fa fa-check"></i><b>7.5.1</b> Was ist Rezept und wozu ist es gut?</a></li>
+<li class="chapter" data-level="7.5.2" data-path="tidymodels-1.html"><a href="tidymodels-1.html#workflows-mit-rezepten"><i class="fa fa-check"></i><b>7.5.2</b> Workflows mit Rezepten</a></li>
+<li class="chapter" data-level="7.5.3" data-path="tidymodels-1.html"><a href="tidymodels-1.html#spaltenrollen"><i class="fa fa-check"></i><b>7.5.3</b> Spaltenrollen</a></li>
+<li class="chapter" data-level="7.5.4" data-path="tidymodels-1.html"><a href="tidymodels-1.html#fazit"><i class="fa fa-check"></i><b>7.5.4</b> Fazit</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="tidymodels-2.html"><a href="tidymodels-2.html"><i class="fa fa-check"></i><b>8</b> tidymodels</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="tidymodels-2.html"><a href="tidymodels-2.html#daten-1"><i class="fa fa-check"></i><b>8.1</b> Daten</a></li>
+<li class="chapter" data-level="8.2" data-path="tidymodels-2.html"><a href="tidymodels-2.html#train--vs-test-datensatz-aufteilen-1"><i class="fa fa-check"></i><b>8.2</b> Train- vs Test-Datensatz aufteilen</a></li>
+<li class="chapter" data-level="8.3" data-path="tidymodels-2.html"><a href="tidymodels-2.html#grundlagen-der-modellierung-mit-tidymodels-1"><i class="fa fa-check"></i><b>8.3</b> Grundlagen der Modellierung mit tidymodels</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="tidymodels-2.html"><a href="tidymodels-2.html#modelle-spezifizieren-1"><i class="fa fa-check"></i><b>8.3.1</b> Modelle spezifizieren</a></li>
+<li class="chapter" data-level="8.3.2" data-path="tidymodels-2.html"><a href="tidymodels-2.html#modelle-berechnen-1"><i class="fa fa-check"></i><b>8.3.2</b> Modelle berechnen</a></li>
+<li class="chapter" data-level="8.3.3" data-path="tidymodels-2.html"><a href="tidymodels-2.html#vorhersagen-1"><i class="fa fa-check"></i><b>8.3.3</b> Vorhersagen</a></li>
+<li class="chapter" data-level="8.3.4" data-path="tidymodels-2.html"><a href="tidymodels-2.html#vorhersagen-im-train-datensatz-1"><i class="fa fa-check"></i><b>8.3.4</b> Vorhersagen im Train-Datensatz</a></li>
+<li class="chapter" data-level="8.3.5" data-path="tidymodels-2.html"><a href="tidymodels-2.html#modellkoeffizienten-im-train-datensatz-1"><i class="fa fa-check"></i><b>8.3.5</b> Modellkoeffizienten im Train-Datensatz</a></li>
+<li class="chapter" data-level="8.3.6" data-path="tidymodels-2.html"><a href="tidymodels-2.html#parsnip-rstudio-add-in-1"><i class="fa fa-check"></i><b>8.3.6</b> Parsnip RStudio add-in</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="tidymodels-2.html"><a href="tidymodels-2.html#workflows-1"><i class="fa fa-check"></i><b>8.4</b> Workflows</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="tidymodels-2.html"><a href="tidymodels-2.html#konzept-des-workflows-in-tidymodels-1"><i class="fa fa-check"></i><b>8.4.1</b> Konzept des Workflows in Tidymodels</a></li>
+<li class="chapter" data-level="8.4.2" data-path="tidymodels-2.html"><a href="tidymodels-2.html#einfaches-beispiel-1"><i class="fa fa-check"></i><b>8.4.2</b> Einfaches Beispiel</a></li>
+<li class="chapter" data-level="8.4.3" data-path="tidymodels-2.html"><a href="tidymodels-2.html#vorhersage-mit-einem-workflow-1"><i class="fa fa-check"></i><b>8.4.3</b> Vorhersage mit einem Workflow</a></li>
+<li class="chapter" data-level="8.4.4" data-path="tidymodels-2.html"><a href="tidymodels-2.html#modellgüte-1"><i class="fa fa-check"></i><b>8.4.4</b> Modellgüte</a></li>
+<li class="chapter" data-level="8.4.5" data-path="tidymodels-2.html"><a href="tidymodels-2.html#vorhersage-von-hand-1"><i class="fa fa-check"></i><b>8.4.5</b> Vorhersage von Hand</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="tidymodels-2.html"><a href="tidymodels-2.html#rezepte-zur-vorverarbeitung-1"><i class="fa fa-check"></i><b>8.5</b> Rezepte zur Vorverarbeitung</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="tidymodels-2.html"><a href="tidymodels-2.html#was-ist-rezept-und-wozu-ist-es-gut-1"><i class="fa fa-check"></i><b>8.5.1</b> Was ist Rezept und wozu ist es gut?</a></li>
+<li class="chapter" data-level="8.5.2" data-path="tidymodels-2.html"><a href="tidymodels-2.html#workflows-mit-rezepten-1"><i class="fa fa-check"></i><b>8.5.2</b> Workflows mit Rezepten</a></li>
+<li class="chapter" data-level="8.5.3" data-path="tidymodels-2.html"><a href="tidymodels-2.html#spaltenrollen-1"><i class="fa fa-check"></i><b>8.5.3</b> Spaltenrollen</a></li>
+<li class="chapter" data-level="8.5.4" data-path="tidymodels-2.html"><a href="tidymodels-2.html#fazit-1"><i class="fa fa-check"></i><b>8.5.4</b> Fazit</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="knn-1.html"><a href="knn-1.html"><i class="fa fa-check"></i><b>9</b> kNN</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="knn-1.html"><a href="knn-1.html#intuitive-erklärung"><i class="fa fa-check"></i><b>9.1</b> Intuitive Erklärung</a></li>
+<li class="chapter" data-level="9.2" data-path="knn-1.html"><a href="knn-1.html#krebsdiagnostik"><i class="fa fa-check"></i><b>9.2</b> Krebsdiagnostik</a></li>
+<li class="chapter" data-level="9.3" data-path="knn-1.html"><a href="knn-1.html#berechnung-der-nähe"><i class="fa fa-check"></i><b>9.3</b> Berechnung der Nähe</a></li>
+<li class="chapter" data-level="9.4" data-path="knn-1.html"><a href="knn-1.html#knn-mit-tidymodels"><i class="fa fa-check"></i><b>9.4</b> kNN mit Tidymodels</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="knn-1.html"><a href="knn-1.html#analog-zu-timbers-et-al."><i class="fa fa-check"></i><b>9.4.1</b> Analog zu Timbers et al.</a></li>
+<li class="chapter" data-level="9.4.2" data-path="knn-1.html"><a href="knn-1.html#rezept-definieren"><i class="fa fa-check"></i><b>9.4.2</b> Rezept definieren</a></li>
+<li class="chapter" data-level="9.4.3" data-path="knn-1.html"><a href="knn-1.html#modell-definieren"><i class="fa fa-check"></i><b>9.4.3</b> Modell definieren</a></li>
+<li class="chapter" data-level="9.4.4" data-path="knn-1.html"><a href="knn-1.html#workflow-definieren"><i class="fa fa-check"></i><b>9.4.4</b> Workflow definieren</a></li>
+<li class="chapter" data-level="9.4.5" data-path="knn-1.html"><a href="knn-1.html#vorhersagen-2"><i class="fa fa-check"></i><b>9.4.5</b> Vorhersagen</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="knn-1.html"><a href="knn-1.html#mit-train-test-aufteilung"><i class="fa fa-check"></i><b>9.5</b> Mit Train-Test-Aufteilung</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="knn-1.html"><a href="knn-1.html#rezept-definieren-1"><i class="fa fa-check"></i><b>9.5.1</b> Rezept definieren</a></li>
+<li class="chapter" data-level="9.5.2" data-path="knn-1.html"><a href="knn-1.html#modell-definieren-1"><i class="fa fa-check"></i><b>9.5.2</b> Modell definieren</a></li>
+<li class="chapter" data-level="9.5.3" data-path="knn-1.html"><a href="knn-1.html#workflow-definieren-1"><i class="fa fa-check"></i><b>9.5.3</b> Workflow definieren</a></li>
+<li class="chapter" data-level="9.5.4" data-path="knn-1.html"><a href="knn-1.html#vorhersagen-3"><i class="fa fa-check"></i><b>9.5.4</b> Vorhersagen</a></li>
+<li class="chapter" data-level="9.5.5" data-path="knn-1.html"><a href="knn-1.html#modellgüte-2"><i class="fa fa-check"></i><b>9.5.5</b> Modellgüte</a></li>
+<li class="chapter" data-level="9.5.6" data-path="knn-1.html"><a href="knn-1.html#visualisierung"><i class="fa fa-check"></i><b>9.5.6</b> Visualisierung</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="knn-1.html"><a href="knn-1.html#kennzahlen-der-klassifikation"><i class="fa fa-check"></i><b>9.6</b> Kennzahlen der Klassifikation</a></li>
+<li class="chapter" data-level="9.7" data-path="knn-1.html"><a href="knn-1.html#krebstest-beispiel"><i class="fa fa-check"></i><b>9.7</b> Krebstest-Beispiel</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="resampling-und-tuning-1.html"><a href="resampling-und-tuning-1.html"><i class="fa fa-check"></i><b>10</b> Resampling und Tuning</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="resampling-und-tuning-1.html"><a href="resampling-und-tuning-1.html#überblick-1"><i class="fa fa-check"></i><b>10.1</b> Überblick</a></li>
+<li class="chapter" data-level="10.2" data-path="resampling-und-tuning-1.html"><a href="resampling-und-tuning-1.html#tidymodels-3"><i class="fa fa-check"></i><b>10.2</b> tidymodels</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="resampling-und-tuning-1.html"><a href="resampling-und-tuning-1.html#datensatz-aufteilen"><i class="fa fa-check"></i><b>10.2.1</b> Datensatz aufteilen</a></li>
+<li class="chapter" data-level="10.2.2" data-path="resampling-und-tuning-1.html"><a href="resampling-und-tuning-1.html#rezept-modell-und-workflow-definieren"><i class="fa fa-check"></i><b>10.2.2</b> Rezept, Modell und Workflow definieren</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="resampling-und-tuning-1.html"><a href="resampling-und-tuning-1.html#resampling"><i class="fa fa-check"></i><b>10.3</b> Resampling</a></li>
+<li class="chapter" data-level="10.4" data-path="resampling-und-tuning-1.html"><a href="resampling-und-tuning-1.html#illustration-des-resampling"><i class="fa fa-check"></i><b>10.4</b> Illustration des Resampling</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="resampling-und-tuning-1.html"><a href="resampling-und-tuning-1.html#einfache-v-fache-kreuzvalidierung"><i class="fa fa-check"></i><b>10.4.1</b> Einfache v-fache Kreuzvalidierung</a></li>
+<li class="chapter" data-level="10.4.2" data-path="resampling-und-tuning-1.html"><a href="resampling-und-tuning-1.html#wiederholte-kreuzvalidierung"><i class="fa fa-check"></i><b>10.4.2</b> Wiederholte Kreuzvalidierung</a></li>
+<li class="chapter" data-level="10.4.3" data-path="resampling-und-tuning-1.html"><a href="resampling-und-tuning-1.html#resampling-passiert-im-train-sample"><i class="fa fa-check"></i><b>10.4.3</b> Resampling passiert im Train-Sample</a></li>
+<li class="chapter" data-level="10.4.4" data-path="resampling-und-tuning-1.html"><a href="resampling-und-tuning-1.html#andere-illustrationen"><i class="fa fa-check"></i><b>10.4.4</b> Andere Illustrationen</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="resampling-und-tuning-1.html"><a href="resampling-und-tuning-1.html#gesetz-der-großen-zahl"><i class="fa fa-check"></i><b>10.5</b> Gesetz der großen Zahl</a></li>
+<li class="chapter" data-level="10.6" data-path="resampling-und-tuning-1.html"><a href="resampling-und-tuning-1.html#über--und-unteranpassung-an-einem-beispiel"><i class="fa fa-check"></i><b>10.6</b> Über- und Unteranpassung an einem Beispiel</a></li>
+<li class="chapter" data-level="10.7" data-path="resampling-und-tuning-1.html"><a href="resampling-und-tuning-1.html#cv-in-tidymodels"><i class="fa fa-check"></i><b>10.7</b> CV in tidymodels</a>
+<ul>
+<li class="chapter" data-level="10.7.1" data-path="resampling-und-tuning-1.html"><a href="resampling-und-tuning-1.html#cv-definieren"><i class="fa fa-check"></i><b>10.7.1</b> CV definieren</a></li>
+<li class="chapter" data-level="10.7.2" data-path="resampling-und-tuning-1.html"><a href="resampling-und-tuning-1.html#resamples-fitten"><i class="fa fa-check"></i><b>10.7.2</b> Resamples fitten</a></li>
+</ul></li>
+<li class="chapter" data-level="10.8" data-path="resampling-und-tuning-1.html"><a href="resampling-und-tuning-1.html#tuning"><i class="fa fa-check"></i><b>10.8</b> Tuning</a>
+<ul>
+<li class="chapter" data-level="10.8.1" data-path="resampling-und-tuning-1.html"><a href="resampling-und-tuning-1.html#tuning-auszeichnen"><i class="fa fa-check"></i><b>10.8.1</b> Tuning auszeichnen</a></li>
+<li class="chapter" data-level="10.8.2" data-path="resampling-und-tuning-1.html"><a href="resampling-und-tuning-1.html#grid-search-vs.-iterative-search"><i class="fa fa-check"></i><b>10.8.2</b> Grid Search vs. Iterative Search</a></li>
+</ul></li>
+<li class="chapter" data-level="10.9" data-path="resampling-und-tuning-1.html"><a href="resampling-und-tuning-1.html#tuning-mit-tidymodels"><i class="fa fa-check"></i><b>10.9</b> Tuning mit Tidymodels</a>
+<ul>
+<li class="chapter" data-level="10.9.1" data-path="resampling-und-tuning-1.html"><a href="resampling-und-tuning-1.html#datenabhängige-tuningparameter"><i class="fa fa-check"></i><b>10.9.1</b> Datenabhängige Tuningparameter</a></li>
+<li class="chapter" data-level="10.9.2" data-path="resampling-und-tuning-1.html"><a href="resampling-und-tuning-1.html#modelle-mit-tuning-berechnen"><i class="fa fa-check"></i><b>10.9.2</b> Modelle mit Tuning berechnen</a></li>
+<li class="chapter" data-level="10.9.3" data-path="resampling-und-tuning-1.html"><a href="resampling-und-tuning-1.html#vorhersage-im-test-sample"><i class="fa fa-check"></i><b>10.9.3</b> Vorhersage im Test-Sample</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="logistische-regression-1.html"><a href="logistische-regression-1.html"><i class="fa fa-check"></i><b>11</b> Logistische Regression</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="logistische-regression-1.html"><a href="logistische-regression-1.html#intuitive-erklärung-1"><i class="fa fa-check"></i><b>11.1</b> Intuitive Erklärung</a></li>
+<li class="chapter" data-level="11.2" data-path="logistische-regression-1.html"><a href="logistische-regression-1.html#profil"><i class="fa fa-check"></i><b>11.2</b> Profil</a></li>
+<li class="chapter" data-level="11.3" data-path="logistische-regression-1.html"><a href="logistische-regression-1.html#warum-nicht-die-lineare-regression-verwenden"><i class="fa fa-check"></i><b>11.3</b> Warum nicht die lineare Regression verwenden?</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="logistische-regression-1.html"><a href="logistische-regression-1.html#lineare-modelle-running-wild"><i class="fa fa-check"></i><b>11.3.1</b> Lineare Modelle running wild</a></li>
+<li class="chapter" data-level="11.3.2" data-path="logistische-regression-1.html"><a href="logistische-regression-1.html#wir-müssen-die-regressionsgerade-umbiegen"><i class="fa fa-check"></i><b>11.3.2</b> Wir müssen die Regressionsgerade umbiegen</a></li>
+<li class="chapter" data-level="11.3.3" data-path="logistische-regression-1.html"><a href="logistische-regression-1.html#verallgemeinerte-lineare-modelle-zur-rettung"><i class="fa fa-check"></i><b>11.3.3</b> Verallgemeinerte lineare Modelle zur Rettung</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="logistische-regression-1.html"><a href="logistische-regression-1.html#der-logit-link"><i class="fa fa-check"></i><b>11.4</b> Der Logit-Link</a></li>
+<li class="chapter" data-level="11.5" data-path="logistische-regression-1.html"><a href="logistische-regression-1.html#aber-warum"><i class="fa fa-check"></i><b>11.5</b> Aber warum?</a>
+<ul>
+<li class="chapter" data-level="11.5.1" data-path="logistische-regression-1.html"><a href="logistische-regression-1.html#tidymodels-m83"><i class="fa fa-check"></i><b>11.5.1</b> tidymodels, m83</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="logistische-regression-1.html"><a href="logistische-regression-1.html#m83-glm"><i class="fa fa-check"></i><b>11.6</b> m83, glm</a>
+<ul>
+<li class="chapter" data-level="11.6.1" data-path="logistische-regression-1.html"><a href="logistische-regression-1.html#wahrscheinlichkeit-in-odds"><i class="fa fa-check"></i><b>11.6.1</b> Wahrscheinlichkeit in Odds</a></li>
+<li class="chapter" data-level="11.6.2" data-path="logistische-regression-1.html"><a href="logistische-regression-1.html#von-odds-zu-log-odds"><i class="fa fa-check"></i><b>11.6.2</b> Von Odds zu Log-Odds</a></li>
+</ul></li>
+<li class="chapter" data-level="11.7" data-path="logistische-regression-1.html"><a href="logistische-regression-1.html#inverser-logit"><i class="fa fa-check"></i><b>11.7</b> Inverser Logit</a></li>
+<li class="chapter" data-level="11.8" data-path="logistische-regression-1.html"><a href="logistische-regression-1.html#vom-logit-zur-klasse"><i class="fa fa-check"></i><b>11.8</b> Vom Logit zur Klasse</a>
+<ul>
+<li class="chapter" data-level="11.8.1" data-path="logistische-regression-1.html"><a href="logistische-regression-1.html#grenzwert-wechseln"><i class="fa fa-check"></i><b>11.8.1</b> Grenzwert wechseln</a></li>
+</ul></li>
+<li class="chapter" data-level="11.9" data-path="logistische-regression-1.html"><a href="logistische-regression-1.html#logit-und-inverser-logit"><i class="fa fa-check"></i><b>11.9</b> Logit und Inverser Logit</a>
+<ul>
+<li class="chapter" data-level="11.9.1" data-path="logistische-regression-1.html"><a href="logistische-regression-1.html#logit"><i class="fa fa-check"></i><b>11.9.1</b> Logit</a></li>
+<li class="chapter" data-level="11.9.2" data-path="logistische-regression-1.html"><a href="logistische-regression-1.html#inv-logit"><i class="fa fa-check"></i><b>11.9.2</b> Inv-Logit</a></li>
+</ul></li>
+<li class="chapter" data-level="11.10" data-path="logistische-regression-1.html"><a href="logistische-regression-1.html#logistische-regression-im-überblick"><i class="fa fa-check"></i><b>11.10</b> Logistische Regression im Überblick</a>
+<ul>
+<li class="chapter" data-level="11.10.1" data-path="logistische-regression-1.html"><a href="logistische-regression-1.html#die-koeffizienten-sind-schwer-zu-interpretieren"><i class="fa fa-check"></i><b>11.10.1</b> Die Koeffizienten sind schwer zu interpretieren</a></li>
+<li class="chapter" data-level="11.10.2" data-path="logistische-regression-1.html"><a href="logistische-regression-1.html#logits-vs.-wahrscheinlichkeiten"><i class="fa fa-check"></i><b>11.10.2</b> Logits vs. Wahrscheinlichkeiten</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
 
-        <div class="book-extra">
-          <p><a id="book-repo" href="https://github.com/sebastiansauer/datascience1">View book source <i class="fab fa-github"></i></a></p>
-        </div>
       </nav>
-</div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="resampling-und-tuning-1" class="section level1" number="9">
-<h1>
-<span class="header-section-number">Kapitel 9</span> Resampling und Tuning<a class="anchor" aria-label="anchor" href="#resampling-und-tuning-1"><i class="fas fa-link"></i></a>
-</h1>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">DataScience1</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="resampling-und-tuning-1" class="section level1" number="10">
+<h1><span class="header-section-number">Kapitel 10</span> Resampling und Tuning</h1>
 <p>Benötigte R-Pakete:</p>
-<div class="sourceCode" id="cb307"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tune.tidymodels.org/">tune</a></span><span class="op">)</span></code></pre></div>
-<p>Das Paket <code>tune</code> auf CRAN hat einen Bug<a href="references.html#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>,
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="resampling-und-tuning-1.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="resampling-und-tuning-1.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb1-3"><a href="resampling-und-tuning-1.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tune)</span></code></pre></div>
+<p>Das Paket <code>tune</code> auf CRAN hat einen Bug<a href="references.html#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>,
 daher empfiehlt der Autor, Max Kuhn, die Version des Pakets von Github zu installieren:</p>
-<div class="sourceCode" id="cb308"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"tidymodels/tune"</span><span class="op">)</span></code></pre></div>
-<div id="tidymodels-3" class="section level2" number="9.1">
-<h2>
-<span class="header-section-number">9.1</span> tidymodels<a class="anchor" aria-label="anchor" href="#tidymodels-3"><i class="fas fa-link"></i></a>
-</h2>
-<div id="datensatz-aufteilen" class="section level3" number="9.1.1">
-<h3>
-<span class="header-section-number">9.1.1</span> Datensatz aufteilen<a class="anchor" aria-label="anchor" href="#datensatz-aufteilen"><i class="fas fa-link"></i></a>
-</h3>
-<div class="sourceCode" id="cb309"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">ames</span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">4595</span><span class="op">)</span>
-<span class="va">data_split</span> <span class="op">&lt;-</span> <span class="fu">initial_split</span><span class="op">(</span><span class="va">ames</span>, strata <span class="op">=</span> <span class="st">"Sale_Price"</span><span class="op">)</span>
-
-<span class="va">ames_train</span> <span class="op">&lt;-</span> <span class="fu">training</span><span class="op">(</span><span class="va">data_split</span><span class="op">)</span>
-<span class="va">ames_test</span> <span class="op">&lt;-</span> <span class="fu">testing</span><span class="op">(</span><span class="va">data_split</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="resampling-und-tuning-1.html#cb2-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;tidymodels/tune&quot;</span>)</span></code></pre></div>
+<div id="überblick-1" class="section level2" number="10.1">
+<h2><span class="header-section-number">10.1</span> Überblick</h2>
+<p>Der Standardablauf des maschinellen Lernens ist in Abb. <a href="resampling-und-tuning-1.html#fig:process1">10.1</a> dargestellt.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:process1"></span>
+<div id="htmlwidget-0f56ea49231677ff4066" style="width:100%;height:927px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0f56ea49231677ff4066">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n[<database> Gesamtdatensatz] ->  [Splitte in Train- und Test-Sample]\n[Splitte in Train- und Test-Sample] -> [Für jeden Modell-Kandidaten i=1,2,..,n |\n  [Train-Test Modellkandidat i|\n    [Fitte in Train-Sample] -> [Teste im Assessment-Sample]]\n  ] \n  [Für jeden Modell-Kandidaten i=1,2,..,n |\n  [Train-Test Modellkandidat i|\n    [Fitte in Train-Sample] -> [Teste im Assessment-Sample]]\n  ] -> [Bestimme besten Modell-Kandidaten]\n  [Bestimme besten Modell-Kandidaten] -> [Fitte Modell im Train-Datensatz]\n  [Fitte Modell im Train-Datensatz] -> [Test im Test-Datensatz]\n  [Test im Test-Datensatz] -> [<end> Ende]","svg":false},"evals":[],"jsHooks":[]}</script>
+<p class="caption">
+Figure 10.1: Standardablauf des maschinellen Lernens mit Tuning und Resampling
+</p>
 </div>
-<div id="rezept-modell-und-workflow-definieren" class="section level3" number="9.1.2">
-<h3>
-<span class="header-section-number">9.1.2</span> Rezept, Modell und Workflow definieren<a class="anchor" aria-label="anchor" href="#rezept-modell-und-workflow-definieren"><i class="fas fa-link"></i></a>
-</h3>
+</div>
+<div id="tidymodels-3" class="section level2" number="10.2">
+<h2><span class="header-section-number">10.2</span> tidymodels</h2>
+<div id="datensatz-aufteilen" class="section level3" number="10.2.1">
+<h3><span class="header-section-number">10.2.1</span> Datensatz aufteilen</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="resampling-und-tuning-1.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(ames)</span>
+<span id="cb3-2"><a href="resampling-und-tuning-1.html#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="resampling-und-tuning-1.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">4595</span>)</span>
+<span id="cb3-4"><a href="resampling-und-tuning-1.html#cb3-4" aria-hidden="true" tabindex="-1"></a>data_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(ames, <span class="at">strata =</span> <span class="st">&quot;Sale_Price&quot;</span>)</span>
+<span id="cb3-5"><a href="resampling-und-tuning-1.html#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="resampling-und-tuning-1.html#cb3-6" aria-hidden="true" tabindex="-1"></a>ames_train <span class="ot">&lt;-</span> <span class="fu">training</span>(data_split)</span>
+<span id="cb3-7"><a href="resampling-und-tuning-1.html#cb3-7" aria-hidden="true" tabindex="-1"></a>ames_test <span class="ot">&lt;-</span> <span class="fu">testing</span>(data_split)</span></code></pre></div>
+</div>
+<div id="rezept-modell-und-workflow-definieren" class="section level3" number="10.2.2">
+<h3><span class="header-section-number">10.2.2</span> Rezept, Modell und Workflow definieren</h3>
 <p>In gewohnter Weise definieren wir den Workflow
 mit einem kNN-Modell.</p>
-<div class="sourceCode" id="cb310"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ames_rec</span> <span class="op">&lt;-</span>
-  <span class="fu">recipe</span><span class="op">(</span><span class="va">Sale_Price</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">ames_train</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">step_log</span><span class="op">(</span><span class="va">Sale_Price</span>, base <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">step_other</span><span class="op">(</span><span class="va">Neighborhood</span>, threshold <span class="op">=</span> <span class="fl">.1</span><span class="op">)</span>  <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">step_dummy</span><span class="op">(</span><span class="fu">all_nominal</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">step_zv</span><span class="op">(</span><span class="fu">all_predictors</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> 
-
-<span class="va">knn_model</span> <span class="op">&lt;-</span>
-  <span class="fu">nearest_neighbor</span><span class="op">(</span>
-    mode <span class="op">=</span> <span class="st">"regression"</span>,
-  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">set_engine</span><span class="op">(</span><span class="st">"kknn"</span><span class="op">)</span>
-
-<span class="va">ames_wflow</span> <span class="op">&lt;-</span>
-  <span class="fu">workflow</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">add_recipe</span><span class="op">(</span><span class="va">ames_rec</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">add_model</span><span class="op">(</span><span class="va">knn_model</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="resampling-und-tuning-1.html#cb4-1" aria-hidden="true" tabindex="-1"></a>ames_rec <span class="ot">&lt;-</span></span>
+<span id="cb4-2"><a href="resampling-und-tuning-1.html#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">recipe</span>(Sale_Price <span class="sc">~</span> ., <span class="at">data =</span> ames_train) <span class="sc">%&gt;%</span></span>
+<span id="cb4-3"><a href="resampling-und-tuning-1.html#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_log</span>(Sale_Price, <span class="at">base =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-4"><a href="resampling-und-tuning-1.html#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_other</span>(Neighborhood, <span class="at">threshold =</span> .<span class="dv">1</span>)  <span class="sc">%&gt;%</span></span>
+<span id="cb4-5"><a href="resampling-und-tuning-1.html#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_dummy</span>(<span class="fu">all_nominal</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb4-6"><a href="resampling-und-tuning-1.html#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_zv</span>(<span class="fu">all_predictors</span>()) </span>
+<span id="cb4-7"><a href="resampling-und-tuning-1.html#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="resampling-und-tuning-1.html#cb4-8" aria-hidden="true" tabindex="-1"></a>knn_model <span class="ot">&lt;-</span></span>
+<span id="cb4-9"><a href="resampling-und-tuning-1.html#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nearest_neighbor</span>(</span>
+<span id="cb4-10"><a href="resampling-und-tuning-1.html#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">mode =</span> <span class="st">&quot;regression&quot;</span>,</span>
+<span id="cb4-11"><a href="resampling-und-tuning-1.html#cb4-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb4-12"><a href="resampling-und-tuning-1.html#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&quot;kknn&quot;</span>)</span>
+<span id="cb4-13"><a href="resampling-und-tuning-1.html#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="resampling-und-tuning-1.html#cb4-14" aria-hidden="true" tabindex="-1"></a>ames_wflow <span class="ot">&lt;-</span></span>
+<span id="cb4-15"><a href="resampling-und-tuning-1.html#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">workflow</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb4-16"><a href="resampling-und-tuning-1.html#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(ames_rec) <span class="sc">%&gt;%</span></span>
+<span id="cb4-17"><a href="resampling-und-tuning-1.html#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(knn_model)</span></code></pre></div>
 <p>Das kNN-Modell ist noch <em>nicht</em> <em>berechnet</em>,
 es ist nur ein “Rezept” erstellt:</p>
-<div class="sourceCode" id="cb311"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">knn_model</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="resampling-und-tuning-1.html#cb5-1" aria-hidden="true" tabindex="-1"></a>knn_model</span></code></pre></div>
 <pre><code>## K-Nearest Neighbor Model Specification (regression)
 ## 
 ## Computational engine: kknn</code></pre>
-<div class="sourceCode" id="cb313"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ames_wflow</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="resampling-und-tuning-1.html#cb7-1" aria-hidden="true" tabindex="-1"></a>ames_wflow</span></code></pre></div>
 <pre><code>## ══ Workflow ════════════════════════════════════════════════════════════════════
 ## Preprocessor: Recipe
 ## Model: nearest_neighbor()
@@ -143,10 +544,8 @@ es ist nur ein “Rezept” erstellt:</p>
 ## Computational engine: kknn</code></pre>
 </div>
 </div>
-<div id="resampling" class="section level2" number="9.2">
-<h2>
-<span class="header-section-number">9.2</span> Resampling<a class="anchor" aria-label="anchor" href="#resampling"><i class="fas fa-link"></i></a>
-</h2>
+<div id="resampling" class="section level2" number="10.3">
+<h2><span class="header-section-number">10.3</span> Resampling</h2>
 <p>Vergleichen Sie die drei Fälle, die sich in der Nutzung von Train- und Test-Sample unterscheiden:</p>
 <ol style="list-style-type: decimal">
 <li>Wir fitten ein Klassifikationsmodell in einer Stichprobe, sagen die Y-Werte dieser Stichprobe “vorher”. Wir finden eine Gesamtgenauigkeit von 80%.</li>
@@ -155,38 +554,34 @@ es ist nur ein “Rezept” erstellt:</p>
 </ol>
 <p>Welchen der drei Fälle finden Sie am sinnvollsten? Warum?</p>
 </div>
-<div id="illustration-des-resampling" class="section level2" number="9.3">
-<h2>
-<span class="header-section-number">9.3</span> Illustration des Resampling<a class="anchor" aria-label="anchor" href="#illustration-des-resampling"><i class="fas fa-link"></i></a>
-</h2>
+<div id="illustration-des-resampling" class="section level2" number="10.4">
+<h2><span class="header-section-number">10.4</span> Illustration des Resampling</h2>
 <p><em>Resampling</em> stellt einen Oberbegriff dar; <em>Kreuzvalidierung</em> ist ein Unterbegriff dazu.
 Es gibt noch andere Arten des Resampling, etwa <em>Bootstrapping</em> oder <em>Leave-One-Out-Cross-Validation</em> (LOOCV).</p>
 <p>Im Folgenden ist nur die Kreuzvalidierung dargestellt,
 da es eines der wichtigsten und vielleicht das Wichtigste ist.
 In vielen Quellen finden sich Erläuterungen anderer Verfahren dargestellt,
-etwa in <span class="citation">Silge and Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span>, <span class="citation">James et al. (<a href="references.html#ref-islr" role="doc-biblioref">2021</a>)</span> oder <span class="citation">Rhys (<a href="references.html#ref-rhys" role="doc-biblioref">2020</a>)</span>.</p>
-<div id="einfache-v-fache-kreuzvalidierung" class="section level3" number="9.3.1">
-<h3>
-<span class="header-section-number">9.3.1</span> Einfache v-fache Kreuzvalidierung<a class="anchor" aria-label="anchor" href="#einfache-v-fache-kreuzvalidierung"><i class="fas fa-link"></i></a>
-</h3>
-<p>Abb. <a href="resampling-und-tuning-1.html#fig:resampling">9.1</a> illustriert die zufällige Aufteilung von <span class="math inline">\(n=10\)</span> Fällen der Originalstrichprobe auf eine Train- bzw. Test-Stichpobe.
+etwa in <span class="citation">Silge and Kuhn (<a href="#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span>, <span class="citation">James et al. (<a href="#ref-islr" role="doc-biblioref">2021</a>)</span> oder <span class="citation">Rhys (<a href="#ref-rhys" role="doc-biblioref">2020</a>)</span>.</p>
+<div id="einfache-v-fache-kreuzvalidierung" class="section level3" number="10.4.1">
+<h3><span class="header-section-number">10.4.1</span> Einfache v-fache Kreuzvalidierung</h3>
+<p>Abb. <a href="resampling-und-tuning-1.html#fig:resampling">10.2</a> illustriert die zufällige Aufteilung von <span class="math inline">\(n=10\)</span> Fällen der Originalstrichprobe auf eine Train- bzw. Test-Stichpobe.
 Man spricht von <em>Kreuzvalidierung</em> (cross validation, CV).</p>
 <p>In diesem Fall wurden 70% der (<span class="math inline">\(n=10\)</span>) Fälle der Train-Stichprobe zugewiesen (der Rest der Test-Stichprobe);
 ein willkürlicher, aber nicht unüblicher Anteil.
 Diese Aufteilung wurde <span class="math inline">\(v=3\)</span> Mal vorgenommen,
 es resultieren drei “Resampling-Stichproben”, die
 manchmal auch als “Faltungen” bezeichnet werden.</p>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:resampling"></span>
-<img src="080-Resampling-Tuning_files/figure-html/resampling-1.png" alt="Resampling: Eine Stichprobe wird mehrfach (hier 3 Mal) zu 70% in ein Train- und zu 30% in die Test-Stichprobe aufgeteilt" width="100%"><p class="caption">
-Figure 9.1: Resampling: Eine Stichprobe wird mehrfach (hier 3 Mal) zu 70% in ein Train- und zu 30% in die Test-Stichprobe aufgeteilt
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:resampling"></span>
+<img src="080-Resampling-Tuning_files/figure-html/resampling-1.png" alt="Resampling: Eine Stichprobe wird mehrfach (hier 3 Mal) zu 70% in ein Train- und zu 30% in die Test-Stichprobe aufgeteilt" width="100%" />
+<p class="caption">
+Figure 10.2: Resampling: Eine Stichprobe wird mehrfach (hier 3 Mal) zu 70% in ein Train- und zu 30% in die Test-Stichprobe aufgeteilt
 </p>
 </div>
-<p><span class="citation">Sauer (<a href="references.html#ref-modar" role="doc-biblioref">2019</a>)</span> stellt das Resampling so dar (S. 259), s. Abb. <a href="resampling-und-tuning-1.html#fig:cvmodar">9.2</a>.</p>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:cvmodar"></span>
-<img src="img/crossval.png" alt="Kreuzvalidierung, Aufteilung in Train- vs. Testsample" width="100%"><p class="caption">
-Figure 9.2: Kreuzvalidierung, Aufteilung in Train- vs. Testsample
+<p><span class="citation">Sauer (<a href="#ref-modar" role="doc-biblioref">2019</a>)</span> stellt das Resampling so dar (S. 259), s. Abb. <a href="resampling-und-tuning-1.html#fig:cvmodar">10.3</a>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:cvmodar"></span>
+<img src="img/crossval.png" alt="Kreuzvalidierung, Aufteilung in Train- vs. Testsample" width="100%" />
+<p class="caption">
+Figure 10.3: Kreuzvalidierung, Aufteilung in Train- vs. Testsample
 </p>
 </div>
 <p>Der Gesamtfehler der Vorhersage wird als Mittelwerte der Vorhersagefehler in den einzelnen Faltungen berechnet.</p>
@@ -197,29 +592,27 @@ nachdem sich eine Schätzung in Mittelwert und Variabilität stabilisiert mit st
 Stichprobenumfang,
 dem wahren Mittelwert also präziser schätzt.
 Bei Normalverteilungen klappt das gut,
-bei randlastigen Verteilungen leider nicht mehr <span class="citation">(<a href="references.html#ref-fattails" role="doc-biblioref">Taleb 2019</a>)</span>.</p>
+bei randlastigen Verteilungen leider nicht mehr <span class="citation">(<a href="#ref-fattails" role="doc-biblioref">Taleb 2019</a>)</span>.</p>
 <p>Häufig werden <span class="math inline">\(v=10\)</span> Faltungen verwendet,
 was sich empirisch als guter Kompromiss von Rechenaufwand und Fehlerreduktion herausgestellt hat.</p>
 </div>
-<div id="wiederholte-kreuzvalidierung" class="section level3" number="9.3.2">
-<h3>
-<span class="header-section-number">9.3.2</span> Wiederholte Kreuzvalidierung<a class="anchor" aria-label="anchor" href="#wiederholte-kreuzvalidierung"><i class="fas fa-link"></i></a>
-</h3>
+<div id="wiederholte-kreuzvalidierung" class="section level3" number="10.4.2">
+<h3><span class="header-section-number">10.4.2</span> Wiederholte Kreuzvalidierung</h3>
 <p>Die <span class="math inline">\(r\)</span>-fach wiederholte Kreuzvalidierung wiederholte die einfache Kreuzvalidierung mehrfach (nämlich <span class="math inline">\(r=4\)</span> mal),
-<span class="citation">Sauer (<a href="references.html#ref-modar" role="doc-biblioref">2019</a>)</span> stellt das Resampling so dar (S. 259), s. Abb. <a href="resampling-und-tuning-1.html#fig:cvrep">9.3</a>.</p>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:cvrep"></span>
-<img src="img/crossval_repeated.png" alt="Wiederholte Kreuzvalidierung" width="100%"><p class="caption">
-Figure 9.3: Wiederholte Kreuzvalidierung
+<span class="citation">Sauer (<a href="#ref-modar" role="doc-biblioref">2019</a>)</span> stellt das Resampling so dar (S. 259), s. Abb. <a href="resampling-und-tuning-1.html#fig:cvrep">10.4</a>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:cvrep"></span>
+<img src="img/crossval_repeated.png" alt="Wiederholte Kreuzvalidierung" width="100%" />
+<p class="caption">
+Figure 10.4: Wiederholte Kreuzvalidierung
 </p>
 </div>
 <p>Die wiederholte Kreuzvalidierung reduziert den Standardfehler der Vorhersagen.</p>
-<p><span class="citation">Silge and Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span> zeigen die Verringerung des Schätzfehlers als Funktion der <span class="math inline">\(r\)</span> Wiederholungen dar,
-s. Abb. <a href="resampling-und-tuning-1.html#fig:repcvred">9.4</a>.</p>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:repcvred"></span>
-<img src="https://www.tmwr.org/figures/variance-reduction-1.png" alt="Reduktion des Schätzfehlers als Funktion der r Wiederhoulugen der Kreuzvalidierung" width="100%"><p class="caption">
-Figure 9.4: Reduktion des Schätzfehlers als Funktion der r Wiederhoulugen der Kreuzvalidierung
+<p><span class="citation">Silge and Kuhn (<a href="#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span> zeigen die Verringerung des Schätzfehlers als Funktion der <span class="math inline">\(r\)</span> Wiederholungen dar,
+s. Abb. <a href="resampling-und-tuning-1.html#fig:repcvred">10.5</a>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:repcvred"></span>
+<img src="https://www.tmwr.org/figures/variance-reduction-1.png" alt="Reduktion des Schätzfehlers als Funktion der r Wiederhoulugen der Kreuzvalidierung" width="100%" />
+<p class="caption">
+Figure 10.5: Reduktion des Schätzfehlers als Funktion der r Wiederhoulugen der Kreuzvalidierung
 </p>
 </div>
 <p>Warum ist die Wiederholung der Kreuzvalidierung nützlich?</p>
@@ -229,35 +622,31 @@ Mit höherem Stichprobenumfang kann diese Schätzung natürlich präzisiert werd
 <p>Da jede Stichprobenverteilung bei <span class="math inline">\(n \rightarrow \infty\)</span> normalverteilt ist -
 ein zentrales Theorem der Statistik, der <em>Zentrale Grenzwertsatz</em> (Central Limit Theorem) -
 kann man hoffen, dass sich eine bestimmte Stichprobenverteilung bei kleinerem <span class="math inline">\(n\)</span> ebenfalls annähernd
-normalverteilt<a href="references.html#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>.
+normalverteilt<a href="references.html#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.
 Dann sind die Quantile bekannt und man kann die Streuung der Schätzers,
 <span class="math inline">\({\sigma }_{\bar {x}}\)</span>, z.B. für den Mittelwert,
 einfach schätzen:</p>
 <p><span class="math display">\[{\displaystyle {\sigma }_{\bar {x}}\ ={\frac {\sigma }{\sqrt {n}}}}\]</span></p>
 </div>
-<div id="resampling-passiert-im-train-sample" class="section level3" number="9.3.3">
-<h3>
-<span class="header-section-number">9.3.3</span> Resampling passiert im Train-Sample<a class="anchor" aria-label="anchor" href="#resampling-passiert-im-train-sample"><i class="fas fa-link"></i></a>
-</h3>
+<div id="resampling-passiert-im-train-sample" class="section level3" number="10.4.3">
+<h3><span class="header-section-number">10.4.3</span> Resampling passiert im Train-Sample</h3>
 <p>Wichtig zu beachten ist, dass
 die Resampling nur im Train-Sample stattfindet.
 Das Test-Sample bleibt unangerührt.
-Dieser Sachverhalt ist in Abb. <a href="resampling-und-tuning-1.html#fig:initialsplit">9.5</a>, aus <span class="citation">Silge and Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span>, illustriert.</p>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:initialsplit"></span>
-<img src="https://www.tmwr.org/premade/resampling.svg" alt="Resampling im Train-, nicht im Test-Sample" width="100%"><p class="caption">
-Figure 9.5: Resampling im Train-, nicht im Test-Sample
+Dieser Sachverhalt ist in Abb. <a href="resampling-und-tuning-1.html#fig:initialsplit">10.6</a>, aus <span class="citation">Silge and Kuhn (<a href="#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span>, illustriert.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:initialsplit"></span>
+<img src="https://www.tmwr.org/premade/resampling.svg" alt="Resampling im Train-, nicht im Test-Sample" width="100%" />
+<p class="caption">
+Figure 10.6: Resampling im Train-, nicht im Test-Sample
 </p>
 </div>
-<p>Wie in Abb. <a href="resampling-und-tuning-1.html#fig:initialsplit">9.5</a> dargestellt,
+<p>Wie in Abb. <a href="resampling-und-tuning-1.html#fig:initialsplit">10.6</a> dargestellt,
 wird das Modell im <em>Analyse-Sample</em> berechnet (gefittet),
 und im <em>Assessment-Sample</em> auf Modellgüte hin überprüft.</p>
 <p>Die letztliche Modellgüte ist dann die Zusammenfassung (Mittelwert) der einzelnen Resamples.</p>
 </div>
-<div id="andere-illustrationen" class="section level3" number="9.3.4">
-<h3>
-<span class="header-section-number">9.3.4</span> Andere Illustrationen<a class="anchor" aria-label="anchor" href="#andere-illustrationen"><i class="fas fa-link"></i></a>
-</h3>
+<div id="andere-illustrationen" class="section level3" number="10.4.4">
+<h3><span class="header-section-number">10.4.4</span> Andere Illustrationen</h3>
 <p>Es gibt eine Reihe vergleichbarer Illustrationen in anderen Büchern:</p>
 <ul>
 <li><a href="https://datasciencebook.ca/img/cv.png">Timbers, Campbell &amp; Lee, 2022, Kap. 6</a></li>
@@ -268,63 +657,58 @@ und im <em>Assessment-Sample</em> auf Modellgüte hin überprüft.</p>
 </ul>
 </div>
 </div>
-<div id="gesetz-der-großen-zahl" class="section level2" number="9.4">
-<h2>
-<span class="header-section-number">9.4</span> Gesetz der großen Zahl<a class="anchor" aria-label="anchor" href="#gesetz-der-gro%C3%9Fen-zahl"><i class="fas fa-link"></i></a>
-</h2>
+<div id="gesetz-der-großen-zahl" class="section level2" number="10.5">
+<h2><span class="header-section-number">10.5</span> Gesetz der großen Zahl</h2>
 <p>Nach dem <em>Gesetz der großen Zahl</em> (Law of Large Numbers) sollte sich der Mittelwert einer großen Stichprobe
 dem theoretischen Mittelwert der zugrundeliegenden Verteilung (Population, datengeneriender Prozess)
 sehr nahe kommen.</p>
 <p><span class="math display">\[\displaystyle \lim _{n\to \infty }\sum _{i=1}^{n}{\frac {X_{i}}{n}}={\overline {X}}\]</span></p>
-<p>David Salazar visualisiert das folgendermaßen in <a href="https://david-salazar.github.io/2020/04/17/fat-vs-thin-does-lln-work/">diesem Post</a> seines lesenswerten <a href="https://david-salazar.github.io/">Blogs</a>, s. Abb. <a href="resampling-und-tuning-1.html#fig:lln">9.6</a>.</p>
-<div class="sourceCode" id="cb315"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># source: https://david-salazar.github.io/2020/04/17/fat-vs-thin-does-lln-work/</span>
-<span class="va">samples</span> <span class="op">&lt;-</span> <span class="fl">1000</span>
-
-<span class="va">thin</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">samples</span>, sd <span class="op">=</span> <span class="fl">20</span><span class="op">)</span>
-
-<span class="va">cumulative_mean</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">numbers</span><span class="op">)</span> <span class="op">{</span>
-    <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">numbers</span><span class="op">)</span><span class="op">)</span>
-    <span class="va">cum_mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cumsum.html">cumsum</a></span><span class="op">(</span><span class="va">numbers</span><span class="op">)</span><span class="op">/</span><span class="va">x</span> 
-    <span class="va">cum_mean</span>
-<span class="op">}</span>
-
-<span class="va">thin_cum_mean</span> <span class="op">&lt;-</span> <span class="fu">cumulative_mean</span><span class="op">(</span><span class="va">thin</span><span class="op">)</span>
-
-<span class="va">thin_cum_mean</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>running_mean <span class="op">=</span> <span class="va">.</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/add_rownames.html">add_rownames</a></span><span class="op">(</span>var <span class="op">=</span> <span class="st">'number_samples'</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>number_samples <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/double.html">as.double</a></span><span class="op">(</span><span class="va">number_samples</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">number_samples</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">number_samples</span>, y <span class="op">=</span> <span class="va">running_mean</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">'dodgerblue4'</span><span class="op">)</span> <span class="op">+</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_hline</a></span><span class="op">(</span>yintercept <span class="op">=</span> <span class="fl">0</span>, linetype <span class="op">=</span> <span class="fl">2</span>, color <span class="op">=</span> <span class="st">'red'</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">hrbrthemes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/hrbrthemes/man/theme_ipsum_rc.html">theme_ipsum_rc</a></span><span class="op">(</span>grid <span class="op">=</span> <span class="st">'Y'</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/comma.html">comma</a></span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Stichprobengröße"</span>,
-       title <span class="op">=</span> <span class="st">"Gesetz der großen Zahl"</span>, 
-       subtitle <span class="op">=</span> <span class="st">"Kumulierter Mittelwert aus einer Normalverteilung mit sd=20"</span><span class="op">)</span></code></pre></div>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:lln"></span>
-<img src="080-Resampling-Tuning_files/figure-html/lln-1.png" alt="Gesetz der großen Zahl" width="100%"><p class="caption">
-Figure 9.6: Gesetz der großen Zahl
+<p>David Salazar visualisiert das folgendermaßen in <a href="https://david-salazar.github.io/2020/04/17/fat-vs-thin-does-lln-work/">diesem Post</a> seines lesenswerten <a href="https://david-salazar.github.io/">Blogs</a>, s. Abb. <a href="resampling-und-tuning-1.html#fig:lln">10.7</a>.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="resampling-und-tuning-1.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># source: https://david-salazar.github.io/2020/04/17/fat-vs-thin-does-lln-work/</span></span>
+<span id="cb9-2"><a href="resampling-und-tuning-1.html#cb9-2" aria-hidden="true" tabindex="-1"></a>samples <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb9-3"><a href="resampling-und-tuning-1.html#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="resampling-und-tuning-1.html#cb9-4" aria-hidden="true" tabindex="-1"></a>thin <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(samples, <span class="at">sd =</span> <span class="dv">20</span>)</span>
+<span id="cb9-5"><a href="resampling-und-tuning-1.html#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="resampling-und-tuning-1.html#cb9-6" aria-hidden="true" tabindex="-1"></a>cumulative_mean <span class="ot">&lt;-</span> <span class="cf">function</span>(numbers) {</span>
+<span id="cb9-7"><a href="resampling-und-tuning-1.html#cb9-7" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="fu">length</span>(numbers))</span>
+<span id="cb9-8"><a href="resampling-und-tuning-1.html#cb9-8" aria-hidden="true" tabindex="-1"></a>    cum_mean <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(numbers)<span class="sc">/</span>x </span>
+<span id="cb9-9"><a href="resampling-und-tuning-1.html#cb9-9" aria-hidden="true" tabindex="-1"></a>    cum_mean</span>
+<span id="cb9-10"><a href="resampling-und-tuning-1.html#cb9-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-11"><a href="resampling-und-tuning-1.html#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="resampling-und-tuning-1.html#cb9-12" aria-hidden="true" tabindex="-1"></a>thin_cum_mean <span class="ot">&lt;-</span> <span class="fu">cumulative_mean</span>(thin)</span>
+<span id="cb9-13"><a href="resampling-und-tuning-1.html#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="resampling-und-tuning-1.html#cb9-14" aria-hidden="true" tabindex="-1"></a>thin_cum_mean <span class="sc">%&gt;%</span></span>
+<span id="cb9-15"><a href="resampling-und-tuning-1.html#cb9-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">running_mean =</span> .) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-16"><a href="resampling-und-tuning-1.html#cb9-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_rownames</span>(<span class="at">var =</span> <span class="st">&#39;number_samples&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-17"><a href="resampling-und-tuning-1.html#cb9-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">number_samples =</span> <span class="fu">as.double</span>(number_samples)) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-18"><a href="resampling-und-tuning-1.html#cb9-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(number_samples) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-19"><a href="resampling-und-tuning-1.html#cb9-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> number_samples, <span class="at">y =</span> running_mean)) <span class="sc">+</span></span>
+<span id="cb9-20"><a href="resampling-und-tuning-1.html#cb9-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&#39;dodgerblue4&#39;</span>) <span class="sc">+</span></span>
+<span id="cb9-21"><a href="resampling-und-tuning-1.html#cb9-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="dv">2</span>, <span class="at">color =</span> <span class="st">&#39;red&#39;</span>) <span class="sc">+</span></span>
+<span id="cb9-22"><a href="resampling-und-tuning-1.html#cb9-22" aria-hidden="true" tabindex="-1"></a>  hrbrthemes<span class="sc">::</span><span class="fu">theme_ipsum_rc</span>(<span class="at">grid =</span> <span class="st">&#39;Y&#39;</span>) <span class="sc">+</span></span>
+<span id="cb9-23"><a href="resampling-und-tuning-1.html#cb9-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>comma) <span class="sc">+</span></span>
+<span id="cb9-24"><a href="resampling-und-tuning-1.html#cb9-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Stichprobengröße&quot;</span>,</span>
+<span id="cb9-25"><a href="resampling-und-tuning-1.html#cb9-25" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;Gesetz der großen Zahl&quot;</span>, </span>
+<span id="cb9-26"><a href="resampling-und-tuning-1.html#cb9-26" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Kumulierter Mittelwert aus einer Normalverteilung mit sd=20&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:lln"></span>
+<img src="080-Resampling-Tuning_files/figure-html/lln-1.png" alt="Gesetz der großen Zahl" width="100%" />
+<p class="caption">
+Figure 10.7: Gesetz der großen Zahl
 </p>
 </div>
 <p>Wie man sieht, nähert sich der empirische Mittelwert (also in der Stichprobe)
 immer mehr dem theoretischen Mittelwert, 0, an.</p>
-<p>Achtung: Bei randlastigen Verteilungen darf man dieses schöne, wohlerzogene Verhalten nicht erwarten <span class="citation">(<a href="references.html#ref-fattails" role="doc-biblioref">Taleb 2019</a>)</span>.</p>
+<p>Achtung: Bei randlastigen Verteilungen darf man dieses schöne, wohlerzogene Verhalten nicht erwarten <span class="citation">(<a href="#ref-fattails" role="doc-biblioref">Taleb 2019</a>)</span>.</p>
 </div>
-<div id="über--und-unteranpassung-an-einem-beispiel" class="section level2" number="9.5">
-<h2>
-<span class="header-section-number">9.5</span> Über- und Unteranpassung an einem Beispiel<a class="anchor" aria-label="anchor" href="#%C3%BCber--und-unteranpassung-an-einem-beispiel"><i class="fas fa-link"></i></a>
-</h2>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:overfitting-4-plots"></span>
-<img src="080-Resampling-Tuning_files/figure-html/overfitting-4-plots-1.png" alt="Welches Modell (Teile C-E) passt am besten zu den Daten (Teil B)? Die 'wahre Funktion', der datengenerierende Prozess ist im Teil A dargestellt" width="100%"><p class="caption">
-Figure 9.7: Welches Modell (Teile C-E) passt am besten zu den Daten (Teil B)? Die ‘wahre Funktion’, der datengenerierende Prozess ist im Teil A dargestellt
+<div id="über--und-unteranpassung-an-einem-beispiel" class="section level2" number="10.6">
+<h2><span class="header-section-number">10.6</span> Über- und Unteranpassung an einem Beispiel</h2>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:overfitting-4-plots"></span>
+<img src="080-Resampling-Tuning_files/figure-html/overfitting-4-plots-1.png" alt="Welches Modell (Teile C-E) passt am besten zu den Daten (Teil B)? Die 'wahre Funktion', der datengenerierende Prozess ist im Teil A dargestellt" width="100%" />
+<p class="caption">
+Figure 10.8: Welches Modell (Teile C-E) passt am besten zu den Daten (Teil B)? Die ‘wahre Funktion’, der datengenerierende Prozess ist im Teil A dargestellt
 </p>
 </div>
-<p>Abb. <a href="resampling-und-tuning-1.html#fig:overfitting-4-plots">9.7</a> zeigt:</p>
+<p>Abb. <a href="resampling-und-tuning-1.html#fig:overfitting-4-plots">10.8</a> zeigt:</p>
 <ul>
 <li>Teil <em>A</em>: Die ‘wahre Funktion’, <span class="math inline">\(f\)</span>, die die Daten erzeugt. Man spricht auch von der “datengenerierenden Funktion”. Wir gehen gemeinhin davon aus, dass es eine wahre Funktion gibt. Das heißt nicht, dass die wahre Funktion die Daten perfekt erklärt, schließlich kann die Funktion zwar wahr, aber unvollständig sein oder unsere Messinstrumente sind nicht perfekt präzise.</li>
 <li>Teil <em>B:</em> Die Daten, erzeugt aus A plus etwas zufälliges Fehler (Rauschen).</li>
@@ -333,19 +717,14 @@ Figure 9.7: Welches Modell (Teile C-E) passt am besten zu den Daten (Teil B)? Di
 <li>Teil <em>E</em>: Ein Modell mittlerer Komplexität. Keine Überanpassung, keine Unteranpassung. Vorhersagen in einer neuen Stichprobe (basierend auf dem datengenerierenden Prozess aus A) werden gut sein.</li>
 </ul>
 </div>
-<div id="cv-in-tidymodels" class="section level2" number="9.6">
-<h2>
-<span class="header-section-number">9.6</span> CV in tidymodels<a class="anchor" aria-label="anchor" href="#cv-in-tidymodels"><i class="fas fa-link"></i></a>
-</h2>
-<div id="cv-definieren" class="section level3" number="9.6.1">
-<h3>
-<span class="header-section-number">9.6.1</span> CV definieren<a class="anchor" aria-label="anchor" href="#cv-definieren"><i class="fas fa-link"></i></a>
-</h3>
+<div id="cv-in-tidymodels" class="section level2" number="10.7">
+<h2><span class="header-section-number">10.7</span> CV in tidymodels</h2>
+<div id="cv-definieren" class="section level3" number="10.7.1">
+<h3><span class="header-section-number">10.7.1</span> CV definieren</h3>
 <p>So kann man eine <em>einfache</em> v-fache Kreuzvalidierung in Tidymodels auszeichnen:</p>
-<div class="sourceCode" id="cb316"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">2453</span><span class="op">)</span>
-<span class="va">ames_folds</span> <span class="op">&lt;-</span> <span class="fu">vfold_cv</span><span class="op">(</span><span class="va">ames_train</span>, strata <span class="op">=</span> <span class="st">"Sale_Price"</span><span class="op">)</span>
-<span class="va">ames_folds</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="resampling-und-tuning-1.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2453</span>)</span>
+<span id="cb10-2"><a href="resampling-und-tuning-1.html#cb10-2" aria-hidden="true" tabindex="-1"></a>ames_folds <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(ames_train, <span class="at">strata =</span> <span class="st">&quot;Sale_Price&quot;</span>)</span>
+<span id="cb10-3"><a href="resampling-und-tuning-1.html#cb10-3" aria-hidden="true" tabindex="-1"></a>ames_folds</span></code></pre></div>
 <pre><code>## #  10-fold cross-validation using stratification 
 ## # A tibble: 10 × 2
 ##    splits             id    
@@ -361,19 +740,17 @@ Figure 9.7: Welches Modell (Teile C-E) passt am besten zu den Daten (Teil B)? Di
 ##  9 &lt;split [1979/218]&gt; Fold09
 ## 10 &lt;split [1980/217]&gt; Fold10</code></pre>
 <p>Werfen wir einen Blick in die Spalte <code>splits</code>, erste Zeile:</p>
-<div class="sourceCode" id="cb318"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ames_folds</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="resampling-und-tuning-1.html#cb12-1" aria-hidden="true" tabindex="-1"></a>ames_folds <span class="sc">%&gt;%</span> <span class="fu">pluck</span>(<span class="dv">1</span>, <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## &lt;Analysis/Assess/Total&gt;
 ## &lt;1976/221/2197&gt;</code></pre>
 <p>Möchte man die Defaults vpn <code>vfold_cv</code> wissen, schaut man in der Hilfe nach: <code>?vfold_cv</code>:</p>
 <p><code>vfold_cv(data, v = 10, repeats = 1, strata = NULL, breaks = 4, pool = 0.1, ...)</code></p>
 <p>Probieren wir <span class="math inline">\(v=5\)</span> und <span class="math inline">\(r=2\)</span>:</p>
-<div class="sourceCode" id="cb320"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ames_folds_rep</span> <span class="op">&lt;-</span> <span class="fu">vfold_cv</span><span class="op">(</span><span class="va">ames_train</span>, 
-                           strata <span class="op">=</span> <span class="st">"Sale_Price"</span>, 
-                           v <span class="op">=</span> <span class="fl">5</span>,
-                           repeats <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
-<span class="va">ames_folds_rep</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="resampling-und-tuning-1.html#cb14-1" aria-hidden="true" tabindex="-1"></a>ames_folds_rep <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(ames_train, </span>
+<span id="cb14-2"><a href="resampling-und-tuning-1.html#cb14-2" aria-hidden="true" tabindex="-1"></a>                           <span class="at">strata =</span> <span class="st">&quot;Sale_Price&quot;</span>, </span>
+<span id="cb14-3"><a href="resampling-und-tuning-1.html#cb14-3" aria-hidden="true" tabindex="-1"></a>                           <span class="at">v =</span> <span class="dv">5</span>,</span>
+<span id="cb14-4"><a href="resampling-und-tuning-1.html#cb14-4" aria-hidden="true" tabindex="-1"></a>                           <span class="at">repeats =</span> <span class="dv">2</span>)</span>
+<span id="cb14-5"><a href="resampling-und-tuning-1.html#cb14-5" aria-hidden="true" tabindex="-1"></a>ames_folds_rep</span></code></pre></div>
 <pre><code>## #  5-fold cross-validation repeated 2 times using stratification 
 ## # A tibble: 10 × 3
 ##    splits             id      id2  
@@ -389,40 +766,33 @@ Figure 9.7: Welches Modell (Teile C-E) passt am besten zu den Daten (Teil B)? Di
 ##  9 &lt;split [1758/439]&gt; Repeat2 Fold4
 ## 10 &lt;split [1760/437]&gt; Repeat2 Fold5</code></pre>
 </div>
-<div id="resamples-fitten" class="section level3" number="9.6.2">
-<h3>
-<span class="header-section-number">9.6.2</span> Resamples fitten<a class="anchor" aria-label="anchor" href="#resamples-fitten"><i class="fas fa-link"></i></a>
-</h3>
+<div id="resamples-fitten" class="section level3" number="10.7.2">
+<h3><span class="header-section-number">10.7.2</span> Resamples fitten</h3>
 <p>Hat unser Computer mehrere Rechenkerne, dann können wir diese nutzen und die Berechnungen beschleunigen.
 Im Standard wird sonst nur ein Kern verwendet.</p>
-<div class="sourceCode" id="cb322"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mycores</span> <span class="op">&lt;-</span> <span class="fu">parallel</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/parallel/detectCores.html">detectCores</a></span><span class="op">(</span>logical <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="va">mycores</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="resampling-und-tuning-1.html#cb16-1" aria-hidden="true" tabindex="-1"></a>mycores <span class="ot">&lt;-</span> parallel<span class="sc">::</span><span class="fu">detectCores</span>(<span class="at">logical =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb16-2"><a href="resampling-und-tuning-1.html#cb16-2" aria-hidden="true" tabindex="-1"></a>mycores</span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
 <p>Auf Unix/MacOC-Systemen kann man dann die Anzahl der parallen Kerne so einstellen:</p>
-<div class="sourceCode" id="cb324"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">doMC</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/doMC/man/registerDoMC.html">registerDoMC</a></span><span class="op">(</span>cores <span class="op">=</span> <span class="va">mycores</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="resampling-und-tuning-1.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(doMC)</span>
+<span id="cb18-2"><a href="resampling-und-tuning-1.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">registerDoMC</span>(<span class="at">cores =</span> mycores)</span></code></pre></div>
 <p>So, und jetzt fitten wir die Resamples und trachten die Modellgüte in den Resamples:</p>
-<div class="sourceCode" id="cb325"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ames_resamples_fit</span> <span class="op">&lt;-</span> 
-  <span class="va">ames_wflow</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://tune.tidymodels.org/reference/fit_resamples.html">fit_resamples</a></span><span class="op">(</span><span class="va">ames_folds</span><span class="op">)</span>
-
- <span class="va">ames_resamples_fit</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://tune.tidymodels.org/reference/collect_predictions.html">collect_metrics</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="resampling-und-tuning-1.html#cb19-1" aria-hidden="true" tabindex="-1"></a>ames_resamples_fit <span class="ot">&lt;-</span> </span>
+<span id="cb19-2"><a href="resampling-und-tuning-1.html#cb19-2" aria-hidden="true" tabindex="-1"></a>  ames_wflow <span class="sc">%&gt;%</span> </span>
+<span id="cb19-3"><a href="resampling-und-tuning-1.html#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit_resamples</span>(ames_folds)</span>
+<span id="cb19-4"><a href="resampling-und-tuning-1.html#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="resampling-und-tuning-1.html#cb19-5" aria-hidden="true" tabindex="-1"></a> ames_resamples_fit <span class="sc">%&gt;%</span></span>
+<span id="cb19-6"><a href="resampling-und-tuning-1.html#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 6
 ##   .metric .estimator   mean     n std_err .config             
 ##   &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;               
 ## 1 rmse    standard   0.0928    10 0.00187 Preprocessor1_Model1
 ## 2 rsq     standard   0.722     10 0.00864 Preprocessor1_Model1</code></pre>
 <p>Natürlich interessiert uns primär die Modellgüte im Test-Sample:</p>
-<div class="sourceCode" id="cb327"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">final_ames</span> <span class="op">&lt;-</span>
-  <span class="fu"><a href="https://tune.tidymodels.org/reference/last_fit.html">last_fit</a></span><span class="op">(</span><span class="va">ames_wflow</span>, <span class="va">data_split</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb328"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">final_ames</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://tune.tidymodels.org/reference/collect_predictions.html">collect_metrics</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="resampling-und-tuning-1.html#cb21-1" aria-hidden="true" tabindex="-1"></a>final_ames <span class="ot">&lt;-</span></span>
+<span id="cb21-2"><a href="resampling-und-tuning-1.html#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">last_fit</span>(ames_wflow, data_split)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="resampling-und-tuning-1.html#cb22-1" aria-hidden="true" tabindex="-1"></a>final_ames <span class="sc">%&gt;%</span> </span>
+<span id="cb22-2"><a href="resampling-und-tuning-1.html#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 4
 ##   .metric .estimator .estimate .config             
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;               
@@ -430,37 +800,29 @@ Im Standard wird sonst nur ein Kern verwendet.</p>
 ## 2 rsq     standard       0.678 Preprocessor1_Model1</code></pre>
 </div>
 </div>
-<div id="tuning" class="section level2" number="9.7">
-<h2>
-<span class="header-section-number">9.7</span> Tuning<a class="anchor" aria-label="anchor" href="#tuning"><i class="fas fa-link"></i></a>
-</h2>
-<div id="tuning-auszeichnen" class="section level3" number="9.7.1">
-<h3>
-<span class="header-section-number">9.7.1</span> Tuning auszeichnen<a class="anchor" aria-label="anchor" href="#tuning-auszeichnen"><i class="fas fa-link"></i></a>
-</h3>
-<p>In der Modellspezifikation des Modells können wir mit <code><a href="https://rdrr.io/pkg/hardhat/man/tune.html">tune()</a></code> auszeichnen,
+<div id="tuning" class="section level2" number="10.8">
+<h2><span class="header-section-number">10.8</span> Tuning</h2>
+<div id="tuning-auszeichnen" class="section level3" number="10.8.1">
+<h3><span class="header-section-number">10.8.1</span> Tuning auszeichnen</h3>
+<p>In der Modellspezifikation des Modells können wir mit <code>tune()</code> auszeichnen,
 welche Parameter wir tunen möchten.
 Wir könenn</p>
-<div class="sourceCode" id="cb330"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">knn_model</span> <span class="op">&lt;-</span>
-  <span class="fu">nearest_neighbor</span><span class="op">(</span>
-    mode <span class="op">=</span> <span class="st">"regression"</span>,
-    neighbors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/hardhat/man/tune.html">tune</a></span><span class="op">(</span><span class="op">)</span>
-  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">set_engine</span><span class="op">(</span><span class="st">"kknn"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="resampling-und-tuning-1.html#cb24-1" aria-hidden="true" tabindex="-1"></a>knn_model <span class="ot">&lt;-</span></span>
+<span id="cb24-2"><a href="resampling-und-tuning-1.html#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nearest_neighbor</span>(</span>
+<span id="cb24-3"><a href="resampling-und-tuning-1.html#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">mode =</span> <span class="st">&quot;regression&quot;</span>,</span>
+<span id="cb24-4"><a href="resampling-und-tuning-1.html#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">neighbors =</span> <span class="fu">tune</span>()</span>
+<span id="cb24-5"><a href="resampling-und-tuning-1.html#cb24-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb24-6"><a href="resampling-und-tuning-1.html#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&quot;kknn&quot;</span>)</span></code></pre></div>
 <p>Wir können dem Tuningparameter auch einen Namen (ID/Laben) geben, z.B. “K”:</p>
-<div class="sourceCode" id="cb331"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">knn_model</span> <span class="op">&lt;-</span>
-  <span class="fu">nearest_neighbor</span><span class="op">(</span>
-    mode <span class="op">=</span> <span class="st">"regression"</span>,
-    neighbors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/hardhat/man/tune.html">tune</a></span><span class="op">(</span><span class="st">"K"</span><span class="op">)</span>
-  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">set_engine</span><span class="op">(</span><span class="st">"kknn"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="resampling-und-tuning-1.html#cb25-1" aria-hidden="true" tabindex="-1"></a>knn_model <span class="ot">&lt;-</span></span>
+<span id="cb25-2"><a href="resampling-und-tuning-1.html#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nearest_neighbor</span>(</span>
+<span id="cb25-3"><a href="resampling-und-tuning-1.html#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">mode =</span> <span class="st">&quot;regression&quot;</span>,</span>
+<span id="cb25-4"><a href="resampling-und-tuning-1.html#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">neighbors =</span> <span class="fu">tune</span>(<span class="st">&quot;K&quot;</span>)</span>
+<span id="cb25-5"><a href="resampling-und-tuning-1.html#cb25-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb25-6"><a href="resampling-und-tuning-1.html#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&quot;kknn&quot;</span>)</span></code></pre></div>
 </div>
-<div id="grid-search-vs.-iterative-search" class="section level3" number="9.7.2">
-<h3>
-<span class="header-section-number">9.7.2</span> Grid Search vs. Iterative Search<a class="anchor" aria-label="anchor" href="#grid-search-vs.-iterative-search"><i class="fas fa-link"></i></a>
-</h3>
+<div id="grid-search-vs.-iterative-search" class="section level3" number="10.8.2">
+<h3><span class="header-section-number">10.8.2</span> Grid Search vs. Iterative Search</h3>
 <p>Im K-Nächste-Nachbarn-Modell ist der vorhergesagt Wert, <span class="math inline">\(\hat{y}\)</span> für eine neue Beobachtung <span class="math inline">\(x_0\)</span> wie folgt definiert:</p>
 <p><span class="math display">\[
 \hat y = \frac{1}{K}\sum_{\ell = 1}^K x_\ell^*,
@@ -472,13 +834,13 @@ Es liegt an den Nutzi,
 diesen Wert zu wählen.</p>
 <p>Parameter dieser Art (die von den Nutzi zu bestimmen sind, nicht vom Algorithmus),
 nennt man <em>Tuningparameter</em>.</p>
-<p>Abbildung <a href="resampling-und-tuning-1.html#fig:nnoverfit">9.8</a> aus <span class="citation">Silge and Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span> stellt exemplarisch dar,
+<p>Abbildung <a href="resampling-und-tuning-1.html#fig:nnoverfit">10.9</a> aus <span class="citation">Silge and Kuhn (<a href="#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span> stellt exemplarisch dar,
 welchen großen Einfluss die Wahl des Werts eines Tuningparameters auf die
 Vorhersagen eines Modells haben.</p>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:nnoverfit"></span>
-<img src="https://www.tmwr.org/figures/two-class-boundaries-1.png" alt="Overfitting als Funktion der Modellparameter und insofern als Problem de Wahl der Tuningparameter" width="100%"><p class="caption">
-Figure 9.8: Overfitting als Funktion der Modellparameter und insofern als Problem de Wahl der Tuningparameter
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:nnoverfit"></span>
+<img src="https://www.tmwr.org/figures/two-class-boundaries-1.png" alt="Overfitting als Funktion der Modellparameter und insofern als Problem de Wahl der Tuningparameter" width="100%" />
+<p class="caption">
+Figure 10.9: Overfitting als Funktion der Modellparameter und insofern als Problem de Wahl der Tuningparameter
 </p>
 </div>
 <p>Aber wie wählt man “gute” Werte der Tuningparater?
@@ -487,30 +849,25 @@ Zwei Ansätze, grob gesprochen, bieten sich an.</p>
 <li><p><em>Grid Search:</em> Probiere viele Werte aus und schaue, welcher der beste ist. Dabei musst du hoffen, dass du die Werte erwischt, die nicht nur im Train-, sondern auch im Test-Sample gut funktionieren werden.</p></li>
 <li><p><em>Iterative Search:</em> Wenn du einen Wert eines Tuningparameters hast, nutze diesen, um intelligenter einen neuen Wert eines Tuningparameters zu finden.</p></li>
 </ol>
-<p>Der Unterschied beider Ansätze ist in <span class="citation">Silge and Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span> wie in Abb. <a href="resampling-und-tuning-1.html#fig:tuning1">9.9</a> dargestellt.</p>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:tuning1"></span>
-<img src="https://www.tmwr.org/figures/tuning-strategies-1.png" alt="Links: Grid Search. Rechts: Iterative Search2" width="100%"><p class="caption">
-Figure 9.9: Links: Grid Search. Rechts: Iterative Search2
+<p>Der Unterschied beider Ansätze ist in <span class="citation">Silge and Kuhn (<a href="#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span> wie in Abb. <a href="resampling-und-tuning-1.html#fig:tuning1">10.10</a> dargestellt.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:tuning1"></span>
+<img src="https://www.tmwr.org/figures/tuning-strategies-1.png" alt="Links: Grid Search. Rechts: Iterative Search2" width="100%" />
+<p class="caption">
+Figure 10.10: Links: Grid Search. Rechts: Iterative Search2
 </p>
 </div>
-<p>In <code>tidymodels</code> kann man mit <code><a href="https://rdrr.io/pkg/hardhat/man/tune.html">tune()</a></code> angeben, dass man einen bestimmten Parameter tunen möchte.
+<p>In <code>tidymodels</code> kann man mit <code>tune()</code> angeben, dass man einen bestimmten Parameter tunen möchte.
 <code>tidymodels</code> führt das dann ohne weiteres Federlesens für uns durch.</p>
 </div>
 </div>
-<div id="tuning-mit-tidymodels" class="section level2" number="9.8">
-<h2>
-<span class="header-section-number">9.8</span> Tuning mit Tidymodels<a class="anchor" aria-label="anchor" href="#tuning-mit-tidymodels"><i class="fas fa-link"></i></a>
-</h2>
-<div id="tuningparameter-betrachten" class="section level4" number="9.8.0.1">
-<h4>
-<span class="header-section-number">9.8.0.1</span> Tuningparameter betrachten<a class="anchor" aria-label="anchor" href="#tuningparameter-betrachten"><i class="fas fa-link"></i></a>
-</h4>
+<div id="tuning-mit-tidymodels" class="section level2" number="10.9">
+<h2><span class="header-section-number">10.9</span> Tuning mit Tidymodels</h2>
+<div id="tuningparameter-betrachten" class="section level4" number="10.9.0.1">
+<h4><span class="header-section-number">10.9.0.1</span> Tuningparameter betrachten</h4>
 <p>Möchte man wissen,
 welche und wie viele Tuningparameter tidymodels in einem Modell berücksichtigt,
-kann man <code><a href="https://rdrr.io/pkg/hardhat/man/hardhat-extract.html">extract_parameter_set_dials()</a></code> aufrufen:</p>
-<div class="sourceCode" id="cb332"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/hardhat/man/hardhat-extract.html">extract_parameter_set_dials</a></span><span class="op">(</span><span class="va">knn_model</span><span class="op">)</span></code></pre></div>
+kann man <code>extract_parameter_set_dials()</code> aufrufen:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="resampling-und-tuning-1.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">extract_parameter_set_dials</span>(knn_model)</span></code></pre></div>
 <pre><code>## Collection of 1 parameters for tuning
 ## 
 ##  identifier      type    object
@@ -522,34 +879,29 @@ Außerdem sollen die Anzahl der Nachbarn getunt werden.
 Der Tuningparameter ist numerisch; das sieht man an <code>nparam[+]</code>.</p>
 <p>Schauen wir uns mal an,
 auf welchen Wertebereich <code>tidymodels</code> den Parameter <span class="math inline">\(K\)</span> begrenzt hat:</p>
-<div class="sourceCode" id="cb334"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">knn_model</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">extract_parameter_dials</span><span class="op">(</span><span class="st">"K"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="resampling-und-tuning-1.html#cb28-1" aria-hidden="true" tabindex="-1"></a>knn_model <span class="sc">%&gt;%</span> </span>
+<span id="cb28-2"><a href="resampling-und-tuning-1.html#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_parameter_dials</span>(<span class="st">&quot;K&quot;</span>)</span></code></pre></div>
 <pre><code>## # Nearest Neighbors (quantitative)
 ## Range: [1, 15]</code></pre>
 <p>Aktualisieren wir mal unseren Workflow entsprechend:</p>
-<div class="sourceCode" id="cb336"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ames_wflow</span> <span class="op">&lt;-</span>
-  <span class="va">ames_wflow</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">update_model</span><span class="op">(</span><span class="va">knn_model</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="resampling-und-tuning-1.html#cb30-1" aria-hidden="true" tabindex="-1"></a>ames_wflow <span class="ot">&lt;-</span></span>
+<span id="cb30-2"><a href="resampling-und-tuning-1.html#cb30-2" aria-hidden="true" tabindex="-1"></a>  ames_wflow <span class="sc">%&gt;%</span> </span>
+<span id="cb30-3"><a href="resampling-und-tuning-1.html#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">update_model</span>(knn_model)</span></code></pre></div>
 <p>Wir können auch Einfluss nehmen und angeben,
 dass die Grenzen des Wertebereichs zwischen 1 und 50 liegen soll
 (für den Tuningparameter <code>neighbors</code>):</p>
-<div class="sourceCode" id="cb337"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ames_set</span> <span class="op">&lt;-</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/hardhat/man/hardhat-extract.html">extract_parameter_set_dials</a></span><span class="op">(</span><span class="va">ames_wflow</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://rdrr.io/r/stats/update.html">update</a></span><span class="op">(</span>K <span class="op">=</span> <span class="fu">neighbors</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">50</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-
-<span class="va">ames_set</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="resampling-und-tuning-1.html#cb31-1" aria-hidden="true" tabindex="-1"></a>ames_set <span class="ot">&lt;-</span></span>
+<span id="cb31-2"><a href="resampling-und-tuning-1.html#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_parameter_set_dials</span>(ames_wflow) <span class="sc">%&gt;%</span></span>
+<span id="cb31-3"><a href="resampling-und-tuning-1.html#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">update</span>(<span class="at">K =</span> <span class="fu">neighbors</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">50</span>)))</span>
+<span id="cb31-4"><a href="resampling-und-tuning-1.html#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-5"><a href="resampling-und-tuning-1.html#cb31-5" aria-hidden="true" tabindex="-1"></a>ames_set</span></code></pre></div>
 <pre><code>## Collection of 1 parameters for tuning
 ## 
 ##  identifier      type    object
 ##           K neighbors nparam[+]</code></pre>
 </div>
-<div id="datenabhängige-tuningparameter" class="section level3" number="9.8.1">
-<h3>
-<span class="header-section-number">9.8.1</span> Datenabhängige Tuningparameter<a class="anchor" aria-label="anchor" href="#datenabh%C3%A4ngige-tuningparameter"><i class="fas fa-link"></i></a>
-</h3>
+<div id="datenabhängige-tuningparameter" class="section level3" number="10.9.1">
+<h3><span class="header-section-number">10.9.1</span> Datenabhängige Tuningparameter</h3>
 <p>Manche Tuningparameter kann man nur bestimmen,
 wenn man den Datensatz kennt.
 So ist die Anzahl der Prädiktoren, <code>mtry</code> in einem Random-Forest-Modell
@@ -563,28 +915,24 @@ sondern lieber den Computer anweisen, und sinngemäß sagen:
 “Warte mal mit der Bestimmung der Werte der Tuningparameter,
 bis du den Datensatz bzw. dessen Dimensionen kennst. Merk dir,
 dass du, wenn du den Datensatz kennst, die Werte des Tuningparameter noch ändern musst. Und tu das dann auch.” Dazu später mehr.</p>
-<div class="sourceCode" id="cb339"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ames_set</span> <span class="op">&lt;-</span>
-  <span class="fu">workflow</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">add_model</span><span class="op">(</span><span class="va">knn_model</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">add_recipe</span><span class="op">(</span><span class="va">ames_rec</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/hardhat/man/hardhat-extract.html">extract_parameter_set_dials</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">finalize</span><span class="op">(</span><span class="va">ames_train</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="resampling-und-tuning-1.html#cb33-1" aria-hidden="true" tabindex="-1"></a>ames_set <span class="ot">&lt;-</span></span>
+<span id="cb33-2"><a href="resampling-und-tuning-1.html#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">workflow</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb33-3"><a href="resampling-und-tuning-1.html#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(knn_model) <span class="sc">%&gt;%</span> </span>
+<span id="cb33-4"><a href="resampling-und-tuning-1.html#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(ames_rec) <span class="sc">%&gt;%</span> </span>
+<span id="cb33-5"><a href="resampling-und-tuning-1.html#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_parameter_set_dials</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb33-6"><a href="resampling-und-tuning-1.html#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">finalize</span>(ames_train)</span></code></pre></div>
 </div>
-<div id="modelle-mit-tuning-berechnen" class="section level3" number="9.8.2">
-<h3>
-<span class="header-section-number">9.8.2</span> Modelle mit Tuning berechnen<a class="anchor" aria-label="anchor" href="#modelle-mit-tuning-berechnen"><i class="fas fa-link"></i></a>
-</h3>
+<div id="modelle-mit-tuning-berechnen" class="section level3" number="10.9.2">
+<h3><span class="header-section-number">10.9.2</span> Modelle mit Tuning berechnen</h3>
 <p>Nachdem wir die Tuningwerte bestimmt haben,
 können wir jetzt das Modell berechnen:
 Für jeden Wert des Tuningparameters wird ein Modell berechnet:</p>
-<div class="sourceCode" id="cb340"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ames_grid_search</span> <span class="op">&lt;-</span>
-  <span class="fu"><a href="https://tune.tidymodels.org/reference/tune_grid.html">tune_grid</a></span><span class="op">(</span>
-    <span class="va">ames_wflow</span>,
-    resamples <span class="op">=</span> <span class="va">ames_folds</span>
-  <span class="op">)</span>
-<span class="va">ames_grid_search</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="resampling-und-tuning-1.html#cb34-1" aria-hidden="true" tabindex="-1"></a>ames_grid_search <span class="ot">&lt;-</span></span>
+<span id="cb34-2"><a href="resampling-und-tuning-1.html#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tune_grid</span>(</span>
+<span id="cb34-3"><a href="resampling-und-tuning-1.html#cb34-3" aria-hidden="true" tabindex="-1"></a>    ames_wflow,</span>
+<span id="cb34-4"><a href="resampling-und-tuning-1.html#cb34-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">resamples =</span> ames_folds</span>
+<span id="cb34-5"><a href="resampling-und-tuning-1.html#cb34-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb34-6"><a href="resampling-und-tuning-1.html#cb34-6" aria-hidden="true" tabindex="-1"></a>ames_grid_search</span></code></pre></div>
 <pre><code>## # Tuning results
 ## # 10-fold cross-validation using stratification 
 ## # A tibble: 10 × 4
@@ -602,9 +950,8 @@ Für jeden Wert des Tuningparameters wird ein Modell berechnet:</p>
 ## 10 &lt;split [1980/217]&gt; Fold10 &lt;tibble [16 × 5]&gt; &lt;tibble [0 × 3]&gt;</code></pre>
 <p>Im Default berechnet <code>tiymodels</code> 10 Kandidatenmodelle.</p>
 <p>Die Spalte <code>.metrics</code> beinhaltet die Modellgüte für jedes Kandidatenmodell.</p>
-<div class="sourceCode" id="cb342"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ames_grid_search</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://tune.tidymodels.org/reference/collect_predictions.html">collect_metrics</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="resampling-und-tuning-1.html#cb36-1" aria-hidden="true" tabindex="-1"></a>ames_grid_search <span class="sc">%&gt;%</span> </span>
+<span id="cb36-2"><a href="resampling-und-tuning-1.html#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 16 × 7
 ##        K .metric .estimator   mean     n std_err .config             
 ##    &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;               
@@ -625,19 +972,15 @@ Für jeden Wert des Tuningparameters wird ein Modell berechnet:</p>
 ## 15    15 rmse    standard   0.0861    10 0.00221 Preprocessor1_Model8
 ## 16    15 rsq     standard   0.772     10 0.00850 Preprocessor1_Model8</code></pre>
 <p>Das können wir uns einfach visualisieren lassen:</p>
-<div class="sourceCode" id="cb344"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot</a></span><span class="op">(</span><span class="va">ames_grid_search</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="080-Resampling-Tuning_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="resampling-und-tuning-1.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(ames_grid_search)</span></code></pre></div>
+<p><img src="080-Resampling-Tuning_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Auf Basis dieser Ergebnisse könnte es Sinn machen,
 noch größere Werte für <span class="math inline">\(K\)</span> zu überprüfen.</p>
 </div>
-<div id="vorhersage-im-test-sample" class="section level3" number="9.8.3">
-<h3>
-<span class="header-section-number">9.8.3</span> Vorhersage im Test-Sample<a class="anchor" aria-label="anchor" href="#vorhersage-im-test-sample"><i class="fas fa-link"></i></a>
-</h3>
+<div id="vorhersage-im-test-sample" class="section level3" number="10.9.3">
+<h3><span class="header-section-number">10.9.3</span> Vorhersage im Test-Sample</h3>
 <p>Welches Modellkandidat war jetzt am besten?</p>
-<div class="sourceCode" id="cb345"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://tune.tidymodels.org/reference/show_best.html">show_best</a></span><span class="op">(</span><span class="va">ames_grid_search</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="resampling-und-tuning-1.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">show_best</span>(ames_grid_search)</span></code></pre></div>
 <pre><code>## # A tibble: 5 × 7
 ##       K .metric .estimator   mean     n std_err .config             
 ##   &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;               
@@ -647,8 +990,7 @@ noch größere Werte für <span class="math inline">\(K\)</span> zu überprüfen
 ## 4     9 rmse    standard   0.0883    10 0.00201 Preprocessor1_Model5
 ## 5     7 rmse    standard   0.0900    10 0.00192 Preprocessor1_Model4</code></pre>
 <p>Wählen wir jetzt mal das beste Modell aus (im Sinne des Optimierungskriteriusms):</p>
-<div class="sourceCode" id="cb347"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://tune.tidymodels.org/reference/show_best.html">select_best</a></span><span class="op">(</span><span class="va">ames_grid_search</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="resampling-und-tuning-1.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select_best</span>(ames_grid_search)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 2
 ##       K .config             
 ##   &lt;int&gt; &lt;chr&gt;               
@@ -657,13 +999,11 @@ noch größere Werte für <span class="math inline">\(K\)</span> zu überprüfen
 notieren wir uns die Kombination der Tuningparameterwerte
 im besten Kandiatenmodell.
 In diesem Fall hat das Modull nur einen Tuningparameter:</p>
-<div class="sourceCode" id="cb349"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ames_knn_best_params</span> <span class="op">&lt;-</span>
-  <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>K <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="resampling-und-tuning-1.html#cb43-1" aria-hidden="true" tabindex="-1"></a>ames_knn_best_params <span class="ot">&lt;-</span></span>
+<span id="cb43-2"><a href="resampling-und-tuning-1.html#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">K =</span> <span class="dv">15</span>)</span></code></pre></div>
 <p>Unser Workflow weiß noch nicht,
 welche Tuningparameterwerte am besten sind:</p>
-<div class="sourceCode" id="cb350"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ames_wflow</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="resampling-und-tuning-1.html#cb44-1" aria-hidden="true" tabindex="-1"></a>ames_wflow</span></code></pre></div>
 <pre><code>## ══ Workflow ════════════════════════════════════════════════════════════════════
 ## Preprocessor: Recipe
 ## Model: nearest_neighbor()
@@ -680,7 +1020,7 @@ welche Tuningparameterwerte am besten sind:</p>
 ## K-Nearest Neighbor Model Specification (regression)
 ## 
 ## Main Arguments:
-##   neighbors = tune("K")
+##   neighbors = tune(&quot;K&quot;)
 ## 
 ## Computational engine: kknn</code></pre>
 <p><code>neighbors = tune("K")</code> sagt uns,
@@ -689,12 +1029,11 @@ Das haben wir jetzt ja erledigt.
 Wir wollen für das Test-Sample nur noch einen Wert,
 eben aus dem besten Kandidatenmodell,
 verwenden:</p>
-<div class="sourceCode" id="cb352"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ames_final_wflow</span> <span class="op">&lt;-</span>
-  <span class="va">ames_wflow</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://tune.tidymodels.org/reference/finalize_model.html">finalize_workflow</a></span><span class="op">(</span><span class="va">ames_knn_best_params</span><span class="op">)</span>
-
-<span class="va">ames_final_wflow</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="resampling-und-tuning-1.html#cb46-1" aria-hidden="true" tabindex="-1"></a>ames_final_wflow <span class="ot">&lt;-</span></span>
+<span id="cb46-2"><a href="resampling-und-tuning-1.html#cb46-2" aria-hidden="true" tabindex="-1"></a>  ames_wflow <span class="sc">%&gt;%</span> </span>
+<span id="cb46-3"><a href="resampling-und-tuning-1.html#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">finalize_workflow</span>(ames_knn_best_params)</span>
+<span id="cb46-4"><a href="resampling-und-tuning-1.html#cb46-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-5"><a href="resampling-und-tuning-1.html#cb46-5" aria-hidden="true" tabindex="-1"></a>ames_final_wflow</span></code></pre></div>
 <pre><code>## ══ Workflow ════════════════════════════════════════════════════════════════════
 ## Preprocessor: Recipe
 ## Model: nearest_neighbor()
@@ -721,11 +1060,10 @@ also das Modell auf das ganze Train-Sample anwenden -
 nicht nur auf ein Analysis-Sample.
 Und mit den dann resultierenden Modellkoeffizienten sagen
 wir das TestSample vorher:</p>
-<div class="sourceCode" id="cb354"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">final_ames_knn_fit</span> <span class="op">&lt;-</span>
-  <span class="fu"><a href="https://tune.tidymodels.org/reference/last_fit.html">last_fit</a></span><span class="op">(</span><span class="va">ames_final_wflow</span>, <span class="va">data_split</span><span class="op">)</span>
-
-<span class="va">final_ames_knn_fit</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="resampling-und-tuning-1.html#cb48-1" aria-hidden="true" tabindex="-1"></a>final_ames_knn_fit <span class="ot">&lt;-</span></span>
+<span id="cb48-2"><a href="resampling-und-tuning-1.html#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">last_fit</span>(ames_final_wflow, data_split)</span>
+<span id="cb48-3"><a href="resampling-und-tuning-1.html#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-4"><a href="resampling-und-tuning-1.html#cb48-4" aria-hidden="true" tabindex="-1"></a>final_ames_knn_fit</span></code></pre></div>
 <pre><code>## # Resampling results
 ## # Manual resampling 
 ## # A tibble: 1 × 6
@@ -733,8 +1071,7 @@ wir das TestSample vorher:</p>
 ##   &lt;list&gt;             &lt;chr&gt;            &lt;list&gt;   &lt;list&gt;   &lt;list&gt;       &lt;list&gt;    
 ## 1 &lt;split [2197/733]&gt; train/test split &lt;tibble&gt; &lt;tibble&gt; &lt;tibble&gt;     &lt;workflow&gt;</code></pre>
 <p>Holen wir uns die Modellgüte:</p>
-<div class="sourceCode" id="cb356"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://tune.tidymodels.org/reference/collect_predictions.html">collect_metrics</a></span><span class="op">(</span><span class="va">final_ames_knn_fit</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="resampling-und-tuning-1.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect_metrics</span>(final_ames_knn_fit)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 4
 ##   .metric .estimator .estimate .config             
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;               
@@ -791,75 +1128,86 @@ wir das TestSample vorher:</p>
 </div>
 </div>
 </div>
-  <div class="chapter-nav">
-<div class="prev"><a href="knn-1.html"><span class="header-section-number">8</span> kNN</a></div>
-<div class="next"><a href="logistische-regression-1.html"><span class="header-section-number">10</span> Logistische Regression</a></div>
-</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#resampling-und-tuning-1"><span class="header-section-number">9</span> Resampling und Tuning</a></li>
-<li>
-<a class="nav-link" href="#tidymodels-3"><span class="header-section-number">9.1</span> tidymodels</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#datensatz-aufteilen"><span class="header-section-number">9.1.1</span> Datensatz aufteilen</a></li>
-<li><a class="nav-link" href="#rezept-modell-und-workflow-definieren"><span class="header-section-number">9.1.2</span> Rezept, Modell und Workflow definieren</a></li>
-</ul>
-</li>
-<li><a class="nav-link" href="#resampling"><span class="header-section-number">9.2</span> Resampling</a></li>
-<li>
-<a class="nav-link" href="#illustration-des-resampling"><span class="header-section-number">9.3</span> Illustration des Resampling</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#einfache-v-fache-kreuzvalidierung"><span class="header-section-number">9.3.1</span> Einfache v-fache Kreuzvalidierung</a></li>
-<li><a class="nav-link" href="#wiederholte-kreuzvalidierung"><span class="header-section-number">9.3.2</span> Wiederholte Kreuzvalidierung</a></li>
-<li><a class="nav-link" href="#resampling-passiert-im-train-sample"><span class="header-section-number">9.3.3</span> Resampling passiert im Train-Sample</a></li>
-<li><a class="nav-link" href="#andere-illustrationen"><span class="header-section-number">9.3.4</span> Andere Illustrationen</a></li>
-</ul>
-</li>
-<li><a class="nav-link" href="#gesetz-der-gro%C3%9Fen-zahl"><span class="header-section-number">9.4</span> Gesetz der großen Zahl</a></li>
-<li><a class="nav-link" href="#%C3%BCber--und-unteranpassung-an-einem-beispiel"><span class="header-section-number">9.5</span> Über- und Unteranpassung an einem Beispiel</a></li>
-<li>
-<a class="nav-link" href="#cv-in-tidymodels"><span class="header-section-number">9.6</span> CV in tidymodels</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#cv-definieren"><span class="header-section-number">9.6.1</span> CV definieren</a></li>
-<li><a class="nav-link" href="#resamples-fitten"><span class="header-section-number">9.6.2</span> Resamples fitten</a></li>
-</ul>
-</li>
-<li>
-<a class="nav-link" href="#tuning"><span class="header-section-number">9.7</span> Tuning</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#tuning-auszeichnen"><span class="header-section-number">9.7.1</span> Tuning auszeichnen</a></li>
-<li><a class="nav-link" href="#grid-search-vs.-iterative-search"><span class="header-section-number">9.7.2</span> Grid Search vs. Iterative Search</a></li>
-</ul>
-</li>
-<li>
-<a class="nav-link" href="#tuning-mit-tidymodels"><span class="header-section-number">9.8</span> Tuning mit Tidymodels</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#datenabh%C3%A4ngige-tuningparameter"><span class="header-section-number">9.8.1</span> Datenabhängige Tuningparameter</a></li>
-<li><a class="nav-link" href="#modelle-mit-tuning-berechnen"><span class="header-section-number">9.8.2</span> Modelle mit Tuning berechnen</a></li>
-<li><a class="nav-link" href="#vorhersage-im-test-sample"><span class="header-section-number">9.8.3</span> Vorhersage im Test-Sample</a></li>
-</ul>
-</li>
-</ul>
-
-      <div class="book-extra">
-        <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/sebastiansauer/datascience1/blob/master/080-Resampling-Tuning.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/sebastiansauer/datascience1/edit/master/080-Resampling-Tuning.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
-        </ul>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-islr" class="csl-entry">
+James, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2021. <em>An Introduction to Statistical Learning: With Applications in r</em>. Second edition. Springer Texts in Statistics. New York: Springer. <a href="https://link.springer.com/book/10.1007/978-1-0716-1418-1">https://link.springer.com/book/10.1007/978-1-0716-1418-1</a>.
 </div>
-    </nav>
+<div id="ref-rhys" class="csl-entry">
+Rhys, Hefin. 2020. <em>Machine Learning with r, the Tidyverse, and Mlr</em>. Shelter Island, <span>NY</span>: Manning publications.
 </div>
-
+<div id="ref-modar" class="csl-entry">
+Sauer, Sebastian. 2019. <em>Moderne Datenanalyse Mit r: Daten Einlesen, Aufbereiten, Visualisieren Und Modellieren</em>. 1. Auflage 2019. <span>FOM</span>-Edition. Wiesbaden: Springer. <a href="https://www.springer.com/de/book/9783658215866">https://www.springer.com/de/book/9783658215866</a>.
 </div>
-</div> <!-- .container -->
+<div id="ref-silge_tidy_2022" class="csl-entry">
+Silge, Julia, and Max Kuhn. 2022. <em>Tidy <span>Modeling</span> with <span>R</span></em>. <a href="https://www.tmwr.org/">https://www.tmwr.org/</a>.
+</div>
+<div id="ref-fattails" class="csl-entry">
+Taleb, Nassim Nicholas. 2019. <em>The Statistical Consequences of Fat Tails, Papers and Commentaries</em>. Monograph. <a href="https://nassimtaleb.org/2020/01/final-version-fat-tails/">https://nassimtaleb.org/2020/01/final-version-fat-tails/</a>.
+</div>
+</div>
+            </section>
 
-<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
-
-  <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-04-21 20:59:38.</p>
+          </div>
+        </div>
+      </div>
+<a href="knn-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="logistische-regression-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
   </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/sebastiansauer/datascience1080-Resampling-Tuning.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": {},
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
 
-  <div class="col-12 col-md-6 mt-3">
-    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
-  </div>
-
-</div></div>
-</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -871,22 +1219,7 @@ wir das TestSample vorher:</p>
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
-</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
-for (let popover of popovers) {
-  const div = document.createElement('div');
-  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
-  div.innerHTML = popover.getAttribute('data-content');
-
-  var has_math = div.querySelector("span.math");
-  if (has_math) {
-    document.body.appendChild(div);
-    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
-    MathJax.Hub.Queue(function() {
-      popover.setAttribute('data-content', div.innerHTML);
-      document.body.removeChild(div);
-    })
-  }
-}
 </script>
 </body>
+
 </html>

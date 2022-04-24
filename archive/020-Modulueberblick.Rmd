@@ -42,31 +42,31 @@ knitr::kable(master_table_short)
 ```
 
 
-## Beschreibung der Themen
+<!-- ## Beschreibung der Themen -->
 
 
-```{r render-outline-course, results = "asis", echo = FALSE, message = FALSE}
+<!-- ```{r render-outline-course, results = "asis", echo = FALSE, message = FALSE} -->
 
-course_dates_file <- here::here("course-dates.yaml")
-content_file <- here::here("_modul-ueberblick.yaml")
+<!-- course_dates_file <- here::here("course-dates.yaml") -->
+<!-- content_file <- here::here("_modul-ueberblick.yaml") -->
 
-stopifnot(file.exists(course_dates_file))
-stopifnot(file.exists(content_file))
+<!-- stopifnot(file.exists(course_dates_file)) -->
+<!-- stopifnot(file.exists(content_file)) -->
 
-descriptors <- c(
- # "Titel", 
-  "Lernziele", 
-  "Literatur",
-  "Vorbereitung", 
-  "Aufgaben", 
-  "Vertiefung", 
-  "Hinweise"
-  )
+<!-- descriptors <- c( -->
+<!--  # "Titel",  -->
+<!--   "Lernziele",  -->
+<!--   "Literatur", -->
+<!--   "Vorbereitung",  -->
+<!--   "Aufgaben",  -->
+<!--   "Vertiefung",  -->
+<!--   "Hinweise" -->
+<!--   ) -->
 
-#debug(render_course_outline)
-render_course_outline(course_dates_file, content_file, 
-                      small_table = FALSE, 
-                      descriptors = descriptors,
-                      header_level = 3)
-```
+<!-- #debug(render_course_outline) -->
+<!-- render_course_outline(course_dates_file, content_file,  -->
+<!--                       small_table = FALSE,  -->
+<!--                       descriptors = descriptors, -->
+<!--                       header_level = 3) -->
+<!-- ``` -->
 

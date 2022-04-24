@@ -32,6 +32,8 @@ thema2:
 
   Literatur:
     - "Rhys, Kap. 2"
+    - "MODAR, Kap. 5" 
+
   Lernziele:
     - Sie können Funktionen, in R schreiben.
     - Sie können Datensätze vom Lang- und Breit-Format wechseln.
@@ -42,18 +44,19 @@ thema2:
   Aufgaben:
     - "[Aufgaben](https://sebastiansauer.github.io/datascience1/r-zweiter-blick.html#aufgaben-2)"
     - "[Lernen Sie Wiederholungsstrukturen mit ggplot](https://data-se.netlify.app/2021/02/06/plotting-multiple-plots-using-purrr-map-and-ggplot/)"
-
-
-thema3:
-  Titel: "R, 2. Blick - Fortsetzung"
-  Hinweise:
-    - Fortsetzung der Inhalte des vorherigen Themas
-  Aufgaben:
     - "[Fallstudie Flugverspätungen](https://data-se.netlify.app/2021/03/10/fallstudie-modellierung-von-flugversp%C3%A4tungen/)"
     - "[Fallstudie Getreideernte](https://juliasilge.com/blog/crop-yields/)" 
   Vertiefung:
     - "[Funktionale Programmierung mit R](https://albert-rapp.de/post/2021-09-16-similar-data-and-list-like-columns/)"
-    
+ 
+
+thema3:
+  Titel: "R, zweiter Blick 2"
+  Hinweise:
+    - Fortsetzung der Inhalte des vorherigen Themas
+
+
+
 
 thema3a:
   Titel: "tidymodels"
@@ -66,6 +69,12 @@ thema3a:
     - "TMWR, Kap. 1, 5, 6, 7, 8, 9"
   Aufgaben:
     - "[Fallstudie Seegurken](https://www.tidymodels.org/start/models/)"
+    - "[Sehr einfache Fallstudie zur Modellierung einer Regression mit tidymodels](https://juliasilge.com/blog/student-debt/)"
+
+
+
+
+
 
 thema4:
   Titel: "kNN"
@@ -80,10 +89,11 @@ thema4:
     - "[Timbers et al., Kap. 5](https://datasciencebook.ca/classification.html#classification)"
   Aufgaben:
     - "Arbeiten Sie sich so gut als möglich durch [diese Analyse zum Verlauf von Covid-Fällen](https://github.com/sebastiansauer/covid-icu)"
-  Vertiefung:
-    - "[Sehr einfache Fallstudie zur Modellierung einer Regression mit tidymodels[(https://juliasilge.com/blog/student-debt/)"
     - "[Fallstudie zur Modellierung einer logististischen Regression mit tidymodels](https://onezero.blog/modelling-binary-logistic-regression-using-tidymodels-library-in-r-part-1/)"
     - "[Fallstudie zu Vulkanausbrüchen](https://juliasilge.com/blog/multinomial-volcano-eruptions/)"
+    - "[Fallstudie Himalaya](https://juliasilge.com/blog/himalayan-climbing/)"
+
+
 
 thema5:
   Titel: "Wiederholung"
@@ -99,20 +109,34 @@ thema5:
 
 thema6:
   Titel: "Resampling und Tuning"
+  Lernziele:
+    - Sie verstehen den Nutzen von Resampling und Tuning im maschinellen Nutzen.
+    - Sie können Methoden des Resampling und Tunings mit Hilfe von Tidymodels anwenden.
+  Vorbereitung:
+    - Lesen Sie die Literatur.
 
-  Hinweise:
-    - In dieser Woche fällt die Übung aus (Ostern).
   Literatur:
     - "Rhys, Kap. 3"
     - "TMWR, Kap. 10, 12"
   Vertiefung:
     - "[Fields arranged by purity, xkcd 435](https://xkcd.com/435/)"
+  Aufgaben:
+    - "Arbeiten Sie sich so gut als möglich durch [diese Analyse zum Verlauf von Covid-Fällen](https://github.com/sebastiansauer/covid-icu)"
+    - "[Fallstudie zur Modellierung einer logististischen Regression mit tidymodels](https://onezero.blog/modelling-binary-logistic-regression-using-tidymodels-library-in-r-part-1/)"
+    - "[Fallstudie zu Vulkanausbrüchen](https://juliasilge.com/blog/multinomial-volcano-eruptions/)"
+    - "[Fallstudie Himalaya](https://juliasilge.com/blog/himalayan-climbing/)"
+
 
 
 
 
 thema7:
   Titel: "Logistische Regression"
+  Vorbereitung:
+    - Frischen Sie Ihr Wissen zur logistischen Regression auf bzw. machen Sie sich mit den Grundlagen des Verfahrens vertraut.
+  Lernziele:
+    - "Sie verstehen den Zusammenhang von linearen und logistischen Modellen"
+    - "Sie können die logistische Regression mit Methoden von tidymodels anwenden"
   Literatur:
     - "Rhys, Kap. 4"
   Aufgaben:

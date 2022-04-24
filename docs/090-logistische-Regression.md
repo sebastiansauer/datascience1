@@ -21,6 +21,28 @@ library(datawizard)
 
 
 
+## Lernsteuerung
+
+<!-- Chapter Start sections: Lernziele, Literatur, Hinweise, ... -->
+
+### Vorbereitung 
+
+- Frischen Sie Ihr Wissen zur logistischen Regression auf bzw. machen Sie sich mit den Grundlagen des Verfahrens vertraut.
+
+
+
+### Lernziele 
+
+- Sie verstehen den Zusammenhang von linearen und logistischen Modellen
+- Sie können die logistische Regression mit Methoden von tidymodels anwenden
+
+
+
+### Literatur 
+
+- Rhys, Kap. 4
+
+
 
 ## Intuitive Erklärung
 
@@ -60,8 +82,8 @@ dass die logistische Regression eine Wahrscheinlichkeit der Klassenzugehörigkei
 <div class="figure" style="text-align: center">
 
 ```{=html}
-<div id="htmlwidget-e14037158105da50057d" style="width:100%;height:300px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-e14037158105da50057d">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: right\n [Daten] -> [Modell] \n [Modell] -> [Wskt] \n [Wskt] -> [Klassifikation]\n","svg":false},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-1afbdb6e9913c7e34aea" style="width:100%;height:300px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1afbdb6e9913c7e34aea">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: right\n [Daten] -> [Modell] \n [Modell] -> [Wskt] \n [Wskt] -> [Klassifikation]\n","svg":false},"evals":[],"jsHooks":[]}</script>
 ```
 
 <p class="caption">(\#fig:logist-regr)Definition eines Models in tidymodels</p>
@@ -74,12 +96,12 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
 
 
 ```{=html}
-<div id="lfkbswzouw" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="jzefvgxunk" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#lfkbswzouw .gt_table {
+#jzefvgxunk .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -104,7 +126,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-left-color: #D3D3D3;
 }
 
-#lfkbswzouw .gt_heading {
+#jzefvgxunk .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -116,7 +138,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-right-color: #D3D3D3;
 }
 
-#lfkbswzouw .gt_title {
+#jzefvgxunk .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -126,7 +148,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-bottom-width: 0;
 }
 
-#lfkbswzouw .gt_subtitle {
+#jzefvgxunk .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -136,13 +158,13 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-top-width: 0;
 }
 
-#lfkbswzouw .gt_bottom_border {
+#jzefvgxunk .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#lfkbswzouw .gt_col_headings {
+#jzefvgxunk .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -157,7 +179,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-right-color: #D3D3D3;
 }
 
-#lfkbswzouw .gt_col_heading {
+#jzefvgxunk .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -177,7 +199,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   overflow-x: hidden;
 }
 
-#lfkbswzouw .gt_column_spanner_outer {
+#jzefvgxunk .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -189,15 +211,15 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   padding-right: 4px;
 }
 
-#lfkbswzouw .gt_column_spanner_outer:first-child {
+#jzefvgxunk .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#lfkbswzouw .gt_column_spanner_outer:last-child {
+#jzefvgxunk .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#lfkbswzouw .gt_column_spanner {
+#jzefvgxunk .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -209,7 +231,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   width: 100%;
 }
 
-#lfkbswzouw .gt_group_heading {
+#jzefvgxunk .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -231,7 +253,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   vertical-align: middle;
 }
 
-#lfkbswzouw .gt_empty_group_heading {
+#jzefvgxunk .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -246,15 +268,15 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   vertical-align: middle;
 }
 
-#lfkbswzouw .gt_from_md > :first-child {
+#jzefvgxunk .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#lfkbswzouw .gt_from_md > :last-child {
+#jzefvgxunk .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#lfkbswzouw .gt_row {
+#jzefvgxunk .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -273,7 +295,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   overflow-x: hidden;
 }
 
-#lfkbswzouw .gt_stub {
+#jzefvgxunk .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -285,7 +307,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   padding-left: 12px;
 }
 
-#lfkbswzouw .gt_summary_row {
+#jzefvgxunk .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -295,7 +317,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   padding-right: 5px;
 }
 
-#lfkbswzouw .gt_first_summary_row {
+#jzefvgxunk .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -305,7 +327,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-top-color: #D3D3D3;
 }
 
-#lfkbswzouw .gt_grand_summary_row {
+#jzefvgxunk .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -315,7 +337,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   padding-right: 5px;
 }
 
-#lfkbswzouw .gt_first_grand_summary_row {
+#jzefvgxunk .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -325,11 +347,11 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-top-color: #D3D3D3;
 }
 
-#lfkbswzouw .gt_striped {
+#jzefvgxunk .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#lfkbswzouw .gt_table_body {
+#jzefvgxunk .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -338,7 +360,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-bottom-color: #D3D3D3;
 }
 
-#lfkbswzouw .gt_footnotes {
+#jzefvgxunk .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -352,13 +374,13 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-right-color: #D3D3D3;
 }
 
-#lfkbswzouw .gt_footnote {
+#jzefvgxunk .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#lfkbswzouw .gt_sourcenotes {
+#jzefvgxunk .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -372,41 +394,41 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-right-color: #D3D3D3;
 }
 
-#lfkbswzouw .gt_sourcenote {
+#jzefvgxunk .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#lfkbswzouw .gt_left {
+#jzefvgxunk .gt_left {
   text-align: left;
 }
 
-#lfkbswzouw .gt_center {
+#jzefvgxunk .gt_center {
   text-align: center;
 }
 
-#lfkbswzouw .gt_right {
+#jzefvgxunk .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#lfkbswzouw .gt_font_normal {
+#jzefvgxunk .gt_font_normal {
   font-weight: normal;
 }
 
-#lfkbswzouw .gt_font_bold {
+#jzefvgxunk .gt_font_bold {
   font-weight: bold;
 }
 
-#lfkbswzouw .gt_font_italic {
+#jzefvgxunk .gt_font_italic {
   font-style: italic;
 }
 
-#lfkbswzouw .gt_super {
+#jzefvgxunk .gt_super {
   font-size: 65%;
 }
 
-#lfkbswzouw .gt_footnote_marks {
+#jzefvgxunk .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -692,6 +714,7 @@ d2 <-
          dv = relevel(dv, ref = "1"))
 ```
 
+Jetzt berechnen wir das Modell in gewohnter Weise.
 
 
 ```r
@@ -722,12 +745,12 @@ m83_fit %>%
 ```
 
 ```{=html}
-<div id="cxefesvyli" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="htgjlsrrai" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#cxefesvyli .gt_table {
+#htgjlsrrai .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -752,7 +775,7 @@ m83_fit %>%
   border-left-color: #D3D3D3;
 }
 
-#cxefesvyli .gt_heading {
+#htgjlsrrai .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -764,7 +787,7 @@ m83_fit %>%
   border-right-color: #D3D3D3;
 }
 
-#cxefesvyli .gt_title {
+#htgjlsrrai .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -774,7 +797,7 @@ m83_fit %>%
   border-bottom-width: 0;
 }
 
-#cxefesvyli .gt_subtitle {
+#htgjlsrrai .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -784,13 +807,13 @@ m83_fit %>%
   border-top-width: 0;
 }
 
-#cxefesvyli .gt_bottom_border {
+#htgjlsrrai .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#cxefesvyli .gt_col_headings {
+#htgjlsrrai .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -805,7 +828,7 @@ m83_fit %>%
   border-right-color: #D3D3D3;
 }
 
-#cxefesvyli .gt_col_heading {
+#htgjlsrrai .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -825,7 +848,7 @@ m83_fit %>%
   overflow-x: hidden;
 }
 
-#cxefesvyli .gt_column_spanner_outer {
+#htgjlsrrai .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -837,15 +860,15 @@ m83_fit %>%
   padding-right: 4px;
 }
 
-#cxefesvyli .gt_column_spanner_outer:first-child {
+#htgjlsrrai .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#cxefesvyli .gt_column_spanner_outer:last-child {
+#htgjlsrrai .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#cxefesvyli .gt_column_spanner {
+#htgjlsrrai .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -857,7 +880,7 @@ m83_fit %>%
   width: 100%;
 }
 
-#cxefesvyli .gt_group_heading {
+#htgjlsrrai .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -879,7 +902,7 @@ m83_fit %>%
   vertical-align: middle;
 }
 
-#cxefesvyli .gt_empty_group_heading {
+#htgjlsrrai .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -894,15 +917,15 @@ m83_fit %>%
   vertical-align: middle;
 }
 
-#cxefesvyli .gt_from_md > :first-child {
+#htgjlsrrai .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#cxefesvyli .gt_from_md > :last-child {
+#htgjlsrrai .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#cxefesvyli .gt_row {
+#htgjlsrrai .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -921,7 +944,7 @@ m83_fit %>%
   overflow-x: hidden;
 }
 
-#cxefesvyli .gt_stub {
+#htgjlsrrai .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -933,7 +956,7 @@ m83_fit %>%
   padding-left: 12px;
 }
 
-#cxefesvyli .gt_summary_row {
+#htgjlsrrai .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -943,7 +966,7 @@ m83_fit %>%
   padding-right: 5px;
 }
 
-#cxefesvyli .gt_first_summary_row {
+#htgjlsrrai .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -953,7 +976,7 @@ m83_fit %>%
   border-top-color: #D3D3D3;
 }
 
-#cxefesvyli .gt_grand_summary_row {
+#htgjlsrrai .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -963,7 +986,7 @@ m83_fit %>%
   padding-right: 5px;
 }
 
-#cxefesvyli .gt_first_grand_summary_row {
+#htgjlsrrai .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -973,11 +996,11 @@ m83_fit %>%
   border-top-color: #D3D3D3;
 }
 
-#cxefesvyli .gt_striped {
+#htgjlsrrai .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#cxefesvyli .gt_table_body {
+#htgjlsrrai .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -986,7 +1009,7 @@ m83_fit %>%
   border-bottom-color: #D3D3D3;
 }
 
-#cxefesvyli .gt_footnotes {
+#htgjlsrrai .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1000,13 +1023,13 @@ m83_fit %>%
   border-right-color: #D3D3D3;
 }
 
-#cxefesvyli .gt_footnote {
+#htgjlsrrai .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#cxefesvyli .gt_sourcenotes {
+#htgjlsrrai .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1020,41 +1043,41 @@ m83_fit %>%
   border-right-color: #D3D3D3;
 }
 
-#cxefesvyli .gt_sourcenote {
+#htgjlsrrai .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#cxefesvyli .gt_left {
+#htgjlsrrai .gt_left {
   text-align: left;
 }
 
-#cxefesvyli .gt_center {
+#htgjlsrrai .gt_center {
   text-align: center;
 }
 
-#cxefesvyli .gt_right {
+#htgjlsrrai .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#cxefesvyli .gt_font_normal {
+#htgjlsrrai .gt_font_normal {
   font-weight: normal;
 }
 
-#cxefesvyli .gt_font_bold {
+#htgjlsrrai .gt_font_bold {
   font-weight: bold;
 }
 
-#cxefesvyli .gt_font_italic {
+#htgjlsrrai .gt_font_italic {
   font-style: italic;
 }
 
-#cxefesvyli .gt_super {
+#htgjlsrrai .gt_super {
   font-size: 65%;
 }
 
-#cxefesvyli .gt_footnote_marks {
+#htgjlsrrai .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -1104,21 +1127,24 @@ coefm83
 
 
 
+In Abb. \@ref(fig:m83-plot) ist das Modell und die Daten visualisiert.
+
+
+<div class="figure" style="text-align: center">
+<img src="chunk-img/tidymodelsm83-plot-1.png" alt="m83 und die Titanic-Daten" width="100%" />
+<p class="caption">(\#fig:m83-plot)m83 und die Titanic-Daten</p>
+</div>
 
 
 
-<img src="chunk-img/tidymodelsunnamed-chunk-13-1.png" width="100%" style="display: block; margin: auto;" />
-
-
-
-Definieren wir als $y=1$ das zu modellierende Ereignis, hier "Überleben auf der Titanic". 
+Definieren wir als $y=1$ das zu modellierende Ereignis, hier "Überleben auf der Titanic" (hat also überlebt). 
 
 
 Wie wir oben schon gesehen haben, funktioniert die lineare Regression nicht einwandfrei bei binären (oder dichotomen) AV.
 
 ### Wahrscheinlichkeit in Odds
 
-Probieren wir Folgendes: Rechnen wir die Wahrscheinlichkeit zu Überlegen für $y$, kurz $p$, in *Odds* um.
+Probieren wir Folgendes: Rechnen wir die Wahrscheinlichkeit zu Überlegen für $y$, kurz $p$, in *Odds* (Chancen) um.
 
 $odds = \frac{p}{1-p}$
 
@@ -1134,7 +1160,7 @@ odds
 ## [1] 0.6129032
 ```
 
-Bildlich gesprochen: für 38 Menschen, die überlebt haben, kommen (ca.) 62 Menschen, die nicht überlebt haben, s. Abb. \@ref(fig:odds1).
+Bildlich gesprochen sagen die Odds: für 38 Menschen, die überlebt haben, kommen (ca.) 62 Menschen, die nicht überlebt haben, s. Abb. \@ref(fig:odds1).
 
 
 
@@ -1339,7 +1365,7 @@ ggplot() +
            arrow = arrow())
 ```
 
-<img src="chunk-img/tidymodelsunnamed-chunk-16-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="chunk-img/tidymodelsunnamed-chunk-14-1.png" width="100%" style="display: block; margin: auto;" />
 
 
 
@@ -1510,6 +1536,26 @@ konvert_logits <-
   gt() %>% 
   fmt_number(everything(), decimals = 2)
 ```
+
+
+
+
+
+
+
+
+
+
+<!-- ## Aufgaben und Vertiefung -->
+
+
+
+
+## Aufgaben 
+
+- [Fallstudien zu Studiengebühren](https://juliasilge.com/blog/tuition-resampling/)
+
+
 
 
 

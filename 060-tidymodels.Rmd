@@ -32,6 +32,19 @@ library(nomnoml)
 ```
 
 
+## Lernsteuerung
+
+<!-- Chapter Start sections: Lernziele, Literatur, Hinweise, ... -->
+
+```{r chapter-start-sections, echo = FALSE, results = "asis"}
+source("funs/chapter-start-sections.R")
+chapter_start_sections(i = NULL, title = "tidymodels")
+```
+
+
+
+
+
 ## Daten
 
 Dieser Abschnitt bezieht sich auf [Kapitel 4](https://www.tmwr.org/ames.html) in @silge_tidy_2022.
@@ -42,7 +55,7 @@ Dieser Abschnitt bezieht sich auf [Kapitel 4](https://www.tmwr.org/ames.html) in
 Wir benutzen den Datensatz zu Immobilienpreise aus dem [Ames County](https://en.wikipedia.org/wiki/Ames,_Iowa) in Iowa, USA,
 gelegen im Zentrum des Landes.
 
-```{r}
+```{r load-ames-data}
 data(ames)  # Daten wurden über tidymodels mit geladen
 ames <- ames %>% mutate(Sale_Price = log10(Sale_Price))
 ```
@@ -76,7 +89,7 @@ Der Test-Datensatz wird nur *einmal* verwendet, und zwar zur Überprüfung der M
 
 <!-- [Quelle](https://gist.github.com/sebastiansauer/be53bfc193fd3c144a430b7d3b922310) -->
 
-```{r echo = FALSE, fig.align="center", out.height="200px"}
+```{r train-test-pie, echo = FALSE, fig.align="center", out.height="200px"}
 x <- c(80, 20)
 x_lab <- c("Train", "Test")
 pie(x, x_lab)
@@ -108,7 +121,7 @@ das besorgt das Argument `strata`.
 
 Die eigentlich Aufteilung in die zwei Datensätze geht dann so:
 
-```{r}
+```{r train-test-ames}
 ames_train <- training(ames_split)
 ames_test  <-  testing(ames_split)
 ```
@@ -611,16 +624,32 @@ Ein Überblick zu allen Schritten der Vorverarbeitung findet sich [hier](https:/
 
 
 
+<!-- ## Aufgaben und Vertiefung -->
 
 
-```{r render-outline-a-thema3, results = "asis", eval = FALSE, echo = FALSE, message = FALSE}
+
+
+```{r render-outline-vertiefung-aufgaben, results = "asis", echo = FALSE, message = FALSE}
+
+source("funs/constants.R")
+source(render_file)
+
+render_section(course_dates_file,
+               content_file,
+               i = NULL, 
+               title = "tidymodels",
+               name = "Aufgaben",
+               header_level = 1)
 
 
 render_section(course_dates_file,
                content_file,
-               i = 4, 
-               name = "Aufgaben",
+               i = NULL,
+               title = "tidymodels",
+               name = "Vertiefung",
                header_level = 1)
 ```
+
+
 
 

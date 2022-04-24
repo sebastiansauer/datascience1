@@ -5,6 +5,16 @@
 # R, zweiter Blick
 
 
+## Lernsteuerung
+
+<!-- Chapter Start sections: Lernziele, Literatur, Hinweise, ... -->
+
+```{r chapter-start-sections, echo = FALSE, results = "asis"}
+source("funs/chapter-start-sections.R")
+chapter_start_sections(i = 2)
+```
+
+
 
 
 ## Objekttypen in R
@@ -771,16 +781,30 @@ da Listen auch Vektoren sind.
 <!-- # Vertiefung -->
 
 
-```{r render-outline-vertiefung, results = "asis", eval = FALSE, echo = FALSE, message = FALSE}
+```{r render-outline-vertiefung, results = "asis", eval = TRUE, echo = FALSE, message = FALSE}
+
+
+source("https://raw.githubusercontent.com/sebastiansauer/Lehre/main/R-Code/render-course-sections.R")
+
+
+course_dates_file <- here::here("course-dates.yaml")
+content_file <- here::here("_modul-ueberblick.yaml")
+
+stopifnot(file.exists(course_dates_file))
+stopifnot(file.exists(content_file))
+
+#debug(render_course_outline)
+# render_course_outline(course_dates_file, content_file, small_table = TRUE, header_level = 3)
+
 
 
 render_section(course_dates_file,
                content_file,
-               i = 1, 
+               i = NULL,
+               title = "R, zweiter Blick",
+               
                name = "Vertiefung",
                header_level = 1)
 ```
 
-
-## Literatur
 

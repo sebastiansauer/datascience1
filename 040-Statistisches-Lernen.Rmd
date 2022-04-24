@@ -31,6 +31,15 @@ library(DiagrammeR)
 knitr::knit_hooks$set(crop = knitr::hook_pdfcrop)
 ```
 
+## Lernsteuerung
+
+```{r chapter-start-sections, echo = FALSE, results = "asis"}
+source("funs/chapter-start-sections.R")
+chapter_start_sections(title = "Statistisches Lernen")
+```
+
+
+
 
 ## Was ist Data Science?
 
@@ -544,40 +553,33 @@ knitr::include_graphics("img/plot-bias-variance-1.png")
 
 
 
-<!-- ## Aufgaben -->
 
 
-```{r render-outline-exs, results = "asis", echo = FALSE, message = FALSE}
-source("https://raw.githubusercontent.com/sebastiansauer/Lehre/main/R-Code/render-course-sections.R")
 
-course_dates_file <- here::here("course-dates.yaml")
-content_file <- here::here("_modul-ueberblick.yaml")
-
-stopifnot(file.exists(course_dates_file))
-stopifnot(file.exists(content_file))
-
-render_section(course_dates_file,
-               content_file,
-               i = 1, 
-               name = "Aufgaben",
-               header_level = 1)
-```
+<!-- ## Aufgaben und Vertiefung -->
 
 
 
 
-<!-- ## Vertiefung -->
+```{r render-outline-vertiefung-aufgaben, results = "asis", echo = FALSE, message = FALSE}
 
-
-
-
-```{r render-outline-vertiefung, results = "asis", echo = FALSE, message = FALSE}
+  render_section(course_dates_file,
+                 content_file,
+                 i = NULL,
+                 title = "Statistisches Lernen",
+                 name = "Aufgaben",
+                 header_level = 1)
 
 
 render_section(course_dates_file,
                content_file,
-               i = 1, 
+               i = NULL, 
+               title = "Statistisches Lernen",
                name = "Vertiefung",
                header_level = 1)
 ```
 
+
+
+
+  
