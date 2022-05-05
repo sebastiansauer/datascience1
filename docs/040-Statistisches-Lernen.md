@@ -87,8 +87,8 @@ Dieser "Dreiklang" ist in folgendem Venn-Diagramm dargestellt.
 <div class="figure" style="text-align: center">
 
 ```{=html}
-<div id="htmlwidget-1be5d5cc759c658383c0" style="width:100%;height:250px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1be5d5cc759c658383c0">{"x":{"diagram":"\ndigraph D {\n\n    node [fontname=\"Arial\"];\n\n    node_A [shape=record    label=\"{KI|{rule-based|data-based}}\"];\n\n\n}\n\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-198b3ad1bb5a33a9df82" style="width:100%;height:250px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-198b3ad1bb5a33a9df82">{"x":{"diagram":"\ndigraph D {\n\n    node [fontname=\"Arial\"];\n\n    node_A [shape=record    label=\"{KI|{rule-based|data-based}}\"];\n\n\n}\n\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 ```
 
 <p class="caption">(\#fig:ai-ml2)KI und Maschinelles Lernen</p>
@@ -108,8 +108,8 @@ Es gibt viele ML-Algorithmen, vgl. Abb. \@ref(fig:algos).
 <div class="figure" style="text-align: center">
 
 ```{=html}
-<div id="htmlwidget-a882425040906d3988d9" style="width:100%;height:350px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a882425040906d3988d9">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: leftright\n[KI|\n  [ML|\n    [Regression] \n    [Neuronale Netze] \n    [...]\n  ]  \n  \n]\n","svg":false},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-bd9d92d4f2f13b0e2fc3" style="width:100%;height:350px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-bd9d92d4f2f13b0e2fc3">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: leftright\n[KI|\n  [ML|\n    [Regression] \n    [Neuronale Netze] \n    [...]\n  ]  \n  \n]\n","svg":false},"evals":[],"jsHooks":[]}</script>
 ```
 
 <p class="caption">(\#fig:algos)ML-Matroschka</p>
@@ -234,8 +234,8 @@ ML-Systeme werden mit Daten und Antworten gefüttert und liefern Regeln zurück,
 <div class="figure" style="text-align: center">
 
 ```{=html}
-<div id="htmlwidget-708a7c5f11f8464007ee" style="width:100%;height:450px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-708a7c5f11f8464007ee">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: leftright\n  [rule-based|\n  [Daten] -> [Antworten]\n  [Regeln] -> [Antworten]\n]\n  [data-based|\n  [Daten] -> [Regeln]\n  [Antworten] -> [Regeln]\n]  \n  ","svg":false},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-a5876171e6276ac590bd" style="width:100%;height:450px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a5876171e6276ac590bd">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: leftright\n  [rule-based|\n  [Daten] -> [Antworten]\n  [Regeln] -> [Antworten]\n]\n  [data-based|\n  [Daten] -> [Regeln]\n  [Antworten] -> [Regeln]\n]  \n  ","svg":false},"evals":[],"jsHooks":[]}</script>
 ```
 
 <p class="caption">(\#fig:ki-ml2)Vergleich von klassischer KI und ML</p>
@@ -298,8 +298,8 @@ Eine typische Gliederung unterscheidet in *supervidierte* (geleitete) und *nicht
 <div class="figure" style="text-align: center">
 
 ```{=html}
-<div id="htmlwidget-425f514e3927b99bb5d6" style="width:100%;height:250px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-425f514e3927b99bb5d6">{"x":{"diagram":"\ngraph LR\n  ML[Maschinelles Lernen]\n  SL[Supervidiertes Lernen]\n  NSL[Nicht-supervidiertes Lernen]\n  Re[Regression]\n  Class[Klassifikation]\n  DimRed[Dimensionsreduktion]\n  Clust[Clustering]\n  ML --> SL\n  ML --> NSL\n  SL --> Re\n  SL --> Class\n  NSL --> DimRed\n  NSL --> Clust\n"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-164cc020cac9a51387e4" style="width:100%;height:250px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-164cc020cac9a51387e4">{"x":{"diagram":"\ngraph LR\n  ML[Maschinelles Lernen]\n  SL[Supervidiertes Lernen]\n  NSL[Nicht-supervidiertes Lernen]\n  Re[Regression]\n  Class[Klassifikation]\n  DimRed[Dimensionsreduktion]\n  Clust[Clustering]\n  ML --> SL\n  ML --> NSL\n  SL --> Re\n  SL --> Class\n  NSL --> DimRed\n  NSL --> Clust\n"},"evals":[],"jsHooks":[]}</script>
 ```
 
 <p class="caption">(\#fig:taxonomie)Taxonomie der Arten des maschinellen Lernens</p>
@@ -314,8 +314,8 @@ Die zwei Phasen des geleiteten Lernens sind in Abb. \@ref(fig:supervid) dargeste
 <div class="figure" style="text-align: center">
 
 ```{=html}
-<div id="htmlwidget-f7224e9a89933cfa63ce" style="width:100%;height:550px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-f7224e9a89933cfa63ce">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n\n[Lernphase|\n[Daten mit Antwort] -> [Geleiteter Algorithmus]\n[Geleiteter Algorithmus] -> [Modell]\n]\n\n[Vorhersagephase|\n[Neue Daten, ohne Antwort] -> [Modell]\n[Modell] -> [Antworten]\n]\n\n","svg":false},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-f162e0a5dcc47ca8712d" style="width:100%;height:550px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f162e0a5dcc47ca8712d">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n\n[Lernphase|\n[Daten mit Antwort] -> [Geleiteter Algorithmus]\n[Geleiteter Algorithmus] -> [Modell]\n]\n\n[Vorhersagephase|\n[Neue Daten, ohne Antwort] -> [Modell]\n[Modell] -> [Antworten]\n]\n\n","svg":false},"evals":[],"jsHooks":[]}</script>
 ```
 
 <p class="caption">(\#fig:supervid)Geleitetes Lernen geschieht in zwei Phasen</p>
@@ -370,8 +370,8 @@ Die zwei Phasen des ungeleiteten Lernens sind in Abb. \@ref(fig:unsuper) dargest
 <div class="figure" style="text-align: center">
 
 ```{=html}
-<div id="htmlwidget-4cb0c70ee55d4f88129a" style="width:100%;height:450px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-4cb0c70ee55d4f88129a">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n\n[Lernphase|\n[Daten ohne Antwort] -> [Ungeleiteter Algorithmus]\n[Ungeleiteter Algorithmus] -> [Modell]\n]\n\n[Vorhersagephase|\n[Neue Daten, ohne Antwort] -> [Modell]\n[Modell] -> [Zuordnung zu den Regeln des Modells]\n]\n\n","svg":false},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-e7bd2b66bfa31c179d4d" style="width:100%;height:450px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e7bd2b66bfa31c179d4d">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n\n[Lernphase|\n[Daten ohne Antwort] -> [Ungeleiteter Algorithmus]\n[Ungeleiteter Algorithmus] -> [Modell]\n]\n\n[Vorhersagephase|\n[Neue Daten, ohne Antwort] -> [Modell]\n[Modell] -> [Zuordnung zu den Regeln des Modells]\n]\n\n","svg":false},"evals":[],"jsHooks":[]}</script>
 ```
 
 <p class="caption">(\#fig:unsuper)Die zwei Phasen des ungeleiteten Lernens</p>
@@ -398,8 +398,8 @@ Man kann vier Ziele des ML unterscheiden, s. Abb. \@ref(fig:ziele).
 <div class="figure" style="text-align: center">
 
 ```{=html}
-<div id="htmlwidget-9f2fac2dd3b5659d0f27" style="width:100%;height:350px;" class="DiagrammeR html-widget"></div>
-<script type="application/json" data-for="htmlwidget-9f2fac2dd3b5659d0f27">{"x":{"diagram":"\ngraph TD\n  ML[Maschinelles Lernen]\n  V[Vorhersage]\n  E[Erklärung/kausal]\n  B[Beschreibung]\n  DimRed[Dimensionsreduktion]\n  ML --> V\n  ML --> E\n  ML --> B\n  ML --> DimRed\n"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-a8eb14d9a6a8e4d0dd8d" style="width:100%;height:350px;" class="DiagrammeR html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a8eb14d9a6a8e4d0dd8d">{"x":{"diagram":"\ngraph TD\n  ML[Maschinelles Lernen]\n  V[Vorhersage]\n  E[Erklärung/kausal]\n  B[Beschreibung]\n  DimRed[Dimensionsreduktion]\n  ML --> V\n  ML --> E\n  ML --> B\n  ML --> DimRed\n"},"evals":[],"jsHooks":[]}</script>
 ```
 
 <p class="caption">(\#fig:ziele)Ziele des maschinellen Lernens</p>

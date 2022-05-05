@@ -7,19 +7,45 @@
 <title>Kapitel 4 R, zweiter Blick | DataScience1</title>
 <meta name="author" content="Sebastian Sauer">
 <meta name="description" content="4.1 Lernsteuerung   4.1.1 Vorbereitung Lesen Sie die Literatur.  4.1.2 Lernziele Sie können Funktionen, in R schreiben. Sie können Datensätze vom Lang- und Breit-Format wechseln. Sie können...">
-<meta name="generator" content="bookdown 0.24.2 with bs4_book()">
+<meta name="generator" content="bookdown 0.26.2 with bs4_book()">
 <meta property="og:title" content="Kapitel 4 R, zweiter Blick | DataScience1">
 <meta property="og:type" content="book">
 <meta property="og:description" content="4.1 Lernsteuerung   4.1.1 Vorbereitung Lesen Sie die Literatur.  4.1.2 Lernziele Sie können Funktionen, in R schreiben. Sie können Datensätze vom Lang- und Breit-Format wechseln. Sie können...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kapitel 4 R, zweiter Blick | DataScience1">
 <meta name="twitter:description" content="4.1 Lernsteuerung   4.1.1 Vorbereitung Lesen Sie die Literatur.  4.1.2 Lernziele Sie können Funktionen, in R schreiben. Sie können Datensätze vom Lang- und Breit-Format wechseln. Sie können...">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
 <script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
 <script src="libs/grViz-binding-1.0.6.1/grViz.js"></script><script src="libs/es6shim-0.35.6/es6shim.js"></script><script src="libs/es7shim-6.0.0/es7shim.js"></script><script src="libs/graphre-0.1.3/graphre.js"></script><script src="libs/nomnoml-1.3.1/nomnoml.js"></script><script src="libs/nomnoml-binding-0.2.3/nomnoml.js"></script><script src="libs/d3-3.3.8/d3.min.js"></script><script src="libs/dagre-0.4.0/dagre-d3.min.js"></script><link href="libs/mermaid-0.3.0/dist/mermaid.css" rel="stylesheet">
-<script src="libs/mermaid-0.3.0/dist/mermaid.slim.min.js"></script><script src="libs/chromatography-0.1/chromatography.js"></script><script src="libs/DiagrammeR-binding-1.0.6.1/DiagrammeR.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><link rel="stylesheet" href="style-bs4.css">
+<script src="libs/mermaid-0.3.0/dist/mermaid.slim.min.js"></script><script src="libs/chromatography-0.1/chromatography.js"></script><script src="libs/DiagrammeR-binding-1.0.6.1/DiagrammeR.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="style-bs4.css">
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -656,7 +682,7 @@ Das können wir mit <code><a href="https://rdrr.io/r/utils/str.html">str()</a></
 ##   ..$ am  : num [1:32] 1 1 1 0 0 0 0 0 0 0 ...
 ##   ..$ gear: num [1:32] 4 4 4 3 3 3 3 4 4 4 ...
 ##   ..$ carb: num [1:32] 4 4 1 1 2 1 4 2 2 4 ...
-##  $ in_id : int [1:21] 8 9 11 12 13 15 16 17 18 19 ...
+##  $ in_id : int [1:21] 2 4 6 7 8 10 11 12 13 14 ...
 ##  $ out_id: logi NA
 ##  $ id    : tibble [1 × 1] (S3: tbl_df/tbl/data.frame)
 ##   ..$ id: chr "Fold1"
@@ -706,12 +732,12 @@ da wir keine Eckklammern tippen müssen:</p>
 Diese Deskriptoren kann man wiederum jeder Kurswoche oder jedem Kursabschnitt zuordnen,
 so dass eine zweidimensionale Struktur resultiert.
 Eine Tabelle, einfach gesagt, etwa so:</p>
-<div id="uihlqozyou" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="cvwwigohoa" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#uihlqozyou .gt_table {
+#cvwwigohoa .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -736,7 +762,7 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   border-left-color: #D3D3D3;
 }
 
-#uihlqozyou .gt_heading {
+#cvwwigohoa .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -748,7 +774,7 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   border-right-color: #D3D3D3;
 }
 
-#uihlqozyou .gt_title {
+#cvwwigohoa .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -758,7 +784,7 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   border-bottom-width: 0;
 }
 
-#uihlqozyou .gt_subtitle {
+#cvwwigohoa .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -768,13 +794,13 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   border-top-width: 0;
 }
 
-#uihlqozyou .gt_bottom_border {
+#cvwwigohoa .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#uihlqozyou .gt_col_headings {
+#cvwwigohoa .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -789,7 +815,7 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   border-right-color: #D3D3D3;
 }
 
-#uihlqozyou .gt_col_heading {
+#cvwwigohoa .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -809,7 +835,7 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   overflow-x: hidden;
 }
 
-#uihlqozyou .gt_column_spanner_outer {
+#cvwwigohoa .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -821,15 +847,15 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   padding-right: 4px;
 }
 
-#uihlqozyou .gt_column_spanner_outer:first-child {
+#cvwwigohoa .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#uihlqozyou .gt_column_spanner_outer:last-child {
+#cvwwigohoa .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#uihlqozyou .gt_column_spanner {
+#cvwwigohoa .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -841,7 +867,7 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   width: 100%;
 }
 
-#uihlqozyou .gt_group_heading {
+#cvwwigohoa .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -863,7 +889,7 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   vertical-align: middle;
 }
 
-#uihlqozyou .gt_empty_group_heading {
+#cvwwigohoa .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -878,15 +904,15 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   vertical-align: middle;
 }
 
-#uihlqozyou .gt_from_md > :first-child {
+#cvwwigohoa .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#uihlqozyou .gt_from_md > :last-child {
+#cvwwigohoa .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#uihlqozyou .gt_row {
+#cvwwigohoa .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -905,7 +931,7 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   overflow-x: hidden;
 }
 
-#uihlqozyou .gt_stub {
+#cvwwigohoa .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -917,7 +943,7 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   padding-left: 12px;
 }
 
-#uihlqozyou .gt_summary_row {
+#cvwwigohoa .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -927,7 +953,7 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   padding-right: 5px;
 }
 
-#uihlqozyou .gt_first_summary_row {
+#cvwwigohoa .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -937,7 +963,7 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   border-top-color: #D3D3D3;
 }
 
-#uihlqozyou .gt_grand_summary_row {
+#cvwwigohoa .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -947,7 +973,7 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   padding-right: 5px;
 }
 
-#uihlqozyou .gt_first_grand_summary_row {
+#cvwwigohoa .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -957,11 +983,11 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   border-top-color: #D3D3D3;
 }
 
-#uihlqozyou .gt_striped {
+#cvwwigohoa .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#uihlqozyou .gt_table_body {
+#cvwwigohoa .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -970,7 +996,7 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   border-bottom-color: #D3D3D3;
 }
 
-#uihlqozyou .gt_footnotes {
+#cvwwigohoa .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -984,13 +1010,13 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   border-right-color: #D3D3D3;
 }
 
-#uihlqozyou .gt_footnote {
+#cvwwigohoa .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#uihlqozyou .gt_sourcenotes {
+#cvwwigohoa .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1004,41 +1030,41 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   border-right-color: #D3D3D3;
 }
 
-#uihlqozyou .gt_sourcenote {
+#cvwwigohoa .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#uihlqozyou .gt_left {
+#cvwwigohoa .gt_left {
   text-align: left;
 }
 
-#uihlqozyou .gt_center {
+#cvwwigohoa .gt_center {
   text-align: center;
 }
 
-#uihlqozyou .gt_right {
+#cvwwigohoa .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#uihlqozyou .gt_font_normal {
+#cvwwigohoa .gt_font_normal {
   font-weight: normal;
 }
 
-#uihlqozyou .gt_font_bold {
+#cvwwigohoa .gt_font_bold {
   font-weight: bold;
 }
 
-#uihlqozyou .gt_font_italic {
+#cvwwigohoa .gt_font_italic {
   font-style: italic;
 }
 
-#uihlqozyou .gt_super {
+#cvwwigohoa .gt_super {
   font-size: 65%;
 }
 
-#uihlqozyou .gt_footnote_marks {
+#cvwwigohoa .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -1469,7 +1495,7 @@ Syntax.</li>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-04-24 17:22:31.</p>
+    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-05-05 16:57:10.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

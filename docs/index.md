@@ -3,7 +3,7 @@ title: "DataScience1"
 subtitle: Grundlagen der Prognosemodellierung 🔮🧰
 
 author: "Sebastian Sauer"
-date: "2022-04-24 17:22:31"
+date: "2022-05-05 16:57:10"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -54,7 +54,7 @@ Ach ja, und mit einigem Erfolg Vorhersagemodelle entwickeln.
 
 
 
-- Diese Version des Buches wurde erstellt am: 2022-04-24 17:22:31
+- Diese Version des Buches wurde erstellt am: 2022-05-05 16:57:10
 
 
 - Die URL zu diesem Buch lautet <https://sebastiansauer.github.io/datascience1/> und ist bei [GitHub Pages](https://pages.github.com/) gehostet.
@@ -74,12 +74,12 @@ Ach ja, und mit einigem Erfolg Vorhersagemodelle entwickeln.
 
 |package      |version    |source                             |
 |:------------|:----------|:----------------------------------|
-|bookdown     |0.24.2     |Github (rstudio/bookdown\@ba51c26) |
-|broom        |0.7.12     |CRAN (R 4.1.2)                     |
+|bookdown     |0.26.2     |Github (rstudio/bookdown\@6adacc3) |
+|broom        |0.8.0      |CRAN (R 4.1.2)                     |
 |corrr        |0.4.3      |CRAN (R 4.1.0)                     |
 |dials        |0.1.1      |CRAN (R 4.1.2)                     |
 |downlit      |0.4.0      |CRAN (R 4.1.0)                     |
-|dplyr        |1.0.8      |CRAN (R 4.1.2)                     |
+|dplyr        |1.0.9      |CRAN (R 4.1.2)                     |
 |ggplot2      |3.3.5      |CRAN (R 4.1.0)                     |
 |glmnet       |4.1-3      |CRAN (R 4.1.0)                     |
 |infer        |1.0.0      |CRAN (R 4.1.0)                     |

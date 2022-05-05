@@ -108,7 +108,7 @@ ames_split$in_id %>% head(n = 10)
 ```
 
 ```
-##  [1]  2 27 28 30 31 32 33 78 79 83
+##  [1]   2  27  28  35  78  83  84  87  89 120
 ```
 
 ```r
@@ -165,8 +165,8 @@ Ein (statistisches) Modell wird in Tidymodels mit drei Elementen spezifiziert, v
 <div class="figure" style="text-align: center">
 
 ```{=html}
-<div id="htmlwidget-2b2eeea2faf799c4aaec" style="width:100%;height:300px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-2b2eeea2faf799c4aaec">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: leftright\n[Modell|\n  [type (Algorithmus)|\n    [Regression] \n    [Neuronale Netze] \n    [...]\n  ]  \n  [engine (Implementierung)|\n    [lm]\n    [stan_glm]\n    [...]\n  ]\n  [mode (modus)|\n    [regression]\n    [classification]\n  ]\n  \n]\n","svg":false},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-531869d127b888b02723" style="width:100%;height:300px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-531869d127b888b02723">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: leftright\n[Modell|\n  [type (Algorithmus)|\n    [Regression] \n    [Neuronale Netze] \n    [...]\n  ]  \n  [engine (Implementierung)|\n    [lm]\n    [stan_glm]\n    [...]\n  ]\n  [mode (modus)|\n    [regression]\n    [classification]\n  ]\n  \n]\n","svg":false},"evals":[],"jsHooks":[]}</script>
 ```
 
 <p class="caption">(\#fig:tidymodels-def)Definition eines Models in tidymodels</p>
@@ -237,12 +237,12 @@ predict(lm_form_fit, new_data = ames_test) %>%
 ## # A tibble: 6 × 1
 ##   .pred
 ##   <dbl>
-## 1  5.21
-## 2  5.28
-## 3  5.27
-## 4  5.27
-## 5  5.26
-## 6  5.25
+## 1  5.23
+## 2  5.22
+## 3  5.29
+## 4  5.28
+## 5  5.27
+## 6  5.26
 ```
 
 
@@ -278,7 +278,7 @@ lm_form_fit
 ## 
 ## Coefficients:
 ## (Intercept)    Longitude     Latitude  
-##    -303.920       -2.056        2.773
+##    -309.022       -2.056        2.895
 ```
 
 Innerhalb des Ergebnisobjekts findet sich eine Liste namens `fit`,
@@ -296,7 +296,7 @@ lm_form_fit %>% pluck("fit")
 ## 
 ## Coefficients:
 ## (Intercept)    Longitude     Latitude  
-##    -303.920       -2.056        2.773
+##    -309.022       -2.056        2.895
 ```
 
 Zum Herausholen dieser Infos kann man auch die Funktion `extract_fit_engine()` verwenden:
@@ -318,7 +318,7 @@ lm_fit
 ## 
 ## Coefficients:
 ## (Intercept)    Longitude     Latitude  
-##    -303.920       -2.056        2.773
+##    -309.022       -2.056        2.895
 ```
 
 Das extrahierte Objekt ist, in diesem Fall, 
@@ -333,7 +333,7 @@ coef(lm_fit)
 
 ```
 ## (Intercept)   Longitude    Latitude 
-## -303.919540   -2.056294    2.773494
+## -309.021906   -2.056178    2.895149
 ```
 
 ```r
@@ -347,19 +347,19 @@ summary(lm_fit)
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -1.02776 -0.09651 -0.01614  0.09715  0.57966 
+## -1.02162 -0.09566 -0.01702  0.09625  0.57711 
 ## 
 ## Coefficients:
 ##              Estimate Std. Error t value Pr(>|t|)    
-## (Intercept) -303.9195    14.4550  -21.02   <2e-16 ***
-## Longitude     -2.0563     0.1294  -15.89   <2e-16 ***
-## Latitude       2.7735     0.1793   15.46   <2e-16 ***
+## (Intercept) -309.0219    14.6429  -21.10   <2e-16 ***
+## Longitude     -2.0562     0.1312  -15.68   <2e-16 ***
+## Latitude       2.8951     0.1826   15.86   <2e-16 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 0.1596 on 2339 degrees of freedom
-## Multiple R-squared:  0.1696,	Adjusted R-squared:  0.1689 
-## F-statistic: 238.9 on 2 and 2339 DF,  p-value: < 2.2e-16
+## Residual standard error: 0.1618 on 2339 degrees of freedom
+## Multiple R-squared:  0.1718,	Adjusted R-squared:  0.1711 
+## F-statistic: 242.6 on 2 and 2339 DF,  p-value: < 2.2e-16
 ```
 
 Schicker sind die Pendant-Befehle aus `broom`,
@@ -376,9 +376,9 @@ tidy(lm_fit) # Koeffizienten
 ## # A tibble: 3 × 5
 ##   term        estimate std.error statistic  p.value
 ##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
-## 1 (Intercept)  -304.      14.5       -21.0 4.92e-90
-## 2 Longitude      -2.06     0.129     -15.9 4.39e-54
-## 3 Latitude        2.77     0.179      15.5 1.94e-51
+## 1 (Intercept)  -309.      14.6       -21.1 1.22e-90
+## 2 Longitude      -2.06     0.131     -15.7 9.81e-53
+## 3 Latitude        2.90     0.183      15.9 7.52e-54
 ```
 
 ```r
@@ -389,7 +389,7 @@ glance(lm_fit) # Modellgüte
 ## # A tibble: 1 × 12
 ##   r.squared adj.r.squared sigma statistic  p.value    df logLik    AIC    BIC
 ##       <dbl>         <dbl> <dbl>     <dbl>    <dbl> <dbl>  <dbl>  <dbl>  <dbl>
-## 1     0.170         0.169 0.160      239. 3.83e-95     2   976. -1944. -1921.
+## 1     0.172         0.171 0.162      243. 1.80e-96     2   944. -1880. -1857.
 ## # … with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
 ```
 
@@ -416,8 +416,8 @@ Dieser Abschnitt bezieht sich auf [Kapitel 7](https://www.tmwr.org/workflows.htm
 <div class="figure" style="text-align: center">
 
 ```{=html}
-<div id="htmlwidget-dbf0ed97b0e02d540e46" style="width:100%;height:500px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-dbf0ed97b0e02d540e46">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n[Workflow|\n  [preprocessing|\n   Vorverarbeitung;\n   Imputation;\n   Transformation;\n   Prädiktorwahl\n   AV-Wahl\n   ...\n  \n  ]\n  [fitting |\n    Modell berechnen\n    ...\n  ]\n  [postprocessing|\n    Grenzwerte für Klass. festlegen\n    ...\n  ]\n]\n","svg":false},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-a84f1b53e071487d345a" style="width:100%;height:500px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a84f1b53e071487d345a">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n[Workflow|\n  [preprocessing|\n   Vorverarbeitung;\n   Imputation;\n   Transformation;\n   Prädiktorwahl\n   AV-Wahl\n   ...\n  \n  ]\n  [fitting |\n    Modell berechnen\n    ...\n  ]\n  [postprocessing|\n    Grenzwerte für Klass. festlegen\n    ...\n  ]\n]\n","svg":false},"evals":[],"jsHooks":[]}</script>
 ```
 
 <p class="caption">(\#fig:tidymodels-workflow)Definition eines Models in tidymodels</p>
@@ -521,7 +521,7 @@ lm_fit
 ## 
 ## Coefficients:
 ## (Intercept)    Longitude     Latitude  
-##    -303.920       -2.056        2.773
+##    -309.022       -2.056        2.895
 ```
 
 
@@ -576,11 +576,11 @@ lm_preds %>% slice_head(n = 5)
 ## # A tibble: 5 × 5
 ##   id               .pred  .row Sale_Price .config             
 ##   <chr>            <dbl> <int>      <dbl> <chr>               
-## 1 train/test split  5.21     4       5.39 Preprocessor1_Model1
-## 2 train/test split  5.28     7       5.33 Preprocessor1_Model1
-## 3 train/test split  5.27    12       5.27 Preprocessor1_Model1
-## 4 train/test split  5.27    15       5.33 Preprocessor1_Model1
-## 5 train/test split  5.26    20       5.32 Preprocessor1_Model1
+## 1 train/test split  5.23     1       5.33 Preprocessor1_Model1
+## 2 train/test split  5.22     3       5.24 Preprocessor1_Model1
+## 3 train/test split  5.29     5       5.28 Preprocessor1_Model1
+## 4 train/test split  5.28    11       5.25 Preprocessor1_Model1
+## 5 train/test split  5.27    15       5.33 Preprocessor1_Model1
 ```
 
 
@@ -603,12 +603,12 @@ lm_metrics <- collect_metrics(final_lm_res)
 
 
 ```{=html}
-<div id="loocxzekmq" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="tyjrhyiqhd" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#loocxzekmq .gt_table {
+#tyjrhyiqhd .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -633,7 +633,7 @@ lm_metrics <- collect_metrics(final_lm_res)
   border-left-color: #D3D3D3;
 }
 
-#loocxzekmq .gt_heading {
+#tyjrhyiqhd .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -645,7 +645,7 @@ lm_metrics <- collect_metrics(final_lm_res)
   border-right-color: #D3D3D3;
 }
 
-#loocxzekmq .gt_title {
+#tyjrhyiqhd .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -655,7 +655,7 @@ lm_metrics <- collect_metrics(final_lm_res)
   border-bottom-width: 0;
 }
 
-#loocxzekmq .gt_subtitle {
+#tyjrhyiqhd .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -665,13 +665,13 @@ lm_metrics <- collect_metrics(final_lm_res)
   border-top-width: 0;
 }
 
-#loocxzekmq .gt_bottom_border {
+#tyjrhyiqhd .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#loocxzekmq .gt_col_headings {
+#tyjrhyiqhd .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -686,7 +686,7 @@ lm_metrics <- collect_metrics(final_lm_res)
   border-right-color: #D3D3D3;
 }
 
-#loocxzekmq .gt_col_heading {
+#tyjrhyiqhd .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -706,7 +706,7 @@ lm_metrics <- collect_metrics(final_lm_res)
   overflow-x: hidden;
 }
 
-#loocxzekmq .gt_column_spanner_outer {
+#tyjrhyiqhd .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -718,15 +718,15 @@ lm_metrics <- collect_metrics(final_lm_res)
   padding-right: 4px;
 }
 
-#loocxzekmq .gt_column_spanner_outer:first-child {
+#tyjrhyiqhd .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#loocxzekmq .gt_column_spanner_outer:last-child {
+#tyjrhyiqhd .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#loocxzekmq .gt_column_spanner {
+#tyjrhyiqhd .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -738,7 +738,7 @@ lm_metrics <- collect_metrics(final_lm_res)
   width: 100%;
 }
 
-#loocxzekmq .gt_group_heading {
+#tyjrhyiqhd .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -760,7 +760,7 @@ lm_metrics <- collect_metrics(final_lm_res)
   vertical-align: middle;
 }
 
-#loocxzekmq .gt_empty_group_heading {
+#tyjrhyiqhd .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -775,15 +775,15 @@ lm_metrics <- collect_metrics(final_lm_res)
   vertical-align: middle;
 }
 
-#loocxzekmq .gt_from_md > :first-child {
+#tyjrhyiqhd .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#loocxzekmq .gt_from_md > :last-child {
+#tyjrhyiqhd .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#loocxzekmq .gt_row {
+#tyjrhyiqhd .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -802,7 +802,7 @@ lm_metrics <- collect_metrics(final_lm_res)
   overflow-x: hidden;
 }
 
-#loocxzekmq .gt_stub {
+#tyjrhyiqhd .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -814,7 +814,7 @@ lm_metrics <- collect_metrics(final_lm_res)
   padding-left: 12px;
 }
 
-#loocxzekmq .gt_summary_row {
+#tyjrhyiqhd .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -824,7 +824,7 @@ lm_metrics <- collect_metrics(final_lm_res)
   padding-right: 5px;
 }
 
-#loocxzekmq .gt_first_summary_row {
+#tyjrhyiqhd .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -834,7 +834,7 @@ lm_metrics <- collect_metrics(final_lm_res)
   border-top-color: #D3D3D3;
 }
 
-#loocxzekmq .gt_grand_summary_row {
+#tyjrhyiqhd .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -844,7 +844,7 @@ lm_metrics <- collect_metrics(final_lm_res)
   padding-right: 5px;
 }
 
-#loocxzekmq .gt_first_grand_summary_row {
+#tyjrhyiqhd .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -854,11 +854,11 @@ lm_metrics <- collect_metrics(final_lm_res)
   border-top-color: #D3D3D3;
 }
 
-#loocxzekmq .gt_striped {
+#tyjrhyiqhd .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#loocxzekmq .gt_table_body {
+#tyjrhyiqhd .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -867,7 +867,7 @@ lm_metrics <- collect_metrics(final_lm_res)
   border-bottom-color: #D3D3D3;
 }
 
-#loocxzekmq .gt_footnotes {
+#tyjrhyiqhd .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -881,13 +881,13 @@ lm_metrics <- collect_metrics(final_lm_res)
   border-right-color: #D3D3D3;
 }
 
-#loocxzekmq .gt_footnote {
+#tyjrhyiqhd .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#loocxzekmq .gt_sourcenotes {
+#tyjrhyiqhd .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -901,41 +901,41 @@ lm_metrics <- collect_metrics(final_lm_res)
   border-right-color: #D3D3D3;
 }
 
-#loocxzekmq .gt_sourcenote {
+#tyjrhyiqhd .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#loocxzekmq .gt_left {
+#tyjrhyiqhd .gt_left {
   text-align: left;
 }
 
-#loocxzekmq .gt_center {
+#tyjrhyiqhd .gt_center {
   text-align: center;
 }
 
-#loocxzekmq .gt_right {
+#tyjrhyiqhd .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#loocxzekmq .gt_font_normal {
+#tyjrhyiqhd .gt_font_normal {
   font-weight: normal;
 }
 
-#loocxzekmq .gt_font_bold {
+#tyjrhyiqhd .gt_font_bold {
   font-weight: bold;
 }
 
-#loocxzekmq .gt_font_italic {
+#tyjrhyiqhd .gt_font_italic {
   font-style: italic;
 }
 
-#loocxzekmq .gt_super {
+#tyjrhyiqhd .gt_super {
   font-size: 65%;
 }
 
-#loocxzekmq .gt_footnote_marks {
+#tyjrhyiqhd .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -954,11 +954,11 @@ lm_metrics <- collect_metrics(final_lm_res)
   <tbody class="gt_table_body">
     <tr><td class="gt_row gt_left">rmse</td>
 <td class="gt_row gt_left">standard</td>
-<td class="gt_row gt_right">1.67 &times; 10<sup class='gt_super'>&minus;1</sup></td>
+<td class="gt_row gt_right">1.58 &times; 10<sup class='gt_super'>&minus;1</sup></td>
 <td class="gt_row gt_left">Preprocessor1_Model1</td></tr>
     <tr><td class="gt_row gt_left">rsq</td>
 <td class="gt_row gt_left">standard</td>
-<td class="gt_row gt_right">1.83 &times; 10<sup class='gt_super'>&minus;1</sup></td>
+<td class="gt_row gt_right">1.75 &times; 10<sup class='gt_super'>&minus;1</sup></td>
 <td class="gt_row gt_left">Preprocessor1_Model1</td></tr>
   </tbody>
   
@@ -987,9 +987,9 @@ ames_metrics(data = lm_preds,
 ## # A tibble: 3 × 3
 ##   .metric .estimator .estimate
 ##   <chr>   <chr>          <dbl>
-## 1 rmse    standard       0.167
-## 2 rsq     standard       0.183
-## 3 mae     standard       0.127
+## 1 rmse    standard       0.158
+## 2 rsq     standard       0.175
+## 3 mae     standard       0.122
 ```
 
 
@@ -1010,11 +1010,11 @@ predict(lm_form_fit, new_data = ames_test_small)
 ## # A tibble: 5 × 1
 ##   .pred
 ##   <dbl>
-## 1  5.21
-## 2  5.28
-## 3  5.27
-## 4  5.27
-## 5  5.26
+## 1  5.23
+## 2  5.22
+## 3  5.29
+## 4  5.28
+## 5  5.27
 ```
 
 Jetzt binden wir die Spalten zusammen, also die "Wahrheit" ($y$) und die Vorhersagen:
@@ -1044,7 +1044,7 @@ rsq(ames_test_small2,
 ## # A tibble: 1 × 3
 ##   .metric .estimator .estimate
 ##   <chr>   <chr>          <dbl>
-## 1 rsq     standard       0.563
+## 1 rsq     standard    0.000642
 ```
 
 Andere Koeffizienten der Modellgüte können mit `rmse` oder `mae` abgerufen werden.
@@ -1173,8 +1173,8 @@ lm_metrics
 ## # A tibble: 2 × 4
 ##   .metric .estimator .estimate .config             
 ##   <chr>   <chr>          <dbl> <chr>               
-## 1 rmse    standard      0.0816 Preprocessor1_Model1
-## 2 rsq     standard      0.806  Preprocessor1_Model1
+## 1 rmse    standard      0.0814 Preprocessor1_Model1
+## 2 rsq     standard      0.783  Preprocessor1_Model1
 ```
 
 

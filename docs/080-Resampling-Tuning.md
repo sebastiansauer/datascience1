@@ -16,6 +16,18 @@ Benötigte R-Pakete für dieses Kapitel:
 
 <!-- Chapter Start sections: Lernziele, Literatur, Hinweise, ... -->
 
+### Vorbereitung 
+
+- Lesen Sie die Literatur.
+
+
+
+### Lernziele 
+
+- Sie verstehen den Nutzen von Resampling und Tuning im maschinellen Nutzen.
+- Sie können Methoden des Resampling und Tunings mit Hilfe von Tidymodels anwenden.
+
+
 
 ### Literatur 
 

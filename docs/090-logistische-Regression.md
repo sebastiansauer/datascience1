@@ -82,8 +82,8 @@ dass die logistische Regression eine Wahrscheinlichkeit der Klassenzugehörigkei
 <div class="figure" style="text-align: center">
 
 ```{=html}
-<div id="htmlwidget-1afbdb6e9913c7e34aea" style="width:100%;height:300px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1afbdb6e9913c7e34aea">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: right\n [Daten] -> [Modell] \n [Modell] -> [Wskt] \n [Wskt] -> [Klassifikation]\n","svg":false},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-cf9d370fc329293c7d99" style="width:100%;height:300px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-cf9d370fc329293c7d99">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: right\n [Daten] -> [Modell] \n [Modell] -> [Wskt] \n [Wskt] -> [Klassifikation]\n","svg":false},"evals":[],"jsHooks":[]}</script>
 ```
 
 <p class="caption">(\#fig:logist-regr)Definition eines Models in tidymodels</p>
@@ -96,12 +96,12 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
 
 
 ```{=html}
-<div id="jzefvgxunk" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="vrjuypujhu" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#jzefvgxunk .gt_table {
+#vrjuypujhu .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -126,7 +126,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-left-color: #D3D3D3;
 }
 
-#jzefvgxunk .gt_heading {
+#vrjuypujhu .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -138,7 +138,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-right-color: #D3D3D3;
 }
 
-#jzefvgxunk .gt_title {
+#vrjuypujhu .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -148,7 +148,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-bottom-width: 0;
 }
 
-#jzefvgxunk .gt_subtitle {
+#vrjuypujhu .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -158,13 +158,13 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-top-width: 0;
 }
 
-#jzefvgxunk .gt_bottom_border {
+#vrjuypujhu .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#jzefvgxunk .gt_col_headings {
+#vrjuypujhu .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -179,7 +179,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-right-color: #D3D3D3;
 }
 
-#jzefvgxunk .gt_col_heading {
+#vrjuypujhu .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -199,7 +199,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   overflow-x: hidden;
 }
 
-#jzefvgxunk .gt_column_spanner_outer {
+#vrjuypujhu .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -211,15 +211,15 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   padding-right: 4px;
 }
 
-#jzefvgxunk .gt_column_spanner_outer:first-child {
+#vrjuypujhu .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#jzefvgxunk .gt_column_spanner_outer:last-child {
+#vrjuypujhu .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#jzefvgxunk .gt_column_spanner {
+#vrjuypujhu .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -231,7 +231,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   width: 100%;
 }
 
-#jzefvgxunk .gt_group_heading {
+#vrjuypujhu .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -253,7 +253,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   vertical-align: middle;
 }
 
-#jzefvgxunk .gt_empty_group_heading {
+#vrjuypujhu .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -268,15 +268,15 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   vertical-align: middle;
 }
 
-#jzefvgxunk .gt_from_md > :first-child {
+#vrjuypujhu .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#jzefvgxunk .gt_from_md > :last-child {
+#vrjuypujhu .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#jzefvgxunk .gt_row {
+#vrjuypujhu .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -295,7 +295,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   overflow-x: hidden;
 }
 
-#jzefvgxunk .gt_stub {
+#vrjuypujhu .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -307,7 +307,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   padding-left: 12px;
 }
 
-#jzefvgxunk .gt_summary_row {
+#vrjuypujhu .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -317,7 +317,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   padding-right: 5px;
 }
 
-#jzefvgxunk .gt_first_summary_row {
+#vrjuypujhu .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -327,7 +327,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-top-color: #D3D3D3;
 }
 
-#jzefvgxunk .gt_grand_summary_row {
+#vrjuypujhu .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -337,7 +337,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   padding-right: 5px;
 }
 
-#jzefvgxunk .gt_first_grand_summary_row {
+#vrjuypujhu .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -347,11 +347,11 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-top-color: #D3D3D3;
 }
 
-#jzefvgxunk .gt_striped {
+#vrjuypujhu .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#jzefvgxunk .gt_table_body {
+#vrjuypujhu .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -360,7 +360,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-bottom-color: #D3D3D3;
 }
 
-#jzefvgxunk .gt_footnotes {
+#vrjuypujhu .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -374,13 +374,13 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-right-color: #D3D3D3;
 }
 
-#jzefvgxunk .gt_footnote {
+#vrjuypujhu .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#jzefvgxunk .gt_sourcenotes {
+#vrjuypujhu .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -394,41 +394,41 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-right-color: #D3D3D3;
 }
 
-#jzefvgxunk .gt_sourcenote {
+#vrjuypujhu .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#jzefvgxunk .gt_left {
+#vrjuypujhu .gt_left {
   text-align: left;
 }
 
-#jzefvgxunk .gt_center {
+#vrjuypujhu .gt_center {
   text-align: center;
 }
 
-#jzefvgxunk .gt_right {
+#vrjuypujhu .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#jzefvgxunk .gt_font_normal {
+#vrjuypujhu .gt_font_normal {
   font-weight: normal;
 }
 
-#jzefvgxunk .gt_font_bold {
+#vrjuypujhu .gt_font_bold {
   font-weight: bold;
 }
 
-#jzefvgxunk .gt_font_italic {
+#vrjuypujhu .gt_font_italic {
   font-style: italic;
 }
 
-#jzefvgxunk .gt_super {
+#vrjuypujhu .gt_super {
   font-size: 65%;
 }
 
-#jzefvgxunk .gt_footnote_marks {
+#vrjuypujhu .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -745,12 +745,12 @@ m83_fit %>%
 ```
 
 ```{=html}
-<div id="htgjlsrrai" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="bgaviuwspb" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#htgjlsrrai .gt_table {
+#bgaviuwspb .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -775,7 +775,7 @@ m83_fit %>%
   border-left-color: #D3D3D3;
 }
 
-#htgjlsrrai .gt_heading {
+#bgaviuwspb .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -787,7 +787,7 @@ m83_fit %>%
   border-right-color: #D3D3D3;
 }
 
-#htgjlsrrai .gt_title {
+#bgaviuwspb .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -797,7 +797,7 @@ m83_fit %>%
   border-bottom-width: 0;
 }
 
-#htgjlsrrai .gt_subtitle {
+#bgaviuwspb .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -807,13 +807,13 @@ m83_fit %>%
   border-top-width: 0;
 }
 
-#htgjlsrrai .gt_bottom_border {
+#bgaviuwspb .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#htgjlsrrai .gt_col_headings {
+#bgaviuwspb .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -828,7 +828,7 @@ m83_fit %>%
   border-right-color: #D3D3D3;
 }
 
-#htgjlsrrai .gt_col_heading {
+#bgaviuwspb .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -848,7 +848,7 @@ m83_fit %>%
   overflow-x: hidden;
 }
 
-#htgjlsrrai .gt_column_spanner_outer {
+#bgaviuwspb .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -860,15 +860,15 @@ m83_fit %>%
   padding-right: 4px;
 }
 
-#htgjlsrrai .gt_column_spanner_outer:first-child {
+#bgaviuwspb .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#htgjlsrrai .gt_column_spanner_outer:last-child {
+#bgaviuwspb .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#htgjlsrrai .gt_column_spanner {
+#bgaviuwspb .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -880,7 +880,7 @@ m83_fit %>%
   width: 100%;
 }
 
-#htgjlsrrai .gt_group_heading {
+#bgaviuwspb .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -902,7 +902,7 @@ m83_fit %>%
   vertical-align: middle;
 }
 
-#htgjlsrrai .gt_empty_group_heading {
+#bgaviuwspb .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -917,15 +917,15 @@ m83_fit %>%
   vertical-align: middle;
 }
 
-#htgjlsrrai .gt_from_md > :first-child {
+#bgaviuwspb .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#htgjlsrrai .gt_from_md > :last-child {
+#bgaviuwspb .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#htgjlsrrai .gt_row {
+#bgaviuwspb .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -944,7 +944,7 @@ m83_fit %>%
   overflow-x: hidden;
 }
 
-#htgjlsrrai .gt_stub {
+#bgaviuwspb .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -956,7 +956,7 @@ m83_fit %>%
   padding-left: 12px;
 }
 
-#htgjlsrrai .gt_summary_row {
+#bgaviuwspb .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -966,7 +966,7 @@ m83_fit %>%
   padding-right: 5px;
 }
 
-#htgjlsrrai .gt_first_summary_row {
+#bgaviuwspb .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -976,7 +976,7 @@ m83_fit %>%
   border-top-color: #D3D3D3;
 }
 
-#htgjlsrrai .gt_grand_summary_row {
+#bgaviuwspb .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -986,7 +986,7 @@ m83_fit %>%
   padding-right: 5px;
 }
 
-#htgjlsrrai .gt_first_grand_summary_row {
+#bgaviuwspb .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -996,11 +996,11 @@ m83_fit %>%
   border-top-color: #D3D3D3;
 }
 
-#htgjlsrrai .gt_striped {
+#bgaviuwspb .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#htgjlsrrai .gt_table_body {
+#bgaviuwspb .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1009,7 +1009,7 @@ m83_fit %>%
   border-bottom-color: #D3D3D3;
 }
 
-#htgjlsrrai .gt_footnotes {
+#bgaviuwspb .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1023,13 +1023,13 @@ m83_fit %>%
   border-right-color: #D3D3D3;
 }
 
-#htgjlsrrai .gt_footnote {
+#bgaviuwspb .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#htgjlsrrai .gt_sourcenotes {
+#bgaviuwspb .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1043,41 +1043,41 @@ m83_fit %>%
   border-right-color: #D3D3D3;
 }
 
-#htgjlsrrai .gt_sourcenote {
+#bgaviuwspb .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#htgjlsrrai .gt_left {
+#bgaviuwspb .gt_left {
   text-align: left;
 }
 
-#htgjlsrrai .gt_center {
+#bgaviuwspb .gt_center {
   text-align: center;
 }
 
-#htgjlsrrai .gt_right {
+#bgaviuwspb .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#htgjlsrrai .gt_font_normal {
+#bgaviuwspb .gt_font_normal {
   font-weight: normal;
 }
 
-#htgjlsrrai .gt_font_bold {
+#bgaviuwspb .gt_font_bold {
   font-weight: bold;
 }
 
-#htgjlsrrai .gt_font_italic {
+#bgaviuwspb .gt_font_italic {
   font-style: italic;
 }
 
-#htgjlsrrai .gt_super {
+#bgaviuwspb .gt_super {
   font-size: 65%;
 }
 
-#htgjlsrrai .gt_footnote_marks {
+#bgaviuwspb .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -1554,6 +1554,8 @@ konvert_logits <-
 ## Aufgaben 
 
 - [Fallstudien zu Studiengebühren](https://juliasilge.com/blog/tuition-resampling/)
+- [1. Modell der Fallstudie Hotel Bookings](https://www.tidymodels.org/start/case-study/)
+- [Aufgaben zur logistischen Regression, PDF](https://github.com/sebastiansauer/datascience1/blob/main/Aufgaben/Thema8-Loesungen1.pdf)
 
 
 
