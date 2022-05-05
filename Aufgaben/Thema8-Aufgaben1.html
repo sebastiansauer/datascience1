@@ -1,0 +1,67 @@
+
+<html>
+
+<head>
+<title>Aufgaben</title>
+<style type="text/css">
+body{font-family: Arial, Helvetica, Sans;}
+</style>
+
+<meta charset="UTF-8">
+
+<script type="text/javascript"   src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+</head>
+
+<body>
+<h2>Aufgaben</h2>
+
+<ol>
+<li>
+<h4>Aufgabe</h4>
+<p>Eine logistische Regression wurde an einen Datensatz angepasst. Es
+ergaben sich folgende Koeffizienten (jeweils Punktschätzer):</p>
+<p><code>Konstante = -1.9</code> <code>x = 0.7</code>
+<code>z = 0.7</code></p>
+<p><code>x</code> ist ein metrischer Prädiktor mit einem Range von 0 bis
+10; <code>z</code> ist eine binärer Prädiktor (mit den Werten 0 und
+1).</p>
+<p>Visualisieren Sie die Kurven in einem Diagramm für</p>
+<ol style="list-style-type: lower-alpha">
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mstyle mathvariant="script"><mi>ℒ</mi></mstyle><annotation encoding="application/x-tex">\mathcal{L}</annotation></semantics></math>
+vs. <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>r</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>y</mi><mo>=</mo><mn>1</mn><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">Pr(y=1)</annotation></semantics></math>
+vs. <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math></li>
+</ol>
+<br/>
+</li>
+<li>
+<h4>Aufgabe</h4>
+<p><em>Forschungsfrage</em>: Ist der Zusammenhang von Körpergröße und
+‘Mann’ positiv? Gehen also höhere Werte in Körpergröße
+<code>height</code> einher mit einer höheren Wahrscheinlichkeit, dass es
+sich um einen Mann <code>male</code> handelt?</p>
+<p><strong>Berechnen Sie ein Bayes-Modell mit <code>tidymodels</code>
+und geben Sie die Modellgüte an!</strong></p>
+<p>Hinweise:</p>
+<ul>
+<li>Rechnen Sie in Zentimeter um.</li>
+<li>Die AV sollte vom Typ <code>factor</code> sein bei einer
+Klassifikation, sonst beschwert sich Tidymodels.</li>
+<li>Stratifizieren Sie bei der Aufteilung von Train- und
+Test-Sample.</li>
+<li>Verwenden Sie eine 10-fache Kreuzvalidierung mit 10
+Wiederholungen.</li>
+<li>Geben Sie die Modellgüte für folgende Koeffizienten an: ROC AUC,
+Sensitivität, Spezifität, PPV</li>
+<li>Verwenden Sie Rezept-Schritte (<code>steps</code>) nach eigenem
+Dafürhalten.</li>
+<li>Stoppen Sie die Zeit, die Ihr Computer braucht, um das Modell zu
+berechnen.</li>
+<li>Viel Spaß :-)</li>
+</ul>
+<br/>
+</li>
+</ol>
+
+</body>
+</html>
