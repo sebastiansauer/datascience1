@@ -141,14 +141,10 @@ thema7:
     - "Rhys, Kap. 4"
   Aufgaben:
     - "[Fallstudien zu Studiengebühren](https://juliasilge.com/blog/tuition-resampling/)"
-    - "[1. Model der Fallstudie 'Hotel Bookings'](https://www.tidymodels.org/start/case-study/")
+    - "[1. Modell der Fallstudie Hotel Bookings](https://www.tidymodels.org/start/case-study/)"
+    - "[Aufgaben zur logistischen Regression, PDF](https://github.com/sebastiansauer/datascience1/blob/main/Aufgaben/Thema8-Loesungen1.pdf)"
 
 
-thema8:
-  Titel: "Naive Bayes"
-
-  Literatur:
-    - "Rhys, Kap. 6"
 
 
 thema9:
@@ -163,6 +159,14 @@ thema10:
 
   Literatur:
     - "Rhys, Kap. 8"
+    
+    
+
+thema8:
+  Titel: "Dimensionsreduktion"
+
+  Literatur:
+    - "Rhys, Kap. 13  "    
     
 
 thema11:
