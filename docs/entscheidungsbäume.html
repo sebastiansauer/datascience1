@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Kapitel 9 Entscheidungsbäume | DataScience1</title>
+<meta name="author" content="Sebastian Sauer">
+<meta name="description" content="9.1 Vorbereitung In diesem Kapitel werden folgende R-Pakete benötigt: library(titanic) #library(rpart) library(tidymodels)  9.2 Anatomie eines Baumes Ein Baum 🌳 hat (u.a.): Wurzel Blätter Äste In...">
+<meta name="generator" content="bookdown 0.26.2 with bs4_book()">
+<meta property="og:title" content="Kapitel 9 Entscheidungsbäume | DataScience1">
+<meta property="og:type" content="book">
+<meta property="og:description" content="9.1 Vorbereitung In diesem Kapitel werden folgende R-Pakete benötigt: library(titanic) #library(rpart) library(tidymodels)  9.2 Anatomie eines Baumes Ein Baum 🌳 hat (u.a.): Wurzel Blätter Äste In...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kapitel 9 Entscheidungsbäume | DataScience1">
+<meta name="twitter:description" content="9.1 Vorbereitung In diesem Kapitel werden folgende R-Pakete benötigt: library(titanic) #library(rpart) library(tidymodels)  9.2 Anatomie eines Baumes Ein Baum 🌳 hat (u.a.): Wurzel Blätter Äste In...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
+<script src="libs/grViz-binding-1.0.6.1/grViz.js"></script><script src="libs/es6shim-0.35.6/es6shim.js"></script><script src="libs/es7shim-6.0.0/es7shim.js"></script><script src="libs/graphre-0.1.3/graphre.js"></script><script src="libs/nomnoml-1.3.1/nomnoml.js"></script><script src="libs/nomnoml-binding-0.2.3/nomnoml.js"></script><script src="libs/d3-3.3.8/d3.min.js"></script><script src="libs/dagre-0.4.0/dagre-d3.min.js"></script><link href="libs/mermaid-0.3.0/dist/mermaid.css" rel="stylesheet">
+<script src="libs/mermaid-0.3.0/dist/mermaid.slim.min.js"></script><script src="libs/chromatography-0.1/chromatography.js"></script><script src="libs/DiagrammeR-binding-1.0.6.1/DiagrammeR.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="style-bs4.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="Grundlagen der Prognosemodellierung 🔮🧰">DataScience1</a>:
+        <small class="text-muted">Grundlagen der Prognosemodellierung 🔮🧰</small>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Zu diesem Buch</a></li>
+<li><a class="" href="hinweise.html"><span class="header-section-number">1</span> Hinweise</a></li>
+<li><a class="" href="pr%C3%BCfung.html"><span class="header-section-number">2</span> Prüfung</a></li>
+<li class="book-part">Themen</li>
+<li><a class="" href="statistisches-lernen.html"><span class="header-section-number">3</span> Statistisches Lernen</a></li>
+<li><a class="" href="r-zweiter-blick.html"><span class="header-section-number">4</span> R, zweiter Blick</a></li>
+<li><a class="" href="tidymodels.html"><span class="header-section-number">5</span> tidymodels</a></li>
+<li><a class="" href="knn.html"><span class="header-section-number">6</span> kNN</a></li>
+<li><a class="" href="resampling-und-tuning.html"><span class="header-section-number">7</span> Resampling und Tuning</a></li>
+<li><a class="" href="logistische-regression.html"><span class="header-section-number">8</span> Logistische Regression</a></li>
+<li><a class="active" href="entscheidungsb%C3%A4ume.html"><span class="header-section-number">9</span> Entscheidungsbäume</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/sebastiansauer/datascience1">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="entscheidungsbäume" class="section level1" number="9">
+<h1>
+<span class="header-section-number">Kapitel 9</span> Entscheidungsbäume<a class="anchor" aria-label="anchor" href="#entscheidungsb%C3%A4ume"><i class="fas fa-link"></i></a>
+</h1>
+<div id="vorbereitung-5" class="section level2" number="9.1">
+<h2>
+<span class="header-section-number">9.1</span> Vorbereitung<a class="anchor" aria-label="anchor" href="#vorbereitung-5"><i class="fas fa-link"></i></a>
+</h2>
+<p>In diesem Kapitel werden folgende R-Pakete benötigt:</p>
+<div class="sourceCode" id="cb325"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/paulhendricks/titanic">titanic</a></span><span class="op">)</span>
+<span class="co">#library(rpart)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span></code></pre></div>
+</div>
+<div id="anatomie-eines-baumes" class="section level2" number="9.2">
+<h2>
+<span class="header-section-number">9.2</span> Anatomie eines Baumes<a class="anchor" aria-label="anchor" href="#anatomie-eines-baumes"><i class="fas fa-link"></i></a>
+</h2>
+<p>Ein Baum 🌳 hat (u.a.):</p>
+<ul>
+<li>Wurzel</li>
+<li>Blätter</li>
+<li>Äste</li>
+</ul>
+<p>In einem <em>Entscheidungsbaum</em> ist die Terminologie ähnlich, s. Abb. <a href="entscheidungsb%C3%A4ume.html#fig:rec-part2">9.1</a>.
+Allgemein gesagt, kann ein Entscheidungsbaum in einem baumähnlichen Graphen visualisiert werden.
+Dort gibt es Knoten, die durch Kanten verbunden sind,
+wobei zu einem Knoten genau ein Kanten führt.</p>
+<p>Ein Beispiel für einen einfachen Baum sowie die zugehörige <em>rekursive Partionierung</em> ist in Abb. <a href="entscheidungsb%C3%A4ume.html#fig:rec-part2">9.1</a> dargestellt;
+man erkennt <span class="math inline">\(R=3\)</span> <em>Regionen</em> bzw. Blätter <span class="citation">(<a href="references.html#ref-islr" role="doc-biblioref">James et al. 2021</a>)</span>.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:rec-part2"></span>
+<img src="img/8.1.png" alt="Einfaches Beispiel für einen Baum sowie der zugehörigen rekursiven Partionierung" width="45%"><img src="img/8.2.png" alt="Einfaches Beispiel für einen Baum sowie der zugehörigen rekursiven Partionierung" width="45%"><p class="caption">
+Figure 9.1: Einfaches Beispiel für einen Baum sowie der zugehörigen rekursiven Partionierung
+</p>
+</div>
+<p>In Abb. <a href="#rec-part2"><strong>??</strong></a> wird der Knoten an der Spitze auch als <em>Wurzel(knoten)</em> bezeichnet.
+Von diesem Knoten entspringen alle Pfade.
+Ein Pfad ist die geordnete Menge der Pfade mit ihren Knoten ausgehend von der Wurzel bis zu einem Blatt.
+Knoten, aus denen kein Kanten mehr wegführt (“Endknoten”) werden als <em>Blätter</em> bezeichnet.
+Von einem Knoten gehen zwei Kanten aus (oder gar keine).
+Knoten, von denen zwei Kanten ausgehen, spiegeln eine <em>Bedingung</em> (Prüfung) wider, im Sinne einer Aussage,
+die mit ja oder nein beantwortet werden kann.
+Die Anzahl der Knoten eines Pfads entsprechen den <em>Ebenen</em> bzw. der Tiefe des Baumes.
+Von der obersten Ebene (Wurzelknoten) kann man die <span class="math inline">\(e\)</span> Ebenen aufsteigend durchnummerieren,
+beginnend bei 1: <span class="math inline">\(1,2,\ldots,e\)</span>.</p>
+</div>
+<div id="bäume-als-regelmaschinen-rekursiver-partionierung" class="section level2" number="9.3">
+<h2>
+<span class="header-section-number">9.3</span> Bäume als Regelmaschinen rekursiver Partionierung<a class="anchor" aria-label="anchor" href="#b%C3%A4ume-als-regelmaschinen-rekursiver-partionierung"><i class="fas fa-link"></i></a>
+</h2>
+<p>Ein Baum kann man als eine Menge von <em>Regeln</em>, im Sinne von <em>Wenn-dann-sonst-Aussagen</em>, sehen:</p>
+<pre><code>Wenn Prädiktor A = 1 ist dann
+|  Wenn Prädiktor B = 0 ist dann p = 10%
+|  sonst p = 30%
+sonst p = 50%</code></pre>
+<p>In diesem Fall, zwei Prädiktoren, ist der Prädiktorenraum in <em>drei Regionen</em> unterteilt:
+Der Baum hat drei Blätter.</p>
+<p>Für Abb. <a href="entscheidungsb%C3%A4ume.html#fig:tree1">9.2</a> ergibt sich eine komplexere Aufteilung, s. auch Abb. <a href="entscheidungsb%C3%A4ume.html#fig:recursive-part">9.3</a>.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:tree1"></span>
+<img src="100-Entscheidungsba%CC%88ume_files/figure-html/tree1-1.png" alt="Beispiel für einen Entscheidungsbaum" width="100%"><p class="caption">
+Figure 9.2: Beispiel für einen Entscheidungsbaum
+</p>
+</div>
+<p>Kleine Lesehilft für Abb. <a href="entscheidungsb%C3%A4ume.html#fig:tree1">9.2</a>:</p>
+<ul>
+<li>Für jeden Knoten steht in der ersten Zeile der vorhergesagte Wert, z.B. <code>0</code> im Wurzelknoten</li>
+<li>darunter steht der Anteil (die Wahrscheinlichkeit) für die in diesem Knoten vorhergesagte Kategorie (<code>0</code> oder <code>1</code>)</li>
+<li>darunter (3. Zeile) steht der Anteil der Fälle (am Gesamt-Datensatz) in diesem Knoten, z.B. <code>100%</code>
+</li>
+</ul>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:recursive-part"></span>
+<img src="img/recursive-part.png" alt="Partionierung in Rechtecke durch Entscheidungsbäume" width="100%"><p class="caption">
+Figure 9.3: Partionierung in Rechtecke durch Entscheidungsbäume
+</p>
+</div>
+<p>Wie der Algorithmus oben zeigt,
+wird der Prädiktorraum wiederholt (rekursiv) aufgeteilt,
+und zwar in Rechtecke,s. Abb. <a href="entscheidungsb%C3%A4ume.html#fig:recursive-part">9.3</a>.
+Man nennt (eine Implementierung) dieses Algorithmus auch <em>rpart</em>.</p>
+<p>Das Regelwerk zum Baum aus Abb. <a href="entscheidungsb%C3%A4ume.html#fig:tree1">9.2</a> sieht so aus:</p>
+<div class="sourceCode" id="cb327"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">titanic_train</span><span class="op">$</span><span class="va">Survived</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">titanic_train</span><span class="op">$</span><span class="va">Survived</span><span class="op">)</span>
+
+<span class="va">ti_tree</span> <span class="op">&lt;-</span>
+  <span class="fu">decision_tree</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">set_engine</span><span class="op">(</span><span class="st">"rpart"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">set_mode</span><span class="op">(</span><span class="st">"classification"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">fit</span><span class="op">(</span><span class="va">Survived</span> <span class="op">~</span> <span class="va">Pclass</span> <span class="op">+</span> <span class="va">Age</span>, data <span class="op">=</span> <span class="va">titanic_train</span><span class="op">)</span>
+
+<span class="va">ti_tree</span></code></pre></div>
+<pre><code>## parsnip model object
+## 
+## n= 891 
+## 
+## node), split, n, loss, yval, (yprob)
+##       * denotes terminal node
+## 
+##   1) root 891 342 0 (0.61616162 0.38383838)  
+##     2) Pclass&gt;=2.5 491 119 0 (0.75763747 0.24236253)  
+##       4) Age&gt;=6.5 461 102 0 (0.77874187 0.22125813) *
+##       5) Age&lt; 6.5 30  13 1 (0.43333333 0.56666667) *
+##     3) Pclass&lt; 2.5 400 177 1 (0.44250000 0.55750000)  
+##       6) Age&gt;=17.5 365 174 1 (0.47671233 0.52328767)  
+##        12) Pclass&gt;=1.5 161  66 0 (0.59006211 0.40993789) *
+##        13) Pclass&lt; 1.5 204  79 1 (0.38725490 0.61274510)  
+##          26) Age&gt;=44.5 67  32 0 (0.52238806 0.47761194)  
+##            52) Age&gt;=60.5 14   3 0 (0.78571429 0.21428571) *
+##            53) Age&lt; 60.5 53  24 1 (0.45283019 0.54716981)  
+##             106) Age&lt; 47.5 13   3 0 (0.76923077 0.23076923) *
+##             107) Age&gt;=47.5 40  14 1 (0.35000000 0.65000000) *
+##          27) Age&lt; 44.5 137  44 1 (0.32116788 0.67883212) *
+##       7) Age&lt; 17.5 35   3 1 (0.08571429 0.91428571) *</code></pre>
+<p>Kleine Lesehilfe:
+Ander Wurzel <code>root</code> des Baumes, Knoten <code>1)</code>haben wir 891 Fälle,
+von denen 342 <em>nicht</em> unserer Vorhersage <code>yval</code> entsprechen, also <code>loss</code> sind,
+das ist ein Anteil, <code>(yprob)</code> von 0.38.
+Unsere Vorhersage ist <code>0</code>, da das die Mehrheit in diesem Knoten ist,
+dieser Anteil beträgt ca. 61%.
+In der Klammer stehen also die Wahrscheinlichkeiten für alle Ausprägungen von Y:, <code>0</code> und <code>1</code>,
+in diesem Fall.
+Entsprechendes gilt für jeden weiteren Knoten.</p>
+<p>Ein kurzer Check der Häufigkeit am Wurzelknoten:</p>
+<pre><code>##   Survived   n
+## 1        0 549
+## 2        1 342</code></pre>
+<p>Solche Entscheidungsbäume zu erstellen, ist nichts neues.
+Man kann sie mit einer einfachen Checkliste oder Entscheidungssystem vergleichen.
+Der Unterschied zu Entscheidungsbäumen im maschinellen Lernen ist nur,
+dass die Regeln aus den Daten gelernt werden, man muss sie nicht vorab kennen.</p>
+<p>Noch ein Beispiel ist in Abb. <a href="#tree3"><strong>??</strong></a> gezeigt <span class="citation">(<a href="references.html#ref-islr" role="doc-biblioref">James et al. 2021</a>)</span>:
+Oben links zeigt eine <em>unmögliche</em> Partionierung (für einen Entscheidungsbaum).
+Oben rechts zeigt die Regionen,
+die sich durch den Entscheidungsbaum unten links ergeben.
+Untenrechts ist der Baum in 3D dargestellt.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:tree3"></span>
+<img src="img/8.3.png" alt="Ein weiteres Beispiel zur Darstellung von Entscheidungsbäumen" width="100%"><p class="caption">
+Figure 9.4: Ein weiteres Beispiel zur Darstellung von Entscheidungsbäumen
+</p>
+</div>
+</div>
+<div id="klassifikation" class="section level2" number="9.4">
+<h2>
+<span class="header-section-number">9.4</span> Klassifikation<a class="anchor" aria-label="anchor" href="#klassifikation"><i class="fas fa-link"></i></a>
+</h2>
+<p>Bäume können für Zwecke der Klassifikation (nominal skalierte AV) oder Regression (numerische AV) verwendet werden.
+Betrachten wir zunächst die binäre Klassifikation, also für eine zweistufige (nominalskalierte) AV.
+Das Ziel des Entscheidungsmodel-Algorithmus ist es,
+zu Blättern zu kommen, die möglichst “sortenrein” sind,
+sich also möglichst klar für eine (der beiden) Klassen <span class="math inline">\(A\)</span> oder <span class="math inline">\(B\)</span> aussprechen.
+Nach dem Motto: “Wenn Prädiktor 1 kleiner <span class="math inline">\(x\)</span> und wenn Prädiktor 2 gleich <span class="math inline">\(y\)</span>,
+dann handelt es sich beim vorliegenden Fall ziemlich sicher um Klasse <span class="math inline">\(A\)</span>.”</p>
+<div class="infobox quote">
+<p>Je homogener die Verteilung der AV pro Blatt, desto genauer die Vorhersagen.</p>
+</div>
+<p>Unsere Vorhersage in einem Blatt entspricht der Merheit bzw. der häufigsten Kategorie in diesem Blatt.</p>
+</div>
+<div id="gini-als-optimierungskriterium" class="section level2" number="9.5">
+<h2>
+<span class="header-section-number">9.5</span> Gini als Optimierungskriterium<a class="anchor" aria-label="anchor" href="#gini-als-optimierungskriterium"><i class="fas fa-link"></i></a>
+</h2>
+<p>Es gibt mehrere Kennzahlen, die zur Optimierung bzw. zur Entscheidung zum Aufbau des Entscheidungsbaum herangezogen werden.
+Zwei übliche sind der <em>Gini-Koeffizient</em> und die <em>Entropie</em>.
+Bei Kennzahlen sind Maß für die Homogenität oder “Sortenreinheit” (vs. Heterogenität, engl. auch impurity).</p>
+<p>Den Algorithmus zur Erzeugung des Baumes kann man so darstellen:</p>
+<pre><code>Wiederhole für jede Ebenes
+|  prüfe für alle Prädiktoren alle möglichen Bedingungen
+|  wähle denjenigen Prädiktor mit derjenigen Bedingung, der die Homogenität maximiert
+solange bis Abbruchkriterium erreicht ist.</code></pre>
+<p>Ein Bedingung könnte sein <code>Age &gt;= 18</code> oder <code>Years &lt; 4.5</code>.</p>
+<p>Es kommen mehrere Abbruchkriterium in Frage:</p>
+<ul>
+<li>Eine Mindestanzahl von Beobachtungen pro Knoten wird unterschritten (<code>minsplit</code>)</li>
+<li>Die maximale Anzahl an Ebenen ist erreicht (<code>maxdepth</code>)</li>
+<li>Die minimale Zahl an Beobachtungen eines Blatts wird unterschritten (<code>minbucket</code>)</li>
+</ul>
+<p>Der Gini-Koeffizient ist im Fall einer UV mit zwei Stufen, <span class="math inline">\(c_A\)</span> und <span class="math inline">\(c_B\)</span>, so definiert:</p>
+<p><span class="math display">\[G = 1 - \left(p(c_A)^2 + (1-p(c_A))^2\right)\]</span></p>
+<p>Der Algorithmus ist “gierig” (greedy): Optimiert werden lokal optimale Aufteilungen,
+auch wenn das bei späteren Aufteilungen im Baum dann insgesamt zu geringerer Homogenität führt.</p>
+<p>Die Entropie ist definiert als</p>
+<p><span class="math display">\[D = - \sum_{k=1}^K p_k \cdot log(p_k),\]</span></p>
+<p>wobei <span class="math inline">\(K\)</span> die Anzahl der Kategorien indiziert.</p>
+<p>Gini-Koeffizient und Entropie kommen oft zu ähnlichen numerischen Ergebnissen,
+so dass wir uns im Folgenden auf den Gini-Koeffizienten konzentieren werden.</p>
+<hr>
+<p><em>Beispiel</em></p>
+<p>Vergleichen wir drei Bedingungen mit jeweils <span class="math inline">\(n=20\)</span> Fällen, die zu unterschiedlich homogenen Knoten führen:</p>
+<ul>
+<li>10/10</li>
+<li>15/5</li>
+<li>19/1</li>
+</ul>
+<p>Was ist jeweils der Wert des Gini-Koeffizienten?</p>
+<div class="sourceCode" id="cb331"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">G1</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">-</span> <span class="op">(</span><span class="op">(</span><span class="fl">10</span><span class="op">/</span><span class="fl">20</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="op">(</span><span class="fl">10</span><span class="op">/</span><span class="fl">20</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>
+<span class="va">G1</span></code></pre></div>
+<pre><code>## [1] 0.5</code></pre>
+<div class="sourceCode" id="cb333"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">G2</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">-</span> <span class="op">(</span><span class="op">(</span><span class="fl">15</span><span class="op">/</span><span class="fl">20</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="op">(</span><span class="fl">5</span><span class="op">/</span><span class="fl">20</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>
+<span class="va">G2</span></code></pre></div>
+<pre><code>## [1] 0.375</code></pre>
+<div class="sourceCode" id="cb335"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">G3</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">-</span> <span class="op">(</span><span class="op">(</span><span class="fl">19</span><span class="op">/</span><span class="fl">20</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">20</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>
+<span class="va">G3</span></code></pre></div>
+<pre><code>## [1] 0.095</code></pre>
+<p>Wie man sieht, sinkt der Wert des Gini-Koeffizienten (“G-Wert”), je homogener die Verteilung ist.
+<em>Maximal</em> heterogen (“gemischt”) ist die Verteilung, wenn alle Werte gleich oft vorkommen,
+in diesem Fall also 50%/50%.</p>
+<hr>
+<p>Neben dem G-Wert für einzelne Knoten kann man den G-Wert für eine Aufteilung (“Split”) berechnen,
+also die Fraeg beantworten, ob die Aufteilung eines Knoten in zwei zu mehr Homogenität führt.
+Der G-Wert einer Aufteilung ist die gewichtete Summe der G-Werte der beiden Knoten (links, <span class="math inline">\(l\)</span> und rechts, <span class="math inline">\(r\)</span>):</p>
+<p><span class="math display">\[G_{split} = p(l) G_{l} + p(r) G_r\]</span></p>
+<p>Der <em>Gewinn</em> (gain) an Homogenität ist dann die Differenz des G-Werts der kleineren Ebene und der Aufteilung:</p>
+<p><span class="math display">\[G_{gain} = G - G_{split}\]</span></p>
+<p>Der Algorithmus kann auch bei UV mit mehr als zwei, also <span class="math inline">\(K\)</span> Stufen, <span class="math inline">\(c_1, c_2, \ldots, c_K\)</span> verwendet werden:</p>
+<p><span class="math display">\[G= 1- \sum_{k=1}^K p(c_k)^2\]</span></p>
+</div>
+<div id="metrische-prädiktoren" class="section level2" number="9.6">
+<h2>
+<span class="header-section-number">9.6</span> Metrische Prädiktoren<a class="anchor" aria-label="anchor" href="#metrische-pr%C3%A4diktoren"><i class="fas fa-link"></i></a>
+</h2>
+<p>Außerdem ist es möglich, Bedingung bei <em>metrischen</em> UV auf ihre Homogenität hin zu bewerten,
+also Aufteilungen der Art <code>Years &lt; 4.5</code> zu tätigen.
+Dazu muss man einen Wert identifieren, bei dem man auftrennt.</p>
+<p>Das geht in etwa so:</p>
+<pre><code>Sortiere die Werte eines Prädiktors (aufsteigend)
+Für jedes Paar an aufeinanderfolgenden Werten berechne den G-Wert
+Finde das Paar mit dem höchsten G-Wert aus allen Paaren
+Nimm den Mittelwert der beiden Werte dieses Paares: Das ist der Aufteilungswert</code></pre>
+<p>Abbildung <a href="entscheidungsb%C3%A4ume.html#fig:tree-metr">9.5</a> stellt dieses Vorgehen schematisch dar <span class="citation">(<a href="references.html#ref-rhys" role="doc-biblioref">Rhys 2020</a>)</span>.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:tree-metr"></span>
+<img src="img/fig7-5_alt.jpeg" alt="Aufteilungswert bei metrischen Prädiktoren" width="100%"><p class="caption">
+Figure 9.5: Aufteilungswert bei metrischen Prädiktoren
+</p>
+</div>
+</div>
+<div id="regressionbäume" class="section level2" number="9.7">
+<h2>
+<span class="header-section-number">9.7</span> Regressionbäume<a class="anchor" aria-label="anchor" href="#regressionb%C3%A4ume"><i class="fas fa-link"></i></a>
+</h2>
+<p>Bei Regressionsbäumen wird nicht ein Homogenitätsmaß wie der Gini-Koeffizient als Optimierungskriterium
+herangezogen, sondern die <em>RSS</em> (Residual Sum of Squares) bietet sich an.</p>
+<p>Die <span class="math inline">\(J\)</span> Regionen (Partionierungen) des Prädiktorraums <span class="math inline">\(R_1, R_2, \ldots, R_J\)</span> müssen so gewählt werden,
+dass RSS minimal ist:</p>
+<p><span class="math display">\[RSS = \sum^J_{j=1}\sum_{i\in R_j}(u_i - \hat{y}_{R_j})^2,\]</span></p>
+<p>wobei <span class="math inline">\(\hat{y}\)</span> der (vom Baum) vorhergesagte Wert ist für die <span class="math inline">\(j\)</span>-te Region.</p>
+</div>
+<div id="baum-beschneiden" class="section level2" number="9.8">
+<h2>
+<span class="header-section-number">9.8</span> Baum beschneiden<a class="anchor" aria-label="anchor" href="#baum-beschneiden"><i class="fas fa-link"></i></a>
+</h2>
+<p>Ein Problem mit Entscheidungsbäumen ist,
+dass ein zu komplexer Baum, “zu verästelt” sozusagen,
+in hohem Maße Overfitting ausgesetzt ist:
+Bei höheren Ebenen im Baum ist die Anzahl der Beobachtungen zwangsläufig klein,
+was bedeutet, dass viel Rauschen gefittet wird.</p>
+<p>Um das Overfitting zu vermeiden, gibt es zwei auf der Hand liegende Maßnahmen:</p>
+<ol style="list-style-type: decimal">
+<li>Den Baum nicht so groß werden lassen</li>
+<li>Den Baum “zurückschneiden”</li>
+</ol>
+<p>Die 1. Maßnahme beruht auf dem Festlegen einer maximalen Zahl an Ebenen (<code>maxdepth</code>) oder einer minimalen Zahl an Fällen pro Knoten (<code>minsplit</code>) oder im Blatt (<code>minbucket</code>).</p>
+<p>Die 2. Maßnahme, das Zurückschneiden (pruning) des Baumes hat als Idee, einen “Teilbaum” <span class="math inline">\(T\)</span> zu finden,
+der so klein wie möglich ist, aber so gut wie möglich präzise Vorhersagen erlaubt.
+Dazu belegen wir die RSS eines Teilbaums (subtree) mit einem Strafterm <span class="math inline">\(s = \alpha |T|\)</span>,
+wobei <span class="math inline">\(|T|\)</span> die Anzahl der Blätter des Baums entspricht. <span class="math inline">\(\alpha\)</span> ist ein Tuningparameter,
+also ein Wert, der nicht vom Modell berechnet wird, sondern von uns gesetzt werden muss -
+zumeist durch schlichtes Ausprobieren.
+<span class="math inline">\(\alpha\)</span> wägt ab zwischen Komplexität und Fit (geringe RSS).
+Wenn <span class="math inline">\(\alpha=0\)</span> haben wir eine normalen, unbeschnittenen Baum <span class="math inline">\(T_0\)</span>.
+Je größer <span class="math inline">\(\alpha\)</span> wird, desto höher wird der “Preis” für viele Blätter, also für Komplexität
+und der Baum wird kleiner.
+Dieses Vorgehen nennt man auch <em>cost complexity pruning</em>.</p>
+</div>
+<div id="das-rechteck-schlägt-zurück" class="section level2" number="9.9">
+<h2>
+<span class="header-section-number">9.9</span> Das Rechteck schlägt zurück<a class="anchor" aria-label="anchor" href="#das-rechteck-schl%C3%A4gt-zur%C3%BCck"><i class="fas fa-link"></i></a>
+</h2>
+<p>Entscheidungsbäume zeichnen sich durch rechtecke (rekursive) Partionierungen des Prädiktorenraums aus.
+Lineare Modelle durch eine einfache lineare Partionierung (wenn man Klassifizieren möchte),
+Abb. <a href="entscheidungsb%C3%A4ume.html#fig:rechteck">9.6</a> verdeutlicht diesen Unterschied <span class="citation">(<a href="references.html#ref-islr" role="doc-biblioref">James et al. 2021</a>)</span>.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:rechteck"></span>
+<img src="img/8.7.png" alt="Rechteckige vs. lineare Partionierung" width="100%"><p class="caption">
+Figure 9.6: Rechteckige vs. lineare Partionierung
+</p>
+</div>
+<p>Jetzt kann sich fragen: Welches Vorgehen ist besser - das rechteckige oder das lineare Partionierungen.
+Da gibt es eine klare Antwort: Es kommt drauf an.
+Wie Abb. <a href="entscheidungsb%C3%A4ume.html#fig:rechteck">9.6</a> gibt es Datenlagen, in denen das eine Vorgehen zu homogenerer Klassifikation führt
+und Situationen, in denen das andere Vorgehen besser ist, vgl. Abb. <a href="entscheidungsb%C3%A4ume.html#fig:lunch">9.7</a>.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:lunch"></span>
+<img src="http://hephaestus-associates.com/wp-content/uploads/2016/07/What-if-I-told-You-There-is-no-Such-Thing-as-a-Free-Lunch-300x300.jpg" alt="Free Lunch?" width="30%"><p class="caption">
+Figure 9.7: Free Lunch?
+</p>
+</div>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="logistische-regression.html"><span class="header-section-number">8</span> Logistische Regression</a></div>
+<div class="next"><a href="references.html">References</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#entscheidungsb%C3%A4ume"><span class="header-section-number">9</span> Entscheidungsbäume</a></li>
+<li><a class="nav-link" href="#vorbereitung-5"><span class="header-section-number">9.1</span> Vorbereitung</a></li>
+<li><a class="nav-link" href="#anatomie-eines-baumes"><span class="header-section-number">9.2</span> Anatomie eines Baumes</a></li>
+<li><a class="nav-link" href="#b%C3%A4ume-als-regelmaschinen-rekursiver-partionierung"><span class="header-section-number">9.3</span> Bäume als Regelmaschinen rekursiver Partionierung</a></li>
+<li><a class="nav-link" href="#klassifikation"><span class="header-section-number">9.4</span> Klassifikation</a></li>
+<li><a class="nav-link" href="#gini-als-optimierungskriterium"><span class="header-section-number">9.5</span> Gini als Optimierungskriterium</a></li>
+<li><a class="nav-link" href="#metrische-pr%C3%A4diktoren"><span class="header-section-number">9.6</span> Metrische Prädiktoren</a></li>
+<li><a class="nav-link" href="#regressionb%C3%A4ume"><span class="header-section-number">9.7</span> Regressionbäume</a></li>
+<li><a class="nav-link" href="#baum-beschneiden"><span class="header-section-number">9.8</span> Baum beschneiden</a></li>
+<li><a class="nav-link" href="#das-rechteck-schl%C3%A4gt-zur%C3%BCck"><span class="header-section-number">9.9</span> Das Rechteck schlägt zurück</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/sebastiansauer/datascience1/blob/master/100-Entscheidungsba%CC%88ume.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/sebastiansauer/datascience1/edit/master/100-Entscheidungsba%CC%88ume.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-05-06 23:52:53.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

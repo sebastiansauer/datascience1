@@ -78,6 +78,7 @@
 <li><a class="active" href="knn.html"><span class="header-section-number">6</span> kNN</a></li>
 <li><a class="" href="resampling-und-tuning.html"><span class="header-section-number">7</span> Resampling und Tuning</a></li>
 <li><a class="" href="logistische-regression.html"><span class="header-section-number">8</span> Logistische Regression</a></li>
+<li><a class="" href="entscheidungsb%C3%A4ume.html"><span class="header-section-number">9</span> Entscheidungsbäume</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
 
@@ -456,7 +457,7 @@ soll dies hier auch dargestellt werden.</p>
 ## kknn::train.kknn(formula = ..y ~ ., data = data, ks = min_rows(3,     data, 5), kernel = ~"rectangular")
 ## 
 ## Type of response variable: nominal
-## Minimal misclassification: 0.09624413
+## Minimal misclassification: 0.1056338
 ## Best kernel: rectangular
 ## Best k: 3</code></pre>
 </div>
@@ -486,8 +487,8 @@ da wir dies bereits eingeführt haben und künftig darauf aufbauen werden.</p>
 <pre><code>## # A tibble: 2 × 4
 ##   .metric  .estimator .estimate .config             
 ##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;               
-## 1 accuracy binary         0.853 Preprocessor1_Model1
-## 2 roc_auc  binary         0.847 Preprocessor1_Model1</code></pre>
+## 1 accuracy binary         0.860 Preprocessor1_Model1
+## 2 roc_auc  binary         0.897 Preprocessor1_Model1</code></pre>
 <p>Die eigentlichen Predictions stecken in der Listenspalte <code>.predictions</code> im Fit-Objekt:</p>
 <div class="sourceCode" id="cb227"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">cancer_test_fit</span><span class="op">)</span></code></pre></div>
@@ -507,8 +508,8 @@ Da hilft <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck(
 <span class="va">confusion</span></code></pre></div>
 <pre><code>##           Truth
 ## Prediction  B  M
-##          B 78  9
-##          M 12 44</code></pre>
+##          B 81 11
+##          M  9 42</code></pre>
 </div>
 <div id="visualisierung" class="section level3" number="6.7.6">
 <h3>
@@ -529,12 +530,12 @@ Da hilft <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck(
 </h2>
 <p>In <span class="citation">Sauer (<a href="references.html#ref-modar" role="doc-biblioref">2019</a>)</span>, Kap. 19.6, findet sich einige Erklärung zu Kennzahlen der Klassifikationsgüte.</p>
 <p>Ein Test kann vier verschiedenen Ergebnisse haben:</p>
-<div id="tlgwujqsni" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="mujztguyht" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#tlgwujqsni .gt_table {
+#mujztguyht .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -559,7 +560,7 @@ Da hilft <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck(
   border-left-color: #D3D3D3;
 }
 
-#tlgwujqsni .gt_heading {
+#mujztguyht .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -571,7 +572,7 @@ Da hilft <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck(
   border-right-color: #D3D3D3;
 }
 
-#tlgwujqsni .gt_title {
+#mujztguyht .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -581,7 +582,7 @@ Da hilft <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck(
   border-bottom-width: 0;
 }
 
-#tlgwujqsni .gt_subtitle {
+#mujztguyht .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -591,13 +592,13 @@ Da hilft <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck(
   border-top-width: 0;
 }
 
-#tlgwujqsni .gt_bottom_border {
+#mujztguyht .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#tlgwujqsni .gt_col_headings {
+#mujztguyht .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -612,7 +613,7 @@ Da hilft <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck(
   border-right-color: #D3D3D3;
 }
 
-#tlgwujqsni .gt_col_heading {
+#mujztguyht .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -632,7 +633,7 @@ Da hilft <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck(
   overflow-x: hidden;
 }
 
-#tlgwujqsni .gt_column_spanner_outer {
+#mujztguyht .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -644,15 +645,15 @@ Da hilft <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck(
   padding-right: 4px;
 }
 
-#tlgwujqsni .gt_column_spanner_outer:first-child {
+#mujztguyht .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#tlgwujqsni .gt_column_spanner_outer:last-child {
+#mujztguyht .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#tlgwujqsni .gt_column_spanner {
+#mujztguyht .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -664,7 +665,7 @@ Da hilft <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck(
   width: 100%;
 }
 
-#tlgwujqsni .gt_group_heading {
+#mujztguyht .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -686,7 +687,7 @@ Da hilft <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck(
   vertical-align: middle;
 }
 
-#tlgwujqsni .gt_empty_group_heading {
+#mujztguyht .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -701,15 +702,15 @@ Da hilft <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck(
   vertical-align: middle;
 }
 
-#tlgwujqsni .gt_from_md > :first-child {
+#mujztguyht .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#tlgwujqsni .gt_from_md > :last-child {
+#mujztguyht .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#tlgwujqsni .gt_row {
+#mujztguyht .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -728,7 +729,7 @@ Da hilft <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck(
   overflow-x: hidden;
 }
 
-#tlgwujqsni .gt_stub {
+#mujztguyht .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -740,7 +741,7 @@ Da hilft <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck(
   padding-left: 12px;
 }
 
-#tlgwujqsni .gt_summary_row {
+#mujztguyht .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -750,7 +751,7 @@ Da hilft <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck(
   padding-right: 5px;
 }
 
-#tlgwujqsni .gt_first_summary_row {
+#mujztguyht .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -760,7 +761,7 @@ Da hilft <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck(
   border-top-color: #D3D3D3;
 }
 
-#tlgwujqsni .gt_grand_summary_row {
+#mujztguyht .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -770,7 +771,7 @@ Da hilft <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck(
   padding-right: 5px;
 }
 
-#tlgwujqsni .gt_first_grand_summary_row {
+#mujztguyht .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -780,11 +781,11 @@ Da hilft <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck(
   border-top-color: #D3D3D3;
 }
 
-#tlgwujqsni .gt_striped {
+#mujztguyht .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#tlgwujqsni .gt_table_body {
+#mujztguyht .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -793,7 +794,7 @@ Da hilft <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck(
   border-bottom-color: #D3D3D3;
 }
 
-#tlgwujqsni .gt_footnotes {
+#mujztguyht .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -807,13 +808,13 @@ Da hilft <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck(
   border-right-color: #D3D3D3;
 }
 
-#tlgwujqsni .gt_footnote {
+#mujztguyht .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#tlgwujqsni .gt_sourcenotes {
+#mujztguyht .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -827,41 +828,41 @@ Da hilft <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck(
   border-right-color: #D3D3D3;
 }
 
-#tlgwujqsni .gt_sourcenote {
+#mujztguyht .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#tlgwujqsni .gt_left {
+#mujztguyht .gt_left {
   text-align: left;
 }
 
-#tlgwujqsni .gt_center {
+#mujztguyht .gt_center {
   text-align: center;
 }
 
-#tlgwujqsni .gt_right {
+#mujztguyht .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#tlgwujqsni .gt_font_normal {
+#mujztguyht .gt_font_normal {
   font-weight: normal;
 }
 
-#tlgwujqsni .gt_font_bold {
+#mujztguyht .gt_font_bold {
   font-weight: bold;
 }
 
-#tlgwujqsni .gt_font_italic {
+#mujztguyht .gt_font_italic {
   font-style: italic;
 }
 
-#tlgwujqsni .gt_super {
+#mujztguyht .gt_super {
   font-size: 65%;
 }
 
-#tlgwujqsni .gt_footnote_marks {
+#mujztguyht .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -902,12 +903,12 @@ Da hilft <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck(
 <p>Es gibt eine verwirrende Vielfalt von Kennzahlen,
 um die Güte einer Klassifikation einzuschätzen.
 Hier sind einige davon:</p>
-<div id="hgahrvcueg" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="valmbljsch" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#hgahrvcueg .gt_table {
+#valmbljsch .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -932,7 +933,7 @@ Hier sind einige davon:</p>
   border-left-color: #D3D3D3;
 }
 
-#hgahrvcueg .gt_heading {
+#valmbljsch .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -944,7 +945,7 @@ Hier sind einige davon:</p>
   border-right-color: #D3D3D3;
 }
 
-#hgahrvcueg .gt_title {
+#valmbljsch .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -954,7 +955,7 @@ Hier sind einige davon:</p>
   border-bottom-width: 0;
 }
 
-#hgahrvcueg .gt_subtitle {
+#valmbljsch .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -964,13 +965,13 @@ Hier sind einige davon:</p>
   border-top-width: 0;
 }
 
-#hgahrvcueg .gt_bottom_border {
+#valmbljsch .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#hgahrvcueg .gt_col_headings {
+#valmbljsch .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -985,7 +986,7 @@ Hier sind einige davon:</p>
   border-right-color: #D3D3D3;
 }
 
-#hgahrvcueg .gt_col_heading {
+#valmbljsch .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1005,7 +1006,7 @@ Hier sind einige davon:</p>
   overflow-x: hidden;
 }
 
-#hgahrvcueg .gt_column_spanner_outer {
+#valmbljsch .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1017,15 +1018,15 @@ Hier sind einige davon:</p>
   padding-right: 4px;
 }
 
-#hgahrvcueg .gt_column_spanner_outer:first-child {
+#valmbljsch .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#hgahrvcueg .gt_column_spanner_outer:last-child {
+#valmbljsch .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#hgahrvcueg .gt_column_spanner {
+#valmbljsch .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1037,7 +1038,7 @@ Hier sind einige davon:</p>
   width: 100%;
 }
 
-#hgahrvcueg .gt_group_heading {
+#valmbljsch .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1059,7 +1060,7 @@ Hier sind einige davon:</p>
   vertical-align: middle;
 }
 
-#hgahrvcueg .gt_empty_group_heading {
+#valmbljsch .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1074,15 +1075,15 @@ Hier sind einige davon:</p>
   vertical-align: middle;
 }
 
-#hgahrvcueg .gt_from_md > :first-child {
+#valmbljsch .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#hgahrvcueg .gt_from_md > :last-child {
+#valmbljsch .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#hgahrvcueg .gt_row {
+#valmbljsch .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1101,7 +1102,7 @@ Hier sind einige davon:</p>
   overflow-x: hidden;
 }
 
-#hgahrvcueg .gt_stub {
+#valmbljsch .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1113,7 +1114,7 @@ Hier sind einige davon:</p>
   padding-left: 12px;
 }
 
-#hgahrvcueg .gt_summary_row {
+#valmbljsch .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1123,7 +1124,7 @@ Hier sind einige davon:</p>
   padding-right: 5px;
 }
 
-#hgahrvcueg .gt_first_summary_row {
+#valmbljsch .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1133,7 +1134,7 @@ Hier sind einige davon:</p>
   border-top-color: #D3D3D3;
 }
 
-#hgahrvcueg .gt_grand_summary_row {
+#valmbljsch .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1143,7 +1144,7 @@ Hier sind einige davon:</p>
   padding-right: 5px;
 }
 
-#hgahrvcueg .gt_first_grand_summary_row {
+#valmbljsch .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1153,11 +1154,11 @@ Hier sind einige davon:</p>
   border-top-color: #D3D3D3;
 }
 
-#hgahrvcueg .gt_striped {
+#valmbljsch .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#hgahrvcueg .gt_table_body {
+#valmbljsch .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1166,7 +1167,7 @@ Hier sind einige davon:</p>
   border-bottom-color: #D3D3D3;
 }
 
-#hgahrvcueg .gt_footnotes {
+#valmbljsch .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1180,13 +1181,13 @@ Hier sind einige davon:</p>
   border-right-color: #D3D3D3;
 }
 
-#hgahrvcueg .gt_footnote {
+#valmbljsch .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#hgahrvcueg .gt_sourcenotes {
+#valmbljsch .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1200,41 +1201,41 @@ Hier sind einige davon:</p>
   border-right-color: #D3D3D3;
 }
 
-#hgahrvcueg .gt_sourcenote {
+#valmbljsch .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#hgahrvcueg .gt_left {
+#valmbljsch .gt_left {
   text-align: left;
 }
 
-#hgahrvcueg .gt_center {
+#valmbljsch .gt_center {
   text-align: center;
 }
 
-#hgahrvcueg .gt_right {
+#valmbljsch .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#hgahrvcueg .gt_font_normal {
+#valmbljsch .gt_font_normal {
   font-weight: normal;
 }
 
-#hgahrvcueg .gt_font_bold {
+#valmbljsch .gt_font_bold {
   font-weight: bold;
 }
 
-#hgahrvcueg .gt_font_italic {
+#valmbljsch .gt_font_italic {
   font-style: italic;
 }
 
-#hgahrvcueg .gt_super {
+#valmbljsch .gt_super {
   font-size: 65%;
 }
 
-#hgahrvcueg .gt_footnote_marks {
+#valmbljsch .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -1431,7 +1432,7 @@ Wahrscheinlichkeit, in Wahrheit krank zu sein gering, zum Glück!</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-05-05 16:57:10.</p>
+    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-05-06 23:52:53.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

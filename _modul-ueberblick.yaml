@@ -152,7 +152,13 @@ thema9:
 
   Literatur:
     - "Rhys, Kap. 7"
-
+  Vertiefung:
+    - "[Visualisierung des ML-Ablaufs am Beispiel des Entscheidungsbaums, Teil 1](http://www.r2d3.us/visual-intro-to-machine-learning-part-1/)"
+    - "[Visualisierung des ML-Ablaufs am Beispiel des Entscheidungsbaums, Teil 2](http://www.r2d3.us/visual-intro-to-machine-learning-part-2/)"
+  Aufgaben:
+    - "[Fallstudie Oregon Schools](https://bcullen.rbind.io/post/2020-06-02-tidymodels-decision-tree-learning-in-r/)"
+    - "[Fallstudie Windturbinen](https://juliasilge.com/blog/wind-turbine/)"
+    - "[Fallstudie Churn](https://www.gmudatamining.com/lesson-13-r-tutorial.html)"
 
 thema10:
   Titel: "Zufallswälder"

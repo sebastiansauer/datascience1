@@ -49,6 +49,13 @@ fig:m83-plot
 fig:odds1
 fig:odds2
 fig:logit2
+fig:rec-part2
+fig:tree1
+fig:recursive-part
+fig:tree3
+fig:tree-metr
+fig:rechteck
+fig:lunch
 was-sie-hier-lernen-und-wozu-das-gut-ist
 technische-details
 hinweise
@@ -231,7 +238,8 @@ verallgemeinerte-lineare-modelle-zur-rettung
 der-logit-link
 aber-warum
 tidymodels-m83
-m83-glm
+lm83-glm
+m83-tidymodels
 wahrscheinlichkeit-in-odds
 von-odds-zu-log-odds
 inverser-logit
@@ -244,3 +252,13 @@ logistische-regression-im-überblick
 die-koeffizienten-sind-schwer-zu-interpretieren
 logits-vs.-wahrscheinlichkeiten
 aufgaben-5
+entscheidungsbäume
+vorbereitung-5
+anatomie-eines-baumes
+bäume-als-regelmaschinen-rekursiver-partionierung
+klassifikation
+gini-als-optimierungskriterium
+metrische-prädiktoren
+regressionbäume
+baum-beschneiden
+das-rechteck-schlägt-zurück
