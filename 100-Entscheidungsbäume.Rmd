@@ -464,6 +464,10 @@ Bei 10 Faltungen beinhaltete eine Stichprobe gerade 10% der Fälle in Train-Samp
 also etwa ... 2!
 
 
+Zur Erinnerung:
+Je größer die Anzahl der Repeats,
+desto genauer schätzen wir die Modellgüte.
+
 
 ### Rezept definieren
 
