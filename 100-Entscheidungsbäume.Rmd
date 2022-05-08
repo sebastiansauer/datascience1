@@ -452,7 +452,7 @@ allerdings zieht der Verzicht auf ein Test-Sample andere Probleme, Overfitting n
 ### Kreuzvalidierung definieren
 
 ```{r echo = TRUE}
-d_cv <- vfold_cv(d_train, strata = mpg, repeats = 5, folds = 5) 
+d_cv <- vfold_cv(d_train, strata = mpg, repeats = 5, v = 5) 
 d_cv
 ```
 
@@ -503,7 +503,7 @@ was wir durch `set_engine()` festgelegt haben.
 
 
 Der Parameter *Cost Complexity*, $C_p$ oder manchmal auch mit $\alpha$ bezeichnet,
-hat einen typischen Wertebereich von $10-^{10}$ bis $10^{-1}$:
+hat einen typischen Wertebereich von $10^{-10}$ bis $10^{-1}$:
 
 
 ```{r echo = TRUE}
@@ -638,7 +638,7 @@ trees_tuned <- read_rds("objects/trees1.rds")
 ```
 
 
-[Hier](https://stackoverflow.com/questions/21370132/what-are-the-main-differences-between-r-data-files) kann man einiges zum Unterschied einer RDS-Datei vs. einer "normalen" R-Data-Datei nachlesen.
+[Hier](https://stackoverflow.com/questions/21370132/what-are-the-main-differences-between-r-data-files) oder [hier](https://en.wikipedia.org/wiki/Serialization) kann man einiges zum Unterschied einer RDS-Datei vs. einer "normalen" R-Data-Datei nachlesen.
 Wenn man möchte 😉.
 
 
@@ -672,7 +672,7 @@ collect_metrics(trees_tuned)
 
 Praktischerweise gibt es eine Autoplot-Funktion, um die besten Modellparameter auszulesen:
 
-```{r echo = TRUE, out.width = 10}
+```{r echo = TRUE, fig.width = 10}
 autoplot(trees_tuned)
 ```
 
@@ -718,23 +718,82 @@ Jetzt fitten wir dieses Modell auf das *ganze* Train-Sample und predicten auf da
 
 
 ```{r echo = TRUE}
-fit_final <-
+tree_fit_final <-
   final_wf %>% 
   last_fit(d_split)
 
-fit_final
+tree_fit_final
 ```
 
 
 ```{r echo = TRUE}
-collect_metrics(fit_final)
+collect_metrics(tree_fit_final)
 ```
 
 
-Voilà: Die Modellgüte für das Test-Sample.
+Voilà: Die Modellgüte für das Test-Sample:
+Im Schnitt liegen wir ca. 4 Meilen daneben mit unseren Vorhersagen,
+wenn wir RMSE mal so locker interpretieren wollen.
+
+In der Regel ist übrigens RMSE interessanter als R-Quadrat,
+da R-Quadrat die Güte eines Korrelationsmusters vorhersagt,
+aber RMSE die Präzision der Vorhersage,
+also sozusagen die Kürze der Fehlerbalken.
+
+
+### Nur zum Spaß: Vergleich mit linearem Modell
+
+Ein einfaches lineares Modell,
+was hätte das jetzt wohl für eine Modellgüte?
+
+
+```{r}
+lm_model <-
+  linear_reg()
+```
+
+
+```{r}
+lm_wf <-
+  workflow() %>% 
+  add_model(lm_model) %>% 
+  add_recipe(recipe1)
+```
+
+
+```{r}
+tic()
+lm_fit <-
+  fit_resamples(
+    lm_wf,
+    resamples = d_cv
+  )
+toc()
+```
 
 
 
+```{r}
+collect_metrics(lm_fit)
+```
+
+
+```{r}
+lm_fit_final <- 
+  last_fit(lm_wf, d_split)
+```
+
+
+Wie präzise ist die Vorhersage im Test-Sample?
+
+```{r}
+collect_metrics(lm_fit_final)
+```
+
+Das lineare Modell schneidet etwas (deutlich?) schlechter ab als das einfache Baummodell.
+
+
+Man beachte, dass die Modellgüte im Train-Samle höher ist als im Test-Sample (Overfitting).
 
 
 

@@ -432,23 +432,23 @@ allerdings zieht der Verzicht auf ein Test-Sample andere Probleme, Overfitting n
 <span class="header-section-number">9.10.2</span> Kreuzvalidierung definieren<a class="anchor" aria-label="anchor" href="#kreuzvalidierung-definieren"><i class="fas fa-link"></i></a>
 </h3>
 <div class="sourceCode" id="cb343"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">d_cv</span> <span class="op">&lt;-</span> <span class="fu">vfold_cv</span><span class="op">(</span><span class="va">d_train</span>, strata <span class="op">=</span> <span class="va">mpg</span>, repeats <span class="op">=</span> <span class="fl">5</span>, folds <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> 
+<code class="sourceCode R"><span class="va">d_cv</span> <span class="op">&lt;-</span> <span class="fu">vfold_cv</span><span class="op">(</span><span class="va">d_train</span>, strata <span class="op">=</span> <span class="va">mpg</span>, repeats <span class="op">=</span> <span class="fl">5</span>, v <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> 
 <span class="va">d_cv</span></code></pre></div>
-<pre><code>## #  10-fold cross-validation repeated 5 times using stratification 
-## # A tibble: 50 × 3
-##    splits         id      id2   
-##    &lt;list&gt;         &lt;chr&gt;   &lt;chr&gt; 
-##  1 &lt;split [21/3]&gt; Repeat1 Fold01
-##  2 &lt;split [21/3]&gt; Repeat1 Fold02
-##  3 &lt;split [21/3]&gt; Repeat1 Fold03
-##  4 &lt;split [21/3]&gt; Repeat1 Fold04
-##  5 &lt;split [22/2]&gt; Repeat1 Fold05
-##  6 &lt;split [22/2]&gt; Repeat1 Fold06
-##  7 &lt;split [22/2]&gt; Repeat1 Fold07
-##  8 &lt;split [22/2]&gt; Repeat1 Fold08
-##  9 &lt;split [22/2]&gt; Repeat1 Fold09
-## 10 &lt;split [22/2]&gt; Repeat1 Fold10
-## # … with 40 more rows</code></pre>
+<pre><code>## #  5-fold cross-validation repeated 5 times using stratification 
+## # A tibble: 25 × 3
+##    splits         id      id2  
+##    &lt;list&gt;         &lt;chr&gt;   &lt;chr&gt;
+##  1 &lt;split [19/5]&gt; Repeat1 Fold1
+##  2 &lt;split [19/5]&gt; Repeat1 Fold2
+##  3 &lt;split [19/5]&gt; Repeat1 Fold3
+##  4 &lt;split [19/5]&gt; Repeat1 Fold4
+##  5 &lt;split [20/4]&gt; Repeat1 Fold5
+##  6 &lt;split [19/5]&gt; Repeat2 Fold1
+##  7 &lt;split [19/5]&gt; Repeat2 Fold2
+##  8 &lt;split [19/5]&gt; Repeat2 Fold3
+##  9 &lt;split [19/5]&gt; Repeat2 Fold4
+## 10 &lt;split [20/4]&gt; Repeat2 Fold5
+## # … with 15 more rows</code></pre>
 <p>Die Defaults (Voreinstellungen) der Funktion <code>vfold_cv()</code> können, wie immer, auf der <a href="https://rsample.tidymodels.org/reference/vfold_cv.html">Hilfeseite der Funktion</a> nachgelesen werden.</p>
 <p>Da die Stichprobe sehr klein ist,
 bietet es sich an, eine kleine Zahl an Faltungen (<code>folds</code>) zu wählen.
@@ -485,7 +485,7 @@ also etwa … 2!</p>
 <p>Die Berechnung des Modells läuft über das Paket <code>{{rpart}}</code>,
 was wir durch <code>set_engine()</code> festgelegt haben.</p>
 <p>Der Parameter <em>Cost Complexity</em>, <span class="math inline">\(C_p\)</span> oder manchmal auch mit <span class="math inline">\(\alpha\)</span> bezeichnet,
-hat einen typischen Wertebereich von <span class="math inline">\(10-^{10}\)</span> bis <span class="math inline">\(10^{-1}\)</span>:</p>
+hat einen typischen Wertebereich von <span class="math inline">\(10^{-10}\)</span> bis <span class="math inline">\(10^{-1}\)</span>:</p>
 <div class="sourceCode" id="cb347"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">cost_complexity</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code>## Cost-Complexity Parameter (quantitative)
@@ -575,23 +575,25 @@ sondern einfach von der Festplatte laden können;
 das setzt natürlich voraus,
 dass sich am Modell nichts geändert hat.</p>
 <div class="sourceCode" id="cb357"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">doParallel</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/doParallel/man/registerDoParallel.html">registerDoParallel</a></span><span class="op">(</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu">doParallel</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/doParallel/man/registerDoParallel.html">registerDoParallel</a></span><span class="op">(</span><span class="op">)</span>  <span class="co"># mehrere Kerne parallel nutzen</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">tic</a></span><span class="op">(</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">tic</a></span><span class="op">(</span><span class="op">)</span>  <span class="co"># Stoppuhr an</span>
 <span class="va">trees_tuned</span> <span class="op">&lt;-</span>
   <span class="fu">tune_grid</span><span class="op">(</span>
     object <span class="op">=</span> <span class="va">tree_wf</span>,
     grid <span class="op">=</span> <span class="va">tree_grid</span>,
     resamples <span class="op">=</span> <span class="va">d_cv</span>
   <span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">toc</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p>Es bietet sich in dem Fall an, ein Objekt als <em>R Data serialized</em> (rds) abzuspeichern:</p>
+<span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">toc</a></span><span class="op">(</span><span class="op">)</span>  <span class="co"># Stoppuhr aus</span></code></pre></div>
+<p>Es bietet sich in dem Fall an, das Ergebnis-Objekt als <em>R Data serialized</em> (rds) abzuspeichern:</p>
 <div class="sourceCode" id="cb358"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">write_rds</a></span><span class="op">(</span><span class="va">trees_tuned</span>, <span class="st">"objects/trees1.rds"</span><span class="op">)</span></code></pre></div>
 <p>Bzw. so wieder aus der RDS-Datei zu importieren:</p>
 <div class="sourceCode" id="cb359"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">trees_tuned</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">read_rds</a></span><span class="op">(</span><span class="st">"objects/trees1.rds"</span><span class="op">)</span></code></pre></div>
+<p><a href="https://stackoverflow.com/questions/21370132/what-are-the-main-differences-between-r-data-files">Hier</a> oder <a href="https://en.wikipedia.org/wiki/Serialization">hier</a> kann man einiges zum Unterschied einer RDS-Datei vs. einer “normalen” R-Data-Datei nachlesen.
+Wenn man möchte 😉.</p>
 <div class="sourceCode" id="cb360"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">trees_tuned</span></code></pre></div>
 <pre><code>## # Tuning results
@@ -659,7 +661,7 @@ in diesem Fall war die Stichprobengröße sehr klein.</p>
 <p>Praktischerweise gibt es eine Autoplot-Funktion, um die besten Modellparameter auszulesen:</p>
 <div class="sourceCode" id="cb366"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot</a></span><span class="op">(</span><span class="va">trees_tuned</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="100-Entscheidungsba%CC%88ume_files/figure-html/unnamed-chunk-23-1.png" width="10" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="100-Entscheidungsba%CC%88ume_files/figure-html/unnamed-chunk-23-1.png" width="100%" style="display: block; margin: auto;"></div>
 </div>
 <div id="bestes-modell-auswählen" class="section level3" number="9.10.8">
 <h3>
@@ -700,11 +702,11 @@ wir “finalisieren” das Modell mit den besten Modellparametern:</p>
 </h3>
 <p>Jetzt fitten wir dieses Modell auf das <em>ganze</em> Train-Sample und predicten auf das Test-Sample:</p>
 <div class="sourceCode" id="cb372"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">fit_final</span> <span class="op">&lt;-</span>
+<code class="sourceCode R"><span class="va">tree_fit_final</span> <span class="op">&lt;-</span>
   <span class="va">final_wf</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu">last_fit</span><span class="op">(</span><span class="va">d_split</span><span class="op">)</span>
 
-<span class="va">fit_final</span></code></pre></div>
+<span class="va">tree_fit_final</span></code></pre></div>
 <pre><code>## # Resampling results
 ## # Manual resampling 
 ## # A tibble: 1 × 6
@@ -712,13 +714,34 @@ wir “finalisieren” das Modell mit den besten Modellparametern:</p>
 ##   &lt;list&gt;         &lt;chr&gt;            &lt;list&gt;   &lt;list&gt;   &lt;list&gt;           &lt;list&gt;    
 ## 1 &lt;split [24/8]&gt; train/test split &lt;tibble&gt; &lt;tibble&gt; &lt;tibble [8 × 4]&gt; &lt;workflow&gt;</code></pre>
 <div class="sourceCode" id="cb374"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">collect_metrics</span><span class="op">(</span><span class="va">fit_final</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu">collect_metrics</span><span class="op">(</span><span class="va">tree_fit_final</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 4
 ##   .metric .estimator .estimate .config             
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;               
 ## 1 rmse    standard       3.90  Preprocessor1_Model1
 ## 2 rsq     standard       0.687 Preprocessor1_Model1</code></pre>
-<p>Voilà: Die Modellgüte für das Test-Sample.</p>
+<p>Voilà: Die Modellgüte für das Test-Sample:
+Im Schnitt liegen wir ca. 4 Meilen daneben mit unseren Vorhersagen,
+wenn wir RMSE mal so locker interpretieren wollen.</p>
+</div>
+<div id="nur-zum-spaß-vergleich-mit-linearem-modell" class="section level3" number="9.10.10">
+<h3>
+<span class="header-section-number">9.10.10</span> Nur zum Spaß: Vergleich mit linearem Modell<a class="anchor" aria-label="anchor" href="#nur-zum-spa%C3%9F-vergleich-mit-linearem-modell"><i class="fas fa-link"></i></a>
+</h3>
+<p>Ein einfaches lineares Modell,
+was hätte das jetzt wohl für eine Modellgüte?</p>
+<pre><code>## 7.664 sec elapsed</code></pre>
+<pre><code>## # A tibble: 2 × 6
+##   .metric .estimator  mean     n std_err .config             
+##   &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;               
+## 1 rmse    standard   4.16     25  0.362  Preprocessor1_Model1
+## 2 rsq     standard   0.624    25  0.0587 Preprocessor1_Model1</code></pre>
+<pre><code>## # A tibble: 2 × 4
+##   .metric .estimator .estimate .config             
+##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;               
+## 1 rmse    standard       5.24  Preprocessor1_Model1
+## 2 rsq     standard       0.434 Preprocessor1_Model1</code></pre>
+<p>Das lineare Modell schneidet etwas (deutlich?) schlechter ab als das einfache Baummodell.</p>
 
 </div>
 </div>
@@ -750,6 +773,7 @@ wir “finalisieren” das Modell mit den besten Modellparametern:</p>
 <li><a class="nav-link" href="#modellg%C3%BCte-evaluieren"><span class="header-section-number">9.10.7</span> Modellgüte evaluieren</a></li>
 <li><a class="nav-link" href="#bestes-modell-ausw%C3%A4hlen"><span class="header-section-number">9.10.8</span> Bestes Modell auswählen</a></li>
 <li><a class="nav-link" href="#final-fit"><span class="header-section-number">9.10.9</span> Final Fit</a></li>
+<li><a class="nav-link" href="#nur-zum-spa%C3%9F-vergleich-mit-linearem-modell"><span class="header-section-number">9.10.10</span> Nur zum Spaß: Vergleich mit linearem Modell</a></li>
 </ul>
 </li>
 </ul>
@@ -769,7 +793,7 @@ wir “finalisieren” das Modell mit den besten Modellparametern:</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-05-08 07:28:05.</p>
+    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-05-08 07:43:06.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

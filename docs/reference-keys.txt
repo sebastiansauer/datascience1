@@ -272,3 +272,4 @@ modell-tunen-und-berechnen
 modellgüte-evaluieren
 bestes-modell-auswählen
 final-fit
+nur-zum-spaß-vergleich-mit-linearem-modell

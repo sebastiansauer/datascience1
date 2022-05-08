@@ -490,26 +490,26 @@ allerdings zieht der Verzicht auf ein Test-Sample andere Probleme, Overfitting n
 
 
 ```r
-d_cv <- vfold_cv(d_train, strata = mpg, repeats = 5, folds = 5) 
+d_cv <- vfold_cv(d_train, strata = mpg, repeats = 5, v = 5) 
 d_cv
 ```
 
 ```
-## #  10-fold cross-validation repeated 5 times using stratification 
-## # A tibble: 50 × 3
-##    splits         id      id2   
-##    <list>         <chr>   <chr> 
-##  1 <split [21/3]> Repeat1 Fold01
-##  2 <split [21/3]> Repeat1 Fold02
-##  3 <split [21/3]> Repeat1 Fold03
-##  4 <split [21/3]> Repeat1 Fold04
-##  5 <split [22/2]> Repeat1 Fold05
-##  6 <split [22/2]> Repeat1 Fold06
-##  7 <split [22/2]> Repeat1 Fold07
-##  8 <split [22/2]> Repeat1 Fold08
-##  9 <split [22/2]> Repeat1 Fold09
-## 10 <split [22/2]> Repeat1 Fold10
-## # … with 40 more rows
+## #  5-fold cross-validation repeated 5 times using stratification 
+## # A tibble: 25 × 3
+##    splits         id      id2  
+##    <list>         <chr>   <chr>
+##  1 <split [19/5]> Repeat1 Fold1
+##  2 <split [19/5]> Repeat1 Fold2
+##  3 <split [19/5]> Repeat1 Fold3
+##  4 <split [19/5]> Repeat1 Fold4
+##  5 <split [20/4]> Repeat1 Fold5
+##  6 <split [19/5]> Repeat2 Fold1
+##  7 <split [19/5]> Repeat2 Fold2
+##  8 <split [19/5]> Repeat2 Fold3
+##  9 <split [19/5]> Repeat2 Fold4
+## 10 <split [20/4]> Repeat2 Fold5
+## # … with 15 more rows
 ```
 
 Die Defaults (Voreinstellungen) der Funktion `vfold_cv()` können, wie immer, auf der [Hilfeseite der Funktion](https://rsample.tidymodels.org/reference/vfold_cv.html) nachgelesen werden.
@@ -560,7 +560,7 @@ was wir durch `set_engine()` festgelegt haben.
 
 
 Der Parameter *Cost Complexity*, $C_p$ oder manchmal auch mit $\alpha$ bezeichnet,
-hat einen typischen Wertebereich von $10-^{10}$ bis $10^{-1}$:
+hat einen typischen Wertebereich von $10^{-10}$ bis $10^{-1}$:
 
 
 
@@ -706,23 +706,23 @@ dass sich am Modell nichts geändert hat.
 
 
 ```r
-doParallel::registerDoParallel()
+doParallel::registerDoParallel()  # mehrere Kerne parallel nutzen
 
 set.seed(42)
-tic()
+tic()  # Stoppuhr an
 trees_tuned <-
   tune_grid(
     object = tree_wf,
     grid = tree_grid,
     resamples = d_cv
   )
-toc()
+toc()  # Stoppuhr aus
 ```
 
 
 
 
-Es bietet sich in dem Fall an, ein Objekt als *R Data serialized* (rds) abzuspeichern:
+Es bietet sich in dem Fall an, das Ergebnis-Objekt als *R Data serialized* (rds) abzuspeichern:
 
 
 ```r
@@ -735,6 +735,11 @@ Bzw. so wieder aus der RDS-Datei zu importieren:
 ```r
 trees_tuned <- read_rds("objects/trees1.rds")
 ```
+
+
+[Hier](https://stackoverflow.com/questions/21370132/what-are-the-main-differences-between-r-data-files) oder [hier](https://en.wikipedia.org/wiki/Serialization) kann man einiges zum Unterschied einer RDS-Datei vs. einer "normalen" R-Data-Datei nachlesen.
+Wenn man möchte 😉.
+
 
 
 
@@ -833,7 +838,7 @@ Praktischerweise gibt es eine Autoplot-Funktion, um die besten Modellparameter a
 autoplot(trees_tuned)
 ```
 
-<img src="100-Entscheidungsbäume_files/figure-html/unnamed-chunk-23-1.png" width="10" style="display: block; margin: auto;" />
+<img src="100-Entscheidungsbäume_files/figure-html/unnamed-chunk-23-1.png" width="100%" style="display: block; margin: auto;" />
 
 
 ### Bestes Modell auswählen
@@ -899,11 +904,11 @@ Jetzt fitten wir dieses Modell auf das *ganze* Train-Sample und predicten auf da
 
 
 ```r
-fit_final <-
+tree_fit_final <-
   final_wf %>% 
   last_fit(d_split)
 
-fit_final
+tree_fit_final
 ```
 
 ```
@@ -918,7 +923,7 @@ fit_final
 
 
 ```r
-collect_metrics(fit_final)
+collect_metrics(tree_fit_final)
 ```
 
 ```
@@ -930,9 +935,54 @@ collect_metrics(fit_final)
 ```
 
 
-Voilà: Die Modellgüte für das Test-Sample.
+Voilà: Die Modellgüte für das Test-Sample:
+Im Schnitt liegen wir ca. 4 Meilen daneben mit unseren Vorhersagen,
+wenn wir RMSE mal so locker interpretieren wollen.
 
 
+### Nur zum Spaß: Vergleich mit linearem Modell
+
+Ein einfaches lineares Modell,
+was hätte das jetzt wohl für eine Modellgüte?
+
+
+
+
+
+
+
+
+
+```
+## 7.664 sec elapsed
+```
+
+
+
+
+```
+## # A tibble: 2 × 6
+##   .metric .estimator  mean     n std_err .config             
+##   <chr>   <chr>      <dbl> <int>   <dbl> <chr>               
+## 1 rmse    standard   4.16     25  0.362  Preprocessor1_Model1
+## 2 rsq     standard   0.624    25  0.0587 Preprocessor1_Model1
+```
+
+
+
+
+
+
+
+```
+## # A tibble: 2 × 4
+##   .metric .estimator .estimate .config             
+##   <chr>   <chr>          <dbl> <chr>               
+## 1 rmse    standard       5.24  Preprocessor1_Model1
+## 2 rsq     standard       0.434 Preprocessor1_Model1
+```
+
+Das lineare Modell schneidet etwas (deutlich?) schlechter ab als das einfache Baummodell.
 
 
 
