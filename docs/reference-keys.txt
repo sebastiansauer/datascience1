@@ -262,3 +262,13 @@ metrische-prädiktoren
 regressionbäume
 baum-beschneiden
 das-rechteck-schlägt-zurück
+tidymodels-2
+initiale-datenaufteilung
+kreuzvalidierung-definieren
+rezept-definieren-2
+modell-definieren-2
+workflow-definieren-2
+modell-tunen-und-berechnen
+modellgüte-evaluieren
+bestes-modell-auswählen
+final-fit

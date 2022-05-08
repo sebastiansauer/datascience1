@@ -13,8 +13,9 @@ In diesem Kapitel werden folgende R-Pakete benötigt:
 
 ```r
 library(titanic)
-#library(rpart)
+#library(rpart)  # Berechnung von Entscheidungsbäumen
 library(tidymodels)
+library(tictoc)  # Zeitmessung
 ```
 
 
@@ -179,7 +180,7 @@ dass die Regeln aus den Daten gelernt werden, man muss sie nicht vorab kennen.
 
 
 
-Noch ein Beispiel ist in Abb. \@ref(tree3) gezeigt [@islr]: 
+Noch ein Beispiel ist in Abb. \@ref(fig:tree3) gezeigt [@islr]: 
 Oben links zeigt eine *unmögliche* Partionierung (für einen Entscheidungsbaum). 
 Oben rechts zeigt die Regionen, 
 die sich durch den Entscheidungsbaum unten links ergeben.
@@ -397,6 +398,7 @@ Wenn $\alpha=0$ haben wir eine normalen, unbeschnittenen Baum $T_0$.
 Je größer $\alpha$ wird, desto höher wird der "Preis" für viele Blätter, also für Komplexität
 und der Baum wird kleiner.
 Dieses Vorgehen nennt man auch *cost complexity pruning*.
+Daher nennt man den zugehörigen Tuningparameter auch *Cost Complexity* $C_p$.
 
 
 
@@ -423,4 +425,515 @@ und Situationen, in denen das andere Vorgehen besser ist, vgl. Abb. \@ref(fig:lu
 <img src="http://hephaestus-associates.com/wp-content/uploads/2016/07/What-if-I-told-You-There-is-no-Such-Thing-as-a-Free-Lunch-300x300.jpg" alt="Free Lunch?" width="30%" />
 <p class="caption">(\#fig:lunch)Free Lunch?</p>
 </div>
+
+
+
+
+## Tidymodels
+
+
+Probieren wir den Algorithmus Entscheidungsbäume an einem einfachen Beispiel in R mit Tidymodels aus.
+
+Die Aufgabe sei, Spritverbrauch (möglichst exakt) vorherzusagen.
+
+Ein ähnliches Beispiel, mit analogem Vorgehen, findet sich in [dieser Fallstude](https://juliasilge.com/blog/wind-turbine/).
+
+
+
+### Initiale Datenaufteilung
+
+
+
+```r
+library(tidymodels)
+```
+
+
+
+```r
+data("mtcars")
+
+set.seed(42)  # Reproduzierbarkeit
+d_split <- initial_split(mtcars, strata = mpg)
+```
+
+```
+## Warning: The number of observations in each quantile is below the recommended threshold of 20.
+## • Stratification will use 1 breaks instead.
+```
+
+```
+## Warning: Too little data to stratify.
+## • Resampling will be unstratified.
+```
+
+```r
+d_train <- training(d_split)
+d_test <- testing(d_split)
+```
+
+
+Die Warnung zeigt uns, dass der Datensatz sehr klein ist; stimmt. Ignorieren wir hier einfach.
+
+Wie man auf der [Hilfeseite der Funktion](https://rsample.tidymodels.org/reference/initial_split.html) sieht,
+wird per Voreinstellung 3/1 aufgeteilt, also 75% in das Train-Sample, 25% der Daten ins Test-Sample.
+
+Bei $n=32$ finden also 8 Autos ihren Weg ins Test-Sample und die übrigen 24 ins Train-Sample.
+Bei der kleinen Zahl könnte man sich (berechtigterweise) fragen,
+ob es Sinn macht, die spärlichen Daten noch mit einem Test-Sample weiter zu dezimieren.
+Der Einwand ist nicht unberechtigt, 
+allerdings zieht der Verzicht auf ein Test-Sample andere Probleme, Overfitting namentlich, nach sich.
+
+
+
+### Kreuzvalidierung definieren
+
+
+```r
+d_cv <- vfold_cv(d_train, strata = mpg, repeats = 5, folds = 5) 
+d_cv
+```
+
+```
+## #  10-fold cross-validation repeated 5 times using stratification 
+## # A tibble: 50 × 3
+##    splits         id      id2   
+##    <list>         <chr>   <chr> 
+##  1 <split [21/3]> Repeat1 Fold01
+##  2 <split [21/3]> Repeat1 Fold02
+##  3 <split [21/3]> Repeat1 Fold03
+##  4 <split [21/3]> Repeat1 Fold04
+##  5 <split [22/2]> Repeat1 Fold05
+##  6 <split [22/2]> Repeat1 Fold06
+##  7 <split [22/2]> Repeat1 Fold07
+##  8 <split [22/2]> Repeat1 Fold08
+##  9 <split [22/2]> Repeat1 Fold09
+## 10 <split [22/2]> Repeat1 Fold10
+## # … with 40 more rows
+```
+
+Die Defaults (Voreinstellungen) der Funktion `vfold_cv()` können, wie immer, auf der [Hilfeseite der Funktion](https://rsample.tidymodels.org/reference/vfold_cv.html) nachgelesen werden.
+
+Da die Stichprobe sehr klein ist,
+bietet es sich an, eine kleine Zahl an Faltungen (`folds`) zu wählen.
+Bei 10 Faltungen beinhaltete eine Stichprobe gerade 10% der Fälle in Train-Sample,
+also etwa ... 2!
+
+
+
+### Rezept definieren
+
+Hier ein einfaches Rezept:
+
+
+```r
+recipe1 <-
+  recipe(mpg ~ ., data = d_train) %>% 
+  step_impute_knn() %>% 
+  step_normalize() %>% 
+  step_dummy() %>% 
+  step_other(threshold = .1)
+```
+
+
+
+### Modell definieren
+
+
+```r
+tree_model <-
+  decision_tree(
+    cost_complexity = tune(),
+    tree_depth = tune(),
+    min_n = tune()
+  ) %>% 
+  set_engine("rpart") %>% 
+  set_mode("regression")
+```
+
+
+Wenn Sie sich fragen, woher Sie die Optionen für die Tuningparameter wissen sollen: Schauen Sie mal in die [Hilfeseite des Pakets {{dials}}](https://dials.tidymodels.org/articles/Basics.html); das Paket ist Teil von Tidymodels.
+
+
+Die Berechnung des Modells läuft über das Paket `{{rpart}}`, 
+was wir durch `set_engine()` festgelegt haben.
+
+
+Der Parameter *Cost Complexity*, $C_p$ oder manchmal auch mit $\alpha$ bezeichnet,
+hat einen typischen Wertebereich von $10-^{10}$ bis $10^{-1}$:
+
+
+
+```r
+cost_complexity()
+```
+
+```
+## Cost-Complexity Parameter (quantitative)
+## Transformer: log-10 [1e-100, Inf]
+## Range (transformed scale): [-10, -1]
+```
+
+
+Hier ist der Wert in Log-Einheiten angegeben. Wenn Sie sich fragen, woher Sie das bitteschön wissen sollen:
+Naja, es steht auf der [Hilfeseite](https://dials.tidymodels.org/articles/Basics.html) 😄.
+
+Unser Modell ist also so definiert:
+
+
+```r
+tree_model
+```
+
+```
+## Decision Tree Model Specification (regression)
+## 
+## Main Arguments:
+##   cost_complexity = tune()
+##   tree_depth = tune()
+##   min_n = tune()
+## 
+## Computational engine: rpart
+```
+
+
+Mit `tune()` weist man den betreffenden Parameter als "zu tunen" aus -
+gute Werte sollen durch Ausprobieren während des Berechnens bestimmt werden.
+Genauer gesagt soll das Modell für jeden Wert (oder jede Kombination an Werten von Tuningparametern)
+berechnet werden.
+
+Eine Kombination an Tuningparameter-Werten, die ein Modell spezifizieren,
+sozusagen erst "fertig definieren", nennen wir einen *Modellkandidaten*.
+
+
+Definieren wir also eine Tabelle (`grid`) mit Werten, die ausprobiert, "getuned" werden sollen.
+Wir haben oben dre Tuningparameter bestimmt. Sagen wir,
+wir hätten gerne jeweils 5 Werte pro Parameter.
+
+
+
+```r
+tree_grid <-
+  grid_regular(
+    cost_complexity(),
+    tree_depth(),
+    min_n(),
+    levels = 4
+  )
+```
+
+
+Für jeden Parameter sind Wertebereiche definiert;
+dieser Wertebereich wird gleichmäßig (daher `grid regular`) aufgeteilt;
+die Anzahl der verschiedenen Werte pro Parameter wird druch `levels` gegeben.
+
+
+Mehr dazu findet sich auf der [Hilfeseite](https://dials.tidymodels.org/reference/grid_regular.html) zu `grid_regular()`.
+
+Wenn man die alle miteinander durchprobiert, entstehen $4^3$ Kombinationen,
+also Modellkandidaten. 
+
+Allgemeiner gesagt sind das bei $n$ Tuningparametern mit jeweils $m$ verschiedenen Werten $m^n$ Möglichkeiten,
+spricht Modellkandidaten. Um diesen Faktor erhöht sich die Rechenzeit im Vergleich zu einem Modell ohne Tuning.
+Man sieht gleich, dass die Rechenzeit schnell unangenehm lang werden kann.
+
+Entsprechend hat unsere Tabelle diese Zahl an Zeilen.
+Jede Zeile definiert einen Modellkandidaten,
+also eine Berechnung des Modells.
+
+
+```r
+dim(tree_grid)
+```
+
+```
+## [1] 64  3
+```
+
+
+```r
+head(tree_grid)
+```
+
+```
+## # A tibble: 6 × 3
+##   cost_complexity tree_depth min_n
+##             <dbl>      <int> <int>
+## 1    0.0000000001          1     2
+## 2    0.0000001             1     2
+## 3    0.0001                1     2
+## 4    0.1                   1     2
+## 5    0.0000000001          5     2
+## 6    0.0000001             5     2
+```
+
+
+
+Man beachte, dass außer *Definitionen* bisher nichts passiert ist -- vor allem haben wir noch
+nichts berechnet.
+Sie scharren mit den Hufen? Wollen endlich loslegen?
+Also gut.
+
+
+### Workflow definieren
+
+
+Fast vergessen: Wir brauchen noch einen Workflow.
+
+
+
+```r
+tree_wf <-
+  workflow() %>% 
+  add_model(tree_model) %>% 
+  add_recipe(recipe1)
+```
+
+
+
+
+### Modell tunen und berechnen
+
+Achtung: Das Modell zu berechnen kann etwas dauern.
+Es kann daher Sinn machen, 
+das Modell abzuspeichern,
+so dass Sie beim erneuten Durchlaufen nicht nochmal berechnen müssen,
+sondern einfach von der Festplatte laden können;
+das setzt natürlich voraus,
+dass sich am Modell nichts geändert hat.
+
+
+
+
+```r
+doParallel::registerDoParallel()
+
+set.seed(42)
+tic()
+trees_tuned <-
+  tune_grid(
+    object = tree_wf,
+    grid = tree_grid,
+    resamples = d_cv
+  )
+toc()
+```
+
+
+
+
+Es bietet sich in dem Fall an, ein Objekt als *R Data serialized* (rds) abzuspeichern:
+
+
+```r
+write_rds(trees_tuned, "objects/trees1.rds")
+```
+
+Bzw. so wieder aus der RDS-Datei zu importieren:
+
+
+```r
+trees_tuned <- read_rds("objects/trees1.rds")
+```
+
+
+
+
+```r
+trees_tuned
+```
+
+```
+## # Tuning results
+## # 10-fold cross-validation repeated 10 times using stratification 
+## # A tibble: 100 × 5
+##    splits         id       id2    .metrics           .notes           
+##    <list>         <chr>    <chr>  <list>             <list>           
+##  1 <split [21/3]> Repeat01 Fold01 <tibble [250 × 7]> <tibble [50 × 3]>
+##  2 <split [21/3]> Repeat01 Fold02 <tibble [250 × 7]> <tibble [50 × 3]>
+##  3 <split [21/3]> Repeat01 Fold03 <tibble [250 × 7]> <tibble [51 × 3]>
+##  4 <split [21/3]> Repeat01 Fold04 <tibble [250 × 7]> <tibble [50 × 3]>
+##  5 <split [22/2]> Repeat01 Fold05 <tibble [250 × 7]> <tibble [51 × 3]>
+##  6 <split [22/2]> Repeat01 Fold06 <tibble [250 × 7]> <tibble [51 × 3]>
+##  7 <split [22/2]> Repeat01 Fold07 <tibble [250 × 7]> <tibble [51 × 3]>
+##  8 <split [22/2]> Repeat01 Fold08 <tibble [250 × 7]> <tibble [50 × 3]>
+##  9 <split [22/2]> Repeat01 Fold09 <tibble [250 × 7]> <tibble [51 × 3]>
+## 10 <split [22/2]> Repeat01 Fold10 <tibble [250 × 7]> <tibble [50 × 3]>
+## # … with 90 more rows
+## 
+## There were issues with some computations:
+## 
+##   - Warning(s) x1000: 30 samples were requested but there were 21 rows in the data. 21 ...   - Warning(s) x1500: 30 samples were requested but there were 21 rows in the data. 21 ...   - Warning(s) x1000: 30 samples were requested but there were 21 rows in the data. 21 ...   - Warning(s) x1500: 30 samples were requested but there were 21 rows in the data. 21 ...   - Warning(s) x45: 30 samples were requested but there were 21 rows in the data. 21 ...
+## 
+## Use `collect_notes(object)` for more information.
+```
+
+
+Die Warnhinweise kann man sich so ausgeben lassen:
+
+
+```r
+collect_notes(trees_tuned)
+```
+
+```
+## # A tibble: 5,045 × 5
+##    id       id2    location                       type    note                  
+##    <chr>    <chr>  <chr>                          <chr>   <chr>                 
+##  1 Repeat01 Fold01 preprocessor 1/1, model 76/125 warning 30 samples were reque…
+##  2 Repeat01 Fold01 preprocessor 1/1, model 77/125 warning 30 samples were reque…
+##  3 Repeat01 Fold01 preprocessor 1/1, model 78/125 warning 30 samples were reque…
+##  4 Repeat01 Fold01 preprocessor 1/1, model 79/125 warning 30 samples were reque…
+##  5 Repeat01 Fold01 preprocessor 1/1, model 80/125 warning 30 samples were reque…
+##  6 Repeat01 Fold01 preprocessor 1/1, model 81/125 warning 30 samples were reque…
+##  7 Repeat01 Fold01 preprocessor 1/1, model 82/125 warning 30 samples were reque…
+##  8 Repeat01 Fold01 preprocessor 1/1, model 83/125 warning 30 samples were reque…
+##  9 Repeat01 Fold01 preprocessor 1/1, model 84/125 warning 30 samples were reque…
+## 10 Repeat01 Fold01 preprocessor 1/1, model 85/125 warning 30 samples were reque…
+## # … with 5,035 more rows
+```
+
+
+Wie gesagt,
+in diesem Fall war die Stichprobengröße sehr klein.
+
+
+
+
+### Modellgüte evaluieren
+
+
+
+```r
+collect_metrics(trees_tuned)
+```
+
+```
+## # A tibble: 250 × 9
+##    cost_complexity tree_depth min_n .metric .estimator  mean     n std_err
+##              <dbl>      <int> <int> <chr>   <chr>      <dbl> <int>   <dbl>
+##  1    0.0000000001          1     2 rmse    standard   3.31    100  0.161 
+##  2    0.0000000001          1     2 rsq     standard   0.881    55  0.0284
+##  3    0.0000000178          1     2 rmse    standard   3.31    100  0.161 
+##  4    0.0000000178          1     2 rsq     standard   0.881    55  0.0284
+##  5    0.00000316            1     2 rmse    standard   3.31    100  0.161 
+##  6    0.00000316            1     2 rsq     standard   0.881    55  0.0284
+##  7    0.000562              1     2 rmse    standard   3.31    100  0.161 
+##  8    0.000562              1     2 rsq     standard   0.881    55  0.0284
+##  9    0.1                   1     2 rmse    standard   3.31    100  0.161 
+## 10    0.1                   1     2 rsq     standard   0.881    55  0.0284
+## # … with 240 more rows, and 1 more variable: .config <chr>
+```
+
+
+Praktischerweise gibt es eine Autoplot-Funktion, um die besten Modellparameter auszulesen:
+
+
+```r
+autoplot(trees_tuned)
+```
+
+<img src="100-Entscheidungsbäume_files/figure-html/unnamed-chunk-23-1.png" width="10" style="display: block; margin: auto;" />
+
+
+### Bestes Modell auswählen
+
+Aus allen Modellkandidaten wählen wir jetzt das beste Modell aus:
+
+
+
+```r
+select_best(trees_tuned)
+```
+
+```
+## # A tibble: 1 × 4
+##   cost_complexity tree_depth min_n .config               
+##             <dbl>      <int> <int> <chr>                 
+## 1    0.0000000001          4     2 Preprocessor1_Model006
+```
+
+
+Mit diesem besten Kandidaten definieren wir jetzt das "finale" Modell,
+wir "finalisieren" das Modell mit den besten Modellparametern:
+
+
+
+```r
+tree_final <-
+  finalize_model(tree_model, parameters = select_best(trees_tuned))
+
+tree_final
+```
+
+```
+## Decision Tree Model Specification (regression)
+## 
+## Main Arguments:
+##   cost_complexity = 1e-10
+##   tree_depth = 4
+##   min_n = 2
+## 
+## Computational engine: rpart
+```
+
+Hier ist, unser finaler Baum 🌳.
+
+
+Schließlich updaten wir mit dem finalen Baum noch den Workflow:
+
+
+
+```r
+final_wf <-
+  tree_wf %>% 
+  update_model(tree_final)
+```
+
+
+### Final Fit
+
+Jetzt fitten wir dieses Modell auf das *ganze* Train-Sample und predicten auf das Test-Sample:
+
+
+
+
+```r
+fit_final <-
+  final_wf %>% 
+  last_fit(d_split)
+
+fit_final
+```
+
+```
+## # Resampling results
+## # Manual resampling 
+## # A tibble: 1 × 6
+##   splits         id               .metrics .notes   .predictions     .workflow 
+##   <list>         <chr>            <list>   <list>   <list>           <list>    
+## 1 <split [24/8]> train/test split <tibble> <tibble> <tibble [8 × 4]> <workflow>
+```
+
+
+
+```r
+collect_metrics(fit_final)
+```
+
+```
+## # A tibble: 2 × 4
+##   .metric .estimator .estimate .config             
+##   <chr>   <chr>          <dbl> <chr>               
+## 1 rmse    standard       3.90  Preprocessor1_Model1
+## 2 rsq     standard       0.687 Preprocessor1_Model1
+```
+
+
+Voilà: Die Modellgüte für das Test-Sample.
+
+
+
+
+
 

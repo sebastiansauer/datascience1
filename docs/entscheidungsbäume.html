@@ -6,14 +6,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Kapitel 9 Entscheidungsbäume | DataScience1</title>
 <meta name="author" content="Sebastian Sauer">
-<meta name="description" content="9.1 Vorbereitung In diesem Kapitel werden folgende R-Pakete benötigt: library(titanic) #library(rpart) library(tidymodels)  9.2 Anatomie eines Baumes Ein Baum 🌳 hat (u.a.): Wurzel Blätter Äste In...">
+<meta name="description" content="9.1 Vorbereitung In diesem Kapitel werden folgende R-Pakete benötigt: library(titanic) #library(rpart) # Berechnung von Entscheidungsbäumen library(tidymodels) library(tictoc) # Zeitmessung  9.2...">
 <meta name="generator" content="bookdown 0.26.2 with bs4_book()">
 <meta property="og:title" content="Kapitel 9 Entscheidungsbäume | DataScience1">
 <meta property="og:type" content="book">
-<meta property="og:description" content="9.1 Vorbereitung In diesem Kapitel werden folgende R-Pakete benötigt: library(titanic) #library(rpart) library(tidymodels)  9.2 Anatomie eines Baumes Ein Baum 🌳 hat (u.a.): Wurzel Blätter Äste In...">
+<meta property="og:description" content="9.1 Vorbereitung In diesem Kapitel werden folgende R-Pakete benötigt: library(titanic) #library(rpart) # Berechnung von Entscheidungsbäumen library(tidymodels) library(tictoc) # Zeitmessung  9.2...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kapitel 9 Entscheidungsbäume | DataScience1">
-<meta name="twitter:description" content="9.1 Vorbereitung In diesem Kapitel werden folgende R-Pakete benötigt: library(titanic) #library(rpart) library(tidymodels)  9.2 Anatomie eines Baumes Ein Baum 🌳 hat (u.a.): Wurzel Blätter Äste In...">
+<meta name="twitter:description" content="9.1 Vorbereitung In diesem Kapitel werden folgende R-Pakete benötigt: library(titanic) #library(rpart) # Berechnung von Entscheidungsbäumen library(tidymodels) library(tictoc) # Zeitmessung  9.2...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -98,8 +98,9 @@
 <p>In diesem Kapitel werden folgende R-Pakete benötigt:</p>
 <div class="sourceCode" id="cb325"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/paulhendricks/titanic">titanic</a></span><span class="op">)</span>
-<span class="co">#library(rpart)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span></code></pre></div>
+<span class="co">#library(rpart)  # Berechnung von Entscheidungsbäumen</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/collectivemedia/tictoc">tictoc</a></span><span class="op">)</span>  <span class="co"># Zeitmessung</span></code></pre></div>
 </div>
 <div id="anatomie-eines-baumes" class="section level2" number="9.2">
 <h2>
@@ -219,7 +220,7 @@ Entsprechendes gilt für jeden weiteren Knoten.</p>
 Man kann sie mit einer einfachen Checkliste oder Entscheidungssystem vergleichen.
 Der Unterschied zu Entscheidungsbäumen im maschinellen Lernen ist nur,
 dass die Regeln aus den Daten gelernt werden, man muss sie nicht vorab kennen.</p>
-<p>Noch ein Beispiel ist in Abb. <a href="#tree3"><strong>??</strong></a> gezeigt <span class="citation">(<a href="references.html#ref-islr" role="doc-biblioref">James et al. 2021</a>)</span>:
+<p>Noch ein Beispiel ist in Abb. <a href="entscheidungsb%C3%A4ume.html#fig:tree3">9.4</a> gezeigt <span class="citation">(<a href="references.html#ref-islr" role="doc-biblioref">James et al. 2021</a>)</span>:
 Oben links zeigt eine <em>unmögliche</em> Partionierung (für einen Entscheidungsbaum).
 Oben rechts zeigt die Regionen,
 die sich durch den Entscheidungsbaum unten links ergeben.
@@ -365,7 +366,8 @@ zumeist durch schlichtes Ausprobieren.
 Wenn <span class="math inline">\(\alpha=0\)</span> haben wir eine normalen, unbeschnittenen Baum <span class="math inline">\(T_0\)</span>.
 Je größer <span class="math inline">\(\alpha\)</span> wird, desto höher wird der “Preis” für viele Blätter, also für Komplexität
 und der Baum wird kleiner.
-Dieses Vorgehen nennt man auch <em>cost complexity pruning</em>.</p>
+Dieses Vorgehen nennt man auch <em>cost complexity pruning</em>.
+Daher nennt man den zugehörigen Tuningparameter auch <em>Cost Complexity</em> <span class="math inline">\(C_p\)</span>.</p>
 </div>
 <div id="das-rechteck-schlägt-zurück" class="section level2" number="9.9">
 <h2>
@@ -390,7 +392,335 @@ und Situationen, in denen das andere Vorgehen besser ist, vgl. Abb. <a href="ent
 Figure 9.7: Free Lunch?
 </p>
 </div>
+</div>
+<div id="tidymodels-2" class="section level2" number="9.10">
+<h2>
+<span class="header-section-number">9.10</span> Tidymodels<a class="anchor" aria-label="anchor" href="#tidymodels-2"><i class="fas fa-link"></i></a>
+</h2>
+<p>Probieren wir den Algorithmus Entscheidungsbäume an einem einfachen Beispiel in R mit Tidymodels aus.</p>
+<p>Die Aufgabe sei, Spritverbrauch (möglichst exakt) vorherzusagen.</p>
+<p>Ein ähnliches Beispiel, mit analogem Vorgehen, findet sich in <a href="https://juliasilge.com/blog/wind-turbine/">dieser Fallstude</a>.</p>
+<div id="initiale-datenaufteilung" class="section level3" number="9.10.1">
+<h3>
+<span class="header-section-number">9.10.1</span> Initiale Datenaufteilung<a class="anchor" aria-label="anchor" href="#initiale-datenaufteilung"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb338"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb339"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"mtcars"</span><span class="op">)</span>
 
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span>  <span class="co"># Reproduzierbarkeit</span>
+<span class="va">d_split</span> <span class="op">&lt;-</span> <span class="fu">initial_split</span><span class="op">(</span><span class="va">mtcars</span>, strata <span class="op">=</span> <span class="va">mpg</span><span class="op">)</span></code></pre></div>
+<pre><code>## Warning: The number of observations in each quantile is below the recommended threshold of 20.
+## • Stratification will use 1 breaks instead.</code></pre>
+<pre><code>## Warning: Too little data to stratify.
+## • Resampling will be unstratified.</code></pre>
+<div class="sourceCode" id="cb342"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">d_train</span> <span class="op">&lt;-</span> <span class="fu">training</span><span class="op">(</span><span class="va">d_split</span><span class="op">)</span>
+<span class="va">d_test</span> <span class="op">&lt;-</span> <span class="fu">testing</span><span class="op">(</span><span class="va">d_split</span><span class="op">)</span></code></pre></div>
+<p>Die Warnung zeigt uns, dass der Datensatz sehr klein ist; stimmt. Ignorieren wir hier einfach.</p>
+<p>Wie man auf der <a href="https://rsample.tidymodels.org/reference/initial_split.html">Hilfeseite der Funktion</a> sieht,
+wird per Voreinstellung 3/1 aufgeteilt, also 75% in das Train-Sample, 25% der Daten ins Test-Sample.</p>
+<p>Bei <span class="math inline">\(n=32\)</span> finden also 8 Autos ihren Weg ins Test-Sample und die übrigen 24 ins Train-Sample.
+Bei der kleinen Zahl könnte man sich (berechtigterweise) fragen,
+ob es Sinn macht, die spärlichen Daten noch mit einem Test-Sample weiter zu dezimieren.
+Der Einwand ist nicht unberechtigt,
+allerdings zieht der Verzicht auf ein Test-Sample andere Probleme, Overfitting namentlich, nach sich.</p>
+</div>
+<div id="kreuzvalidierung-definieren" class="section level3" number="9.10.2">
+<h3>
+<span class="header-section-number">9.10.2</span> Kreuzvalidierung definieren<a class="anchor" aria-label="anchor" href="#kreuzvalidierung-definieren"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb343"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">d_cv</span> <span class="op">&lt;-</span> <span class="fu">vfold_cv</span><span class="op">(</span><span class="va">d_train</span>, strata <span class="op">=</span> <span class="va">mpg</span>, repeats <span class="op">=</span> <span class="fl">5</span>, folds <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> 
+<span class="va">d_cv</span></code></pre></div>
+<pre><code>## #  10-fold cross-validation repeated 5 times using stratification 
+## # A tibble: 50 × 3
+##    splits         id      id2   
+##    &lt;list&gt;         &lt;chr&gt;   &lt;chr&gt; 
+##  1 &lt;split [21/3]&gt; Repeat1 Fold01
+##  2 &lt;split [21/3]&gt; Repeat1 Fold02
+##  3 &lt;split [21/3]&gt; Repeat1 Fold03
+##  4 &lt;split [21/3]&gt; Repeat1 Fold04
+##  5 &lt;split [22/2]&gt; Repeat1 Fold05
+##  6 &lt;split [22/2]&gt; Repeat1 Fold06
+##  7 &lt;split [22/2]&gt; Repeat1 Fold07
+##  8 &lt;split [22/2]&gt; Repeat1 Fold08
+##  9 &lt;split [22/2]&gt; Repeat1 Fold09
+## 10 &lt;split [22/2]&gt; Repeat1 Fold10
+## # … with 40 more rows</code></pre>
+<p>Die Defaults (Voreinstellungen) der Funktion <code>vfold_cv()</code> können, wie immer, auf der <a href="https://rsample.tidymodels.org/reference/vfold_cv.html">Hilfeseite der Funktion</a> nachgelesen werden.</p>
+<p>Da die Stichprobe sehr klein ist,
+bietet es sich an, eine kleine Zahl an Faltungen (<code>folds</code>) zu wählen.
+Bei 10 Faltungen beinhaltete eine Stichprobe gerade 10% der Fälle in Train-Sample,
+also etwa … 2!</p>
+</div>
+<div id="rezept-definieren-2" class="section level3" number="9.10.3">
+<h3>
+<span class="header-section-number">9.10.3</span> Rezept definieren<a class="anchor" aria-label="anchor" href="#rezept-definieren-2"><i class="fas fa-link"></i></a>
+</h3>
+<p>Hier ein einfaches Rezept:</p>
+<div class="sourceCode" id="cb345"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">recipe1</span> <span class="op">&lt;-</span>
+  <span class="fu">recipe</span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">d_train</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu">step_impute_knn</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu">step_normalize</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu">step_dummy</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu">step_other</span><span class="op">(</span>threshold <span class="op">=</span> <span class="fl">.1</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="modell-definieren-2" class="section level3" number="9.10.4">
+<h3>
+<span class="header-section-number">9.10.4</span> Modell definieren<a class="anchor" aria-label="anchor" href="#modell-definieren-2"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb346"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">tree_model</span> <span class="op">&lt;-</span>
+  <span class="fu">decision_tree</span><span class="op">(</span>
+    cost_complexity <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="op">)</span>,
+    tree_depth <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="op">)</span>,
+    min_n <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="op">)</span>
+  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu">set_engine</span><span class="op">(</span><span class="st">"rpart"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu">set_mode</span><span class="op">(</span><span class="st">"regression"</span><span class="op">)</span></code></pre></div>
+<p>Wenn Sie sich fragen, woher Sie die Optionen für die Tuningparameter wissen sollen: Schauen Sie mal in die <a href="https://dials.tidymodels.org/articles/Basics.html">Hilfeseite des Pakets {{dials}}</a>; das Paket ist Teil von Tidymodels.</p>
+<p>Die Berechnung des Modells läuft über das Paket <code>{{rpart}}</code>,
+was wir durch <code>set_engine()</code> festgelegt haben.</p>
+<p>Der Parameter <em>Cost Complexity</em>, <span class="math inline">\(C_p\)</span> oder manchmal auch mit <span class="math inline">\(\alpha\)</span> bezeichnet,
+hat einen typischen Wertebereich von <span class="math inline">\(10-^{10}\)</span> bis <span class="math inline">\(10^{-1}\)</span>:</p>
+<div class="sourceCode" id="cb347"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">cost_complexity</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre><code>## Cost-Complexity Parameter (quantitative)
+## Transformer: log-10 [1e-100, Inf]
+## Range (transformed scale): [-10, -1]</code></pre>
+<p>Hier ist der Wert in Log-Einheiten angegeben. Wenn Sie sich fragen, woher Sie das bitteschön wissen sollen:
+Naja, es steht auf der <a href="https://dials.tidymodels.org/articles/Basics.html">Hilfeseite</a> 😄.</p>
+<p>Unser Modell ist also so definiert:</p>
+<div class="sourceCode" id="cb349"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">tree_model</span></code></pre></div>
+<pre><code>## Decision Tree Model Specification (regression)
+## 
+## Main Arguments:
+##   cost_complexity = tune()
+##   tree_depth = tune()
+##   min_n = tune()
+## 
+## Computational engine: rpart</code></pre>
+<p>Mit <code>tune()</code> weist man den betreffenden Parameter als “zu tunen” aus -
+gute Werte sollen durch Ausprobieren während des Berechnens bestimmt werden.
+Genauer gesagt soll das Modell für jeden Wert (oder jede Kombination an Werten von Tuningparametern)
+berechnet werden.</p>
+<p>Eine Kombination an Tuningparameter-Werten, die ein Modell spezifizieren,
+sozusagen erst “fertig definieren”, nennen wir einen <em>Modellkandidaten</em>.</p>
+<p>Definieren wir also eine Tabelle (<code>grid</code>) mit Werten, die ausprobiert, “getuned” werden sollen.
+Wir haben oben dre Tuningparameter bestimmt. Sagen wir,
+wir hätten gerne jeweils 5 Werte pro Parameter.</p>
+<div class="sourceCode" id="cb351"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">tree_grid</span> <span class="op">&lt;-</span>
+  <span class="fu">grid_regular</span><span class="op">(</span>
+    <span class="fu">cost_complexity</span><span class="op">(</span><span class="op">)</span>,
+    <span class="fu">tree_depth</span><span class="op">(</span><span class="op">)</span>,
+    <span class="fu">min_n</span><span class="op">(</span><span class="op">)</span>,
+    levels <span class="op">=</span> <span class="fl">4</span>
+  <span class="op">)</span></code></pre></div>
+<p>Für jeden Parameter sind Wertebereiche definiert;
+dieser Wertebereich wird gleichmäßig (daher <code>grid regular</code>) aufgeteilt;
+die Anzahl der verschiedenen Werte pro Parameter wird druch <code>levels</code> gegeben.</p>
+<p>Mehr dazu findet sich auf der <a href="https://dials.tidymodels.org/reference/grid_regular.html">Hilfeseite</a> zu <code>grid_regular()</code>.</p>
+<p>Wenn man die alle miteinander durchprobiert, entstehen <span class="math inline">\(4^3\)</span> Kombinationen,
+also Modellkandidaten.</p>
+<p>Allgemeiner gesagt sind das bei <span class="math inline">\(n\)</span> Tuningparametern mit jeweils <span class="math inline">\(m\)</span> verschiedenen Werten <span class="math inline">\(m^n\)</span> Möglichkeiten,
+spricht Modellkandidaten. Um diesen Faktor erhöht sich die Rechenzeit im Vergleich zu einem Modell ohne Tuning.
+Man sieht gleich, dass die Rechenzeit schnell unangenehm lang werden kann.</p>
+<p>Entsprechend hat unsere Tabelle diese Zahl an Zeilen.
+Jede Zeile definiert einen Modellkandidaten,
+also eine Berechnung des Modells.</p>
+<div class="sourceCode" id="cb352"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">tree_grid</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 64  3</code></pre>
+<div class="sourceCode" id="cb354"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">tree_grid</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 3
+##   cost_complexity tree_depth min_n
+##             &lt;dbl&gt;      &lt;int&gt; &lt;int&gt;
+## 1    0.0000000001          1     2
+## 2    0.0000001             1     2
+## 3    0.0001                1     2
+## 4    0.1                   1     2
+## 5    0.0000000001          5     2
+## 6    0.0000001             5     2</code></pre>
+<p>Man beachte, dass außer <em>Definitionen</em> bisher nichts passiert ist – vor allem haben wir noch
+nichts berechnet.
+Sie scharren mit den Hufen? Wollen endlich loslegen?
+Also gut.</p>
+</div>
+<div id="workflow-definieren-2" class="section level3" number="9.10.5">
+<h3>
+<span class="header-section-number">9.10.5</span> Workflow definieren<a class="anchor" aria-label="anchor" href="#workflow-definieren-2"><i class="fas fa-link"></i></a>
+</h3>
+<p>Fast vergessen: Wir brauchen noch einen Workflow.</p>
+<div class="sourceCode" id="cb356"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">tree_wf</span> <span class="op">&lt;-</span>
+  <span class="fu">workflow</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu">add_model</span><span class="op">(</span><span class="va">tree_model</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu">add_recipe</span><span class="op">(</span><span class="va">recipe1</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="modell-tunen-und-berechnen" class="section level3" number="9.10.6">
+<h3>
+<span class="header-section-number">9.10.6</span> Modell tunen und berechnen<a class="anchor" aria-label="anchor" href="#modell-tunen-und-berechnen"><i class="fas fa-link"></i></a>
+</h3>
+<p>Achtung: Das Modell zu berechnen kann etwas dauern.
+Es kann daher Sinn machen,
+das Modell abzuspeichern,
+so dass Sie beim erneuten Durchlaufen nicht nochmal berechnen müssen,
+sondern einfach von der Festplatte laden können;
+das setzt natürlich voraus,
+dass sich am Modell nichts geändert hat.</p>
+<div class="sourceCode" id="cb357"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">doParallel</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/doParallel/man/registerDoParallel.html">registerDoParallel</a></span><span class="op">(</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">tic</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">trees_tuned</span> <span class="op">&lt;-</span>
+  <span class="fu">tune_grid</span><span class="op">(</span>
+    object <span class="op">=</span> <span class="va">tree_wf</span>,
+    grid <span class="op">=</span> <span class="va">tree_grid</span>,
+    resamples <span class="op">=</span> <span class="va">d_cv</span>
+  <span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">toc</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<p>Es bietet sich in dem Fall an, ein Objekt als <em>R Data serialized</em> (rds) abzuspeichern:</p>
+<div class="sourceCode" id="cb358"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">write_rds</a></span><span class="op">(</span><span class="va">trees_tuned</span>, <span class="st">"objects/trees1.rds"</span><span class="op">)</span></code></pre></div>
+<p>Bzw. so wieder aus der RDS-Datei zu importieren:</p>
+<div class="sourceCode" id="cb359"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">trees_tuned</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">read_rds</a></span><span class="op">(</span><span class="st">"objects/trees1.rds"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb360"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">trees_tuned</span></code></pre></div>
+<pre><code>## # Tuning results
+## # 10-fold cross-validation repeated 10 times using stratification 
+## # A tibble: 100 × 5
+##    splits         id       id2    .metrics           .notes           
+##    &lt;list&gt;         &lt;chr&gt;    &lt;chr&gt;  &lt;list&gt;             &lt;list&gt;           
+##  1 &lt;split [21/3]&gt; Repeat01 Fold01 &lt;tibble [250 × 7]&gt; &lt;tibble [50 × 3]&gt;
+##  2 &lt;split [21/3]&gt; Repeat01 Fold02 &lt;tibble [250 × 7]&gt; &lt;tibble [50 × 3]&gt;
+##  3 &lt;split [21/3]&gt; Repeat01 Fold03 &lt;tibble [250 × 7]&gt; &lt;tibble [51 × 3]&gt;
+##  4 &lt;split [21/3]&gt; Repeat01 Fold04 &lt;tibble [250 × 7]&gt; &lt;tibble [50 × 3]&gt;
+##  5 &lt;split [22/2]&gt; Repeat01 Fold05 &lt;tibble [250 × 7]&gt; &lt;tibble [51 × 3]&gt;
+##  6 &lt;split [22/2]&gt; Repeat01 Fold06 &lt;tibble [250 × 7]&gt; &lt;tibble [51 × 3]&gt;
+##  7 &lt;split [22/2]&gt; Repeat01 Fold07 &lt;tibble [250 × 7]&gt; &lt;tibble [51 × 3]&gt;
+##  8 &lt;split [22/2]&gt; Repeat01 Fold08 &lt;tibble [250 × 7]&gt; &lt;tibble [50 × 3]&gt;
+##  9 &lt;split [22/2]&gt; Repeat01 Fold09 &lt;tibble [250 × 7]&gt; &lt;tibble [51 × 3]&gt;
+## 10 &lt;split [22/2]&gt; Repeat01 Fold10 &lt;tibble [250 × 7]&gt; &lt;tibble [50 × 3]&gt;
+## # … with 90 more rows
+## 
+## There were issues with some computations:
+## 
+##   - Warning(s) x1000: 30 samples were requested but there were 21 rows in the data. 21 ...   - Warning(s) x1500: 30 samples were requested but there were 21 rows in the data. 21 ...   - Warning(s) x1000: 30 samples were requested but there were 21 rows in the data. 21 ...   - Warning(s) x1500: 30 samples were requested but there were 21 rows in the data. 21 ...   - Warning(s) x45: 30 samples were requested but there were 21 rows in the data. 21 ...
+## 
+## Use `collect_notes(object)` for more information.</code></pre>
+<p>Die Warnhinweise kann man sich so ausgeben lassen:</p>
+<div class="sourceCode" id="cb362"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">collect_notes</span><span class="op">(</span><span class="va">trees_tuned</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 5,045 × 5
+##    id       id2    location                       type    note                  
+##    &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;                          &lt;chr&gt;   &lt;chr&gt;                 
+##  1 Repeat01 Fold01 preprocessor 1/1, model 76/125 warning 30 samples were reque…
+##  2 Repeat01 Fold01 preprocessor 1/1, model 77/125 warning 30 samples were reque…
+##  3 Repeat01 Fold01 preprocessor 1/1, model 78/125 warning 30 samples were reque…
+##  4 Repeat01 Fold01 preprocessor 1/1, model 79/125 warning 30 samples were reque…
+##  5 Repeat01 Fold01 preprocessor 1/1, model 80/125 warning 30 samples were reque…
+##  6 Repeat01 Fold01 preprocessor 1/1, model 81/125 warning 30 samples were reque…
+##  7 Repeat01 Fold01 preprocessor 1/1, model 82/125 warning 30 samples were reque…
+##  8 Repeat01 Fold01 preprocessor 1/1, model 83/125 warning 30 samples were reque…
+##  9 Repeat01 Fold01 preprocessor 1/1, model 84/125 warning 30 samples were reque…
+## 10 Repeat01 Fold01 preprocessor 1/1, model 85/125 warning 30 samples were reque…
+## # … with 5,035 more rows</code></pre>
+<p>Wie gesagt,
+in diesem Fall war die Stichprobengröße sehr klein.</p>
+</div>
+<div id="modellgüte-evaluieren" class="section level3" number="9.10.7">
+<h3>
+<span class="header-section-number">9.10.7</span> Modellgüte evaluieren<a class="anchor" aria-label="anchor" href="#modellg%C3%BCte-evaluieren"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb364"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">collect_metrics</span><span class="op">(</span><span class="va">trees_tuned</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 250 × 9
+##    cost_complexity tree_depth min_n .metric .estimator  mean     n std_err
+##              &lt;dbl&gt;      &lt;int&gt; &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt;
+##  1    0.0000000001          1     2 rmse    standard   3.31    100  0.161 
+##  2    0.0000000001          1     2 rsq     standard   0.881    55  0.0284
+##  3    0.0000000178          1     2 rmse    standard   3.31    100  0.161 
+##  4    0.0000000178          1     2 rsq     standard   0.881    55  0.0284
+##  5    0.00000316            1     2 rmse    standard   3.31    100  0.161 
+##  6    0.00000316            1     2 rsq     standard   0.881    55  0.0284
+##  7    0.000562              1     2 rmse    standard   3.31    100  0.161 
+##  8    0.000562              1     2 rsq     standard   0.881    55  0.0284
+##  9    0.1                   1     2 rmse    standard   3.31    100  0.161 
+## 10    0.1                   1     2 rsq     standard   0.881    55  0.0284
+## # … with 240 more rows, and 1 more variable: .config &lt;chr&gt;</code></pre>
+<p>Praktischerweise gibt es eine Autoplot-Funktion, um die besten Modellparameter auszulesen:</p>
+<div class="sourceCode" id="cb366"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot</a></span><span class="op">(</span><span class="va">trees_tuned</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="100-Entscheidungsba%CC%88ume_files/figure-html/unnamed-chunk-23-1.png" width="10" style="display: block; margin: auto;"></div>
+</div>
+<div id="bestes-modell-auswählen" class="section level3" number="9.10.8">
+<h3>
+<span class="header-section-number">9.10.8</span> Bestes Modell auswählen<a class="anchor" aria-label="anchor" href="#bestes-modell-ausw%C3%A4hlen"><i class="fas fa-link"></i></a>
+</h3>
+<p>Aus allen Modellkandidaten wählen wir jetzt das beste Modell aus:</p>
+<div class="sourceCode" id="cb367"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">select_best</span><span class="op">(</span><span class="va">trees_tuned</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 4
+##   cost_complexity tree_depth min_n .config               
+##             &lt;dbl&gt;      &lt;int&gt; &lt;int&gt; &lt;chr&gt;                 
+## 1    0.0000000001          4     2 Preprocessor1_Model006</code></pre>
+<p>Mit diesem besten Kandidaten definieren wir jetzt das “finale” Modell,
+wir “finalisieren” das Modell mit den besten Modellparametern:</p>
+<div class="sourceCode" id="cb369"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">tree_final</span> <span class="op">&lt;-</span>
+  <span class="fu">finalize_model</span><span class="op">(</span><span class="va">tree_model</span>, parameters <span class="op">=</span> <span class="fu">select_best</span><span class="op">(</span><span class="va">trees_tuned</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">tree_final</span></code></pre></div>
+<pre><code>## Decision Tree Model Specification (regression)
+## 
+## Main Arguments:
+##   cost_complexity = 1e-10
+##   tree_depth = 4
+##   min_n = 2
+## 
+## Computational engine: rpart</code></pre>
+<p>Hier ist, unser finaler Baum 🌳.</p>
+<p>Schließlich updaten wir mit dem finalen Baum noch den Workflow:</p>
+<div class="sourceCode" id="cb371"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">final_wf</span> <span class="op">&lt;-</span>
+  <span class="va">tree_wf</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu">update_model</span><span class="op">(</span><span class="va">tree_final</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="final-fit" class="section level3" number="9.10.9">
+<h3>
+<span class="header-section-number">9.10.9</span> Final Fit<a class="anchor" aria-label="anchor" href="#final-fit"><i class="fas fa-link"></i></a>
+</h3>
+<p>Jetzt fitten wir dieses Modell auf das <em>ganze</em> Train-Sample und predicten auf das Test-Sample:</p>
+<div class="sourceCode" id="cb372"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">fit_final</span> <span class="op">&lt;-</span>
+  <span class="va">final_wf</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu">last_fit</span><span class="op">(</span><span class="va">d_split</span><span class="op">)</span>
+
+<span class="va">fit_final</span></code></pre></div>
+<pre><code>## # Resampling results
+## # Manual resampling 
+## # A tibble: 1 × 6
+##   splits         id               .metrics .notes   .predictions     .workflow 
+##   &lt;list&gt;         &lt;chr&gt;            &lt;list&gt;   &lt;list&gt;   &lt;list&gt;           &lt;list&gt;    
+## 1 &lt;split [24/8]&gt; train/test split &lt;tibble&gt; &lt;tibble&gt; &lt;tibble [8 × 4]&gt; &lt;workflow&gt;</code></pre>
+<div class="sourceCode" id="cb374"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">collect_metrics</span><span class="op">(</span><span class="va">fit_final</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 4
+##   .metric .estimator .estimate .config             
+##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;               
+## 1 rmse    standard       3.90  Preprocessor1_Model1
+## 2 rsq     standard       0.687 Preprocessor1_Model1</code></pre>
+<p>Voilà: Die Modellgüte für das Test-Sample.</p>
+
+</div>
 </div>
 </div>
   <div class="chapter-nav">
@@ -409,6 +739,19 @@ Figure 9.7: Free Lunch?
 <li><a class="nav-link" href="#regressionb%C3%A4ume"><span class="header-section-number">9.7</span> Regressionbäume</a></li>
 <li><a class="nav-link" href="#baum-beschneiden"><span class="header-section-number">9.8</span> Baum beschneiden</a></li>
 <li><a class="nav-link" href="#das-rechteck-schl%C3%A4gt-zur%C3%BCck"><span class="header-section-number">9.9</span> Das Rechteck schlägt zurück</a></li>
+<li>
+<a class="nav-link" href="#tidymodels-2"><span class="header-section-number">9.10</span> Tidymodels</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#initiale-datenaufteilung"><span class="header-section-number">9.10.1</span> Initiale Datenaufteilung</a></li>
+<li><a class="nav-link" href="#kreuzvalidierung-definieren"><span class="header-section-number">9.10.2</span> Kreuzvalidierung definieren</a></li>
+<li><a class="nav-link" href="#rezept-definieren-2"><span class="header-section-number">9.10.3</span> Rezept definieren</a></li>
+<li><a class="nav-link" href="#modell-definieren-2"><span class="header-section-number">9.10.4</span> Modell definieren</a></li>
+<li><a class="nav-link" href="#workflow-definieren-2"><span class="header-section-number">9.10.5</span> Workflow definieren</a></li>
+<li><a class="nav-link" href="#modell-tunen-und-berechnen"><span class="header-section-number">9.10.6</span> Modell tunen und berechnen</a></li>
+<li><a class="nav-link" href="#modellg%C3%BCte-evaluieren"><span class="header-section-number">9.10.7</span> Modellgüte evaluieren</a></li>
+<li><a class="nav-link" href="#bestes-modell-ausw%C3%A4hlen"><span class="header-section-number">9.10.8</span> Bestes Modell auswählen</a></li>
+<li><a class="nav-link" href="#final-fit"><span class="header-section-number">9.10.9</span> Final Fit</a></li>
+</ul>
+</li>
 </ul>
 
       <div class="book-extra">
@@ -426,7 +769,7 @@ Figure 9.7: Free Lunch?
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-05-06 23:52:53.</p>
+    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-05-08 07:28:05.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
