@@ -143,7 +143,9 @@ thema7:
     - "[Fallstudien zu Studiengebühren](https://juliasilge.com/blog/tuition-resampling/)"
     - "[1. Modell der Fallstudie Hotel Bookings](https://www.tidymodels.org/start/case-study/)"
     - "[Aufgaben zur logistischen Regression, PDF](https://github.com/sebastiansauer/datascience1/blob/main/Aufgaben/Thema8-Loesungen1.pdf)"
-
+  Vertiefung:
+    - "[Fallstudie Diabetes mit logististischer Regression](https://medium.com/the-researchers-guide/modelling-binary-logistic-regression-using-tidymodels-library-in-r-part-1-c1bdce0ac055)"
+    
 
 
 
