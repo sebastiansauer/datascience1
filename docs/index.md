@@ -3,7 +3,7 @@ title: "DataScience1"
 subtitle: Grundlagen der Prognosemodellierung 🔮🧰
 
 author: "Sebastian Sauer"
-date: "2022-05-08 07:43:06"
+date: "2022-05-11 06:17:51"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -54,7 +54,7 @@ Ach ja, und mit einigem Erfolg Vorhersagemodelle entwickeln.
 
 
 
-- Diese Version des Buches wurde erstellt am: 2022-05-08 07:43:06
+- Diese Version des Buches wurde erstellt am: 2022-05-11 06:17:52
 
 
 - Die URL zu diesem Buch lautet <https://sebastiansauer.github.io/datascience1/> und ist bei [GitHub Pages](https://pages.github.com/) gehostet.
@@ -80,7 +80,7 @@ Ach ja, und mit einigem Erfolg Vorhersagemodelle entwickeln.
 |dials        |0.1.1      |CRAN (R 4.1.2)                     |
 |downlit      |0.4.0      |CRAN (R 4.1.0)                     |
 |dplyr        |1.0.9      |CRAN (R 4.1.2)                     |
-|ggplot2      |3.3.5      |CRAN (R 4.1.0)                     |
+|ggplot2      |3.3.6      |CRAN (R 4.1.2)                     |
 |glmnet       |4.1-3      |CRAN (R 4.1.0)                     |
 |infer        |1.0.0      |CRAN (R 4.1.0)                     |
 |ISLR         |1.4        |CRAN (R 4.1.0)                     |
@@ -96,7 +96,7 @@ Ach ja, und mit einigem Erfolg Vorhersagemodelle entwickeln.
 |readr        |2.1.2      |CRAN (R 4.1.2)                     |
 |rsample      |0.1.1      |CRAN (R 4.1.0)                     |
 |rstatix      |0.7.0      |CRAN (R 4.1.0)                     |
-|tibble       |3.1.6      |CRAN (R 4.1.0)                     |
+|tibble       |3.1.7      |CRAN (R 4.1.2)                     |
 |tidymodels   |0.1.4      |CRAN (R 4.1.0)                     |
 |tidyr        |1.2.0      |CRAN (R 4.1.2)                     |
 |tidyverse    |1.3.1      |CRAN (R 4.1.0)                     |

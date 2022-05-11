@@ -4,16 +4,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Page not found | DataScience1</title>
+<title>Kapitel 10 Ensemble Lerner | DataScience1</title>
 <meta name="author" content="Sebastian Sauer">
-<meta name="description" content="The page you requested cannot be found (perhaps it was moved or renamed). You may want to try searching to find the page's new location, or use the table of contents to find the page you are...">
+<meta name="description" content="10.1 Lernsteuerung  10.1.1 Lernziele Sie können Algorithmen für Ensemble-Lernen erklären, d.i. Bagging, AdaBoost, XGBoost, Random Forest Sie wissen, anhand welche Tuningparamter man Overfitting...">
 <meta name="generator" content="bookdown 0.26.2 with bs4_book()">
-<meta property="og:title" content="Page not found | DataScience1">
+<meta property="og:title" content="Kapitel 10 Ensemble Lerner | DataScience1">
 <meta property="og:type" content="book">
-<meta property="og:description" content="The page you requested cannot be found (perhaps it was moved or renamed). You may want to try searching to find the page's new location, or use the table of contents to find the page you are...">
+<meta property="og:description" content="10.1 Lernsteuerung  10.1.1 Lernziele Sie können Algorithmen für Ensemble-Lernen erklären, d.i. Bagging, AdaBoost, XGBoost, Random Forest Sie wissen, anhand welche Tuningparamter man Overfitting...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Page not found | DataScience1">
-<meta name="twitter:description" content="The page you requested cannot be found (perhaps it was moved or renamed). You may want to try searching to find the page's new location, or use the table of contents to find the page you are...">
+<meta name="twitter:title" content="Kapitel 10 Ensemble Lerner | DataScience1">
+<meta name="twitter:description" content="10.1 Lernsteuerung  10.1.1 Lernziele Sie können Algorithmen für Ensemble-Lernen erklären, d.i. Bagging, AdaBoost, XGBoost, Random Forest Sie wissen, anhand welche Tuningparamter man Overfitting...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -79,7 +79,7 @@
 <li><a class="" href="resampling-und-tuning.html"><span class="header-section-number">7</span> Resampling und Tuning</a></li>
 <li><a class="" href="logistische-regression.html"><span class="header-section-number">8</span> Logistische Regression</a></li>
 <li><a class="" href="entscheidungsb%C3%A4ume.html"><span class="header-section-number">9</span> Entscheidungsbäume</a></li>
-<li><a class="" href="ensemble-lerner.html"><span class="header-section-number">10</span> Ensemble Lerner</a></li>
+<li><a class="active" href="ensemble-lerner.html"><span class="header-section-number">10</span> Ensemble Lerner</a></li>
 <li><a class="" href="regularisierte-modelle.html"><span class="header-section-number">11</span> Regularisierte Modelle</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
@@ -89,18 +89,83 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="page-not-found" class="section level1">
-<h1>Page not found<a class="anchor" aria-label="anchor" href="#page-not-found"><i class="fas fa-link"></i></a>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="ensemble-lerner" class="section level1" number="10">
+<h1>
+<span class="header-section-number">Kapitel 10</span> Ensemble Lerner<a class="anchor" aria-label="anchor" href="#ensemble-lerner"><i class="fas fa-link"></i></a>
 </h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="lernsteuerung-7" class="section level2" number="10.1">
+<h2>
+<span class="header-section-number">10.1</span> Lernsteuerung<a class="anchor" aria-label="anchor" href="#lernsteuerung-7"><i class="fas fa-link"></i></a>
+</h2>
+<div id="lernziele-8" class="section level3" number="10.1.1">
+<h3>
+<span class="header-section-number">10.1.1</span> Lernziele<a class="anchor" aria-label="anchor" href="#lernziele-8"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>Sie können Algorithmen für Ensemble-Lernen erklären, d.i. Bagging, AdaBoost, XGBoost, Random Forest</li>
+<li>Sie wissen, anhand welche Tuningparamter man Overfitting bei diesen Algorithmen begrenzen kann</li>
+<li>Sie können diese Verfahren in R berechnen</li>
+</ul>
+</div>
+<div id="literatur-8" class="section level3" number="10.1.2">
+<h3>
+<span class="header-section-number">10.1.2</span> Literatur<a class="anchor" aria-label="anchor" href="#literatur-8"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>Rhys, Kap. 8</li>
+</ul>
+</div>
+</div>
+<div id="vorbereitung-6" class="section level2" number="10.2">
+<h2>
+<span class="header-section-number">10.2</span> Vorbereitung<a class="anchor" aria-label="anchor" href="#vorbereitung-6"><i class="fas fa-link"></i></a>
+</h2>
+<p>In diesem Kapitel werden folgende R-Pakete benötigt:</p>
+<div class="sourceCode" id="cb379"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/collectivemedia/tictoc">tictoc</a></span><span class="op">)</span>  <span class="co"># Zeitmessung</span></code></pre></div>
+<!-- ## Aufgaben und Vertiefung -->
+</div>
+<div id="aufgaben-7" class="section level2" number="10.3">
+<h2>
+<span class="header-section-number">10.3</span> Aufgaben<a class="anchor" aria-label="anchor" href="#aufgaben-7"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li><a href="https://bcullen.rbind.io/post/2020-06-02-tidymodels-decision-tree-learning-in-r/">Fallstudie Oregon Schools</a></li>
+<li><a href="https://www.gmudatamining.com/lesson-13-r-tutorial.html">Fallstudie Churn</a></li>
+<li><a href="https://juliasilge.com/blog/ikea-prices/">Fallstudie Ikea</a></li>
+<li><a href="https://juliasilge.com/blog/water-sources/">Fallstudie Wasserquellen in Sierra Leone</a></li>
+<li><a href="https://dev.to/juliasilge/tuning-random-forest-hyperparameters-in-r-with-tidytuesday-trees-data-4ilh">Fallstudie Bäume in San Francisco</a></li>
+<li><a href="https://juliasilge.com/blog/multinomial-volcano-eruptions/">Fallstudie Vulkanausbrüche</a></li>
+<li><a href="https://juliasilge.com/blog/board-games/">Fallstudie Brettspiele mit XGBoost</a></li>
+</ul>
+</div>
 </div>
   <div class="chapter-nav">
-<div class="empty"></div>
-<div class="empty"></div>
+<div class="prev"><a href="entscheidungsb%C3%A4ume.html"><span class="header-section-number">9</span> Entscheidungsbäume</a></div>
+<div class="next"><a href="regularisierte-modelle.html"><span class="header-section-number">11</span> Regularisierte Modelle</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    </div>
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#ensemble-lerner"><span class="header-section-number">10</span> Ensemble Lerner</a></li>
+<li>
+<a class="nav-link" href="#lernsteuerung-7"><span class="header-section-number">10.1</span> Lernsteuerung</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#lernziele-8"><span class="header-section-number">10.1.1</span> Lernziele</a></li>
+<li><a class="nav-link" href="#literatur-8"><span class="header-section-number">10.1.2</span> Literatur</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#vorbereitung-6"><span class="header-section-number">10.2</span> Vorbereitung</a></li>
+<li><a class="nav-link" href="#aufgaben-7"><span class="header-section-number">10.3</span> Aufgaben</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/sebastiansauer/datascience1/blob/master/110-Ensemble-Lerner.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/sebastiansauer/datascience1/edit/master/110-Ensemble-Lerner.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
 
 </div>
 </div> <!-- .container -->

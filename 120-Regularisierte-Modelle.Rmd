@@ -1,0 +1,83 @@
+# Regularisierte Modelle
+
+
+
+
+```{r global-knitr-options, include=FALSE}
+  knitr::opts_chunk$set(
+  fig.pos = 'H',
+  fig.asp = 0.618,
+  fig.align='center',
+  fig.width = 5,
+  out.width = "100%",
+  fig.cap = "", 
+  dpi = 300,
+  # tidy = TRUE,
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE,
+  cache = FALSE,
+  fig.show = "hold")
+```
+
+
+
+
+## Lernsteuerung
+
+```{r chapter-start-sections, echo = FALSE, results = "asis"}
+source("funs/chapter-start-sections.R")
+chapter_start_sections(title = "Regularisierung")
+```
+
+
+
+
+
+
+
+
+## Vorbereitung
+
+
+In diesem Kapitel werden folgende R-Pakete benötigt:
+
+```{r echo = TRUE}
+library(tidymodels)
+library(tictoc)  # Zeitmessung
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ## Aufgaben und Vertiefung -->
+
+
+
+
+```{r render-outline-vertiefung-aufgaben, results = "asis", echo = FALSE, message = FALSE}
+
+  render_section(course_dates_file,
+                 content_file,
+                 i = NULL,
+                 title = "Regularisierung",
+                 name = "Aufgaben",
+                 header_level = 1)
+
+
+render_section(course_dates_file,
+               content_file,
+               i = NULL, 
+               title = "Regularisierung",
+               name = "Vertiefung",
+               header_level = 1)
+```

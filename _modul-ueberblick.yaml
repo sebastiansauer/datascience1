@@ -149,6 +149,10 @@ thema7:
 
 thema9:
   Titel: "Entscheidungsbäume"
+  Lernziele:
+    - "Sie können den rpart-Algorithmus erklären"
+    - "Sie wissen, wie man Overfitting bei Entscheidungsbäume begrenzen kann"
+    - "Sie können Entscheidungsbäume in R berechnen"
 
   Literatur:
     - "Rhys, Kap. 7"
@@ -160,23 +164,55 @@ thema9:
     - "[Fallstudie Windturbinen](https://juliasilge.com/blog/wind-turbine/)"
     - "[Fallstudie Churn](https://www.gmudatamining.com/lesson-13-r-tutorial.html)"
 
+
+
 thema10:
-  Titel: "Zufallswälder"
+  Titel: "Ensemble-Lerner"
+  Lernziele:
+    - "Sie können Algorithmen für Ensemble-Lernen erklären, d.i. Bagging, AdaBoost, XGBoost, Random Forest"
+    - "Sie wissen, anhand welche Tuningparamter man Overfitting bei diesen Algorithmen begrenzen kann"
+    - "Sie können diese Verfahren in R berechnen"
+  
 
   Literatur:
     - "Rhys, Kap. 8"
+  Aufgaben:
+    - "[Fallstudie Oregon Schools](https://bcullen.rbind.io/post/2020-06-02-tidymodels-decision-tree-learning-in-r/)"
+    - "[Fallstudie Churn](https://www.gmudatamining.com/lesson-13-r-tutorial.html)"
+    - "[Fallstudie Ikea](https://juliasilge.com/blog/ikea-prices/)" 
+    - "[Fallstudie Wasserquellen in Sierra Leone](https://juliasilge.com/blog/water-sources/)" 
+    - "[Fallstudie Bäume in San Francisco](https://dev.to/juliasilge/tuning-random-forest-hyperparameters-in-r-with-tidytuesday-trees-data-4ilh)"
+    - "[Fallstudie Vulkanausbrüche](https://juliasilge.com/blog/multinomial-volcano-eruptions/)"
+    - "[Fallstudie Brettspiele mit XGBoost](https://juliasilge.com/blog/board-games/)"
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
     
-    
-
-thema8:
-  Titel: "Dimensionsreduktion"
-
+thema14:
+  Titel: "Regularisierung"
+  Lernziele:
+    - "Sie können Algorithmen für regularisierte lineare Modell erklären, d.h. Lasso- und Ridge-Regression"
+    - "Sie wissen, anhand welche Tuningparamter man Overfitting bei diesen Algorithmen begrenzen kann"
+    - "Sie können diese Verfahren in R berechnen"
+  
   Literatur:
-    - "Rhys, Kap. 13  "    
-    
+    - "Rhys, Kap. 11"
+  
+  Aufgaben:
+    - "[Fallstudie Serie The Offic6e](https://juliasilge.com/blog/lasso-the-office/)"
+    - "[Fallstudie NBER Papers](https://juliasilge.com/blog/nber-papers/)"
+
+
+
 
 thema11:
-  Titel: "Fallstudie"
+  Titel: "Fallstudien"
 
   Hinweise:
     - Nächste Woche ist Blockwoche, zu der kein regulärer Unterricht stattfindet.
@@ -200,13 +236,20 @@ thema13:
 
 
 
-thema14:
-  Titel: "Lasso und Co"
+thema8:
+  Titel: "Dimensionsreduktion"
+  Lernziele:
+    - "Sie kennen den Principal-Components-Algorithmus (PCA) und können ihn in Grundzügen erläutern"
+    - "Sie können eine PCA in R berechnen"
+    - "Sie wissen um Vorteile und Beschränkungen dieses Algorithmus"
 
   Literatur:
-    - "Rhys, Kap. 11"
-
-
+    - "Rhys, Kap. 13  "    
+  
+  Aufgaben:
+    - "[Fallstudie Cocktailrezepte](https://juliasilge.com/blog/cocktail-recipes-umap/)"
+    - "[Fallstudie Hiphop-Songs](https://juliasilge.com/blog/best-hip-hop/)"
+    - "[Fallstudie StackOverflow](https://juliasilge.com/blog/stack-overflow-pca/)"
 
 thema15:
   Titel: "Vertiefung"

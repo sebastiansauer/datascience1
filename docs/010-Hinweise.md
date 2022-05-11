@@ -113,12 +113,12 @@ die das Online-Zusammenarbeiten vereinfachen:
 |  7| 17|2022-04-25   |[Resampling und Tuning](https://sebastiansauer.github.io/datascience1/resampling-und-tuning.html)   |
 |  8| 18|2022-05-02   |[Logistische Regression](https://sebastiansauer.github.io/datascience1/logistische-regression.html) |
 |  9| 19|2022-05-09   |[Entscheidungsbäume](https://sebastiansauer.github.io/datascience1/entscheidungsbäume.html)         |
-| 10| 20|2022-05-16   |[Zufallswälder](https://sebastiansauer.github.io/datascience1/zufallswälder.html)                   |
-| 11| 21|2022-05-23   |[Dimensionsreduktion](https://sebastiansauer.github.io/datascience1/dimensionsreduktion.html)       |
-| 12| 22|2022-05-30   |[Fallstudie](https://sebastiansauer.github.io/datascience1/fallstudie.html)                         |
+| 10| 20|2022-05-16   |[Ensemble-Lerner](https://sebastiansauer.github.io/datascience1/ensemble-lerner.html)               |
+| 11| 21|2022-05-23   |[Regularisierung](https://sebastiansauer.github.io/datascience1/regularisierung.html)               |
+| 12| 22|2022-05-30   |[Fallstudien](https://sebastiansauer.github.io/datascience1/fallstudien.html)                       |
 | 13| 23|2022-06-06   |[Wiederholung](https://sebastiansauer.github.io/datascience1/wiederholung.html)                     |
 | 14| 24|2022-06-13   |[GAM](https://sebastiansauer.github.io/datascience1/gam.html)                                       |
-| 15| 25|2022-06-20   |[Lasso und Co](https://sebastiansauer.github.io/datascience1/lasso-und-co.html)                     |
+| 15| 25|2022-06-20   |[Dimensionsreduktion](https://sebastiansauer.github.io/datascience1/dimensionsreduktion.html)       |
 | 16| 26|2022-06-27   |[Vertiefung](https://sebastiansauer.github.io/datascience1/vertiefung.html)                         |
 
 

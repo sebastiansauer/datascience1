@@ -79,6 +79,8 @@
 <li><a class="" href="resampling-und-tuning.html"><span class="header-section-number">7</span> Resampling und Tuning</a></li>
 <li><a class="active" href="logistische-regression.html"><span class="header-section-number">8</span> Logistische Regression</a></li>
 <li><a class="" href="entscheidungsb%C3%A4ume.html"><span class="header-section-number">9</span> Entscheidungsbäume</a></li>
+<li><a class="" href="ensemble-lerner.html"><span class="header-section-number">10</span> Ensemble Lerner</a></li>
+<li><a class="" href="regularisierte-modelle.html"><span class="header-section-number">11</span> Regularisierte Modelle</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
 
@@ -153,8 +155,8 @@ sondern auch eine <em>Indikation der Stärke</em> (epistemologisch) der Klassenz
 dass die logistische Regression eine Wahrscheinlichkeit der Klassenzugehörigkeit zurückliefert.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:logist-regr"></span>
-<div id="htmlwidget-b83a6d891ca706d9a980" style="width:100%;height:300px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b83a6d891ca706d9a980">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: right\n [Daten] -> [Modell] \n [Modell] -> [Wskt] \n [Wskt] -> [Klassifikation]\n","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
+<div id="htmlwidget-4957ebaac2b9e5ba3c2a" style="width:100%;height:300px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4957ebaac2b9e5ba3c2a">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: right\n [Daten] -> [Modell] \n [Modell] -> [Wskt] \n [Wskt] -> [Klassifikation]\n","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
 Figure 8.1: Definition eines Models in tidymodels
 </p>
 </div>
@@ -164,12 +166,12 @@ Figure 8.1: Definition eines Models in tidymodels
 <span class="header-section-number">8.3</span> Profil<a class="anchor" aria-label="anchor" href="#profil"><i class="fas fa-link"></i></a>
 </h2>
 <p>Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. <a href="logistische-regression.html#tab:prof-logist">8.1</a>.</p>
-<div id="lqnoarbyxx" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="kkewpmqnjl" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#lqnoarbyxx .gt_table {
+#kkewpmqnjl .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -194,7 +196,7 @@ Figure 8.1: Definition eines Models in tidymodels
   border-left-color: #D3D3D3;
 }
 
-#lqnoarbyxx .gt_heading {
+#kkewpmqnjl .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -206,7 +208,7 @@ Figure 8.1: Definition eines Models in tidymodels
   border-right-color: #D3D3D3;
 }
 
-#lqnoarbyxx .gt_title {
+#kkewpmqnjl .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -216,7 +218,7 @@ Figure 8.1: Definition eines Models in tidymodels
   border-bottom-width: 0;
 }
 
-#lqnoarbyxx .gt_subtitle {
+#kkewpmqnjl .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -226,13 +228,13 @@ Figure 8.1: Definition eines Models in tidymodels
   border-top-width: 0;
 }
 
-#lqnoarbyxx .gt_bottom_border {
+#kkewpmqnjl .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#lqnoarbyxx .gt_col_headings {
+#kkewpmqnjl .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -247,7 +249,7 @@ Figure 8.1: Definition eines Models in tidymodels
   border-right-color: #D3D3D3;
 }
 
-#lqnoarbyxx .gt_col_heading {
+#kkewpmqnjl .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -267,7 +269,7 @@ Figure 8.1: Definition eines Models in tidymodels
   overflow-x: hidden;
 }
 
-#lqnoarbyxx .gt_column_spanner_outer {
+#kkewpmqnjl .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -279,15 +281,15 @@ Figure 8.1: Definition eines Models in tidymodels
   padding-right: 4px;
 }
 
-#lqnoarbyxx .gt_column_spanner_outer:first-child {
+#kkewpmqnjl .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#lqnoarbyxx .gt_column_spanner_outer:last-child {
+#kkewpmqnjl .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#lqnoarbyxx .gt_column_spanner {
+#kkewpmqnjl .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -299,7 +301,7 @@ Figure 8.1: Definition eines Models in tidymodels
   width: 100%;
 }
 
-#lqnoarbyxx .gt_group_heading {
+#kkewpmqnjl .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -321,7 +323,7 @@ Figure 8.1: Definition eines Models in tidymodels
   vertical-align: middle;
 }
 
-#lqnoarbyxx .gt_empty_group_heading {
+#kkewpmqnjl .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -336,15 +338,15 @@ Figure 8.1: Definition eines Models in tidymodels
   vertical-align: middle;
 }
 
-#lqnoarbyxx .gt_from_md > :first-child {
+#kkewpmqnjl .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#lqnoarbyxx .gt_from_md > :last-child {
+#kkewpmqnjl .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#lqnoarbyxx .gt_row {
+#kkewpmqnjl .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -363,7 +365,7 @@ Figure 8.1: Definition eines Models in tidymodels
   overflow-x: hidden;
 }
 
-#lqnoarbyxx .gt_stub {
+#kkewpmqnjl .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -375,7 +377,7 @@ Figure 8.1: Definition eines Models in tidymodels
   padding-left: 12px;
 }
 
-#lqnoarbyxx .gt_summary_row {
+#kkewpmqnjl .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -385,7 +387,7 @@ Figure 8.1: Definition eines Models in tidymodels
   padding-right: 5px;
 }
 
-#lqnoarbyxx .gt_first_summary_row {
+#kkewpmqnjl .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -395,7 +397,7 @@ Figure 8.1: Definition eines Models in tidymodels
   border-top-color: #D3D3D3;
 }
 
-#lqnoarbyxx .gt_grand_summary_row {
+#kkewpmqnjl .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -405,7 +407,7 @@ Figure 8.1: Definition eines Models in tidymodels
   padding-right: 5px;
 }
 
-#lqnoarbyxx .gt_first_grand_summary_row {
+#kkewpmqnjl .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -415,11 +417,11 @@ Figure 8.1: Definition eines Models in tidymodels
   border-top-color: #D3D3D3;
 }
 
-#lqnoarbyxx .gt_striped {
+#kkewpmqnjl .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#lqnoarbyxx .gt_table_body {
+#kkewpmqnjl .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -428,7 +430,7 @@ Figure 8.1: Definition eines Models in tidymodels
   border-bottom-color: #D3D3D3;
 }
 
-#lqnoarbyxx .gt_footnotes {
+#kkewpmqnjl .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -442,13 +444,13 @@ Figure 8.1: Definition eines Models in tidymodels
   border-right-color: #D3D3D3;
 }
 
-#lqnoarbyxx .gt_footnote {
+#kkewpmqnjl .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#lqnoarbyxx .gt_sourcenotes {
+#kkewpmqnjl .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -462,41 +464,41 @@ Figure 8.1: Definition eines Models in tidymodels
   border-right-color: #D3D3D3;
 }
 
-#lqnoarbyxx .gt_sourcenote {
+#kkewpmqnjl .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#lqnoarbyxx .gt_left {
+#kkewpmqnjl .gt_left {
   text-align: left;
 }
 
-#lqnoarbyxx .gt_center {
+#kkewpmqnjl .gt_center {
   text-align: center;
 }
 
-#lqnoarbyxx .gt_right {
+#kkewpmqnjl .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#lqnoarbyxx .gt_font_normal {
+#kkewpmqnjl .gt_font_normal {
   font-weight: normal;
 }
 
-#lqnoarbyxx .gt_font_bold {
+#kkewpmqnjl .gt_font_bold {
   font-weight: bold;
 }
 
-#lqnoarbyxx .gt_font_italic {
+#kkewpmqnjl .gt_font_italic {
   font-style: italic;
 }
 
-#lqnoarbyxx .gt_super {
+#kkewpmqnjl .gt_super {
   font-size: 65%;
 }
 
-#lqnoarbyxx .gt_footnote_marks {
+#kkewpmqnjl .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -732,12 +734,12 @@ sondern die <em>erste</em> als Ereignis modelliert wird.</p>
 <span class="va">m83_fit</span> <span class="op">&lt;-</span>
   <span class="fu">fit</span><span class="op">(</span><span class="va">m83_wf</span>, data <span class="op">=</span> <span class="va">d2</span><span class="op">)</span></code></pre></div>
 <p>Hier sind die Koeffizienten, die kann man sich aus <code>m83_fit</code> herausziehen:</p>
-<div id="brjgahibpw" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="yhxxcgawpk" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#brjgahibpw .gt_table {
+#yhxxcgawpk .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -762,7 +764,7 @@ sondern die <em>erste</em> als Ereignis modelliert wird.</p>
   border-left-color: #D3D3D3;
 }
 
-#brjgahibpw .gt_heading {
+#yhxxcgawpk .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -774,7 +776,7 @@ sondern die <em>erste</em> als Ereignis modelliert wird.</p>
   border-right-color: #D3D3D3;
 }
 
-#brjgahibpw .gt_title {
+#yhxxcgawpk .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -784,7 +786,7 @@ sondern die <em>erste</em> als Ereignis modelliert wird.</p>
   border-bottom-width: 0;
 }
 
-#brjgahibpw .gt_subtitle {
+#yhxxcgawpk .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -794,13 +796,13 @@ sondern die <em>erste</em> als Ereignis modelliert wird.</p>
   border-top-width: 0;
 }
 
-#brjgahibpw .gt_bottom_border {
+#yhxxcgawpk .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#brjgahibpw .gt_col_headings {
+#yhxxcgawpk .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -815,7 +817,7 @@ sondern die <em>erste</em> als Ereignis modelliert wird.</p>
   border-right-color: #D3D3D3;
 }
 
-#brjgahibpw .gt_col_heading {
+#yhxxcgawpk .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -835,7 +837,7 @@ sondern die <em>erste</em> als Ereignis modelliert wird.</p>
   overflow-x: hidden;
 }
 
-#brjgahibpw .gt_column_spanner_outer {
+#yhxxcgawpk .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -847,15 +849,15 @@ sondern die <em>erste</em> als Ereignis modelliert wird.</p>
   padding-right: 4px;
 }
 
-#brjgahibpw .gt_column_spanner_outer:first-child {
+#yhxxcgawpk .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#brjgahibpw .gt_column_spanner_outer:last-child {
+#yhxxcgawpk .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#brjgahibpw .gt_column_spanner {
+#yhxxcgawpk .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -867,7 +869,7 @@ sondern die <em>erste</em> als Ereignis modelliert wird.</p>
   width: 100%;
 }
 
-#brjgahibpw .gt_group_heading {
+#yhxxcgawpk .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -889,7 +891,7 @@ sondern die <em>erste</em> als Ereignis modelliert wird.</p>
   vertical-align: middle;
 }
 
-#brjgahibpw .gt_empty_group_heading {
+#yhxxcgawpk .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -904,15 +906,15 @@ sondern die <em>erste</em> als Ereignis modelliert wird.</p>
   vertical-align: middle;
 }
 
-#brjgahibpw .gt_from_md > :first-child {
+#yhxxcgawpk .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#brjgahibpw .gt_from_md > :last-child {
+#yhxxcgawpk .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#brjgahibpw .gt_row {
+#yhxxcgawpk .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -931,7 +933,7 @@ sondern die <em>erste</em> als Ereignis modelliert wird.</p>
   overflow-x: hidden;
 }
 
-#brjgahibpw .gt_stub {
+#yhxxcgawpk .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -943,7 +945,7 @@ sondern die <em>erste</em> als Ereignis modelliert wird.</p>
   padding-left: 12px;
 }
 
-#brjgahibpw .gt_summary_row {
+#yhxxcgawpk .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -953,7 +955,7 @@ sondern die <em>erste</em> als Ereignis modelliert wird.</p>
   padding-right: 5px;
 }
 
-#brjgahibpw .gt_first_summary_row {
+#yhxxcgawpk .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -963,7 +965,7 @@ sondern die <em>erste</em> als Ereignis modelliert wird.</p>
   border-top-color: #D3D3D3;
 }
 
-#brjgahibpw .gt_grand_summary_row {
+#yhxxcgawpk .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -973,7 +975,7 @@ sondern die <em>erste</em> als Ereignis modelliert wird.</p>
   padding-right: 5px;
 }
 
-#brjgahibpw .gt_first_grand_summary_row {
+#yhxxcgawpk .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -983,11 +985,11 @@ sondern die <em>erste</em> als Ereignis modelliert wird.</p>
   border-top-color: #D3D3D3;
 }
 
-#brjgahibpw .gt_striped {
+#yhxxcgawpk .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#brjgahibpw .gt_table_body {
+#yhxxcgawpk .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -996,7 +998,7 @@ sondern die <em>erste</em> als Ereignis modelliert wird.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#brjgahibpw .gt_footnotes {
+#yhxxcgawpk .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1010,13 +1012,13 @@ sondern die <em>erste</em> als Ereignis modelliert wird.</p>
   border-right-color: #D3D3D3;
 }
 
-#brjgahibpw .gt_footnote {
+#yhxxcgawpk .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#brjgahibpw .gt_sourcenotes {
+#yhxxcgawpk .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1030,41 +1032,41 @@ sondern die <em>erste</em> als Ereignis modelliert wird.</p>
   border-right-color: #D3D3D3;
 }
 
-#brjgahibpw .gt_sourcenote {
+#yhxxcgawpk .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#brjgahibpw .gt_left {
+#yhxxcgawpk .gt_left {
   text-align: left;
 }
 
-#brjgahibpw .gt_center {
+#yhxxcgawpk .gt_center {
   text-align: center;
 }
 
-#brjgahibpw .gt_right {
+#yhxxcgawpk .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#brjgahibpw .gt_font_normal {
+#yhxxcgawpk .gt_font_normal {
   font-weight: normal;
 }
 
-#brjgahibpw .gt_font_bold {
+#yhxxcgawpk .gt_font_bold {
   font-weight: bold;
 }
 
-#brjgahibpw .gt_font_italic {
+#yhxxcgawpk .gt_font_italic {
   font-style: italic;
 }
 
-#brjgahibpw .gt_super {
+#yhxxcgawpk .gt_super {
   font-size: 65%;
 }
 
-#brjgahibpw .gt_footnote_marks {
+#yhxxcgawpk .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -1371,7 +1373,7 @@ y_i &amp;\sim \mathcal{B}(1, p_i) \\
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-05-08 07:43:06.</p>
+    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-05-11 06:17:51.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -10,6 +10,14 @@
 ## Lernsteuerung
 
 
+### Lernziele 
+
+- Sie können den rpart-Algorithmus erklären
+- Sie wissen, wie man Overfitting bei Entscheidungsbäume begrenzen kann
+- Sie können Entscheidungsbäume in R berechnen
+
+
+
 ### Literatur 
 
 - Rhys, Kap. 7
@@ -979,7 +987,7 @@ was hätte das jetzt wohl für eine Modellgüte?
 
 
 ```
-## 13.059 sec elapsed
+## 8.425 sec elapsed
 ```
 
 
