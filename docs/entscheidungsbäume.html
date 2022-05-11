@@ -1,127 +1,529 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="" xml:lang="">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Kapitel 9 Entscheidungsbäume | DataScience1</title>
-<meta name="author" content="Sebastian Sauer">
-<meta name="description" content="9.1 Vorbereitung In diesem Kapitel werden folgende R-Pakete benötigt: library(titanic) #library(rpart) # Berechnung von Entscheidungsbäumen library(tidymodels) library(tictoc) # Zeitmessung  9.2...">
-<meta name="generator" content="bookdown 0.26.2 with bs4_book()">
-<meta property="og:title" content="Kapitel 9 Entscheidungsbäume | DataScience1">
-<meta property="og:type" content="book">
-<meta property="og:description" content="9.1 Vorbereitung In diesem Kapitel werden folgende R-Pakete benötigt: library(titanic) #library(rpart) # Berechnung von Entscheidungsbäumen library(tidymodels) library(tictoc) # Zeitmessung  9.2...">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Kapitel 9 Entscheidungsbäume | DataScience1">
-<meta name="twitter:description" content="9.1 Vorbereitung In diesem Kapitel werden folgende R-Pakete benötigt: library(titanic) #library(rpart) # Berechnung von Entscheidungsbäumen library(tidymodels) library(tictoc) # Zeitmessung  9.2...">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
-<script src="libs/grViz-binding-1.0.6.1/grViz.js"></script><script src="libs/es6shim-0.35.6/es6shim.js"></script><script src="libs/es7shim-6.0.0/es7shim.js"></script><script src="libs/graphre-0.1.3/graphre.js"></script><script src="libs/nomnoml-1.3.1/nomnoml.js"></script><script src="libs/nomnoml-binding-0.2.3/nomnoml.js"></script><script src="libs/d3-3.3.8/d3.min.js"></script><script src="libs/dagre-0.4.0/dagre-d3.min.js"></script><link href="libs/mermaid-0.3.0/dist/mermaid.css" rel="stylesheet">
-<script src="libs/mermaid-0.3.0/dist/mermaid.slim.min.js"></script><script src="libs/chromatography-0.1/chromatography.js"></script><script src="libs/DiagrammeR-binding-1.0.6.1/DiagrammeR.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
-    
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-  </style>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Kapitel 10 Entscheidungsbäume | DataScience1</title>
+  <meta name="description" content="Grundlagen der Prognosemodellierung mit tidymodels" />
+  <meta name="generator" content="bookdown 0.26.2 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Kapitel 10 Entscheidungsbäume | DataScience1" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Grundlagen der Prognosemodellierung mit tidymodels" />
+  <meta name="github-repo" content="sebastiansauer/datascience1" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Kapitel 10 Entscheidungsbäume | DataScience1" />
+  
+  <meta name="twitter:description" content="Grundlagen der Prognosemodellierung mit tidymodels" />
+  
+
+<meta name="author" content="Sebastian Sauer" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="logistische-regression.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/viz-1.8.2/viz.js"></script>
+<link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+<script src="libs/grViz-binding-1.0.6.1/grViz.js"></script>
+<script src="libs/es6shim-0.35.6/es6shim.js"></script>
+<script src="libs/es7shim-6.0.0/es7shim.js"></script>
+<script src="libs/graphre-0.1.3/graphre.js"></script>
+<script src="libs/nomnoml-1.3.1/nomnoml.js"></script>
+<script src="libs/nomnoml-binding-0.2.3/nomnoml.js"></script>
+<script src="libs/d3-3.3.8/d3.min.js"></script>
+<script src="libs/dagre-0.4.0/dagre-d3.min.js"></script>
+<link href="libs/mermaid-0.3.0/dist/mermaid.css" rel="stylesheet" />
+<script src="libs/mermaid-0.3.0/dist/mermaid.slim.min.js"></script>
+<script src="libs/chromatography-0.1/chromatography.js"></script>
+<script src="libs/DiagrammeR-binding-1.0.6.1/DiagrammeR.js"></script>
+
+
 <style type="text/css">
-    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-    div.csl-bib-body { }
-    div.csl-entry {
-      clear: both;
-        }
-    .hanging div.csl-entry {
-      margin-left:2em;
-      text-indent:-2em;
-    }
-    div.csl-left-margin {
-      min-width:2em;
-      float:left;
-    }
-    div.csl-right-inline {
-      margin-left:2em;
-      padding-left:1em;
-    }
-    div.csl-indent {
-      margin-left: 2em;
-    }
-  </style>
-<link rel="stylesheet" href="style-bs4.css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
-<body data-spy="scroll" data-target="#toc">
 
-<div class="container-fluid">
-<div class="row">
-  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+<body>
 
-    <div class="d-flex align-items-start justify-content-between">
-      <h1>
-        <a href="index.html" title="Grundlagen der Prognosemodellierung 🔮🧰">DataScience1</a>:
-        <small class="text-muted">Grundlagen der Prognosemodellierung 🔮🧰</small>
-      </h1>
-      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
-    </div>
 
-    <div id="main-nav" class="collapse-lg">
-      <form role="search">
-        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
-</form>
 
-      <nav aria-label="Table of contents"><h2>Table of contents</h2>
-        <ul class="book-toc list-unstyled">
-<li><a class="" href="index.html">Zu diesem Buch</a></li>
-<li><a class="" href="hinweise.html"><span class="header-section-number">1</span> Hinweise</a></li>
-<li><a class="" href="pr%C3%BCfung.html"><span class="header-section-number">2</span> Prüfung</a></li>
-<li class="book-part">Themen</li>
-<li><a class="" href="statistisches-lernen.html"><span class="header-section-number">3</span> Statistisches Lernen</a></li>
-<li><a class="" href="r-zweiter-blick.html"><span class="header-section-number">4</span> R, zweiter Blick</a></li>
-<li><a class="" href="tidymodels.html"><span class="header-section-number">5</span> tidymodels</a></li>
-<li><a class="" href="knn.html"><span class="header-section-number">6</span> kNN</a></li>
-<li><a class="" href="resampling-und-tuning.html"><span class="header-section-number">7</span> Resampling und Tuning</a></li>
-<li><a class="" href="logistische-regression.html"><span class="header-section-number">8</span> Logistische Regression</a></li>
-<li><a class="active" href="entscheidungsb%C3%A4ume.html"><span class="header-section-number">9</span> Entscheidungsbäume</a></li>
-<li><a class="" href="references.html">References</a></li>
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Science Grundlagen</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> description: “Ein Kurs zu den Grundlagen des statistischen Lernens mit einem Fokus auf Prognosemodelle für hoch strukturierte Daten”</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#was-sie-hier-lernen-und-wozu-das-gut-ist"><i class="fa fa-check"></i><b>1.1</b> Was Sie hier lernen und wozu das gut ist</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#technische-details"><i class="fa fa-check"></i><b>1.2</b> Technische Details</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="hinweise.html"><a href="hinweise.html"><i class="fa fa-check"></i><b>2</b> Hinweise</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="hinweise.html"><a href="hinweise.html#lernziele"><i class="fa fa-check"></i><b>2.1</b> Lernziele</a></li>
+<li class="chapter" data-level="2.2" data-path="hinweise.html"><a href="hinweise.html#voraussetzungen"><i class="fa fa-check"></i><b>2.2</b> Voraussetzungen</a></li>
+<li class="chapter" data-level="2.3" data-path="hinweise.html"><a href="hinweise.html#lernhilfen"><i class="fa fa-check"></i><b>2.3</b> Lernhilfen</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="hinweise.html"><a href="hinweise.html#software"><i class="fa fa-check"></i><b>2.3.1</b> Software</a></li>
+<li class="chapter" data-level="2.3.2" data-path="hinweise.html"><a href="hinweise.html#videos"><i class="fa fa-check"></i><b>2.3.2</b> Videos</a></li>
+<li class="chapter" data-level="2.3.3" data-path="hinweise.html"><a href="hinweise.html#online-zusammenarbeit"><i class="fa fa-check"></i><b>2.3.3</b> Online-Zusammenarbeit</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="hinweise.html"><a href="hinweise.html#modulzeitplan"><i class="fa fa-check"></i><b>2.4</b> Modulzeitplan</a></li>
+<li class="chapter" data-level="2.5" data-path="hinweise.html"><a href="hinweise.html#literatur"><i class="fa fa-check"></i><b>2.5</b> Literatur</a></li>
+<li class="chapter" data-level="2.6" data-path="hinweise.html"><a href="hinweise.html#faq"><i class="fa fa-check"></i><b>2.6</b> FAQ</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="prüfung.html"><a href="prüfung.html"><i class="fa fa-check"></i><b>3</b> Prüfung</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="prüfung.html"><a href="prüfung.html#prüfungleistung"><i class="fa fa-check"></i><b>3.1</b> Prüfungleistung</a></li>
+<li class="chapter" data-level="3.2" data-path="prüfung.html"><a href="prüfung.html#tldr-zusammenfassung"><i class="fa fa-check"></i><b>3.2</b> tl;dr: Zusammenfassung</a></li>
+<li class="chapter" data-level="3.3" data-path="prüfung.html"><a href="prüfung.html#vorhersage"><i class="fa fa-check"></i><b>3.3</b> Vorhersage</a></li>
+<li class="chapter" data-level="3.4" data-path="prüfung.html"><a href="prüfung.html#hauptziel-genaue-prognose"><i class="fa fa-check"></i><b>3.4</b> Hauptziel: Genaue Prognose</a></li>
+<li class="chapter" data-level="3.5" data-path="prüfung.html"><a href="prüfung.html#zum-aufbau-ihrer-prognosedatei-im-csv-format"><i class="fa fa-check"></i><b>3.5</b> Zum Aufbau Ihrer Prognosedatei im CSV-Format</a></li>
+<li class="chapter" data-level="3.6" data-path="prüfung.html"><a href="prüfung.html#einzureichende-dateien"><i class="fa fa-check"></i><b>3.6</b> Einzureichende Dateien</a></li>
+<li class="chapter" data-level="3.7" data-path="prüfung.html"><a href="prüfung.html#tipps"><i class="fa fa-check"></i><b>3.7</b> Tipps</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="prüfung.html"><a href="prüfung.html#tipps-für-eine-gute-prognose"><i class="fa fa-check"></i><b>3.7.1</b> Tipps für eine gute Prognose</a></li>
+<li class="chapter" data-level="3.7.2" data-path="prüfung.html"><a href="prüfung.html#tipps-zur-datenverarbeitung"><i class="fa fa-check"></i><b>3.7.2</b> Tipps zur Datenverarbeitung</a></li>
+<li class="chapter" data-level="3.7.3" data-path="prüfung.html"><a href="prüfung.html#tipps-zum-aufbau-des-analyseskripts"><i class="fa fa-check"></i><b>3.7.3</b> Tipps zum Aufbau des Analyseskripts</a></li>
+<li class="chapter" data-level="3.7.4" data-path="prüfung.html"><a href="prüfung.html#sonstiges"><i class="fa fa-check"></i><b>3.7.4</b> Sonstiges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="prüfung.html"><a href="prüfung.html#bewertung"><i class="fa fa-check"></i><b>3.8</b> Bewertung</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="prüfung.html"><a href="prüfung.html#kriterien"><i class="fa fa-check"></i><b>3.8.1</b> Kriterien</a></li>
+<li class="chapter" data-level="3.8.2" data-path="prüfung.html"><a href="prüfung.html#kennzahl-der-modellgüte"><i class="fa fa-check"></i><b>3.8.2</b> Kennzahl der Modellgüte</a></li>
+<li class="chapter" data-level="3.8.3" data-path="prüfung.html"><a href="prüfung.html#notenstufen"><i class="fa fa-check"></i><b>3.8.3</b> Notenstufen</a></li>
+<li class="chapter" data-level="3.8.4" data-path="prüfung.html"><a href="prüfung.html#bewertungsprozess"><i class="fa fa-check"></i><b>3.8.4</b> Bewertungsprozess</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="prüfung.html"><a href="prüfung.html#hinweise-1"><i class="fa fa-check"></i><b>3.9</b> Hinweise</a></li>
+<li class="chapter" data-level="3.10" data-path="prüfung.html"><a href="prüfung.html#formalia"><i class="fa fa-check"></i><b>3.10</b> Formalia</a></li>
+<li class="chapter" data-level="3.11" data-path="prüfung.html"><a href="prüfung.html#wo-finde-ich-beispiele"><i class="fa fa-check"></i><b>3.11</b> Wo finde ich Beispiele?</a></li>
+<li class="chapter" data-level="3.12" data-path="prüfung.html"><a href="prüfung.html#plagiatskontrolle"><i class="fa fa-check"></i><b>3.12</b> Plagiatskontrolle</a></li>
+</ul></li>
+<li class="part"><span><b>I Themen</b></span></li>
+<li class="chapter" data-level="4" data-path="statistisches-lernen.html"><a href="statistisches-lernen.html"><i class="fa fa-check"></i><b>4</b> Statistisches Lernen</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="statistisches-lernen.html"><a href="statistisches-lernen.html#lernsteuerung"><i class="fa fa-check"></i><b>4.1</b> Lernsteuerung</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="statistisches-lernen.html"><a href="statistisches-lernen.html#vorbereitung"><i class="fa fa-check"></i><b>4.1.1</b> Vorbereitung</a></li>
+<li class="chapter" data-level="4.1.2" data-path="statistisches-lernen.html"><a href="statistisches-lernen.html#lernziele-1"><i class="fa fa-check"></i><b>4.1.2</b> Lernziele</a></li>
+<li class="chapter" data-level="4.1.3" data-path="statistisches-lernen.html"><a href="statistisches-lernen.html#literatur-1"><i class="fa fa-check"></i><b>4.1.3</b> Literatur</a></li>
+<li class="chapter" data-level="4.1.4" data-path="statistisches-lernen.html"><a href="statistisches-lernen.html#hinweise-2"><i class="fa fa-check"></i><b>4.1.4</b> Hinweise</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="statistisches-lernen.html"><a href="statistisches-lernen.html#was-ist-data-science"><i class="fa fa-check"></i><b>4.2</b> Was ist Data Science?</a></li>
+<li class="chapter" data-level="4.3" data-path="statistisches-lernen.html"><a href="statistisches-lernen.html#was-ist-machine-learning"><i class="fa fa-check"></i><b>4.3</b> Was ist Machine Learning?</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="statistisches-lernen.html"><a href="statistisches-lernen.html#rule-based"><i class="fa fa-check"></i><b>4.3.1</b> Rule-based</a></li>
+<li class="chapter" data-level="4.3.2" data-path="statistisches-lernen.html"><a href="statistisches-lernen.html#data-based"><i class="fa fa-check"></i><b>4.3.2</b> Data-based</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="statistisches-lernen.html"><a href="statistisches-lernen.html#modell-vs.-algorithmus"><i class="fa fa-check"></i><b>4.4</b> Modell vs. Algorithmus</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="statistisches-lernen.html"><a href="statistisches-lernen.html#modell"><i class="fa fa-check"></i><b>4.4.1</b> Modell</a></li>
+<li class="chapter" data-level="4.4.2" data-path="statistisches-lernen.html"><a href="statistisches-lernen.html#beispiel-für-einen-ml-algorithmus"><i class="fa fa-check"></i><b>4.4.2</b> Beispiel für einen ML-Algorithmus</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="statistisches-lernen.html"><a href="statistisches-lernen.html#taxonomie"><i class="fa fa-check"></i><b>4.5</b> Taxonomie</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="statistisches-lernen.html"><a href="statistisches-lernen.html#geleitetes-lernen"><i class="fa fa-check"></i><b>4.5.1</b> Geleitetes Lernen</a></li>
+<li class="chapter" data-level="4.5.2" data-path="statistisches-lernen.html"><a href="statistisches-lernen.html#ungeleitetes-lernen"><i class="fa fa-check"></i><b>4.5.2</b> Ungeleitetes Lernen</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="statistisches-lernen.html"><a href="statistisches-lernen.html#ziele-des-ml"><i class="fa fa-check"></i><b>4.6</b> Ziele des ML</a></li>
+<li class="chapter" data-level="4.7" data-path="statistisches-lernen.html"><a href="statistisches-lernen.html#über--vs.-unteranpassung"><i class="fa fa-check"></i><b>4.7</b> Über- vs. Unteranpassung</a></li>
+<li class="chapter" data-level="4.8" data-path="statistisches-lernen.html"><a href="statistisches-lernen.html#no-free-lunch"><i class="fa fa-check"></i><b>4.8</b> No free lunch</a></li>
+<li class="chapter" data-level="4.9" data-path="statistisches-lernen.html"><a href="statistisches-lernen.html#bias-varianz-abwägung"><i class="fa fa-check"></i><b>4.9</b> Bias-Varianz-Abwägung</a></li>
+<li class="chapter" data-level="4.10" data-path="statistisches-lernen.html"><a href="statistisches-lernen.html#aufgaben"><i class="fa fa-check"></i><b>4.10</b> Aufgaben</a></li>
+<li class="chapter" data-level="4.11" data-path="statistisches-lernen.html"><a href="statistisches-lernen.html#vertiefung"><i class="fa fa-check"></i><b>4.11</b> Vertiefung</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="r-zweiter-blick.html"><a href="r-zweiter-blick.html"><i class="fa fa-check"></i><b>5</b> R, zweiter Blick</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="r-zweiter-blick.html"><a href="r-zweiter-blick.html#lernsteuerung-1"><i class="fa fa-check"></i><b>5.1</b> Lernsteuerung</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="r-zweiter-blick.html"><a href="r-zweiter-blick.html#vorbereitung-1"><i class="fa fa-check"></i><b>5.1.1</b> Vorbereitung</a></li>
+<li class="chapter" data-level="5.1.2" data-path="r-zweiter-blick.html"><a href="r-zweiter-blick.html#lernziele-2"><i class="fa fa-check"></i><b>5.1.2</b> Lernziele</a></li>
+<li class="chapter" data-level="5.1.3" data-path="r-zweiter-blick.html"><a href="r-zweiter-blick.html#literatur-2"><i class="fa fa-check"></i><b>5.1.3</b> Literatur</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="r-zweiter-blick.html"><a href="r-zweiter-blick.html#objekttypen-in-r"><i class="fa fa-check"></i><b>5.2</b> Objekttypen in R</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="r-zweiter-blick.html"><a href="r-zweiter-blick.html#überblick"><i class="fa fa-check"></i><b>5.2.1</b> Überblick</a></li>
+<li class="chapter" data-level="5.2.2" data-path="r-zweiter-blick.html"><a href="r-zweiter-blick.html#taxonomie-1"><i class="fa fa-check"></i><b>5.2.2</b> Taxonomie</a></li>
+<li class="chapter" data-level="5.2.3" data-path="r-zweiter-blick.html"><a href="r-zweiter-blick.html#indizieren"><i class="fa fa-check"></i><b>5.2.3</b> Indizieren</a></li>
+<li class="chapter" data-level="5.2.4" data-path="r-zweiter-blick.html"><a href="r-zweiter-blick.html#weiterführende-hinweise"><i class="fa fa-check"></i><b>5.2.4</b> Weiterführende Hinweise</a></li>
+<li class="chapter" data-level="5.2.5" data-path="r-zweiter-blick.html"><a href="r-zweiter-blick.html#indizieren-mit-dem-tidyverse"><i class="fa fa-check"></i><b>5.2.5</b> Indizieren mit dem Tidyverse</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="r-zweiter-blick.html"><a href="r-zweiter-blick.html#datensätze-von-lang-nach-breit-umformatieren"><i class="fa fa-check"></i><b>5.3</b> Datensätze von lang nach breit umformatieren</a></li>
+<li class="chapter" data-level="5.4" data-path="r-zweiter-blick.html"><a href="r-zweiter-blick.html#funktionen"><i class="fa fa-check"></i><b>5.4</b> Funktionen</a></li>
+<li class="chapter" data-level="5.5" data-path="r-zweiter-blick.html"><a href="r-zweiter-blick.html#wiederholungen-programmieren"><i class="fa fa-check"></i><b>5.5</b> Wiederholungen programmieren</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="r-zweiter-blick.html"><a href="r-zweiter-blick.html#across"><i class="fa fa-check"></i><b>5.5.1</b> <code>across()</code></a></li>
+<li class="chapter" data-level="5.5.2" data-path="r-zweiter-blick.html"><a href="r-zweiter-blick.html#map"><i class="fa fa-check"></i><b>5.5.2</b> <code>map()</code></a></li>
+<li class="chapter" data-level="5.5.3" data-path="r-zweiter-blick.html"><a href="r-zweiter-blick.html#weiterführende-hinweise-1"><i class="fa fa-check"></i><b>5.5.3</b> Weiterführende Hinweise</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="r-zweiter-blick.html"><a href="r-zweiter-blick.html#listenspalten"><i class="fa fa-check"></i><b>5.6</b> Listenspalten</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="r-zweiter-blick.html"><a href="r-zweiter-blick.html#wozu-listenspalten"><i class="fa fa-check"></i><b>5.6.1</b> Wozu Listenspalten?</a></li>
+<li class="chapter" data-level="5.6.2" data-path="r-zweiter-blick.html"><a href="r-zweiter-blick.html#beispiele-für-listenspalten"><i class="fa fa-check"></i><b>5.6.2</b> Beispiele für Listenspalten</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="r-zweiter-blick.html"><a href="r-zweiter-blick.html#aufgaben-1"><i class="fa fa-check"></i><b>5.7</b> Aufgaben</a></li>
+<li class="chapter" data-level="5.8" data-path="r-zweiter-blick.html"><a href="r-zweiter-blick.html#vertiefung-1"><i class="fa fa-check"></i><b>5.8</b> Vertiefung</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="tidymodels.html"><a href="tidymodels.html"><i class="fa fa-check"></i><b>6</b> tidymodels</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="tidymodels.html"><a href="tidymodels.html#lernsteuerung-2"><i class="fa fa-check"></i><b>6.1</b> Lernsteuerung</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="tidymodels.html"><a href="tidymodels.html#vorbereitung-2"><i class="fa fa-check"></i><b>6.1.1</b> Vorbereitung</a></li>
+<li class="chapter" data-level="6.1.2" data-path="tidymodels.html"><a href="tidymodels.html#lernziele-3"><i class="fa fa-check"></i><b>6.1.2</b> Lernziele</a></li>
+<li class="chapter" data-level="6.1.3" data-path="tidymodels.html"><a href="tidymodels.html#literatur-3"><i class="fa fa-check"></i><b>6.1.3</b> Literatur</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="tidymodels.html"><a href="tidymodels.html#daten"><i class="fa fa-check"></i><b>6.2</b> Daten</a></li>
+<li class="chapter" data-level="6.3" data-path="tidymodels.html"><a href="tidymodels.html#train--vs-test-datensatz-aufteilen"><i class="fa fa-check"></i><b>6.3</b> Train- vs Test-Datensatz aufteilen</a></li>
+<li class="chapter" data-level="6.4" data-path="tidymodels.html"><a href="tidymodels.html#grundlagen-der-modellierung-mit-tidymodels"><i class="fa fa-check"></i><b>6.4</b> Grundlagen der Modellierung mit tidymodels</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="tidymodels.html"><a href="tidymodels.html#modelle-spezifizieren"><i class="fa fa-check"></i><b>6.4.1</b> Modelle spezifizieren</a></li>
+<li class="chapter" data-level="6.4.2" data-path="tidymodels.html"><a href="tidymodels.html#modelle-berechnen"><i class="fa fa-check"></i><b>6.4.2</b> Modelle berechnen</a></li>
+<li class="chapter" data-level="6.4.3" data-path="tidymodels.html"><a href="tidymodels.html#vorhersagen"><i class="fa fa-check"></i><b>6.4.3</b> Vorhersagen</a></li>
+<li class="chapter" data-level="6.4.4" data-path="tidymodels.html"><a href="tidymodels.html#vorhersagen-im-train-datensatz"><i class="fa fa-check"></i><b>6.4.4</b> Vorhersagen im Train-Datensatz</a></li>
+<li class="chapter" data-level="6.4.5" data-path="tidymodels.html"><a href="tidymodels.html#modellkoeffizienten-im-train-datensatz"><i class="fa fa-check"></i><b>6.4.5</b> Modellkoeffizienten im Train-Datensatz</a></li>
+<li class="chapter" data-level="6.4.6" data-path="tidymodels.html"><a href="tidymodels.html#parsnip-rstudio-add-in"><i class="fa fa-check"></i><b>6.4.6</b> Parsnip RStudio add-in</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="tidymodels.html"><a href="tidymodels.html#workflows"><i class="fa fa-check"></i><b>6.5</b> Workflows</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="tidymodels.html"><a href="tidymodels.html#konzept-des-workflows-in-tidymodels"><i class="fa fa-check"></i><b>6.5.1</b> Konzept des Workflows in Tidymodels</a></li>
+<li class="chapter" data-level="6.5.2" data-path="tidymodels.html"><a href="tidymodels.html#einfaches-beispiel"><i class="fa fa-check"></i><b>6.5.2</b> Einfaches Beispiel</a></li>
+<li class="chapter" data-level="6.5.3" data-path="tidymodels.html"><a href="tidymodels.html#vorhersage-mit-einem-workflow"><i class="fa fa-check"></i><b>6.5.3</b> Vorhersage mit einem Workflow</a></li>
+<li class="chapter" data-level="6.5.4" data-path="tidymodels.html"><a href="tidymodels.html#modellgüte"><i class="fa fa-check"></i><b>6.5.4</b> Modellgüte</a></li>
+<li class="chapter" data-level="6.5.5" data-path="tidymodels.html"><a href="tidymodels.html#vorhersage-von-hand"><i class="fa fa-check"></i><b>6.5.5</b> Vorhersage von Hand</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="tidymodels.html"><a href="tidymodels.html#rezepte-zur-vorverarbeitung"><i class="fa fa-check"></i><b>6.6</b> Rezepte zur Vorverarbeitung</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="tidymodels.html"><a href="tidymodels.html#was-ist-rezept-und-wozu-ist-es-gut"><i class="fa fa-check"></i><b>6.6.1</b> Was ist Rezept und wozu ist es gut?</a></li>
+<li class="chapter" data-level="6.6.2" data-path="tidymodels.html"><a href="tidymodels.html#workflows-mit-rezepten"><i class="fa fa-check"></i><b>6.6.2</b> Workflows mit Rezepten</a></li>
+<li class="chapter" data-level="6.6.3" data-path="tidymodels.html"><a href="tidymodels.html#spaltenrollen"><i class="fa fa-check"></i><b>6.6.3</b> Spaltenrollen</a></li>
+<li class="chapter" data-level="6.6.4" data-path="tidymodels.html"><a href="tidymodels.html#fazit"><i class="fa fa-check"></i><b>6.6.4</b> Fazit</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="tidymodels.html"><a href="tidymodels.html#aufgaben-2"><i class="fa fa-check"></i><b>6.7</b> Aufgaben</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="knn.html"><a href="knn.html"><i class="fa fa-check"></i><b>7</b> kNN</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="knn.html"><a href="knn.html#lernsteuerung-3"><i class="fa fa-check"></i><b>7.1</b> Lernsteuerung</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="knn.html"><a href="knn.html#lernziele-4"><i class="fa fa-check"></i><b>7.1.1</b> Lernziele</a></li>
+<li class="chapter" data-level="7.1.2" data-path="knn.html"><a href="knn.html#literatur-4"><i class="fa fa-check"></i><b>7.1.2</b> Literatur</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="knn.html"><a href="knn.html#überblick-1"><i class="fa fa-check"></i><b>7.2</b> Überblick</a></li>
+<li class="chapter" data-level="7.3" data-path="knn.html"><a href="knn.html#intuitive-erklärung"><i class="fa fa-check"></i><b>7.3</b> Intuitive Erklärung</a></li>
+<li class="chapter" data-level="7.4" data-path="knn.html"><a href="knn.html#krebsdiagnostik"><i class="fa fa-check"></i><b>7.4</b> Krebsdiagnostik</a></li>
+<li class="chapter" data-level="7.5" data-path="knn.html"><a href="knn.html#berechnung-der-nähe"><i class="fa fa-check"></i><b>7.5</b> Berechnung der Nähe</a></li>
+<li class="chapter" data-level="7.6" data-path="knn.html"><a href="knn.html#knn-mit-tidymodels"><i class="fa fa-check"></i><b>7.6</b> kNN mit Tidymodels</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="knn.html"><a href="knn.html#analog-zu-timbers-et-al."><i class="fa fa-check"></i><b>7.6.1</b> Analog zu Timbers et al.</a></li>
+<li class="chapter" data-level="7.6.2" data-path="knn.html"><a href="knn.html#rezept-definieren"><i class="fa fa-check"></i><b>7.6.2</b> Rezept definieren</a></li>
+<li class="chapter" data-level="7.6.3" data-path="knn.html"><a href="knn.html#modell-definieren"><i class="fa fa-check"></i><b>7.6.3</b> Modell definieren</a></li>
+<li class="chapter" data-level="7.6.4" data-path="knn.html"><a href="knn.html#workflow-definieren"><i class="fa fa-check"></i><b>7.6.4</b> Workflow definieren</a></li>
+<li class="chapter" data-level="7.6.5" data-path="knn.html"><a href="knn.html#vorhersagen-1"><i class="fa fa-check"></i><b>7.6.5</b> Vorhersagen</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="knn.html"><a href="knn.html#mit-train-test-aufteilung"><i class="fa fa-check"></i><b>7.7</b> Mit Train-Test-Aufteilung</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="knn.html"><a href="knn.html#rezept-definieren-1"><i class="fa fa-check"></i><b>7.7.1</b> Rezept definieren</a></li>
+<li class="chapter" data-level="7.7.2" data-path="knn.html"><a href="knn.html#modell-definieren-1"><i class="fa fa-check"></i><b>7.7.2</b> Modell definieren</a></li>
+<li class="chapter" data-level="7.7.3" data-path="knn.html"><a href="knn.html#workflow-definieren-1"><i class="fa fa-check"></i><b>7.7.3</b> Workflow definieren</a></li>
+<li class="chapter" data-level="7.7.4" data-path="knn.html"><a href="knn.html#vorhersagen-2"><i class="fa fa-check"></i><b>7.7.4</b> Vorhersagen</a></li>
+<li class="chapter" data-level="7.7.5" data-path="knn.html"><a href="knn.html#modellgüte-1"><i class="fa fa-check"></i><b>7.7.5</b> Modellgüte</a></li>
+<li class="chapter" data-level="7.7.6" data-path="knn.html"><a href="knn.html#visualisierung"><i class="fa fa-check"></i><b>7.7.6</b> Visualisierung</a></li>
+</ul></li>
+<li class="chapter" data-level="7.8" data-path="knn.html"><a href="knn.html#kennzahlen-der-klassifikation"><i class="fa fa-check"></i><b>7.8</b> Kennzahlen der Klassifikation</a></li>
+<li class="chapter" data-level="7.9" data-path="knn.html"><a href="knn.html#krebstest-beispiel"><i class="fa fa-check"></i><b>7.9</b> Krebstest-Beispiel</a></li>
+<li class="chapter" data-level="7.10" data-path="knn.html"><a href="knn.html#aufgaben-3"><i class="fa fa-check"></i><b>7.10</b> Aufgaben</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html"><i class="fa fa-check"></i><b>8</b> Resampling und Tuning</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#lernsteuerung-4"><i class="fa fa-check"></i><b>8.1</b> Lernsteuerung</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#vorbereitung-3"><i class="fa fa-check"></i><b>8.1.1</b> Vorbereitung</a></li>
+<li class="chapter" data-level="8.1.2" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#lernziele-5"><i class="fa fa-check"></i><b>8.1.2</b> Lernziele</a></li>
+<li class="chapter" data-level="8.1.3" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#literatur-5"><i class="fa fa-check"></i><b>8.1.3</b> Literatur</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#überblick-2"><i class="fa fa-check"></i><b>8.2</b> Überblick</a></li>
+<li class="chapter" data-level="8.3" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#tidymodels-1"><i class="fa fa-check"></i><b>8.3</b> tidymodels</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#datensatz-aufteilen"><i class="fa fa-check"></i><b>8.3.1</b> Datensatz aufteilen</a></li>
+<li class="chapter" data-level="8.3.2" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#rezept-modell-und-workflow-definieren"><i class="fa fa-check"></i><b>8.3.2</b> Rezept, Modell und Workflow definieren</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#resampling"><i class="fa fa-check"></i><b>8.4</b> Resampling</a></li>
+<li class="chapter" data-level="8.5" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#illustration-des-resampling"><i class="fa fa-check"></i><b>8.5</b> Illustration des Resampling</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#einfache-v-fache-kreuzvalidierung"><i class="fa fa-check"></i><b>8.5.1</b> Einfache v-fache Kreuzvalidierung</a></li>
+<li class="chapter" data-level="8.5.2" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#wiederholte-kreuzvalidierung"><i class="fa fa-check"></i><b>8.5.2</b> Wiederholte Kreuzvalidierung</a></li>
+<li class="chapter" data-level="8.5.3" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#resampling-passiert-im-train-sample"><i class="fa fa-check"></i><b>8.5.3</b> Resampling passiert im Train-Sample</a></li>
+<li class="chapter" data-level="8.5.4" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#andere-illustrationen"><i class="fa fa-check"></i><b>8.5.4</b> Andere Illustrationen</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#gesetz-der-großen-zahl"><i class="fa fa-check"></i><b>8.6</b> Gesetz der großen Zahl</a></li>
+<li class="chapter" data-level="8.7" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#über--und-unteranpassung-an-einem-beispiel"><i class="fa fa-check"></i><b>8.7</b> Über- und Unteranpassung an einem Beispiel</a></li>
+<li class="chapter" data-level="8.8" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#cv-in-tidymodels"><i class="fa fa-check"></i><b>8.8</b> CV in tidymodels</a>
+<ul>
+<li class="chapter" data-level="8.8.1" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#cv-definieren"><i class="fa fa-check"></i><b>8.8.1</b> CV definieren</a></li>
+<li class="chapter" data-level="8.8.2" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#resamples-fitten"><i class="fa fa-check"></i><b>8.8.2</b> Resamples fitten</a></li>
+</ul></li>
+<li class="chapter" data-level="8.9" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#tuning"><i class="fa fa-check"></i><b>8.9</b> Tuning</a>
+<ul>
+<li class="chapter" data-level="8.9.1" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#tuning-auszeichnen"><i class="fa fa-check"></i><b>8.9.1</b> Tuning auszeichnen</a></li>
+<li class="chapter" data-level="8.9.2" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#grid-search-vs.-iterative-search"><i class="fa fa-check"></i><b>8.9.2</b> Grid Search vs. Iterative Search</a></li>
+</ul></li>
+<li class="chapter" data-level="8.10" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#tuning-mit-tidymodels"><i class="fa fa-check"></i><b>8.10</b> Tuning mit Tidymodels</a>
+<ul>
+<li class="chapter" data-level="8.10.1" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#datenabhängige-tuningparameter"><i class="fa fa-check"></i><b>8.10.1</b> Datenabhängige Tuningparameter</a></li>
+<li class="chapter" data-level="8.10.2" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#modelle-mit-tuning-berechnen"><i class="fa fa-check"></i><b>8.10.2</b> Modelle mit Tuning berechnen</a></li>
+<li class="chapter" data-level="8.10.3" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#vorhersage-im-test-sample"><i class="fa fa-check"></i><b>8.10.3</b> Vorhersage im Test-Sample</a></li>
+</ul></li>
+<li class="chapter" data-level="8.11" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#aufgaben-4"><i class="fa fa-check"></i><b>8.11</b> Aufgaben</a></li>
+<li class="chapter" data-level="8.12" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#vertiefung-2"><i class="fa fa-check"></i><b>8.12</b> Vertiefung</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="logistische-regression.html"><a href="logistische-regression.html"><i class="fa fa-check"></i><b>9</b> Logistische Regression</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="logistische-regression.html"><a href="logistische-regression.html#lernsteuerung-5"><i class="fa fa-check"></i><b>9.1</b> Lernsteuerung</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="logistische-regression.html"><a href="logistische-regression.html#vorbereitung-4"><i class="fa fa-check"></i><b>9.1.1</b> Vorbereitung</a></li>
+<li class="chapter" data-level="9.1.2" data-path="logistische-regression.html"><a href="logistische-regression.html#lernziele-6"><i class="fa fa-check"></i><b>9.1.2</b> Lernziele</a></li>
+<li class="chapter" data-level="9.1.3" data-path="logistische-regression.html"><a href="logistische-regression.html#literatur-6"><i class="fa fa-check"></i><b>9.1.3</b> Literatur</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="logistische-regression.html"><a href="logistische-regression.html#intuitive-erklärung-1"><i class="fa fa-check"></i><b>9.2</b> Intuitive Erklärung</a></li>
+<li class="chapter" data-level="9.3" data-path="logistische-regression.html"><a href="logistische-regression.html#profil"><i class="fa fa-check"></i><b>9.3</b> Profil</a></li>
+<li class="chapter" data-level="9.4" data-path="logistische-regression.html"><a href="logistische-regression.html#warum-nicht-die-lineare-regression-verwenden"><i class="fa fa-check"></i><b>9.4</b> Warum nicht die lineare Regression verwenden?</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="logistische-regression.html"><a href="logistische-regression.html#lineare-modelle-running-wild"><i class="fa fa-check"></i><b>9.4.1</b> Lineare Modelle running wild</a></li>
+<li class="chapter" data-level="9.4.2" data-path="logistische-regression.html"><a href="logistische-regression.html#wir-müssen-die-regressionsgerade-umbiegen"><i class="fa fa-check"></i><b>9.4.2</b> Wir müssen die Regressionsgerade umbiegen</a></li>
+<li class="chapter" data-level="9.4.3" data-path="logistische-regression.html"><a href="logistische-regression.html#verallgemeinerte-lineare-modelle-zur-rettung"><i class="fa fa-check"></i><b>9.4.3</b> Verallgemeinerte lineare Modelle zur Rettung</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="logistische-regression.html"><a href="logistische-regression.html#der-logit-link"><i class="fa fa-check"></i><b>9.5</b> Der Logit-Link</a></li>
+<li class="chapter" data-level="9.6" data-path="logistische-regression.html"><a href="logistische-regression.html#aber-warum"><i class="fa fa-check"></i><b>9.6</b> Aber warum?</a>
+<ul>
+<li class="chapter" data-level="9.6.1" data-path="logistische-regression.html"><a href="logistische-regression.html#tidymodels-m83"><i class="fa fa-check"></i><b>9.6.1</b> tidymodels, m83</a></li>
+</ul></li>
+<li class="chapter" data-level="9.7" data-path="logistische-regression.html"><a href="logistische-regression.html#lm83-glm"><i class="fa fa-check"></i><b>9.7</b> lm83, glm</a></li>
+<li class="chapter" data-level="9.8" data-path="logistische-regression.html"><a href="logistische-regression.html#m83-tidymodels"><i class="fa fa-check"></i><b>9.8</b> m83, tidymodels</a>
+<ul>
+<li class="chapter" data-level="9.8.1" data-path="logistische-regression.html"><a href="logistische-regression.html#wahrscheinlichkeit-in-odds"><i class="fa fa-check"></i><b>9.8.1</b> Wahrscheinlichkeit in Odds</a></li>
+<li class="chapter" data-level="9.8.2" data-path="logistische-regression.html"><a href="logistische-regression.html#von-odds-zu-log-odds"><i class="fa fa-check"></i><b>9.8.2</b> Von Odds zu Log-Odds</a></li>
+</ul></li>
+<li class="chapter" data-level="9.9" data-path="logistische-regression.html"><a href="logistische-regression.html#inverser-logit"><i class="fa fa-check"></i><b>9.9</b> Inverser Logit</a></li>
+<li class="chapter" data-level="9.10" data-path="logistische-regression.html"><a href="logistische-regression.html#vom-logit-zur-klasse"><i class="fa fa-check"></i><b>9.10</b> Vom Logit zur Klasse</a>
+<ul>
+<li class="chapter" data-level="9.10.1" data-path="logistische-regression.html"><a href="logistische-regression.html#grenzwert-wechseln"><i class="fa fa-check"></i><b>9.10.1</b> Grenzwert wechseln</a></li>
+</ul></li>
+<li class="chapter" data-level="9.11" data-path="logistische-regression.html"><a href="logistische-regression.html#logit-und-inverser-logit"><i class="fa fa-check"></i><b>9.11</b> Logit und Inverser Logit</a>
+<ul>
+<li class="chapter" data-level="9.11.1" data-path="logistische-regression.html"><a href="logistische-regression.html#logit"><i class="fa fa-check"></i><b>9.11.1</b> Logit</a></li>
+<li class="chapter" data-level="9.11.2" data-path="logistische-regression.html"><a href="logistische-regression.html#inv-logit"><i class="fa fa-check"></i><b>9.11.2</b> Inv-Logit</a></li>
+</ul></li>
+<li class="chapter" data-level="9.12" data-path="logistische-regression.html"><a href="logistische-regression.html#logistische-regression-im-überblick"><i class="fa fa-check"></i><b>9.12</b> Logistische Regression im Überblick</a>
+<ul>
+<li class="chapter" data-level="9.12.1" data-path="logistische-regression.html"><a href="logistische-regression.html#die-koeffizienten-sind-schwer-zu-interpretieren"><i class="fa fa-check"></i><b>9.12.1</b> Die Koeffizienten sind schwer zu interpretieren</a></li>
+<li class="chapter" data-level="9.12.2" data-path="logistische-regression.html"><a href="logistische-regression.html#logits-vs.-wahrscheinlichkeiten"><i class="fa fa-check"></i><b>9.12.2</b> Logits vs. Wahrscheinlichkeiten</a></li>
+</ul></li>
+<li class="chapter" data-level="9.13" data-path="logistische-regression.html"><a href="logistische-regression.html#aufgaben-5"><i class="fa fa-check"></i><b>9.13</b> Aufgaben</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html"><i class="fa fa-check"></i><b>10</b> Entscheidungsbäume</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#lernsteuerung-6"><i class="fa fa-check"></i><b>10.1</b> Lernsteuerung</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#literatur-7"><i class="fa fa-check"></i><b>10.1.1</b> Literatur</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#vorbereitung-5"><i class="fa fa-check"></i><b>10.2</b> Vorbereitung</a></li>
+<li class="chapter" data-level="10.3" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#anatomie-eines-baumes"><i class="fa fa-check"></i><b>10.3</b> Anatomie eines Baumes</a></li>
+<li class="chapter" data-level="10.4" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#bäume-als-regelmaschinen-rekursiver-partionierung"><i class="fa fa-check"></i><b>10.4</b> Bäume als Regelmaschinen rekursiver Partionierung</a></li>
+<li class="chapter" data-level="10.5" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#klassifikation"><i class="fa fa-check"></i><b>10.5</b> Klassifikation</a></li>
+<li class="chapter" data-level="10.6" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#gini-als-optimierungskriterium"><i class="fa fa-check"></i><b>10.6</b> Gini als Optimierungskriterium</a></li>
+<li class="chapter" data-level="10.7" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#metrische-prädiktoren"><i class="fa fa-check"></i><b>10.7</b> Metrische Prädiktoren</a></li>
+<li class="chapter" data-level="10.8" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#regressionbäume"><i class="fa fa-check"></i><b>10.8</b> Regressionbäume</a></li>
+<li class="chapter" data-level="10.9" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#baum-beschneiden"><i class="fa fa-check"></i><b>10.9</b> Baum beschneiden</a></li>
+<li class="chapter" data-level="10.10" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#das-rechteck-schlägt-zurück"><i class="fa fa-check"></i><b>10.10</b> Das Rechteck schlägt zurück</a></li>
+<li class="chapter" data-level="10.11" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#tidymodels-2"><i class="fa fa-check"></i><b>10.11</b> Tidymodels</a>
+<ul>
+<li class="chapter" data-level="10.11.1" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#initiale-datenaufteilung"><i class="fa fa-check"></i><b>10.11.1</b> Initiale Datenaufteilung</a></li>
+<li class="chapter" data-level="10.11.2" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#kreuzvalidierung-definieren"><i class="fa fa-check"></i><b>10.11.2</b> Kreuzvalidierung definieren</a></li>
+<li class="chapter" data-level="10.11.3" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#rezept-definieren-2"><i class="fa fa-check"></i><b>10.11.3</b> Rezept definieren</a></li>
+<li class="chapter" data-level="10.11.4" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#modell-definieren-2"><i class="fa fa-check"></i><b>10.11.4</b> Modell definieren</a></li>
+<li class="chapter" data-level="10.11.5" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#workflow-definieren-2"><i class="fa fa-check"></i><b>10.11.5</b> Workflow definieren</a></li>
+<li class="chapter" data-level="10.11.6" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#modell-tunen-und-berechnen"><i class="fa fa-check"></i><b>10.11.6</b> Modell tunen und berechnen</a></li>
+<li class="chapter" data-level="10.11.7" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#modellgüte-evaluieren"><i class="fa fa-check"></i><b>10.11.7</b> Modellgüte evaluieren</a></li>
+<li class="chapter" data-level="10.11.8" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#bestes-modell-auswählen"><i class="fa fa-check"></i><b>10.11.8</b> Bestes Modell auswählen</a></li>
+<li class="chapter" data-level="10.11.9" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#final-fit"><i class="fa fa-check"></i><b>10.11.9</b> Final Fit</a></li>
+<li class="chapter" data-level="10.11.10" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#nur-zum-spaß-vergleich-mit-linearem-modell"><i class="fa fa-check"></i><b>10.11.10</b> Nur zum Spaß: Vergleich mit linearem Modell</a></li>
+</ul></li>
+<li class="chapter" data-level="10.12" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#aufgaben-6"><i class="fa fa-check"></i><b>10.12</b> Aufgaben</a></li>
+<li class="chapter" data-level="10.13" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#vertiefung-3"><i class="fa fa-check"></i><b>10.13</b> Vertiefung</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
 
-        <div class="book-extra">
-          <p><a id="book-repo" href="https://github.com/sebastiansauer/datascience1">View book source <i class="fab fa-github"></i></a></p>
-        </div>
       </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">DataScience1</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="entscheidungsbäume" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">Kapitel 10</span> Entscheidungsbäume<a href="entscheidungsbäume.html#entscheidungsbäume" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="lernsteuerung-6" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> Lernsteuerung<a href="entscheidungsbäume.html#lernsteuerung-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="literatur-7" class="section level3 hasAnchor" number="10.1.1">
+<h3><span class="header-section-number">10.1.1</span> Literatur<a href="entscheidungsbäume.html#literatur-7" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Rhys, Kap. 7</li>
+</ul>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="entscheidungsbäume" class="section level1" number="9">
-<h1>
-<span class="header-section-number">Kapitel 9</span> Entscheidungsbäume<a class="anchor" aria-label="anchor" href="#entscheidungsb%C3%A4ume"><i class="fas fa-link"></i></a>
-</h1>
-<div id="vorbereitung-5" class="section level2" number="9.1">
-<h2>
-<span class="header-section-number">9.1</span> Vorbereitung<a class="anchor" aria-label="anchor" href="#vorbereitung-5"><i class="fas fa-link"></i></a>
-</h2>
+</div>
+<div id="vorbereitung-5" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> Vorbereitung<a href="entscheidungsbäume.html#vorbereitung-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In diesem Kapitel werden folgende R-Pakete benötigt:</p>
-<div class="sourceCode" id="cb325"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/paulhendricks/titanic">titanic</a></span><span class="op">)</span>
-<span class="co">#library(rpart)  # Berechnung von Entscheidungsbäumen</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/collectivemedia/tictoc">tictoc</a></span><span class="op">)</span>  <span class="co"># Zeitmessung</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="entscheidungsbäume.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(titanic)</span>
+<span id="cb1-2"><a href="entscheidungsbäume.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#library(rpart)  # Berechnung von Entscheidungsbäumen</span></span>
+<span id="cb1-3"><a href="entscheidungsbäume.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb1-4"><a href="entscheidungsbäume.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tictoc)  <span class="co"># Zeitmessung</span></span></code></pre></div>
 </div>
-<div id="anatomie-eines-baumes" class="section level2" number="9.2">
-<h2>
-<span class="header-section-number">9.2</span> Anatomie eines Baumes<a class="anchor" aria-label="anchor" href="#anatomie-eines-baumes"><i class="fas fa-link"></i></a>
-</h2>
+<div id="anatomie-eines-baumes" class="section level2 hasAnchor" number="10.3">
+<h2><span class="header-section-number">10.3</span> Anatomie eines Baumes<a href="entscheidungsbäume.html#anatomie-eines-baumes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Ein Baum 🌳 hat (u.a.):</p>
 <ul>
 <li>Wurzel</li>
 <li>Blätter</li>
 <li>Äste</li>
 </ul>
-<p>In einem <em>Entscheidungsbaum</em> ist die Terminologie ähnlich, s. Abb. <a href="entscheidungsb%C3%A4ume.html#fig:rec-part2">9.1</a>.
+<p>In einem <em>Entscheidungsbaum</em> ist die Terminologie ähnlich, s. Abb. <a href="entscheidungsbäume.html#fig:rec-part2">10.1</a>.
 Allgemein gesagt, kann ein Entscheidungsbaum in einem baumähnlichen Graphen visualisiert werden.
 Dort gibt es Knoten, die durch Kanten verbunden sind,
 wobei zu einem Knoten genau ein Kanten führt.</p>
-<p>Ein Beispiel für einen einfachen Baum sowie die zugehörige <em>rekursive Partionierung</em> ist in Abb. <a href="entscheidungsb%C3%A4ume.html#fig:rec-part2">9.1</a> dargestellt;
-man erkennt <span class="math inline">\(R=3\)</span> <em>Regionen</em> bzw. Blätter <span class="citation">(<a href="references.html#ref-islr" role="doc-biblioref">James et al. 2021</a>)</span>.</p>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:rec-part2"></span>
-<img src="img/8.1.png" alt="Einfaches Beispiel für einen Baum sowie der zugehörigen rekursiven Partionierung" width="45%"><img src="img/8.2.png" alt="Einfaches Beispiel für einen Baum sowie der zugehörigen rekursiven Partionierung" width="45%"><p class="caption">
-Figure 9.1: Einfaches Beispiel für einen Baum sowie der zugehörigen rekursiven Partionierung
+<p>Ein Beispiel für einen einfachen Baum sowie die zugehörige <em>rekursive Partionierung</em> ist in Abb. <a href="entscheidungsbäume.html#fig:rec-part2">10.1</a> dargestellt;
+man erkennt <span class="math inline">\(R=3\)</span> <em>Regionen</em> bzw. Blätter <span class="citation">(<a href="#ref-islr" role="doc-biblioref">James et al. 2021</a>)</span>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rec-part2"></span>
+<img src="img/8.1.png" alt="Einfaches Beispiel für einen Baum sowie der zugehörigen rekursiven Partionierung" width="45%" /><img src="img/8.2.png" alt="Einfaches Beispiel für einen Baum sowie der zugehörigen rekursiven Partionierung" width="45%" />
+<p class="caption">
+Figure 10.1: Einfaches Beispiel für einen Baum sowie der zugehörigen rekursiven Partionierung
 </p>
 </div>
 <p>In Abb. <a href="#rec-part2"><strong>??</strong></a> wird der Knoten an der Spitze auch als <em>Wurzel(knoten)</em> bezeichnet.
@@ -135,10 +537,8 @@ Die Anzahl der Knoten eines Pfads entsprechen den <em>Ebenen</em> bzw. der Tiefe
 Von der obersten Ebene (Wurzelknoten) kann man die <span class="math inline">\(e\)</span> Ebenen aufsteigend durchnummerieren,
 beginnend bei 1: <span class="math inline">\(1,2,\ldots,e\)</span>.</p>
 </div>
-<div id="bäume-als-regelmaschinen-rekursiver-partionierung" class="section level2" number="9.3">
-<h2>
-<span class="header-section-number">9.3</span> Bäume als Regelmaschinen rekursiver Partionierung<a class="anchor" aria-label="anchor" href="#b%C3%A4ume-als-regelmaschinen-rekursiver-partionierung"><i class="fas fa-link"></i></a>
-</h2>
+<div id="bäume-als-regelmaschinen-rekursiver-partionierung" class="section level2 hasAnchor" number="10.4">
+<h2><span class="header-section-number">10.4</span> Bäume als Regelmaschinen rekursiver Partionierung<a href="entscheidungsbäume.html#bäume-als-regelmaschinen-rekursiver-partionierung" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Ein Baum kann man als eine Menge von <em>Regeln</em>, im Sinne von <em>Wenn-dann-sonst-Aussagen</em>, sehen:</p>
 <pre><code>Wenn Prädiktor A = 1 ist dann
 |  Wenn Prädiktor B = 0 ist dann p = 10%
@@ -146,41 +546,39 @@ beginnend bei 1: <span class="math inline">\(1,2,\ldots,e\)</span>.</p>
 sonst p = 50%</code></pre>
 <p>In diesem Fall, zwei Prädiktoren, ist der Prädiktorenraum in <em>drei Regionen</em> unterteilt:
 Der Baum hat drei Blätter.</p>
-<p>Für Abb. <a href="entscheidungsb%C3%A4ume.html#fig:tree1">9.2</a> ergibt sich eine komplexere Aufteilung, s. auch Abb. <a href="entscheidungsb%C3%A4ume.html#fig:recursive-part">9.3</a>.</p>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:tree1"></span>
-<img src="100-Entscheidungsba%CC%88ume_files/figure-html/tree1-1.png" alt="Beispiel für einen Entscheidungsbaum" width="100%"><p class="caption">
-Figure 9.2: Beispiel für einen Entscheidungsbaum
+<p>Für Abb. <a href="entscheidungsbäume.html#fig:tree1">10.2</a> ergibt sich eine komplexere Aufteilung, s. auch Abb. <a href="entscheidungsbäume.html#fig:recursive-part">10.3</a>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:tree1"></span>
+<img src="100-Entscheidungsba%CC%88ume_files/figure-html/tree1-1.png" alt="Beispiel für einen Entscheidungsbaum" width="100%" />
+<p class="caption">
+Figure 10.2: Beispiel für einen Entscheidungsbaum
 </p>
 </div>
-<p>Kleine Lesehilft für Abb. <a href="entscheidungsb%C3%A4ume.html#fig:tree1">9.2</a>:</p>
+<p>Kleine Lesehilft für Abb. <a href="entscheidungsbäume.html#fig:tree1">10.2</a>:</p>
 <ul>
 <li>Für jeden Knoten steht in der ersten Zeile der vorhergesagte Wert, z.B. <code>0</code> im Wurzelknoten</li>
 <li>darunter steht der Anteil (die Wahrscheinlichkeit) für die in diesem Knoten vorhergesagte Kategorie (<code>0</code> oder <code>1</code>)</li>
-<li>darunter (3. Zeile) steht der Anteil der Fälle (am Gesamt-Datensatz) in diesem Knoten, z.B. <code>100%</code>
-</li>
+<li>darunter (3. Zeile) steht der Anteil der Fälle (am Gesamt-Datensatz) in diesem Knoten, z.B. <code>100%</code></li>
 </ul>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:recursive-part"></span>
-<img src="img/recursive-part.png" alt="Partionierung in Rechtecke durch Entscheidungsbäume" width="100%"><p class="caption">
-Figure 9.3: Partionierung in Rechtecke durch Entscheidungsbäume
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:recursive-part"></span>
+<img src="img/recursive-part.png" alt="Partionierung in Rechtecke durch Entscheidungsbäume" width="100%" />
+<p class="caption">
+Figure 10.3: Partionierung in Rechtecke durch Entscheidungsbäume
 </p>
 </div>
 <p>Wie der Algorithmus oben zeigt,
 wird der Prädiktorraum wiederholt (rekursiv) aufgeteilt,
-und zwar in Rechtecke,s. Abb. <a href="entscheidungsb%C3%A4ume.html#fig:recursive-part">9.3</a>.
+und zwar in Rechtecke,s. Abb. <a href="entscheidungsbäume.html#fig:recursive-part">10.3</a>.
 Man nennt (eine Implementierung) dieses Algorithmus auch <em>rpart</em>.</p>
-<p>Das Regelwerk zum Baum aus Abb. <a href="entscheidungsb%C3%A4ume.html#fig:tree1">9.2</a> sieht so aus:</p>
-<div class="sourceCode" id="cb327"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">titanic_train</span><span class="op">$</span><span class="va">Survived</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">titanic_train</span><span class="op">$</span><span class="va">Survived</span><span class="op">)</span>
-
-<span class="va">ti_tree</span> <span class="op">&lt;-</span>
-  <span class="fu">decision_tree</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">set_engine</span><span class="op">(</span><span class="st">"rpart"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">set_mode</span><span class="op">(</span><span class="st">"classification"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">fit</span><span class="op">(</span><span class="va">Survived</span> <span class="op">~</span> <span class="va">Pclass</span> <span class="op">+</span> <span class="va">Age</span>, data <span class="op">=</span> <span class="va">titanic_train</span><span class="op">)</span>
-
-<span class="va">ti_tree</span></code></pre></div>
+<p>Das Regelwerk zum Baum aus Abb. <a href="entscheidungsbäume.html#fig:tree1">10.2</a> sieht so aus:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="entscheidungsbäume.html#cb3-1" aria-hidden="true" tabindex="-1"></a>titanic_train<span class="sc">$</span>Survived <span class="ot">=</span> <span class="fu">as.factor</span>(titanic_train<span class="sc">$</span>Survived)</span>
+<span id="cb3-2"><a href="entscheidungsbäume.html#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="entscheidungsbäume.html#cb3-3" aria-hidden="true" tabindex="-1"></a>ti_tree <span class="ot">&lt;-</span></span>
+<span id="cb3-4"><a href="entscheidungsbäume.html#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">decision_tree</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb3-5"><a href="entscheidungsbäume.html#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&quot;rpart&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-6"><a href="entscheidungsbäume.html#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">&quot;classification&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-7"><a href="entscheidungsbäume.html#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(Survived <span class="sc">~</span> Pclass <span class="sc">+</span> Age, <span class="at">data =</span> titanic_train)</span>
+<span id="cb3-8"><a href="entscheidungsbäume.html#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="entscheidungsbäume.html#cb3-9" aria-hidden="true" tabindex="-1"></a>ti_tree</span></code></pre></div>
 <pre><code>## parsnip model object
 ## 
 ## n= 891 
@@ -220,22 +618,20 @@ Entsprechendes gilt für jeden weiteren Knoten.</p>
 Man kann sie mit einer einfachen Checkliste oder Entscheidungssystem vergleichen.
 Der Unterschied zu Entscheidungsbäumen im maschinellen Lernen ist nur,
 dass die Regeln aus den Daten gelernt werden, man muss sie nicht vorab kennen.</p>
-<p>Noch ein Beispiel ist in Abb. <a href="entscheidungsb%C3%A4ume.html#fig:tree3">9.4</a> gezeigt <span class="citation">(<a href="references.html#ref-islr" role="doc-biblioref">James et al. 2021</a>)</span>:
+<p>Noch ein Beispiel ist in Abb. <a href="entscheidungsbäume.html#fig:tree3">10.4</a> gezeigt <span class="citation">(<a href="#ref-islr" role="doc-biblioref">James et al. 2021</a>)</span>:
 Oben links zeigt eine <em>unmögliche</em> Partionierung (für einen Entscheidungsbaum).
 Oben rechts zeigt die Regionen,
 die sich durch den Entscheidungsbaum unten links ergeben.
 Untenrechts ist der Baum in 3D dargestellt.</p>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:tree3"></span>
-<img src="img/8.3.png" alt="Ein weiteres Beispiel zur Darstellung von Entscheidungsbäumen" width="100%"><p class="caption">
-Figure 9.4: Ein weiteres Beispiel zur Darstellung von Entscheidungsbäumen
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:tree3"></span>
+<img src="img/8.3.png" alt="Ein weiteres Beispiel zur Darstellung von Entscheidungsbäumen" width="100%" />
+<p class="caption">
+Figure 10.4: Ein weiteres Beispiel zur Darstellung von Entscheidungsbäumen
 </p>
 </div>
 </div>
-<div id="klassifikation" class="section level2" number="9.4">
-<h2>
-<span class="header-section-number">9.4</span> Klassifikation<a class="anchor" aria-label="anchor" href="#klassifikation"><i class="fas fa-link"></i></a>
-</h2>
+<div id="klassifikation" class="section level2 hasAnchor" number="10.5">
+<h2><span class="header-section-number">10.5</span> Klassifikation<a href="entscheidungsbäume.html#klassifikation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Bäume können für Zwecke der Klassifikation (nominal skalierte AV) oder Regression (numerische AV) verwendet werden.
 Betrachten wir zunächst die binäre Klassifikation, also für eine zweistufige (nominalskalierte) AV.
 Das Ziel des Entscheidungsmodel-Algorithmus ist es,
@@ -248,10 +644,8 @@ dann handelt es sich beim vorliegenden Fall ziemlich sicher um Klasse <span clas
 </div>
 <p>Unsere Vorhersage in einem Blatt entspricht der Merheit bzw. der häufigsten Kategorie in diesem Blatt.</p>
 </div>
-<div id="gini-als-optimierungskriterium" class="section level2" number="9.5">
-<h2>
-<span class="header-section-number">9.5</span> Gini als Optimierungskriterium<a class="anchor" aria-label="anchor" href="#gini-als-optimierungskriterium"><i class="fas fa-link"></i></a>
-</h2>
+<div id="gini-als-optimierungskriterium" class="section level2 hasAnchor" number="10.6">
+<h2><span class="header-section-number">10.6</span> Gini als Optimierungskriterium<a href="entscheidungsbäume.html#gini-als-optimierungskriterium" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Es gibt mehrere Kennzahlen, die zur Optimierung bzw. zur Entscheidung zum Aufbau des Entscheidungsbaum herangezogen werden.
 Zwei übliche sind der <em>Gini-Koeffizient</em> und die <em>Entropie</em>.
 Bei Kennzahlen sind Maß für die Homogenität oder “Sortenreinheit” (vs. Heterogenität, engl. auch impurity).</p>
@@ -276,7 +670,7 @@ auch wenn das bei späteren Aufteilungen im Baum dann insgesamt zu geringerer Ho
 <p>wobei <span class="math inline">\(K\)</span> die Anzahl der Kategorien indiziert.</p>
 <p>Gini-Koeffizient und Entropie kommen oft zu ähnlichen numerischen Ergebnissen,
 so dass wir uns im Folgenden auf den Gini-Koeffizienten konzentieren werden.</p>
-<hr>
+<hr />
 <p><em>Beispiel</em></p>
 <p>Vergleichen wir drei Bedingungen mit jeweils <span class="math inline">\(n=20\)</span> Fällen, die zu unterschiedlich homogenen Knoten führen:</p>
 <ul>
@@ -285,22 +679,19 @@ so dass wir uns im Folgenden auf den Gini-Koeffizienten konzentieren werden.</p>
 <li>19/1</li>
 </ul>
 <p>Was ist jeweils der Wert des Gini-Koeffizienten?</p>
-<div class="sourceCode" id="cb331"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">G1</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">-</span> <span class="op">(</span><span class="op">(</span><span class="fl">10</span><span class="op">/</span><span class="fl">20</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="op">(</span><span class="fl">10</span><span class="op">/</span><span class="fl">20</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>
-<span class="va">G1</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="entscheidungsbäume.html#cb7-1" aria-hidden="true" tabindex="-1"></a>G1 <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> ((<span class="dv">10</span><span class="sc">/</span><span class="dv">20</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (<span class="dv">10</span><span class="sc">/</span><span class="dv">20</span>)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb7-2"><a href="entscheidungsbäume.html#cb7-2" aria-hidden="true" tabindex="-1"></a>G1</span></code></pre></div>
 <pre><code>## [1] 0.5</code></pre>
-<div class="sourceCode" id="cb333"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">G2</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">-</span> <span class="op">(</span><span class="op">(</span><span class="fl">15</span><span class="op">/</span><span class="fl">20</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="op">(</span><span class="fl">5</span><span class="op">/</span><span class="fl">20</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>
-<span class="va">G2</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="entscheidungsbäume.html#cb9-1" aria-hidden="true" tabindex="-1"></a>G2 <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> ((<span class="dv">15</span><span class="sc">/</span><span class="dv">20</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (<span class="dv">5</span><span class="sc">/</span><span class="dv">20</span>)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb9-2"><a href="entscheidungsbäume.html#cb9-2" aria-hidden="true" tabindex="-1"></a>G2</span></code></pre></div>
 <pre><code>## [1] 0.375</code></pre>
-<div class="sourceCode" id="cb335"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">G3</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">-</span> <span class="op">(</span><span class="op">(</span><span class="fl">19</span><span class="op">/</span><span class="fl">20</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">20</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>
-<span class="va">G3</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="entscheidungsbäume.html#cb11-1" aria-hidden="true" tabindex="-1"></a>G3 <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> ((<span class="dv">19</span><span class="sc">/</span><span class="dv">20</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (<span class="dv">1</span><span class="sc">/</span><span class="dv">20</span>)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb11-2"><a href="entscheidungsbäume.html#cb11-2" aria-hidden="true" tabindex="-1"></a>G3</span></code></pre></div>
 <pre><code>## [1] 0.095</code></pre>
 <p>Wie man sieht, sinkt der Wert des Gini-Koeffizienten (“G-Wert”), je homogener die Verteilung ist.
 <em>Maximal</em> heterogen (“gemischt”) ist die Verteilung, wenn alle Werte gleich oft vorkommen,
 in diesem Fall also 50%/50%.</p>
-<hr>
+<hr />
 <p>Neben dem G-Wert für einzelne Knoten kann man den G-Wert für eine Aufteilung (“Split”) berechnen,
 also die Fraeg beantworten, ob die Aufteilung eines Knoten in zwei zu mehr Homogenität führt.
 Der G-Wert einer Aufteilung ist die gewichtete Summe der G-Werte der beiden Knoten (links, <span class="math inline">\(l\)</span> und rechts, <span class="math inline">\(r\)</span>):</p>
@@ -310,10 +701,8 @@ Der G-Wert einer Aufteilung ist die gewichtete Summe der G-Werte der beiden Knot
 <p>Der Algorithmus kann auch bei UV mit mehr als zwei, also <span class="math inline">\(K\)</span> Stufen, <span class="math inline">\(c_1, c_2, \ldots, c_K\)</span> verwendet werden:</p>
 <p><span class="math display">\[G= 1- \sum_{k=1}^K p(c_k)^2\]</span></p>
 </div>
-<div id="metrische-prädiktoren" class="section level2" number="9.6">
-<h2>
-<span class="header-section-number">9.6</span> Metrische Prädiktoren<a class="anchor" aria-label="anchor" href="#metrische-pr%C3%A4diktoren"><i class="fas fa-link"></i></a>
-</h2>
+<div id="metrische-prädiktoren" class="section level2 hasAnchor" number="10.7">
+<h2><span class="header-section-number">10.7</span> Metrische Prädiktoren<a href="entscheidungsbäume.html#metrische-prädiktoren" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Außerdem ist es möglich, Bedingung bei <em>metrischen</em> UV auf ihre Homogenität hin zu bewerten,
 also Aufteilungen der Art <code>Years &lt; 4.5</code> zu tätigen.
 Dazu muss man einen Wert identifieren, bei dem man auftrennt.</p>
@@ -322,18 +711,16 @@ Dazu muss man einen Wert identifieren, bei dem man auftrennt.</p>
 Für jedes Paar an aufeinanderfolgenden Werten berechne den G-Wert
 Finde das Paar mit dem höchsten G-Wert aus allen Paaren
 Nimm den Mittelwert der beiden Werte dieses Paares: Das ist der Aufteilungswert</code></pre>
-<p>Abbildung <a href="entscheidungsb%C3%A4ume.html#fig:tree-metr">9.5</a> stellt dieses Vorgehen schematisch dar <span class="citation">(<a href="references.html#ref-rhys" role="doc-biblioref">Rhys 2020</a>)</span>.</p>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:tree-metr"></span>
-<img src="img/fig7-5_alt.jpeg" alt="Aufteilungswert bei metrischen Prädiktoren" width="100%"><p class="caption">
-Figure 9.5: Aufteilungswert bei metrischen Prädiktoren
+<p>Abbildung <a href="entscheidungsbäume.html#fig:tree-metr">10.5</a> stellt dieses Vorgehen schematisch dar <span class="citation">(<a href="#ref-rhys" role="doc-biblioref">Rhys 2020</a>)</span>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:tree-metr"></span>
+<img src="img/fig7-5_alt.jpeg" alt="Aufteilungswert bei metrischen Prädiktoren" width="100%" />
+<p class="caption">
+Figure 10.5: Aufteilungswert bei metrischen Prädiktoren
 </p>
 </div>
 </div>
-<div id="regressionbäume" class="section level2" number="9.7">
-<h2>
-<span class="header-section-number">9.7</span> Regressionbäume<a class="anchor" aria-label="anchor" href="#regressionb%C3%A4ume"><i class="fas fa-link"></i></a>
-</h2>
+<div id="regressionbäume" class="section level2 hasAnchor" number="10.8">
+<h2><span class="header-section-number">10.8</span> Regressionbäume<a href="entscheidungsbäume.html#regressionbäume" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Bei Regressionsbäumen wird nicht ein Homogenitätsmaß wie der Gini-Koeffizient als Optimierungskriterium
 herangezogen, sondern die <em>RSS</em> (Residual Sum of Squares) bietet sich an.</p>
 <p>Die <span class="math inline">\(J\)</span> Regionen (Partionierungen) des Prädiktorraums <span class="math inline">\(R_1, R_2, \ldots, R_J\)</span> müssen so gewählt werden,
@@ -341,10 +728,8 @@ dass RSS minimal ist:</p>
 <p><span class="math display">\[RSS = \sum^J_{j=1}\sum_{i\in R_j}(u_i - \hat{y}_{R_j})^2,\]</span></p>
 <p>wobei <span class="math inline">\(\hat{y}\)</span> der (vom Baum) vorhergesagte Wert ist für die <span class="math inline">\(j\)</span>-te Region.</p>
 </div>
-<div id="baum-beschneiden" class="section level2" number="9.8">
-<h2>
-<span class="header-section-number">9.8</span> Baum beschneiden<a class="anchor" aria-label="anchor" href="#baum-beschneiden"><i class="fas fa-link"></i></a>
-</h2>
+<div id="baum-beschneiden" class="section level2 hasAnchor" number="10.9">
+<h2><span class="header-section-number">10.9</span> Baum beschneiden<a href="entscheidungsbäume.html#baum-beschneiden" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Ein Problem mit Entscheidungsbäumen ist,
 dass ein zu komplexer Baum, “zu verästelt” sozusagen,
 in hohem Maße Overfitting ausgesetzt ist:
@@ -369,55 +754,46 @@ und der Baum wird kleiner.
 Dieses Vorgehen nennt man auch <em>cost complexity pruning</em>.
 Daher nennt man den zugehörigen Tuningparameter auch <em>Cost Complexity</em> <span class="math inline">\(C_p\)</span>.</p>
 </div>
-<div id="das-rechteck-schlägt-zurück" class="section level2" number="9.9">
-<h2>
-<span class="header-section-number">9.9</span> Das Rechteck schlägt zurück<a class="anchor" aria-label="anchor" href="#das-rechteck-schl%C3%A4gt-zur%C3%BCck"><i class="fas fa-link"></i></a>
-</h2>
+<div id="das-rechteck-schlägt-zurück" class="section level2 hasAnchor" number="10.10">
+<h2><span class="header-section-number">10.10</span> Das Rechteck schlägt zurück<a href="entscheidungsbäume.html#das-rechteck-schlägt-zurück" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Entscheidungsbäume zeichnen sich durch rechtecke (rekursive) Partionierungen des Prädiktorenraums aus.
 Lineare Modelle durch eine einfache lineare Partionierung (wenn man Klassifizieren möchte),
-Abb. <a href="entscheidungsb%C3%A4ume.html#fig:rechteck">9.6</a> verdeutlicht diesen Unterschied <span class="citation">(<a href="references.html#ref-islr" role="doc-biblioref">James et al. 2021</a>)</span>.</p>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:rechteck"></span>
-<img src="img/8.7.png" alt="Rechteckige vs. lineare Partionierung" width="100%"><p class="caption">
-Figure 9.6: Rechteckige vs. lineare Partionierung
+Abb. <a href="entscheidungsbäume.html#fig:rechteck">10.6</a> verdeutlicht diesen Unterschied <span class="citation">(<a href="#ref-islr" role="doc-biblioref">James et al. 2021</a>)</span>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rechteck"></span>
+<img src="img/8.7.png" alt="Rechteckige vs. lineare Partionierung" width="100%" />
+<p class="caption">
+Figure 10.6: Rechteckige vs. lineare Partionierung
 </p>
 </div>
 <p>Jetzt kann sich fragen: Welches Vorgehen ist besser - das rechteckige oder das lineare Partionierungen.
 Da gibt es eine klare Antwort: Es kommt drauf an.
-Wie Abb. <a href="entscheidungsb%C3%A4ume.html#fig:rechteck">9.6</a> gibt es Datenlagen, in denen das eine Vorgehen zu homogenerer Klassifikation führt
-und Situationen, in denen das andere Vorgehen besser ist, vgl. Abb. <a href="entscheidungsb%C3%A4ume.html#fig:lunch">9.7</a>.</p>
-<div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:lunch"></span>
-<img src="http://hephaestus-associates.com/wp-content/uploads/2016/07/What-if-I-told-You-There-is-no-Such-Thing-as-a-Free-Lunch-300x300.jpg" alt="Free Lunch?" width="30%"><p class="caption">
-Figure 9.7: Free Lunch?
+Wie Abb. <a href="entscheidungsbäume.html#fig:rechteck">10.6</a> gibt es Datenlagen, in denen das eine Vorgehen zu homogenerer Klassifikation führt
+und Situationen, in denen das andere Vorgehen besser ist, vgl. Abb. <a href="entscheidungsbäume.html#fig:lunch">10.7</a>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:lunch"></span>
+<img src="http://hephaestus-associates.com/wp-content/uploads/2016/07/What-if-I-told-You-There-is-no-Such-Thing-as-a-Free-Lunch-300x300.jpg" alt="Free Lunch?" width="30%" />
+<p class="caption">
+Figure 10.7: Free Lunch?
 </p>
 </div>
 </div>
-<div id="tidymodels-2" class="section level2" number="9.10">
-<h2>
-<span class="header-section-number">9.10</span> Tidymodels<a class="anchor" aria-label="anchor" href="#tidymodels-2"><i class="fas fa-link"></i></a>
-</h2>
+<div id="tidymodels-2" class="section level2 hasAnchor" number="10.11">
+<h2><span class="header-section-number">10.11</span> Tidymodels<a href="entscheidungsbäume.html#tidymodels-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Probieren wir den Algorithmus Entscheidungsbäume an einem einfachen Beispiel in R mit Tidymodels aus.</p>
 <p>Die Aufgabe sei, Spritverbrauch (möglichst exakt) vorherzusagen.</p>
 <p>Ein ähnliches Beispiel, mit analogem Vorgehen, findet sich in <a href="https://juliasilge.com/blog/wind-turbine/">dieser Fallstude</a>.</p>
-<div id="initiale-datenaufteilung" class="section level3" number="9.10.1">
-<h3>
-<span class="header-section-number">9.10.1</span> Initiale Datenaufteilung<a class="anchor" aria-label="anchor" href="#initiale-datenaufteilung"><i class="fas fa-link"></i></a>
-</h3>
-<div class="sourceCode" id="cb338"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb339"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"mtcars"</span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span>  <span class="co"># Reproduzierbarkeit</span>
-<span class="va">d_split</span> <span class="op">&lt;-</span> <span class="fu">initial_split</span><span class="op">(</span><span class="va">mtcars</span>, strata <span class="op">=</span> <span class="va">mpg</span><span class="op">)</span></code></pre></div>
+<div id="initiale-datenaufteilung" class="section level3 hasAnchor" number="10.11.1">
+<h3><span class="header-section-number">10.11.1</span> Initiale Datenaufteilung<a href="entscheidungsbäume.html#initiale-datenaufteilung" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="entscheidungsbäume.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="entscheidungsbäume.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;mtcars&quot;</span>)</span>
+<span id="cb15-2"><a href="entscheidungsbäume.html#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="entscheidungsbäume.html#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)  <span class="co"># Reproduzierbarkeit</span></span>
+<span id="cb15-4"><a href="entscheidungsbäume.html#cb15-4" aria-hidden="true" tabindex="-1"></a>d_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(mtcars, <span class="at">strata =</span> mpg)</span></code></pre></div>
 <pre><code>## Warning: The number of observations in each quantile is below the recommended threshold of 20.
 ## • Stratification will use 1 breaks instead.</code></pre>
 <pre><code>## Warning: Too little data to stratify.
 ## • Resampling will be unstratified.</code></pre>
-<div class="sourceCode" id="cb342"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">d_train</span> <span class="op">&lt;-</span> <span class="fu">training</span><span class="op">(</span><span class="va">d_split</span><span class="op">)</span>
-<span class="va">d_test</span> <span class="op">&lt;-</span> <span class="fu">testing</span><span class="op">(</span><span class="va">d_split</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="entscheidungsbäume.html#cb18-1" aria-hidden="true" tabindex="-1"></a>d_train <span class="ot">&lt;-</span> <span class="fu">training</span>(d_split)</span>
+<span id="cb18-2"><a href="entscheidungsbäume.html#cb18-2" aria-hidden="true" tabindex="-1"></a>d_test <span class="ot">&lt;-</span> <span class="fu">testing</span>(d_split)</span></code></pre></div>
 <p>Die Warnung zeigt uns, dass der Datensatz sehr klein ist; stimmt. Ignorieren wir hier einfach.</p>
 <p>Wie man auf der <a href="https://rsample.tidymodels.org/reference/initial_split.html">Hilfeseite der Funktion</a> sieht,
 wird per Voreinstellung 3/1 aufgeteilt, also 75% in das Train-Sample, 25% der Daten ins Test-Sample.</p>
@@ -427,13 +803,10 @@ ob es Sinn macht, die spärlichen Daten noch mit einem Test-Sample weiter zu dez
 Der Einwand ist nicht unberechtigt,
 allerdings zieht der Verzicht auf ein Test-Sample andere Probleme, Overfitting namentlich, nach sich.</p>
 </div>
-<div id="kreuzvalidierung-definieren" class="section level3" number="9.10.2">
-<h3>
-<span class="header-section-number">9.10.2</span> Kreuzvalidierung definieren<a class="anchor" aria-label="anchor" href="#kreuzvalidierung-definieren"><i class="fas fa-link"></i></a>
-</h3>
-<div class="sourceCode" id="cb343"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">d_cv</span> <span class="op">&lt;-</span> <span class="fu">vfold_cv</span><span class="op">(</span><span class="va">d_train</span>, strata <span class="op">=</span> <span class="va">mpg</span>, repeats <span class="op">=</span> <span class="fl">5</span>, v <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> 
-<span class="va">d_cv</span></code></pre></div>
+<div id="kreuzvalidierung-definieren" class="section level3 hasAnchor" number="10.11.2">
+<h3><span class="header-section-number">10.11.2</span> Kreuzvalidierung definieren<a href="entscheidungsbäume.html#kreuzvalidierung-definieren" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="entscheidungsbäume.html#cb19-1" aria-hidden="true" tabindex="-1"></a>d_cv <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(d_train, <span class="at">strata =</span> mpg, <span class="at">repeats =</span> <span class="dv">5</span>, <span class="at">v =</span> <span class="dv">5</span>) </span>
+<span id="cb19-2"><a href="entscheidungsbäume.html#cb19-2" aria-hidden="true" tabindex="-1"></a>d_cv</span></code></pre></div>
 <pre><code>## #  5-fold cross-validation repeated 5 times using stratification 
 ## # A tibble: 25 × 3
 ##    splits         id      id2  
@@ -454,48 +827,43 @@ allerdings zieht der Verzicht auf ein Test-Sample andere Probleme, Overfitting n
 bietet es sich an, eine kleine Zahl an Faltungen (<code>folds</code>) zu wählen.
 Bei 10 Faltungen beinhaltete eine Stichprobe gerade 10% der Fälle in Train-Sample,
 also etwa … 2!</p>
+<p>Zur Erinnerung:
+Je größer die Anzahl der Repeats,
+desto genauer schätzen wir die Modellgüte.</p>
 </div>
-<div id="rezept-definieren-2" class="section level3" number="9.10.3">
-<h3>
-<span class="header-section-number">9.10.3</span> Rezept definieren<a class="anchor" aria-label="anchor" href="#rezept-definieren-2"><i class="fas fa-link"></i></a>
-</h3>
+<div id="rezept-definieren-2" class="section level3 hasAnchor" number="10.11.3">
+<h3><span class="header-section-number">10.11.3</span> Rezept definieren<a href="entscheidungsbäume.html#rezept-definieren-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Hier ein einfaches Rezept:</p>
-<div class="sourceCode" id="cb345"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">recipe1</span> <span class="op">&lt;-</span>
-  <span class="fu">recipe</span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">d_train</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">step_impute_knn</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">step_normalize</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">step_dummy</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">step_other</span><span class="op">(</span>threshold <span class="op">=</span> <span class="fl">.1</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="entscheidungsbäume.html#cb21-1" aria-hidden="true" tabindex="-1"></a>recipe1 <span class="ot">&lt;-</span></span>
+<span id="cb21-2"><a href="entscheidungsbäume.html#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">recipe</span>(mpg <span class="sc">~</span> ., <span class="at">data =</span> d_train) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-3"><a href="entscheidungsbäume.html#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_impute_knn</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb21-4"><a href="entscheidungsbäume.html#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_normalize</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb21-5"><a href="entscheidungsbäume.html#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_dummy</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb21-6"><a href="entscheidungsbäume.html#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_other</span>(<span class="at">threshold =</span> .<span class="dv">1</span>)</span></code></pre></div>
 </div>
-<div id="modell-definieren-2" class="section level3" number="9.10.4">
-<h3>
-<span class="header-section-number">9.10.4</span> Modell definieren<a class="anchor" aria-label="anchor" href="#modell-definieren-2"><i class="fas fa-link"></i></a>
-</h3>
-<div class="sourceCode" id="cb346"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tree_model</span> <span class="op">&lt;-</span>
-  <span class="fu">decision_tree</span><span class="op">(</span>
-    cost_complexity <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="op">)</span>,
-    tree_depth <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="op">)</span>,
-    min_n <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="op">)</span>
-  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">set_engine</span><span class="op">(</span><span class="st">"rpart"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">set_mode</span><span class="op">(</span><span class="st">"regression"</span><span class="op">)</span></code></pre></div>
+<div id="modell-definieren-2" class="section level3 hasAnchor" number="10.11.4">
+<h3><span class="header-section-number">10.11.4</span> Modell definieren<a href="entscheidungsbäume.html#modell-definieren-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="entscheidungsbäume.html#cb22-1" aria-hidden="true" tabindex="-1"></a>tree_model <span class="ot">&lt;-</span></span>
+<span id="cb22-2"><a href="entscheidungsbäume.html#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">decision_tree</span>(</span>
+<span id="cb22-3"><a href="entscheidungsbäume.html#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cost_complexity =</span> <span class="fu">tune</span>(),</span>
+<span id="cb22-4"><a href="entscheidungsbäume.html#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">tree_depth =</span> <span class="fu">tune</span>(),</span>
+<span id="cb22-5"><a href="entscheidungsbäume.html#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">min_n =</span> <span class="fu">tune</span>()</span>
+<span id="cb22-6"><a href="entscheidungsbäume.html#cb22-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-7"><a href="entscheidungsbäume.html#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">&quot;rpart&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-8"><a href="entscheidungsbäume.html#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">&quot;regression&quot;</span>)</span></code></pre></div>
 <p>Wenn Sie sich fragen, woher Sie die Optionen für die Tuningparameter wissen sollen: Schauen Sie mal in die <a href="https://dials.tidymodels.org/articles/Basics.html">Hilfeseite des Pakets {{dials}}</a>; das Paket ist Teil von Tidymodels.</p>
 <p>Die Berechnung des Modells läuft über das Paket <code>{{rpart}}</code>,
 was wir durch <code>set_engine()</code> festgelegt haben.</p>
 <p>Der Parameter <em>Cost Complexity</em>, <span class="math inline">\(C_p\)</span> oder manchmal auch mit <span class="math inline">\(\alpha\)</span> bezeichnet,
 hat einen typischen Wertebereich von <span class="math inline">\(10^{-10}\)</span> bis <span class="math inline">\(10^{-1}\)</span>:</p>
-<div class="sourceCode" id="cb347"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">cost_complexity</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="entscheidungsbäume.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cost_complexity</span>()</span></code></pre></div>
 <pre><code>## Cost-Complexity Parameter (quantitative)
 ## Transformer: log-10 [1e-100, Inf]
 ## Range (transformed scale): [-10, -1]</code></pre>
 <p>Hier ist der Wert in Log-Einheiten angegeben. Wenn Sie sich fragen, woher Sie das bitteschön wissen sollen:
 Naja, es steht auf der <a href="https://dials.tidymodels.org/articles/Basics.html">Hilfeseite</a> 😄.</p>
 <p>Unser Modell ist also so definiert:</p>
-<div class="sourceCode" id="cb349"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tree_model</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="entscheidungsbäume.html#cb25-1" aria-hidden="true" tabindex="-1"></a>tree_model</span></code></pre></div>
 <pre><code>## Decision Tree Model Specification (regression)
 ## 
 ## Main Arguments:
@@ -513,14 +881,13 @@ sozusagen erst “fertig definieren”, nennen wir einen <em>Modellkandidaten</e
 <p>Definieren wir also eine Tabelle (<code>grid</code>) mit Werten, die ausprobiert, “getuned” werden sollen.
 Wir haben oben dre Tuningparameter bestimmt. Sagen wir,
 wir hätten gerne jeweils 5 Werte pro Parameter.</p>
-<div class="sourceCode" id="cb351"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tree_grid</span> <span class="op">&lt;-</span>
-  <span class="fu">grid_regular</span><span class="op">(</span>
-    <span class="fu">cost_complexity</span><span class="op">(</span><span class="op">)</span>,
-    <span class="fu">tree_depth</span><span class="op">(</span><span class="op">)</span>,
-    <span class="fu">min_n</span><span class="op">(</span><span class="op">)</span>,
-    levels <span class="op">=</span> <span class="fl">4</span>
-  <span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="entscheidungsbäume.html#cb27-1" aria-hidden="true" tabindex="-1"></a>tree_grid <span class="ot">&lt;-</span></span>
+<span id="cb27-2"><a href="entscheidungsbäume.html#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">grid_regular</span>(</span>
+<span id="cb27-3"><a href="entscheidungsbäume.html#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cost_complexity</span>(),</span>
+<span id="cb27-4"><a href="entscheidungsbäume.html#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tree_depth</span>(),</span>
+<span id="cb27-5"><a href="entscheidungsbäume.html#cb27-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">min_n</span>(),</span>
+<span id="cb27-6"><a href="entscheidungsbäume.html#cb27-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">levels =</span> <span class="dv">4</span></span>
+<span id="cb27-7"><a href="entscheidungsbäume.html#cb27-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <p>Für jeden Parameter sind Wertebereiche definiert;
 dieser Wertebereich wird gleichmäßig (daher <code>grid regular</code>) aufgeteilt;
 die Anzahl der verschiedenen Werte pro Parameter wird druch <code>levels</code> gegeben.</p>
@@ -533,11 +900,9 @@ Man sieht gleich, dass die Rechenzeit schnell unangenehm lang werden kann.</p>
 <p>Entsprechend hat unsere Tabelle diese Zahl an Zeilen.
 Jede Zeile definiert einen Modellkandidaten,
 also eine Berechnung des Modells.</p>
-<div class="sourceCode" id="cb352"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">tree_grid</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="entscheidungsbäume.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(tree_grid)</span></code></pre></div>
 <pre><code>## [1] 64  3</code></pre>
-<div class="sourceCode" id="cb354"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">tree_grid</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="entscheidungsbäume.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tree_grid)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 3
 ##   cost_complexity tree_depth min_n
 ##             &lt;dbl&gt;      &lt;int&gt; &lt;int&gt;
@@ -552,21 +917,16 @@ nichts berechnet.
 Sie scharren mit den Hufen? Wollen endlich loslegen?
 Also gut.</p>
 </div>
-<div id="workflow-definieren-2" class="section level3" number="9.10.5">
-<h3>
-<span class="header-section-number">9.10.5</span> Workflow definieren<a class="anchor" aria-label="anchor" href="#workflow-definieren-2"><i class="fas fa-link"></i></a>
-</h3>
+<div id="workflow-definieren-2" class="section level3 hasAnchor" number="10.11.5">
+<h3><span class="header-section-number">10.11.5</span> Workflow definieren<a href="entscheidungsbäume.html#workflow-definieren-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Fast vergessen: Wir brauchen noch einen Workflow.</p>
-<div class="sourceCode" id="cb356"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tree_wf</span> <span class="op">&lt;-</span>
-  <span class="fu">workflow</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">add_model</span><span class="op">(</span><span class="va">tree_model</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">add_recipe</span><span class="op">(</span><span class="va">recipe1</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="entscheidungsbäume.html#cb32-1" aria-hidden="true" tabindex="-1"></a>tree_wf <span class="ot">&lt;-</span></span>
+<span id="cb32-2"><a href="entscheidungsbäume.html#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">workflow</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb32-3"><a href="entscheidungsbäume.html#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(tree_model) <span class="sc">%&gt;%</span> </span>
+<span id="cb32-4"><a href="entscheidungsbäume.html#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(recipe1)</span></code></pre></div>
 </div>
-<div id="modell-tunen-und-berechnen" class="section level3" number="9.10.6">
-<h3>
-<span class="header-section-number">9.10.6</span> Modell tunen und berechnen<a class="anchor" aria-label="anchor" href="#modell-tunen-und-berechnen"><i class="fas fa-link"></i></a>
-</h3>
+<div id="modell-tunen-und-berechnen" class="section level3 hasAnchor" number="10.11.6">
+<h3><span class="header-section-number">10.11.6</span> Modell tunen und berechnen<a href="entscheidungsbäume.html#modell-tunen-und-berechnen" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Achtung: Das Modell zu berechnen kann etwas dauern.
 Es kann daher Sinn machen,
 das Modell abzuspeichern,
@@ -574,234 +934,251 @@ so dass Sie beim erneuten Durchlaufen nicht nochmal berechnen müssen,
 sondern einfach von der Festplatte laden können;
 das setzt natürlich voraus,
 dass sich am Modell nichts geändert hat.</p>
-<div class="sourceCode" id="cb357"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">doParallel</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/doParallel/man/registerDoParallel.html">registerDoParallel</a></span><span class="op">(</span><span class="op">)</span>  <span class="co"># mehrere Kerne parallel nutzen</span>
-
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">tic</a></span><span class="op">(</span><span class="op">)</span>  <span class="co"># Stoppuhr an</span>
-<span class="va">trees_tuned</span> <span class="op">&lt;-</span>
-  <span class="fu">tune_grid</span><span class="op">(</span>
-    object <span class="op">=</span> <span class="va">tree_wf</span>,
-    grid <span class="op">=</span> <span class="va">tree_grid</span>,
-    resamples <span class="op">=</span> <span class="va">d_cv</span>
-  <span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">toc</a></span><span class="op">(</span><span class="op">)</span>  <span class="co"># Stoppuhr aus</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="entscheidungsbäume.html#cb33-1" aria-hidden="true" tabindex="-1"></a>doParallel<span class="sc">::</span><span class="fu">registerDoParallel</span>()  <span class="co"># mehrere Kerne parallel nutzen</span></span>
+<span id="cb33-2"><a href="entscheidungsbäume.html#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="entscheidungsbäume.html#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb33-4"><a href="entscheidungsbäume.html#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tic</span>()  <span class="co"># Stoppuhr an</span></span>
+<span id="cb33-5"><a href="entscheidungsbäume.html#cb33-5" aria-hidden="true" tabindex="-1"></a>trees_tuned <span class="ot">&lt;-</span></span>
+<span id="cb33-6"><a href="entscheidungsbäume.html#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tune_grid</span>(</span>
+<span id="cb33-7"><a href="entscheidungsbäume.html#cb33-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">object =</span> tree_wf,</span>
+<span id="cb33-8"><a href="entscheidungsbäume.html#cb33-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">grid =</span> tree_grid,</span>
+<span id="cb33-9"><a href="entscheidungsbäume.html#cb33-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">resamples =</span> d_cv</span>
+<span id="cb33-10"><a href="entscheidungsbäume.html#cb33-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb33-11"><a href="entscheidungsbäume.html#cb33-11" aria-hidden="true" tabindex="-1"></a><span class="fu">toc</span>()  <span class="co"># Stoppuhr aus</span></span></code></pre></div>
 <p>Es bietet sich in dem Fall an, das Ergebnis-Objekt als <em>R Data serialized</em> (rds) abzuspeichern:</p>
-<div class="sourceCode" id="cb358"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">write_rds</a></span><span class="op">(</span><span class="va">trees_tuned</span>, <span class="st">"objects/trees1.rds"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="entscheidungsbäume.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_rds</span>(trees_tuned, <span class="st">&quot;objects/trees1.rds&quot;</span>)</span></code></pre></div>
 <p>Bzw. so wieder aus der RDS-Datei zu importieren:</p>
-<div class="sourceCode" id="cb359"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">trees_tuned</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">read_rds</a></span><span class="op">(</span><span class="st">"objects/trees1.rds"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="entscheidungsbäume.html#cb35-1" aria-hidden="true" tabindex="-1"></a>trees_tuned <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">&quot;objects/trees1.rds&quot;</span>)</span></code></pre></div>
 <p><a href="https://stackoverflow.com/questions/21370132/what-are-the-main-differences-between-r-data-files">Hier</a> oder <a href="https://en.wikipedia.org/wiki/Serialization">hier</a> kann man einiges zum Unterschied einer RDS-Datei vs. einer “normalen” R-Data-Datei nachlesen.
 Wenn man möchte 😉.</p>
-<div class="sourceCode" id="cb360"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">trees_tuned</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="entscheidungsbäume.html#cb36-1" aria-hidden="true" tabindex="-1"></a>trees_tuned</span></code></pre></div>
 <pre><code>## # Tuning results
-## # 10-fold cross-validation repeated 10 times using stratification 
-## # A tibble: 100 × 5
-##    splits         id       id2    .metrics           .notes           
-##    &lt;list&gt;         &lt;chr&gt;    &lt;chr&gt;  &lt;list&gt;             &lt;list&gt;           
-##  1 &lt;split [21/3]&gt; Repeat01 Fold01 &lt;tibble [250 × 7]&gt; &lt;tibble [50 × 3]&gt;
-##  2 &lt;split [21/3]&gt; Repeat01 Fold02 &lt;tibble [250 × 7]&gt; &lt;tibble [50 × 3]&gt;
-##  3 &lt;split [21/3]&gt; Repeat01 Fold03 &lt;tibble [250 × 7]&gt; &lt;tibble [51 × 3]&gt;
-##  4 &lt;split [21/3]&gt; Repeat01 Fold04 &lt;tibble [250 × 7]&gt; &lt;tibble [50 × 3]&gt;
-##  5 &lt;split [22/2]&gt; Repeat01 Fold05 &lt;tibble [250 × 7]&gt; &lt;tibble [51 × 3]&gt;
-##  6 &lt;split [22/2]&gt; Repeat01 Fold06 &lt;tibble [250 × 7]&gt; &lt;tibble [51 × 3]&gt;
-##  7 &lt;split [22/2]&gt; Repeat01 Fold07 &lt;tibble [250 × 7]&gt; &lt;tibble [51 × 3]&gt;
-##  8 &lt;split [22/2]&gt; Repeat01 Fold08 &lt;tibble [250 × 7]&gt; &lt;tibble [50 × 3]&gt;
-##  9 &lt;split [22/2]&gt; Repeat01 Fold09 &lt;tibble [250 × 7]&gt; &lt;tibble [51 × 3]&gt;
-## 10 &lt;split [22/2]&gt; Repeat01 Fold10 &lt;tibble [250 × 7]&gt; &lt;tibble [50 × 3]&gt;
-## # … with 90 more rows
+## # 5-fold cross-validation repeated 5 times using stratification 
+## # A tibble: 25 × 5
+##    splits         id      id2   .metrics           .notes           
+##    &lt;list&gt;         &lt;chr&gt;   &lt;chr&gt; &lt;list&gt;             &lt;list&gt;           
+##  1 &lt;split [19/5]&gt; Repeat1 Fold1 &lt;tibble [128 × 7]&gt; &lt;tibble [32 × 3]&gt;
+##  2 &lt;split [19/5]&gt; Repeat1 Fold2 &lt;tibble [128 × 7]&gt; &lt;tibble [32 × 3]&gt;
+##  3 &lt;split [19/5]&gt; Repeat1 Fold3 &lt;tibble [128 × 7]&gt; &lt;tibble [32 × 3]&gt;
+##  4 &lt;split [19/5]&gt; Repeat1 Fold4 &lt;tibble [128 × 7]&gt; &lt;tibble [32 × 3]&gt;
+##  5 &lt;split [20/4]&gt; Repeat1 Fold5 &lt;tibble [128 × 7]&gt; &lt;tibble [32 × 3]&gt;
+##  6 &lt;split [19/5]&gt; Repeat2 Fold1 &lt;tibble [128 × 7]&gt; &lt;tibble [32 × 3]&gt;
+##  7 &lt;split [19/5]&gt; Repeat2 Fold2 &lt;tibble [128 × 7]&gt; &lt;tibble [32 × 3]&gt;
+##  8 &lt;split [19/5]&gt; Repeat2 Fold3 &lt;tibble [128 × 7]&gt; &lt;tibble [32 × 3]&gt;
+##  9 &lt;split [19/5]&gt; Repeat2 Fold4 &lt;tibble [128 × 7]&gt; &lt;tibble [32 × 3]&gt;
+## 10 &lt;split [20/4]&gt; Repeat2 Fold5 &lt;tibble [128 × 7]&gt; &lt;tibble [32 × 3]&gt;
+## # … with 15 more rows
 ## 
 ## There were issues with some computations:
 ## 
-##   - Warning(s) x1000: 30 samples were requested but there were 21 rows in the data. 21 ...   - Warning(s) x1500: 30 samples were requested but there were 21 rows in the data. 21 ...   - Warning(s) x1000: 30 samples were requested but there were 21 rows in the data. 21 ...   - Warning(s) x1500: 30 samples were requested but there were 21 rows in the data. 21 ...   - Warning(s) x45: 30 samples were requested but there were 21 rows in the data. 21 ...
+##   - Warning(s) x320: 27 samples were requested but there were 19 rows in the data. 19 ...   - Warning(s) x80: 27 samples were requested but there were 19 rows in the data. 19 ...   - Warning(s) x320: 27 samples were requested but there were 19 rows in the data. 19 ...   - Warning(s) x80: 27 samples were requested but there were 19 rows in the data. 19 ...   - Warning(s) x4: 27 samples were requested but there were 19 rows in the data. 19 ...
 ## 
 ## Use `collect_notes(object)` for more information.</code></pre>
 <p>Die Warnhinweise kann man sich so ausgeben lassen:</p>
-<div class="sourceCode" id="cb362"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">collect_notes</span><span class="op">(</span><span class="va">trees_tuned</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 5,045 × 5
-##    id       id2    location                       type    note                  
-##    &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;                          &lt;chr&gt;   &lt;chr&gt;                 
-##  1 Repeat01 Fold01 preprocessor 1/1, model 76/125 warning 30 samples were reque…
-##  2 Repeat01 Fold01 preprocessor 1/1, model 77/125 warning 30 samples were reque…
-##  3 Repeat01 Fold01 preprocessor 1/1, model 78/125 warning 30 samples were reque…
-##  4 Repeat01 Fold01 preprocessor 1/1, model 79/125 warning 30 samples were reque…
-##  5 Repeat01 Fold01 preprocessor 1/1, model 80/125 warning 30 samples were reque…
-##  6 Repeat01 Fold01 preprocessor 1/1, model 81/125 warning 30 samples were reque…
-##  7 Repeat01 Fold01 preprocessor 1/1, model 82/125 warning 30 samples were reque…
-##  8 Repeat01 Fold01 preprocessor 1/1, model 83/125 warning 30 samples were reque…
-##  9 Repeat01 Fold01 preprocessor 1/1, model 84/125 warning 30 samples were reque…
-## 10 Repeat01 Fold01 preprocessor 1/1, model 85/125 warning 30 samples were reque…
-## # … with 5,035 more rows</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="entscheidungsbäume.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect_notes</span>(trees_tuned)</span></code></pre></div>
+<pre><code>## # A tibble: 804 × 5
+##    id      id2   location                      type    note                     
+##    &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;                         &lt;chr&gt;   &lt;chr&gt;                    
+##  1 Repeat1 Fold1 preprocessor 1/1, model 33/64 warning 27 samples were requeste…
+##  2 Repeat1 Fold1 preprocessor 1/1, model 34/64 warning 27 samples were requeste…
+##  3 Repeat1 Fold1 preprocessor 1/1, model 35/64 warning 27 samples were requeste…
+##  4 Repeat1 Fold1 preprocessor 1/1, model 36/64 warning 27 samples were requeste…
+##  5 Repeat1 Fold1 preprocessor 1/1, model 37/64 warning 27 samples were requeste…
+##  6 Repeat1 Fold1 preprocessor 1/1, model 38/64 warning 27 samples were requeste…
+##  7 Repeat1 Fold1 preprocessor 1/1, model 39/64 warning 27 samples were requeste…
+##  8 Repeat1 Fold1 preprocessor 1/1, model 40/64 warning 27 samples were requeste…
+##  9 Repeat1 Fold1 preprocessor 1/1, model 41/64 warning 27 samples were requeste…
+## 10 Repeat1 Fold1 preprocessor 1/1, model 42/64 warning 27 samples were requeste…
+## # … with 794 more rows</code></pre>
 <p>Wie gesagt,
 in diesem Fall war die Stichprobengröße sehr klein.</p>
 </div>
-<div id="modellgüte-evaluieren" class="section level3" number="9.10.7">
-<h3>
-<span class="header-section-number">9.10.7</span> Modellgüte evaluieren<a class="anchor" aria-label="anchor" href="#modellg%C3%BCte-evaluieren"><i class="fas fa-link"></i></a>
-</h3>
-<div class="sourceCode" id="cb364"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">collect_metrics</span><span class="op">(</span><span class="va">trees_tuned</span><span class="op">)</span></code></pre></div>
-<pre><code>## # A tibble: 250 × 9
+<div id="modellgüte-evaluieren" class="section level3 hasAnchor" number="10.11.7">
+<h3><span class="header-section-number">10.11.7</span> Modellgüte evaluieren<a href="entscheidungsbäume.html#modellgüte-evaluieren" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="entscheidungsbäume.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect_metrics</span>(trees_tuned)</span></code></pre></div>
+<pre><code>## # A tibble: 128 × 9
 ##    cost_complexity tree_depth min_n .metric .estimator  mean     n std_err
 ##              &lt;dbl&gt;      &lt;int&gt; &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt;
-##  1    0.0000000001          1     2 rmse    standard   3.31    100  0.161 
-##  2    0.0000000001          1     2 rsq     standard   0.881    55  0.0284
-##  3    0.0000000178          1     2 rmse    standard   3.31    100  0.161 
-##  4    0.0000000178          1     2 rsq     standard   0.881    55  0.0284
-##  5    0.00000316            1     2 rmse    standard   3.31    100  0.161 
-##  6    0.00000316            1     2 rsq     standard   0.881    55  0.0284
-##  7    0.000562              1     2 rmse    standard   3.31    100  0.161 
-##  8    0.000562              1     2 rsq     standard   0.881    55  0.0284
-##  9    0.1                   1     2 rmse    standard   3.31    100  0.161 
-## 10    0.1                   1     2 rsq     standard   0.881    55  0.0284
-## # … with 240 more rows, and 1 more variable: .config &lt;chr&gt;</code></pre>
+##  1    0.0000000001          1     2 rmse    standard   3.46     25  0.223 
+##  2    0.0000000001          1     2 rsq     standard   0.666    21  0.0385
+##  3    0.0000001             1     2 rmse    standard   3.46     25  0.223 
+##  4    0.0000001             1     2 rsq     standard   0.666    21  0.0385
+##  5    0.0001                1     2 rmse    standard   3.46     25  0.223 
+##  6    0.0001                1     2 rsq     standard   0.666    21  0.0385
+##  7    0.1                   1     2 rmse    standard   3.46     25  0.223 
+##  8    0.1                   1     2 rsq     standard   0.666    21  0.0385
+##  9    0.0000000001          5     2 rmse    standard   2.62     25  0.265 
+## 10    0.0000000001          5     2 rsq     standard   0.863    25  0.0279
+## # … with 118 more rows, and 1 more variable: .config &lt;chr&gt;</code></pre>
 <p>Praktischerweise gibt es eine Autoplot-Funktion, um die besten Modellparameter auszulesen:</p>
-<div class="sourceCode" id="cb366"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot</a></span><span class="op">(</span><span class="va">trees_tuned</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="100-Entscheidungsba%CC%88ume_files/figure-html/unnamed-chunk-23-1.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="entscheidungsbäume.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(trees_tuned)</span></code></pre></div>
+<p><img src="100-Entscheidungsba%CC%88ume_files/figure-html/unnamed-chunk-23-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="bestes-modell-auswählen" class="section level3" number="9.10.8">
-<h3>
-<span class="header-section-number">9.10.8</span> Bestes Modell auswählen<a class="anchor" aria-label="anchor" href="#bestes-modell-ausw%C3%A4hlen"><i class="fas fa-link"></i></a>
-</h3>
+<div id="bestes-modell-auswählen" class="section level3 hasAnchor" number="10.11.8">
+<h3><span class="header-section-number">10.11.8</span> Bestes Modell auswählen<a href="entscheidungsbäume.html#bestes-modell-auswählen" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Aus allen Modellkandidaten wählen wir jetzt das beste Modell aus:</p>
-<div class="sourceCode" id="cb367"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">select_best</span><span class="op">(</span><span class="va">trees_tuned</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="entscheidungsbäume.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select_best</span>(trees_tuned)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 4
-##   cost_complexity tree_depth min_n .config               
-##             &lt;dbl&gt;      &lt;int&gt; &lt;int&gt; &lt;chr&gt;                 
-## 1    0.0000000001          4     2 Preprocessor1_Model006</code></pre>
+##   cost_complexity tree_depth min_n .config              
+##             &lt;dbl&gt;      &lt;int&gt; &lt;int&gt; &lt;chr&gt;                
+## 1          0.0001          5     2 Preprocessor1_Model07</code></pre>
 <p>Mit diesem besten Kandidaten definieren wir jetzt das “finale” Modell,
 wir “finalisieren” das Modell mit den besten Modellparametern:</p>
-<div class="sourceCode" id="cb369"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tree_final</span> <span class="op">&lt;-</span>
-  <span class="fu">finalize_model</span><span class="op">(</span><span class="va">tree_model</span>, parameters <span class="op">=</span> <span class="fu">select_best</span><span class="op">(</span><span class="va">trees_tuned</span><span class="op">)</span><span class="op">)</span>
-
-<span class="va">tree_final</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="entscheidungsbäume.html#cb45-1" aria-hidden="true" tabindex="-1"></a>tree_final <span class="ot">&lt;-</span></span>
+<span id="cb45-2"><a href="entscheidungsbäume.html#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">finalize_model</span>(tree_model, <span class="at">parameters =</span> <span class="fu">select_best</span>(trees_tuned))</span>
+<span id="cb45-3"><a href="entscheidungsbäume.html#cb45-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-4"><a href="entscheidungsbäume.html#cb45-4" aria-hidden="true" tabindex="-1"></a>tree_final</span></code></pre></div>
 <pre><code>## Decision Tree Model Specification (regression)
 ## 
 ## Main Arguments:
-##   cost_complexity = 1e-10
-##   tree_depth = 4
+##   cost_complexity = 1e-04
+##   tree_depth = 5
 ##   min_n = 2
 ## 
 ## Computational engine: rpart</code></pre>
 <p>Hier ist, unser finaler Baum 🌳.</p>
 <p>Schließlich updaten wir mit dem finalen Baum noch den Workflow:</p>
-<div class="sourceCode" id="cb371"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">final_wf</span> <span class="op">&lt;-</span>
-  <span class="va">tree_wf</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">update_model</span><span class="op">(</span><span class="va">tree_final</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="entscheidungsbäume.html#cb47-1" aria-hidden="true" tabindex="-1"></a>final_wf <span class="ot">&lt;-</span></span>
+<span id="cb47-2"><a href="entscheidungsbäume.html#cb47-2" aria-hidden="true" tabindex="-1"></a>  tree_wf <span class="sc">%&gt;%</span> </span>
+<span id="cb47-3"><a href="entscheidungsbäume.html#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">update_model</span>(tree_final)</span></code></pre></div>
 </div>
-<div id="final-fit" class="section level3" number="9.10.9">
-<h3>
-<span class="header-section-number">9.10.9</span> Final Fit<a class="anchor" aria-label="anchor" href="#final-fit"><i class="fas fa-link"></i></a>
-</h3>
+<div id="final-fit" class="section level3 hasAnchor" number="10.11.9">
+<h3><span class="header-section-number">10.11.9</span> Final Fit<a href="entscheidungsbäume.html#final-fit" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Jetzt fitten wir dieses Modell auf das <em>ganze</em> Train-Sample und predicten auf das Test-Sample:</p>
-<div class="sourceCode" id="cb372"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tree_fit_final</span> <span class="op">&lt;-</span>
-  <span class="va">final_wf</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">last_fit</span><span class="op">(</span><span class="va">d_split</span><span class="op">)</span>
-
-<span class="va">tree_fit_final</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="entscheidungsbäume.html#cb48-1" aria-hidden="true" tabindex="-1"></a>tree_fit_final <span class="ot">&lt;-</span></span>
+<span id="cb48-2"><a href="entscheidungsbäume.html#cb48-2" aria-hidden="true" tabindex="-1"></a>  final_wf <span class="sc">%&gt;%</span> </span>
+<span id="cb48-3"><a href="entscheidungsbäume.html#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">last_fit</span>(d_split)</span>
+<span id="cb48-4"><a href="entscheidungsbäume.html#cb48-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-5"><a href="entscheidungsbäume.html#cb48-5" aria-hidden="true" tabindex="-1"></a>tree_fit_final</span></code></pre></div>
 <pre><code>## # Resampling results
 ## # Manual resampling 
 ## # A tibble: 1 × 6
 ##   splits         id               .metrics .notes   .predictions     .workflow 
 ##   &lt;list&gt;         &lt;chr&gt;            &lt;list&gt;   &lt;list&gt;   &lt;list&gt;           &lt;list&gt;    
 ## 1 &lt;split [24/8]&gt; train/test split &lt;tibble&gt; &lt;tibble&gt; &lt;tibble [8 × 4]&gt; &lt;workflow&gt;</code></pre>
-<div class="sourceCode" id="cb374"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">collect_metrics</span><span class="op">(</span><span class="va">tree_fit_final</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="entscheidungsbäume.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">collect_metrics</span>(tree_fit_final)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 4
 ##   .metric .estimator .estimate .config             
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;               
-## 1 rmse    standard       3.90  Preprocessor1_Model1
-## 2 rsq     standard       0.687 Preprocessor1_Model1</code></pre>
+## 1 rmse    standard       3.93  Preprocessor1_Model1
+## 2 rsq     standard       0.683 Preprocessor1_Model1</code></pre>
 <p>Voilà: Die Modellgüte für das Test-Sample:
 Im Schnitt liegen wir ca. 4 Meilen daneben mit unseren Vorhersagen,
 wenn wir RMSE mal so locker interpretieren wollen.</p>
+<p>In der Regel ist übrigens RMSE interessanter als R-Quadrat,
+da R-Quadrat die Güte eines Korrelationsmusters vorhersagt,
+aber RMSE die Präzision der Vorhersage,
+also sozusagen die Kürze der Fehlerbalken.</p>
 </div>
-<div id="nur-zum-spaß-vergleich-mit-linearem-modell" class="section level3" number="9.10.10">
-<h3>
-<span class="header-section-number">9.10.10</span> Nur zum Spaß: Vergleich mit linearem Modell<a class="anchor" aria-label="anchor" href="#nur-zum-spa%C3%9F-vergleich-mit-linearem-modell"><i class="fas fa-link"></i></a>
-</h3>
+<div id="nur-zum-spaß-vergleich-mit-linearem-modell" class="section level3 hasAnchor" number="10.11.10">
+<h3><span class="header-section-number">10.11.10</span> Nur zum Spaß: Vergleich mit linearem Modell<a href="entscheidungsbäume.html#nur-zum-spaß-vergleich-mit-linearem-modell" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Ein einfaches lineares Modell,
 was hätte das jetzt wohl für eine Modellgüte?</p>
-<pre><code>## 7.664 sec elapsed</code></pre>
+<pre><code>## 13.059 sec elapsed</code></pre>
 <pre><code>## # A tibble: 2 × 6
 ##   .metric .estimator  mean     n std_err .config             
 ##   &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;               
 ## 1 rmse    standard   4.16     25  0.362  Preprocessor1_Model1
 ## 2 rsq     standard   0.624    25  0.0587 Preprocessor1_Model1</code></pre>
+<p>Wie präzise ist die Vorhersage im Test-Sample?</p>
 <pre><code>## # A tibble: 2 × 4
 ##   .metric .estimator .estimate .config             
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;               
 ## 1 rmse    standard       5.24  Preprocessor1_Model1
 ## 2 rsq     standard       0.434 Preprocessor1_Model1</code></pre>
 <p>Das lineare Modell schneidet etwas (deutlich?) schlechter ab als das einfache Baummodell.</p>
-
+<p>Man beachte, dass die Modellgüte im Train-Samle höher ist als im Test-Sample (Overfitting).</p>
+<!-- ## Aufgaben und Vertiefung -->
 </div>
 </div>
-</div>
-  <div class="chapter-nav">
-<div class="prev"><a href="logistische-regression.html"><span class="header-section-number">8</span> Logistische Regression</a></div>
-<div class="next"><a href="references.html">References</a></div>
-</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#entscheidungsb%C3%A4ume"><span class="header-section-number">9</span> Entscheidungsbäume</a></li>
-<li><a class="nav-link" href="#vorbereitung-5"><span class="header-section-number">9.1</span> Vorbereitung</a></li>
-<li><a class="nav-link" href="#anatomie-eines-baumes"><span class="header-section-number">9.2</span> Anatomie eines Baumes</a></li>
-<li><a class="nav-link" href="#b%C3%A4ume-als-regelmaschinen-rekursiver-partionierung"><span class="header-section-number">9.3</span> Bäume als Regelmaschinen rekursiver Partionierung</a></li>
-<li><a class="nav-link" href="#klassifikation"><span class="header-section-number">9.4</span> Klassifikation</a></li>
-<li><a class="nav-link" href="#gini-als-optimierungskriterium"><span class="header-section-number">9.5</span> Gini als Optimierungskriterium</a></li>
-<li><a class="nav-link" href="#metrische-pr%C3%A4diktoren"><span class="header-section-number">9.6</span> Metrische Prädiktoren</a></li>
-<li><a class="nav-link" href="#regressionb%C3%A4ume"><span class="header-section-number">9.7</span> Regressionbäume</a></li>
-<li><a class="nav-link" href="#baum-beschneiden"><span class="header-section-number">9.8</span> Baum beschneiden</a></li>
-<li><a class="nav-link" href="#das-rechteck-schl%C3%A4gt-zur%C3%BCck"><span class="header-section-number">9.9</span> Das Rechteck schlägt zurück</a></li>
-<li>
-<a class="nav-link" href="#tidymodels-2"><span class="header-section-number">9.10</span> Tidymodels</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#initiale-datenaufteilung"><span class="header-section-number">9.10.1</span> Initiale Datenaufteilung</a></li>
-<li><a class="nav-link" href="#kreuzvalidierung-definieren"><span class="header-section-number">9.10.2</span> Kreuzvalidierung definieren</a></li>
-<li><a class="nav-link" href="#rezept-definieren-2"><span class="header-section-number">9.10.3</span> Rezept definieren</a></li>
-<li><a class="nav-link" href="#modell-definieren-2"><span class="header-section-number">9.10.4</span> Modell definieren</a></li>
-<li><a class="nav-link" href="#workflow-definieren-2"><span class="header-section-number">9.10.5</span> Workflow definieren</a></li>
-<li><a class="nav-link" href="#modell-tunen-und-berechnen"><span class="header-section-number">9.10.6</span> Modell tunen und berechnen</a></li>
-<li><a class="nav-link" href="#modellg%C3%BCte-evaluieren"><span class="header-section-number">9.10.7</span> Modellgüte evaluieren</a></li>
-<li><a class="nav-link" href="#bestes-modell-ausw%C3%A4hlen"><span class="header-section-number">9.10.8</span> Bestes Modell auswählen</a></li>
-<li><a class="nav-link" href="#final-fit"><span class="header-section-number">9.10.9</span> Final Fit</a></li>
-<li><a class="nav-link" href="#nur-zum-spa%C3%9F-vergleich-mit-linearem-modell"><span class="header-section-number">9.10.10</span> Nur zum Spaß: Vergleich mit linearem Modell</a></li>
+<div id="aufgaben-6" class="section level2 hasAnchor" number="10.12">
+<h2><span class="header-section-number">10.12</span> Aufgaben<a href="entscheidungsbäume.html#aufgaben-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><a href="https://bcullen.rbind.io/post/2020-06-02-tidymodels-decision-tree-learning-in-r/">Fallstudie Oregon Schools</a></li>
+<li><a href="https://juliasilge.com/blog/wind-turbine/">Fallstudie Windturbinen</a></li>
+<li><a href="https://www.gmudatamining.com/lesson-13-r-tutorial.html">Fallstudie Churn</a></li>
 </ul>
-</li>
+</div>
+<div id="vertiefung-3" class="section level2 hasAnchor" number="10.13">
+<h2><span class="header-section-number">10.13</span> Vertiefung<a href="entscheidungsbäume.html#vertiefung-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><a href="http://www.r2d3.us/visual-intro-to-machine-learning-part-1/">Visualisierung des ML-Ablaufs am Beispiel des Entscheidungsbaums, Teil 1</a></li>
+<li><a href="http://www.r2d3.us/visual-intro-to-machine-learning-part-2/">Visualisierung des ML-Ablaufs am Beispiel des Entscheidungsbaums, Teil 2</a></li>
 </ul>
 
-      <div class="book-extra">
-        <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/sebastiansauer/datascience1/blob/master/100-Entscheidungsba%CC%88ume.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/sebastiansauer/datascience1/edit/master/100-Entscheidungsba%CC%88ume.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
-        </ul>
 </div>
-    </nav>
 </div>
-
+<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-islr" class="csl-entry">
+James, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2021. <em>An Introduction to Statistical Learning: With Applications in r</em>. Second edition. Springer Texts in Statistics. New York: Springer. <a href="https://link.springer.com/book/10.1007/978-1-0716-1418-1">https://link.springer.com/book/10.1007/978-1-0716-1418-1</a>.
 </div>
-</div> <!-- .container -->
+<div id="ref-rhys" class="csl-entry">
+Rhys, Hefin. 2020. <em>Machine Learning with r, the Tidyverse, and Mlr</em>. Shelter Island, <span>NY</span>: Manning publications.
+</div>
+</div>
+            </section>
 
-<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
-
-  <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-05-08 07:43:06.</p>
+          </div>
+        </div>
+      </div>
+<a href="logistische-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
   </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/sebastiansauer/datascience1100-Entscheidungsbäume.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": {},
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
 
-  <div class="col-12 col-md-6 mt-3">
-    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
-  </div>
-
-</div></div>
-</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -813,22 +1190,7 @@ was hätte das jetzt wohl für eine Modellgüte?</p>
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
-</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
-for (let popover of popovers) {
-  const div = document.createElement('div');
-  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
-  div.innerHTML = popover.getAttribute('data-content');
-
-  var has_math = div.querySelector("span.math");
-  if (has_math) {
-    document.body.appendChild(div);
-    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
-    MathJax.Hub.Queue(function() {
-      popover.setAttribute('data-content', div.innerHTML);
-      document.body.removeChild(div);
-    })
-  }
-}
 </script>
 </body>
+
 </html>

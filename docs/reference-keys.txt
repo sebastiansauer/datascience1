@@ -273,3 +273,8 @@ modellgüte-evaluieren
 bestes-modell-auswählen
 final-fit
 nur-zum-spaß-vergleich-mit-linearem-modell
+description-ein-kurs-zu-den-grundlagen-des-statistischen-lernens-mit-einem-fokus-auf-prognosemodelle-für-hoch-strukturierte-daten
+lernsteuerung-6
+literatur-7
+aufgaben-6
+vertiefung-3

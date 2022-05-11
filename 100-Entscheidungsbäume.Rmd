@@ -20,6 +20,22 @@
 ```
 
 
+
+
+## Lernsteuerung
+
+```{r chapter-start-sections, echo = FALSE, results = "asis"}
+source("funs/chapter-start-sections.R")
+chapter_start_sections(title = "Entscheidungsbäume")
+```
+
+
+
+
+
+
+
+
 ## Vorbereitung
 
 
@@ -800,4 +816,36 @@ Das lineare Modell schneidet etwas (deutlich?) schlechter ab als das einfache Ba
 Man beachte, dass die Modellgüte im Train-Samle höher ist als im Test-Sample (Overfitting).
 
 
+
+
+
+
+
+
+
+
+
+
+<!-- ## Aufgaben und Vertiefung -->
+
+
+
+
+```{r render-outline-vertiefung-aufgaben, results = "asis", echo = FALSE, message = FALSE}
+
+  render_section(course_dates_file,
+                 content_file,
+                 i = NULL,
+                 title = "Entscheidungsbäume",
+                 name = "Aufgaben",
+                 header_level = 1)
+
+
+render_section(course_dates_file,
+               content_file,
+               i = NULL, 
+               title = "Entscheidungsbäume",
+               name = "Vertiefung",
+               header_level = 1)
+```
 
