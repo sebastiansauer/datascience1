@@ -253,8 +253,8 @@ mit dem internationalen Preis für Statistik <a href="https://www.amstat.org/new
 <p>Der Bagging-Algorithmus ist in Abbildung <a href="ensemble-lerner.html#fig:bag">10.2</a> dargestellt.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:bag"></span>
-<div id="htmlwidget-f6f04303507d9fabcfcc" style="width:100%;height:350px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-f6f04303507d9fabcfcc">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n  [<database> Datensatz] ->zmz [Baum 1]\n[<database> Datensatz] ->zmz [Baum 2]\n[<database> Datensatz] ->zmz [Baum ...]\n[<database> Datensatz] ->zmz [Baum B]\n[Baum 1] -> [Modus als Vorhersagewert]\n[Baum 2] -> [Modus als Vorhersagewert]\n[Baum ...] -> [Modus als Vorhersagewert]\n[Baum B] -> [Modus als Vorhersagewert]\n  ","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
+<div id="htmlwidget-91dae1d194ba8d8b4939" style="width:100%;height:350px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-91dae1d194ba8d8b4939">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n  [<database> Datensatz] ->zmz [Baum 1]\n[<database> Datensatz] ->zmz [Baum 2]\n[<database> Datensatz] ->zmz [Baum ...]\n[<database> Datensatz] ->zmz [Baum B]\n[Baum 1] -> [Modus als Vorhersagewert]\n[Baum 2] -> [Modus als Vorhersagewert]\n[Baum ...] -> [Modus als Vorhersagewert]\n[Baum B] -> [Modus als Vorhersagewert]\n  ","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
 Figure 10.2: Bagging schematisch illustriert
 </p>
 </div>
@@ -317,8 +317,8 @@ In den meisten Implementationen wird <span class="math inline">\(m\)</span> mit 
 <p>Der Random-Forest-Algorithmus ist in Abb. <a href="ensemble-lerner.html#fig:rf1">10.3</a> illustriert.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:rf1"></span>
-<div id="htmlwidget-87581dcb60ca2f21a9ef" style="width:100%;height:500px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-87581dcb60ca2f21a9ef">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n#direction:down\n                 [<database> Datensatz] ->zmz [Baum1\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n\n[<database> Datensatz] ->zmz [Baum2\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[<database> Datensatz] ->zmz [Baum ...\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[<database> Datensatz] ->zmz [Baum B\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[Baum1\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n] -> [Modus als Vorhersagewert]\n[Baum2\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n] -> [Modus als Vorhersagewert]\n[Baum ...] -> [Modus als Vorhersagewert]\n[Baum B] -> [Modus als Vorhersagewert]\n                 ","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
+<div id="htmlwidget-1ca31b4b60ee9126b460" style="width:100%;height:700px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1ca31b4b60ee9126b460">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n#direction:down\n                 [<database> Datensatz] ->zmz [Baum1\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n\n[<database> Datensatz] ->zmz [Baum2\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[<database> Datensatz] ->zmz [Baum ...\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[<database> Datensatz] ->zmz [Baum B\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[Baum1\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n] -> [Modus als Vorhersagewert]\n[Baum2\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n] -> [Modus als Vorhersagewert]\n[Baum ...] -> [Modus als Vorhersagewert]\n[Baum B] -> [Modus als Vorhersagewert]\n                 ","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
 Figure 10.3: Zufallswälder durch Ziehen mit Zurücklegen (zmz) und Ziehen ohne Zurücklegen (ZoZ)
 </p>
 </div>
@@ -393,14 +393,14 @@ wird der Bias im Gesamtmodell verringert.
 Da wir gleichzeitig auch Bagging vornehmen,
 wird aber die Varianz auch verringert.
 Klingt schon wieder (fast) nach Too-Good-to-be-True!</p>
-<p>Das Gewicht <span class="math inline">\(w_i^b\)</span> des <span class="math inline">\(b\)</span>ten Falls im <span class="math inline">\(b\)</span>ten Modell von <span class="math inline">\(B\)</span> berechnet sich wie folgt <span class="citation">(<a href="references.html#ref-rhys" role="doc-biblioref">Rhys 2020</a>)</span>:</p>
+<p>Das Gewicht <span class="math inline">\(w_i^b\)</span> des <span class="math inline">\(i\)</span>ten Falls im <span class="math inline">\(b\)</span>ten Modell von <span class="math inline">\(B\)</span> berechnet sich wie folgt <span class="citation">(<a href="references.html#ref-rhys" role="doc-biblioref">Rhys 2020</a>)</span>:</p>
 <p><span class="math display">\[ w_i^b = \begin{cases}
 w_i^{b-1} \cdot e^{-\text{model weight}} \qquad \text{wenn korrekt klassifiziert} \\
 w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifiziert} \\
 \end{cases}\]</span></p>
 <p>Das <em>Modellgewicht</em> <span class="math inline">\(mw\)</span> berechnet sich dabei so <span class="citation">(<a href="references.html#ref-rhys" role="doc-biblioref">Rhys 2020</a>)</span>:</p>
 <p><span class="math display">\[mw = 0.5 \cdot log\left( \frac{1-p(\text{inkorrect})}{p(\text{korrekt})} \right) \propto \mathcal{L(p)} \]</span></p>
-<p>Das Modellgewicht ist ein Faktor, dass schlechtere Modelle bestraft.</p>
+<p>Das Modellgewicht ist ein Faktor, der schlechtere Modelle bestraft.</p>
 </div>
 <div id="xgboost" class="section level3" number="10.9.2">
 <h3>
@@ -440,12 +440,12 @@ Figure 10.6: Vorhersagegüte von Boosting und Random Forest
 <code class="sourceCode R"><span class="va">churn_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div id="gzkyjzrcif" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="dzpuvjiixc" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#gzkyjzrcif .gt_table {
+#dzpuvjiixc .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -470,7 +470,7 @@ Figure 10.6: Vorhersagegüte von Boosting und Random Forest
   border-left-color: #D3D3D3;
 }
 
-#gzkyjzrcif .gt_heading {
+#dzpuvjiixc .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -482,7 +482,7 @@ Figure 10.6: Vorhersagegüte von Boosting und Random Forest
   border-right-color: #D3D3D3;
 }
 
-#gzkyjzrcif .gt_title {
+#dzpuvjiixc .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -492,7 +492,7 @@ Figure 10.6: Vorhersagegüte von Boosting und Random Forest
   border-bottom-width: 0;
 }
 
-#gzkyjzrcif .gt_subtitle {
+#dzpuvjiixc .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -502,13 +502,13 @@ Figure 10.6: Vorhersagegüte von Boosting und Random Forest
   border-top-width: 0;
 }
 
-#gzkyjzrcif .gt_bottom_border {
+#dzpuvjiixc .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#gzkyjzrcif .gt_col_headings {
+#dzpuvjiixc .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -523,7 +523,7 @@ Figure 10.6: Vorhersagegüte von Boosting und Random Forest
   border-right-color: #D3D3D3;
 }
 
-#gzkyjzrcif .gt_col_heading {
+#dzpuvjiixc .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -543,7 +543,7 @@ Figure 10.6: Vorhersagegüte von Boosting und Random Forest
   overflow-x: hidden;
 }
 
-#gzkyjzrcif .gt_column_spanner_outer {
+#dzpuvjiixc .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -555,15 +555,15 @@ Figure 10.6: Vorhersagegüte von Boosting und Random Forest
   padding-right: 4px;
 }
 
-#gzkyjzrcif .gt_column_spanner_outer:first-child {
+#dzpuvjiixc .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#gzkyjzrcif .gt_column_spanner_outer:last-child {
+#dzpuvjiixc .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#gzkyjzrcif .gt_column_spanner {
+#dzpuvjiixc .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -575,7 +575,7 @@ Figure 10.6: Vorhersagegüte von Boosting und Random Forest
   width: 100%;
 }
 
-#gzkyjzrcif .gt_group_heading {
+#dzpuvjiixc .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -597,7 +597,7 @@ Figure 10.6: Vorhersagegüte von Boosting und Random Forest
   vertical-align: middle;
 }
 
-#gzkyjzrcif .gt_empty_group_heading {
+#dzpuvjiixc .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -612,15 +612,15 @@ Figure 10.6: Vorhersagegüte von Boosting und Random Forest
   vertical-align: middle;
 }
 
-#gzkyjzrcif .gt_from_md > :first-child {
+#dzpuvjiixc .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#gzkyjzrcif .gt_from_md > :last-child {
+#dzpuvjiixc .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#gzkyjzrcif .gt_row {
+#dzpuvjiixc .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -639,7 +639,7 @@ Figure 10.6: Vorhersagegüte von Boosting und Random Forest
   overflow-x: hidden;
 }
 
-#gzkyjzrcif .gt_stub {
+#dzpuvjiixc .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -651,7 +651,7 @@ Figure 10.6: Vorhersagegüte von Boosting und Random Forest
   padding-left: 12px;
 }
 
-#gzkyjzrcif .gt_summary_row {
+#dzpuvjiixc .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -661,7 +661,7 @@ Figure 10.6: Vorhersagegüte von Boosting und Random Forest
   padding-right: 5px;
 }
 
-#gzkyjzrcif .gt_first_summary_row {
+#dzpuvjiixc .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -671,7 +671,7 @@ Figure 10.6: Vorhersagegüte von Boosting und Random Forest
   border-top-color: #D3D3D3;
 }
 
-#gzkyjzrcif .gt_grand_summary_row {
+#dzpuvjiixc .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -681,7 +681,7 @@ Figure 10.6: Vorhersagegüte von Boosting und Random Forest
   padding-right: 5px;
 }
 
-#gzkyjzrcif .gt_first_grand_summary_row {
+#dzpuvjiixc .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -691,11 +691,11 @@ Figure 10.6: Vorhersagegüte von Boosting und Random Forest
   border-top-color: #D3D3D3;
 }
 
-#gzkyjzrcif .gt_striped {
+#dzpuvjiixc .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#gzkyjzrcif .gt_table_body {
+#dzpuvjiixc .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -704,7 +704,7 @@ Figure 10.6: Vorhersagegüte von Boosting und Random Forest
   border-bottom-color: #D3D3D3;
 }
 
-#gzkyjzrcif .gt_footnotes {
+#dzpuvjiixc .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -718,13 +718,13 @@ Figure 10.6: Vorhersagegüte von Boosting und Random Forest
   border-right-color: #D3D3D3;
 }
 
-#gzkyjzrcif .gt_footnote {
+#dzpuvjiixc .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#gzkyjzrcif .gt_sourcenotes {
+#dzpuvjiixc .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -738,41 +738,41 @@ Figure 10.6: Vorhersagegüte von Boosting und Random Forest
   border-right-color: #D3D3D3;
 }
 
-#gzkyjzrcif .gt_sourcenote {
+#dzpuvjiixc .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#gzkyjzrcif .gt_left {
+#dzpuvjiixc .gt_left {
   text-align: left;
 }
 
-#gzkyjzrcif .gt_center {
+#dzpuvjiixc .gt_center {
   text-align: center;
 }
 
-#gzkyjzrcif .gt_right {
+#dzpuvjiixc .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#gzkyjzrcif .gt_font_normal {
+#dzpuvjiixc .gt_font_normal {
   font-weight: normal;
 }
 
-#gzkyjzrcif .gt_font_bold {
+#dzpuvjiixc .gt_font_bold {
   font-weight: bold;
 }
 
-#gzkyjzrcif .gt_font_italic {
+#dzpuvjiixc .gt_font_italic {
   font-style: italic;
 }
 
-#gzkyjzrcif .gt_super {
+#dzpuvjiixc .gt_super {
   font-size: 65%;
 }
 
-#gzkyjzrcif .gt_footnote_marks {
+#dzpuvjiixc .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -995,7 +995,7 @@ Das nennt man auch <em>Feature Engineering</em>.</p>
  
  
 <span class="va">all_workflows</span> <span class="op">&lt;-</span> <span class="fu">workflow_set</span><span class="op">(</span><span class="va">preproc</span>, <span class="va">models</span><span class="op">)</span></code></pre></div>
-<p>Infos zu <code>workflow_set</code> bekommt man wie gewohnt mit <code>workflow_set</code>.</p>
+<p>Infos zu <code>workflow_set</code> bekommt man wie gewohnt mit <code>?workflow_set</code>.</p>
 <p>Im Standard werden alle Rezepte und Modelle miteinander kombiniert (<code>cross = TRUE</code>),
 also <code>preproc * models</code> Modelle gefittet.</p>
 </div>
@@ -1020,10 +1020,10 @@ also <code>preproc * models</code> Modelle gefittet.</p>
   <span class="va">tree_wf</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu">tune_grid</span><span class="op">(</span>
     resamples <span class="op">=</span> <span class="va">churn_folds</span>,
-    metrics <span class="op">=</span>  <span class="fu">metric_set</span><span class="op">(</span><span class="va">roc_auc</span>, <span class="va">sens</span>, <span class="va">spec</span><span class="op">)</span>
+    metrics <span class="op">=</span>  <span class="fu">metric_set</span><span class="op">(</span><span class="va">roc_auc</span>, <span class="va">sens</span>, <span class="fu">yardstick</span><span class="fu">::</span><span class="va"><a href="https://yardstick.tidymodels.org/reference/spec.html">spec</a></span><span class="op">)</span>
     <span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">toc</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## 15.259 sec elapsed</code></pre>
+<pre><code>## 17.916 sec elapsed</code></pre>
 <p>Im Standard werden 10 Modellkandidaten getuned.</p>
 <div class="sourceCode" id="cb388"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tree_fit</span></code></pre></div>
@@ -1037,27 +1037,50 @@ also <code>preproc * models</code> Modelle gefittet.</p>
 ## 3 &lt;split [2394/598]&gt; Fold3 &lt;tibble [30 × 7]&gt; &lt;tibble [0 × 3]&gt;
 ## 4 &lt;split [2394/598]&gt; Fold4 &lt;tibble [30 × 7]&gt; &lt;tibble [0 × 3]&gt;
 ## 5 &lt;split [2394/598]&gt; Fold5 &lt;tibble [30 × 7]&gt; &lt;tibble [0 × 3]&gt;</code></pre>
+<p>Schauen wir uns das Objekt etwas näher an:</p>
 <div class="sourceCode" id="cb390"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">tree_fit</span><span class="op">$</span><span class="va">.metrics</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></code></pre></div>
+<pre><code>## # A tibble: 30 × 7
+##    cost_complexity tree_depth min_n .metric .estimator .estimate .config        
+##              &lt;dbl&gt;      &lt;int&gt; &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;          
+##  1   0.00000000935          3    19 sens    binary         0.805 Preprocessor1_…
+##  2   0.00000000935          3    19 spec    binary         0.833 Preprocessor1_…
+##  3   0.00000000935          3    19 roc_auc binary         0.834 Preprocessor1_…
+##  4   0.0220                 6    31 sens    binary         0.735 Preprocessor1_…
+##  5   0.0220                 6    31 spec    binary         0.927 Preprocessor1_…
+##  6   0.0220                 6    31 roc_auc binary         0.873 Preprocessor1_…
+##  7   0.0000312              9    14 sens    binary         0.852 Preprocessor1_…
+##  8   0.0000312              9    14 spec    binary         0.892 Preprocessor1_…
+##  9   0.0000312              9    14 roc_auc binary         0.942 Preprocessor1_…
+## 10   0.000358              13    40 sens    binary         0.872 Preprocessor1_…
+## # … with 20 more rows</code></pre>
+<p>30 Zeilen: 3 Gütemetriken (Sens, Spec, ROC AUC) mit je 10 Werten (Submodellen),
+gibt 30 Koeffizienten.</p>
+<p>Für jeden der 5 Faltungen haben wir also 10 Submodelle.</p>
+<p>Welches Modell ist das beste?</p>
+<div class="sourceCode" id="cb392"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">show_best</span><span class="op">(</span><span class="va">tree_fit</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 5 × 9
 ##   cost_complexity tree_depth min_n .metric .estimator  mean     n std_err
 ##             &lt;dbl&gt;      &lt;int&gt; &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt;
-## 1        4.03e- 9         13    24 roc_auc binary     0.917     5 0.00403
-## 2        9.13e- 6         10    26 roc_auc binary     0.916     5 0.00362
-## 3        2.74e-10          7    33 roc_auc binary     0.914     5 0.00116
-## 4        1.09e- 3          6    19 roc_auc binary     0.912     5 0.00328
-## 5        2.12e- 3         11    12 roc_auc binary     0.909     5 0.00207
+## 1   0.00000000452          7    27 roc_auc binary     0.926     5 0.00505
+## 2   0.0000312              9    14 roc_auc binary     0.923     5 0.00673
+## 3   0.00000192            14    36 roc_auc binary     0.923     5 0.00645
+## 4   0.000358              13    40 roc_auc binary     0.921     5 0.00509
+## 5   0.00268               12     9 roc_auc binary     0.916     5 0.00437
 ## # … with 1 more variable: .config &lt;chr&gt;</code></pre>
-<div class="sourceCode" id="cb392"><pre class="downlit sourceCode r">
+<p>Aha, das sind die fünf besten Modelle, bzw. ihre Tuningparameter,
+ihre mittlere Güte zusammen mit dem Standardfehler.</p>
+<div class="sourceCode" id="cb394"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot</a></span><span class="op">(</span><span class="va">tree_fit</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="110-Ensemble-Lerner_files/figure-html/unnamed-chunk-9-1.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="110-Ensemble-Lerner_files/figure-html/unnamed-chunk-10-1.png" width="100%" style="display: block; margin: auto;"></div>
 </div>
 <div id="rf" class="section level4" number="10.10.6.2">
 <h4>
 <span class="header-section-number">10.10.6.2</span> RF<a class="anchor" aria-label="anchor" href="#rf"><i class="fas fa-link"></i></a>
 </h4>
 <p>Was für Tuningparameter hat den der Algorithmus bzw. seine Implementierung?</p>
-<div class="sourceCode" id="cb393"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb395"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">show_model_info</span><span class="op">(</span><span class="st">"rand_forest"</span><span class="op">)</span></code></pre></div>
 <pre><code>## Information for `rand_forest`
 ##  modes: unknown, classification, regression, censored regression 
@@ -1101,7 +1124,7 @@ also <code>preproc * models</code> Modelle gefittet.</p>
 kann man das (schon früher einmal berechnete) Ergebnisobjekt
 von der Festplatte lesen (sofern es existiert).
 Ansonsten berechnet man neu:</p>
-<div class="sourceCode" id="cb395"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb397"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/files.html">file.exists</a></span><span class="op">(</span><span class="st">"objects/rf_fit1.rds"</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
   <span class="va">rf_fit1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">read_rds</a></span><span class="op">(</span><span class="st">"objects/rf_fit1.rds"</span><span class="op">)</span>
 <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
@@ -1123,9 +1146,9 @@ Ansonsten berechnet man neu:</p>
 <p>So
 kann man das berechnete Objekt abspeichern auf Festplatte,
 um künftig Zeit zu sparen:</p>
-<div class="sourceCode" id="cb396"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb398"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">write_rds</a></span><span class="op">(</span><span class="va">rf_fit1</span>, file <span class="op">=</span> <span class="st">"objects/rf_fit1.rds"</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb397"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb399"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">rf_fit1</span></code></pre></div>
 <pre><code>## # Tuning results
 ## # 5-fold cross-validation 
@@ -1137,7 +1160,7 @@ um künftig Zeit zu sparen:</p>
 ## 3 &lt;split [2394/598]&gt; Fold3 &lt;tibble [30 × 7]&gt; &lt;tibble [0 × 3]&gt;
 ## 4 &lt;split [2394/598]&gt; Fold4 &lt;tibble [30 × 7]&gt; &lt;tibble [0 × 3]&gt;
 ## 5 &lt;split [2394/598]&gt; Fold5 &lt;tibble [30 × 7]&gt; &lt;tibble [0 × 3]&gt;</code></pre>
-<div class="sourceCode" id="cb399"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb401"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">show_best</span><span class="op">(</span><span class="va">rf_fit1</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 5 × 9
 ##    mtry trees min_n .metric .estimator  mean     n std_err .config              
@@ -1152,7 +1175,7 @@ um künftig Zeit zu sparen:</p>
 <h4>
 <span class="header-section-number">10.10.6.3</span> XGBoost<a class="anchor" aria-label="anchor" href="#xgboost-1"><i class="fas fa-link"></i></a>
 </h4>
-<div class="sourceCode" id="cb401"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb403"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">boost_wf1</span> <span class="op">&lt;-</span>
   <span class="fu">workflow</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu">add_model</span><span class="op">(</span><span class="va">boost_model</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
@@ -1168,7 +1191,7 @@ um künftig Zeit zu sparen:</p>
     <span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">toc</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p>Wieder auf Festplatte speichern:</p>
-<div class="sourceCode" id="cb402"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb404"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">write_rds</a></span><span class="op">(</span><span class="va">boost_fit1</span>, file <span class="op">=</span> <span class="st">"objects/boost_fit1.rds"</span><span class="op">)</span></code></pre></div>
 <p>Und so weiter.</p>
 </div>
@@ -1177,7 +1200,7 @@ um künftig Zeit zu sparen:</p>
 <h3>
 <span class="header-section-number">10.10.7</span> Workflow-Set tunen<a class="anchor" aria-label="anchor" href="#workflow-set-tunen"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb403"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb405"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/files.html">file.exists</a></span><span class="op">(</span><span class="st">"objects/churn_model_set.rds"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
   <span class="va">churn_model_set</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">read_rds</a></span><span class="op">(</span><span class="st">"objects/churn_model_set.rds"</span><span class="op">)</span>
 <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
@@ -1194,10 +1217,10 @@ um künftig Zeit zu sparen:</p>
 <span class="op">}</span></code></pre></div>
 <p>Da die Berechnung schon etwas Zeit braucht,
 macht es Sinn, das Modell (bzw. das Ergebnisobjekt) auf Festplatte zu speichern:</p>
-<div class="sourceCode" id="cb404"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb406"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">write_rds</a></span><span class="op">(</span><span class="va">churn_model_set</span>, file <span class="op">=</span> <span class="st">"objects/churn_model_set.rds"</span><span class="op">)</span></code></pre></div>
 <p>Entsprechend kann man das Modellobjekt wieder importieren, wenn einmal abgespeichert:</p>
-<div class="sourceCode" id="cb405"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb407"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">churn_model_set</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">read_rds</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"objects/churn_model_set.rds"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="ergebnisse-im-train-sest" class="section level3" number="10.10.8">
@@ -1205,7 +1228,7 @@ macht es Sinn, das Modell (bzw. das Ergebnisobjekt) auf Festplatte zu speichern:
 <span class="header-section-number">10.10.8</span> Ergebnisse im Train-Sest<a class="anchor" aria-label="anchor" href="#ergebnisse-im-train-sest"><i class="fas fa-link"></i></a>
 </h3>
 <p>Hier ist die Rangfolge der Modelle, geordnet nach mittlerem ROC AUC:</p>
-<div class="sourceCode" id="cb406"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb408"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">rank_results</span><span class="op">(</span><span class="va">churn_model_set</span>, rank_metric <span class="op">=</span> <span class="st">"roc_auc"</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 122 × 9
 ##    wflow_id    .config      .metric  mean std_err     n preprocessor model  rank
@@ -1221,21 +1244,21 @@ macht es Sinn, das Modell (bzw. das Ergebnisobjekt) auf Festplatte zu speichern:
 ##  9 rec1_boost1 Preprocesso… roc_auc 0.960 0.00120     5 recipe       boos…     9
 ## 10 rec1_rf1    Preprocesso… roc_auc 0.960 0.00278     5 recipe       rand…    10
 ## # … with 112 more rows</code></pre>
-<div class="sourceCode" id="cb408"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb410"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot</a></span><span class="op">(</span><span class="va">churn_model_set</span>, metric <span class="op">=</span> <span class="st">"roc_auc"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="110-Ensemble-Lerner_files/figure-html/unnamed-chunk-18-1.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="110-Ensemble-Lerner_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;"></div>
 </div>
 <div id="bestes-modell" class="section level3" number="10.10.9">
 <h3>
 <span class="header-section-number">10.10.9</span> Bestes Modell<a class="anchor" aria-label="anchor" href="#bestes-modell"><i class="fas fa-link"></i></a>
 </h3>
 <p>Und hier nur der beste Kandidat pro Algorithmus:</p>
-<div class="sourceCode" id="cb409"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb411"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot</a></span><span class="op">(</span><span class="va">churn_model_set</span>, metric <span class="op">=</span> <span class="st">"roc_auc"</span>, select_best <span class="op">=</span> <span class="st">"TRUE"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">mean</span> <span class="op">-</span> <span class="fl">.01</span>, label <span class="op">=</span> <span class="va">wflow_id</span><span class="op">)</span>, angle <span class="op">=</span> <span class="fl">90</span>, hjust <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">lims</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.85</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="110-Ensemble-Lerner_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="110-Ensemble-Lerner_files/figure-html/unnamed-chunk-20-1.png" width="100%" style="display: block; margin: auto;"></div>
 <p>Boosting hat - knapp - am besten abgeschnitten.
 Allerdings sind Random Forest und die schlichte, einfache logistische Regression auch fast genau so gut.
 Das wäre ein Grund für das einfachste Modell, das GLM, zu votieren.
@@ -1244,13 +1267,13 @@ Alternativ könnte man sich für das Boosting-Modell aussprechen.</p>
 <p>Man kann sich das beste Submodell auch von Tidymodels bestimmen lassen.
 Das scheint aber (noch) nicht für ein Workflow-Set zu funktionieren,
 sondern nur für das Ergebnisobjekt von <code>tune_grid</code>.</p>
-<div class="sourceCode" id="cb410"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb412"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">select_best</span><span class="op">(</span><span class="va">churn_model_set</span>, metric <span class="op">=</span> <span class="st">"roc_auc"</span><span class="op">)</span></code></pre></div>
 <pre><code>## Error in `is_metric_maximize()`:
 ## ! Please check the value of `metric`.</code></pre>
 <p><code>rf_fit1</code> haben wir mit <code>tune_grid()</code> berechnet;
 mit diesem Modell kann <code>select_best()</code> arbeiten:</p>
-<div class="sourceCode" id="cb412"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb414"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">select_best</span><span class="op">(</span><span class="va">rf_fit1</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 4
 ##    mtry trees min_n .config              
@@ -1258,7 +1281,7 @@ mit diesem Modell kann <code>select_best()</code> arbeiten:</p>
 ## 1     6  1686    18 Preprocessor1_Model03</code></pre>
 <p>Aber wir können uns händisch behelfen.</p>
 <p>Schauen wir uns mal die Metriken (Vorhersagegüte) an:</p>
-<div class="sourceCode" id="cb414"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb416"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">churn_model_set</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu">collect_metrics</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="op">-</span><span class="va">mean</span><span class="op">)</span></code></pre></div>
@@ -1277,7 +1300,7 @@ mit diesem Modell kann <code>select_best()</code> arbeiten:</p>
 ## 10 rec1_rf1    Preprocesso… recipe  rand… roc_auc binary     0.960     5 0.00278
 ## # … with 112 more rows</code></pre>
 <p><code>rec1_boost1</code> scheint das beste Modell zu sein.</p>
-<div class="sourceCode" id="cb416"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb418"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">best_model_params</span> <span class="op">&lt;-</span>
 <span class="fu">extract_workflow_set_result</span><span class="op">(</span><span class="va">churn_model_set</span>, <span class="st">"rec1_boost1"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu">select_best</span><span class="op">(</span><span class="op">)</span>
@@ -1300,7 +1323,7 @@ Finalisierte Form heißt:</p>
 <li>Schritt 1: Nimm den passenden Workflow, hier <code>rec1</code> und <code>boost1</code>; das hatte uns oben <code>rank_results()</code> verraten.</li>
 <li>Schritt 2: Update (Finalisiere) ihn mit den besten Tuningparameter-Werten</li>
 </ul>
-<div class="sourceCode" id="cb418"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb420"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Schritt 1:</span>
 <span class="va">best_wf</span> <span class="op">&lt;-</span> 
 <span class="va">all_workflows</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
@@ -1331,7 +1354,7 @@ Finalisierte Form heißt:</p>
 ## Computational engine: xgboost</code></pre>
 <p>Jetzt finalisieren wir den Workflow,
 d.h. wir setzen die Parameterwerte des besten Submodells ein:</p>
-<div class="sourceCode" id="cb420"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb422"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Schritt 2:</span>
 <span class="va">best_wf_finalized</span> <span class="op">&lt;-</span> 
   <span class="va">best_wf</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
@@ -1365,7 +1388,7 @@ d.h. wir setzen die Parameterwerte des besten Submodells ein:</p>
 <h3>
 <span class="header-section-number">10.10.11</span> Last Fit<a class="anchor" aria-label="anchor" href="#last-fit"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb422"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb424"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fit_final</span> <span class="op">&lt;-</span>
   <span class="va">best_wf_finalized</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu">last_fit</span><span class="op">(</span><span class="va">churn_split</span><span class="op">)</span>
@@ -1377,13 +1400,13 @@ d.h. wir setzen die Parameterwerte des besten Submodells ein:</p>
 ##   splits             id               .metrics .notes   .predictions .workflow 
 ##   &lt;list&gt;             &lt;chr&gt;            &lt;list&gt;   &lt;list&gt;   &lt;list&gt;       &lt;list&gt;    
 ## 1 &lt;split [2992/998]&gt; train/test split &lt;tibble&gt; &lt;tibble&gt; &lt;tibble&gt;     &lt;workflow&gt;</code></pre>
-<div class="sourceCode" id="cb424"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb426"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">collect_metrics</span><span class="op">(</span><span class="va">fit_final</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 4
 ##   .metric  .estimator .estimate .config             
 ##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;               
-## 1 accuracy binary         0.903 Preprocessor1_Model1
-## 2 roc_auc  binary         0.968 Preprocessor1_Model1</code></pre>
+## 1 accuracy binary         0.887 Preprocessor1_Model1
+## 2 roc_auc  binary         0.956 Preprocessor1_Model1</code></pre>
 </div>
 <div id="variablenrelevanz-1" class="section level3" number="10.10.12">
 <h3>
@@ -1395,13 +1418,13 @@ das eigentliche Ergebnisobjekt herausziehen, von der R-Funktion, die die eigentl
 Berechnung durchführt,
 das wäre <code><a href="https://rdrr.io/r/stats/glm.html">glm()</a></code> bei einer logistischen Regression oder <code><a href="https://rdrr.io/pkg/xgboost/man/xgb.train.html">xgboost::xgb.train()</a></code> bei
 XGBoost:</p>
-<div class="sourceCode" id="cb426"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb428"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fit_final</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu">extract_fit_parsnip</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code>## parsnip model object
 ## 
 ## ##### xgb.Booster
-## raw: 112.3 Kb 
+## raw: 110.3 Kb 
 ## call:
 ##   xgboost::xgb.train(params = list(eta = 0.3, max_depth = 6, gamma = 0, 
 ##     colsample_bytree = 1, colsample_bynode = 0.285714285714286, 
@@ -1419,17 +1442,17 @@ XGBoost:</p>
 ## nfeatures : 21 
 ## evaluation_log:
 ##     iter training_logloss
-##        1         0.577735
-##        2         0.498242
+##        1         0.575717
+##        2         0.499612
 ## ---                      
-##       79         0.196302
-##       80         0.196112</code></pre>
+##       79         0.183326
+##       80         0.183029</code></pre>
 <p><em>Dieses</em> Objekt übergeben wir dann an <a href="https://github.com/koalaverse/vip/">vip</a>:</p>
-<div class="sourceCode" id="cb428"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb430"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fit_final</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu">extract_fit_parsnip</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://rdrr.io/pkg/vip/man/vip.html">vip</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="110-Ensemble-Lerner_files/figure-html/unnamed-chunk-29-1.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="110-Ensemble-Lerner_files/figure-html/unnamed-chunk-30-1.png" width="100%" style="display: block; margin: auto;"></div>
 </div>
 <div id="roc-curve" class="section level3" number="10.10.13">
 <h3>
@@ -1438,32 +1461,32 @@ XGBoost:</p>
 <p>Eine ROC-Kurve berechnet Sensitivität und Spezifität aus den Vorhersagen,
 bzw. aus dem Vergleich von Vorhersagen und wahrem Wert (d.h. der beobachtete Wert).</p>
 <p>Ziehen wir also zuerst die Vorhersagen heraus:</p>
-<div class="sourceCode" id="cb429"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb431"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fit_final</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu">collect_predictions</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 998 × 7
 ##    id              .pred_yes .pred_no  .row .pred_class canceled_service .config
 ##    &lt;chr&gt;               &lt;dbl&gt;    &lt;dbl&gt; &lt;int&gt; &lt;fct&gt;       &lt;fct&gt;            &lt;chr&gt;  
-##  1 train/test spl…   0.00321  0.997       1 no          yes              Prepro…
-##  2 train/test spl…   0.961    0.0393     15 yes         yes              Prepro…
-##  3 train/test spl…   0.983    0.0168     18 yes         yes              Prepro…
-##  4 train/test spl…   0.989    0.0114     24 yes         yes              Prepro…
-##  5 train/test spl…   0.606    0.394      29 yes         yes              Prepro…
-##  6 train/test spl…   0.894    0.106      32 yes         yes              Prepro…
-##  7 train/test spl…   0.936    0.0640     34 yes         yes              Prepro…
-##  8 train/test spl…   0.986    0.0143     45 yes         yes              Prepro…
-##  9 train/test spl…   0.998    0.00165    47 yes         yes              Prepro…
-## 10 train/test spl…   0.994    0.00630    49 yes         yes              Prepro…
+##  1 train/test spl…     0.997 0.00331      3 yes         yes              Prepro…
+##  2 train/test spl…     0.998 0.00205      5 yes         yes              Prepro…
+##  3 train/test spl…     0.820 0.180       12 yes         yes              Prepro…
+##  4 train/test spl…     0.997 0.00340     16 yes         yes              Prepro…
+##  5 train/test spl…     0.995 0.00490     23 yes         yes              Prepro…
+##  6 train/test spl…     0.999 0.000777    26 yes         yes              Prepro…
+##  7 train/test spl…     0.839 0.161       32 yes         yes              Prepro…
+##  8 train/test spl…     0.873 0.127       34 yes         yes              Prepro…
+##  9 train/test spl…     0.867 0.133       38 yes         yes              Prepro…
+## 10 train/test spl…     0.999 0.00129     47 yes         yes              Prepro…
 ## # … with 988 more rows</code></pre>
 <p>Praktischerweise werden die “wahren Werte” (also die beobachtaten Werte), <code>canceled_service</code>,
 ausch angegeben.</p>
 <p>Dann berechnen wir die <code>roc_curve</code> und <code>autoplot</code>ten sie.</p>
-<div class="sourceCode" id="cb431"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb433"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fit_final</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu">collect_predictions</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu">roc_curve</span><span class="op">(</span><span class="va">canceled_service</span>, <span class="va">.pred_yes</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="110-Ensemble-Lerner_files/figure-html/unnamed-chunk-31-1.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="110-Ensemble-Lerner_files/figure-html/unnamed-chunk-32-1.png" width="100%" style="display: block; margin: auto;"></div>
 <!-- ## Aufgaben und Vertiefung -->
 </div>
 </div>
@@ -1552,7 +1575,7 @@ ausch angegeben.</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-05-12 14:35:46.</p>
+    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-05-12 17:19:31.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

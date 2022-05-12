@@ -194,8 +194,8 @@ Der Bagging-Algorithmus ist in Abbildung \@ref(fig:bag) dargestellt.
 <div class="figure" style="text-align: center">
 
 ```{=html}
-<div id="htmlwidget-f6f04303507d9fabcfcc" style="width:100%;height:350px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-f6f04303507d9fabcfcc">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n  [<database> Datensatz] ->zmz [Baum 1]\n[<database> Datensatz] ->zmz [Baum 2]\n[<database> Datensatz] ->zmz [Baum ...]\n[<database> Datensatz] ->zmz [Baum B]\n[Baum 1] -> [Modus als Vorhersagewert]\n[Baum 2] -> [Modus als Vorhersagewert]\n[Baum ...] -> [Modus als Vorhersagewert]\n[Baum B] -> [Modus als Vorhersagewert]\n  ","svg":false},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-91dae1d194ba8d8b4939" style="width:100%;height:350px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-91dae1d194ba8d8b4939">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n  [<database> Datensatz] ->zmz [Baum 1]\n[<database> Datensatz] ->zmz [Baum 2]\n[<database> Datensatz] ->zmz [Baum ...]\n[<database> Datensatz] ->zmz [Baum B]\n[Baum 1] -> [Modus als Vorhersagewert]\n[Baum 2] -> [Modus als Vorhersagewert]\n[Baum ...] -> [Modus als Vorhersagewert]\n[Baum B] -> [Modus als Vorhersagewert]\n  ","svg":false},"evals":[],"jsHooks":[]}</script>
 ```
 
 <p class="caption">(\#fig:bag)Bagging schematisch illustriert</p>
@@ -268,8 +268,8 @@ Der Random-Forest-Algorithmus ist in Abb. \@ref(fig:rf1) illustriert.
 <div class="figure" style="text-align: center">
 
 ```{=html}
-<div id="htmlwidget-87581dcb60ca2f21a9ef" style="width:100%;height:500px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-87581dcb60ca2f21a9ef">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n#direction:down\n                 [<database> Datensatz] ->zmz [Baum1\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n\n[<database> Datensatz] ->zmz [Baum2\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[<database> Datensatz] ->zmz [Baum ...\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[<database> Datensatz] ->zmz [Baum B\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[Baum1\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n] -> [Modus als Vorhersagewert]\n[Baum2\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n] -> [Modus als Vorhersagewert]\n[Baum ...] -> [Modus als Vorhersagewert]\n[Baum B] -> [Modus als Vorhersagewert]\n                 ","svg":false},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-1ca31b4b60ee9126b460" style="width:100%;height:700px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1ca31b4b60ee9126b460">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n#direction:down\n                 [<database> Datensatz] ->zmz [Baum1\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n\n[<database> Datensatz] ->zmz [Baum2\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[<database> Datensatz] ->zmz [Baum ...\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[<database> Datensatz] ->zmz [Baum B\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[Baum1\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n] -> [Modus als Vorhersagewert]\n[Baum2\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n] -> [Modus als Vorhersagewert]\n[Baum ...] -> [Modus als Vorhersagewert]\n[Baum B] -> [Modus als Vorhersagewert]\n                 ","svg":false},"evals":[],"jsHooks":[]}</script>
 ```
 
 <p class="caption">(\#fig:rf1)Zufallswälder durch Ziehen mit Zurücklegen (zmz) und Ziehen ohne Zurücklegen (ZoZ)</p>
@@ -357,7 +357,7 @@ Klingt schon wieder (fast) nach Too-Good-to-be-True!
 
 
 
-Das Gewicht $w_i^b$ des $b$ten Falls im $b$ten Modell von $B$ berechnet sich wie folgt [@rhys]:
+Das Gewicht $w_i^b$ des $i$ten Falls im $b$ten Modell von $B$ berechnet sich wie folgt [@rhys]:
 
 $$ w_i^b = \begin{cases}
 w_i^{b-1} \cdot e^{-\text{model weight}} \qquad \text{wenn korrekt klassifiziert} \\
@@ -371,7 +371,7 @@ Das *Modellgewicht* $mw$ berechnet sich dabei so [@rhys]:
 $$mw = 0.5 \cdot log\left( \frac{1-p(\text{inkorrect})}{p(\text{korrekt})} \right) \propto \mathcal{L(p)} $$
 
 
-Das Modellgewicht ist ein Faktor, dass schlechtere Modelle bestraft.
+Das Modellgewicht ist ein Faktor, der schlechtere Modelle bestraft.
 
 
 
@@ -426,12 +426,12 @@ churn_df %>%
 ```
 
 ```{=html}
-<div id="gzkyjzrcif" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="dzpuvjiixc" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#gzkyjzrcif .gt_table {
+#dzpuvjiixc .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -456,7 +456,7 @@ churn_df %>%
   border-left-color: #D3D3D3;
 }
 
-#gzkyjzrcif .gt_heading {
+#dzpuvjiixc .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -468,7 +468,7 @@ churn_df %>%
   border-right-color: #D3D3D3;
 }
 
-#gzkyjzrcif .gt_title {
+#dzpuvjiixc .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -478,7 +478,7 @@ churn_df %>%
   border-bottom-width: 0;
 }
 
-#gzkyjzrcif .gt_subtitle {
+#dzpuvjiixc .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -488,13 +488,13 @@ churn_df %>%
   border-top-width: 0;
 }
 
-#gzkyjzrcif .gt_bottom_border {
+#dzpuvjiixc .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#gzkyjzrcif .gt_col_headings {
+#dzpuvjiixc .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -509,7 +509,7 @@ churn_df %>%
   border-right-color: #D3D3D3;
 }
 
-#gzkyjzrcif .gt_col_heading {
+#dzpuvjiixc .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -529,7 +529,7 @@ churn_df %>%
   overflow-x: hidden;
 }
 
-#gzkyjzrcif .gt_column_spanner_outer {
+#dzpuvjiixc .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -541,15 +541,15 @@ churn_df %>%
   padding-right: 4px;
 }
 
-#gzkyjzrcif .gt_column_spanner_outer:first-child {
+#dzpuvjiixc .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#gzkyjzrcif .gt_column_spanner_outer:last-child {
+#dzpuvjiixc .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#gzkyjzrcif .gt_column_spanner {
+#dzpuvjiixc .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -561,7 +561,7 @@ churn_df %>%
   width: 100%;
 }
 
-#gzkyjzrcif .gt_group_heading {
+#dzpuvjiixc .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -583,7 +583,7 @@ churn_df %>%
   vertical-align: middle;
 }
 
-#gzkyjzrcif .gt_empty_group_heading {
+#dzpuvjiixc .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -598,15 +598,15 @@ churn_df %>%
   vertical-align: middle;
 }
 
-#gzkyjzrcif .gt_from_md > :first-child {
+#dzpuvjiixc .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#gzkyjzrcif .gt_from_md > :last-child {
+#dzpuvjiixc .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#gzkyjzrcif .gt_row {
+#dzpuvjiixc .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -625,7 +625,7 @@ churn_df %>%
   overflow-x: hidden;
 }
 
-#gzkyjzrcif .gt_stub {
+#dzpuvjiixc .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -637,7 +637,7 @@ churn_df %>%
   padding-left: 12px;
 }
 
-#gzkyjzrcif .gt_summary_row {
+#dzpuvjiixc .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -647,7 +647,7 @@ churn_df %>%
   padding-right: 5px;
 }
 
-#gzkyjzrcif .gt_first_summary_row {
+#dzpuvjiixc .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -657,7 +657,7 @@ churn_df %>%
   border-top-color: #D3D3D3;
 }
 
-#gzkyjzrcif .gt_grand_summary_row {
+#dzpuvjiixc .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -667,7 +667,7 @@ churn_df %>%
   padding-right: 5px;
 }
 
-#gzkyjzrcif .gt_first_grand_summary_row {
+#dzpuvjiixc .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -677,11 +677,11 @@ churn_df %>%
   border-top-color: #D3D3D3;
 }
 
-#gzkyjzrcif .gt_striped {
+#dzpuvjiixc .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#gzkyjzrcif .gt_table_body {
+#dzpuvjiixc .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -690,7 +690,7 @@ churn_df %>%
   border-bottom-color: #D3D3D3;
 }
 
-#gzkyjzrcif .gt_footnotes {
+#dzpuvjiixc .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -704,13 +704,13 @@ churn_df %>%
   border-right-color: #D3D3D3;
 }
 
-#gzkyjzrcif .gt_footnote {
+#dzpuvjiixc .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#gzkyjzrcif .gt_sourcenotes {
+#dzpuvjiixc .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -724,41 +724,41 @@ churn_df %>%
   border-right-color: #D3D3D3;
 }
 
-#gzkyjzrcif .gt_sourcenote {
+#dzpuvjiixc .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#gzkyjzrcif .gt_left {
+#dzpuvjiixc .gt_left {
   text-align: left;
 }
 
-#gzkyjzrcif .gt_center {
+#dzpuvjiixc .gt_center {
   text-align: center;
 }
 
-#gzkyjzrcif .gt_right {
+#dzpuvjiixc .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#gzkyjzrcif .gt_font_normal {
+#dzpuvjiixc .gt_font_normal {
   font-weight: normal;
 }
 
-#gzkyjzrcif .gt_font_bold {
+#dzpuvjiixc .gt_font_bold {
   font-weight: bold;
 }
 
-#gzkyjzrcif .gt_font_italic {
+#dzpuvjiixc .gt_font_italic {
   font-style: italic;
 }
 
-#gzkyjzrcif .gt_super {
+#dzpuvjiixc .gt_super {
   font-size: 65%;
 }
 
-#gzkyjzrcif .gt_footnote_marks {
+#dzpuvjiixc .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -994,7 +994,7 @@ models <- list(tree1 = tree_model, rf1 = rf_model, boost1 = boost_model, glm1 = 
 all_workflows <- workflow_set(preproc, models)
 ```
 
-Infos zu `workflow_set` bekommt man wie gewohnt mit `workflow_set`.
+Infos zu `workflow_set` bekommt man wie gewohnt mit `?workflow_set`.
 
 Im Standard werden alle Rezepte und Modelle miteinander kombiniert (`cross = TRUE`),
 also `preproc * models` Modelle gefittet.
@@ -1023,13 +1023,13 @@ tree_fit <-
   tree_wf %>% 
   tune_grid(
     resamples = churn_folds,
-    metrics =  metric_set(roc_auc, sens, spec)
+    metrics =  metric_set(roc_auc, sens, yardstick::spec)
     )
 toc()
 ```
 
 ```
-## 15.259 sec elapsed
+## 17.916 sec elapsed
 ```
 
 Im Standard werden 10 Modellkandidaten getuned.
@@ -1053,6 +1053,37 @@ tree_fit
 ## 5 <split [2394/598]> Fold5 <tibble [30 × 7]> <tibble [0 × 3]>
 ```
 
+Schauen wir uns das Objekt etwas näher an:
+
+
+```r
+tree_fit$.metrics[[1]]
+```
+
+```
+## # A tibble: 30 × 7
+##    cost_complexity tree_depth min_n .metric .estimator .estimate .config        
+##              <dbl>      <int> <int> <chr>   <chr>          <dbl> <chr>          
+##  1   0.00000000935          3    19 sens    binary         0.805 Preprocessor1_…
+##  2   0.00000000935          3    19 spec    binary         0.833 Preprocessor1_…
+##  3   0.00000000935          3    19 roc_auc binary         0.834 Preprocessor1_…
+##  4   0.0220                 6    31 sens    binary         0.735 Preprocessor1_…
+##  5   0.0220                 6    31 spec    binary         0.927 Preprocessor1_…
+##  6   0.0220                 6    31 roc_auc binary         0.873 Preprocessor1_…
+##  7   0.0000312              9    14 sens    binary         0.852 Preprocessor1_…
+##  8   0.0000312              9    14 spec    binary         0.892 Preprocessor1_…
+##  9   0.0000312              9    14 roc_auc binary         0.942 Preprocessor1_…
+## 10   0.000358              13    40 sens    binary         0.872 Preprocessor1_…
+## # … with 20 more rows
+```
+
+30 Zeilen: 3 Gütemetriken (Sens, Spec, ROC AUC) mit je 10 Werten (Submodellen),
+gibt 30 Koeffizienten.
+
+Für jeden der 5 Faltungen haben wir also 10 Submodelle.
+
+
+Welches Modell ist das beste?
 
 
 ```r
@@ -1063,13 +1094,16 @@ show_best(tree_fit)
 ## # A tibble: 5 × 9
 ##   cost_complexity tree_depth min_n .metric .estimator  mean     n std_err
 ##             <dbl>      <int> <int> <chr>   <chr>      <dbl> <int>   <dbl>
-## 1        4.03e- 9         13    24 roc_auc binary     0.917     5 0.00403
-## 2        9.13e- 6         10    26 roc_auc binary     0.916     5 0.00362
-## 3        2.74e-10          7    33 roc_auc binary     0.914     5 0.00116
-## 4        1.09e- 3          6    19 roc_auc binary     0.912     5 0.00328
-## 5        2.12e- 3         11    12 roc_auc binary     0.909     5 0.00207
+## 1   0.00000000452          7    27 roc_auc binary     0.926     5 0.00505
+## 2   0.0000312              9    14 roc_auc binary     0.923     5 0.00673
+## 3   0.00000192            14    36 roc_auc binary     0.923     5 0.00645
+## 4   0.000358              13    40 roc_auc binary     0.921     5 0.00509
+## 5   0.00268               12     9 roc_auc binary     0.916     5 0.00437
 ## # … with 1 more variable: .config <chr>
 ```
+
+Aha, das sind die fünf besten Modelle, bzw. ihre Tuningparameter,
+ihre mittlere Güte zusammen mit dem Standardfehler.
 
 
 
@@ -1077,7 +1111,7 @@ show_best(tree_fit)
 autoplot(tree_fit)
 ```
 
-<img src="110-Ensemble-Lerner_files/figure-html/unnamed-chunk-9-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="110-Ensemble-Lerner_files/figure-html/unnamed-chunk-10-1.png" width="100%" style="display: block; margin: auto;" />
 
 
 #### RF
@@ -1313,7 +1347,7 @@ rank_results(churn_model_set, rank_metric = "roc_auc")
 autoplot(churn_model_set, metric = "roc_auc")
 ```
 
-<img src="110-Ensemble-Lerner_files/figure-html/unnamed-chunk-18-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="110-Ensemble-Lerner_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;" />
 
 
 
@@ -1330,7 +1364,7 @@ autoplot(churn_model_set, metric = "roc_auc", select_best = "TRUE") +
   lims(y = c(0.85, 1))
 ```
 
-<img src="110-Ensemble-Lerner_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="110-Ensemble-Lerner_files/figure-html/unnamed-chunk-20-1.png" width="100%" style="display: block; margin: auto;" />
 
 
 Boosting hat  - knapp - am besten abgeschnitten. 
@@ -1550,8 +1584,8 @@ collect_metrics(fit_final)
 ## # A tibble: 2 × 4
 ##   .metric  .estimator .estimate .config             
 ##   <chr>    <chr>          <dbl> <chr>               
-## 1 accuracy binary         0.903 Preprocessor1_Model1
-## 2 roc_auc  binary         0.968 Preprocessor1_Model1
+## 1 accuracy binary         0.887 Preprocessor1_Model1
+## 2 roc_auc  binary         0.956 Preprocessor1_Model1
 ```
 
 
@@ -1576,7 +1610,7 @@ fit_final %>%
 ## parsnip model object
 ## 
 ## ##### xgb.Booster
-## raw: 112.3 Kb 
+## raw: 110.3 Kb 
 ## call:
 ##   xgboost::xgb.train(params = list(eta = 0.3, max_depth = 6, gamma = 0, 
 ##     colsample_bytree = 1, colsample_bynode = 0.285714285714286, 
@@ -1594,11 +1628,11 @@ fit_final %>%
 ## nfeatures : 21 
 ## evaluation_log:
 ##     iter training_logloss
-##        1         0.577735
-##        2         0.498242
+##        1         0.575717
+##        2         0.499612
 ## ---                      
-##       79         0.196302
-##       80         0.196112
+##       79         0.183326
+##       80         0.183029
 ```
 
 *Dieses* Objekt übergeben wir dann an `{vip}`:
@@ -1610,7 +1644,7 @@ fit_final %>%
   vip()
 ```
 
-<img src="110-Ensemble-Lerner_files/figure-html/unnamed-chunk-29-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="110-Ensemble-Lerner_files/figure-html/unnamed-chunk-30-1.png" width="100%" style="display: block; margin: auto;" />
 
 
 
@@ -1634,16 +1668,16 @@ fit_final %>%
 ## # A tibble: 998 × 7
 ##    id              .pred_yes .pred_no  .row .pred_class canceled_service .config
 ##    <chr>               <dbl>    <dbl> <int> <fct>       <fct>            <chr>  
-##  1 train/test spl…   0.00321  0.997       1 no          yes              Prepro…
-##  2 train/test spl…   0.961    0.0393     15 yes         yes              Prepro…
-##  3 train/test spl…   0.983    0.0168     18 yes         yes              Prepro…
-##  4 train/test spl…   0.989    0.0114     24 yes         yes              Prepro…
-##  5 train/test spl…   0.606    0.394      29 yes         yes              Prepro…
-##  6 train/test spl…   0.894    0.106      32 yes         yes              Prepro…
-##  7 train/test spl…   0.936    0.0640     34 yes         yes              Prepro…
-##  8 train/test spl…   0.986    0.0143     45 yes         yes              Prepro…
-##  9 train/test spl…   0.998    0.00165    47 yes         yes              Prepro…
-## 10 train/test spl…   0.994    0.00630    49 yes         yes              Prepro…
+##  1 train/test spl…     0.997 0.00331      3 yes         yes              Prepro…
+##  2 train/test spl…     0.998 0.00205      5 yes         yes              Prepro…
+##  3 train/test spl…     0.820 0.180       12 yes         yes              Prepro…
+##  4 train/test spl…     0.997 0.00340     16 yes         yes              Prepro…
+##  5 train/test spl…     0.995 0.00490     23 yes         yes              Prepro…
+##  6 train/test spl…     0.999 0.000777    26 yes         yes              Prepro…
+##  7 train/test spl…     0.839 0.161       32 yes         yes              Prepro…
+##  8 train/test spl…     0.873 0.127       34 yes         yes              Prepro…
+##  9 train/test spl…     0.867 0.133       38 yes         yes              Prepro…
+## 10 train/test spl…     0.999 0.00129     47 yes         yes              Prepro…
 ## # … with 988 more rows
 ```
 
@@ -1660,7 +1694,7 @@ fit_final %>%
   autoplot()
 ```
 
-<img src="110-Ensemble-Lerner_files/figure-html/unnamed-chunk-31-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="110-Ensemble-Lerner_files/figure-html/unnamed-chunk-32-1.png" width="100%" style="display: block; margin: auto;" />
 
 
 

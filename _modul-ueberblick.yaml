@@ -26,6 +26,10 @@ thema1:
   Aufgaben:
     - "[Machen Sie sich mit 'Kaggle' vertraut](https://www.kaggle.com/)"
     - "[Bearbeiten Sie die Fallstudie 'TitaRnic' auf Kaggle](https://www.kaggle.com/code/headsortails/tidy-titarnic/report)"
+    - "[Machen Sie sich mit dieser einfachen Fallstudie zur linearen Regression vertraut: The Movie Data Base Revenue (Kaggle)](https://www.kaggle.com/code/ssauer/notebook9188bfa616)"
+  Videos:
+    - "[Prognose-Wettbewerbe bei Kaggle am Beispiel von *The Movie Data Base Revenue*](https://youtu.be/vR9l-k50I1M)"
+
 
 thema2:
   Titel: "R, zweiter Blick"
