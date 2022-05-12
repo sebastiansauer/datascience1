@@ -82,8 +82,8 @@ dass die logistische Regression eine Wahrscheinlichkeit der Klassenzugehörigkei
 <div class="figure" style="text-align: center">
 
 ```{=html}
-<div id="htmlwidget-4957ebaac2b9e5ba3c2a" style="width:100%;height:300px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-4957ebaac2b9e5ba3c2a">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: right\n [Daten] -> [Modell] \n [Modell] -> [Wskt] \n [Wskt] -> [Klassifikation]\n","svg":false},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-65fc01e172a9fc89302c" style="width:100%;height:300px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-65fc01e172a9fc89302c">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: right\n [Daten] -> [Modell] \n [Modell] -> [Wskt] \n [Wskt] -> [Klassifikation]\n","svg":false},"evals":[],"jsHooks":[]}</script>
 ```
 
 <p class="caption">(\#fig:logist-regr)Definition eines Models in tidymodels</p>
@@ -96,12 +96,12 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
 
 
 ```{=html}
-<div id="kkewpmqnjl" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="moedkqhsdw" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#kkewpmqnjl .gt_table {
+#moedkqhsdw .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -126,7 +126,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-left-color: #D3D3D3;
 }
 
-#kkewpmqnjl .gt_heading {
+#moedkqhsdw .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -138,7 +138,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-right-color: #D3D3D3;
 }
 
-#kkewpmqnjl .gt_title {
+#moedkqhsdw .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -148,7 +148,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-bottom-width: 0;
 }
 
-#kkewpmqnjl .gt_subtitle {
+#moedkqhsdw .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -158,13 +158,13 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-top-width: 0;
 }
 
-#kkewpmqnjl .gt_bottom_border {
+#moedkqhsdw .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#kkewpmqnjl .gt_col_headings {
+#moedkqhsdw .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -179,7 +179,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-right-color: #D3D3D3;
 }
 
-#kkewpmqnjl .gt_col_heading {
+#moedkqhsdw .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -199,7 +199,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   overflow-x: hidden;
 }
 
-#kkewpmqnjl .gt_column_spanner_outer {
+#moedkqhsdw .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -211,15 +211,15 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   padding-right: 4px;
 }
 
-#kkewpmqnjl .gt_column_spanner_outer:first-child {
+#moedkqhsdw .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#kkewpmqnjl .gt_column_spanner_outer:last-child {
+#moedkqhsdw .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#kkewpmqnjl .gt_column_spanner {
+#moedkqhsdw .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -231,7 +231,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   width: 100%;
 }
 
-#kkewpmqnjl .gt_group_heading {
+#moedkqhsdw .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -253,7 +253,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   vertical-align: middle;
 }
 
-#kkewpmqnjl .gt_empty_group_heading {
+#moedkqhsdw .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -268,15 +268,15 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   vertical-align: middle;
 }
 
-#kkewpmqnjl .gt_from_md > :first-child {
+#moedkqhsdw .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#kkewpmqnjl .gt_from_md > :last-child {
+#moedkqhsdw .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#kkewpmqnjl .gt_row {
+#moedkqhsdw .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -295,7 +295,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   overflow-x: hidden;
 }
 
-#kkewpmqnjl .gt_stub {
+#moedkqhsdw .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -307,7 +307,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   padding-left: 12px;
 }
 
-#kkewpmqnjl .gt_summary_row {
+#moedkqhsdw .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -317,7 +317,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   padding-right: 5px;
 }
 
-#kkewpmqnjl .gt_first_summary_row {
+#moedkqhsdw .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -327,7 +327,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-top-color: #D3D3D3;
 }
 
-#kkewpmqnjl .gt_grand_summary_row {
+#moedkqhsdw .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -337,7 +337,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   padding-right: 5px;
 }
 
-#kkewpmqnjl .gt_first_grand_summary_row {
+#moedkqhsdw .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -347,11 +347,11 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-top-color: #D3D3D3;
 }
 
-#kkewpmqnjl .gt_striped {
+#moedkqhsdw .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#kkewpmqnjl .gt_table_body {
+#moedkqhsdw .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -360,7 +360,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-bottom-color: #D3D3D3;
 }
 
-#kkewpmqnjl .gt_footnotes {
+#moedkqhsdw .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -374,13 +374,13 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-right-color: #D3D3D3;
 }
 
-#kkewpmqnjl .gt_footnote {
+#moedkqhsdw .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#kkewpmqnjl .gt_sourcenotes {
+#moedkqhsdw .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -394,41 +394,41 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-right-color: #D3D3D3;
 }
 
-#kkewpmqnjl .gt_sourcenote {
+#moedkqhsdw .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#kkewpmqnjl .gt_left {
+#moedkqhsdw .gt_left {
   text-align: left;
 }
 
-#kkewpmqnjl .gt_center {
+#moedkqhsdw .gt_center {
   text-align: center;
 }
 
-#kkewpmqnjl .gt_right {
+#moedkqhsdw .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#kkewpmqnjl .gt_font_normal {
+#moedkqhsdw .gt_font_normal {
   font-weight: normal;
 }
 
-#kkewpmqnjl .gt_font_bold {
+#moedkqhsdw .gt_font_bold {
   font-weight: bold;
 }
 
-#kkewpmqnjl .gt_font_italic {
+#moedkqhsdw .gt_font_italic {
   font-style: italic;
 }
 
-#kkewpmqnjl .gt_super {
+#moedkqhsdw .gt_super {
   font-size: 65%;
 }
 
-#kkewpmqnjl .gt_footnote_marks {
+#moedkqhsdw .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -795,12 +795,12 @@ Hier sind die Koeffizienten, die kann man sich aus `m83_fit` herausziehen:
 
 
 ```{=html}
-<div id="yhxxcgawpk" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="xutevcqzeu" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#yhxxcgawpk .gt_table {
+#xutevcqzeu .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -825,7 +825,7 @@ Hier sind die Koeffizienten, die kann man sich aus `m83_fit` herausziehen:
   border-left-color: #D3D3D3;
 }
 
-#yhxxcgawpk .gt_heading {
+#xutevcqzeu .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -837,7 +837,7 @@ Hier sind die Koeffizienten, die kann man sich aus `m83_fit` herausziehen:
   border-right-color: #D3D3D3;
 }
 
-#yhxxcgawpk .gt_title {
+#xutevcqzeu .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -847,7 +847,7 @@ Hier sind die Koeffizienten, die kann man sich aus `m83_fit` herausziehen:
   border-bottom-width: 0;
 }
 
-#yhxxcgawpk .gt_subtitle {
+#xutevcqzeu .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -857,13 +857,13 @@ Hier sind die Koeffizienten, die kann man sich aus `m83_fit` herausziehen:
   border-top-width: 0;
 }
 
-#yhxxcgawpk .gt_bottom_border {
+#xutevcqzeu .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#yhxxcgawpk .gt_col_headings {
+#xutevcqzeu .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -878,7 +878,7 @@ Hier sind die Koeffizienten, die kann man sich aus `m83_fit` herausziehen:
   border-right-color: #D3D3D3;
 }
 
-#yhxxcgawpk .gt_col_heading {
+#xutevcqzeu .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -898,7 +898,7 @@ Hier sind die Koeffizienten, die kann man sich aus `m83_fit` herausziehen:
   overflow-x: hidden;
 }
 
-#yhxxcgawpk .gt_column_spanner_outer {
+#xutevcqzeu .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -910,15 +910,15 @@ Hier sind die Koeffizienten, die kann man sich aus `m83_fit` herausziehen:
   padding-right: 4px;
 }
 
-#yhxxcgawpk .gt_column_spanner_outer:first-child {
+#xutevcqzeu .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#yhxxcgawpk .gt_column_spanner_outer:last-child {
+#xutevcqzeu .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#yhxxcgawpk .gt_column_spanner {
+#xutevcqzeu .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -930,7 +930,7 @@ Hier sind die Koeffizienten, die kann man sich aus `m83_fit` herausziehen:
   width: 100%;
 }
 
-#yhxxcgawpk .gt_group_heading {
+#xutevcqzeu .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -952,7 +952,7 @@ Hier sind die Koeffizienten, die kann man sich aus `m83_fit` herausziehen:
   vertical-align: middle;
 }
 
-#yhxxcgawpk .gt_empty_group_heading {
+#xutevcqzeu .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -967,15 +967,15 @@ Hier sind die Koeffizienten, die kann man sich aus `m83_fit` herausziehen:
   vertical-align: middle;
 }
 
-#yhxxcgawpk .gt_from_md > :first-child {
+#xutevcqzeu .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#yhxxcgawpk .gt_from_md > :last-child {
+#xutevcqzeu .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#yhxxcgawpk .gt_row {
+#xutevcqzeu .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -994,7 +994,7 @@ Hier sind die Koeffizienten, die kann man sich aus `m83_fit` herausziehen:
   overflow-x: hidden;
 }
 
-#yhxxcgawpk .gt_stub {
+#xutevcqzeu .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1006,7 +1006,7 @@ Hier sind die Koeffizienten, die kann man sich aus `m83_fit` herausziehen:
   padding-left: 12px;
 }
 
-#yhxxcgawpk .gt_summary_row {
+#xutevcqzeu .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1016,7 +1016,7 @@ Hier sind die Koeffizienten, die kann man sich aus `m83_fit` herausziehen:
   padding-right: 5px;
 }
 
-#yhxxcgawpk .gt_first_summary_row {
+#xutevcqzeu .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1026,7 +1026,7 @@ Hier sind die Koeffizienten, die kann man sich aus `m83_fit` herausziehen:
   border-top-color: #D3D3D3;
 }
 
-#yhxxcgawpk .gt_grand_summary_row {
+#xutevcqzeu .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1036,7 +1036,7 @@ Hier sind die Koeffizienten, die kann man sich aus `m83_fit` herausziehen:
   padding-right: 5px;
 }
 
-#yhxxcgawpk .gt_first_grand_summary_row {
+#xutevcqzeu .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1046,11 +1046,11 @@ Hier sind die Koeffizienten, die kann man sich aus `m83_fit` herausziehen:
   border-top-color: #D3D3D3;
 }
 
-#yhxxcgawpk .gt_striped {
+#xutevcqzeu .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#yhxxcgawpk .gt_table_body {
+#xutevcqzeu .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1059,7 +1059,7 @@ Hier sind die Koeffizienten, die kann man sich aus `m83_fit` herausziehen:
   border-bottom-color: #D3D3D3;
 }
 
-#yhxxcgawpk .gt_footnotes {
+#xutevcqzeu .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1073,13 +1073,13 @@ Hier sind die Koeffizienten, die kann man sich aus `m83_fit` herausziehen:
   border-right-color: #D3D3D3;
 }
 
-#yhxxcgawpk .gt_footnote {
+#xutevcqzeu .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#yhxxcgawpk .gt_sourcenotes {
+#xutevcqzeu .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1093,41 +1093,41 @@ Hier sind die Koeffizienten, die kann man sich aus `m83_fit` herausziehen:
   border-right-color: #D3D3D3;
 }
 
-#yhxxcgawpk .gt_sourcenote {
+#xutevcqzeu .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#yhxxcgawpk .gt_left {
+#xutevcqzeu .gt_left {
   text-align: left;
 }
 
-#yhxxcgawpk .gt_center {
+#xutevcqzeu .gt_center {
   text-align: center;
 }
 
-#yhxxcgawpk .gt_right {
+#xutevcqzeu .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#yhxxcgawpk .gt_font_normal {
+#xutevcqzeu .gt_font_normal {
   font-weight: normal;
 }
 
-#yhxxcgawpk .gt_font_bold {
+#xutevcqzeu .gt_font_bold {
   font-weight: bold;
 }
 
-#yhxxcgawpk .gt_font_italic {
+#xutevcqzeu .gt_font_italic {
   font-style: italic;
 }
 
-#yhxxcgawpk .gt_super {
+#xutevcqzeu .gt_super {
   font-size: 65%;
 }
 
-#yhxxcgawpk .gt_footnote_marks {
+#xutevcqzeu .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;

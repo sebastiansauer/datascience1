@@ -1,0 +1,107 @@
+<svg version="1.1" baseProfile="full" width="478.0" height="245.0" viewbox="0 0 478 245" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events">
+	<desc >[&lt;database&gt; Datensatz] -&gt; [Baum 1]
+	[&lt;database&gt; Datensatz] -&gt; [Baum 2]
+	[&lt;database&gt; Datensatz] -&gt; [Baum ...]
+	[&lt;database&gt; Datensatz] -&gt; [Baum B]
+	[Baum 1] -&gt; [Modus als Vorhersagewert]
+	[Baum 2] -&gt; [Modus als Vorhersagewert]
+	[Baum ...] -&gt; [Modus als Vorhersagewert]
+	[Baum B] -&gt; [Modus als Vorhersagewert]</desc>
+	<g stroke-width="1.0" text-align="left" font="12pt Helvetica, Arial, sans-serif" font-size="12pt" font-family="Helvetica" font-weight="bold" font-style="normal">
+		<g transform="translate(0.5, 0.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" stroke-width="3.0" stroke-linejoin="round" stroke-linecap="round" stroke="#33322E">
+			<g stroke="transparent" fill="transparent">
+				<rect x="0.0" y="0.0" height="245.0" width="478.0" stroke="none"></rect>
+			</g>
+			<g transform="translate(8, 8)" fill="#33322E">
+				<g transform="translate(20, 20)" fill="#33322E" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal">
+					<path d="M163.0 35.1 L37 67 L37 80.33333333333333 L37.0 80.3 " fill="none"></path>
+					<path d="M31.7 73.7 L37.0 80.3 L42.3 73.7 L37.0 87.0 Z"></path>
+					<path d="M177.7 47.0 L151 67 L151 80.33333333333333 L151.0 80.3 " fill="none"></path>
+					<path d="M145.7 73.7 L151.0 80.3 L156.3 73.7 L151.0 87.0 Z"></path>
+					<path d="M240.3 47.0 L267 67 L267 80.33333333333333 L267.0 80.3 " fill="none"></path>
+					<path d="M261.7 73.7 L267.0 80.3 L272.3 73.7 L267.0 87.0 Z"></path>
+					<path d="M255.0 34.9 L384 67 L384 80.33333333333333 L384.0 80.3 " fill="none"></path>
+					<path d="M378.7 73.7 L384.0 80.3 L389.3 73.7 L384.0 87.0 Z"></path>
+					<path d="M37.0 118.0 L37 138 L127.37235715617956 156.65243418049056 L127.4 156.7 " fill="none"></path>
+					<path d="M119.8 160.5 L127.4 156.7 L121.9 150.1 L133.9 158.0 Z"></path>
+					<path d="M151.0 118.0 L151 138 L177.98993553832224 154.51970192431793 L178.0 154.5 " fill="none"></path>
+					<path d="M169.5 155.6 L178.0 154.5 L175.1 146.5 L183.7 158.0 Z"></path>
+					<path d="M267.0 118.0 L267 138 L240.01006446167776 154.51970192431793 L240.0 154.5 " fill="none"></path>
+					<path d="M242.9 146.5 L240.0 154.5 L248.5 155.6 L234.3 158.0 Z"></path>
+					<path d="M384.0 118.0 L384 138 L291.9420406820136 156.67461460450582 L291.9 156.7 " fill="none"></path>
+					<path d="M297.4 150.1 L291.9 156.7 L299.5 160.6 L285.4 158.0 Z"></path>
+					<g data-name="Datensatz">
+						<g fill="#eee8d5" stroke="#33322E" data-name="Datensatz">
+							<rect x="163.0" y="8.0" height="35.0" width="92.0" stroke="none" data-name="Datensatz"></rect>
+							<path d="M163.0 8.0 L163.0 39.0" fill="none" data-name="Datensatz"></path>
+							<path d="M255.0 8.0 L255.0 39.0" fill="none" data-name="Datensatz"></path>
+							<ellipse cx="209.0" cy="8.0" rx="46.0" ry="6.0" data-name="Datensatz"></ellipse>
+							<path d="M255.0 39.0 L254.9 39.3 L254.8 39.6 L254.5 39.9 L254.1 40.2 L253.6 40.5 L253.0 40.8 L252.2 41.1 L251.4 41.3 L250.4 41.6 L249.4 41.9 L248.3 42.1 L247.0 42.4 L245.7 42.6 L244.2 42.9 L242.7 43.1 L241.1 43.3 L239.4 43.5 L237.7 43.7 L235.9 43.9 L234.0 44.0 L232.0 44.2 L230.0 44.3 L227.9 44.5 L225.8 44.6 L223.7 44.7 L221.5 44.8 L219.2 44.8 L217.0 44.9 L214.7 45.0 L212.4 45.0 L210.1 45.0 L207.9 45.0 L205.6 45.0 L203.3 45.0 L201.0 44.9 L198.8 44.8 L196.5 44.8 L194.3 44.7 L192.2 44.6 L190.1 44.5 L188.0 44.3 L186.0 44.2 L184.0 44.0 L182.1 43.9 L180.3 43.7 L178.6 43.5 L176.9 43.3 L175.3 43.1 L173.8 42.9 L172.3 42.6 L171.0 42.4 L169.7 42.1 L168.6 41.9 L167.6 41.6 L166.6 41.3 L165.8 41.1 L165.0 40.8 L164.4 40.5 L163.9 40.2 L163.5 39.9 L163.2 39.6 L163.1 39.3 L163.0 39.0" data-name="Datensatz"></path>
+						</g>
+						<g transform="translate(163, 12)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Datensatz">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Datensatz">
+								<text x="38.0" y="13.5" stroke="none" text-anchor="middle" data-name="Datensatz">Datensatz</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Baum 1">
+						<g fill="#eee8d5" stroke="#33322E" data-name="Baum 1">
+							<rect x="0.0" y="87.0" height="31.0" width="74.0" data-name="Baum 1"></rect>
+						</g>
+						<g transform="translate(0, 87)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Baum 1">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Baum 1">
+								<text x="29.0" y="13.5" stroke="none" text-anchor="middle" data-name="Baum 1">Baum 1</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Baum 2">
+						<g fill="#eee8d5" stroke="#33322E" data-name="Baum 2">
+							<rect x="114.0" y="87.0" height="31.0" width="74.0" data-name="Baum 2"></rect>
+						</g>
+						<g transform="translate(114, 87)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Baum 2">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Baum 2">
+								<text x="29.0" y="13.5" stroke="none" text-anchor="middle" data-name="Baum 2">Baum 2</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Baum ...">
+						<g fill="#eee8d5" stroke="#33322E" data-name="Baum ...">
+							<rect x="228.0" y="87.0" height="31.0" width="78.0" data-name="Baum ..."></rect>
+						</g>
+						<g transform="translate(228, 87)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Baum ...">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Baum ...">
+								<text x="31.0" y="13.5" stroke="none" text-anchor="middle" data-name="Baum ...">Baum ...</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Baum B">
+						<g fill="#eee8d5" stroke="#33322E" data-name="Baum B">
+							<rect x="346.0" y="87.0" height="31.0" width="76.0" data-name="Baum B"></rect>
+						</g>
+						<g transform="translate(346, 87)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Baum B">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Baum B">
+								<text x="30.0" y="13.5" stroke="none" text-anchor="middle" data-name="Baum B">Baum B</text>
+								
+							</g>
+						</g>
+					</g>
+					<g data-name="Modus als Vorhersagewert">
+						<g fill="#eee8d5" stroke="#33322E" data-name="Modus als Vorhersagewert">
+							<rect x="100.0" y="158.0" height="31.0" width="218.0" data-name="Modus als Vorhersagewert"></rect>
+						</g>
+						<g transform="translate(100, 158)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Modus als Vorhersagewert">
+							<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Modus als Vorhersagewert">
+								<text x="101.0" y="13.5" stroke="none" text-anchor="middle" data-name="Modus als Vorhersagewert">Modus als Vorhersagewert</text>
+								
+							</g>
+						</g>
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
+</svg>

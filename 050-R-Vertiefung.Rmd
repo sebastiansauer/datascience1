@@ -762,6 +762,15 @@ da Listen auch Vektoren sind.
 
 
 
+### Programmieren mit dem Tidyverse
+
+Das Programmieren mit dem Tidyvers ist nicht ganz einfach und hier nicht näher ausgeführt.
+Eine Einführung findet sich z.B. 
+
+- [Tidyeval in fünf Minuten (Video)](https://www.youtube.com/watch?v=nERXS3ssntw)
+- In [Kapiteln 17-21 in Advanced R, 2nd Ed](https://adv-r.hadley.nz/)
+- Ein Überblicksdiagramm findet sich [hier](https://twitter.com/lapply/status/1493908215796535296/photo/1) [Quelle](https://twitter.com/lapply/status/1493908215796535296?t=P0SbLJAd0Yd97hYPzNMxMg&s=09).
+
 
 
 

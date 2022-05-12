@@ -45,6 +45,7 @@ In diesem Kapitel werden folgende R-Pakete benötigt:
 ```{r echo = TRUE}
 library(tidymodels)
 library(tictoc)  # Zeitmessung
+library(vip)  # Variable importance plot
 ```
 
 
@@ -192,6 +193,27 @@ $$\hat{f}_{\text{bag}} = \frac{1}{B}\sum_{b=1}^{B}\hat{f}^{*b}$$
 
 
 
+Der Bagging-Algorithmus ist in Abbildung \@ref(fig:bag) dargestellt.
+
+
+```{r bag, fig.cap = "Bagging schematisch illustriert"}
+nomnoml::nomnoml(
+  "
+  [<database> Datensatz] ->zmz [Baum 1]
+[<database> Datensatz] ->zmz [Baum 2]
+[<database> Datensatz] ->zmz [Baum ...]
+[<database> Datensatz] ->zmz [Baum B]
+[Baum 1] -> [Modus als Vorhersagewert]
+[Baum 2] -> [Modus als Vorhersagewert]
+[Baum ...] -> [Modus als Vorhersagewert]
+[Baum B] -> [Modus als Vorhersagewert]
+  ", 
+height = 350
+)
+
+```
+
+
 
 Die Anzahl der Bäume (allgemeiner: Submodelle) $B$ ist häufig im oberen drei- oder niedrigem vierstelligen 
 Bereich, z.B. $B=1000$. 
@@ -226,12 +248,692 @@ zurückgreifen, um Overfitting durch das Ausprobieren der Tuning-Kandidaten zu v
  
 
 
+## Random Forests
+
+Random Forests ("Zufallswälder") sind eine Weiterentwicklung von Bagging-Modellen.
+Sie *sind* Bagging-Modelle, aber haben noch ein Ass im Ärmel:
+Und zwar wird an jedem Slit (Astgabel, Aufteilung) *nur eine Zufallsauswahl an $m$ Prädiktoren berücksichtigt*.
+Das hört sich verrückt an: "Wie, mit weniger Prädiktoren soll eine bessere Vorhersage erreicht werden?!"
+Ja, genau so ist es!
+Nehmen Sie an, es gibt im Datensatz einen sehr starken und ein paar mittelstarke Prädiktoren;
+der Rest der Prädiktoren ist wenig relevant.
+Wenn Sie jetzt viele "gebootstrapte"^[Schlimmes Denglisch] ziehen,
+werden diese Bäume sehr ähnlich sein: Der stärkste Prädiktor steht vermutlich immer ob an der Wurzel,
+dann kommen die mittelstarken Prädiktoren.
+Jeder zusätzliche Baum trägt dann wenig neue Information bei.
+Anders gesagt: Die Vorhersagen der Bäume sind dann sehr ähnlich bzw. hoch korreliert.
+Bildet man den Mittelwert von hoch korrelierten Variablen,
+verringert sich leider die Varianzu nur *wenig* im Vergleich zu nicht oder gering korrelierten Variablen [@islr].
+Dadurch dass Random Forests nur $m$ der $p$ Prädiktoren pro Split zulassen,
+werden die Bäume unterschiedlicher. Wir "dekorrelieren" die Bäume.
+Bildet man den Mittelwert von gering(er) korrelierten Variablen,
+so ist die Varianzreduktion höher - und die Vohersage genauer.
+Lässt man pro Split $m=p$ Prädiktoren zu,
+so gleicht Bagging dem Random Forest.
+Die Anzahl $m$ der erlaubten Prädiktoren werden als Zufallstichprobe aus den $p$
+Prädiktoren des Datensatzes gezogen (ohne Zurücklegen).
+$m$ ist ein Tuningparameter; $m=\sqrt(p)$ ist ein beliebter Startwert.
+In den meisten Implementationen wird $m$ mit `mtry` bezeichnet (so auch in Tidymodels).
+
+Der Random-Forest-Algorithmus ist in Abb. \@ref(fig:rf1) illustriert.
+
+```{r rf1, fig.cap = "Zufallswälder durch Ziehen mit Zurücklegen (zmz) und Ziehen ohne Zurücklegen (ZoZ)", out.width = "100%"}
+nomnoml::nomnoml("
+#direction:down
+                 [<database> Datensatz] ->zmz [Baum1
+[ZoZ]->[ZOZ2]
+[ZoZ]->[ZoZ3]
+]
+
+[<database> Datensatz] ->zmz [Baum2
+[ZoZ]->[ZOZ2]
+[ZoZ]->[ZoZ3]
+]
+[<database> Datensatz] ->zmz [Baum ...
+[ZoZ]->[ZOZ2]
+[ZoZ]->[ZoZ3]
+]
+[<database> Datensatz] ->zmz [Baum B
+[ZoZ]->[ZOZ2]
+[ZoZ]->[ZoZ3]
+]
+[Baum1
+[ZoZ]->[ZOZ2]
+[ZoZ]->[ZoZ3]
+] -> [Modus als Vorhersagewert]
+[Baum2
+[ZoZ]->[ZOZ2]
+[ZoZ]->[ZoZ3]
+] -> [Modus als Vorhersagewert]
+[Baum ...] -> [Modus als Vorhersagewert]
+[Baum B] -> [Modus als Vorhersagewert]
+                 ",
+height = 700)
+```
 
 
+
+Abb. \@ref(fig:comp-trees) vergleicht die Test-Sample-Vorhersagegüte von Bagging- und Random-Forest-Algorithmen aus @islr.
+In diesem Fall ist die Vorhersagegüte deutlich unter der OOB-Güte; laut @islr ist dies hier "Zufall".
+
+```{r comp-trees, fig.cap  ="Test-Sample-Vorhersagegüte von Bagging- und Random-Forest-Algorithmen"}
+knitr::include_graphics("img/8.8.png")
+```
+
+
+Den Effekt von $m$ (Anzahl der Prädiktoren pro Split) ist in Abb. \@ref(fig:mtry) dargestellt [@islr].
+Man erkennt, dass der Zusatznutzen an zusätzlichen Bäumen, $B$, sich abschwächt.
+$m=\sqrt{p}$ schneidet wie erwartet am besten ab.
+
+```{r mtry, fig.cap = "Test-Sample-Vorhersagegüte von Bagging- und Random-Forest-Algorithmen"}
+knitr::include_graphics("img/8.10.png")
+```
+
+
+
+## Boosting
+
+
+Im Unterschied zu Bagging und Random-Forest-Modellen wird beim Boosting der "Wald"
+*sequenziell* entwickelt, nicht gleichzeitig wie bei den anderen vorgestellten "Wald-Modellen".
+Die zwei bekanntesten Implementierungen bzw. Algorithmus-Varianten sind *AdaBoost* und *XGBoost*.
+Gerade XGBoost hat den Ruf, hervorragende Vorhersagen zu leisten.
+Auf [Kaggle](https://en.wikipedia.org/wiki/Kaggle) gewinnt nach [einigen Berichten oft XGBoost](https://www.kaggle.com/code/msjgriffiths/r-what-algorithms-are-most-successful-on-kaggle/report).
+Nur neuronale Netze schneiden besser ab.
+Random-Forest-Modelle kommen nach diesem Bereich auf Platz 3.
+Allerdings benötigen neuronale Netzen oft riesige Stichprobengrößen
+und bei spielen ihre Nuanciertheit vor allem bei komplexen Daten wie Bildern oder Sprache aus.
+Für "rechteckige" Daten (also aus einfachen, normalen Tabellen) wird ein baumbasiertes Modell oft besser abschneiden.
+
+
+
+Die Idee des Boosting ist es, anschaulich gesprochen, 
+aus Fehlern zu lernen: Fitte einen Baum, schau welche Fälle er schlecht vorhergesagt hat,
+konzentriere dich beim nächsten Baum auf diese Fälle und so weiter.
+
+Wie andere Ensemble-Methoden auch kann Boosting theoretisch für beliebige Algorithmen eingesetzt werden.
+Es macht aber Sinn, Boosting bei "schwachen Lernern" einzusetzen.
+Typisches Beispiel ist ein einfacher Baum; "einfach" soll heißen, der Baum hat nur wenig Gabeln oder vielleicht sogar nur eine einzige.
+Dann spricht man von einem *Stumpf*, was intuitiv gut passt.
+
+
+### AdaBoost
+
+Der AdaBoost-Algorithmus funktioniert, einfach dargestellt, wie folgt.
+Zuerst hat jeder Fall im Datensatz des gleiche Gewicht.
+Die erste (und alle weiteren) Stichprobe werden per Bootstrapping aus dem
+Datensatz gezogen. Dabei ist die Wahrscheinlichkeit, gezogen zu werden,
+proportional zum Gewicht. Da im ersten Durchgang die Gewichte identisch sind,
+haben zunächst alle Fälle die gleiche Wahrscheinlichkeit, in das Bootstrap-Sample gezogen zu werden.
+Nach Berechnung des Baumen und der Vorhersagen werden die *richtig* klassifizierten Fälle heruntergewichtet
+und die falsch klassifizierten Fälle hoch gewichtet, also stärker gewichtet (bleiben wir aus Gründen der Einfachheit zunächst bei der Klassifikation).
+Dieses Vorgehen folgt dem Gedanken, dass man sich seine Fehler genauer anschauen muss,
+die falsch klassifizierten Fälle sozusagen mehr Aufmerksamkeit bedürfen.
+Das nächste (zweite) Modell zieht ein weiteres Bootstrap-Sample.
+Jetzt sind allerdings die Gewichte schon angepasst,
+so dass mehr Fälle, die im vorherigen Modell falsch klassifiziert wurden, in den neuen (zweiten)
+Baum gezogen werden.
+Das neue Modell hat also bessere Chancen,
+die Aspekte, die das Vorgänger-Modell übersah zu korrigieren bzw. zu lernen.
+Jetzt haben wir zwei Modelle. Die können wir aggregieren, genau
+wie beim Bagging: Der Modus der Vorhersage über alle (beide) Bäume hinwig ist
+dann die Vorhersage für einen bestimmten Fall ("Fall" und "Beobachtung" sind stets synonym für $y_i$ zu verstehen).
+So wiederholt sich das Vorgehen:
+Die Gewichte werden angepasst, das neue Modell wird berechnet, 
+alle Modelle machen ihre Vorhersagen, per Mehrheitsbeschluss wird die Vorhersage bestimmt pro Fall.
+Irgendwann erreichen wir die vorab definierte Maximalzahl an Bäumen, $B$, und das Modell kommt zu einem Ende.
+
+Da das Modell die Fehler seiner Vorgänger reduziert,
+wird der Bias im Gesamtmodell verringert.
+Da wir gleichzeitig auch Bagging vornehmen,
+wird aber die Varianz auch verringert.
+Klingt schon wieder (fast) nach Too-Good-to-be-True!
+
+
+
+Das Gewicht $w_i^b$ des $i$ten Falls im $b$ten Modell von $B$ berechnet sich wie folgt [@rhys]:
+
+$$ w_i^b = \begin{cases}
+w_i^{b-1} \cdot e^{-\text{model weight}} \qquad \text{wenn korrekt klassifiziert} \\
+w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifiziert} \\
+\end{cases}$$
+
+
+Das *Modellgewicht* $mw$ berechnet sich dabei so [@rhys]:
+
+
+$$mw = 0.5 \cdot log\left( \frac{1-p(\text{inkorrect})}{p(\text{korrekt})} \right) \propto \mathcal{L(p)} $$
+
+
+Das Modellgewicht ist ein Faktor, der schlechtere Modelle bestraft.
+
+
+
+### XGBoost
+
+XGBoost ist ein Gradientenverfahren,
+eine Methode also, die die Richtung des parziellen Ableitungskoeffizienten als Optimierungskriterium heranzieht.
+XGBoost ist ähnlich zu AdaBoost,
+nur dass *Residuen* modelliert werden, nicht $y$.
+Die Vorhersagefehler von $\hat{f}^b$ werden die Zielvariable von $\hat{f}^{b+1}$.
+Ein Residuum ist der Vorhersagefehler, bei metrischen Modellen etwa RMSE,
+oder schlicht $r_i = y_i - \hat{y}_i$.
+Details finden sich z.B. [hier](https://arxiv.org/pdf/1603.02754.pdf), dem Original XGBoost-Paper [@chen_xgboost_2016].
+
+
+Die hohe Vorhersagegüte von Boosting-Modellen ist exemplarisch in Abb. \@ref(fig:boost) dargestellt [@islr, S. 358ff].
+Allerdings verwenden die Autoren Friedmans [-@friedman_greedy_2001] *Gradient Boosting Machine*, eine weitere Variante des Boosting .
+
+
+```{r boost, fig.cap = "Vorhersagegüte von Boosting und Random Forest"}
+knitr::include_graphics("img/8.10.png")
+```
+
+
+
+
+
+## Tidymodels
+
+
+### Datensatz Churn
+
+Wir betrachten einen Datensatz zur Kundenabwanderung (Churn) aus [dieser Quelle](https://www.gmudatamining.com/lesson-13-r-tutorial.html).
+
+
+```{r}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+churn_df <- read_rds('https://gmudatamining.com/data/churn_data.rds')
+```
+
+Ein Blick in die Daten:
+
+```{r}
+churn_df %>% 
+  head() %>% 
+  gt::gt()
+```
+
+
+### Data Splitting und CV
+
+Das Kreuzvalidieren (CV) fassen wir auch unter diesen Punkt.
+
+
+
+```{r}
+churn_split <- initial_split(churn_df, prop = 0.75, 
+                             strata = canceled_service)
+
+churn_training <- churn_split %>% training()
+
+churn_test <- churn_split %>% testing()
+
+churn_folds <- vfold_cv(churn_training, v = 5)
+```
+
+
+
+### Feature Engineering
+
+
+Hier definieren wir zwei Rezepte.
+Gleichzeitig verändern wir die Prädiktoren (normalisieren, dummysieren, ...).
+Das nennt man auch *Feature Engineering*.
+
+```{r recipes}
+churn_recipe1 <- recipe(canceled_service ~ ., data = churn_training) %>% 
+                       step_normalize(all_numeric(), -all_outcomes()) %>% 
+                       step_dummy(all_nominal(), -all_outcomes())
+
+churn_recipe2 <- recipe(canceled_service ~ ., data = churn_training) %>% 
+                       step_YeoJohnson(all_numeric(), -all_outcomes()) %>% 
+                       step_normalize(all_numeric(), -all_outcomes()) %>% 
+                       step_dummy(all_nominal(), -all_outcomes())
+```
+
+
+`step_YeoJohnson()` reduziert Schiefe in der Verteilung.
+
+
+
+### Modelle
+
+
+```{r def-models}
+tree_model <- decision_tree(cost_complexity = tune(),
+                            tree_depth = tune(),
+                            min_n = tune()) %>% 
+              set_engine('rpart') %>% 
+              set_mode('classification')
+
+rf_model <- rand_forest(mtry = tune(),
+                        trees = tune(),
+                        min_n = tune()) %>% 
+            set_engine('ranger') %>% 
+            set_mode('classification')
+
+
+boost_model <- boost_tree(mtry = tune(),
+                        min_n = tune(),
+                        trees = tune()) %>% 
+  set_engine("xgboost", nthreads = parallel::detectCores()) %>% 
+  set_mode("classification")
+
+
+glm_model <- logistic_reg()
+```
+
+
+
+### Workflows
+
+
+Wir definieren ein Workflow-Set:
+
+
+```{r}
+preproc <- list(rec1 = churn_recipe1, rec2 = churn_recipe2)
+models <- list(tree1 = tree_model, rf1 = rf_model, boost1 = boost_model, glm1 = glm_model)
+ 
+ 
+all_workflows <- workflow_set(preproc, models)
+```
+
+Infos zu `workflow_set` bekommt man wie gewohnt mit `?workflow_set`.
+
+Im Standard werden alle Rezepte und Modelle miteinander kombiniert (`cross = TRUE`),
+also `preproc * models` Modelle gefittet.
+
+
+
+
+### Modelle berechnen mit Tuning, einzeln
+
+
+Wir könnten jetzt jedes Modell einzeln tunen, wenn wir wollen.
+
+
+#### Baum
+
+```{r tree-tune-grid, eval = TRUE}
+tree_wf <-
+  workflow() %>% 
+  add_model(tree_model) %>% 
+  add_recipe(churn_recipe1)
+
+
+tic()
+tree_fit <-
+  tree_wf %>% 
+  tune_grid(
+    resamples = churn_folds,
+    metrics =  metric_set(roc_auc, sens, yardstick::spec)
+    )
+toc()
+```
+
+Im Standard werden 10 Modellkandidaten getuned.
+
+
+```{r}
+tree_fit
+```
+
+Schauen wir uns das Objekt etwas näher an:
+
+```{r}
+tree_fit$.metrics[[1]]
+```
+
+30 Zeilen: 3 Gütemetriken (Sens, Spec, ROC AUC) mit je 10 Werten (Submodellen),
+gibt 30 Koeffizienten.
+
+Für jeden der 5 Faltungen haben wir also 10 Submodelle.
+
+
+Welches Modell ist das beste?
+
+```{r}
+show_best(tree_fit)
+```
+
+Aha, das sind die fünf besten Modelle, bzw. ihre Tuningparameter,
+ihre mittlere Güte zusammen mit dem Standardfehler.
+
+
+```{r}
+autoplot(tree_fit)
+```
+
+
+#### RF
+
+
+Was für Tuningparameter hat den der Algorithmus bzw. seine Implementierung?
+
+```{r}
+show_model_info("rand_forest")
+```
+
+
+Da die Berechnung einiges an Zeit braucht,
+kann man das (schon früher einmal berechnete) Ergebnisobjekt
+von der Festplatte lesen (sofern es existiert).
+Ansonsten berechnet man neu:
+
+```{r rf-tune-grid, cache = TRUE, eval = TRUE}
+if (file.exists("objects/rf_fit1.rds")){
+  rf_fit1 <- read_rds("objects/rf_fit1.rds")
+} else {
+rf_wf1 <-
+  workflow() %>% 
+  add_model(rf_model) %>% 
+  add_recipe(churn_recipe1)
+
+
+tic()
+rf_fit1 <-
+  rf_wf1 %>% 
+  tune_grid(
+    resamples = churn_folds,
+    metrics =  metric_set(roc_auc, sens, spec)
+    )
+toc()
+}
+```
+
+So
+kann man das berechnete Objekt abspeichern auf Festplatte,
+um künftig Zeit zu sparen:
+
+```{r eval = FALSE}
+write_rds(rf_fit1, file = "objects/rf_fit1.rds")
+```
+
+
+
+```{r}
+rf_fit1
+```
+
+
+```{r}
+show_best(rf_fit1)
+```
+
+
+#### XGBoost
+
+
+
+
+```{r boost-tune-grid, cache = TRUE, eval = FALSE}
+boost_wf1 <-
+  workflow() %>% 
+  add_model(boost_model) %>% 
+  add_recipe(churn_recipe1)
+
+
+tic()
+boost_fit1 <-
+  boost_wf1 %>% 
+  tune_grid(
+    resamples = churn_folds,
+    metrics =  metric_set(roc_auc, sens, spec)
+    )
+toc()
+```
+
+
+Wieder auf Festplatte speichern:
+
+```{r eval = FALSE}
+write_rds(boost_fit1, file = "objects/boost_fit1.rds")
+```
+
+
+Und so weiter.
+
+### Workflow-Set tunen
+
+```{r tune-workflow-map}
+if (file.exists("objects/churn_model_set.rds")) {
+  churn_model_set <- read_rds("objects/churn_model_set.rds")
+} else {
+  tic()
+  churn_model_set <-
+    all_workflows %>% 
+    workflow_map(
+      resamples = churn_folds,
+      grid = 20,
+      metrics = metric_set(roc_auc),
+      seed = 42,  # reproducibility
+      verbose = TRUE)
+  toc()
+}
+```
+
+
+
+Da die Berechnung schon etwas Zeit braucht,
+macht es Sinn, das Modell (bzw. das Ergebnisobjekt) auf Festplatte zu speichern:
+
+```{r eval = FALSE}
+write_rds(churn_model_set, file = "objects/churn_model_set.rds")
+```
+
+
+Entsprechend kann man das Modellobjekt wieder importieren, wenn einmal abgespeichert:
+
+```{r eval = FALSE}
+churn_model_set <- read_rds(file = "objects/churn_model_set.rds")
+```
+
+
+### Ergebnisse im Train-Sest
+
+
+Hier ist die Rangfolge der Modelle, geordnet nach mittlerem ROC AUC:
+
+```{r}
+rank_results(churn_model_set, rank_metric = "roc_auc")
+```
+
+
+
+```{r}
+autoplot(churn_model_set, metric = "roc_auc")
+```
+
+
+
+### Bestes Modell
+
+Und hier nur der beste Kandidat pro Algorithmus:
+
+
+```{r}
+autoplot(churn_model_set, metric = "roc_auc", select_best = "TRUE") +
+  geom_text(aes(y = mean - .01, label = wflow_id), angle = 90, hjust = 1) +
+  theme(legend.position = "none") +
+  lims(y = c(0.85, 1))
+```
+
+
+Boosting hat  - knapp - am besten abgeschnitten. 
+Allerdings sind Random Forest und die schlichte, einfache logistische Regression auch fast genau so gut.
+Das wäre ein Grund für das einfachste Modell, das GLM, zu votieren.
+Zumal die Interpretierbarkeit am besten ist.
+Alternativ könnte man sich für das Boosting-Modell aussprechen.
+
+
+Man kann sich das beste Submodell auch von Tidymodels bestimmen lassen.
+Das scheint aber (noch) nicht für ein Workflow-Set zu funktionieren,
+sondern nur für das Ergebnisobjekt von `tune_grid`.
+
+
+
+```{r error = TRUE}
+select_best(churn_model_set, metric = "roc_auc")
+```
+
+
+`rf_fit1` haben wir mit `tune_grid()` berechnet;
+mit diesem Modell kann `select_best()` arbeiten: 
+
+```{r}
+select_best(rf_fit1)
+```
+
+
+Aber wir können uns händisch behelfen.
+
+Schauen wir uns mal die Metriken (Vorhersagegüte) an:
+
+```{r}
+churn_model_set %>% 
+  collect_metrics() %>% 
+  arrange(-mean)
+```
+
+`rec1_boost1` scheint das beste Modell zu sein.
+
+
+```{r}
+best_model_params <-
+extract_workflow_set_result(churn_model_set, "rec1_boost1") %>% 
+  select_best()
+
+best_model_params
+```
+
+
+
+### Finalisisieren
+
+Wir entscheiden uns mal für das Boosting-Modell, `rec1_boost1`.
+Diesen Workflow, in finalisierter Form, 
+brauchen wir für den "final Fit".
+Finalisierte Form heißt:
+
+- Schritt 1: Nimm den passenden Workflow, hier `rec1` und `boost1`; das hatte uns oben `rank_results()` verraten.
+- Schritt 2: Update (Finalisiere) ihn mit den besten Tuningparameter-Werten
+
+
+
+```{r}
+# Schritt 1:
+best_wf <- 
+all_workflows %>% 
+  extract_workflow("rec1_boost1")
+
+best_wf
+```
+
+
+
+
+
+
+
+Jetzt finalisieren wir den Workflow,
+d.h. wir setzen die Parameterwerte des besten Submodells ein:
+
+
+```{r}
+# Schritt 2:
+best_wf_finalized <- 
+  best_wf %>% 
+  finalize_workflow(best_model_params)
+
+best_wf_finalized
+```
+
+
+
+
+
+### Last Fit
+
+
+```{r}
+fit_final <-
+  best_wf_finalized %>% 
+  last_fit(churn_split)
+
+fit_final
+```
+
+
+
+```{r}
+collect_metrics(fit_final)
+```
+
+
+
+### Variablenrelevanz
+
+
+Um die Variablenrelevanz zu plotten,
+müssen wir aus dem Tidymodels-Ergebnisobjekt
+das eigentliche Ergebnisobjekt herausziehen,  von der R-Funktion, die die eigentliche
+Berechnung durchführt,
+das wäre `glm()` bei einer logistischen Regression oder `xgboost::xgb.train()` bei 
+XGBoost:
+
+```{r}
+fit_final %>% 
+  extract_fit_parsnip()
+```
+
+*Dieses* Objekt übergeben wir dann an `{vip}`:
+
+```{r}
+fit_final %>% 
+  extract_fit_parsnip() %>% 
+  vip()
+```
+
+
+
+
+### ROC-Curve
+
+
+Eine ROC-Kurve berechnet Sensitivität und Spezifität aus den Vorhersagen,
+bzw. aus dem Vergleich von Vorhersagen und wahrem Wert (d.h. der beobachtete Wert).
+
+
+Ziehen wir also zuerst die Vorhersagen heraus:
+
+```{r}
+fit_final %>% 
+  collect_predictions()
+```
+
+Praktischerweise werden die "wahren Werte" (also die beobachtaten Werte), `canceled_service`,
+ausch angegeben.
+
+Dann berechnen wir die `roc_curve` und `autoplot`ten sie.
+
+```{r}
+fit_final %>% 
+  collect_predictions() %>% 
+  roc_curve(canceled_service, .pred_yes) %>% 
+  autoplot()
+```
 
 
 
 <!-- ## Aufgaben und Vertiefung -->
+
+
 
 
 
