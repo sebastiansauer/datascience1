@@ -48,10 +48,182 @@ library(tictoc)  # Zeitmessung
 ```
 
 
+## Hinweise zur Literatur
+
+
+Die folgenden Ausführungen basieren primär auf @rhys, aber auch auf @islr und (weniger) @kuhn.
+
+
+
+## Wir brauchen einen Wald
+
+Ein Pluspunkt von Entscheidungsbäumen ist ihre gute Interpretierbarkeit.
+Man könnte behaupten, dass Bäume eine typische Art des menschlichen Entscheidungsverhalten
+nachahmen: "Wenn A, dann tue B, ansonsten tue C" (etc.).
+Allerdings: Einzelne Entscheidungsbäume haben oft keine so gute Prognosegenauigkeit. 
+Der oder zumindest ein Grund ist, dass sie (zwar wenig Bias aber) viel Varianz aufweisen.
+Das sieht man z.B. daran, dass die Vorhersagegenauigkeit stark schwankt,
+wählt man eine andere Aufteilung von Train- vs. Test-Sample.
+Anders gesagt: Bäume overfitten ziemlich schnell.
+Und obwohl das No-Free-Lunch-Theorem zu den Grundfesten des maschinellen Lernens
+(oder zu allem wissenschaftlichen Wissen) gehört,
+kann man festhalten, dass sog. *Ensemble-Lernen* fast immer besser sind 
+als einzelne Baummodelle.
+Kurz gesagt: Wir brauchen einen Wald: 🌳🌳🌳^[Übrigens gehört zu den weiteren Vorteilen von Bäumen, dass sie die Temperatur absenken; zu Zeiten von Hitzewellen könnte das praktisch sein. Ansonsten erzeugen sie aber nur Luft und haben auch sonst kaum erkennbaren Nutzen.]
 
 
 
 
+## Was ist ein Ensemble-Lerner?
+
+Ensemble-Lerner kombinieren mehrere schwache Lerner zu einem starken Lerner.
+Das Paradebeispiel sind baumbasierte Modelle; 
+darauf wird sich die folgende Ausführung auch begrenzen.
+Aber theoretisch kann man jede Art von Lerner kombinieren.
+Bei numerischer Prädiktion wird bei Ensemble-Lerner zumeist der Mittelwert als Optmierungskriterium
+herangezogen; bei Klassifikation (nominaler Prädiktion) hingegen die modale Klasse (also die häufigste).
+Warum hilft es, mehrere Modelle (Lerner) zu einem zu aggregieren?
+Die Antwort lautet, dass die Streuung der Mittelwerte sinkt,
+wenn die Stichprobengröße steigt.
+Zieht man Stichproben der Größe 1, werden die Mittelwerte stark variieren,
+aber bei größeren Stichproben (z.B. Größe 100) deutlich weniger^[bei Fat-Tails-Variablen muss man diese Aussage einschränken].
+Die Streuung der Mittelwerte in den Stichproben nennt man bekanntlich *Standardefehler* (se).
+Den se des Mittelwerts ($se_M$) für eine normalverteilte Variable $X \sim \mathcal{N}(\mu, \sigma)$ gilt: 
+$se_{M} = \sigma / \sqrt(n)$, wobei $\sigma$ die SD der Verteilung und $\mu$ den Erwartungswert ("Mittelwert") meint,
+und $n$ ist die Stichprobengröße.
+
+
+:::: {.infobox .quote}
+Je größer die Stichprobe, desto kleiner die Varianz des Schätzers (ceteris paribus).
+Anders gesagt: Größere Stichproben schätzen genauer als kleine Stichproben.
+:::
+
+
+Aus diesem Grund bietet es sich an,
+schwache Lerner mit viel Varianz zu kombinieren,
+da die Varianz so verringert wird.
+
+
+## Bagging
+
+### Bootstrapping
+
+Das erste baumbasierte Modell, was vorgestellt werden soll,
+basiert auf sog. *Bootstrapping*, ein Standardverfahren in der Statistik [@islr].
+
+Bootstrapping ist eine Nachahmung für folgende Idee:
+Hätte man viele Stichproben aus der relevanten Verteilung,
+so könnte man z.B. die Genauigkeit eines Modells $\hat{f}_{\bar{X}}$ zur Schätzung des Erwartungswertes $\mu$ einfach dadurch bestimmen,
+indem man *se* berechnet, also die Streuung der Mitterwerte $\bar{X}$ berechnet.
+Außerdem gilt, dass die Präzision der Schätzung des Erwartungswerts steigt mit steigendem Stichprobenumfang $n$.
+Wir könnten also für jede der $B$ Stichproben, $b=1,\ldots, B$, ein (Baum-)Modell berechnen
+und dann deren Vorhersagen aggregieren (zum Mittelwert oder Modalwert).
+Das kann man formal so darstellen [@islr]:
+
+
+$$\hat{f}_{\bar{X}} = \frac{1}{B}\sum_{b=1}^{B}\hat{f}^b$$
+
+
+Mit diesem Vorgehen kann die Varianz des Modells $\hat{f}_{\bar{X}}$ verringert werden;
+die Vorhersagegenauigkeit steigt.
+
+Leider haben wir in der Regel nicht viele ($B$) Datensätze.
+
+Daher "bauen" wir uns aus dem einzelnen Datensatz, der uns zur Verfügung steht,
+viele Datensätze.
+Das hört sich nach "too good to be true" an^[Wenn es einen No-Free-Lunch-Satz gibt, müsste es auch einen Too-Good-to-be-True-Satz geben, den wir hiermit postulieren.]
+Weil es sich unglaubwürdig anhört, nennt man das entsprechende Verfahren (gleich kommt es!) auch "Münchhausen-Methode",
+nach dem berühmten Lübgenbaron.
+Die Amerikaner ziehen sich übrigens nicht am Schopf aus dem Sumpf, sondern
+mit den Stiefelschlaufen (die Cowboys wieder),
+daher spricht man im Amerikanischen auch von der "Boostrapping-Methode".
+
+Diese "Pseudo-Stichproben" oder "Bootstrapping-Stichproben" sind aber recht einfach zu gewinnen..
+Gegeben sei Stichprobe der Größe $n$:
+
+
+1. Ziehe mit Zurücklegen (ZmZ) aus der Stichprobe $n$ Beobachtungen
+2. Fertig ist die Bootstrapping-Stichprobe.
+
+
+Abb. \@ref(fig:zmz) verdeutlicht das Prinzip des ZMZ, d.h. des Bootstrappings.
+Wie man sieht, sind die Bootstrap-Stichproben (rechts) vom gleichen Umfang $n$ 
+wie die Originalstichprobe (links).
+Allerdins kommen nicht alle Fälle (in der Regel) in den "Boostrap-Beutel" (in bag),
+sondern einige Fälle werden oft mehrfach gezogen, so dass
+einige Fälle nicht gezogen werden (out of bag).
+
+```{r zmz, fig.cap = "Bootstrapping: Der Topf links symbolisiert die Original-Stichprobe, aus der wir hier mehrere ZMZ-Stichproben ziehen (Rechts), dargestellt mit 'in bag'"}
+knitr::include_graphics("img/zmz.png")
+```
+
+
+Man kann zeigen, dass ca. 2/3 der Fälle gezogen werden,
+bzw. ca. 1/3 nicht gezogen werden. Die nicht gezogenen Fälle nennt man auch *out of bag* (OOB).
+
+Für die Entwicklung des Bootstrapping wurde der Autor, Bradley Efron, im Jahr 2018
+mit dem internationalen Preis für Statistik [ausgezeichnet](https://www.amstat.org/news-listing/2021/10/08/international-prize-in-statistics-awarded-to-bradley-efron);
+
+
+>   “While statistics offers no magic pill for quantitative scientific investigations, the bootstrap is the best statistical pain reliever ever produced,” says Xiao-Li Meng, Whipple V. N. Jones Professor of Statistics at Harvard University.“
+
+
+## Bagging-Algorithmus
+
+Bagging, die Kurzform für *B*ootstrap-*Agg*regation ist wenig mehr als die Umsetzung des Boostrappings.
+
+
+
+
+
+Der Algorithmus von Bagging kann so beschrieben werden:
+
+
+1. Wähle $B$, die Anzahl der Boostrap-Stichproben und damit auch Anzahl der Submodelle (Lerner)
+2. Ziehe $B$ Boostrap-Stichproben
+3. Berechne das Modell $\hat{f}^{*b}$ für jede der $B$ Stichproben (typischerweise ein einfacher Baum)
+4. Schicke die Test-Daten durch jedes Sub-Modell
+5. Aggregiere ihre Vorhersage zu einem Wert (Modus bzw. Mittelwert) pro Fall aus dem Test-Sample, zu $\hat{f}_{\text{bag}}$
+
+
+Anders gesagt:
+
+$$\hat{f}_{\text{bag}} = \frac{1}{B}\sum_{b=1}^{B}\hat{f}^{*b}$$
+
+
+
+
+Die Anzahl der Bäume (allgemeiner: Submodelle) $B$ ist häufig im oberen drei- oder niedrigem vierstelligen 
+Bereich, z.B. $B=1000$. 
+Eine gute Nachricht ist, dass Bagging nicht überanpasst, wenn $B$ groß wird.
+
+
+
+### Variablenrelevanz
+
+
+Man kann die Relevanz der Prädiktoren in einem Bagging-Modell auf mehrere Arten schätzen.
+Ein Weg (bei numerischer Prädiktion) ist, dass man die RSS-Verringerung, die durch Aufteilung anhand eines Prädiktors
+erzeugt wird, mittelt über alle beteiligten Bäume (Modelle).
+Bei Klassifikation kann man die analog die Reduktion des Gini-Wertes über alle Bäume mitteln
+und als Schätzwert für die Relevanz des Prädiktors heranziehen.
+
+
+
+### Out of Bag Vorhersagen
+
+Da nicht alle Fälle der Stichprobe in das Modell einfließen (sondern nur ca. 2/3),
+kann der Rest der Fälle zur Vorhersage genutzt werden.
+Bagging erzeugt sozusagen innerhalb der Stichprobe selbständig ein Train- und ein Test-Sample.
+Man spricht von *Out-of-Bag-Schätzung* (OOB-Schätzung).
+Der OOB-Fehler (z.B. MSE bei numerischen Modellen und Genauigkeit bei nominalen)
+ist eine valide Schätzung des typischen Test-Sample-Fehlers.
+
+Hat man aber Tuningparameter, so wird man dennoch auf die typische Train-Test-Aufteilung
+zurückgreifen, um Overfitting durch das Ausprobieren der Tuning-Kandidaten zu vermeiden
+ (was sonst zu Zufallstreffern führen würde bei genügend vielen Modellkandidaten).
+ 
+ 
 
 
 

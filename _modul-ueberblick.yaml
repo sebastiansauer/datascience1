@@ -177,6 +177,7 @@ thema10:
   Literatur:
     - "Rhys, Kap. 8"
   Aufgaben:
+    - "[Einfache Durchführung eines Modellierung mit XGBoost](https://data-se.netlify.app/2020/12/14/titanic-tidymodels-boost/)"
     - "[Fallstudie Oregon Schools](https://bcullen.rbind.io/post/2020-06-02-tidymodels-decision-tree-learning-in-r/)"
     - "[Fallstudie Churn](https://www.gmudatamining.com/lesson-13-r-tutorial.html)"
     - "[Fallstudie Ikea](https://juliasilge.com/blog/ikea-prices/)" 
