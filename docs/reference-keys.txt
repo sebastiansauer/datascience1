@@ -329,14 +329,13 @@ aufgaben-8
 kaggle
 vorbereitung-8
 lernsteuerung-9
-vorbereitung-9
 lernziele-10
-literatur-10
 hinweise-3
 r-pakete
 was-ist-kaggle
 fallstudie-tmdb
 aufgabe
+hinweise-4
 daten-1
 train-set-verschlanken
 datensatz-kennenlernen
@@ -360,3 +359,5 @@ final-fit-1
 submission
 submission-vorbereiten
 kaggle-score
+aufgaben-9
+vertiefung-4

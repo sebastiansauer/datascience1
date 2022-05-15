@@ -222,11 +222,14 @@ thema11:
   Lernziele:
     - "Sie wissen, wie man einen Datensatz für einen Prognosewettbwerb bei Kaggle einreicht"
     - "Sie kennen einige Beispiele von Notebooks auf Kaggle (für die Sprache R)"
+    - "Sie wissen, wie man ein Workflow-Set in Tidymodels berechnet"
+    - "Sie wissen, dass Tidymodels im Rezept keine Transformationen im Test-Sample berücksichtigt und wie man damit umgeht"
  
 
   Hinweise:
     - Nächste Woche ist Blockwoche, zu der kein regulärer Unterricht stattfindet.
     - Diese Woche fällt die Übung aus.
+    - Diese Woche fällt die Vorlesung aus.
     - "Machen Sie sich mit Kaggle vertraut. Als Übungs-Wettbewerb dient uns `TMDB Box-office Revenue`"
   Aufgaben:
     - "[Einfache lineare Regression mit Tidymodels, Competition TMDB](https://www.kaggle.com/ssauer/simple-linear-model-tidymodels)"
@@ -243,6 +246,7 @@ thema12:
 
   Hinweise:
     - In dieser Woche fällt die Vorlesung aus (Pfingsten).
+    - "Die Übung am 10. Mai 22 findet statt."
   Aufgabe:
     - "[Fallstudie Titanic mit Tidymodels bei Kaggle](https://www.kaggle.com/code/modesty520/a-tutorial-with-tidymodels/report#modeling)"
     - "[Einfache Fallstudie mit Tidymodels bei Kaggle](https://www.kaggle.com/code/benthecoder/tidymodels-in-r-using-measles-data/notebook)"
@@ -250,6 +254,9 @@ thema12:
 
 thema8:
   Titel: "Dimensionsreduktion"
+  Hinweise: 
+    - In dieser Woche findet die Übung asynchron statt (kein Unterricht).
+
   Lernziele:
     - "Sie kennen den Principal-Components-Algorithmus (PCA) und können ihn in Grundzügen erläutern"
     - "Sie können eine PCA in R berechnen"
