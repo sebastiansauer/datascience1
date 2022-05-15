@@ -218,13 +218,23 @@ thema14:
 
 
 thema11:
-  Titel: "Fallstudien"
+  Titel: "Kaggle"
+  Lernziele:
+    - "Sie wissen, wie man einen Datensatz für einen Prognosewettbwerb bei Kaggle einreicht"
+    - "Sie kennen einige Beispiele von Notebooks auf Kaggle (für die Sprache R)"
+ 
 
   Hinweise:
     - Nächste Woche ist Blockwoche, zu der kein regulärer Unterricht stattfindet.
     - Diese Woche fällt die Übung aus.
-  Literatur:
-    - "Rhys, Kap.9"
+    - "Machen Sie sich mit Kaggle vertraut. Als Übungs-Wettbewerb dient uns `TMDB Box-office Revenue`"
+  Aufgaben:
+    - "[Einfache lineare Regression mit Tidymodels, Competition TMDB](https://www.kaggle.com/ssauer/simple-linear-model-tidymodels)"
+    - "[Einfaches Random-Forest-Modell mit Tidymodels, Competition TMDB](https://www.kaggle.com/code/ssauer/simple-rf-tuned)"
+    - "[Einfache lineare Regression in Base-R, Anfängerniveau, Competition TMDB](https://www.kaggle.com/code/ssauer/tmdb-simple-regression-beginners)"
+    - "[Workflow-Set mit Tidymodels, Competition TMDB](   https://www.kaggle.com/ssauer/tmdb-xgboost-tidymodels)"
+   
+ 
 
 
 thema12:
@@ -232,6 +242,8 @@ thema12:
 
   Hinweise:
     - In dieser Woche fällt die Vorlesung aus (Pfingsten).
+  Aufgabe:
+    - "[Fallstudie Titanic mit Tidymodels bei Kaggle](https://www.kaggle.com/code/modesty520/a-tutorial-with-tidymodels/report#modeling)"
 
 thema13:
   Titel: "GAM"
