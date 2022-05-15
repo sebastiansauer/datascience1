@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Kapitel 12 Kaggle | DataScience1</title>
+<meta name="author" content="Sebastian Sauer">
+<meta name="description" content="12.1 Vorbereitung  12.1.1 Lernsteuerung   12.1.2 Vorbereitung Lesen Sie die Hinweise zum Modul. Installieren (oder Updaten) Sie die für dieses Modul angegeben Software. Lesen Sie die Literatur. ...">
+<meta name="generator" content="bookdown 0.26.2 with bs4_book()">
+<meta property="og:title" content="Kapitel 12 Kaggle | DataScience1">
+<meta property="og:type" content="book">
+<meta property="og:description" content="12.1 Vorbereitung  12.1.1 Lernsteuerung   12.1.2 Vorbereitung Lesen Sie die Hinweise zum Modul. Installieren (oder Updaten) Sie die für dieses Modul angegeben Software. Lesen Sie die Literatur. ...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kapitel 12 Kaggle | DataScience1">
+<meta name="twitter:description" content="12.1 Vorbereitung  12.1.1 Lernsteuerung   12.1.2 Vorbereitung Lesen Sie die Hinweise zum Modul. Installieren (oder Updaten) Sie die für dieses Modul angegeben Software. Lesen Sie die Literatur. ...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
+<script src="libs/grViz-binding-1.0.6.1/grViz.js"></script><script src="libs/es6shim-0.35.6/es6shim.js"></script><script src="libs/es7shim-6.0.0/es7shim.js"></script><script src="libs/graphre-0.1.3/graphre.js"></script><script src="libs/nomnoml-1.3.1/nomnoml.js"></script><script src="libs/nomnoml-binding-0.2.3/nomnoml.js"></script><script src="libs/d3-3.3.8/d3.min.js"></script><script src="libs/dagre-0.4.0/dagre-d3.min.js"></script><link href="libs/mermaid-0.3.0/dist/mermaid.css" rel="stylesheet">
+<script src="libs/mermaid-0.3.0/dist/mermaid.slim.min.js"></script><script src="libs/chromatography-0.1/chromatography.js"></script><script src="libs/DiagrammeR-binding-1.0.6.1/DiagrammeR.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="style-bs4.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="Grundlagen der Prognosemodellierung 🔮🧰">DataScience1</a>:
+        <small class="text-muted">Grundlagen der Prognosemodellierung 🔮🧰</small>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Zu diesem Buch</a></li>
+<li><a class="" href="hinweise.html"><span class="header-section-number">1</span> Hinweise</a></li>
+<li><a class="" href="pr%C3%BCfung.html"><span class="header-section-number">2</span> Prüfung</a></li>
+<li class="book-part">Themen</li>
+<li><a class="" href="statistisches-lernen.html"><span class="header-section-number">3</span> Statistisches Lernen</a></li>
+<li><a class="" href="r-zweiter-blick.html"><span class="header-section-number">4</span> R, zweiter Blick</a></li>
+<li><a class="" href="tidymodels.html"><span class="header-section-number">5</span> tidymodels</a></li>
+<li><a class="" href="knn.html"><span class="header-section-number">6</span> kNN</a></li>
+<li><a class="" href="resampling-und-tuning.html"><span class="header-section-number">7</span> Resampling und Tuning</a></li>
+<li><a class="" href="logistische-regression.html"><span class="header-section-number">8</span> Logistische Regression</a></li>
+<li><a class="" href="entscheidungsb%C3%A4ume.html"><span class="header-section-number">9</span> Entscheidungsbäume</a></li>
+<li><a class="" href="ensemble-lerner.html"><span class="header-section-number">10</span> Ensemble Lerner</a></li>
+<li><a class="" href="regularisierte-modelle.html"><span class="header-section-number">11</span> Regularisierte Modelle</a></li>
+<li><a class="active" href="kaggle.html"><span class="header-section-number">12</span> Kaggle</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/sebastiansauer/datascience1">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="kaggle" class="section level1" number="12">
+<h1>
+<span class="header-section-number">Kapitel 12</span> Kaggle<a class="anchor" aria-label="anchor" href="#kaggle"><i class="fas fa-link"></i></a>
+</h1>
+<div id="vorbereitung-8" class="section level2" number="12.1">
+<h2>
+<span class="header-section-number">12.1</span> Vorbereitung<a class="anchor" aria-label="anchor" href="#vorbereitung-8"><i class="fas fa-link"></i></a>
+</h2>
+<div id="lernsteuerung-9" class="section level3" number="12.1.1">
+<h3>
+<span class="header-section-number">12.1.1</span> Lernsteuerung<a class="anchor" aria-label="anchor" href="#lernsteuerung-9"><i class="fas fa-link"></i></a>
+</h3>
+</div>
+<div id="vorbereitung-9" class="section level3" number="12.1.2">
+<h3>
+<span class="header-section-number">12.1.2</span> Vorbereitung<a class="anchor" aria-label="anchor" href="#vorbereitung-9"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>Lesen Sie die Hinweise zum Modul.</li>
+<li>Installieren (oder Updaten) Sie die für dieses Modul angegeben Software.</li>
+<li>Lesen Sie die Literatur.</li>
+</ul>
+</div>
+<div id="lernziele-10" class="section level3" number="12.1.3">
+<h3>
+<span class="header-section-number">12.1.3</span> Lernziele<a class="anchor" aria-label="anchor" href="#lernziele-10"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>Sie können erläutern, was man unter statistischem Lernen versteht.</li>
+<li>Sie wissen, war Overfitting ist, wie es entsteht, und wie es vermieden werden kann.</li>
+<li>Sie kennen verschiedenen Arten von statistischem Lernen und können Algorithmen zu diesen Arten zuordnen.</li>
+</ul>
+</div>
+<div id="literatur-10" class="section level3" number="12.1.4">
+<h3>
+<span class="header-section-number">12.1.4</span> Literatur<a class="anchor" aria-label="anchor" href="#literatur-10"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>Rhys, Kap. 1</li>
+<li>evtl. Sauer, Kap. 15</li>
+</ul>
+</div>
+<div id="hinweise-3" class="section level3" number="12.1.5">
+<h3>
+<span class="header-section-number">12.1.5</span> Hinweise<a class="anchor" aria-label="anchor" href="#hinweise-3"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>Bitte beachten Sie die Hinweise zum Präsenzunterricht und der Streamingoption.</li>
+<li>Bitte stellen Sie sicher, dass Sie einen einsatzbereiten Computer haben und dass die angegebene Software (in aktueller Version) läuft.</li>
+</ul>
+</div>
+<div id="r-pakete" class="section level3" number="12.1.6">
+<h3>
+<span class="header-section-number">12.1.6</span> R-Pakete<a class="anchor" aria-label="anchor" href="#r-pakete"><i class="fas fa-link"></i></a>
+</h3>
+<p>In diesem Kapitel werden folgende R-Pakete benötigt:</p>
+<div class="sourceCode" id="cb435"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/collectivemedia/tictoc">tictoc</a></span><span class="op">)</span>  <span class="co"># Rechenzeit messen</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span>  <span class="co"># Datumsangaben</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/statistikat/VIM">VIM</a></span><span class="op">)</span>  <span class="co"># fehlende Werte</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://visdat.njtierney.com/">visdat</a></span><span class="op">)</span>  <span class="co"># Datensatz visualisieren</span></code></pre></div>
+</div>
+</div>
+<div id="was-ist-kaggle" class="section level2" number="12.2">
+<h2>
+<span class="header-section-number">12.2</span> Was ist Kaggle?<a class="anchor" aria-label="anchor" href="#was-ist-kaggle"><i class="fas fa-link"></i></a>
+</h2>
+<blockquote>
+<p>Kaggle, a subsidiary of Google LLC, is an online community of data scientists and machine learning practitioners. Kaggle allows users to find and publish data sets, explore and build models in a web-based data-science environment, work with other data scientists and machine learning engineers, and enter competitions to solve data science challenges.</p>
+</blockquote>
+<p><a href="https://en.wikipedia.org/wiki/Kaggle">Quelle</a></p>
+<p><a href="https://www.kaggle.com/getting-started/44916">Kaggle as AirBnB for Data Scientists?!</a></p>
+</div>
+<div id="fallstudie-tmdb" class="section level2" number="12.3">
+<h2>
+<span class="header-section-number">12.3</span> Fallstudie TMDB<a class="anchor" aria-label="anchor" href="#fallstudie-tmdb"><i class="fas fa-link"></i></a>
+</h2>
+<p>Wir bearbeiten hier die Fallstudie <a href="https://www.kaggle.com/competitions/tmdb-box-office-prediction/overview">TMDB Box Office Prediction -
+Can you predict a movie’s worldwide box office revenue?</a>,
+ein <a href="https://www.kaggle.com/">Kaggle</a>-Prognosewettbewerb.</p>
+<p>Ziel ist es, genaue Vorhersagen zu machen,
+in diesem Fall für Filme.</p>
+<div id="aufgabe" class="section level3" number="12.3.1">
+<h3>
+<span class="header-section-number">12.3.1</span> Aufgabe<a class="anchor" aria-label="anchor" href="#aufgabe"><i class="fas fa-link"></i></a>
+</h3>
+<p>Reichen Sie bei Kaggle eine Submission für die Fallstudie ein! Berichten Sie den Score!</p>
+<p>Hinweise:</p>
+<ul>
+<li>Sie müssen sich bei Kaggle ein Konto anlegen (kostenlos und anonym möglich); alternativ können Sie sich mit einem Google-Konto anmelden.</li>
+<li>Halten Sie das Modell so einfach wie möglich. Verwenden Sie als Algorithmus die lineare Regression ohne weitere Schnörkel.</li>
+<li>Logarithmieren Sie <code>budget</code> und <code>revenue</code>.</li>
+<li>Minimieren Sie die Vorverarbeitung (<code>steps</code>) so weit als möglich.</li>
+<li>Verwenden Sie <code>tidymodels</code>.</li>
+<li>Die Zielgröße ist <code>revenue</code> in Dollars; nicht in “Log-Dollars”. Sie müssen also rücktransformieren,
+wenn Sie <code>revenue</code> logarithmiert haben.</li>
+</ul>
+</div>
+<div id="daten-1" class="section level3" number="12.3.2">
+<h3>
+<span class="header-section-number">12.3.2</span> Daten<a class="anchor" aria-label="anchor" href="#daten-1"><i class="fas fa-link"></i></a>
+</h3>
+<p>Die Daten können Sie von der Kaggle-Projektseite beziehen oder so:</p>
+<p>Mal einen Blick werfen:</p>
+<pre><code>## Rows: 3,000
+## Columns: 23
+## $ id                    &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 1…
+## $ belongs_to_collection &lt;chr&gt; "[{'id': 313576, 'name': 'Hot Tub Time Machine C…
+## $ budget                &lt;dbl&gt; 1.40e+07, 4.00e+07, 3.30e+06, 1.20e+06, 0.00e+00…
+## $ genres                &lt;chr&gt; "[{'id': 35, 'name': 'Comedy'}]", "[{'id': 35, '…
+## $ homepage              &lt;chr&gt; NA, NA, "http://sonyclassics.com/whiplash/", "ht…
+## $ imdb_id               &lt;chr&gt; "tt2637294", "tt0368933", "tt2582802", "tt182148…
+## $ original_language     &lt;chr&gt; "en", "en", "en", "hi", "ko", "en", "en", "en", …
+## $ original_title        &lt;chr&gt; "Hot Tub Time Machine 2", "The Princess Diaries …
+## $ overview              &lt;chr&gt; "When Lou, who has become the \"father of the In…
+## $ popularity            &lt;dbl&gt; 6.575393, 8.248895, 64.299990, 3.174936, 1.14807…
+## $ poster_path           &lt;chr&gt; "/tQtWuwvMf0hCc2QR2tkolwl7c3c.jpg", "/w9Z7A0GHEh…
+## $ production_companies  &lt;chr&gt; "[{'name': 'Paramount Pictures', 'id': 4}, {'nam…
+## $ production_countries  &lt;chr&gt; "[{'iso_3166_1': 'US', 'name': 'United States of…
+## $ release_date          &lt;chr&gt; "2/20/15", "8/6/04", "10/10/14", "3/9/12", "2/5/…
+## $ runtime               &lt;dbl&gt; 93, 113, 105, 122, 118, 83, 92, 84, 100, 91, 119…
+## $ spoken_languages      &lt;chr&gt; "[{'iso_639_1': 'en', 'name': 'English'}]", "[{'…
+## $ status                &lt;chr&gt; "Released", "Released", "Released", "Released", …
+## $ tagline               &lt;chr&gt; "The Laws of Space and Time are About to be Viol…
+## $ title                 &lt;chr&gt; "Hot Tub Time Machine 2", "The Princess Diaries …
+## $ Keywords              &lt;chr&gt; "[{'id': 4379, 'name': 'time travel'}, {'id': 96…
+## $ cast                  &lt;chr&gt; "[{'cast_id': 4, 'character': 'Lou', 'credit_id'…
+## $ crew                  &lt;chr&gt; "[{'credit_id': '59ac067c92514107af02c8c8', 'dep…
+## $ revenue               &lt;dbl&gt; 12314651, 95149435, 13092000, 16000000, 3923970,…</code></pre>
+<pre><code>## Rows: 4,398
+## Columns: 22
+## $ id                    &lt;dbl&gt; 3001, 3002, 3003, 3004, 3005, 3006, 3007, 3008, …
+## $ belongs_to_collection &lt;chr&gt; "[{'id': 34055, 'name': 'Pokémon Collection', 'p…
+## $ budget                &lt;dbl&gt; 0.00e+00, 8.80e+04, 0.00e+00, 6.80e+06, 2.00e+06…
+## $ genres                &lt;chr&gt; "[{'id': 12, 'name': 'Adventure'}, {'id': 16, 'n…
+## $ homepage              &lt;chr&gt; "http://www.pokemon.com/us/movies/movie-pokemon-…
+## $ imdb_id               &lt;chr&gt; "tt1226251", "tt0051380", "tt0118556", "tt125595…
+## $ original_language     &lt;chr&gt; "ja", "en", "en", "fr", "en", "en", "de", "en", …
+## $ original_title        &lt;chr&gt; "ディアルガVSパルキアVSダークライ", "Attack of t…
+## $ overview              &lt;chr&gt; "Ash and friends (this time accompanied by newco…
+## $ popularity            &lt;dbl&gt; 3.851534, 3.559789, 8.085194, 8.596012, 3.217680…
+## $ poster_path           &lt;chr&gt; "/tnftmLMemPLduW6MRyZE0ZUD19z.jpg", "/9MgBNBqlH1…
+## $ production_companies  &lt;chr&gt; NA, "[{'name': 'Woolner Brothers Pictures Inc.',…
+## $ production_countries  &lt;chr&gt; "[{'iso_3166_1': 'JP', 'name': 'Japan'}, {'iso_3…
+## $ release_date          &lt;chr&gt; "7/14/07", "5/19/58", "5/23/97", "9/4/10", "2/11…
+## $ runtime               &lt;dbl&gt; 90, 65, 100, 130, 92, 121, 119, 77, 120, 92, 88,…
+## $ spoken_languages      &lt;chr&gt; "[{'iso_639_1': 'en', 'name': 'English'}, {'iso_…
+## $ status                &lt;chr&gt; "Released", "Released", "Released", "Released", …
+## $ tagline               &lt;chr&gt; "Somewhere Between Time &amp; Space... A Legend Is B…
+## $ title                 &lt;chr&gt; "Pokémon: The Rise of Darkrai", "Attack of the 5…
+## $ Keywords              &lt;chr&gt; "[{'id': 11451, 'name': 'pok√©mon'}, {'id': 1155…
+## $ cast                  &lt;chr&gt; "[{'cast_id': 3, 'character': 'Tonio', 'credit_i…
+## $ crew                  &lt;chr&gt; "[{'credit_id': '52fe44e7c3a368484e03d683', 'dep…</code></pre>
+</div>
+<div id="train-set-verschlanken" class="section level3" number="12.3.3">
+<h3>
+<span class="header-section-number">12.3.3</span> Train-Set verschlanken<a class="anchor" aria-label="anchor" href="#train-set-verschlanken"><i class="fas fa-link"></i></a>
+</h3>
+</div>
+<div id="datensatz-kennenlernen" class="section level3" number="12.3.4">
+<h3>
+<span class="header-section-number">12.3.4</span> Datensatz kennenlernen<a class="anchor" aria-label="anchor" href="#datensatz-kennenlernen"><i class="fas fa-link"></i></a>
+</h3>
+<div class="inline-figure"><img src="chunk-img/unnamed-chunk-7-1.png" width="100%" style="display: block; margin: auto;"></div>
+</div>
+<div id="fehlende-werte-prüfen" class="section level3" number="12.3.5">
+<h3>
+<span class="header-section-number">12.3.5</span> Fehlende Werte prüfen<a class="anchor" aria-label="anchor" href="#fehlende-werte-pr%C3%BCfen"><i class="fas fa-link"></i></a>
+</h3>
+<p>Welche Spalten haben viele fehlende Werte?</p>
+<div class="inline-figure"><img src="chunk-img/unnamed-chunk-8-1.png" width="100%" style="display: block; margin: auto;"></div>
+<p>Mit <a href="https://github.com/statistikat/VIM">VIM</a> kann man einen Datensatz gut auf fehlende Werte hin untersuchen:</p>
+<div class="inline-figure"><img src="chunk-img/unnamed-chunk-9-1.png" width="100%" style="display: block; margin: auto;"></div>
+</div>
+</div>
+<div id="rezept" class="section level2" number="12.4">
+<h2>
+<span class="header-section-number">12.4</span> Rezept<a class="anchor" aria-label="anchor" href="#rezept"><i class="fas fa-link"></i></a>
+</h2>
+<div id="rezept-definieren-3" class="section level3" number="12.4.1">
+<h3>
+<span class="header-section-number">12.4.1</span> Rezept definieren<a class="anchor" aria-label="anchor" href="#rezept-definieren-3"><i class="fas fa-link"></i></a>
+</h3>
+<pre><code>## Recipe
+## 
+## Inputs:
+## 
+##       role #variables
+##    outcome          1
+##  predictor          4
+## 
+## Operations:
+## 
+## Variable mutation for if_else(budget &lt; 10, 10, budget)
+## Log transformation on budget
+## Variable mutation for mdy(release_date)
+## Date features from release_date
+## K-nearest neighbor imputation for all_predictors()
+## Dummy variables from all_nominal()</code></pre>
+<pre><code>## # A tibble: 6 × 6
+##   number operation type       trained skip  id              
+##    &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;      &lt;lgl&gt;   &lt;lgl&gt; &lt;chr&gt;           
+## 1      1 step      mutate     FALSE   FALSE mutate_h5zV5    
+## 2      2 step      log        FALSE   FALSE log_cMkyV       
+## 3      3 step      mutate     FALSE   FALSE mutate_hTtgg    
+## 4      4 step      date       FALSE   FALSE date_lddPK      
+## 5      5 step      impute_knn FALSE   FALSE impute_knn_sXbFF
+## 6      6 step      dummy      FALSE   FALSE dummy_B54Dt</code></pre>
+</div>
+<div id="check-das-rezept" class="section level3" number="12.4.2">
+<h3>
+<span class="header-section-number">12.4.2</span> Check das Rezept<a class="anchor" aria-label="anchor" href="#check-das-rezept"><i class="fas fa-link"></i></a>
+</h3>
+<pre><code>## oper 1 step mutate [training] 
+## oper 2 step log [training] 
+## oper 3 step mutate [training] 
+## oper 4 step date [training] 
+## oper 5 step impute knn [training] 
+## oper 6 step dummy [training] 
+## The retained training set is ~ 0.38 Mb  in memory.</code></pre>
+<pre><code>## Recipe
+## 
+## Inputs:
+## 
+##       role #variables
+##    outcome          1
+##  predictor          4
+## 
+## Training data contained 3000 data points and 2 incomplete rows. 
+## 
+## Operations:
+## 
+## Variable mutation for ~if_else(budget &lt; 10, 10, budget) [trained]
+## Log transformation on budget [trained]
+## Variable mutation for ~mdy(release_date) [trained]
+## Date features from release_date [trained]
+## K-nearest neighbor imputation for runtime, budget, release_date_year, release_da... [trained]
+## Dummy variables from release_date_month [trained]</code></pre>
+<pre><code>## # A tibble: 3,000 × 16
+##    popularity runtime budget  revenue release_date_year release_date_month_Feb
+##         &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;             &lt;dbl&gt;                  &lt;dbl&gt;
+##  1      6.58       93  16.5  12314651              2015                      1
+##  2      8.25      113  17.5  95149435              2004                      0
+##  3     64.3       105  15.0  13092000              2014                      0
+##  4      3.17      122  14.0  16000000              2012                      0
+##  5      1.15      118   2.30  3923970              2009                      1
+##  6      0.743      83  15.9   3261638              1987                      0
+##  7      7.29       92  16.5  85446075              2012                      0
+##  8      1.95       84   2.30  2586511              2004                      0
+##  9      6.90      100   2.30 34327391              1996                      1
+## 10      4.67       91  15.6  18750246              2003                      0
+## # … with 2,990 more rows, and 10 more variables: release_date_month_Mar &lt;dbl&gt;,
+## #   release_date_month_Apr &lt;dbl&gt;, release_date_month_May &lt;dbl&gt;,
+## #   release_date_month_Jun &lt;dbl&gt;, release_date_month_Jul &lt;dbl&gt;,
+## #   release_date_month_Aug &lt;dbl&gt;, release_date_month_Sep &lt;dbl&gt;,
+## #   release_date_month_Oct &lt;dbl&gt;, release_date_month_Nov &lt;dbl&gt;,
+## #   release_date_month_Dec &lt;dbl&gt;</code></pre>
+<pre><code>## # A tibble: 1 × 16
+##   popularity runtime budget revenue release_date_year release_date_month_Feb
+##        &lt;int&gt;   &lt;int&gt;  &lt;int&gt;   &lt;int&gt;             &lt;int&gt;                  &lt;int&gt;
+## 1          0       0      0       0                 0                      0
+## # … with 10 more variables: release_date_month_Mar &lt;int&gt;,
+## #   release_date_month_Apr &lt;int&gt;, release_date_month_May &lt;int&gt;,
+## #   release_date_month_Jun &lt;int&gt;, release_date_month_Jul &lt;int&gt;,
+## #   release_date_month_Aug &lt;int&gt;, release_date_month_Sep &lt;int&gt;,
+## #   release_date_month_Oct &lt;int&gt;, release_date_month_Nov &lt;int&gt;,
+## #   release_date_month_Dec &lt;int&gt;</code></pre>
+<p>Keine fehlenden Werte mehr <em>in den Prädiktoren</em>.</p>
+<p>Nach fehlenden Werten könnte man z.B. auch so suchen:</p>
+</div>
+</div>
+<div id="variable-mean-sd-iqr-range-skewness-kurtosis-n-n_missing" class="section level2" number="12.5">
+<h2>
+<span class="header-section-number">12.5</span> Variable | Mean | SD | IQR | Range | Skewness | Kurtosis | n | n_Missing<a class="anchor" aria-label="anchor" href="#variable-mean-sd-iqr-range-skewness-kurtosis-n-n_missing"><i class="fas fa-link"></i></a>
+</h2>
+<p>popularity | 8.46 | 12.10 | 6.88 | [1.00e-06, 294.34] | 14.38 | 280.10 | 3000 | 0
+runtime | 107.86 | 22.09 | 24.00 | [0.00, 338.00] | 1.02 | 8.19 | 2998 | 2
+revenue | 6.67e+07 | 1.38e+08 | 6.66e+07 | [1.00, 1.52e+09] | 4.54 | 27.78 | 3000 | 0
+budget | 2.25e+07 | 3.70e+07 | 2.90e+07 | [0.00, 3.80e+08] | 3.10 | 13.23 | 3000 | 0</p>
+<p>So bekommt man gleich noch ein paar Infos über die Verteilung der Variablen. Praktische Sache.</p>
+<div id="check-test-sample" class="section level3" number="12.5.1">
+<h3>
+<span class="header-section-number">12.5.1</span> Check Test-Sample<a class="anchor" aria-label="anchor" href="#check-test-sample"><i class="fas fa-link"></i></a>
+</h3>
+<p>Das Test-Sample backen wir auch mal.</p>
+<p>Wichtig: Wir preppen den Datensatz mit dem <em>Train-Sample</em>.</p>
+<pre><code>## # A tibble: 6 × 15
+##   popularity runtime budget release_date_year release_date_mon… release_date_mo…
+##        &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt;            &lt;dbl&gt;
+## 1       3.85      90   2.30              2007                 0                0
+## 2       3.56      65  11.4               2058                 0                0
+## 3       8.09     100   2.30              1997                 0                0
+## 4       8.60     130  15.7               2010                 0                0
+## 5       3.22      92  14.5               2005                 1                0
+## 6       8.68     121   2.30              1996                 1                0
+## # … with 9 more variables: release_date_month_Apr &lt;dbl&gt;,
+## #   release_date_month_May &lt;dbl&gt;, release_date_month_Jun &lt;dbl&gt;,
+## #   release_date_month_Jul &lt;dbl&gt;, release_date_month_Aug &lt;dbl&gt;,
+## #   release_date_month_Sep &lt;dbl&gt;, release_date_month_Oct &lt;dbl&gt;,
+## #   release_date_month_Nov &lt;dbl&gt;, release_date_month_Dec &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<div id="kreuzvalidierung" class="section level2" number="12.6">
+<h2>
+<span class="header-section-number">12.6</span> Kreuzvalidierung<a class="anchor" aria-label="anchor" href="#kreuzvalidierung"><i class="fas fa-link"></i></a>
+</h2>
+</div>
+<div id="modelle-1" class="section level2" number="12.7">
+<h2>
+<span class="header-section-number">12.7</span> Modelle<a class="anchor" aria-label="anchor" href="#modelle-1"><i class="fas fa-link"></i></a>
+</h2>
+<div id="baum-1" class="section level3" number="12.7.1">
+<h3>
+<span class="header-section-number">12.7.1</span> Baum<a class="anchor" aria-label="anchor" href="#baum-1"><i class="fas fa-link"></i></a>
+</h3>
+</div>
+<div id="random-forest" class="section level3" number="12.7.2">
+<h3>
+<span class="header-section-number">12.7.2</span> Random Forest<a class="anchor" aria-label="anchor" href="#random-forest"><i class="fas fa-link"></i></a>
+</h3>
+</div>
+<div id="xgboost-2" class="section level3" number="12.7.3">
+<h3>
+<span class="header-section-number">12.7.3</span> XGBoost<a class="anchor" aria-label="anchor" href="#xgboost-2"><i class="fas fa-link"></i></a>
+</h3>
+</div>
+<div id="lm" class="section level3" number="12.7.4">
+<h3>
+<span class="header-section-number">12.7.4</span> LM<a class="anchor" aria-label="anchor" href="#lm"><i class="fas fa-link"></i></a>
+</h3>
+</div>
+</div>
+<div id="workflows-2" class="section level2" number="12.8">
+<h2>
+<span class="header-section-number">12.8</span> Workflows<a class="anchor" aria-label="anchor" href="#workflows-2"><i class="fas fa-link"></i></a>
+</h2>
+</div>
+<div id="fitten-und-tunen" class="section level2" number="12.9">
+<h2>
+<span class="header-section-number">12.9</span> Fitten und tunen<a class="anchor" aria-label="anchor" href="#fitten-und-tunen"><i class="fas fa-link"></i></a>
+</h2>
+<p>Man kann sich das Ergebnisobjekt abspeichern,
+um künftig Rechenzeit zu sparen:</p>
+<p>Professioneller ist der Ansatz mit dem R-Paket <a href="https://books.ropensci.org/targets/">target</a>.</p>
+</div>
+<div id="finalisieren" class="section level2" number="12.10">
+<h2>
+<span class="header-section-number">12.10</span> Finalisieren<a class="anchor" aria-label="anchor" href="#finalisieren"><i class="fas fa-link"></i></a>
+</h2>
+<div id="welcher-algorithmus-schneidet-am-besten-ab" class="section level3" number="12.10.1">
+<h3>
+<span class="header-section-number">12.10.1</span> Welcher Algorithmus schneidet am besten ab?<a class="anchor" aria-label="anchor" href="#welcher-algorithmus-schneidet-am-besten-ab"><i class="fas fa-link"></i></a>
+</h3>
+<p>Genauer geagt, welches Modell, denn es ist ja nicht nur ein Algorithmus,
+sondern ein Algorithmus plus ein Rezept plus die Parameterinstatiierung plus
+ein spezifischer Datensatz.</p>
+<div class="inline-figure"><img src="chunk-img/unnamed-chunk-26-1.png" width="100%" style="display: block; margin: auto;"></div>
+<p>R-Quadrat ist nicht entscheidend; <code>rmse</code> ist wichtiger.</p>
+<p>Die Ergebnislage ist nicht ganz klar, aber
+einiges spricht für das Boosting-Modell, <code>rec1_boost1</code>.</p>
+<pre><code>## # A tibble: 10 × 9
+##    wflow_id    .config     preproc model .metric .estimator   mean     n std_err
+##    &lt;chr&gt;       &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt;
+##  1 rec1_lm1    Preprocess… recipe  line… rmse    standard   1.15e8    15  2.20e6
+##  2 rec1_tree1  Preprocess… recipe  deci… rmse    standard   1.12e8    15  2.67e6
+##  3 rec1_rf1    Preprocess… recipe  rand… rmse    standard   1.10e8    15  2.64e6
+##  4 rec1_tree1  Preprocess… recipe  deci… rmse    standard   9.46e7    15  2.30e6
+##  5 rec1_tree1  Preprocess… recipe  deci… rmse    standard   9.33e7    15  2.26e6
+##  6 rec1_boost1 Preprocess… recipe  boos… rmse    standard   9.30e7    15  1.91e6
+##  7 rec1_boost1 Preprocess… recipe  boos… rmse    standard   9.27e7    15  2.13e6
+##  8 rec1_tree1  Preprocess… recipe  deci… rmse    standard   9.21e7    15  1.91e6
+##  9 rec1_tree1  Preprocess… recipe  deci… rmse    standard   9.21e7    15  1.91e6
+## 10 rec1_boost1 Preprocess… recipe  boos… rmse    standard   9.21e7    15  1.73e6</code></pre>
+<pre><code>## # A tibble: 1 × 4
+##    mtry trees min_n .config              
+##   &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;                
+## 1     6   100     4 Preprocessor1_Model04</code></pre>
+<pre><code>## ══ Workflow ════════════════════════════════════════════════════════════════════
+## Preprocessor: Recipe
+## Model: boost_tree()
+## 
+## ── Preprocessor ────────────────────────────────────────────────────────────────
+## 6 Recipe Steps
+## 
+## • step_mutate()
+## • step_log()
+## • step_mutate()
+## • step_date()
+## • step_impute_knn()
+## • step_dummy()
+## 
+## ── Model ───────────────────────────────────────────────────────────────────────
+## Boosted Tree Model Specification (regression)
+## 
+## Main Arguments:
+##   mtry = 6
+##   trees = 100
+##   min_n = 4
+## 
+## Engine-Specific Arguments:
+##   nthreads = parallel::detectCores()
+## 
+## Computational engine: xgboost</code></pre>
+</div>
+<div id="final-fit-1" class="section level3" number="12.10.2">
+<h3>
+<span class="header-section-number">12.10.2</span> Final Fit<a class="anchor" aria-label="anchor" href="#final-fit-1"><i class="fas fa-link"></i></a>
+</h3>
+<pre><code>## [12:09:37] WARNING: amalgamation/../src/learner.cc:576: 
+## Parameters: { "nthreads" } might not be used.
+## 
+##   This could be a false alarm, with some parameters getting used by language bindings but
+##   then being mistakenly passed down to XGBoost core, or some parameter actually being used
+##   but getting flagged wrongly here. Please open an issue if you find any such cases.</code></pre>
+<pre><code>## ══ Workflow [trained] ══════════════════════════════════════════════════════════
+## Preprocessor: Recipe
+## Model: boost_tree()
+## 
+## ── Preprocessor ────────────────────────────────────────────────────────────────
+## 6 Recipe Steps
+## 
+## • step_mutate()
+## • step_log()
+## • step_mutate()
+## • step_date()
+## • step_impute_knn()
+## • step_dummy()
+## 
+## ── Model ───────────────────────────────────────────────────────────────────────
+## ##### xgb.Booster
+## raw: 375.7 Kb 
+## call:
+##   xgboost::xgb.train(params = list(eta = 0.3, max_depth = 6, gamma = 0, 
+##     colsample_bytree = 1, colsample_bynode = 0.4, min_child_weight = 4L, 
+##     subsample = 1, objective = "reg:squarederror"), data = x$data, 
+##     nrounds = 100L, watchlist = x$watchlist, verbose = 0, nthreads = 8L, 
+##     nthread = 1)
+## params (as set within xgb.train):
+##   eta = "0.3", max_depth = "6", gamma = "0", colsample_bytree = "1", colsample_bynode = "0.4", min_child_weight = "4", subsample = "1", objective = "reg:squarederror", nthreads = "8", nthread = "1", validate_parameters = "TRUE"
+## xgb.attributes:
+##   niter
+## callbacks:
+##   cb.evaluation.log()
+## # of features: 15 
+## niter: 100
+## nfeatures : 15 
+## evaluation_log:
+##     iter training_rmse
+##        1     121344704
+##        2     101127808
+## ---                   
+##       99      26307716
+##      100      26233010</code></pre>
+</div>
+</div>
+<div id="submission" class="section level2" number="12.11">
+<h2>
+<span class="header-section-number">12.11</span> Submission<a class="anchor" aria-label="anchor" href="#submission"><i class="fas fa-link"></i></a>
+</h2>
+<div id="submission-vorbereiten" class="section level3" number="12.11.1">
+<h3>
+<span class="header-section-number">12.11.1</span> Submission vorbereiten<a class="anchor" aria-label="anchor" href="#submission-vorbereiten"><i class="fas fa-link"></i></a>
+</h3>
+<p>Abspeichern und einreichen:</p>
+<p>Diese CSV-Datei reichen wir dann bei Kagglei ein.</p>
+</div>
+<div id="kaggle-score" class="section level3" number="12.11.2">
+<h3>
+<span class="header-section-number">12.11.2</span> Kaggle Score<a class="anchor" aria-label="anchor" href="#kaggle-score"><i class="fas fa-link"></i></a>
+</h3>
+<p>Diese Submission erzielte einen Score von <strong>4.79227</strong> (RMSLE).</p>
+
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="regularisierte-modelle.html"><span class="header-section-number">11</span> Regularisierte Modelle</a></div>
+<div class="next"><a href="references.html">References</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#kaggle"><span class="header-section-number">12</span> Kaggle</a></li>
+<li>
+<a class="nav-link" href="#vorbereitung-8"><span class="header-section-number">12.1</span> Vorbereitung</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#lernsteuerung-9"><span class="header-section-number">12.1.1</span> Lernsteuerung</a></li>
+<li><a class="nav-link" href="#vorbereitung-9"><span class="header-section-number">12.1.2</span> Vorbereitung</a></li>
+<li><a class="nav-link" href="#lernziele-10"><span class="header-section-number">12.1.3</span> Lernziele</a></li>
+<li><a class="nav-link" href="#literatur-10"><span class="header-section-number">12.1.4</span> Literatur</a></li>
+<li><a class="nav-link" href="#hinweise-3"><span class="header-section-number">12.1.5</span> Hinweise</a></li>
+<li><a class="nav-link" href="#r-pakete"><span class="header-section-number">12.1.6</span> R-Pakete</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#was-ist-kaggle"><span class="header-section-number">12.2</span> Was ist Kaggle?</a></li>
+<li>
+<a class="nav-link" href="#fallstudie-tmdb"><span class="header-section-number">12.3</span> Fallstudie TMDB</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#aufgabe"><span class="header-section-number">12.3.1</span> Aufgabe</a></li>
+<li><a class="nav-link" href="#daten-1"><span class="header-section-number">12.3.2</span> Daten</a></li>
+<li><a class="nav-link" href="#train-set-verschlanken"><span class="header-section-number">12.3.3</span> Train-Set verschlanken</a></li>
+<li><a class="nav-link" href="#datensatz-kennenlernen"><span class="header-section-number">12.3.4</span> Datensatz kennenlernen</a></li>
+<li><a class="nav-link" href="#fehlende-werte-pr%C3%BCfen"><span class="header-section-number">12.3.5</span> Fehlende Werte prüfen</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#rezept"><span class="header-section-number">12.4</span> Rezept</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#rezept-definieren-3"><span class="header-section-number">12.4.1</span> Rezept definieren</a></li>
+<li><a class="nav-link" href="#check-das-rezept"><span class="header-section-number">12.4.2</span> Check das Rezept</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#variable-mean-sd-iqr-range-skewness-kurtosis-n-n_missing"><span class="header-section-number">12.5</span> Variable | Mean | SD | IQR | Range | Skewness | Kurtosis | n | n_Missing</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#check-test-sample"><span class="header-section-number">12.5.1</span> Check Test-Sample</a></li></ul>
+</li>
+<li><a class="nav-link" href="#kreuzvalidierung"><span class="header-section-number">12.6</span> Kreuzvalidierung</a></li>
+<li>
+<a class="nav-link" href="#modelle-1"><span class="header-section-number">12.7</span> Modelle</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#baum-1"><span class="header-section-number">12.7.1</span> Baum</a></li>
+<li><a class="nav-link" href="#random-forest"><span class="header-section-number">12.7.2</span> Random Forest</a></li>
+<li><a class="nav-link" href="#xgboost-2"><span class="header-section-number">12.7.3</span> XGBoost</a></li>
+<li><a class="nav-link" href="#lm"><span class="header-section-number">12.7.4</span> LM</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#workflows-2"><span class="header-section-number">12.8</span> Workflows</a></li>
+<li><a class="nav-link" href="#fitten-und-tunen"><span class="header-section-number">12.9</span> Fitten und tunen</a></li>
+<li>
+<a class="nav-link" href="#finalisieren"><span class="header-section-number">12.10</span> Finalisieren</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#welcher-algorithmus-schneidet-am-besten-ab"><span class="header-section-number">12.10.1</span> Welcher Algorithmus schneidet am besten ab?</a></li>
+<li><a class="nav-link" href="#final-fit-1"><span class="header-section-number">12.10.2</span> Final Fit</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#submission"><span class="header-section-number">12.11</span> Submission</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#submission-vorbereiten"><span class="header-section-number">12.11.1</span> Submission vorbereiten</a></li>
+<li><a class="nav-link" href="#kaggle-score"><span class="header-section-number">12.11.2</span> Kaggle Score</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/sebastiansauer/datascience1/blob/master/130-Kaggle.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/sebastiansauer/datascience1/edit/master/130-Kaggle.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-05-15 12:07:18.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

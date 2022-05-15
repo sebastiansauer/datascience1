@@ -232,8 +232,9 @@ thema11:
     - "[Einfache lineare Regression mit Tidymodels, Competition TMDB](https://www.kaggle.com/ssauer/simple-linear-model-tidymodels)"
     - "[Einfaches Random-Forest-Modell mit Tidymodels, Competition TMDB](https://www.kaggle.com/code/ssauer/simple-rf-tuned)"
     - "[Einfache lineare Regression in Base-R, Anfängerniveau, Competition TMDB](https://www.kaggle.com/code/ssauer/tmdb-simple-regression-beginners)"
-    - "[Workflow-Set mit Tidymodels, Competition TMDB](   https://www.kaggle.com/ssauer/tmdb-xgboost-tidymodels)"
-   
+    - "[Workflow-Set mit Tidymodels, Competition TMDB](https://www.kaggle.com/ssauer/tmdb-xgboost-tidymodels)"
+  Vertiefung:
+    - "[Kaggle-Blog](https://medium.com/kaggle-blog)"
  
 
 
@@ -244,15 +245,8 @@ thema12:
     - In dieser Woche fällt die Vorlesung aus (Pfingsten).
   Aufgabe:
     - "[Fallstudie Titanic mit Tidymodels bei Kaggle](https://www.kaggle.com/code/modesty520/a-tutorial-with-tidymodels/report#modeling)"
-
-thema13:
-  Titel: "GAM"
-
-  Literatur:
-    - "Rhys, Kap. 10"
-
-
-
+    - "[Einfache Fallstudie mit Tidymodels bei Kaggle](https://www.kaggle.com/code/benthecoder/tidymodels-in-r-using-measles-data/notebook)"
+    
 
 thema8:
   Titel: "Dimensionsreduktion"
@@ -262,12 +256,27 @@ thema8:
     - "Sie wissen um Vorteile und Beschränkungen dieses Algorithmus"
 
   Literatur:
-    - "Rhys, Kap. 13  "    
+    - "Rhys, Kap. 13"    
   
   Aufgaben:
     - "[Fallstudie Cocktailrezepte](https://juliasilge.com/blog/cocktail-recipes-umap/)"
     - "[Fallstudie Hiphop-Songs](https://juliasilge.com/blog/best-hip-hop/)"
     - "[Fallstudie StackOverflow](https://juliasilge.com/blog/stack-overflow-pca/)"
+    
+    
+    
+    
+    
+    
+thema13:
+  Titel: "Neuronale Netze"
+
+  Literatur:
+    - ""
+
+
+
+
 
 thema15:
   Titel: "Vertiefung"

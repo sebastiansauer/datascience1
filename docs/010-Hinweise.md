@@ -117,8 +117,8 @@ die das Online-Zusammenarbeiten vereinfachen:
 | 11| 21|2022-05-23   |[Regularisierung](https://sebastiansauer.github.io/datascience1/regularisierung.html)               |
 | 12| 22|2022-05-30   |[Kaggle](https://sebastiansauer.github.io/datascience1/kaggle.html)                                 |
 | 13| 23|2022-06-06   |[Wiederholung](https://sebastiansauer.github.io/datascience1/wiederholung.html)                     |
-| 14| 24|2022-06-13   |[GAM](https://sebastiansauer.github.io/datascience1/gam.html)                                       |
-| 15| 25|2022-06-20   |[Dimensionsreduktion](https://sebastiansauer.github.io/datascience1/dimensionsreduktion.html)       |
+| 14| 24|2022-06-13   |[Dimensionsreduktion](https://sebastiansauer.github.io/datascience1/dimensionsreduktion.html)       |
+| 15| 25|2022-06-20   |[Neuronale Netze](https://sebastiansauer.github.io/datascience1/neuronale-netze.html)               |
 | 16| 26|2022-06-27   |[Vertiefung](https://sebastiansauer.github.io/datascience1/vertiefung.html)                         |
 
 
