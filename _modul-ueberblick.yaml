@@ -223,9 +223,6 @@ thema11:
  
 
   Hinweise:
-    - Nächste Woche ist Blockwoche, zu der kein regulärer Unterricht stattfindet.
-    - Diese Woche fällt die Übung aus.
-    - Diese Woche fällt die Vorlesung aus.
     - "Machen Sie sich mit Kaggle vertraut. Als Übungs-Wettbewerb dient uns `TMDB Box-office Revenue`"
   Aufgaben:
     - "[Einfache lineare Regression mit Tidymodels, Competition TMDB](https://www.kaggle.com/ssauer/simple-linear-model-tidymodels)"
@@ -250,8 +247,7 @@ thema12:
 
 thema8:
   Titel: "Dimensionsreduktion"
-  Hinweise: 
-    - In dieser Woche findet die Übung asynchron statt (kein Unterricht).
+
 
   Lernziele:
     - "Sie kennen den Principal-Components-Algorithmus (PCA) und können ihn in Grundzügen erläutern"
@@ -286,8 +282,7 @@ thema15:
 
   Literatur:
     - "Rhys, Kap. 12"    
-  Hinweise:
-    - Nach dieser Woche endet der Unterricht.
+
   Vertiefung:
     - "[Wie man eine Data-Science-Projekt strukturiert](https://medium.com/swlh/how-to-structure-a-python-based-data-science-project-a-short-tutorial-for-beginners-7e00bff14f56)"
     - "[Hausmeisterarbeit mit {{janitor}}](https://albert-rapp.de/post/2022-01-12-janitor-showcase/)"

@@ -193,7 +193,7 @@ Hätte man viele Stichproben aus der relevanten Verteilung,
 so könnte man z.B. die Genauigkeit eines Modells <span class="math inline">\(\hat{f}_{\bar{X}}\)</span> zur Schätzung des Erwartungswertes <span class="math inline">\(\mu\)</span> einfach dadurch bestimmen,
 indem man <em>se</em> berechnet, also die Streuung der Mitterwerte <span class="math inline">\(\bar{X}\)</span> berechnet.
 Außerdem gilt, dass die Präzision der Schätzung des Erwartungswerts steigt mit steigendem Stichprobenumfang <span class="math inline">\(n\)</span>.
-Wir könnten also für jede der <span class="math inline">\(B\)</span> Stichproben, <span class="math inline">\(b=1,\ldots, B\)</span>, ein (Baum-)Modell berechnen
+Wir könnten also für jede der <span class="math inline">\(B\)</span> Stichproben, <span class="math inline">\(b=1,\ldots, B\)</span>, ein (Baum-)Modell berechnen, <span class="math inline">\(\hat{f}^b\)</span>,
 und dann deren Vorhersagen aggregieren (zum Mittelwert oder Modalwert).
 Das kann man formal so darstellen <span class="citation">(<a href="references.html#ref-islr" role="doc-biblioref">James et al. 2021</a>)</span>:</p>
 <p><span class="math display">\[\hat{f}_{\bar{X}} = \frac{1}{B}\sum_{b=1}^{B}\hat{f}^b\]</span></p>
@@ -254,8 +254,8 @@ mit dem internationalen Preis für Statistik <a href="https://www.amstat.org/new
 <p>Der Bagging-Algorithmus ist in Abbildung <a href="ensemble-lerner.html#fig:bag">10.2</a> dargestellt.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:bag"></span>
-<div id="htmlwidget-63bc914c414cd029b843" style="width:100%;height:350px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-63bc914c414cd029b843">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n  [<database> Datensatz] ->zmz [Baum 1]\n[<database> Datensatz] ->zmz [Baum 2]\n[<database> Datensatz] ->zmz [Baum ...]\n[<database> Datensatz] ->zmz [Baum B]\n[Baum 1] -> [Modus als Vorhersagewert]\n[Baum 2] -> [Modus als Vorhersagewert]\n[Baum ...] -> [Modus als Vorhersagewert]\n[Baum B] -> [Modus als Vorhersagewert]\n  ","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
+<div id="htmlwidget-7057a9cb420ba6040049" style="width:100%;height:350px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7057a9cb420ba6040049">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n  [<database> Datensatz] ->zmz [Baum 1]\n[<database> Datensatz] ->zmz [Baum 2]\n[<database> Datensatz] ->zmz [Baum ...]\n[<database> Datensatz] ->zmz [Baum B]\n[Baum 1] -> [Modus als Vorhersagewert]\n[Baum 2] -> [Modus als Vorhersagewert]\n[Baum ...] -> [Modus als Vorhersagewert]\n[Baum B] -> [Modus als Vorhersagewert]\n  ","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
 Figure 10.2: Bagging schematisch illustriert
 </p>
 </div>
@@ -318,8 +318,8 @@ In den meisten Implementationen wird <span class="math inline">\(m\)</span> mit 
 <p>Der Random-Forest-Algorithmus ist in Abb. <a href="ensemble-lerner.html#fig:rf1">10.3</a> illustriert.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:rf1"></span>
-<div id="htmlwidget-92d49a7c60f001a2f0db" style="width:100%;height:700px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-92d49a7c60f001a2f0db">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n#direction:down\n                 [<database> Datensatz] ->zmz [Baum1\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n\n[<database> Datensatz] ->zmz [Baum2\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[<database> Datensatz] ->zmz [Baum ...\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[<database> Datensatz] ->zmz [Baum B\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[Baum1\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n] -> [Modus als Vorhersagewert]\n[Baum2\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n] -> [Modus als Vorhersagewert]\n[Baum ...] -> [Modus als Vorhersagewert]\n[Baum B] -> [Modus als Vorhersagewert]\n                 ","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
+<div id="htmlwidget-8e0209f4ffed5da56646" style="width:100%;height:700px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8e0209f4ffed5da56646">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n#direction:down\n                 [<database> Datensatz] ->zmz [Baum1\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n\n[<database> Datensatz] ->zmz [Baum2\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[<database> Datensatz] ->zmz [Baum ...\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[<database> Datensatz] ->zmz [Baum B\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[Baum1\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n] -> [Modus als Vorhersagewert]\n[Baum2\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n] -> [Modus als Vorhersagewert]\n[Baum ...] -> [Modus als Vorhersagewert]\n[Baum B] -> [Modus als Vorhersagewert]\n                 ","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
 Figure 10.3: Zufallswälder durch Ziehen mit Zurücklegen (zmz) und Ziehen ohne Zurücklegen (ZoZ)
 </p>
 </div>
@@ -367,12 +367,20 @@ Dann spricht man von einem <em>Stumpf</em>, was intuitiv gut passt.</p>
 <span class="header-section-number">10.9.1</span> AdaBoost<a class="anchor" aria-label="anchor" href="#adaboost"><i class="fas fa-link"></i></a>
 </h3>
 <p>Der AdaBoost-Algorithmus funktioniert, einfach dargestellt, wie folgt.
-Zuerst hat jeder Fall im Datensatz des gleiche Gewicht.
+Zuerst hat jeder Fall <span class="math inline">\(i\)</span> im Datensatz des gleiche Gewicht.
 Die erste (und alle weiteren) Stichprobe werden per Bootstrapping aus dem
 Datensatz gezogen. Dabei ist die Wahrscheinlichkeit, gezogen zu werden,
-proportional zum Gewicht. Da im ersten Durchgang die Gewichte identisch sind,
+proportional zum Gewicht des Falles, <span class="math inline">\(w_i\)</span>. Da im ersten Durchgang die Gewichte identisch sind,
 haben zunächst alle Fälle die gleiche Wahrscheinlichkeit, in das Bootstrap-Sample gezogen zu werden.
-Nach Berechnung des Baumen und der Vorhersagen werden die <em>richtig</em> klassifizierten Fälle heruntergewichtet
+Die Bäume bei AdaBoost sind eigentlich nur “Stümpfe”: Sie bestehen aus einem einzelnen Split, s. Abb. <a href="ensemble-lerner.html#fig:stump">10.6</a>.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:stump"></span>
+<div id="htmlwidget-440981bf9ed2cc61a611" style="width:100%;height:200px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-440981bf9ed2cc61a611">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: topdown\n  [root] -> [leaf1]\n  [root] -> [leaf2]\n  ","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
+Figure 10.6: Ein Baumstumpf bei AdaBoost
+</p>
+</div>
+<p>Nach Berechnung des Baumes und der Vorhersagen werden die <em>richtig</em> klassifizierten Fälle heruntergewichtet
 und die falsch klassifizierten Fälle hoch gewichtet, also stärker gewichtet (bleiben wir aus Gründen der Einfachheit zunächst bei der Klassifikation).
 Dieses Vorgehen folgt dem Gedanken, dass man sich seine Fehler genauer anschauen muss,
 die falsch klassifizierten Fälle sozusagen mehr Aufmerksamkeit bedürfen.
@@ -385,9 +393,9 @@ die Aspekte, die das Vorgänger-Modell übersah zu korrigieren bzw. zu lernen.
 Jetzt haben wir zwei Modelle. Die können wir aggregieren, genau
 wie beim Bagging: Der Modus der Vorhersage über alle (beide) Bäume hinwig ist
 dann die Vorhersage für einen bestimmten Fall (“Fall” und “Beobachtung” sind stets synonym für <span class="math inline">\(y_i\)</span> zu verstehen).
-So wiederholt sich das Vorgehen:
+So wiederholt sich das Vorgehen für <span class="math inline">\(B\)</span> Bäume:
 Die Gewichte werden angepasst, das neue Modell wird berechnet,
-alle Modelle machen ihre Vorhersagen, per Mehrheitsbeschluss wird die Vorhersage bestimmt pro Fall.
+alle Modelle machen ihre Vorhersagen, per Mehrheitsbeschluss - mit gewichteten Modellen - wird die Vorhersage bestimmt pro Fall.
 Irgendwann erreichen wir die vorab definierte Maximalzahl an Bäumen, <span class="math inline">\(B\)</span>, und das Modell kommt zu einem Ende.</p>
 <p>Da das Modell die Fehler seiner Vorgänger reduziert,
 wird der Bias im Gesamtmodell verringert.
@@ -400,8 +408,20 @@ w_i^{b-1} \cdot e^{-\text{model weight}} \qquad \text{wenn korrekt klassifiziert
 w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifiziert} \\
 \end{cases}\]</span></p>
 <p>Das <em>Modellgewicht</em> <span class="math inline">\(mw\)</span> berechnet sich dabei so <span class="citation">(<a href="references.html#ref-rhys" role="doc-biblioref">Rhys 2020</a>)</span>:</p>
-<p><span class="math display">\[mw = 0.5 \cdot log\left( \frac{1-p(\text{inkorrect})}{p(\text{korrekt})} \right) \propto \mathcal{L(p)} \]</span></p>
-<p>Das Modellgewicht ist ein Faktor, der schlechtere Modelle bestraft.</p>
+<p><span class="math display">\[mw_b = 0.5 \cdot log\left( \frac{1-p(\text{inkorrect})}{p(\text{korrekt})} \right) \propto \mathcal{L(p)} \]</span></p>
+<p><span class="math inline">\(p(\cdot)\)</span> ist der Anteil (Wahrscheinlichkeit) einer Vorhersage.</p>
+<p>Das Modellgewicht ist ein Faktor, der schlechtere Modelle bestraft.
+Das folgt dem Gedanken,
+dass schlechteren Modellen weniger Gehört geschenkt werden soll,
+aber schlecht klassifizierten Fällen mehr Gehör.</p>
+<p>Das Vorgehen von AdaBoost ist in Abb. <a href="ensemble-lerner.html#fig:ada">10.7</a> illustriert.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:ada"></span>
+<div id="htmlwidget-8c5b537a8c392ce417a2" style="width:100%;height:450px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8c5b537a8c392ce417a2">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n  [m1] -> [ensemble]\n  [ensemble] -> [m2]\n  [m2] -> [ensemble]\n  [ensemble] -> [m3]\n  [m3] -> [ensemble]\n  [ensemble] -> [m4]\n  [m4] -> [ensemble]\n  [ensemble] -> [M ...]\n  [M ...] -> [ensemble]\n  [ensemble] -> [M B]\n  ","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
+Figure 10.7: AdaBoost illustriert
+</p>
+</div>
 </div>
 <div id="xgboost" class="section level3" number="10.9.2">
 <h3>
@@ -415,12 +435,12 @@ Die Vorhersagefehler von <span class="math inline">\(\hat{f}^b\)</span> werden d
 Ein Residuum ist der Vorhersagefehler, bei metrischen Modellen etwa RMSE,
 oder schlicht <span class="math inline">\(r_i = y_i - \hat{y}_i\)</span>.
 Details finden sich z.B. <a href="https://arxiv.org/pdf/1603.02754.pdf">hier</a>, dem Original XGBoost-Paper <span class="citation">(<a href="references.html#ref-chen_xgboost_2016" role="doc-biblioref">Chen and Guestrin 2016</a>)</span>.</p>
-<p>Die hohe Vorhersagegüte von Boosting-Modellen ist exemplarisch in Abb. <a href="ensemble-lerner.html#fig:boost">10.6</a> dargestellt <span class="citation">(<a href="references.html#ref-islr" role="doc-biblioref">James et al. 2021</a>, S. 358ff)</span>.
+<p>Die hohe Vorhersagegüte von Boosting-Modellen ist exemplarisch in Abb. <a href="ensemble-lerner.html#fig:boost">10.8</a> dargestellt <span class="citation">(<a href="references.html#ref-islr" role="doc-biblioref">James et al. 2021</a>, S. 358ff)</span>.
 Allerdings verwenden die Autoren Friedmans <span class="citation">(<a href="references.html#ref-friedman_greedy_2001" role="doc-biblioref">2001</a>)</span> <em>Gradient Boosting Machine</em>, eine weitere Variante des Boosting .</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:boost"></span>
 <img src="img/8.10.png" alt="Vorhersagegüte von Boosting und Random Forest" width="100%"><p class="caption">
-Figure 10.6: Vorhersagegüte von Boosting und Random Forest
+Figure 10.8: Vorhersagegüte von Boosting und Random Forest
 </p>
 </div>
 </div>
@@ -441,12 +461,12 @@ Figure 10.6: Vorhersagegüte von Boosting und Random Forest
 <code class="sourceCode R"><span class="va">churn_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div id="qijopgeigw" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="rgshsfyfds" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#qijopgeigw .gt_table {
+#rgshsfyfds .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -471,7 +491,7 @@ Figure 10.6: Vorhersagegüte von Boosting und Random Forest
   border-left-color: #D3D3D3;
 }
 
-#qijopgeigw .gt_heading {
+#rgshsfyfds .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -483,7 +503,7 @@ Figure 10.6: Vorhersagegüte von Boosting und Random Forest
   border-right-color: #D3D3D3;
 }
 
-#qijopgeigw .gt_title {
+#rgshsfyfds .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -493,7 +513,7 @@ Figure 10.6: Vorhersagegüte von Boosting und Random Forest
   border-bottom-width: 0;
 }
 
-#qijopgeigw .gt_subtitle {
+#rgshsfyfds .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -503,13 +523,13 @@ Figure 10.6: Vorhersagegüte von Boosting und Random Forest
   border-top-width: 0;
 }
 
-#qijopgeigw .gt_bottom_border {
+#rgshsfyfds .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qijopgeigw .gt_col_headings {
+#rgshsfyfds .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -524,7 +544,7 @@ Figure 10.6: Vorhersagegüte von Boosting und Random Forest
   border-right-color: #D3D3D3;
 }
 
-#qijopgeigw .gt_col_heading {
+#rgshsfyfds .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -544,7 +564,7 @@ Figure 10.6: Vorhersagegüte von Boosting und Random Forest
   overflow-x: hidden;
 }
 
-#qijopgeigw .gt_column_spanner_outer {
+#rgshsfyfds .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -556,15 +576,15 @@ Figure 10.6: Vorhersagegüte von Boosting und Random Forest
   padding-right: 4px;
 }
 
-#qijopgeigw .gt_column_spanner_outer:first-child {
+#rgshsfyfds .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qijopgeigw .gt_column_spanner_outer:last-child {
+#rgshsfyfds .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qijopgeigw .gt_column_spanner {
+#rgshsfyfds .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -576,7 +596,7 @@ Figure 10.6: Vorhersagegüte von Boosting und Random Forest
   width: 100%;
 }
 
-#qijopgeigw .gt_group_heading {
+#rgshsfyfds .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -598,7 +618,7 @@ Figure 10.6: Vorhersagegüte von Boosting und Random Forest
   vertical-align: middle;
 }
 
-#qijopgeigw .gt_empty_group_heading {
+#rgshsfyfds .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -613,15 +633,15 @@ Figure 10.6: Vorhersagegüte von Boosting und Random Forest
   vertical-align: middle;
 }
 
-#qijopgeigw .gt_from_md > :first-child {
+#rgshsfyfds .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qijopgeigw .gt_from_md > :last-child {
+#rgshsfyfds .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qijopgeigw .gt_row {
+#rgshsfyfds .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -640,7 +660,7 @@ Figure 10.6: Vorhersagegüte von Boosting und Random Forest
   overflow-x: hidden;
 }
 
-#qijopgeigw .gt_stub {
+#rgshsfyfds .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -652,7 +672,7 @@ Figure 10.6: Vorhersagegüte von Boosting und Random Forest
   padding-left: 12px;
 }
 
-#qijopgeigw .gt_summary_row {
+#rgshsfyfds .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -662,7 +682,7 @@ Figure 10.6: Vorhersagegüte von Boosting und Random Forest
   padding-right: 5px;
 }
 
-#qijopgeigw .gt_first_summary_row {
+#rgshsfyfds .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -672,7 +692,7 @@ Figure 10.6: Vorhersagegüte von Boosting und Random Forest
   border-top-color: #D3D3D3;
 }
 
-#qijopgeigw .gt_grand_summary_row {
+#rgshsfyfds .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -682,7 +702,7 @@ Figure 10.6: Vorhersagegüte von Boosting und Random Forest
   padding-right: 5px;
 }
 
-#qijopgeigw .gt_first_grand_summary_row {
+#rgshsfyfds .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -692,11 +712,11 @@ Figure 10.6: Vorhersagegüte von Boosting und Random Forest
   border-top-color: #D3D3D3;
 }
 
-#qijopgeigw .gt_striped {
+#rgshsfyfds .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qijopgeigw .gt_table_body {
+#rgshsfyfds .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -705,7 +725,7 @@ Figure 10.6: Vorhersagegüte von Boosting und Random Forest
   border-bottom-color: #D3D3D3;
 }
 
-#qijopgeigw .gt_footnotes {
+#rgshsfyfds .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -719,13 +739,13 @@ Figure 10.6: Vorhersagegüte von Boosting und Random Forest
   border-right-color: #D3D3D3;
 }
 
-#qijopgeigw .gt_footnote {
+#rgshsfyfds .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#qijopgeigw .gt_sourcenotes {
+#rgshsfyfds .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -739,41 +759,41 @@ Figure 10.6: Vorhersagegüte von Boosting und Random Forest
   border-right-color: #D3D3D3;
 }
 
-#qijopgeigw .gt_sourcenote {
+#rgshsfyfds .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#qijopgeigw .gt_left {
+#rgshsfyfds .gt_left {
   text-align: left;
 }
 
-#qijopgeigw .gt_center {
+#rgshsfyfds .gt_center {
   text-align: center;
 }
 
-#qijopgeigw .gt_right {
+#rgshsfyfds .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qijopgeigw .gt_font_normal {
+#rgshsfyfds .gt_font_normal {
   font-weight: normal;
 }
 
-#qijopgeigw .gt_font_bold {
+#rgshsfyfds .gt_font_bold {
   font-weight: bold;
 }
 
-#qijopgeigw .gt_font_italic {
+#rgshsfyfds .gt_font_italic {
   font-style: italic;
 }
 
-#qijopgeigw .gt_super {
+#rgshsfyfds .gt_super {
   font-size: 65%;
 }
 
-#qijopgeigw .gt_footnote_marks {
+#rgshsfyfds .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -1024,7 +1044,7 @@ also <code>preproc * models</code> Modelle gefittet.</p>
     metrics <span class="op">=</span>  <span class="fu">metric_set</span><span class="op">(</span><span class="va">roc_auc</span>, <span class="va">sens</span>, <span class="fu">yardstick</span><span class="fu">::</span><span class="va"><a href="https://yardstick.tidymodels.org/reference/spec.html">spec</a></span><span class="op">)</span>
     <span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">toc</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## 16.369 sec elapsed</code></pre>
+<pre><code>## 14.945 sec elapsed</code></pre>
 <p>Im Standard werden 10 Modellkandidaten getuned.</p>
 <div class="sourceCode" id="cb388"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tree_fit</span></code></pre></div>
@@ -1044,16 +1064,16 @@ also <code>preproc * models</code> Modelle gefittet.</p>
 <pre><code>## # A tibble: 30 × 7
 ##    cost_complexity tree_depth min_n .metric .estimator .estimate .config        
 ##              &lt;dbl&gt;      &lt;int&gt; &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;          
-##  1   0.00000848             9    30 sens    binary         0.849 Preprocessor1_…
-##  2   0.00000848             9    30 spec    binary         0.873 Preprocessor1_…
-##  3   0.00000848             9    30 roc_auc binary         0.925 Preprocessor1_…
-##  4   0.00000000292         15     7 sens    binary         0.849 Preprocessor1_…
-##  5   0.00000000292         15     7 spec    binary         0.845 Preprocessor1_…
-##  6   0.00000000292         15     7 roc_auc binary         0.851 Preprocessor1_…
-##  7   0.00237               11    16 sens    binary         0.865 Preprocessor1_…
-##  8   0.00237               11    16 spec    binary         0.893 Preprocessor1_…
-##  9   0.00237               11    16 roc_auc binary         0.913 Preprocessor1_…
-## 10   0.000657               4    34 sens    binary         0.8   Preprocessor1_…
+##  1     0.0000382           10     3 sens    binary         0.820 Preprocessor1_…
+##  2     0.0000382           10     3 spec    binary         0.857 Preprocessor1_…
+##  3     0.0000382           10     3 roc_auc binary         0.845 Preprocessor1_…
+##  4     0.000228            15    20 sens    binary         0.859 Preprocessor1_…
+##  5     0.000228            15    20 spec    binary         0.854 Preprocessor1_…
+##  6     0.000228            15    20 roc_auc binary         0.916 Preprocessor1_…
+##  7     0.000000180         12    15 sens    binary         0.863 Preprocessor1_…
+##  8     0.000000180         12    15 spec    binary         0.857 Preprocessor1_…
+##  9     0.000000180         12    15 roc_auc binary         0.918 Preprocessor1_…
+## 10     0.00000459           8    30 sens    binary         0.845 Preprocessor1_…
 ## # … with 20 more rows</code></pre>
 <p>30 Zeilen: 3 Gütemetriken (Sens, Spec, ROC AUC) mit je 10 Werten (Submodellen),
 gibt 30 Koeffizienten.</p>
@@ -1064,11 +1084,11 @@ gibt 30 Koeffizienten.</p>
 <pre><code>## # A tibble: 5 × 9
 ##   cost_complexity tree_depth min_n .metric .estimator  mean     n std_err
 ##             &lt;dbl&gt;      &lt;int&gt; &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt;
-## 1        8.48e- 6          9    30 roc_auc binary     0.923     5 0.00203
-## 2        5.11e-10         10    38 roc_auc binary     0.920     5 0.00180
-## 3        1.23e- 8          6    25 roc_auc binary     0.915     5 0.00274
-## 4        1.46e- 7          7    12 roc_auc binary     0.913     5 0.00325
-## 5        2.37e- 3         11    16 roc_auc binary     0.910     5 0.00541
+## 1   0.00000459             8    30 roc_auc binary     0.924     5 0.00595
+## 2   0.00000283             8    36 roc_auc binary     0.922     5 0.00697
+## 3   0.000228              15    20 roc_auc binary     0.921     5 0.00547
+## 4   0.00000000181          6    11 roc_auc binary     0.920     5 0.00869
+## 5   0.000000180           12    15 roc_auc binary     0.918     5 0.00651
 ## # … with 1 more variable: .config &lt;chr&gt;</code></pre>
 <p>Aha, das sind die fünf besten Modelle, bzw. ihre Tuningparameter,
 ihre mittlere Güte zusammen mit dem Standardfehler.</p>
@@ -1406,8 +1426,8 @@ d.h. wir setzen die Parameterwerte des besten Submodells ein:</p>
 <pre><code>## # A tibble: 2 × 4
 ##   .metric  .estimator .estimate .config             
 ##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;               
-## 1 accuracy binary         0.883 Preprocessor1_Model1
-## 2 roc_auc  binary         0.955 Preprocessor1_Model1</code></pre>
+## 1 accuracy binary         0.895 Preprocessor1_Model1
+## 2 roc_auc  binary         0.956 Preprocessor1_Model1</code></pre>
 </div>
 <div id="variablenrelevanz-1" class="section level3" number="10.10.12">
 <h3>
@@ -1425,7 +1445,7 @@ XGBoost:</p>
 <pre><code>## parsnip model object
 ## 
 ## ##### xgb.Booster
-## raw: 111.2 Kb 
+## raw: 110.2 Kb 
 ## call:
 ##   xgboost::xgb.train(params = list(eta = 0.3, max_depth = 6, gamma = 0, 
 ##     colsample_bytree = 1, colsample_bynode = 0.285714285714286, 
@@ -1443,11 +1463,11 @@ XGBoost:</p>
 ## nfeatures : 21 
 ## evaluation_log:
 ##     iter training_logloss
-##        1         0.575790
-##        2         0.496458
+##        1         0.572627
+##        2         0.492517
 ## ---                      
-##       79         0.185073
-##       80         0.184873</code></pre>
+##       79         0.186327
+##       80         0.186127</code></pre>
 <p><em>Dieses</em> Objekt übergeben wir dann an <a href="https://github.com/koalaverse/vip/">vip</a>:</p>
 <div class="sourceCode" id="cb430"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fit_final</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
@@ -1468,16 +1488,16 @@ bzw. aus dem Vergleich von Vorhersagen und wahrem Wert (d.h. der beobachtete Wer
 <pre><code>## # A tibble: 998 × 7
 ##    id              .pred_yes .pred_no  .row .pred_class canceled_service .config
 ##    &lt;chr&gt;               &lt;dbl&gt;    &lt;dbl&gt; &lt;int&gt; &lt;fct&gt;       &lt;fct&gt;            &lt;chr&gt;  
-##  1 train/test spl…   0.00508  0.995       1 no          yes              Prepro…
-##  2 train/test spl…   0.998    0.00223     3 yes         yes              Prepro…
-##  3 train/test spl…   0.112    0.888       4 no          yes              Prepro…
-##  4 train/test spl…   0.992    0.00810     8 yes         yes              Prepro…
-##  5 train/test spl…   0.998    0.00216    16 yes         yes              Prepro…
-##  6 train/test spl…   0.990    0.00953    18 yes         yes              Prepro…
-##  7 train/test spl…   0.765    0.235      32 yes         yes              Prepro…
-##  8 train/test spl…   0.937    0.0629     34 yes         yes              Prepro…
-##  9 train/test spl…   0.969    0.0309     40 yes         yes              Prepro…
-## 10 train/test spl…   0.828    0.172      42 yes         yes              Prepro…
+##  1 train/test spl…     0.550  0.450       4 yes         yes              Prepro…
+##  2 train/test spl…     0.969  0.0307     10 yes         yes              Prepro…
+##  3 train/test spl…     0.519  0.481      13 yes         yes              Prepro…
+##  4 train/test spl…     0.956  0.0444     14 yes         yes              Prepro…
+##  5 train/test spl…     0.968  0.0321     15 yes         yes              Prepro…
+##  6 train/test spl…     0.999  0.00128    26 yes         yes              Prepro…
+##  7 train/test spl…     0.788  0.212      29 yes         yes              Prepro…
+##  8 train/test spl…     0.937  0.0634     31 yes         yes              Prepro…
+##  9 train/test spl…     0.927  0.0730     34 yes         yes              Prepro…
+## 10 train/test spl…     0.975  0.0247     36 yes         yes              Prepro…
 ## # … with 988 more rows</code></pre>
 <p>Praktischerweise werden die “wahren Werte” (also die beobachtaten Werte), <code>canceled_service</code>,
 ausch angegeben.</p>
@@ -1576,7 +1596,7 @@ ausch angegeben.</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-05-19 10:54:43.</p>
+    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-05-19 14:20:10.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

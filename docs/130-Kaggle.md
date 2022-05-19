@@ -24,9 +24,6 @@
 
 ### Hinweise 
 
-- Nächste Woche ist Blockwoche, zu der kein regulärer Unterricht stattfindet.
-- Diese Woche fällt die Übung aus.
-- Diese Woche fällt die Vorlesung aus.
 - Machen Sie sich mit Kaggle vertraut. Als Übungs-Wettbewerb dient uns `TMDB Box-office Revenue`
 
 
@@ -284,12 +281,12 @@ tidy(rec1)
 ## # A tibble: 6 × 6
 ##   number operation type       trained skip  id              
 ##    <int> <chr>     <chr>      <lgl>   <lgl> <chr>           
-## 1      1 step      mutate     FALSE   FALSE mutate_qsUpx    
-## 2      2 step      log        FALSE   FALSE log_8mejt       
-## 3      3 step      mutate     FALSE   FALSE mutate_Ry2nX    
-## 4      4 step      date       FALSE   FALSE date_Z9vfC      
-## 5      5 step      impute_knn FALSE   FALSE impute_knn_MTPpX
-## 6      6 step      dummy      FALSE   FALSE dummy_EiWe5
+## 1      1 step      mutate     FALSE   FALSE mutate_5BX7H    
+## 2      2 step      log        FALSE   FALSE log_ZlkDD       
+## 3      3 step      mutate     FALSE   FALSE mutate_kzM7y    
+## 4      4 step      date       FALSE   FALSE date_CSnwU      
+## 5      5 step      impute_knn FALSE   FALSE impute_knn_ez7Hg
+## 6      6 step      dummy      FALSE   FALSE dummy_T8GHG
 ```
 
 
@@ -690,7 +687,7 @@ fit_final <-
 ```
 
 ```
-## [10:57:22] WARNING: amalgamation/../src/learner.cc:576: 
+## [14:22:49] WARNING: amalgamation/../src/learner.cc:576: 
 ## Parameters: { "nthreads" } might not be used.
 ## 
 ##   This could be a false alarm, with some parameters getting used by language bindings but
@@ -719,7 +716,7 @@ fit_final
 ## 
 ## ── Model ───────────────────────────────────────────────────────────────────────
 ## ##### xgb.Booster
-## raw: 371.1 Kb 
+## raw: 333.5 Kb 
 ## call:
 ##   xgboost::xgb.train(params = list(eta = 0.3, max_depth = 6, gamma = 0, 
 ##     colsample_bytree = 1, colsample_bynode = 0.4, min_child_weight = 4L, 
@@ -737,11 +734,11 @@ fit_final
 ## nfeatures : 15 
 ## evaluation_log:
 ##     iter training_rmse
-##        1     121345896
-##        2     100670656
+##        1     121975112
+##        2     101061520
 ## ---                   
-##       99      26053502
-##      100      25783876
+##       99      29017504
+##      100      28762728
 ```
 
 

@@ -111,7 +111,7 @@ Hätte man viele Stichproben aus der relevanten Verteilung,
 so könnte man z.B. die Genauigkeit eines Modells $\hat{f}_{\bar{X}}$ zur Schätzung des Erwartungswertes $\mu$ einfach dadurch bestimmen,
 indem man *se* berechnet, also die Streuung der Mitterwerte $\bar{X}$ berechnet.
 Außerdem gilt, dass die Präzision der Schätzung des Erwartungswerts steigt mit steigendem Stichprobenumfang $n$.
-Wir könnten also für jede der $B$ Stichproben, $b=1,\ldots, B$, ein (Baum-)Modell berechnen
+Wir könnten also für jede der $B$ Stichproben, $b=1,\ldots, B$, ein (Baum-)Modell berechnen, $\hat{f}^b$,
 und dann deren Vorhersagen aggregieren (zum Mittelwert oder Modalwert).
 Das kann man formal so darstellen [@islr]:
 
@@ -194,8 +194,8 @@ Der Bagging-Algorithmus ist in Abbildung \@ref(fig:bag) dargestellt.
 <div class="figure" style="text-align: center">
 
 ```{=html}
-<div id="htmlwidget-63bc914c414cd029b843" style="width:100%;height:350px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-63bc914c414cd029b843">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n  [<database> Datensatz] ->zmz [Baum 1]\n[<database> Datensatz] ->zmz [Baum 2]\n[<database> Datensatz] ->zmz [Baum ...]\n[<database> Datensatz] ->zmz [Baum B]\n[Baum 1] -> [Modus als Vorhersagewert]\n[Baum 2] -> [Modus als Vorhersagewert]\n[Baum ...] -> [Modus als Vorhersagewert]\n[Baum B] -> [Modus als Vorhersagewert]\n  ","svg":false},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-7057a9cb420ba6040049" style="width:100%;height:350px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7057a9cb420ba6040049">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n  [<database> Datensatz] ->zmz [Baum 1]\n[<database> Datensatz] ->zmz [Baum 2]\n[<database> Datensatz] ->zmz [Baum ...]\n[<database> Datensatz] ->zmz [Baum B]\n[Baum 1] -> [Modus als Vorhersagewert]\n[Baum 2] -> [Modus als Vorhersagewert]\n[Baum ...] -> [Modus als Vorhersagewert]\n[Baum B] -> [Modus als Vorhersagewert]\n  ","svg":false},"evals":[],"jsHooks":[]}</script>
 ```
 
 <p class="caption">(\#fig:bag)Bagging schematisch illustriert</p>
@@ -268,8 +268,8 @@ Der Random-Forest-Algorithmus ist in Abb. \@ref(fig:rf1) illustriert.
 <div class="figure" style="text-align: center">
 
 ```{=html}
-<div id="htmlwidget-92d49a7c60f001a2f0db" style="width:100%;height:700px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-92d49a7c60f001a2f0db">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n#direction:down\n                 [<database> Datensatz] ->zmz [Baum1\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n\n[<database> Datensatz] ->zmz [Baum2\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[<database> Datensatz] ->zmz [Baum ...\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[<database> Datensatz] ->zmz [Baum B\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[Baum1\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n] -> [Modus als Vorhersagewert]\n[Baum2\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n] -> [Modus als Vorhersagewert]\n[Baum ...] -> [Modus als Vorhersagewert]\n[Baum B] -> [Modus als Vorhersagewert]\n                 ","svg":false},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-8e0209f4ffed5da56646" style="width:100%;height:700px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8e0209f4ffed5da56646">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n#direction:down\n                 [<database> Datensatz] ->zmz [Baum1\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n\n[<database> Datensatz] ->zmz [Baum2\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[<database> Datensatz] ->zmz [Baum ...\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[<database> Datensatz] ->zmz [Baum B\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[Baum1\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n] -> [Modus als Vorhersagewert]\n[Baum2\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n] -> [Modus als Vorhersagewert]\n[Baum ...] -> [Modus als Vorhersagewert]\n[Baum B] -> [Modus als Vorhersagewert]\n                 ","svg":false},"evals":[],"jsHooks":[]}</script>
 ```
 
 <p class="caption">(\#fig:rf1)Zufallswälder durch Ziehen mit Zurücklegen (zmz) und Ziehen ohne Zurücklegen (ZoZ)</p>
@@ -326,12 +326,26 @@ Dann spricht man von einem *Stumpf*, was intuitiv gut passt.
 ### AdaBoost
 
 Der AdaBoost-Algorithmus funktioniert, einfach dargestellt, wie folgt.
-Zuerst hat jeder Fall im Datensatz des gleiche Gewicht.
+Zuerst hat jeder Fall $i$ im Datensatz des gleiche Gewicht.
 Die erste (und alle weiteren) Stichprobe werden per Bootstrapping aus dem
 Datensatz gezogen. Dabei ist die Wahrscheinlichkeit, gezogen zu werden,
-proportional zum Gewicht. Da im ersten Durchgang die Gewichte identisch sind,
+proportional zum Gewicht des Falles, $w_i$. Da im ersten Durchgang die Gewichte identisch sind,
 haben zunächst alle Fälle die gleiche Wahrscheinlichkeit, in das Bootstrap-Sample gezogen zu werden.
-Nach Berechnung des Baumen und der Vorhersagen werden die *richtig* klassifizierten Fälle heruntergewichtet
+Die Bäume bei AdaBoost sind eigentlich nur "Stümpfe": Sie bestehen aus einem einzelnen Split, s. Abb. \@ref(fig:stump).
+
+
+<div class="figure" style="text-align: center">
+
+```{=html}
+<div id="htmlwidget-440981bf9ed2cc61a611" style="width:100%;height:200px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-440981bf9ed2cc61a611">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: topdown\n  [root] -> [leaf1]\n  [root] -> [leaf2]\n  ","svg":false},"evals":[],"jsHooks":[]}</script>
+```
+
+<p class="caption">(\#fig:stump)Ein Baumstumpf bei AdaBoost</p>
+</div>
+
+
+Nach Berechnung des Baumes und der Vorhersagen werden die *richtig* klassifizierten Fälle heruntergewichtet
 und die falsch klassifizierten Fälle hoch gewichtet, also stärker gewichtet (bleiben wir aus Gründen der Einfachheit zunächst bei der Klassifikation).
 Dieses Vorgehen folgt dem Gedanken, dass man sich seine Fehler genauer anschauen muss,
 die falsch klassifizierten Fälle sozusagen mehr Aufmerksamkeit bedürfen.
@@ -344,9 +358,9 @@ die Aspekte, die das Vorgänger-Modell übersah zu korrigieren bzw. zu lernen.
 Jetzt haben wir zwei Modelle. Die können wir aggregieren, genau
 wie beim Bagging: Der Modus der Vorhersage über alle (beide) Bäume hinwig ist
 dann die Vorhersage für einen bestimmten Fall ("Fall" und "Beobachtung" sind stets synonym für $y_i$ zu verstehen).
-So wiederholt sich das Vorgehen:
+So wiederholt sich das Vorgehen für $B$ Bäume:
 Die Gewichte werden angepasst, das neue Modell wird berechnet, 
-alle Modelle machen ihre Vorhersagen, per Mehrheitsbeschluss wird die Vorhersage bestimmt pro Fall.
+alle Modelle machen ihre Vorhersagen, per Mehrheitsbeschluss - mit gewichteten Modellen -  wird die Vorhersage bestimmt pro Fall.
 Irgendwann erreichen wir die vorab definierte Maximalzahl an Bäumen, $B$, und das Modell kommt zu einem Ende.
 
 Da das Modell die Fehler seiner Vorgänger reduziert,
@@ -368,10 +382,28 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 Das *Modellgewicht* $mw$ berechnet sich dabei so [@rhys]:
 
 
-$$mw = 0.5 \cdot log\left( \frac{1-p(\text{inkorrect})}{p(\text{korrekt})} \right) \propto \mathcal{L(p)} $$
+$$mw_b = 0.5 \cdot log\left( \frac{1-p(\text{inkorrect})}{p(\text{korrekt})} \right) \propto \mathcal{L(p)} $$
 
+$p(\cdot)$ ist der Anteil (Wahrscheinlichkeit) einer Vorhersage.
 
 Das Modellgewicht ist ein Faktor, der schlechtere Modelle bestraft.
+Das folgt dem Gedanken, 
+dass schlechteren Modellen weniger Gehört geschenkt werden soll,
+aber schlecht klassifizierten Fällen mehr Gehör.
+
+Das Vorgehen von AdaBoost ist in Abb. \@ref(fig:ada) illustriert.
+
+<div class="figure" style="text-align: center">
+
+```{=html}
+<div id="htmlwidget-8c5b537a8c392ce417a2" style="width:100%;height:450px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8c5b537a8c392ce417a2">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n  [m1] -> [ensemble]\n  [ensemble] -> [m2]\n  [m2] -> [ensemble]\n  [ensemble] -> [m3]\n  [m3] -> [ensemble]\n  [ensemble] -> [m4]\n  [m4] -> [ensemble]\n  [ensemble] -> [M ...]\n  [M ...] -> [ensemble]\n  [ensemble] -> [M B]\n  ","svg":false},"evals":[],"jsHooks":[]}</script>
+```
+
+<p class="caption">(\#fig:ada)AdaBoost illustriert</p>
+</div>
+
+
 
 
 
@@ -426,12 +458,12 @@ churn_df %>%
 ```
 
 ```{=html}
-<div id="qijopgeigw" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="rgshsfyfds" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#qijopgeigw .gt_table {
+#rgshsfyfds .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -456,7 +488,7 @@ churn_df %>%
   border-left-color: #D3D3D3;
 }
 
-#qijopgeigw .gt_heading {
+#rgshsfyfds .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -468,7 +500,7 @@ churn_df %>%
   border-right-color: #D3D3D3;
 }
 
-#qijopgeigw .gt_title {
+#rgshsfyfds .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -478,7 +510,7 @@ churn_df %>%
   border-bottom-width: 0;
 }
 
-#qijopgeigw .gt_subtitle {
+#rgshsfyfds .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -488,13 +520,13 @@ churn_df %>%
   border-top-width: 0;
 }
 
-#qijopgeigw .gt_bottom_border {
+#rgshsfyfds .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qijopgeigw .gt_col_headings {
+#rgshsfyfds .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -509,7 +541,7 @@ churn_df %>%
   border-right-color: #D3D3D3;
 }
 
-#qijopgeigw .gt_col_heading {
+#rgshsfyfds .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -529,7 +561,7 @@ churn_df %>%
   overflow-x: hidden;
 }
 
-#qijopgeigw .gt_column_spanner_outer {
+#rgshsfyfds .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -541,15 +573,15 @@ churn_df %>%
   padding-right: 4px;
 }
 
-#qijopgeigw .gt_column_spanner_outer:first-child {
+#rgshsfyfds .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qijopgeigw .gt_column_spanner_outer:last-child {
+#rgshsfyfds .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qijopgeigw .gt_column_spanner {
+#rgshsfyfds .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -561,7 +593,7 @@ churn_df %>%
   width: 100%;
 }
 
-#qijopgeigw .gt_group_heading {
+#rgshsfyfds .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -583,7 +615,7 @@ churn_df %>%
   vertical-align: middle;
 }
 
-#qijopgeigw .gt_empty_group_heading {
+#rgshsfyfds .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -598,15 +630,15 @@ churn_df %>%
   vertical-align: middle;
 }
 
-#qijopgeigw .gt_from_md > :first-child {
+#rgshsfyfds .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qijopgeigw .gt_from_md > :last-child {
+#rgshsfyfds .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qijopgeigw .gt_row {
+#rgshsfyfds .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -625,7 +657,7 @@ churn_df %>%
   overflow-x: hidden;
 }
 
-#qijopgeigw .gt_stub {
+#rgshsfyfds .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -637,7 +669,7 @@ churn_df %>%
   padding-left: 12px;
 }
 
-#qijopgeigw .gt_summary_row {
+#rgshsfyfds .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -647,7 +679,7 @@ churn_df %>%
   padding-right: 5px;
 }
 
-#qijopgeigw .gt_first_summary_row {
+#rgshsfyfds .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -657,7 +689,7 @@ churn_df %>%
   border-top-color: #D3D3D3;
 }
 
-#qijopgeigw .gt_grand_summary_row {
+#rgshsfyfds .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -667,7 +699,7 @@ churn_df %>%
   padding-right: 5px;
 }
 
-#qijopgeigw .gt_first_grand_summary_row {
+#rgshsfyfds .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -677,11 +709,11 @@ churn_df %>%
   border-top-color: #D3D3D3;
 }
 
-#qijopgeigw .gt_striped {
+#rgshsfyfds .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qijopgeigw .gt_table_body {
+#rgshsfyfds .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -690,7 +722,7 @@ churn_df %>%
   border-bottom-color: #D3D3D3;
 }
 
-#qijopgeigw .gt_footnotes {
+#rgshsfyfds .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -704,13 +736,13 @@ churn_df %>%
   border-right-color: #D3D3D3;
 }
 
-#qijopgeigw .gt_footnote {
+#rgshsfyfds .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#qijopgeigw .gt_sourcenotes {
+#rgshsfyfds .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -724,41 +756,41 @@ churn_df %>%
   border-right-color: #D3D3D3;
 }
 
-#qijopgeigw .gt_sourcenote {
+#rgshsfyfds .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#qijopgeigw .gt_left {
+#rgshsfyfds .gt_left {
   text-align: left;
 }
 
-#qijopgeigw .gt_center {
+#rgshsfyfds .gt_center {
   text-align: center;
 }
 
-#qijopgeigw .gt_right {
+#rgshsfyfds .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qijopgeigw .gt_font_normal {
+#rgshsfyfds .gt_font_normal {
   font-weight: normal;
 }
 
-#qijopgeigw .gt_font_bold {
+#rgshsfyfds .gt_font_bold {
   font-weight: bold;
 }
 
-#qijopgeigw .gt_font_italic {
+#rgshsfyfds .gt_font_italic {
   font-style: italic;
 }
 
-#qijopgeigw .gt_super {
+#rgshsfyfds .gt_super {
   font-size: 65%;
 }
 
-#qijopgeigw .gt_footnote_marks {
+#rgshsfyfds .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -1029,7 +1061,7 @@ toc()
 ```
 
 ```
-## 16.369 sec elapsed
+## 14.945 sec elapsed
 ```
 
 Im Standard werden 10 Modellkandidaten getuned.
@@ -1064,16 +1096,16 @@ tree_fit$.metrics[[1]]
 ## # A tibble: 30 × 7
 ##    cost_complexity tree_depth min_n .metric .estimator .estimate .config        
 ##              <dbl>      <int> <int> <chr>   <chr>          <dbl> <chr>          
-##  1   0.00000848             9    30 sens    binary         0.849 Preprocessor1_…
-##  2   0.00000848             9    30 spec    binary         0.873 Preprocessor1_…
-##  3   0.00000848             9    30 roc_auc binary         0.925 Preprocessor1_…
-##  4   0.00000000292         15     7 sens    binary         0.849 Preprocessor1_…
-##  5   0.00000000292         15     7 spec    binary         0.845 Preprocessor1_…
-##  6   0.00000000292         15     7 roc_auc binary         0.851 Preprocessor1_…
-##  7   0.00237               11    16 sens    binary         0.865 Preprocessor1_…
-##  8   0.00237               11    16 spec    binary         0.893 Preprocessor1_…
-##  9   0.00237               11    16 roc_auc binary         0.913 Preprocessor1_…
-## 10   0.000657               4    34 sens    binary         0.8   Preprocessor1_…
+##  1     0.0000382           10     3 sens    binary         0.820 Preprocessor1_…
+##  2     0.0000382           10     3 spec    binary         0.857 Preprocessor1_…
+##  3     0.0000382           10     3 roc_auc binary         0.845 Preprocessor1_…
+##  4     0.000228            15    20 sens    binary         0.859 Preprocessor1_…
+##  5     0.000228            15    20 spec    binary         0.854 Preprocessor1_…
+##  6     0.000228            15    20 roc_auc binary         0.916 Preprocessor1_…
+##  7     0.000000180         12    15 sens    binary         0.863 Preprocessor1_…
+##  8     0.000000180         12    15 spec    binary         0.857 Preprocessor1_…
+##  9     0.000000180         12    15 roc_auc binary         0.918 Preprocessor1_…
+## 10     0.00000459           8    30 sens    binary         0.845 Preprocessor1_…
 ## # … with 20 more rows
 ```
 
@@ -1094,11 +1126,11 @@ show_best(tree_fit)
 ## # A tibble: 5 × 9
 ##   cost_complexity tree_depth min_n .metric .estimator  mean     n std_err
 ##             <dbl>      <int> <int> <chr>   <chr>      <dbl> <int>   <dbl>
-## 1        8.48e- 6          9    30 roc_auc binary     0.923     5 0.00203
-## 2        5.11e-10         10    38 roc_auc binary     0.920     5 0.00180
-## 3        1.23e- 8          6    25 roc_auc binary     0.915     5 0.00274
-## 4        1.46e- 7          7    12 roc_auc binary     0.913     5 0.00325
-## 5        2.37e- 3         11    16 roc_auc binary     0.910     5 0.00541
+## 1   0.00000459             8    30 roc_auc binary     0.924     5 0.00595
+## 2   0.00000283             8    36 roc_auc binary     0.922     5 0.00697
+## 3   0.000228              15    20 roc_auc binary     0.921     5 0.00547
+## 4   0.00000000181          6    11 roc_auc binary     0.920     5 0.00869
+## 5   0.000000180           12    15 roc_auc binary     0.918     5 0.00651
 ## # … with 1 more variable: .config <chr>
 ```
 
@@ -1584,8 +1616,8 @@ collect_metrics(fit_final)
 ## # A tibble: 2 × 4
 ##   .metric  .estimator .estimate .config             
 ##   <chr>    <chr>          <dbl> <chr>               
-## 1 accuracy binary         0.883 Preprocessor1_Model1
-## 2 roc_auc  binary         0.955 Preprocessor1_Model1
+## 1 accuracy binary         0.895 Preprocessor1_Model1
+## 2 roc_auc  binary         0.956 Preprocessor1_Model1
 ```
 
 
@@ -1610,7 +1642,7 @@ fit_final %>%
 ## parsnip model object
 ## 
 ## ##### xgb.Booster
-## raw: 111.2 Kb 
+## raw: 110.2 Kb 
 ## call:
 ##   xgboost::xgb.train(params = list(eta = 0.3, max_depth = 6, gamma = 0, 
 ##     colsample_bytree = 1, colsample_bynode = 0.285714285714286, 
@@ -1628,11 +1660,11 @@ fit_final %>%
 ## nfeatures : 21 
 ## evaluation_log:
 ##     iter training_logloss
-##        1         0.575790
-##        2         0.496458
+##        1         0.572627
+##        2         0.492517
 ## ---                      
-##       79         0.185073
-##       80         0.184873
+##       79         0.186327
+##       80         0.186127
 ```
 
 *Dieses* Objekt übergeben wir dann an `{vip}`:
@@ -1668,16 +1700,16 @@ fit_final %>%
 ## # A tibble: 998 × 7
 ##    id              .pred_yes .pred_no  .row .pred_class canceled_service .config
 ##    <chr>               <dbl>    <dbl> <int> <fct>       <fct>            <chr>  
-##  1 train/test spl…   0.00508  0.995       1 no          yes              Prepro…
-##  2 train/test spl…   0.998    0.00223     3 yes         yes              Prepro…
-##  3 train/test spl…   0.112    0.888       4 no          yes              Prepro…
-##  4 train/test spl…   0.992    0.00810     8 yes         yes              Prepro…
-##  5 train/test spl…   0.998    0.00216    16 yes         yes              Prepro…
-##  6 train/test spl…   0.990    0.00953    18 yes         yes              Prepro…
-##  7 train/test spl…   0.765    0.235      32 yes         yes              Prepro…
-##  8 train/test spl…   0.937    0.0629     34 yes         yes              Prepro…
-##  9 train/test spl…   0.969    0.0309     40 yes         yes              Prepro…
-## 10 train/test spl…   0.828    0.172      42 yes         yes              Prepro…
+##  1 train/test spl…     0.550  0.450       4 yes         yes              Prepro…
+##  2 train/test spl…     0.969  0.0307     10 yes         yes              Prepro…
+##  3 train/test spl…     0.519  0.481      13 yes         yes              Prepro…
+##  4 train/test spl…     0.956  0.0444     14 yes         yes              Prepro…
+##  5 train/test spl…     0.968  0.0321     15 yes         yes              Prepro…
+##  6 train/test spl…     0.999  0.00128    26 yes         yes              Prepro…
+##  7 train/test spl…     0.788  0.212      29 yes         yes              Prepro…
+##  8 train/test spl…     0.937  0.0634     31 yes         yes              Prepro…
+##  9 train/test spl…     0.927  0.0730     34 yes         yes              Prepro…
+## 10 train/test spl…     0.975  0.0247     36 yes         yes              Prepro…
 ## # … with 988 more rows
 ```
 

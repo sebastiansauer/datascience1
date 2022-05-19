@@ -110,7 +110,7 @@ die das Online-Zusammenarbeiten vereinfachen:
 | 18|NA                                      |         8|[Logistische Regression](https://sebastiansauer.github.io/datascience1/logistische-regression.html) |
 | 19|NA                                      |         9|[Entscheidungsbäume](https://sebastiansauer.github.io/datascience1/entscheidungsbäume.html)         |
 | 20|NA                                      |        10|[Ensemble-Lerner](https://sebastiansauer.github.io/datascience1/ensemble-lerner.html)               |
-| 21|NA                                      |        11|[Regularisierung](https://sebastiansauer.github.io/datascience1/regularisierung.html)               |
+| 21|nächste Woche ist Projektwoche          |        11|[Regularisierung](https://sebastiansauer.github.io/datascience1/regularisierung.html)               |
 | 22|Projektwoche, kein regulärer Unterricht |        11|[Kaggle](https://sebastiansauer.github.io/datascience1/kaggle.html)                                 |
 | 23|Pfingsten, keine Vorlesung              |        12|[Wiederholung](https://sebastiansauer.github.io/datascience1/wiederholung.html)                     |
 | 24|Fronleichnam, keine Übung               |        13|[Dimensionsreduktion](https://sebastiansauer.github.io/datascience1/dimensionsreduktion.html)       |

@@ -61,6 +61,8 @@ fig:bag
 fig:rf1
 fig:comp-trees
 fig:mtry
+fig:stump
+fig:ada
 fig:boost
 fig:ols
 fig:l2-shrink
