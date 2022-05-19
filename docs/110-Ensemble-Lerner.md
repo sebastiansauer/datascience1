@@ -194,8 +194,8 @@ Der Bagging-Algorithmus ist in Abbildung \@ref(fig:bag) dargestellt.
 <div class="figure" style="text-align: center">
 
 ```{=html}
-<div id="htmlwidget-d78a444f39c0d25ab233" style="width:100%;height:350px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d78a444f39c0d25ab233">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n  [<database> Datensatz] ->zmz [Baum 1]\n[<database> Datensatz] ->zmz [Baum 2]\n[<database> Datensatz] ->zmz [Baum ...]\n[<database> Datensatz] ->zmz [Baum B]\n[Baum 1] -> [Modus als Vorhersagewert]\n[Baum 2] -> [Modus als Vorhersagewert]\n[Baum ...] -> [Modus als Vorhersagewert]\n[Baum B] -> [Modus als Vorhersagewert]\n  ","svg":false},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-63bc914c414cd029b843" style="width:100%;height:350px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-63bc914c414cd029b843">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n  [<database> Datensatz] ->zmz [Baum 1]\n[<database> Datensatz] ->zmz [Baum 2]\n[<database> Datensatz] ->zmz [Baum ...]\n[<database> Datensatz] ->zmz [Baum B]\n[Baum 1] -> [Modus als Vorhersagewert]\n[Baum 2] -> [Modus als Vorhersagewert]\n[Baum ...] -> [Modus als Vorhersagewert]\n[Baum B] -> [Modus als Vorhersagewert]\n  ","svg":false},"evals":[],"jsHooks":[]}</script>
 ```
 
 <p class="caption">(\#fig:bag)Bagging schematisch illustriert</p>
@@ -268,8 +268,8 @@ Der Random-Forest-Algorithmus ist in Abb. \@ref(fig:rf1) illustriert.
 <div class="figure" style="text-align: center">
 
 ```{=html}
-<div id="htmlwidget-640ade00d03eb9639405" style="width:100%;height:700px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-640ade00d03eb9639405">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n#direction:down\n                 [<database> Datensatz] ->zmz [Baum1\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n\n[<database> Datensatz] ->zmz [Baum2\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[<database> Datensatz] ->zmz [Baum ...\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[<database> Datensatz] ->zmz [Baum B\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[Baum1\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n] -> [Modus als Vorhersagewert]\n[Baum2\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n] -> [Modus als Vorhersagewert]\n[Baum ...] -> [Modus als Vorhersagewert]\n[Baum B] -> [Modus als Vorhersagewert]\n                 ","svg":false},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-92d49a7c60f001a2f0db" style="width:100%;height:700px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-92d49a7c60f001a2f0db">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n#direction:down\n                 [<database> Datensatz] ->zmz [Baum1\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n\n[<database> Datensatz] ->zmz [Baum2\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[<database> Datensatz] ->zmz [Baum ...\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[<database> Datensatz] ->zmz [Baum B\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[Baum1\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n] -> [Modus als Vorhersagewert]\n[Baum2\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n] -> [Modus als Vorhersagewert]\n[Baum ...] -> [Modus als Vorhersagewert]\n[Baum B] -> [Modus als Vorhersagewert]\n                 ","svg":false},"evals":[],"jsHooks":[]}</script>
 ```
 
 <p class="caption">(\#fig:rf1)Zufallswälder durch Ziehen mit Zurücklegen (zmz) und Ziehen ohne Zurücklegen (ZoZ)</p>
@@ -426,12 +426,12 @@ churn_df %>%
 ```
 
 ```{=html}
-<div id="dvrbbekjoq" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="qijopgeigw" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#dvrbbekjoq .gt_table {
+#qijopgeigw .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -456,7 +456,7 @@ churn_df %>%
   border-left-color: #D3D3D3;
 }
 
-#dvrbbekjoq .gt_heading {
+#qijopgeigw .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -468,7 +468,7 @@ churn_df %>%
   border-right-color: #D3D3D3;
 }
 
-#dvrbbekjoq .gt_title {
+#qijopgeigw .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -478,7 +478,7 @@ churn_df %>%
   border-bottom-width: 0;
 }
 
-#dvrbbekjoq .gt_subtitle {
+#qijopgeigw .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -488,13 +488,13 @@ churn_df %>%
   border-top-width: 0;
 }
 
-#dvrbbekjoq .gt_bottom_border {
+#qijopgeigw .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#dvrbbekjoq .gt_col_headings {
+#qijopgeigw .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -509,7 +509,7 @@ churn_df %>%
   border-right-color: #D3D3D3;
 }
 
-#dvrbbekjoq .gt_col_heading {
+#qijopgeigw .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -529,7 +529,7 @@ churn_df %>%
   overflow-x: hidden;
 }
 
-#dvrbbekjoq .gt_column_spanner_outer {
+#qijopgeigw .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -541,15 +541,15 @@ churn_df %>%
   padding-right: 4px;
 }
 
-#dvrbbekjoq .gt_column_spanner_outer:first-child {
+#qijopgeigw .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#dvrbbekjoq .gt_column_spanner_outer:last-child {
+#qijopgeigw .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#dvrbbekjoq .gt_column_spanner {
+#qijopgeigw .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -561,7 +561,7 @@ churn_df %>%
   width: 100%;
 }
 
-#dvrbbekjoq .gt_group_heading {
+#qijopgeigw .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -583,7 +583,7 @@ churn_df %>%
   vertical-align: middle;
 }
 
-#dvrbbekjoq .gt_empty_group_heading {
+#qijopgeigw .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -598,15 +598,15 @@ churn_df %>%
   vertical-align: middle;
 }
 
-#dvrbbekjoq .gt_from_md > :first-child {
+#qijopgeigw .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#dvrbbekjoq .gt_from_md > :last-child {
+#qijopgeigw .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#dvrbbekjoq .gt_row {
+#qijopgeigw .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -625,7 +625,7 @@ churn_df %>%
   overflow-x: hidden;
 }
 
-#dvrbbekjoq .gt_stub {
+#qijopgeigw .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -637,7 +637,7 @@ churn_df %>%
   padding-left: 12px;
 }
 
-#dvrbbekjoq .gt_summary_row {
+#qijopgeigw .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -647,7 +647,7 @@ churn_df %>%
   padding-right: 5px;
 }
 
-#dvrbbekjoq .gt_first_summary_row {
+#qijopgeigw .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -657,7 +657,7 @@ churn_df %>%
   border-top-color: #D3D3D3;
 }
 
-#dvrbbekjoq .gt_grand_summary_row {
+#qijopgeigw .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -667,7 +667,7 @@ churn_df %>%
   padding-right: 5px;
 }
 
-#dvrbbekjoq .gt_first_grand_summary_row {
+#qijopgeigw .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -677,11 +677,11 @@ churn_df %>%
   border-top-color: #D3D3D3;
 }
 
-#dvrbbekjoq .gt_striped {
+#qijopgeigw .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#dvrbbekjoq .gt_table_body {
+#qijopgeigw .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -690,7 +690,7 @@ churn_df %>%
   border-bottom-color: #D3D3D3;
 }
 
-#dvrbbekjoq .gt_footnotes {
+#qijopgeigw .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -704,13 +704,13 @@ churn_df %>%
   border-right-color: #D3D3D3;
 }
 
-#dvrbbekjoq .gt_footnote {
+#qijopgeigw .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#dvrbbekjoq .gt_sourcenotes {
+#qijopgeigw .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -724,41 +724,41 @@ churn_df %>%
   border-right-color: #D3D3D3;
 }
 
-#dvrbbekjoq .gt_sourcenote {
+#qijopgeigw .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#dvrbbekjoq .gt_left {
+#qijopgeigw .gt_left {
   text-align: left;
 }
 
-#dvrbbekjoq .gt_center {
+#qijopgeigw .gt_center {
   text-align: center;
 }
 
-#dvrbbekjoq .gt_right {
+#qijopgeigw .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#dvrbbekjoq .gt_font_normal {
+#qijopgeigw .gt_font_normal {
   font-weight: normal;
 }
 
-#dvrbbekjoq .gt_font_bold {
+#qijopgeigw .gt_font_bold {
   font-weight: bold;
 }
 
-#dvrbbekjoq .gt_font_italic {
+#qijopgeigw .gt_font_italic {
   font-style: italic;
 }
 
-#dvrbbekjoq .gt_super {
+#qijopgeigw .gt_super {
   font-size: 65%;
 }
 
-#dvrbbekjoq .gt_footnote_marks {
+#qijopgeigw .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -1029,7 +1029,7 @@ toc()
 ```
 
 ```
-## 18.024 sec elapsed
+## 16.369 sec elapsed
 ```
 
 Im Standard werden 10 Modellkandidaten getuned.
@@ -1064,16 +1064,16 @@ tree_fit$.metrics[[1]]
 ## # A tibble: 30 × 7
 ##    cost_complexity tree_depth min_n .metric .estimator .estimate .config        
 ##              <dbl>      <int> <int> <chr>   <chr>          <dbl> <chr>          
-##  1   0.000839              12    17 sens    binary         0.855 Preprocessor1_…
-##  2   0.000839              12    17 spec    binary         0.883 Preprocessor1_…
-##  3   0.000839              12    17 roc_auc binary         0.924 Preprocessor1_…
-##  4   0.00000000117         12    32 sens    binary         0.859 Preprocessor1_…
-##  5   0.00000000117         12    32 spec    binary         0.870 Preprocessor1_…
-##  6   0.00000000117         12    32 roc_auc binary         0.931 Preprocessor1_…
-##  7   0.0000153             10    22 sens    binary         0.859 Preprocessor1_…
-##  8   0.0000153             10    22 spec    binary         0.886 Preprocessor1_…
-##  9   0.0000153             10    22 roc_auc binary         0.933 Preprocessor1_…
-## 10   0.000000424            9     5 sens    binary         0.820 Preprocessor1_…
+##  1   0.00000848             9    30 sens    binary         0.849 Preprocessor1_…
+##  2   0.00000848             9    30 spec    binary         0.873 Preprocessor1_…
+##  3   0.00000848             9    30 roc_auc binary         0.925 Preprocessor1_…
+##  4   0.00000000292         15     7 sens    binary         0.849 Preprocessor1_…
+##  5   0.00000000292         15     7 spec    binary         0.845 Preprocessor1_…
+##  6   0.00000000292         15     7 roc_auc binary         0.851 Preprocessor1_…
+##  7   0.00237               11    16 sens    binary         0.865 Preprocessor1_…
+##  8   0.00237               11    16 spec    binary         0.893 Preprocessor1_…
+##  9   0.00237               11    16 roc_auc binary         0.913 Preprocessor1_…
+## 10   0.000657               4    34 sens    binary         0.8   Preprocessor1_…
 ## # … with 20 more rows
 ```
 
@@ -1094,11 +1094,11 @@ show_best(tree_fit)
 ## # A tibble: 5 × 9
 ##   cost_complexity tree_depth min_n .metric .estimator  mean     n std_err
 ##             <dbl>      <int> <int> <chr>   <chr>      <dbl> <int>   <dbl>
-## 1        1.17e- 9         12    32 roc_auc binary     0.926     5 0.00219
-## 2        2.92e- 8         14    39 roc_auc binary     0.924     5 0.00278
-## 3        1.53e- 5         10    22 roc_auc binary     0.923     5 0.00421
-## 4        1.55e-10          7    11 roc_auc binary     0.923     5 0.00328
-## 5        8.39e- 4         12    17 roc_auc binary     0.918     5 0.00545
+## 1        8.48e- 6          9    30 roc_auc binary     0.923     5 0.00203
+## 2        5.11e-10         10    38 roc_auc binary     0.920     5 0.00180
+## 3        1.23e- 8          6    25 roc_auc binary     0.915     5 0.00274
+## 4        1.46e- 7          7    12 roc_auc binary     0.913     5 0.00325
+## 5        2.37e- 3         11    16 roc_auc binary     0.910     5 0.00541
 ## # … with 1 more variable: .config <chr>
 ```
 
@@ -1584,8 +1584,8 @@ collect_metrics(fit_final)
 ## # A tibble: 2 × 4
 ##   .metric  .estimator .estimate .config             
 ##   <chr>    <chr>          <dbl> <chr>               
-## 1 accuracy binary         0.885 Preprocessor1_Model1
-## 2 roc_auc  binary         0.948 Preprocessor1_Model1
+## 1 accuracy binary         0.883 Preprocessor1_Model1
+## 2 roc_auc  binary         0.955 Preprocessor1_Model1
 ```
 
 
@@ -1610,7 +1610,7 @@ fit_final %>%
 ## parsnip model object
 ## 
 ## ##### xgb.Booster
-## raw: 107.8 Kb 
+## raw: 111.2 Kb 
 ## call:
 ##   xgboost::xgb.train(params = list(eta = 0.3, max_depth = 6, gamma = 0, 
 ##     colsample_bytree = 1, colsample_bynode = 0.285714285714286, 
@@ -1628,11 +1628,11 @@ fit_final %>%
 ## nfeatures : 21 
 ## evaluation_log:
 ##     iter training_logloss
-##        1         0.575802
-##        2         0.495949
+##        1         0.575790
+##        2         0.496458
 ## ---                      
-##       79         0.178615
-##       80         0.178537
+##       79         0.185073
+##       80         0.184873
 ```
 
 *Dieses* Objekt übergeben wir dann an `{vip}`:
@@ -1668,16 +1668,16 @@ fit_final %>%
 ## # A tibble: 998 × 7
 ##    id              .pred_yes .pred_no  .row .pred_class canceled_service .config
 ##    <chr>               <dbl>    <dbl> <int> <fct>       <fct>            <chr>  
-##  1 train/test spl…   0.00151  0.998       1 no          yes              Prepro…
-##  2 train/test spl…   0.908    0.0919      6 yes         yes              Prepro…
-##  3 train/test spl…   0.984    0.0161      8 yes         yes              Prepro…
-##  4 train/test spl…   0.992    0.00821    23 yes         yes              Prepro…
-##  5 train/test spl…   0.944    0.0564     28 yes         yes              Prepro…
-##  6 train/test spl…   0.981    0.0191     30 yes         yes              Prepro…
-##  7 train/test spl…   0.957    0.0428     31 yes         yes              Prepro…
-##  8 train/test spl…   0.848    0.152      38 yes         yes              Prepro…
-##  9 train/test spl…   0.977    0.0235     41 yes         yes              Prepro…
-## 10 train/test spl…   0.973    0.0272     45 yes         yes              Prepro…
+##  1 train/test spl…   0.00508  0.995       1 no          yes              Prepro…
+##  2 train/test spl…   0.998    0.00223     3 yes         yes              Prepro…
+##  3 train/test spl…   0.112    0.888       4 no          yes              Prepro…
+##  4 train/test spl…   0.992    0.00810     8 yes         yes              Prepro…
+##  5 train/test spl…   0.998    0.00216    16 yes         yes              Prepro…
+##  6 train/test spl…   0.990    0.00953    18 yes         yes              Prepro…
+##  7 train/test spl…   0.765    0.235      32 yes         yes              Prepro…
+##  8 train/test spl…   0.937    0.0629     34 yes         yes              Prepro…
+##  9 train/test spl…   0.969    0.0309     40 yes         yes              Prepro…
+## 10 train/test spl…   0.828    0.172      42 yes         yes              Prepro…
 ## # … with 988 more rows
 ```
 

@@ -378,5 +378,5 @@ Spezialfälle:
 
 ## Aufgaben 
 
-- [Fallstudie Serie The Offic6e](https://juliasilge.com/blog/lasso-the-office/)
+- [Fallstudie Serie The Office](https://juliasilge.com/blog/lasso-the-office/)
 - [Fallstudie NBER Papers](https://juliasilge.com/blog/nber-papers/)
