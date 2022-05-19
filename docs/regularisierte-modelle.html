@@ -1,183 +1,959 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="" xml:lang="">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Kapitel 11 Regularisierte Modelle | DataScience1</title>
-<meta name="author" content="Sebastian Sauer">
-<meta name="description" content="11.1 Lernsteuerung  11.1.1 Lernziele Sie können Algorithmen für regularisierte lineare Modell erklären, d.h. Lasso- und Ridge-Regression Sie wissen, anhand welche Tuningparamter man Overfitting...">
-<meta name="generator" content="bookdown 0.26.2 with bs4_book()">
-<meta property="og:title" content="Kapitel 11 Regularisierte Modelle | DataScience1">
-<meta property="og:type" content="book">
-<meta property="og:description" content="11.1 Lernsteuerung  11.1.1 Lernziele Sie können Algorithmen für regularisierte lineare Modell erklären, d.h. Lasso- und Ridge-Regression Sie wissen, anhand welche Tuningparamter man Overfitting...">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Kapitel 11 Regularisierte Modelle | DataScience1">
-<meta name="twitter:description" content="11.1 Lernsteuerung  11.1.1 Lernziele Sie können Algorithmen für regularisierte lineare Modell erklären, d.h. Lasso- und Ridge-Regression Sie wissen, anhand welche Tuningparamter man Overfitting...">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
-<script src="libs/grViz-binding-1.0.6.1/grViz.js"></script><script src="libs/es6shim-0.35.6/es6shim.js"></script><script src="libs/es7shim-6.0.0/es7shim.js"></script><script src="libs/graphre-0.1.3/graphre.js"></script><script src="libs/nomnoml-1.3.1/nomnoml.js"></script><script src="libs/nomnoml-binding-0.2.3/nomnoml.js"></script><script src="libs/d3-3.3.8/d3.min.js"></script><script src="libs/dagre-0.4.0/dagre-d3.min.js"></script><link href="libs/mermaid-0.3.0/dist/mermaid.css" rel="stylesheet">
-<script src="libs/mermaid-0.3.0/dist/mermaid.slim.min.js"></script><script src="libs/chromatography-0.1/chromatography.js"></script><script src="libs/DiagrammeR-binding-1.0.6.1/DiagrammeR.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
-    
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-  </style>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Kapitel 12 Regularisierte Modelle | DataScience1</title>
+  <meta name="description" content="Grundlagen der Prognosemodellierung mit tidymodels" />
+  <meta name="generator" content="bookdown 0.26.2 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Kapitel 12 Regularisierte Modelle | DataScience1" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Grundlagen der Prognosemodellierung mit tidymodels" />
+  <meta name="github-repo" content="sebastiansauer/datascience1" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Kapitel 12 Regularisierte Modelle | DataScience1" />
+  
+  <meta name="twitter:description" content="Grundlagen der Prognosemodellierung mit tidymodels" />
+  
+
+<meta name="author" content="Sebastian Sauer" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="ensemble-lerner.html"/>
+<link rel="next" href="kaggle.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/viz-1.8.2/viz.js"></script>
+<link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+<script src="libs/grViz-binding-1.0.6.1/grViz.js"></script>
+<script src="libs/es6shim-0.35.6/es6shim.js"></script>
+<script src="libs/es7shim-6.0.0/es7shim.js"></script>
+<script src="libs/graphre-0.1.3/graphre.js"></script>
+<script src="libs/nomnoml-1.3.1/nomnoml.js"></script>
+<script src="libs/nomnoml-binding-0.2.3/nomnoml.js"></script>
+<script src="libs/d3-3.3.8/d3.min.js"></script>
+<script src="libs/dagre-0.4.0/dagre-d3.min.js"></script>
+<link href="libs/mermaid-0.3.0/dist/mermaid.css" rel="stylesheet" />
+<script src="libs/mermaid-0.3.0/dist/mermaid.slim.min.js"></script>
+<script src="libs/chromatography-0.1/chromatography.js"></script>
+<script src="libs/DiagrammeR-binding-1.0.6.1/DiagrammeR.js"></script>
+
+
 <style type="text/css">
-    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-    div.csl-bib-body { }
-    div.csl-entry {
-      clear: both;
-        }
-    .hanging div.csl-entry {
-      margin-left:2em;
-      text-indent:-2em;
-    }
-    div.csl-left-margin {
-      min-width:2em;
-      float:left;
-    }
-    div.csl-right-inline {
-      margin-left:2em;
-      padding-left:1em;
-    }
-    div.csl-indent {
-      margin-left: 2em;
-    }
-  </style>
-<link rel="stylesheet" href="style-bs4.css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
-<body data-spy="scroll" data-target="#toc">
 
-<div class="container-fluid">
-<div class="row">
-  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+<body>
 
-    <div class="d-flex align-items-start justify-content-between">
-      <h1>
-        <a href="index.html" title="Grundlagen der Prognosemodellierung 🔮🧰">DataScience1</a>:
-        <small class="text-muted">Grundlagen der Prognosemodellierung 🔮🧰</small>
-      </h1>
-      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
-    </div>
 
-    <div id="main-nav" class="collapse-lg">
-      <form role="search">
-        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
-</form>
 
-      <nav aria-label="Table of contents"><h2>Table of contents</h2>
-        <ul class="book-toc list-unstyled">
-<li><a class="" href="index.html">Zu diesem Buch</a></li>
-<li><a class="" href="hinweise.html"><span class="header-section-number">1</span> Hinweise</a></li>
-<li><a class="" href="pr%C3%BCfung.html"><span class="header-section-number">2</span> Prüfung</a></li>
-<li class="book-part">Themen</li>
-<li><a class="" href="statistisches-lernen.html"><span class="header-section-number">3</span> Statistisches Lernen</a></li>
-<li><a class="" href="r-zweiter-blick.html"><span class="header-section-number">4</span> R, zweiter Blick</a></li>
-<li><a class="" href="tidymodels.html"><span class="header-section-number">5</span> tidymodels</a></li>
-<li><a class="" href="knn.html"><span class="header-section-number">6</span> kNN</a></li>
-<li><a class="" href="resampling-und-tuning.html"><span class="header-section-number">7</span> Resampling und Tuning</a></li>
-<li><a class="" href="logistische-regression.html"><span class="header-section-number">8</span> Logistische Regression</a></li>
-<li><a class="" href="entscheidungsb%C3%A4ume.html"><span class="header-section-number">9</span> Entscheidungsbäume</a></li>
-<li><a class="" href="ensemble-lerner.html"><span class="header-section-number">10</span> Ensemble Lerner</a></li>
-<li><a class="active" href="regularisierte-modelle.html"><span class="header-section-number">11</span> Regularisierte Modelle</a></li>
-<li><a class="" href="kaggle.html"><span class="header-section-number">12</span> Kaggle</a></li>
-<li><a class="" href="references.html">References</a></li>
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Science Grundlagen</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> description: “Ein Kurs zu den Grundlagen des statistischen Lernens mit einem Fokus auf Prognosemodelle für hoch strukturierte Daten”</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#was-sie-hier-lernen-und-wozu-das-gut-ist"><i class="fa fa-check"></i><b>1.1</b> Was Sie hier lernen und wozu das gut ist</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#technische-details"><i class="fa fa-check"></i><b>1.2</b> Technische Details</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="hinweise.html"><a href="hinweise.html"><i class="fa fa-check"></i><b>2</b> Hinweise</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="hinweise.html"><a href="hinweise.html#lernziele"><i class="fa fa-check"></i><b>2.1</b> Lernziele</a></li>
+<li class="chapter" data-level="2.2" data-path="hinweise.html"><a href="hinweise.html#voraussetzungen"><i class="fa fa-check"></i><b>2.2</b> Voraussetzungen</a></li>
+<li class="chapter" data-level="2.3" data-path="hinweise.html"><a href="hinweise.html#lernhilfen"><i class="fa fa-check"></i><b>2.3</b> Lernhilfen</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="hinweise.html"><a href="hinweise.html#software"><i class="fa fa-check"></i><b>2.3.1</b> Software</a></li>
+<li class="chapter" data-level="2.3.2" data-path="hinweise.html"><a href="hinweise.html#videos"><i class="fa fa-check"></i><b>2.3.2</b> Videos</a></li>
+<li class="chapter" data-level="2.3.3" data-path="hinweise.html"><a href="hinweise.html#online-zusammenarbeit"><i class="fa fa-check"></i><b>2.3.3</b> Online-Zusammenarbeit</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="hinweise.html"><a href="hinweise.html#modulzeitplan"><i class="fa fa-check"></i><b>2.4</b> Modulzeitplan</a></li>
+<li class="chapter" data-level="2.5" data-path="hinweise.html"><a href="hinweise.html#literatur"><i class="fa fa-check"></i><b>2.5</b> Literatur</a></li>
+<li class="chapter" data-level="2.6" data-path="hinweise.html"><a href="hinweise.html#faq"><i class="fa fa-check"></i><b>2.6</b> FAQ</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="prüfung.html"><a href="prüfung.html"><i class="fa fa-check"></i><b>3</b> Prüfung</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="prüfung.html"><a href="prüfung.html#prüfungleistung"><i class="fa fa-check"></i><b>3.1</b> Prüfungleistung</a></li>
+<li class="chapter" data-level="3.2" data-path="prüfung.html"><a href="prüfung.html#tldr-zusammenfassung"><i class="fa fa-check"></i><b>3.2</b> tl;dr: Zusammenfassung</a></li>
+<li class="chapter" data-level="3.3" data-path="prüfung.html"><a href="prüfung.html#vorhersage"><i class="fa fa-check"></i><b>3.3</b> Vorhersage</a></li>
+<li class="chapter" data-level="3.4" data-path="prüfung.html"><a href="prüfung.html#hauptziel-genaue-prognose"><i class="fa fa-check"></i><b>3.4</b> Hauptziel: Genaue Prognose</a></li>
+<li class="chapter" data-level="3.5" data-path="prüfung.html"><a href="prüfung.html#zum-aufbau-ihrer-prognosedatei-im-csv-format"><i class="fa fa-check"></i><b>3.5</b> Zum Aufbau Ihrer Prognosedatei im CSV-Format</a></li>
+<li class="chapter" data-level="3.6" data-path="prüfung.html"><a href="prüfung.html#einzureichende-dateien"><i class="fa fa-check"></i><b>3.6</b> Einzureichende Dateien</a></li>
+<li class="chapter" data-level="3.7" data-path="prüfung.html"><a href="prüfung.html#tipps"><i class="fa fa-check"></i><b>3.7</b> Tipps</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="prüfung.html"><a href="prüfung.html#tipps-für-eine-gute-prognose"><i class="fa fa-check"></i><b>3.7.1</b> Tipps für eine gute Prognose</a></li>
+<li class="chapter" data-level="3.7.2" data-path="prüfung.html"><a href="prüfung.html#tipps-zur-datenverarbeitung"><i class="fa fa-check"></i><b>3.7.2</b> Tipps zur Datenverarbeitung</a></li>
+<li class="chapter" data-level="3.7.3" data-path="prüfung.html"><a href="prüfung.html#tipps-zum-aufbau-des-analyseskripts"><i class="fa fa-check"></i><b>3.7.3</b> Tipps zum Aufbau des Analyseskripts</a></li>
+<li class="chapter" data-level="3.7.4" data-path="prüfung.html"><a href="prüfung.html#sonstiges"><i class="fa fa-check"></i><b>3.7.4</b> Sonstiges</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="prüfung.html"><a href="prüfung.html#bewertung"><i class="fa fa-check"></i><b>3.8</b> Bewertung</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="prüfung.html"><a href="prüfung.html#kriterien"><i class="fa fa-check"></i><b>3.8.1</b> Kriterien</a></li>
+<li class="chapter" data-level="3.8.2" data-path="prüfung.html"><a href="prüfung.html#kennzahl-der-modellgüte"><i class="fa fa-check"></i><b>3.8.2</b> Kennzahl der Modellgüte</a></li>
+<li class="chapter" data-level="3.8.3" data-path="prüfung.html"><a href="prüfung.html#notenstufen"><i class="fa fa-check"></i><b>3.8.3</b> Notenstufen</a></li>
+<li class="chapter" data-level="3.8.4" data-path="prüfung.html"><a href="prüfung.html#bewertungsprozess"><i class="fa fa-check"></i><b>3.8.4</b> Bewertungsprozess</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="prüfung.html"><a href="prüfung.html#hinweise-1"><i class="fa fa-check"></i><b>3.9</b> Hinweise</a></li>
+<li class="chapter" data-level="3.10" data-path="prüfung.html"><a href="prüfung.html#formalia"><i class="fa fa-check"></i><b>3.10</b> Formalia</a></li>
+<li class="chapter" data-level="3.11" data-path="prüfung.html"><a href="prüfung.html#wo-finde-ich-beispiele"><i class="fa fa-check"></i><b>3.11</b> Wo finde ich Beispiele?</a></li>
+<li class="chapter" data-level="3.12" data-path="prüfung.html"><a href="prüfung.html#plagiatskontrolle"><i class="fa fa-check"></i><b>3.12</b> Plagiatskontrolle</a></li>
+</ul></li>
+<li class="part"><span><b>I Themen</b></span></li>
+<li class="chapter" data-level="4" data-path="statistisches-lernen.html"><a href="statistisches-lernen.html"><i class="fa fa-check"></i><b>4</b> Statistisches Lernen</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="statistisches-lernen.html"><a href="statistisches-lernen.html#lernsteuerung"><i class="fa fa-check"></i><b>4.1</b> Lernsteuerung</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="statistisches-lernen.html"><a href="statistisches-lernen.html#vorbereitung"><i class="fa fa-check"></i><b>4.1.1</b> Vorbereitung</a></li>
+<li class="chapter" data-level="4.1.2" data-path="statistisches-lernen.html"><a href="statistisches-lernen.html#lernziele-1"><i class="fa fa-check"></i><b>4.1.2</b> Lernziele</a></li>
+<li class="chapter" data-level="4.1.3" data-path="statistisches-lernen.html"><a href="statistisches-lernen.html#literatur-1"><i class="fa fa-check"></i><b>4.1.3</b> Literatur</a></li>
+<li class="chapter" data-level="4.1.4" data-path="statistisches-lernen.html"><a href="statistisches-lernen.html#hinweise-2"><i class="fa fa-check"></i><b>4.1.4</b> Hinweise</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="statistisches-lernen.html"><a href="statistisches-lernen.html#was-ist-data-science"><i class="fa fa-check"></i><b>4.2</b> Was ist Data Science?</a></li>
+<li class="chapter" data-level="4.3" data-path="statistisches-lernen.html"><a href="statistisches-lernen.html#was-ist-machine-learning"><i class="fa fa-check"></i><b>4.3</b> Was ist Machine Learning?</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="statistisches-lernen.html"><a href="statistisches-lernen.html#rule-based"><i class="fa fa-check"></i><b>4.3.1</b> Rule-based</a></li>
+<li class="chapter" data-level="4.3.2" data-path="statistisches-lernen.html"><a href="statistisches-lernen.html#data-based"><i class="fa fa-check"></i><b>4.3.2</b> Data-based</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="statistisches-lernen.html"><a href="statistisches-lernen.html#modell-vs.-algorithmus"><i class="fa fa-check"></i><b>4.4</b> Modell vs. Algorithmus</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="statistisches-lernen.html"><a href="statistisches-lernen.html#modell"><i class="fa fa-check"></i><b>4.4.1</b> Modell</a></li>
+<li class="chapter" data-level="4.4.2" data-path="statistisches-lernen.html"><a href="statistisches-lernen.html#beispiel-für-einen-ml-algorithmus"><i class="fa fa-check"></i><b>4.4.2</b> Beispiel für einen ML-Algorithmus</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="statistisches-lernen.html"><a href="statistisches-lernen.html#taxonomie"><i class="fa fa-check"></i><b>4.5</b> Taxonomie</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="statistisches-lernen.html"><a href="statistisches-lernen.html#geleitetes-lernen"><i class="fa fa-check"></i><b>4.5.1</b> Geleitetes Lernen</a></li>
+<li class="chapter" data-level="4.5.2" data-path="statistisches-lernen.html"><a href="statistisches-lernen.html#ungeleitetes-lernen"><i class="fa fa-check"></i><b>4.5.2</b> Ungeleitetes Lernen</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="statistisches-lernen.html"><a href="statistisches-lernen.html#ziele-des-ml"><i class="fa fa-check"></i><b>4.6</b> Ziele des ML</a></li>
+<li class="chapter" data-level="4.7" data-path="statistisches-lernen.html"><a href="statistisches-lernen.html#über--vs.-unteranpassung"><i class="fa fa-check"></i><b>4.7</b> Über- vs. Unteranpassung</a></li>
+<li class="chapter" data-level="4.8" data-path="statistisches-lernen.html"><a href="statistisches-lernen.html#no-free-lunch"><i class="fa fa-check"></i><b>4.8</b> No free lunch</a></li>
+<li class="chapter" data-level="4.9" data-path="statistisches-lernen.html"><a href="statistisches-lernen.html#bias-varianz-abwägung"><i class="fa fa-check"></i><b>4.9</b> Bias-Varianz-Abwägung</a></li>
+<li class="chapter" data-level="4.10" data-path="statistisches-lernen.html"><a href="statistisches-lernen.html#aufgaben"><i class="fa fa-check"></i><b>4.10</b> Aufgaben</a></li>
+<li class="chapter" data-level="4.11" data-path="statistisches-lernen.html"><a href="statistisches-lernen.html#vertiefung"><i class="fa fa-check"></i><b>4.11</b> Vertiefung</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="r-zweiter-blick.html"><a href="r-zweiter-blick.html"><i class="fa fa-check"></i><b>5</b> R, zweiter Blick</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="r-zweiter-blick.html"><a href="r-zweiter-blick.html#lernsteuerung-1"><i class="fa fa-check"></i><b>5.1</b> Lernsteuerung</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="r-zweiter-blick.html"><a href="r-zweiter-blick.html#vorbereitung-1"><i class="fa fa-check"></i><b>5.1.1</b> Vorbereitung</a></li>
+<li class="chapter" data-level="5.1.2" data-path="r-zweiter-blick.html"><a href="r-zweiter-blick.html#lernziele-2"><i class="fa fa-check"></i><b>5.1.2</b> Lernziele</a></li>
+<li class="chapter" data-level="5.1.3" data-path="r-zweiter-blick.html"><a href="r-zweiter-blick.html#literatur-2"><i class="fa fa-check"></i><b>5.1.3</b> Literatur</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="r-zweiter-blick.html"><a href="r-zweiter-blick.html#objekttypen-in-r"><i class="fa fa-check"></i><b>5.2</b> Objekttypen in R</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="r-zweiter-blick.html"><a href="r-zweiter-blick.html#überblick"><i class="fa fa-check"></i><b>5.2.1</b> Überblick</a></li>
+<li class="chapter" data-level="5.2.2" data-path="r-zweiter-blick.html"><a href="r-zweiter-blick.html#taxonomie-1"><i class="fa fa-check"></i><b>5.2.2</b> Taxonomie</a></li>
+<li class="chapter" data-level="5.2.3" data-path="r-zweiter-blick.html"><a href="r-zweiter-blick.html#indizieren"><i class="fa fa-check"></i><b>5.2.3</b> Indizieren</a></li>
+<li class="chapter" data-level="5.2.4" data-path="r-zweiter-blick.html"><a href="r-zweiter-blick.html#weiterführende-hinweise"><i class="fa fa-check"></i><b>5.2.4</b> Weiterführende Hinweise</a></li>
+<li class="chapter" data-level="5.2.5" data-path="r-zweiter-blick.html"><a href="r-zweiter-blick.html#indizieren-mit-dem-tidyverse"><i class="fa fa-check"></i><b>5.2.5</b> Indizieren mit dem Tidyverse</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="r-zweiter-blick.html"><a href="r-zweiter-blick.html#datensätze-von-lang-nach-breit-umformatieren"><i class="fa fa-check"></i><b>5.3</b> Datensätze von lang nach breit umformatieren</a></li>
+<li class="chapter" data-level="5.4" data-path="r-zweiter-blick.html"><a href="r-zweiter-blick.html#funktionen"><i class="fa fa-check"></i><b>5.4</b> Funktionen</a></li>
+<li class="chapter" data-level="5.5" data-path="r-zweiter-blick.html"><a href="r-zweiter-blick.html#wiederholungen-programmieren"><i class="fa fa-check"></i><b>5.5</b> Wiederholungen programmieren</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="r-zweiter-blick.html"><a href="r-zweiter-blick.html#across"><i class="fa fa-check"></i><b>5.5.1</b> <code>across()</code></a></li>
+<li class="chapter" data-level="5.5.2" data-path="r-zweiter-blick.html"><a href="r-zweiter-blick.html#map"><i class="fa fa-check"></i><b>5.5.2</b> <code>map()</code></a></li>
+<li class="chapter" data-level="5.5.3" data-path="r-zweiter-blick.html"><a href="r-zweiter-blick.html#weiterführende-hinweise-1"><i class="fa fa-check"></i><b>5.5.3</b> Weiterführende Hinweise</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="r-zweiter-blick.html"><a href="r-zweiter-blick.html#listenspalten"><i class="fa fa-check"></i><b>5.6</b> Listenspalten</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="r-zweiter-blick.html"><a href="r-zweiter-blick.html#wozu-listenspalten"><i class="fa fa-check"></i><b>5.6.1</b> Wozu Listenspalten?</a></li>
+<li class="chapter" data-level="5.6.2" data-path="r-zweiter-blick.html"><a href="r-zweiter-blick.html#beispiele-für-listenspalten"><i class="fa fa-check"></i><b>5.6.2</b> Beispiele für Listenspalten</a></li>
+<li class="chapter" data-level="5.6.3" data-path="r-zweiter-blick.html"><a href="r-zweiter-blick.html#programmieren-mit-dem-tidyverse"><i class="fa fa-check"></i><b>5.6.3</b> Programmieren mit dem Tidyverse</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="r-zweiter-blick.html"><a href="r-zweiter-blick.html#aufgaben-1"><i class="fa fa-check"></i><b>5.7</b> Aufgaben</a></li>
+<li class="chapter" data-level="5.8" data-path="r-zweiter-blick.html"><a href="r-zweiter-blick.html#vertiefung-1"><i class="fa fa-check"></i><b>5.8</b> Vertiefung</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="tidymodels.html"><a href="tidymodels.html"><i class="fa fa-check"></i><b>6</b> tidymodels</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="tidymodels.html"><a href="tidymodels.html#lernsteuerung-2"><i class="fa fa-check"></i><b>6.1</b> Lernsteuerung</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="tidymodels.html"><a href="tidymodels.html#vorbereitung-2"><i class="fa fa-check"></i><b>6.1.1</b> Vorbereitung</a></li>
+<li class="chapter" data-level="6.1.2" data-path="tidymodels.html"><a href="tidymodels.html#lernziele-3"><i class="fa fa-check"></i><b>6.1.2</b> Lernziele</a></li>
+<li class="chapter" data-level="6.1.3" data-path="tidymodels.html"><a href="tidymodels.html#literatur-3"><i class="fa fa-check"></i><b>6.1.3</b> Literatur</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="tidymodels.html"><a href="tidymodels.html#daten"><i class="fa fa-check"></i><b>6.2</b> Daten</a></li>
+<li class="chapter" data-level="6.3" data-path="tidymodels.html"><a href="tidymodels.html#train--vs-test-datensatz-aufteilen"><i class="fa fa-check"></i><b>6.3</b> Train- vs Test-Datensatz aufteilen</a></li>
+<li class="chapter" data-level="6.4" data-path="tidymodels.html"><a href="tidymodels.html#grundlagen-der-modellierung-mit-tidymodels"><i class="fa fa-check"></i><b>6.4</b> Grundlagen der Modellierung mit tidymodels</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="tidymodels.html"><a href="tidymodels.html#modelle-spezifizieren"><i class="fa fa-check"></i><b>6.4.1</b> Modelle spezifizieren</a></li>
+<li class="chapter" data-level="6.4.2" data-path="tidymodels.html"><a href="tidymodels.html#modelle-berechnen"><i class="fa fa-check"></i><b>6.4.2</b> Modelle berechnen</a></li>
+<li class="chapter" data-level="6.4.3" data-path="tidymodels.html"><a href="tidymodels.html#vorhersagen"><i class="fa fa-check"></i><b>6.4.3</b> Vorhersagen</a></li>
+<li class="chapter" data-level="6.4.4" data-path="tidymodels.html"><a href="tidymodels.html#vorhersagen-im-train-datensatz"><i class="fa fa-check"></i><b>6.4.4</b> Vorhersagen im Train-Datensatz</a></li>
+<li class="chapter" data-level="6.4.5" data-path="tidymodels.html"><a href="tidymodels.html#modellkoeffizienten-im-train-datensatz"><i class="fa fa-check"></i><b>6.4.5</b> Modellkoeffizienten im Train-Datensatz</a></li>
+<li class="chapter" data-level="6.4.6" data-path="tidymodels.html"><a href="tidymodels.html#parsnip-rstudio-add-in"><i class="fa fa-check"></i><b>6.4.6</b> Parsnip RStudio add-in</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="tidymodels.html"><a href="tidymodels.html#workflows"><i class="fa fa-check"></i><b>6.5</b> Workflows</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="tidymodels.html"><a href="tidymodels.html#konzept-des-workflows-in-tidymodels"><i class="fa fa-check"></i><b>6.5.1</b> Konzept des Workflows in Tidymodels</a></li>
+<li class="chapter" data-level="6.5.2" data-path="tidymodels.html"><a href="tidymodels.html#einfaches-beispiel"><i class="fa fa-check"></i><b>6.5.2</b> Einfaches Beispiel</a></li>
+<li class="chapter" data-level="6.5.3" data-path="tidymodels.html"><a href="tidymodels.html#vorhersage-mit-einem-workflow"><i class="fa fa-check"></i><b>6.5.3</b> Vorhersage mit einem Workflow</a></li>
+<li class="chapter" data-level="6.5.4" data-path="tidymodels.html"><a href="tidymodels.html#modellgüte"><i class="fa fa-check"></i><b>6.5.4</b> Modellgüte</a></li>
+<li class="chapter" data-level="6.5.5" data-path="tidymodels.html"><a href="tidymodels.html#vorhersage-von-hand"><i class="fa fa-check"></i><b>6.5.5</b> Vorhersage von Hand</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="tidymodels.html"><a href="tidymodels.html#rezepte-zur-vorverarbeitung"><i class="fa fa-check"></i><b>6.6</b> Rezepte zur Vorverarbeitung</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="tidymodels.html"><a href="tidymodels.html#was-ist-rezept-und-wozu-ist-es-gut"><i class="fa fa-check"></i><b>6.6.1</b> Was ist Rezept und wozu ist es gut?</a></li>
+<li class="chapter" data-level="6.6.2" data-path="tidymodels.html"><a href="tidymodels.html#workflows-mit-rezepten"><i class="fa fa-check"></i><b>6.6.2</b> Workflows mit Rezepten</a></li>
+<li class="chapter" data-level="6.6.3" data-path="tidymodels.html"><a href="tidymodels.html#spaltenrollen"><i class="fa fa-check"></i><b>6.6.3</b> Spaltenrollen</a></li>
+<li class="chapter" data-level="6.6.4" data-path="tidymodels.html"><a href="tidymodels.html#fazit"><i class="fa fa-check"></i><b>6.6.4</b> Fazit</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="tidymodels.html"><a href="tidymodels.html#aufgaben-2"><i class="fa fa-check"></i><b>6.7</b> Aufgaben</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="knn.html"><a href="knn.html"><i class="fa fa-check"></i><b>7</b> kNN</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="knn.html"><a href="knn.html#lernsteuerung-3"><i class="fa fa-check"></i><b>7.1</b> Lernsteuerung</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="knn.html"><a href="knn.html#lernziele-4"><i class="fa fa-check"></i><b>7.1.1</b> Lernziele</a></li>
+<li class="chapter" data-level="7.1.2" data-path="knn.html"><a href="knn.html#literatur-4"><i class="fa fa-check"></i><b>7.1.2</b> Literatur</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="knn.html"><a href="knn.html#überblick-1"><i class="fa fa-check"></i><b>7.2</b> Überblick</a></li>
+<li class="chapter" data-level="7.3" data-path="knn.html"><a href="knn.html#intuitive-erklärung"><i class="fa fa-check"></i><b>7.3</b> Intuitive Erklärung</a></li>
+<li class="chapter" data-level="7.4" data-path="knn.html"><a href="knn.html#krebsdiagnostik"><i class="fa fa-check"></i><b>7.4</b> Krebsdiagnostik</a></li>
+<li class="chapter" data-level="7.5" data-path="knn.html"><a href="knn.html#berechnung-der-nähe"><i class="fa fa-check"></i><b>7.5</b> Berechnung der Nähe</a></li>
+<li class="chapter" data-level="7.6" data-path="knn.html"><a href="knn.html#knn-mit-tidymodels"><i class="fa fa-check"></i><b>7.6</b> kNN mit Tidymodels</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="knn.html"><a href="knn.html#analog-zu-timbers-et-al."><i class="fa fa-check"></i><b>7.6.1</b> Analog zu Timbers et al.</a></li>
+<li class="chapter" data-level="7.6.2" data-path="knn.html"><a href="knn.html#rezept-definieren"><i class="fa fa-check"></i><b>7.6.2</b> Rezept definieren</a></li>
+<li class="chapter" data-level="7.6.3" data-path="knn.html"><a href="knn.html#modell-definieren"><i class="fa fa-check"></i><b>7.6.3</b> Modell definieren</a></li>
+<li class="chapter" data-level="7.6.4" data-path="knn.html"><a href="knn.html#workflow-definieren"><i class="fa fa-check"></i><b>7.6.4</b> Workflow definieren</a></li>
+<li class="chapter" data-level="7.6.5" data-path="knn.html"><a href="knn.html#vorhersagen-1"><i class="fa fa-check"></i><b>7.6.5</b> Vorhersagen</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="knn.html"><a href="knn.html#mit-train-test-aufteilung"><i class="fa fa-check"></i><b>7.7</b> Mit Train-Test-Aufteilung</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="knn.html"><a href="knn.html#rezept-definieren-1"><i class="fa fa-check"></i><b>7.7.1</b> Rezept definieren</a></li>
+<li class="chapter" data-level="7.7.2" data-path="knn.html"><a href="knn.html#modell-definieren-1"><i class="fa fa-check"></i><b>7.7.2</b> Modell definieren</a></li>
+<li class="chapter" data-level="7.7.3" data-path="knn.html"><a href="knn.html#workflow-definieren-1"><i class="fa fa-check"></i><b>7.7.3</b> Workflow definieren</a></li>
+<li class="chapter" data-level="7.7.4" data-path="knn.html"><a href="knn.html#vorhersagen-2"><i class="fa fa-check"></i><b>7.7.4</b> Vorhersagen</a></li>
+<li class="chapter" data-level="7.7.5" data-path="knn.html"><a href="knn.html#modellgüte-1"><i class="fa fa-check"></i><b>7.7.5</b> Modellgüte</a></li>
+<li class="chapter" data-level="7.7.6" data-path="knn.html"><a href="knn.html#visualisierung"><i class="fa fa-check"></i><b>7.7.6</b> Visualisierung</a></li>
+</ul></li>
+<li class="chapter" data-level="7.8" data-path="knn.html"><a href="knn.html#kennzahlen-der-klassifikation"><i class="fa fa-check"></i><b>7.8</b> Kennzahlen der Klassifikation</a></li>
+<li class="chapter" data-level="7.9" data-path="knn.html"><a href="knn.html#krebstest-beispiel"><i class="fa fa-check"></i><b>7.9</b> Krebstest-Beispiel</a></li>
+<li class="chapter" data-level="7.10" data-path="knn.html"><a href="knn.html#aufgaben-3"><i class="fa fa-check"></i><b>7.10</b> Aufgaben</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html"><i class="fa fa-check"></i><b>8</b> Resampling und Tuning</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#lernsteuerung-4"><i class="fa fa-check"></i><b>8.1</b> Lernsteuerung</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#vorbereitung-3"><i class="fa fa-check"></i><b>8.1.1</b> Vorbereitung</a></li>
+<li class="chapter" data-level="8.1.2" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#lernziele-5"><i class="fa fa-check"></i><b>8.1.2</b> Lernziele</a></li>
+<li class="chapter" data-level="8.1.3" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#literatur-5"><i class="fa fa-check"></i><b>8.1.3</b> Literatur</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#überblick-2"><i class="fa fa-check"></i><b>8.2</b> Überblick</a></li>
+<li class="chapter" data-level="8.3" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#tidymodels-1"><i class="fa fa-check"></i><b>8.3</b> tidymodels</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#datensatz-aufteilen"><i class="fa fa-check"></i><b>8.3.1</b> Datensatz aufteilen</a></li>
+<li class="chapter" data-level="8.3.2" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#rezept-modell-und-workflow-definieren"><i class="fa fa-check"></i><b>8.3.2</b> Rezept, Modell und Workflow definieren</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#resampling"><i class="fa fa-check"></i><b>8.4</b> Resampling</a></li>
+<li class="chapter" data-level="8.5" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#illustration-des-resampling"><i class="fa fa-check"></i><b>8.5</b> Illustration des Resampling</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#einfache-v-fache-kreuzvalidierung"><i class="fa fa-check"></i><b>8.5.1</b> Einfache v-fache Kreuzvalidierung</a></li>
+<li class="chapter" data-level="8.5.2" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#wiederholte-kreuzvalidierung"><i class="fa fa-check"></i><b>8.5.2</b> Wiederholte Kreuzvalidierung</a></li>
+<li class="chapter" data-level="8.5.3" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#resampling-passiert-im-train-sample"><i class="fa fa-check"></i><b>8.5.3</b> Resampling passiert im Train-Sample</a></li>
+<li class="chapter" data-level="8.5.4" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#andere-illustrationen"><i class="fa fa-check"></i><b>8.5.4</b> Andere Illustrationen</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#gesetz-der-großen-zahl"><i class="fa fa-check"></i><b>8.6</b> Gesetz der großen Zahl</a></li>
+<li class="chapter" data-level="8.7" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#über--und-unteranpassung-an-einem-beispiel"><i class="fa fa-check"></i><b>8.7</b> Über- und Unteranpassung an einem Beispiel</a></li>
+<li class="chapter" data-level="8.8" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#cv-in-tidymodels"><i class="fa fa-check"></i><b>8.8</b> CV in tidymodels</a>
+<ul>
+<li class="chapter" data-level="8.8.1" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#cv-definieren"><i class="fa fa-check"></i><b>8.8.1</b> CV definieren</a></li>
+<li class="chapter" data-level="8.8.2" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#resamples-fitten"><i class="fa fa-check"></i><b>8.8.2</b> Resamples fitten</a></li>
+</ul></li>
+<li class="chapter" data-level="8.9" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#tuning"><i class="fa fa-check"></i><b>8.9</b> Tuning</a>
+<ul>
+<li class="chapter" data-level="8.9.1" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#tuning-auszeichnen"><i class="fa fa-check"></i><b>8.9.1</b> Tuning auszeichnen</a></li>
+<li class="chapter" data-level="8.9.2" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#grid-search-vs.-iterative-search"><i class="fa fa-check"></i><b>8.9.2</b> Grid Search vs. Iterative Search</a></li>
+</ul></li>
+<li class="chapter" data-level="8.10" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#tuning-mit-tidymodels"><i class="fa fa-check"></i><b>8.10</b> Tuning mit Tidymodels</a>
+<ul>
+<li class="chapter" data-level="8.10.1" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#datenabhängige-tuningparameter"><i class="fa fa-check"></i><b>8.10.1</b> Datenabhängige Tuningparameter</a></li>
+<li class="chapter" data-level="8.10.2" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#modelle-mit-tuning-berechnen"><i class="fa fa-check"></i><b>8.10.2</b> Modelle mit Tuning berechnen</a></li>
+<li class="chapter" data-level="8.10.3" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#vorhersage-im-test-sample"><i class="fa fa-check"></i><b>8.10.3</b> Vorhersage im Test-Sample</a></li>
+</ul></li>
+<li class="chapter" data-level="8.11" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#aufgaben-4"><i class="fa fa-check"></i><b>8.11</b> Aufgaben</a></li>
+<li class="chapter" data-level="8.12" data-path="resampling-und-tuning.html"><a href="resampling-und-tuning.html#vertiefung-2"><i class="fa fa-check"></i><b>8.12</b> Vertiefung</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="logistische-regression.html"><a href="logistische-regression.html"><i class="fa fa-check"></i><b>9</b> Logistische Regression</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="logistische-regression.html"><a href="logistische-regression.html#lernsteuerung-5"><i class="fa fa-check"></i><b>9.1</b> Lernsteuerung</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="logistische-regression.html"><a href="logistische-regression.html#vorbereitung-4"><i class="fa fa-check"></i><b>9.1.1</b> Vorbereitung</a></li>
+<li class="chapter" data-level="9.1.2" data-path="logistische-regression.html"><a href="logistische-regression.html#lernziele-6"><i class="fa fa-check"></i><b>9.1.2</b> Lernziele</a></li>
+<li class="chapter" data-level="9.1.3" data-path="logistische-regression.html"><a href="logistische-regression.html#literatur-6"><i class="fa fa-check"></i><b>9.1.3</b> Literatur</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="logistische-regression.html"><a href="logistische-regression.html#intuitive-erklärung-1"><i class="fa fa-check"></i><b>9.2</b> Intuitive Erklärung</a></li>
+<li class="chapter" data-level="9.3" data-path="logistische-regression.html"><a href="logistische-regression.html#profil"><i class="fa fa-check"></i><b>9.3</b> Profil</a></li>
+<li class="chapter" data-level="9.4" data-path="logistische-regression.html"><a href="logistische-regression.html#warum-nicht-die-lineare-regression-verwenden"><i class="fa fa-check"></i><b>9.4</b> Warum nicht die lineare Regression verwenden?</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="logistische-regression.html"><a href="logistische-regression.html#lineare-modelle-running-wild"><i class="fa fa-check"></i><b>9.4.1</b> Lineare Modelle running wild</a></li>
+<li class="chapter" data-level="9.4.2" data-path="logistische-regression.html"><a href="logistische-regression.html#wir-müssen-die-regressionsgerade-umbiegen"><i class="fa fa-check"></i><b>9.4.2</b> Wir müssen die Regressionsgerade umbiegen</a></li>
+<li class="chapter" data-level="9.4.3" data-path="logistische-regression.html"><a href="logistische-regression.html#verallgemeinerte-lineare-modelle-zur-rettung"><i class="fa fa-check"></i><b>9.4.3</b> Verallgemeinerte lineare Modelle zur Rettung</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="logistische-regression.html"><a href="logistische-regression.html#der-logit-link"><i class="fa fa-check"></i><b>9.5</b> Der Logit-Link</a></li>
+<li class="chapter" data-level="9.6" data-path="logistische-regression.html"><a href="logistische-regression.html#aber-warum"><i class="fa fa-check"></i><b>9.6</b> Aber warum?</a>
+<ul>
+<li class="chapter" data-level="9.6.1" data-path="logistische-regression.html"><a href="logistische-regression.html#tidymodels-m83"><i class="fa fa-check"></i><b>9.6.1</b> tidymodels, m83</a></li>
+</ul></li>
+<li class="chapter" data-level="9.7" data-path="logistische-regression.html"><a href="logistische-regression.html#lm83-glm"><i class="fa fa-check"></i><b>9.7</b> lm83, glm</a></li>
+<li class="chapter" data-level="9.8" data-path="logistische-regression.html"><a href="logistische-regression.html#m83-tidymodels"><i class="fa fa-check"></i><b>9.8</b> m83, tidymodels</a>
+<ul>
+<li class="chapter" data-level="9.8.1" data-path="logistische-regression.html"><a href="logistische-regression.html#wahrscheinlichkeit-in-odds"><i class="fa fa-check"></i><b>9.8.1</b> Wahrscheinlichkeit in Odds</a></li>
+<li class="chapter" data-level="9.8.2" data-path="logistische-regression.html"><a href="logistische-regression.html#von-odds-zu-log-odds"><i class="fa fa-check"></i><b>9.8.2</b> Von Odds zu Log-Odds</a></li>
+</ul></li>
+<li class="chapter" data-level="9.9" data-path="logistische-regression.html"><a href="logistische-regression.html#inverser-logit"><i class="fa fa-check"></i><b>9.9</b> Inverser Logit</a></li>
+<li class="chapter" data-level="9.10" data-path="logistische-regression.html"><a href="logistische-regression.html#vom-logit-zur-klasse"><i class="fa fa-check"></i><b>9.10</b> Vom Logit zur Klasse</a>
+<ul>
+<li class="chapter" data-level="9.10.1" data-path="logistische-regression.html"><a href="logistische-regression.html#grenzwert-wechseln"><i class="fa fa-check"></i><b>9.10.1</b> Grenzwert wechseln</a></li>
+</ul></li>
+<li class="chapter" data-level="9.11" data-path="logistische-regression.html"><a href="logistische-regression.html#logit-und-inverser-logit"><i class="fa fa-check"></i><b>9.11</b> Logit und Inverser Logit</a>
+<ul>
+<li class="chapter" data-level="9.11.1" data-path="logistische-regression.html"><a href="logistische-regression.html#logit"><i class="fa fa-check"></i><b>9.11.1</b> Logit</a></li>
+<li class="chapter" data-level="9.11.2" data-path="logistische-regression.html"><a href="logistische-regression.html#inv-logit"><i class="fa fa-check"></i><b>9.11.2</b> Inv-Logit</a></li>
+</ul></li>
+<li class="chapter" data-level="9.12" data-path="logistische-regression.html"><a href="logistische-regression.html#logistische-regression-im-überblick"><i class="fa fa-check"></i><b>9.12</b> Logistische Regression im Überblick</a>
+<ul>
+<li class="chapter" data-level="9.12.1" data-path="logistische-regression.html"><a href="logistische-regression.html#die-koeffizienten-sind-schwer-zu-interpretieren"><i class="fa fa-check"></i><b>9.12.1</b> Die Koeffizienten sind schwer zu interpretieren</a></li>
+<li class="chapter" data-level="9.12.2" data-path="logistische-regression.html"><a href="logistische-regression.html#logits-vs.-wahrscheinlichkeiten"><i class="fa fa-check"></i><b>9.12.2</b> Logits vs. Wahrscheinlichkeiten</a></li>
+</ul></li>
+<li class="chapter" data-level="9.13" data-path="logistische-regression.html"><a href="logistische-regression.html#aufgaben-5"><i class="fa fa-check"></i><b>9.13</b> Aufgaben</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html"><i class="fa fa-check"></i><b>10</b> Entscheidungsbäume</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#lernsteuerung-6"><i class="fa fa-check"></i><b>10.1</b> Lernsteuerung</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#lernziele-7"><i class="fa fa-check"></i><b>10.1.1</b> Lernziele</a></li>
+<li class="chapter" data-level="10.1.2" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#literatur-7"><i class="fa fa-check"></i><b>10.1.2</b> Literatur</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#vorbereitung-5"><i class="fa fa-check"></i><b>10.2</b> Vorbereitung</a></li>
+<li class="chapter" data-level="10.3" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#anatomie-eines-baumes"><i class="fa fa-check"></i><b>10.3</b> Anatomie eines Baumes</a></li>
+<li class="chapter" data-level="10.4" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#bäume-als-regelmaschinen-rekursiver-partionierung"><i class="fa fa-check"></i><b>10.4</b> Bäume als Regelmaschinen rekursiver Partionierung</a></li>
+<li class="chapter" data-level="10.5" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#klassifikation"><i class="fa fa-check"></i><b>10.5</b> Klassifikation</a></li>
+<li class="chapter" data-level="10.6" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#gini-als-optimierungskriterium"><i class="fa fa-check"></i><b>10.6</b> Gini als Optimierungskriterium</a></li>
+<li class="chapter" data-level="10.7" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#metrische-prädiktoren"><i class="fa fa-check"></i><b>10.7</b> Metrische Prädiktoren</a></li>
+<li class="chapter" data-level="10.8" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#regressionbäume"><i class="fa fa-check"></i><b>10.8</b> Regressionbäume</a></li>
+<li class="chapter" data-level="10.9" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#baum-beschneiden"><i class="fa fa-check"></i><b>10.9</b> Baum beschneiden</a></li>
+<li class="chapter" data-level="10.10" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#das-rechteck-schlägt-zurück"><i class="fa fa-check"></i><b>10.10</b> Das Rechteck schlägt zurück</a></li>
+<li class="chapter" data-level="10.11" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#tidymodels-2"><i class="fa fa-check"></i><b>10.11</b> Tidymodels</a>
+<ul>
+<li class="chapter" data-level="10.11.1" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#initiale-datenaufteilung"><i class="fa fa-check"></i><b>10.11.1</b> Initiale Datenaufteilung</a></li>
+<li class="chapter" data-level="10.11.2" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#kreuzvalidierung-definieren"><i class="fa fa-check"></i><b>10.11.2</b> Kreuzvalidierung definieren</a></li>
+<li class="chapter" data-level="10.11.3" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#rezept-definieren-2"><i class="fa fa-check"></i><b>10.11.3</b> Rezept definieren</a></li>
+<li class="chapter" data-level="10.11.4" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#modell-definieren-2"><i class="fa fa-check"></i><b>10.11.4</b> Modell definieren</a></li>
+<li class="chapter" data-level="10.11.5" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#workflow-definieren-2"><i class="fa fa-check"></i><b>10.11.5</b> Workflow definieren</a></li>
+<li class="chapter" data-level="10.11.6" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#modell-tunen-und-berechnen"><i class="fa fa-check"></i><b>10.11.6</b> Modell tunen und berechnen</a></li>
+<li class="chapter" data-level="10.11.7" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#modellgüte-evaluieren"><i class="fa fa-check"></i><b>10.11.7</b> Modellgüte evaluieren</a></li>
+<li class="chapter" data-level="10.11.8" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#bestes-modell-auswählen"><i class="fa fa-check"></i><b>10.11.8</b> Bestes Modell auswählen</a></li>
+<li class="chapter" data-level="10.11.9" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#final-fit"><i class="fa fa-check"></i><b>10.11.9</b> Final Fit</a></li>
+<li class="chapter" data-level="10.11.10" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#nur-zum-spaß-vergleich-mit-linearem-modell"><i class="fa fa-check"></i><b>10.11.10</b> Nur zum Spaß: Vergleich mit linearem Modell</a></li>
+</ul></li>
+<li class="chapter" data-level="10.12" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#aufgaben-6"><i class="fa fa-check"></i><b>10.12</b> Aufgaben</a></li>
+<li class="chapter" data-level="10.13" data-path="entscheidungsbäume.html"><a href="entscheidungsbäume.html#vertiefung-3"><i class="fa fa-check"></i><b>10.13</b> Vertiefung</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="ensemble-lerner.html"><a href="ensemble-lerner.html"><i class="fa fa-check"></i><b>11</b> Ensemble Lerner</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="ensemble-lerner.html"><a href="ensemble-lerner.html#lernsteuerung-7"><i class="fa fa-check"></i><b>11.1</b> Lernsteuerung</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="ensemble-lerner.html"><a href="ensemble-lerner.html#lernziele-8"><i class="fa fa-check"></i><b>11.1.1</b> Lernziele</a></li>
+<li class="chapter" data-level="11.1.2" data-path="ensemble-lerner.html"><a href="ensemble-lerner.html#literatur-8"><i class="fa fa-check"></i><b>11.1.2</b> Literatur</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="ensemble-lerner.html"><a href="ensemble-lerner.html#vorbereitung-6"><i class="fa fa-check"></i><b>11.2</b> Vorbereitung</a></li>
+<li class="chapter" data-level="11.3" data-path="ensemble-lerner.html"><a href="ensemble-lerner.html#hinweise-zur-literatur"><i class="fa fa-check"></i><b>11.3</b> Hinweise zur Literatur</a></li>
+<li class="chapter" data-level="11.4" data-path="ensemble-lerner.html"><a href="ensemble-lerner.html#wir-brauchen-einen-wald"><i class="fa fa-check"></i><b>11.4</b> Wir brauchen einen Wald</a></li>
+<li class="chapter" data-level="11.5" data-path="ensemble-lerner.html"><a href="ensemble-lerner.html#was-ist-ein-ensemble-lerner"><i class="fa fa-check"></i><b>11.5</b> Was ist ein Ensemble-Lerner?</a></li>
+<li class="chapter" data-level="11.6" data-path="ensemble-lerner.html"><a href="ensemble-lerner.html#bagging"><i class="fa fa-check"></i><b>11.6</b> Bagging</a>
+<ul>
+<li class="chapter" data-level="11.6.1" data-path="ensemble-lerner.html"><a href="ensemble-lerner.html#bootstrapping"><i class="fa fa-check"></i><b>11.6.1</b> Bootstrapping</a></li>
+</ul></li>
+<li class="chapter" data-level="11.7" data-path="ensemble-lerner.html"><a href="ensemble-lerner.html#bagging-algorithmus"><i class="fa fa-check"></i><b>11.7</b> Bagging-Algorithmus</a>
+<ul>
+<li class="chapter" data-level="11.7.1" data-path="ensemble-lerner.html"><a href="ensemble-lerner.html#variablenrelevanz"><i class="fa fa-check"></i><b>11.7.1</b> Variablenrelevanz</a></li>
+<li class="chapter" data-level="11.7.2" data-path="ensemble-lerner.html"><a href="ensemble-lerner.html#out-of-bag-vorhersagen"><i class="fa fa-check"></i><b>11.7.2</b> Out of Bag Vorhersagen</a></li>
+</ul></li>
+<li class="chapter" data-level="11.8" data-path="ensemble-lerner.html"><a href="ensemble-lerner.html#random-forests"><i class="fa fa-check"></i><b>11.8</b> Random Forests</a></li>
+<li class="chapter" data-level="11.9" data-path="ensemble-lerner.html"><a href="ensemble-lerner.html#boosting"><i class="fa fa-check"></i><b>11.9</b> Boosting</a>
+<ul>
+<li class="chapter" data-level="11.9.1" data-path="ensemble-lerner.html"><a href="ensemble-lerner.html#adaboost"><i class="fa fa-check"></i><b>11.9.1</b> AdaBoost</a></li>
+<li class="chapter" data-level="11.9.2" data-path="ensemble-lerner.html"><a href="ensemble-lerner.html#xgboost"><i class="fa fa-check"></i><b>11.9.2</b> XGBoost</a></li>
+</ul></li>
+<li class="chapter" data-level="11.10" data-path="ensemble-lerner.html"><a href="ensemble-lerner.html#tidymodels-3"><i class="fa fa-check"></i><b>11.10</b> Tidymodels</a>
+<ul>
+<li class="chapter" data-level="11.10.1" data-path="ensemble-lerner.html"><a href="ensemble-lerner.html#datensatz-churn"><i class="fa fa-check"></i><b>11.10.1</b> Datensatz Churn</a></li>
+<li class="chapter" data-level="11.10.2" data-path="ensemble-lerner.html"><a href="ensemble-lerner.html#data-splitting-und-cv"><i class="fa fa-check"></i><b>11.10.2</b> Data Splitting und CV</a></li>
+<li class="chapter" data-level="11.10.3" data-path="ensemble-lerner.html"><a href="ensemble-lerner.html#feature-engineering"><i class="fa fa-check"></i><b>11.10.3</b> Feature Engineering</a></li>
+<li class="chapter" data-level="11.10.4" data-path="ensemble-lerner.html"><a href="ensemble-lerner.html#modelle"><i class="fa fa-check"></i><b>11.10.4</b> Modelle</a></li>
+<li class="chapter" data-level="11.10.5" data-path="ensemble-lerner.html"><a href="ensemble-lerner.html#workflows-1"><i class="fa fa-check"></i><b>11.10.5</b> Workflows</a></li>
+<li class="chapter" data-level="11.10.6" data-path="ensemble-lerner.html"><a href="ensemble-lerner.html#modelle-berechnen-mit-tuning-einzeln"><i class="fa fa-check"></i><b>11.10.6</b> Modelle berechnen mit Tuning, einzeln</a></li>
+<li class="chapter" data-level="11.10.7" data-path="ensemble-lerner.html"><a href="ensemble-lerner.html#workflow-set-tunen"><i class="fa fa-check"></i><b>11.10.7</b> Workflow-Set tunen</a></li>
+<li class="chapter" data-level="11.10.8" data-path="ensemble-lerner.html"><a href="ensemble-lerner.html#ergebnisse-im-train-sest"><i class="fa fa-check"></i><b>11.10.8</b> Ergebnisse im Train-Sest</a></li>
+<li class="chapter" data-level="11.10.9" data-path="ensemble-lerner.html"><a href="ensemble-lerner.html#bestes-modell"><i class="fa fa-check"></i><b>11.10.9</b> Bestes Modell</a></li>
+<li class="chapter" data-level="11.10.10" data-path="ensemble-lerner.html"><a href="ensemble-lerner.html#finalisisieren"><i class="fa fa-check"></i><b>11.10.10</b> Finalisisieren</a></li>
+<li class="chapter" data-level="11.10.11" data-path="ensemble-lerner.html"><a href="ensemble-lerner.html#last-fit"><i class="fa fa-check"></i><b>11.10.11</b> Last Fit</a></li>
+<li class="chapter" data-level="11.10.12" data-path="ensemble-lerner.html"><a href="ensemble-lerner.html#variablenrelevanz-1"><i class="fa fa-check"></i><b>11.10.12</b> Variablenrelevanz</a></li>
+<li class="chapter" data-level="11.10.13" data-path="ensemble-lerner.html"><a href="ensemble-lerner.html#roc-curve"><i class="fa fa-check"></i><b>11.10.13</b> ROC-Curve</a></li>
+</ul></li>
+<li class="chapter" data-level="11.11" data-path="ensemble-lerner.html"><a href="ensemble-lerner.html#aufgaben-7"><i class="fa fa-check"></i><b>11.11</b> Aufgaben</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="regularisierte-modelle.html"><a href="regularisierte-modelle.html"><i class="fa fa-check"></i><b>12</b> Regularisierte Modelle</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="regularisierte-modelle.html"><a href="regularisierte-modelle.html#lernsteuerung-8"><i class="fa fa-check"></i><b>12.1</b> Lernsteuerung</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="regularisierte-modelle.html"><a href="regularisierte-modelle.html#lernziele-9"><i class="fa fa-check"></i><b>12.1.1</b> Lernziele</a></li>
+<li class="chapter" data-level="12.1.2" data-path="regularisierte-modelle.html"><a href="regularisierte-modelle.html#literatur-9"><i class="fa fa-check"></i><b>12.1.2</b> Literatur</a></li>
+<li class="chapter" data-level="12.1.3" data-path="regularisierte-modelle.html"><a href="regularisierte-modelle.html#hinweise-3"><i class="fa fa-check"></i><b>12.1.3</b> Hinweise</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="regularisierte-modelle.html"><a href="regularisierte-modelle.html#vorbereitung-7"><i class="fa fa-check"></i><b>12.2</b> Vorbereitung</a></li>
+<li class="chapter" data-level="12.3" data-path="regularisierte-modelle.html"><a href="regularisierte-modelle.html#regularisierung"><i class="fa fa-check"></i><b>12.3</b> Regularisierung</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="regularisierte-modelle.html"><a href="regularisierte-modelle.html#was-ist-regularisierung"><i class="fa fa-check"></i><b>12.3.1</b> Was ist Regularisierung?</a></li>
+<li class="chapter" data-level="12.3.2" data-path="regularisierte-modelle.html"><a href="regularisierte-modelle.html#ähnliche-verfahren"><i class="fa fa-check"></i><b>12.3.2</b> Ähnliche Verfahren</a></li>
+<li class="chapter" data-level="12.3.3" data-path="regularisierte-modelle.html"><a href="regularisierte-modelle.html#normale-regression-ols"><i class="fa fa-check"></i><b>12.3.3</b> Normale Regression (OLS)</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="regularisierte-modelle.html"><a href="regularisierte-modelle.html#ridge-regression-l2"><i class="fa fa-check"></i><b>12.4</b> Ridge Regression, L2</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="regularisierte-modelle.html"><a href="regularisierte-modelle.html#strafterm"><i class="fa fa-check"></i><b>12.4.1</b> Strafterm</a></li>
+<li class="chapter" data-level="12.4.2" data-path="regularisierte-modelle.html"><a href="regularisierte-modelle.html#standardisierung"><i class="fa fa-check"></i><b>12.4.2</b> Standardisierung</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="regularisierte-modelle.html"><a href="regularisierte-modelle.html#lasso-l1"><i class="fa fa-check"></i><b>12.5</b> Lasso, L1</a>
+<ul>
+<li class="chapter" data-level="12.5.1" data-path="regularisierte-modelle.html"><a href="regularisierte-modelle.html#strafterm-1"><i class="fa fa-check"></i><b>12.5.1</b> Strafterm</a></li>
+<li class="chapter" data-level="12.5.2" data-path="regularisierte-modelle.html"><a href="regularisierte-modelle.html#variablenselektion"><i class="fa fa-check"></i><b>12.5.2</b> Variablenselektion</a></li>
+</ul></li>
+<li class="chapter" data-level="12.6" data-path="regularisierte-modelle.html"><a href="regularisierte-modelle.html#l1-vs.-l2"><i class="fa fa-check"></i><b>12.6</b> L1 vs. L2</a>
+<ul>
+<li class="chapter" data-level="12.6.1" data-path="regularisierte-modelle.html"><a href="regularisierte-modelle.html#wer-ist-stärker"><i class="fa fa-check"></i><b>12.6.1</b> Wer ist stärker?</a></li>
+<li class="chapter" data-level="12.6.2" data-path="regularisierte-modelle.html"><a href="regularisierte-modelle.html#elastic-net-als-kompromiss"><i class="fa fa-check"></i><b>12.6.2</b> Elastic Net als Kompromiss</a></li>
+</ul></li>
+<li class="chapter" data-level="12.7" data-path="regularisierte-modelle.html"><a href="regularisierte-modelle.html#aufgaben-8"><i class="fa fa-check"></i><b>12.7</b> Aufgaben</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="kaggle.html"><a href="kaggle.html"><i class="fa fa-check"></i><b>13</b> Kaggle</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="kaggle.html"><a href="kaggle.html#vorbereitung-8"><i class="fa fa-check"></i><b>13.1</b> Vorbereitung</a>
+<ul>
+<li class="chapter" data-level="13.1.1" data-path="kaggle.html"><a href="kaggle.html#lernsteuerung-9"><i class="fa fa-check"></i><b>13.1.1</b> Lernsteuerung</a></li>
+<li class="chapter" data-level="13.1.2" data-path="kaggle.html"><a href="kaggle.html#lernziele-10"><i class="fa fa-check"></i><b>13.1.2</b> Lernziele</a></li>
+<li class="chapter" data-level="13.1.3" data-path="kaggle.html"><a href="kaggle.html#hinweise-4"><i class="fa fa-check"></i><b>13.1.3</b> Hinweise</a></li>
+<li class="chapter" data-level="13.1.4" data-path="kaggle.html"><a href="kaggle.html#r-pakete"><i class="fa fa-check"></i><b>13.1.4</b> R-Pakete</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="kaggle.html"><a href="kaggle.html#was-ist-kaggle"><i class="fa fa-check"></i><b>13.2</b> Was ist Kaggle?</a></li>
+<li class="chapter" data-level="13.3" data-path="kaggle.html"><a href="kaggle.html#fallstudie-tmdb"><i class="fa fa-check"></i><b>13.3</b> Fallstudie TMDB</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="kaggle.html"><a href="kaggle.html#aufgabe"><i class="fa fa-check"></i><b>13.3.1</b> Aufgabe</a></li>
+<li class="chapter" data-level="13.3.2" data-path="kaggle.html"><a href="kaggle.html#hinweise-5"><i class="fa fa-check"></i><b>13.3.2</b> Hinweise</a></li>
+<li class="chapter" data-level="13.3.3" data-path="kaggle.html"><a href="kaggle.html#daten-1"><i class="fa fa-check"></i><b>13.3.3</b> Daten</a></li>
+<li class="chapter" data-level="13.3.4" data-path="kaggle.html"><a href="kaggle.html#train-set-verschlanken"><i class="fa fa-check"></i><b>13.3.4</b> Train-Set verschlanken</a></li>
+<li class="chapter" data-level="13.3.5" data-path="kaggle.html"><a href="kaggle.html#datensatz-kennenlernen"><i class="fa fa-check"></i><b>13.3.5</b> Datensatz kennenlernen</a></li>
+<li class="chapter" data-level="13.3.6" data-path="kaggle.html"><a href="kaggle.html#fehlende-werte-prüfen"><i class="fa fa-check"></i><b>13.3.6</b> Fehlende Werte prüfen</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="kaggle.html"><a href="kaggle.html#rezept"><i class="fa fa-check"></i><b>13.4</b> Rezept</a>
+<ul>
+<li class="chapter" data-level="13.4.1" data-path="kaggle.html"><a href="kaggle.html#rezept-definieren-3"><i class="fa fa-check"></i><b>13.4.1</b> Rezept definieren</a></li>
+<li class="chapter" data-level="13.4.2" data-path="kaggle.html"><a href="kaggle.html#check-das-rezept"><i class="fa fa-check"></i><b>13.4.2</b> Check das Rezept</a></li>
+<li class="chapter" data-level="13.4.3" data-path="kaggle.html"><a href="kaggle.html#check-test-sample"><i class="fa fa-check"></i><b>13.4.3</b> Check Test-Sample</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="kaggle.html"><a href="kaggle.html#kreuzvalidierung"><i class="fa fa-check"></i><b>13.5</b> Kreuzvalidierung</a></li>
+<li class="chapter" data-level="13.6" data-path="kaggle.html"><a href="kaggle.html#modelle-1"><i class="fa fa-check"></i><b>13.6</b> Modelle</a>
+<ul>
+<li class="chapter" data-level="13.6.1" data-path="kaggle.html"><a href="kaggle.html#baum-1"><i class="fa fa-check"></i><b>13.6.1</b> Baum</a></li>
+<li class="chapter" data-level="13.6.2" data-path="kaggle.html"><a href="kaggle.html#random-forest"><i class="fa fa-check"></i><b>13.6.2</b> Random Forest</a></li>
+<li class="chapter" data-level="13.6.3" data-path="kaggle.html"><a href="kaggle.html#xgboost-2"><i class="fa fa-check"></i><b>13.6.3</b> XGBoost</a></li>
+<li class="chapter" data-level="13.6.4" data-path="kaggle.html"><a href="kaggle.html#lm"><i class="fa fa-check"></i><b>13.6.4</b> LM</a></li>
+</ul></li>
+<li class="chapter" data-level="13.7" data-path="kaggle.html"><a href="kaggle.html#workflows-2"><i class="fa fa-check"></i><b>13.7</b> Workflows</a></li>
+<li class="chapter" data-level="13.8" data-path="kaggle.html"><a href="kaggle.html#fitten-und-tunen"><i class="fa fa-check"></i><b>13.8</b> Fitten und tunen</a></li>
+<li class="chapter" data-level="13.9" data-path="kaggle.html"><a href="kaggle.html#finalisieren"><i class="fa fa-check"></i><b>13.9</b> Finalisieren</a>
+<ul>
+<li class="chapter" data-level="13.9.1" data-path="kaggle.html"><a href="kaggle.html#welcher-algorithmus-schneidet-am-besten-ab"><i class="fa fa-check"></i><b>13.9.1</b> Welcher Algorithmus schneidet am besten ab?</a></li>
+<li class="chapter" data-level="13.9.2" data-path="kaggle.html"><a href="kaggle.html#final-fit-1"><i class="fa fa-check"></i><b>13.9.2</b> Final Fit</a></li>
+</ul></li>
+<li class="chapter" data-level="13.10" data-path="kaggle.html"><a href="kaggle.html#submission"><i class="fa fa-check"></i><b>13.10</b> Submission</a>
+<ul>
+<li class="chapter" data-level="13.10.1" data-path="kaggle.html"><a href="kaggle.html#submission-vorbereiten"><i class="fa fa-check"></i><b>13.10.1</b> Submission vorbereiten</a></li>
+<li class="chapter" data-level="13.10.2" data-path="kaggle.html"><a href="kaggle.html#kaggle-score"><i class="fa fa-check"></i><b>13.10.2</b> Kaggle Score</a></li>
+</ul></li>
+<li class="chapter" data-level="13.11" data-path="kaggle.html"><a href="kaggle.html#aufgaben-9"><i class="fa fa-check"></i><b>13.11</b> Aufgaben</a></li>
+<li class="chapter" data-level="13.12" data-path="kaggle.html"><a href="kaggle.html#vertiefung-4"><i class="fa fa-check"></i><b>13.12</b> Vertiefung</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
 
-        <div class="book-extra">
-          <p><a id="book-repo" href="https://github.com/sebastiansauer/datascience1">View book source <i class="fab fa-github"></i></a></p>
-        </div>
       </nav>
-</div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="regularisierte-modelle" class="section level1" number="11">
-<h1>
-<span class="header-section-number">Kapitel 11</span> Regularisierte Modelle<a class="anchor" aria-label="anchor" href="#regularisierte-modelle"><i class="fas fa-link"></i></a>
-</h1>
-<div id="lernsteuerung-8" class="section level2" number="11.1">
-<h2>
-<span class="header-section-number">11.1</span> Lernsteuerung<a class="anchor" aria-label="anchor" href="#lernsteuerung-8"><i class="fas fa-link"></i></a>
-</h2>
-<div id="lernziele-9" class="section level3" number="11.1.1">
-<h3>
-<span class="header-section-number">11.1.1</span> Lernziele<a class="anchor" aria-label="anchor" href="#lernziele-9"><i class="fas fa-link"></i></a>
-</h3>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">DataScience1</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="regularisierte-modelle" class="section level1 hasAnchor" number="12">
+<h1><span class="header-section-number">Kapitel 12</span> Regularisierte Modelle<a href="regularisierte-modelle.html#regularisierte-modelle" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="lernsteuerung-8" class="section level2 hasAnchor" number="12.1">
+<h2><span class="header-section-number">12.1</span> Lernsteuerung<a href="regularisierte-modelle.html#lernsteuerung-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="lernziele-9" class="section level3 hasAnchor" number="12.1.1">
+<h3><span class="header-section-number">12.1.1</span> Lernziele<a href="regularisierte-modelle.html#lernziele-9" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Sie können Algorithmen für regularisierte lineare Modell erklären, d.h. Lasso- und Ridge-Regression</li>
 <li>Sie wissen, anhand welche Tuningparamter man Overfitting bei diesen Algorithmen begrenzen kann</li>
 <li>Sie können diese Verfahren in R berechnen</li>
 </ul>
 </div>
-<div id="literatur-9" class="section level3" number="11.1.2">
-<h3>
-<span class="header-section-number">11.1.2</span> Literatur<a class="anchor" aria-label="anchor" href="#literatur-9"><i class="fas fa-link"></i></a>
-</h3>
+<div id="literatur-9" class="section level3 hasAnchor" number="12.1.2">
+<h3><span class="header-section-number">12.1.2</span> Literatur<a href="regularisierte-modelle.html#literatur-9" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Rhys, Kap. 11</li>
 </ul>
 </div>
+<div id="hinweise-3" class="section level3 hasAnchor" number="12.1.3">
+<h3><span class="header-section-number">12.1.3</span> Hinweise<a href="regularisierte-modelle.html#hinweise-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Rhys und ISLR sind eine gute Quelle zum Einstieg in das Thema</li>
+</ul>
 </div>
-<div id="vorbereitung-7" class="section level2" number="11.2">
-<h2>
-<span class="header-section-number">11.2</span> Vorbereitung<a class="anchor" aria-label="anchor" href="#vorbereitung-7"><i class="fas fa-link"></i></a>
-</h2>
+</div>
+<div id="vorbereitung-7" class="section level2 hasAnchor" number="12.2">
+<h2><span class="header-section-number">12.2</span> Vorbereitung<a href="regularisierte-modelle.html#vorbereitung-7" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In diesem Kapitel werden folgende R-Pakete benötigt:</p>
-<div class="sourceCode" id="cb434"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/collectivemedia/tictoc">tictoc</a></span><span class="op">)</span>  <span class="co"># Zeitmessung</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="regularisierte-modelle.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb1-2"><a href="regularisierte-modelle.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tictoc)  <span class="co"># Zeitmessung</span></span></code></pre></div>
+</div>
+<div id="regularisierung" class="section level2 hasAnchor" number="12.3">
+<h2><span class="header-section-number">12.3</span> Regularisierung<a href="regularisierte-modelle.html#regularisierung" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="was-ist-regularisierung" class="section level3 hasAnchor" number="12.3.1">
+<h3><span class="header-section-number">12.3.1</span> Was ist Regularisierung?<a href="regularisierte-modelle.html#was-ist-regularisierung" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Regularisieren verweist auf “regulär”;
+laut <a href="">Duden</a> bedeutet das Wort so viel wie “den Regeln, Bestimmungen,
+Vorschriften entsprechend; vorschriftsmäßig, ordnungsgemäß, richtig” oder “üblich”.</p>
+<p>Im Englischen spricht man auch von “penalized models”, “bestrafte Modell” und von “shrinkage”,
+von “Schrumpfung” im Zusammenhang mit dieer Art von Modellen.</p>
+<p>Regularisierung ist ein Metalalgorithmus, also ein Verfahren, was als zweiter Schritt “auf” verschiedene
+Modelle angewendet werden kann - zumeist aber auf lineare Modelle, worauf
+wir uns im Folgenden konzentrieren.</p>
+<p>Das Ziel von Regularisierung ist es, Overfitting zu vermeiden,
+in dem die Komplexität eines Modells reduziert wird.
+Der Effekt von Regularisierung ist,
+dass die Varianz der Modelle verringert wird und damit das Overfitting.
+Der Preis ist, dass der Bias erhöht wird,
+aber oft geht die Rechnung auf, dass der Gewinn größer ist als der Verlust.</p>
+<p>Im Kontext von linearen Modellen bedeutet das,
+dass die Koeffizienten (<span class="math inline">\(\beta\)</span>s) im Betrag verringert werden durch Regularisierung,
+also in Richtung Null “geschrumpft” werden.</p>
+<p>Dem liegt die Idee zugrunde,
+dass extreme Werte in den Koeffizienten vermutlich nicht “echt”, sondern durch Rauschen
+fälschlich vorgegaukelt werden.</p>
+<p>Die bekanntesten Vertreter dieser Modellart sind <em>Ridge Regression</em>, <span class="math inline">\(L2\)</span>, das <em>Lasso</em>, <span class="math inline">\(L1\)</span>, sowie <em>Elastic Net</em>.</p>
+</div>
+<div id="ähnliche-verfahren" class="section level3 hasAnchor" number="12.3.2">
+<h3><span class="header-section-number">12.3.2</span> Ähnliche Verfahren<a href="regularisierte-modelle.html#ähnliche-verfahren" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Ein ähnliches
+Ziel wie der Regulaisierung liegt dem Pruning zugrunde,
+dem nachträglichen Beschneiden von Entscheidungsbäumen.
+In beiden Fällen wird die Komplexität des Modells verringert,
+und damit die Varianz auf Kosten eines möglichen Anstiegs der Verzerrung (Bias)
+des Modells. Unterm Strich hofft man, dass der Gewinn die Kosten übersteigt
+und somit der Fit im Test-Sample besser wird.</p>
+<p>Eine Andere Art der Regularisierung wird durch die Verwendung von Bayes-Modellen erreicht:
+Setzt man einen konservativen Prior, etwa mit Mittelwert Null und kleiner Streuung,
+so werden die Posteriori-Koeffizienten gegen Null hin geschrumpft werden.</p>
+<p>Mit Mehrebenen-Modellen (Multi Level Models) lässt sich ein ähnlicher Effekt erreichen.</p>
+</div>
+<div id="normale-regression-ols" class="section level3 hasAnchor" number="12.3.3">
+<h3><span class="header-section-number">12.3.3</span> Normale Regression (OLS)<a href="regularisierte-modelle.html#normale-regression-ols" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Man kann sich fragen, warum sollte man an der normalen Least-Square-Regression
+(OLS: Ordinary Least Square) weiter herumbasteln wollen,
+schließlich garantiert das <a href="https://en.wikipedia.org/wiki/Gauss%E2%80%93Markov_theorem">Gauss-Markov-Theorem</a>, dass eine lineare Regression
+den besten linearen unverzerrten Schätzwert (BLUE, best linear unbiased estimator) stellt,
+vorausgesetzt die Voraussetzungen der Regression sind erfüllt.</p>
+<p>Ja, die Schätzwerte (Vorhersagen) der Regression sind BLUE, schätzen also den wahren
+Wert korrekt und maximal präzise. Das gilt (natürlich) nur, wenn die Voraussetzungen der Regression erfüllt
+sind, also vor allem, dass die Beziehung auch linear-additiv ist.</p>
+<p>Zur Erinnerung, mit OLS minimiert man man den quadrierten Fehler, <span class="math inline">\(RSS\)</span>, Residual Sum of Square:</p>
+<p><span class="math display">\[RSS = \sum_{i=1}^n \left(y_i - \beta_0 - \sum_{j=1}^p \beta_j x_{ij} \right)\]</span></p>
+<p>Man sucht also diejenigen Koeffizientenwerte <span class="math inline">\(\beta\)</span> (Argumente der Loss-Funktion RSS),
+die RSS minimieren:</p>
+<p><span class="math display">\[\beta = \underset {\beta}{\operatorname {arg\,min(RSS)}}\]</span></p>
+<p>Es handelt sich hier um Schätzwerte, die meist mit dem Hütchen <span class="math inline">\(\hat{\beta}\)</span> ausgedrückt werden,
+hier aber zur einfacheren Notation weggelassen sind.</p>
+<p>Abb. <a href="regularisierte-modelle.html#fig:ols">12.1</a> visualisiert die Optimierung mit OLS <a href="https://www.crumplab.com/rstatsforpsych/regression.html">Quelle</a>.
+An <a href="https://www.crumplab.com/rstatsforpsych/regression.html">gleicher Stelle</a> findet sich
+eine gute Darstellung zu den (mathematischen) Grundlagen der OLS-Regression.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ols"></span>
+<img src="https://www.crumplab.com/rstatsforpsych/imgs/regression_squares.gif" alt="Visualisierung der Minimierung der RSS durch OLS" width="70%" />
+<p class="caption">
+Figure 12.1: Visualisierung der Minimierung der RSS durch OLS
+</p>
+</div>
+<p>Übrigens nennt man Funktionen, die man minimiert mit Hilfe von Methoden des maschinellen Lernens
+mit dem Ziel die optimalen Koeffizienten (wie <span class="math inline">\(\beta\)</span>s) zu finden, auch <em>Loss Functions</em> (Kostenfunktion).</p>
+<p>Das Problem der Regression ist, dass die schöne Eigenschaft BLUE nur im <em>Train-Sample</em>, <em>nicht</em> (notwendig)
+im Test-Sample gilt.</p>
+</div>
+</div>
+<div id="ridge-regression-l2" class="section level2 hasAnchor" number="12.4">
+<h2><span class="header-section-number">12.4</span> Ridge Regression, L2<a href="regularisierte-modelle.html#ridge-regression-l2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="strafterm" class="section level3 hasAnchor" number="12.4.1">
+<h3><span class="header-section-number">12.4.1</span> Strafterm<a href="regularisierte-modelle.html#strafterm" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Ridge Regression ist sehr ähnlich zum OLS-Algorithmus,
+nur das ein “Strafterm aufgebrummt” wird, der <span class="math inline">\(RSS\)</span> erhöht.</p>
+<p>Der Gesamtterm, der optimiert wird, <span class="math inline">\(L_{L2}\)</span> (Loss Level 2) ist also
+die Summe aus RSS und dem Strafterm:</p>
+<p><span class="math display">\[L_{L2} = RSS + \text{Strafterm}\]</span></p>
+<p>Der Strafterm ist so aufgebaut,
+dass (im Absolutbetrag) größere Koeffizienten mehr zum Fehler beitragen,
+also eine Funktion der (quadrierten) Summe der Absolutwerte der Koeffizienten:</p>
+<p><span class="math display">\[\text{Strafterm} = \lambda \sum_{j=1}^p \beta_j^2\]</span></p>
+<p>Man nennt den L2-Strafterm auch L2-Norm<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
+<p>Dabei ist <span class="math inline">\(\lambda\)</span> (lambda) ein Tuningparameter,
+der bestimmt, wie stark die Bestrafung ausfällt. Den Wert von <span class="math inline">\(\lambda\)</span> lassen wir durch
+Tuning bestimmen, wobei <span class="math inline">\(\lambda \in \mathbb{R}^+\setminus\{0\}\)</span>.
+Es gilt: Je größer lambda, desto stärker die Schrumpfung der Koeffizienten gegen Null,
+da der gesamte zu minimierende Term, <span class="math inline">\(L_{L2}\)</span> entsprechend durch lambda vergrößert wird.</p>
+<p>Der Begriff “L2” beschreibt dass es sich um eine quadrierte Normierung handelt.</p>
+<p>Der Begriff “Norm” stammt aus der Vektoralgebra. Die L2-Norm eines Vektors <span class="math inline">\(||v||\)</span> mit <span class="math inline">\(k\)</span> Elementen ist so definiert <a href="https://towardsdatascience.com/intuitions-on-l1-and-l2-regularisation-235f2db4c261">Quelle</a>:</p>
+<p><span class="math display">\[||v|| = \left(|{v_1}|^2+ |{v_2}|^2+ |{v_i}|^2+ \ldots + |{v_k}|^2 \right)^{1/2} \]</span>
+wobei <span class="math inline">\(|{v_i}|\)</span> den Absolutwert (Betrag) meint de Elements <span class="math inline">\(v_i\)</span> meint.
+Im Falle von reellen Zahlen und Quadrierung braucht es hier die Absolutfunktion nicht.</p>
+<p>Im Falle von zwei Elementen vereinfacht sich obiger Ausdruck zu:</p>
+<p><span class="math display">\[||v|| = \sqrt{\left({v_1}^2+ {v_2}^2\right)} \]</span></p>
+<p>Das ist nichts anderes als Pythagoras’ Gesetz im euklidischen Raum.</p>
+<p>Der Effekt von <span class="math inline">\(\lambda \sum_{j=1}^p \beta_j^2\)</span> ist wie gesagt, dass
+die Koeffizienten in Richtung Null geschrumpft werden. Wenn <span class="math inline">\(\lambda = 0\)</span>,
+resultiert OLS.
+Wenn <span class="math inline">\(\lambda \rightarrow \infty\)</span>, werden alle Koeffizienten auf Null geschätzt werden,
+Abb. <a href="regularisierte-modelle.html#fig:l2-shrink">12.2</a> verdeutlicht dies <span class="citation">(<a href="#ref-islr" role="doc-biblioref">James et al. 2021</a>)</span>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:l2-shrink"></span>
+<img src="img/6.4.png" alt="Links: Regressionskoeffizienten als Funktion von lambda. Rechts: L2-Norm der Ridge-Regression im Verhältnis zur OLS-Regression" width="100%" />
+<p class="caption">
+Figure 12.2: Links: Regressionskoeffizienten als Funktion von lambda. Rechts: L2-Norm der Ridge-Regression im Verhältnis zur OLS-Regression
+</p>
+</div>
+</div>
+<div id="standardisierung" class="section level3 hasAnchor" number="12.4.2">
+<h3><span class="header-section-number">12.4.2</span> Standardisierung<a href="regularisierte-modelle.html#standardisierung" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Die Straftermformel sagt uns, dass die Ridge-Regression abhängig von der Skalierung
+der Prädiktoren ist.
+Daher sollten die Prädiktoren vor der Ridge-Regression zunächst auf <span class="math inline">\(sd=1\)</span> standardisiert werden.
+Da wir <span class="math inline">\(\beta_0\)</span> nicht schrumpfen wollen, sondern nur die Koeffizienten der Prädiktoren
+bietet es sich an, die Prädiktoren dazu noch zu zentieren.
+Kurz: Die z-Transformation bietet sich als Vorverarbeitung zur Ridge-Regression an.</p>
+</div>
+</div>
+<div id="lasso-l1" class="section level2 hasAnchor" number="12.5">
+<h2><span class="header-section-number">12.5</span> Lasso, L1<a href="regularisierte-modelle.html#lasso-l1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="strafterm-1" class="section level3 hasAnchor" number="12.5.1">
+<h3><span class="header-section-number">12.5.1</span> Strafterm<a href="regularisierte-modelle.html#strafterm-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Der Strafterm in der “Lasso-Variante” der regularisierten Regression lautet so:</p>
+<p><span class="math display">\[\text{Strafterm} = \lambda \sum_{j=1}^p |\beta_j|,\]</span></p>
+<p>ist also analog zur Ridge-Regression konzipiert.</p>
+<p>Genau wie bei der L2-Norm-Regularisierung ist ein “guter” Wert von lambda entscheidend.
+Dieser Wert wird, wie bei der Ridge-Regression, durch Tuning bestimmt.</p>
+<p>Der Unterschied ist, dass die L1-Norm (Absolutwerte) und nicht die L2-Norm (Quadratwerte)
+verwendet werden.</p>
+<p>Die L1-Norm eines Vektors ist definiert durch <span class="math inline">\(||\beta||_1 = \sum|\beta_j|\)</span>.</p>
+</div>
+<div id="variablenselektion" class="section level3 hasAnchor" number="12.5.2">
+<h3><span class="header-section-number">12.5.2</span> Variablenselektion<a href="regularisierte-modelle.html#variablenselektion" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Genau wie die Ridge-Regression führt ein höhere lambda-Wert zu einer Regularisierung (Schrumpfung)
+der Koeffizienten.
+Im Unterschied zur Ridge-Regression hat das Lasso die Eigenschaft,
+einzelne Parameter auf <em>exakt</em> Null zu schrumpfen und damit faktisch als Prädiktor auszuschließen.
+Anders gesagt hat das Lasso die praktische Eigenschaft,
+Variablenselektion zu ermöglichen.</p>
+<p>Abb. <a href="regularisierte-modelle.html#fig:lasso-l1">12.3</a> verdeutlicht den Effekt der Variablenselektion, vgl. <span class="citation">James et al. (<a href="#ref-islr" role="doc-biblioref">2021</a>)</span>, Kap. 6.2.
+Die Ellipsen um <span class="math inline">\(\hat{beta}\)</span> herum nent man Kontourlinien. Alle Punkte einer Kontourlinie
+haben den gleiche RSS-Wert,
+stehen also für eine gleichwertige OLS-Lösung.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:lasso-l1"></span>
+<img src="img/6.6.png" alt="lambda in der Lasso-Regression" width="100%" />
+<p class="caption">
+Figure 12.3: lambda in der Lasso-Regression
+</p>
+</div>
+<p>Warum erlaubt die L1-Norm Variablenselektion,
+die L2-Norm aber nicht?
+Abb. <a href="regularisierte-modelle.html#fig:l1l2">12.4</a> verdeutlicht den Unterschied zwischen L1- und L2-Norm.
+Es ist eine Regression mit zwei Prädiktoren, also den zwei Koeffizienten <span class="math inline">\(\beta1, \beta_2\)</span> dargestellt.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:l1l2"></span>
+<img src="img/6.6.png" alt="Verlauf des Strafterms bei der L1-Norm (links) und der L2-Norm (rechts)" width="100%" />
+<p class="caption">
+Figure 12.4: Verlauf des Strafterms bei der L1-Norm (links) und der L2-Norm (rechts)
+</p>
+</div>
+<p>Betrachten wir zunächst das rechte Teilbild für die L2-Norm aus Abb. <a href="regularisierte-modelle.html#fig:l1l2">12.4</a>,
+das in Abb. <a href="regularisierte-modelle.html#fig:l2-penalty">12.5</a> in den Fokus gerückt wird <span class="citation">(<a href="#ref-rhys" role="doc-biblioref">Rhys 2020</a>)</span>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:l2-penalty"></span>
+<img src="img/l2-penalty.png" alt="Verlauf des Strafterms bei der L2-Norm" width="100%" />
+<p class="caption">
+Figure 12.5: Verlauf des Strafterms bei der L2-Norm
+</p>
+</div>
+<p>Wenn lambda gleich Null ist, entspricht <span class="math inline">\(L_{L2}\)</span> genau der OLS-Lösung.
+Vergrößert man lambda,
+so liegt <span class="math inline">\(L_{L2}\)</span> dem Schnittpunkt des OLS-Kreises mit dem zugehörigen lambda-Kreis.
+Wie man sieht, führt eine Erhöhung von lambda zu einer Reduktion der Absolutwerte von <span class="math inline">\(\beta_1\)</span> und <span class="math inline">\(\beta_2\)</span>.
+Allerdings werden, wie man im Diagramm sieht, auch bei hohen lambda-Werten die
+Regressionskoeffizienten nicht exakt Null sein.</p>
+<p>Warum lässt die L2-Norm für bestimmte lambda-Werte den charakteristischen Kreis entstehen?
+Die Antwort ist, dass die Lösungen für <span class="math inline">\(\beta_1^2 + \beta_2^2=1\)</span> (mit <span class="math inline">\(\lambda=1\)</span>) graphisch als Kreis dargestellt werden können.</p>
+<p>Anders ist die Situation bei der L1-Norm, dem Lasso, vgl. Abb. <a href="regularisierte-modelle.html#fig:l1-penalty">12.6</a> <span class="citation">(<a href="#ref-rhys" role="doc-biblioref">Rhys 2020</a>)</span>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:l1-penalty"></span>
+<img src="img/l1-penalty.png" alt="Verlauf des Strafterms bei der L1-Norm" width="100%" />
+<p class="caption">
+Figure 12.6: Verlauf des Strafterms bei der L1-Norm
+</p>
+</div>
+<p>Eine Erhöhung von $ führt aufgrund der charakteristischen Kontourlinie zu einem Schnittpunkt (von OLS-Lösung und lambda-Wert),
+der - wenn lambda groß genug ist, stets auf einer der beiden Achsen liegt,
+also zu einer Nullsetzung des Parameters führt.</p>
+<p>Damit kann man argumentieren,
+dass das Lasso implizit davon ausgeht,
+dass einige Koeffizienten in Wirklichkeit <em>exakt Null</em> sind,
+die L2-Norm aber nicht.</p>
+</div>
+</div>
+<div id="l1-vs.-l2" class="section level2 hasAnchor" number="12.6">
+<h2><span class="header-section-number">12.6</span> L1 vs. L2<a href="regularisierte-modelle.html#l1-vs.-l2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="wer-ist-stärker" class="section level3 hasAnchor" number="12.6.1">
+<h3><span class="header-section-number">12.6.1</span> Wer ist stärker?<a href="regularisierte-modelle.html#wer-ist-stärker" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Man kann nicht sagen, dass die L1- oder die L2-Norm strikt besser sei.
+Es kommt auf den Datensatz an.
+Wenn man einen Datensatz hat, in dem es eingie wenige starke Prädiktoren gibt
+und viele sehr schwache (oder exakt irrelevante) Prädiktoren gibt,
+dann wird L1 tendenziell zu besseren Ergebnissen führen<span class="citation">(<a href="#ref-islr" role="doc-biblioref">James et al. 2021</a>, S. 246)</span>.
+Das Lasso hat noch den Vorteil der Einfachheit, da
+weniger Prädiktoren im Modell verbleiben.</p>
+<p>Ridge-Regression wird dann besser abschneiden (tendenziell),
+wenn die Prädiktoren etwa alle gleich stark sind.</p>
+</div>
+<div id="elastic-net-als-kompromiss" class="section level3 hasAnchor" number="12.6.2">
+<h3><span class="header-section-number">12.6.2</span> Elastic Net als Kompromiss<a href="regularisierte-modelle.html#elastic-net-als-kompromiss" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Das Elastic Net (EN) ist ein Kompromiss zwischen L1- und L2-Norm.
+<span class="math inline">\(\lambda\)</span> wird auf einen Wert zwischen 1 und 2 eingestellt;
+auch hier wird der Wert für <span class="math inline">\(\lambda\)</span> wieder per Tuning gefunden.</p>
+<p><span class="math display">\[L_{EN} = RSS + \lambda\left((1-\alpha))\cdot \text{L2-Strafterm} + \alpha \cdot  \text{L1-Strafterm}\right)\]</span></p>
+<p><span class="math inline">\(\alpha\)</span> ist ein Tuningparameter, der einstellt, wie sehr wir uns Richtung L1- vs. L2-Norm bewegen.
+Damit wird sozusagen die “Mischung” eingestellt (von L1- vs. L2).</p>
+<p>Spezialfälle:</p>
+<ul>
+<li>Wenn <span class="math inline">\(\alpha=0\)</span> resultiert die Ridge-Regression (L1-Strafterm wird Null)</li>
+<li>Wenn <span class="math inline">\(\alpha=1\)</span> resultiert die Lasso-Regression (L2-Strafterm wird Null)</li>
+</ul>
 <!-- ## Aufgaben und Vertiefung -->
 </div>
-<div id="aufgaben-8" class="section level2" number="11.3">
-<h2>
-<span class="header-section-number">11.3</span> Aufgaben<a class="anchor" aria-label="anchor" href="#aufgaben-8"><i class="fas fa-link"></i></a>
-</h2>
+</div>
+<div id="aufgaben-8" class="section level2 hasAnchor" number="12.7">
+<h2><span class="header-section-number">12.7</span> Aufgaben<a href="regularisierte-modelle.html#aufgaben-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li><a href="https://juliasilge.com/blog/lasso-the-office/">Fallstudie Serie The Offic6e</a></li>
 <li><a href="https://juliasilge.com/blog/nber-papers/">Fallstudie NBER Papers</a></li>
 </ul>
-</div>
-</div>
-  <div class="chapter-nav">
-<div class="prev"><a href="ensemble-lerner.html"><span class="header-section-number">10</span> Ensemble Lerner</a></div>
-<div class="next"><a href="kaggle.html"><span class="header-section-number">12</span> Kaggle</a></div>
-</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#regularisierte-modelle"><span class="header-section-number">11</span> Regularisierte Modelle</a></li>
-<li>
-<a class="nav-link" href="#lernsteuerung-8"><span class="header-section-number">11.1</span> Lernsteuerung</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#lernziele-9"><span class="header-section-number">11.1.1</span> Lernziele</a></li>
-<li><a class="nav-link" href="#literatur-9"><span class="header-section-number">11.1.2</span> Literatur</a></li>
-</ul>
-</li>
-<li><a class="nav-link" href="#vorbereitung-7"><span class="header-section-number">11.2</span> Vorbereitung</a></li>
-<li><a class="nav-link" href="#aufgaben-8"><span class="header-section-number">11.3</span> Aufgaben</a></li>
-</ul>
-
-      <div class="book-extra">
-        <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/sebastiansauer/datascience1/blob/master/120-Regularisierte-Modelle.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/sebastiansauer/datascience1/edit/master/120-Regularisierte-Modelle.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
-        </ul>
-</div>
-    </nav>
-</div>
 
 </div>
-</div> <!-- .container -->
+</div>
+<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-islr" class="csl-entry">
+James, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2021. <em>An Introduction to Statistical Learning: With Applications in r</em>. Second edition. Springer Texts in Statistics. New York: Springer. <a href="https://link.springer.com/book/10.1007/978-1-0716-1418-1">https://link.springer.com/book/10.1007/978-1-0716-1418-1</a>.
+</div>
+<div id="ref-rhys" class="csl-entry">
+Rhys, Hefin. 2020. <em>Machine Learning with r, the Tidyverse, and Mlr</em>. Shelter Island, <span>NY</span>: Manning publications.
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>Streng genommen ist er eine Funktion der L2-Norm bzw. mit Lambda-Gewichtet und ohne die Wurzel, die zur Vektornorm gehört<a href="regularisierte-modelle.html#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
 
-<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
-
-  <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-05-15 16:25:25.</p>
+          </div>
+        </div>
+      </div>
+<a href="ensemble-lerner.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="kaggle.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
   </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/sebastiansauer/datascience1120-Regularisierte-Modelle.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": {},
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
 
-  <div class="col-12 col-md-6 mt-3">
-    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
-  </div>
-
-</div></div>
-</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -189,22 +965,7 @@
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
-</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
-for (let popover of popovers) {
-  const div = document.createElement('div');
-  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
-  div.innerHTML = popover.getAttribute('data-content');
-
-  var has_math = div.querySelector("span.math");
-  if (has_math) {
-    document.body.appendChild(div);
-    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
-    MathJax.Hub.Queue(function() {
-      popover.setAttribute('data-content', div.innerHTML);
-      document.body.removeChild(div);
-    })
-  }
-}
 </script>
 </body>
+
 </html>

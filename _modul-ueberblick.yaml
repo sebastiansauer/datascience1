@@ -191,14 +191,7 @@ thema10:
     - "[Fallstudie Vulkanausbrüche](https://juliasilge.com/blog/multinomial-volcano-eruptions/)"
     - "[Fallstudie Brettspiele mit XGBoost](https://juliasilge.com/blog/board-games/)"
  
- 
- 
- 
- 
- 
- 
- 
- 
+
     
 thema14:
   Titel: "Regularisierung"
@@ -211,8 +204,11 @@ thema14:
     - "Rhys, Kap. 11"
   
   Aufgaben:
-    - "[Fallstudie Serie The Offic6e](https://juliasilge.com/blog/lasso-the-office/)"
+    - "[Fallstudie Serie The Office](https://juliasilge.com/blog/lasso-the-office/)"
     - "[Fallstudie NBER Papers](https://juliasilge.com/blog/nber-papers/)"
+    
+  Hinweise:
+    - "Rhys und ISLR sind eine gute Quelle zum Einstieg in das Thema"
 
 
 

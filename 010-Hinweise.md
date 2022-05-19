@@ -100,9 +100,9 @@ die das Online-Zusammenarbeiten vereinfachen:
 
 | KW|Terminhinweise                          | Kurswoche|Titel_Link                                                                                          |
 |--:|:---------------------------------------|---------:|:---------------------------------------------------------------------------------------------------|
-| 11|NA                                      |         1|[Statistisches Lernen](https://sebastiansauer.github.io/datascience1/statistisches-lernen.html)     |
+| 11|Lehrbeginn am Dienstag                  |         1|[Statistisches Lernen](https://sebastiansauer.github.io/datascience1/statistisches-lernen.html)     |
 | 12|NA                                      |         2|[R, zweiter Blick](https://sebastiansauer.github.io/datascience1/r-zweiter-blick.html)              |
-| 13|Lehrbeginn am Dienstag                  |         3|[R, zweiter Blick 2](https://sebastiansauer.github.io/datascience1/r-zweiter-blick-2.html)          |
+| 13|NA                                      |         3|[R, zweiter Blick 2](https://sebastiansauer.github.io/datascience1/r-zweiter-blick-2.html)          |
 | 14|NA                                      |         4|[tidymodels](https://sebastiansauer.github.io/datascience1/tidymodels.html)                         |
 | 15|NA                                      |         5|[kNN](https://sebastiansauer.github.io/datascience1/knn.html)                                       |
 | 16|NA                                      |         6|[Wiederholung](https://sebastiansauer.github.io/datascience1/wiederholung.html)                     |
