@@ -46,13 +46,12 @@ thema2:
   Vorbereitung:
     - Lesen Sie die Literatur.
   Aufgaben:
-    - "[Aufgaben](https://sebastiansauer.github.io/datascience1/r-zweiter-blick.html#aufgaben-2)"
+
+  Vertiefung:
+    - "[Funktionale Programmierung mit R](https://albert-rapp.de/post/2021-09-16-similar-data-and-list-like-columns/)"
     - "[Lernen Sie Wiederholungsstrukturen mit ggplot](https://data-se.netlify.app/2021/02/06/plotting-multiple-plots-using-purrr-map-and-ggplot/)"
     - "[Fallstudie Flugverspätungen](https://data-se.netlify.app/2021/03/10/fallstudie-modellierung-von-flugversp%C3%A4tungen/)"
     - "[Fallstudie Getreideernte](https://juliasilge.com/blog/crop-yields/)" 
-  Vertiefung:
-    - "[Funktionale Programmierung mit R](https://albert-rapp.de/post/2021-09-16-similar-data-and-list-like-columns/)"
- 
 
 thema3:
   Titel: "R, zweiter Blick 2"
@@ -181,7 +180,7 @@ thema10:
 
   Literatur:
     - "Rhys, Kap. 8"
-  Aufgaben:
+  Vertiefung:
     - "[Einfache Durchführung eines Modellierung mit XGBoost](https://data-se.netlify.app/2020/12/14/titanic-tidymodels-boost/)"
     - "[Fallstudie Oregon Schools](https://bcullen.rbind.io/post/2020-06-02-tidymodels-decision-tree-learning-in-r/)"
     - "[Fallstudie Churn](https://www.gmudatamining.com/lesson-13-r-tutorial.html)"
