@@ -320,12 +320,12 @@ was die Größe des Datensatzes massiv reduziert.</p>
 <pre><code>## # A tibble: 6 × 6
 ##   number operation type       trained skip  id              
 ##    &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;      &lt;lgl&gt;   &lt;lgl&gt; &lt;chr&gt;           
-## 1      1 step      mutate     FALSE   FALSE mutate_5BX7H    
-## 2      2 step      log        FALSE   FALSE log_ZlkDD       
-## 3      3 step      mutate     FALSE   FALSE mutate_kzM7y    
-## 4      4 step      date       FALSE   FALSE date_CSnwU      
-## 5      5 step      impute_knn FALSE   FALSE impute_knn_ez7Hg
-## 6      6 step      dummy      FALSE   FALSE dummy_T8GHG</code></pre>
+## 1      1 step      mutate     FALSE   FALSE mutate_jdS5r    
+## 2      2 step      log        FALSE   FALSE log_fBmPl       
+## 3      3 step      mutate     FALSE   FALSE mutate_jRePL    
+## 4      4 step      date       FALSE   FALSE date_wZREV      
+## 5      5 step      impute_knn FALSE   FALSE impute_knn_iJwRX
+## 6      6 step      dummy      FALSE   FALSE dummy_LMB2i</code></pre>
 </div>
 <div id="check-das-rezept" class="section level3" number="12.4.2">
 <h3>
@@ -624,7 +624,7 @@ einiges spricht für das Boosting-Modell, <code>rec1_boost1</code>.</p>
 <code class="sourceCode R"><span class="va">fit_final</span> <span class="op">&lt;-</span>
   <span class="va">best_wf_finalized</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu">fit</span><span class="op">(</span><span class="va">d_train</span><span class="op">)</span></code></pre></div>
-<pre><code>## [14:22:49] WARNING: amalgamation/../src/learner.cc:576: 
+<pre><code>## [00:36:53] WARNING: amalgamation/../src/learner.cc:576: 
 ## Parameters: { "nthreads" } might not be used.
 ## 
 ##   This could be a false alarm, with some parameters getting used by language bindings but
@@ -648,7 +648,7 @@ einiges spricht für das Boosting-Modell, <code>rec1_boost1</code>.</p>
 ## 
 ## ── Model ───────────────────────────────────────────────────────────────────────
 ## ##### xgb.Booster
-## raw: 333.5 Kb 
+## raw: 341.6 Kb 
 ## call:
 ##   xgboost::xgb.train(params = list(eta = 0.3, max_depth = 6, gamma = 0, 
 ##     colsample_bytree = 1, colsample_bynode = 0.4, min_child_weight = 4L, 
@@ -666,11 +666,11 @@ einiges spricht für das Boosting-Modell, <code>rec1_boost1</code>.</p>
 ## nfeatures : 15 
 ## evaluation_log:
 ##     iter training_rmse
-##        1     121975112
-##        2     101061520
+##        1     121863752
+##        2     100362192
 ## ---                   
-##       99      29017504
-##      100      28762728</code></pre>
+##       99      27461648
+##      100      27365600</code></pre>
 <div class="sourceCode" id="cb482"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">d_test</span><span class="op">$</span><span class="va">revenue</span> <span class="op">&lt;-</span> <span class="cn">NA</span>
 
@@ -717,9 +717,9 @@ einiges spricht für das Boosting-Modell, <code>rec1_boost1</code>.</p>
 <li><a href="https://juliasilge.com/blog/himalayan-climbing/">Fallstudie Himalaya</a></li>
 </ul>
 </div>
-<div id="vertiefung-4" class="section level2" number="12.13">
+<div id="vertiefung-5" class="section level2" number="12.13">
 <h2>
-<span class="header-section-number">12.13</span> Vertiefung<a class="anchor" aria-label="anchor" href="#vertiefung-4"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.13</span> Vertiefung<a class="anchor" aria-label="anchor" href="#vertiefung-5"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li><a href="https://xkcd.com/435/">Fields arranged by purity, xkcd 435</a></li>
@@ -785,7 +785,7 @@ einiges spricht für das Boosting-Modell, <code>rec1_boost1</code>.</p>
 </ul>
 </li>
 <li><a class="nav-link" href="#aufgaben-9"><span class="header-section-number">12.12</span> Aufgaben</a></li>
-<li><a class="nav-link" href="#vertiefung-4"><span class="header-section-number">12.13</span> Vertiefung</a></li>
+<li><a class="nav-link" href="#vertiefung-5"><span class="header-section-number">12.13</span> Vertiefung</a></li>
 </ul>
 
       <div class="book-extra">
@@ -803,7 +803,7 @@ einiges spricht für das Boosting-Modell, <code>rec1_boost1</code>.</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-05-19 14:20:10.</p>
+    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-05-22 00:34:33.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

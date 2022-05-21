@@ -767,6 +767,13 @@ write_rds(churn_model_set, file = "objects/churn_model_set.rds")
 ```
 
 
+*Achtung* Dieser Schritt ist *gefährlich*:
+Wenn Sie Ihr Rezept und Fit-Objekt ändenr, kriegt das Ihre Festplatte nicht unbedingt
+mit. Sie könnten also unbemerkt mit dem alten Objekt von Ihrer Festplatte weiterarbeiten,
+ohne durch eine Fehlermeldung gewarnt zu werden.
+
+
+
 Entsprechend kann man das Modellobjekt wieder importieren, wenn einmal abgespeichert:
 
 ```{r eval = FALSE}
@@ -843,7 +850,7 @@ churn_model_set %>%
 `rec1_boost1` scheint das beste Modell zu sein.
 
 
-```{r}
+```{r best-model-params}
 best_model_params <-
 extract_workflow_set_result(churn_model_set, "rec1_boost1") %>% 
   select_best()
@@ -865,7 +872,7 @@ Finalisierte Form heißt:
 
 
 
-```{r}
+```{r best-wf}
 # Schritt 1:
 best_wf <- 
 all_workflows %>% 
@@ -884,7 +891,7 @@ Jetzt finalisieren wir den Workflow,
 d.h. wir setzen die Parameterwerte des besten Submodells ein:
 
 
-```{r}
+```{r best-wf-finalized}
 # Schritt 2:
 best_wf_finalized <- 
   best_wf %>% 
@@ -977,7 +984,7 @@ fit_final %>%
 
 ## Aufgaben
 
-```{r child = "Aufgaben/Thema11-Loesungen1.markdown", results='asis'}
+```{r exs-chap11, child = "Aufgaben/Thema11-Loesungen1.markdown", results='asis', eval = FALSE}
 
  
 ```

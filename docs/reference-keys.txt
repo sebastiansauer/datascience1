@@ -328,6 +328,7 @@ last-fit
 variablenrelevanz-1
 roc-curve
 aufgaben-7
+vertiefung-4
 regularisierte-modelle
 lernsteuerung-8
 lernziele-9
@@ -382,4 +383,4 @@ submission
 submission-vorbereiten
 kaggle-score
 aufgaben-9
-vertiefung-4
+vertiefung-5

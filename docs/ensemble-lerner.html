@@ -254,8 +254,8 @@ mit dem internationalen Preis für Statistik <a href="https://www.amstat.org/new
 <p>Der Bagging-Algorithmus ist in Abbildung <a href="ensemble-lerner.html#fig:bag">10.2</a> dargestellt.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:bag"></span>
-<div id="htmlwidget-7057a9cb420ba6040049" style="width:100%;height:350px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-7057a9cb420ba6040049">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n  [<database> Datensatz] ->zmz [Baum 1]\n[<database> Datensatz] ->zmz [Baum 2]\n[<database> Datensatz] ->zmz [Baum ...]\n[<database> Datensatz] ->zmz [Baum B]\n[Baum 1] -> [Modus als Vorhersagewert]\n[Baum 2] -> [Modus als Vorhersagewert]\n[Baum ...] -> [Modus als Vorhersagewert]\n[Baum B] -> [Modus als Vorhersagewert]\n  ","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
+<div id="htmlwidget-bb055ab8f59f0f5fa621" style="width:100%;height:350px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-bb055ab8f59f0f5fa621">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n  [<database> Datensatz] ->zmz [Baum 1]\n[<database> Datensatz] ->zmz [Baum 2]\n[<database> Datensatz] ->zmz [Baum ...]\n[<database> Datensatz] ->zmz [Baum B]\n[Baum 1] -> [Modus als Vorhersagewert]\n[Baum 2] -> [Modus als Vorhersagewert]\n[Baum ...] -> [Modus als Vorhersagewert]\n[Baum B] -> [Modus als Vorhersagewert]\n  ","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
 Figure 10.2: Bagging schematisch illustriert
 </p>
 </div>
@@ -318,8 +318,8 @@ In den meisten Implementationen wird <span class="math inline">\(m\)</span> mit 
 <p>Der Random-Forest-Algorithmus ist in Abb. <a href="ensemble-lerner.html#fig:rf1">10.3</a> illustriert.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:rf1"></span>
-<div id="htmlwidget-8e0209f4ffed5da56646" style="width:100%;height:700px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-8e0209f4ffed5da56646">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n#direction:down\n                 [<database> Datensatz] ->zmz [Baum1\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n\n[<database> Datensatz] ->zmz [Baum2\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[<database> Datensatz] ->zmz [Baum ...\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[<database> Datensatz] ->zmz [Baum B\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[Baum1\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n] -> [Modus als Vorhersagewert]\n[Baum2\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n] -> [Modus als Vorhersagewert]\n[Baum ...] -> [Modus als Vorhersagewert]\n[Baum B] -> [Modus als Vorhersagewert]\n                 ","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
+<div id="htmlwidget-9d8fadb8922bb1941cf6" style="width:100%;height:700px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9d8fadb8922bb1941cf6">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n#direction:down\n                 [<database> Datensatz] ->zmz [Baum1\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n\n[<database> Datensatz] ->zmz [Baum2\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[<database> Datensatz] ->zmz [Baum ...\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[<database> Datensatz] ->zmz [Baum B\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[Baum1\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n] -> [Modus als Vorhersagewert]\n[Baum2\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n] -> [Modus als Vorhersagewert]\n[Baum ...] -> [Modus als Vorhersagewert]\n[Baum B] -> [Modus als Vorhersagewert]\n                 ","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
 Figure 10.3: Zufallswälder durch Ziehen mit Zurücklegen (zmz) und Ziehen ohne Zurücklegen (ZoZ)
 </p>
 </div>
@@ -375,8 +375,8 @@ haben zunächst alle Fälle die gleiche Wahrscheinlichkeit, in das Bootstrap-Sam
 Die Bäume bei AdaBoost sind eigentlich nur “Stümpfe”: Sie bestehen aus einem einzelnen Split, s. Abb. <a href="ensemble-lerner.html#fig:stump">10.6</a>.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:stump"></span>
-<div id="htmlwidget-440981bf9ed2cc61a611" style="width:100%;height:200px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-440981bf9ed2cc61a611">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: topdown\n  [root] -> [leaf1]\n  [root] -> [leaf2]\n  ","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
+<div id="htmlwidget-378297552cddf352b671" style="width:100%;height:200px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-378297552cddf352b671">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: topdown\n  [root] -> [leaf1]\n  [root] -> [leaf2]\n  ","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
 Figure 10.6: Ein Baumstumpf bei AdaBoost
 </p>
 </div>
@@ -417,8 +417,8 @@ aber schlecht klassifizierten Fällen mehr Gehör.</p>
 <p>Das Vorgehen von AdaBoost ist in Abb. <a href="ensemble-lerner.html#fig:ada">10.7</a> illustriert.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ada"></span>
-<div id="htmlwidget-8c5b537a8c392ce417a2" style="width:100%;height:450px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-8c5b537a8c392ce417a2">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n  [m1] -> [ensemble]\n  [ensemble] -> [m2]\n  [m2] -> [ensemble]\n  [ensemble] -> [m3]\n  [m3] -> [ensemble]\n  [ensemble] -> [m4]\n  [m4] -> [ensemble]\n  [ensemble] -> [M ...]\n  [M ...] -> [ensemble]\n  [ensemble] -> [M B]\n  ","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
+<div id="htmlwidget-2d52af6efde107c9a01e" style="width:100%;height:450px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2d52af6efde107c9a01e">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n  [m1] -> [ensemble]\n  [ensemble] -> [m2]\n  [m2] -> [ensemble]\n  [ensemble] -> [m3]\n  [m3] -> [ensemble]\n  [ensemble] -> [m4]\n  [m4] -> [ensemble]\n  [ensemble] -> [M ...]\n  [M ...] -> [ensemble]\n  [ensemble] -> [M B]\n  ","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
 Figure 10.7: AdaBoost illustriert
 </p>
 </div>
@@ -461,12 +461,12 @@ Figure 10.8: Vorhersagegüte von Boosting und Random Forest
 <code class="sourceCode R"><span class="va">churn_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div id="rgshsfyfds" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="mxymoynmax" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#rgshsfyfds .gt_table {
+#mxymoynmax .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -491,7 +491,7 @@ Figure 10.8: Vorhersagegüte von Boosting und Random Forest
   border-left-color: #D3D3D3;
 }
 
-#rgshsfyfds .gt_heading {
+#mxymoynmax .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -503,7 +503,7 @@ Figure 10.8: Vorhersagegüte von Boosting und Random Forest
   border-right-color: #D3D3D3;
 }
 
-#rgshsfyfds .gt_title {
+#mxymoynmax .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -513,7 +513,7 @@ Figure 10.8: Vorhersagegüte von Boosting und Random Forest
   border-bottom-width: 0;
 }
 
-#rgshsfyfds .gt_subtitle {
+#mxymoynmax .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -523,13 +523,13 @@ Figure 10.8: Vorhersagegüte von Boosting und Random Forest
   border-top-width: 0;
 }
 
-#rgshsfyfds .gt_bottom_border {
+#mxymoynmax .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#rgshsfyfds .gt_col_headings {
+#mxymoynmax .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -544,7 +544,7 @@ Figure 10.8: Vorhersagegüte von Boosting und Random Forest
   border-right-color: #D3D3D3;
 }
 
-#rgshsfyfds .gt_col_heading {
+#mxymoynmax .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -564,7 +564,7 @@ Figure 10.8: Vorhersagegüte von Boosting und Random Forest
   overflow-x: hidden;
 }
 
-#rgshsfyfds .gt_column_spanner_outer {
+#mxymoynmax .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -576,15 +576,15 @@ Figure 10.8: Vorhersagegüte von Boosting und Random Forest
   padding-right: 4px;
 }
 
-#rgshsfyfds .gt_column_spanner_outer:first-child {
+#mxymoynmax .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#rgshsfyfds .gt_column_spanner_outer:last-child {
+#mxymoynmax .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#rgshsfyfds .gt_column_spanner {
+#mxymoynmax .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -596,7 +596,7 @@ Figure 10.8: Vorhersagegüte von Boosting und Random Forest
   width: 100%;
 }
 
-#rgshsfyfds .gt_group_heading {
+#mxymoynmax .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -618,7 +618,7 @@ Figure 10.8: Vorhersagegüte von Boosting und Random Forest
   vertical-align: middle;
 }
 
-#rgshsfyfds .gt_empty_group_heading {
+#mxymoynmax .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -633,15 +633,15 @@ Figure 10.8: Vorhersagegüte von Boosting und Random Forest
   vertical-align: middle;
 }
 
-#rgshsfyfds .gt_from_md > :first-child {
+#mxymoynmax .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#rgshsfyfds .gt_from_md > :last-child {
+#mxymoynmax .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#rgshsfyfds .gt_row {
+#mxymoynmax .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -660,7 +660,7 @@ Figure 10.8: Vorhersagegüte von Boosting und Random Forest
   overflow-x: hidden;
 }
 
-#rgshsfyfds .gt_stub {
+#mxymoynmax .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -672,7 +672,7 @@ Figure 10.8: Vorhersagegüte von Boosting und Random Forest
   padding-left: 12px;
 }
 
-#rgshsfyfds .gt_summary_row {
+#mxymoynmax .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -682,7 +682,7 @@ Figure 10.8: Vorhersagegüte von Boosting und Random Forest
   padding-right: 5px;
 }
 
-#rgshsfyfds .gt_first_summary_row {
+#mxymoynmax .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -692,7 +692,7 @@ Figure 10.8: Vorhersagegüte von Boosting und Random Forest
   border-top-color: #D3D3D3;
 }
 
-#rgshsfyfds .gt_grand_summary_row {
+#mxymoynmax .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -702,7 +702,7 @@ Figure 10.8: Vorhersagegüte von Boosting und Random Forest
   padding-right: 5px;
 }
 
-#rgshsfyfds .gt_first_grand_summary_row {
+#mxymoynmax .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -712,11 +712,11 @@ Figure 10.8: Vorhersagegüte von Boosting und Random Forest
   border-top-color: #D3D3D3;
 }
 
-#rgshsfyfds .gt_striped {
+#mxymoynmax .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#rgshsfyfds .gt_table_body {
+#mxymoynmax .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -725,7 +725,7 @@ Figure 10.8: Vorhersagegüte von Boosting und Random Forest
   border-bottom-color: #D3D3D3;
 }
 
-#rgshsfyfds .gt_footnotes {
+#mxymoynmax .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -739,13 +739,13 @@ Figure 10.8: Vorhersagegüte von Boosting und Random Forest
   border-right-color: #D3D3D3;
 }
 
-#rgshsfyfds .gt_footnote {
+#mxymoynmax .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#rgshsfyfds .gt_sourcenotes {
+#mxymoynmax .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -759,41 +759,41 @@ Figure 10.8: Vorhersagegüte von Boosting und Random Forest
   border-right-color: #D3D3D3;
 }
 
-#rgshsfyfds .gt_sourcenote {
+#mxymoynmax .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#rgshsfyfds .gt_left {
+#mxymoynmax .gt_left {
   text-align: left;
 }
 
-#rgshsfyfds .gt_center {
+#mxymoynmax .gt_center {
   text-align: center;
 }
 
-#rgshsfyfds .gt_right {
+#mxymoynmax .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#rgshsfyfds .gt_font_normal {
+#mxymoynmax .gt_font_normal {
   font-weight: normal;
 }
 
-#rgshsfyfds .gt_font_bold {
+#mxymoynmax .gt_font_bold {
   font-weight: bold;
 }
 
-#rgshsfyfds .gt_font_italic {
+#mxymoynmax .gt_font_italic {
   font-style: italic;
 }
 
-#rgshsfyfds .gt_super {
+#mxymoynmax .gt_super {
   font-size: 65%;
 }
 
-#rgshsfyfds .gt_footnote_marks {
+#mxymoynmax .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -1044,7 +1044,7 @@ also <code>preproc * models</code> Modelle gefittet.</p>
     metrics <span class="op">=</span>  <span class="fu">metric_set</span><span class="op">(</span><span class="va">roc_auc</span>, <span class="va">sens</span>, <span class="fu">yardstick</span><span class="fu">::</span><span class="va"><a href="https://yardstick.tidymodels.org/reference/spec.html">spec</a></span><span class="op">)</span>
     <span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">toc</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## 14.945 sec elapsed</code></pre>
+<pre><code>## 15.729 sec elapsed</code></pre>
 <p>Im Standard werden 10 Modellkandidaten getuned.</p>
 <div class="sourceCode" id="cb388"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tree_fit</span></code></pre></div>
@@ -1064,16 +1064,16 @@ also <code>preproc * models</code> Modelle gefittet.</p>
 <pre><code>## # A tibble: 30 × 7
 ##    cost_complexity tree_depth min_n .metric .estimator .estimate .config        
 ##              &lt;dbl&gt;      &lt;int&gt; &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;          
-##  1     0.0000382           10     3 sens    binary         0.820 Preprocessor1_…
-##  2     0.0000382           10     3 spec    binary         0.857 Preprocessor1_…
-##  3     0.0000382           10     3 roc_auc binary         0.845 Preprocessor1_…
-##  4     0.000228            15    20 sens    binary         0.859 Preprocessor1_…
-##  5     0.000228            15    20 spec    binary         0.854 Preprocessor1_…
-##  6     0.000228            15    20 roc_auc binary         0.916 Preprocessor1_…
-##  7     0.000000180         12    15 sens    binary         0.863 Preprocessor1_…
-##  8     0.000000180         12    15 spec    binary         0.857 Preprocessor1_…
-##  9     0.000000180         12    15 roc_auc binary         0.918 Preprocessor1_…
-## 10     0.00000459           8    30 sens    binary         0.845 Preprocessor1_…
+##  1        1.07e- 7          9    35 sens    binary         0.837 Preprocessor1_…
+##  2        1.07e- 7          9    35 spec    binary         0.881 Preprocessor1_…
+##  3        1.07e- 7          9    35 roc_auc binary         0.915 Preprocessor1_…
+##  4        5.28e- 6          2    20 sens    binary         0.776 Preprocessor1_…
+##  5        5.28e- 6          2    20 spec    binary         0.827 Preprocessor1_…
+##  6        5.28e- 6          2    20 roc_auc binary         0.817 Preprocessor1_…
+##  7        7.90e-10          5    40 sens    binary         0.867 Preprocessor1_…
+##  8        7.90e-10          5    40 spec    binary         0.860 Preprocessor1_…
+##  9        7.90e-10          5    40 roc_auc binary         0.914 Preprocessor1_…
+## 10        4.55e- 2          9    28 sens    binary         0.776 Preprocessor1_…
 ## # … with 20 more rows</code></pre>
 <p>30 Zeilen: 3 Gütemetriken (Sens, Spec, ROC AUC) mit je 10 Werten (Submodellen),
 gibt 30 Koeffizienten.</p>
@@ -1084,11 +1084,11 @@ gibt 30 Koeffizienten.</p>
 <pre><code>## # A tibble: 5 × 9
 ##   cost_complexity tree_depth min_n .metric .estimator  mean     n std_err
 ##             &lt;dbl&gt;      &lt;int&gt; &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt;
-## 1   0.00000459             8    30 roc_auc binary     0.924     5 0.00595
-## 2   0.00000283             8    36 roc_auc binary     0.922     5 0.00697
-## 3   0.000228              15    20 roc_auc binary     0.921     5 0.00547
-## 4   0.00000000181          6    11 roc_auc binary     0.920     5 0.00869
-## 5   0.000000180           12    15 roc_auc binary     0.918     5 0.00651
+## 1        4.53e- 5          7    31 roc_auc binary     0.920     5 0.00140
+## 2        1.07e- 7          9    35 roc_auc binary     0.918     5 0.00198
+## 3        1.10e- 6         13    16 roc_auc binary     0.917     5 0.00331
+## 4        1.34e- 9         12    12 roc_auc binary     0.914     5 0.00312
+## 5        7.90e-10          5    40 roc_auc binary     0.903     5 0.00689
 ## # … with 1 more variable: .config &lt;chr&gt;</code></pre>
 <p>Aha, das sind die fünf besten Modelle, bzw. ihre Tuningparameter,
 ihre mittlere Güte zusammen mit dem Standardfehler.</p>
@@ -1240,6 +1240,10 @@ um künftig Zeit zu sparen:</p>
 macht es Sinn, das Modell (bzw. das Ergebnisobjekt) auf Festplatte zu speichern:</p>
 <div class="sourceCode" id="cb406"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">write_rds</a></span><span class="op">(</span><span class="va">churn_model_set</span>, file <span class="op">=</span> <span class="st">"objects/churn_model_set.rds"</span><span class="op">)</span></code></pre></div>
+<p><em>Achtung</em> Dieser Schritt ist <em>gefährlich</em>:
+Wenn Sie Ihr Rezept und Fit-Objekt ändenr, kriegt das Ihre Festplatte nicht unbedingt
+mit. Sie könnten also unbemerkt mit dem alten Objekt von Ihrer Festplatte weiterarbeiten,
+ohne durch eine Fehlermeldung gewarnt zu werden.</p>
 <p>Entsprechend kann man das Modellobjekt wieder importieren, wenn einmal abgespeichert:</p>
 <div class="sourceCode" id="cb407"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">churn_model_set</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">read_rds</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"objects/churn_model_set.rds"</span><span class="op">)</span></code></pre></div>
@@ -1426,8 +1430,8 @@ d.h. wir setzen die Parameterwerte des besten Submodells ein:</p>
 <pre><code>## # A tibble: 2 × 4
 ##   .metric  .estimator .estimate .config             
 ##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;               
-## 1 accuracy binary         0.895 Preprocessor1_Model1
-## 2 roc_auc  binary         0.956 Preprocessor1_Model1</code></pre>
+## 1 accuracy binary         0.879 Preprocessor1_Model1
+## 2 roc_auc  binary         0.953 Preprocessor1_Model1</code></pre>
 </div>
 <div id="variablenrelevanz-1" class="section level3" number="10.10.12">
 <h3>
@@ -1445,7 +1449,7 @@ XGBoost:</p>
 <pre><code>## parsnip model object
 ## 
 ## ##### xgb.Booster
-## raw: 110.2 Kb 
+## raw: 109.4 Kb 
 ## call:
 ##   xgboost::xgb.train(params = list(eta = 0.3, max_depth = 6, gamma = 0, 
 ##     colsample_bytree = 1, colsample_bynode = 0.285714285714286, 
@@ -1463,17 +1467,17 @@ XGBoost:</p>
 ## nfeatures : 21 
 ## evaluation_log:
 ##     iter training_logloss
-##        1         0.572627
-##        2         0.492517
+##        1         0.576324
+##        2         0.499686
 ## ---                      
-##       79         0.186327
-##       80         0.186127</code></pre>
+##       79         0.186838
+##       80         0.186716</code></pre>
 <p><em>Dieses</em> Objekt übergeben wir dann an <a href="https://github.com/koalaverse/vip/">vip</a>:</p>
 <div class="sourceCode" id="cb430"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">fit_final</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu">extract_fit_parsnip</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://rdrr.io/pkg/vip/man/vip.html">vip</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="110-Ensemble-Lerner_files/figure-html/unnamed-chunk-30-1.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="110-Ensemble-Lerner_files/figure-html/unnamed-chunk-27-1.png" width="100%" style="display: block; margin: auto;"></div>
 </div>
 <div id="roc-curve" class="section level3" number="10.10.13">
 <h3>
@@ -1488,16 +1492,16 @@ bzw. aus dem Vergleich von Vorhersagen und wahrem Wert (d.h. der beobachtete Wer
 <pre><code>## # A tibble: 998 × 7
 ##    id              .pred_yes .pred_no  .row .pred_class canceled_service .config
 ##    &lt;chr&gt;               &lt;dbl&gt;    &lt;dbl&gt; &lt;int&gt; &lt;fct&gt;       &lt;fct&gt;            &lt;chr&gt;  
-##  1 train/test spl…     0.550  0.450       4 yes         yes              Prepro…
-##  2 train/test spl…     0.969  0.0307     10 yes         yes              Prepro…
-##  3 train/test spl…     0.519  0.481      13 yes         yes              Prepro…
-##  4 train/test spl…     0.956  0.0444     14 yes         yes              Prepro…
-##  5 train/test spl…     0.968  0.0321     15 yes         yes              Prepro…
-##  6 train/test spl…     0.999  0.00128    26 yes         yes              Prepro…
-##  7 train/test spl…     0.788  0.212      29 yes         yes              Prepro…
-##  8 train/test spl…     0.937  0.0634     31 yes         yes              Prepro…
-##  9 train/test spl…     0.927  0.0730     34 yes         yes              Prepro…
-## 10 train/test spl…     0.975  0.0247     36 yes         yes              Prepro…
+##  1 train/test spl…   0.00392   0.996      1 no          yes              Prepro…
+##  2 train/test spl…   0.783     0.217      2 yes         yes              Prepro…
+##  3 train/test spl…   0.951     0.0486     6 yes         yes              Prepro…
+##  4 train/test spl…   0.966     0.0343     9 yes         yes              Prepro…
+##  5 train/test spl…   0.970     0.0303    11 yes         yes              Prepro…
+##  6 train/test spl…   0.950     0.0499    15 yes         yes              Prepro…
+##  7 train/test spl…   0.781     0.219     17 yes         yes              Prepro…
+##  8 train/test spl…   0.981     0.0192    18 yes         yes              Prepro…
+##  9 train/test spl…   0.917     0.0831    19 yes         yes              Prepro…
+## 10 train/test spl…   0.987     0.0125    24 yes         yes              Prepro…
 ## # … with 988 more rows</code></pre>
 <p>Praktischerweise werden die “wahren Werte” (also die beobachtaten Werte), <code>canceled_service</code>,
 ausch angegeben.</p>
@@ -1507,13 +1511,18 @@ ausch angegeben.</p>
   <span class="fu">collect_predictions</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu">roc_curve</span><span class="op">(</span><span class="va">canceled_service</span>, <span class="va">.pred_yes</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="110-Ensemble-Lerner_files/figure-html/unnamed-chunk-32-1.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="110-Ensemble-Lerner_files/figure-html/unnamed-chunk-29-1.png" width="100%" style="display: block; margin: auto;"></div>
 <!-- ## Aufgaben und Vertiefung -->
 </div>
 </div>
 <div id="aufgaben-7" class="section level2" number="10.11">
 <h2>
 <span class="header-section-number">10.11</span> Aufgaben<a class="anchor" aria-label="anchor" href="#aufgaben-7"><i class="fas fa-link"></i></a>
+</h2>
+</div>
+<div id="vertiefung-4" class="section level2" number="10.12">
+<h2>
+<span class="header-section-number">10.12</span> Vertiefung<a class="anchor" aria-label="anchor" href="#vertiefung-4"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li><a href="https://data-se.netlify.app/2020/12/14/titanic-tidymodels-boost/">Einfache Durchführung eines Modellierung mit XGBoost</a></li>
@@ -1579,6 +1588,7 @@ ausch angegeben.</p>
 </ul>
 </li>
 <li><a class="nav-link" href="#aufgaben-7"><span class="header-section-number">10.11</span> Aufgaben</a></li>
+<li><a class="nav-link" href="#vertiefung-4"><span class="header-section-number">10.12</span> Vertiefung</a></li>
 </ul>
 
       <div class="book-extra">
@@ -1596,7 +1606,7 @@ ausch angegeben.</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-05-19 14:20:10.</p>
+    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-05-22 00:34:33.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
