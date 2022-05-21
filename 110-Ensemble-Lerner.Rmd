@@ -979,7 +979,7 @@ fit_final %>%
 
 ```{r render-outline-vertiefung-aufgaben, results = "asis", echo = FALSE, message = FALSE}
 
-  render_section(course_dates_file,
+render_section(course_dates_file,
                  content_file,
                  i = NULL,
                  title = "Ensemble-Lerner",

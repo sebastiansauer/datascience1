@@ -225,10 +225,11 @@ thema11:
   Hinweise:
     - "Machen Sie sich mit Kaggle vertraut. Als Übungs-Wettbewerb dient uns `TMDB Box-office Revenue`"
   Aufgaben:
-    - "[Einfache lineare Regression mit Tidymodels, Competition TMDB](https://www.kaggle.com/ssauer/simple-linear-model-tidymodels)"
-    - "[Einfaches Random-Forest-Modell mit Tidymodels, Competition TMDB](https://www.kaggle.com/code/ssauer/simple-rf-tuned)"
-    - "[Einfache lineare Regression in Base-R, Anfängerniveau, Competition TMDB](https://www.kaggle.com/code/ssauer/tmdb-simple-regression-beginners)"
-    - "[Workflow-Set mit Tidymodels, Competition TMDB](https://www.kaggle.com/ssauer/tmdb-xgboost-tidymodels)"
+    - "[Aufgaben zu Tidymodels]()"
+    - "[Fallstudie Einfache lineare Regression mit Tidymodels, Competition TMDB](https://www.kaggle.com/ssauer/simple-linear-model-tidymodels)"
+    - "[Fallstudie Einfaches Random-Forest-Modell mit Tidymodels, Competition TMDB](https://www.kaggle.com/code/ssauer/simple-rf-tuned)"
+    - "[Fallstudie Einfache lineare Regression in Base-R, Anfängerniveau, Competition TMDB](https://www.kaggle.com/code/ssauer/tmdb-simple-regression-beginners)"
+    - "[Fallstudie Workflow-Set mit Tidymodels, Competition TMDB](https://www.kaggle.com/ssauer/tmdb-xgboost-tidymodels)"
   Vertiefung:
     - "[Kaggle-Blog](https://medium.com/kaggle-blog)"
  
@@ -238,8 +239,7 @@ thema12:
   Titel: "Wiederholung"
 
   Hinweise:
-    - In dieser Woche fällt die Vorlesung aus (Pfingsten).
-    - "Die Übung am 10. Mai 22 findet statt."
+
   Aufgabe:
     - "[Fallstudie Titanic mit Tidymodels bei Kaggle](https://www.kaggle.com/code/modesty520/a-tutorial-with-tidymodels/report#modeling)"
     - "[Einfache Fallstudie mit Tidymodels bei Kaggle](https://www.kaggle.com/code/benthecoder/tidymodels-in-r-using-measles-data/notebook)"
