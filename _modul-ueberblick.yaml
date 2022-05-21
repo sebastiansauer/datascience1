@@ -223,15 +223,20 @@ thema11:
 
   Hinweise:
     - "Machen Sie sich mit Kaggle vertraut. Als Übungs-Wettbewerb dient uns `TMDB Box-office Revenue`"
+  
   Aufgaben:
-    - "[Aufgaben zu Tidymodels]()"
+    - "[Aufgaben zu Tidymodels, PDF](https://github.com/sebastiansauer/datascience1/blob/main/Aufgaben/Thema11-Loesungen1.pdf)"
+    - "[Aufgaben zu Tidymodels, HTML](https://github.com/sebastiansauer/datascience1/blob/main/Aufgaben/Thema11-Loesungen1.html)"
+
     - "[Fallstudie Einfache lineare Regression mit Tidymodels, Competition TMDB](https://www.kaggle.com/ssauer/simple-linear-model-tidymodels)"
     - "[Fallstudie Einfaches Random-Forest-Modell mit Tidymodels, Competition TMDB](https://www.kaggle.com/code/ssauer/simple-rf-tuned)"
     - "[Fallstudie Einfache lineare Regression in Base-R, Anfängerniveau, Competition TMDB](https://www.kaggle.com/code/ssauer/tmdb-simple-regression-beginners)"
     - "[Fallstudie Workflow-Set mit Tidymodels, Competition TMDB](https://www.kaggle.com/ssauer/tmdb-xgboost-tidymodels)"
+
+
+  
   Vertiefung:
     - "[Kaggle-Blog](https://medium.com/kaggle-blog)"
- 
 
 
 thema12:
