@@ -1,0 +1,207 @@
+# Dimensionsreduktion
+
+
+
+
+```{r global-knitr-options, include=FALSE}
+  knitr::opts_chunk$set(
+  fig.pos = 'H',
+  fig.asp = 0.618,
+  fig.align='center',
+  fig.width = 5,
+  out.width = "100%",
+  fig.cap = "", 
+  dpi = 300,
+  # tidy = TRUE,
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE,
+  cache = FALSE,
+  fig.show = "hold")
+```
+
+
+
+
+## Lernsteuerung
+
+```{r chapter-start-sections, echo = FALSE, results = "asis"}
+source("https://raw.githubusercontent.com/sebastiansauer/Lehre/main/R-Code/render-course-sections.R")
+source("funs/define-constants.R")
+source("funs/chapter-start-sections.R")
+#undebug(chapter_start_sections)
+chapter_start_sections(title = "Dimensionsreduktion")
+```
+
+
+
+
+
+
+
+
+## Vorbereitung
+
+
+In diesem Kapitel werden folgende R-Pakete benötigt:
+
+```{r echo = TRUE}
+library(tidymodels)
+library(tidyverse)  
+```
+
+
+
+
+## Dimensionsreduktion mit der Hauptkomponentenanalyse
+
+
+Sagen wir, Sie möchten das Körpergewicht einer Person vorhersagen und haben dafür mehrere Prädiktoren zur Verfügung, vgl. Abb. \@ref(fig:redundpred).
+
+
+```{r redundpred, fig.cap = "Vorhersage von Gewicht mit mehreren hochkorrelierten Prädiktoren"}
+nomnoml::nomnoml(
+  "[Armlänge] -> [Gewicht]
+  [Beinlänge] -> [Gewicht]
+  [Handlänge] -> [Gewicht]
+  [Fußlänge] -> [Gewicht]
+  ", height = 300
+)
+```
+
+
+
+Sicherlich sind die ganzen "XXX_Länge-Prädiktoren" alle gut mit einer Variablen *Körpergröße* zusammenzufassen.
+Man kann also die Komplexität der Vorhersage deutlich reduzieren,
+indem man die Prädiktoren zu einer bzw. zumindest weniger neuen Dimensionen zusammenfasst.
+Eine Methode dazu ist die Hauptkomponentenanalyse (Principal Component Analysis, PCA).
+
+
+### Wozu Dimensionsreduktion?
+
+
+Einerseits ist es nützlich, zusätzliche Prädiktoren zu einem prädiktiven Modell hinzuzufügen -
+vorausgesetzt sie sind mit der Outcome-Variablen korreliert.
+Auf der anderen Seite steigt der Stichprobenbedarf *exponenziell* der der Anzahl der Prädiktoren,
+vgl. Abb. \@ref(fig:curse1), man spricht vom [Fluch der Dimension](https://en.wikipedia.org/wiki/Curse_of_dimensionality).
+
+```{r curse1, fig.cap = "Illustration des Fluchs der Dimension"}
+knitr::include_graphics("img/curse1.png")
+```
+
+
+Anders formuliert: Bei steigender Dimensionszahl sind die einzelnen Datenpunkte immer weiter voneinander entfernt,
+die Datenlage wird "spärlicher" (sparse), vgl. Abb. \@ref(fig:curse2) aus @altman_curses_2018.
+
+
+```{r curse2, fig.cap = "Je mehr Dimensionen, desto weniger Daten pro Einheit", out.width="50%"}
+knitr::include_graphics("img/curse2.png")
+```
+
+
+Man könnte also sagen: Das Hinzufügen von Prädiktoren ist sinnvoll, *wenn* sie prädiktiv und die Stichprobe groß genug ist.
+
+Außerdem ist es schwierig, sich (als Mensch, nicht unbedingt wenn Sie eine Maschine sind) im hochdimensionalen Raum zu orientieren.
+Man könnte sogar zugespitzt behaupten, dass das Maschinelle Lernen nur deswegen erfunden wurde,
+weil sich Menschen nur im 3D-Raum orientieren können.
+
+Sagen wir, Sie haben $p=10$ Prädiktoren, das ergibt dann ${p \choose 2} = p(p-1)/2$ Möglichkeiten, also 45 bei $p=10$.
+
+Im Datensatz `mtcars` sieht das so aus, nur mal zur Verdeutlichung, s. Abb. \@ref(fig:manyscatter).
+
+```{r manyscatter, fig.cap = "Viele Streudiagramm", echo = TRUE, cache = TRUE,fig.width=12}
+library(GGally)
+data(mtcars)
+ggpairs(mtcars)
+```
+
+
+
+### PCA: ungeleitetes Verfahren
+
+
+PCA ist ein *ungeleitetes* bzw. *unüberwachtes* Verfahren, es gibt also mehrere Variablen, aber keine "Outcome-Variable".
+Es geht daher nicht um Vorhersage - die ist nicht möglich, da es keine Zielvariable gibt.
+Stattdessen kann das Ziel nur sein, Muster in den Variablen zu finden, 
+so dass man die Anzahl der Variablen reduzieren kann.
+
+Die PCA versucht also, eine niedrig dimensionale Repräsentation der Datenmatrix $\boldsymbol{X}$ zu erstellen,
+eine "Informationsverdichtung", wenn es gut läuft.
+
+Aus den $p$ Dimensionen von  $\boldsymbol{X}$ suchen wir eine kleine Zahl an zusammengefassten *interessanten* Prädiktoren.
+
+
+### PCA veranschaulicht
+
+
+PCA wird zur Dimensionsreduktion in verschiedenen Anwendungsbereichen verwendet, zum Beispiel zur Datenkompression, etwa bei Bildern, wie [hier anschaulich dargestellt](https://theanlim.rbind.io/project/image-compression-with-principal-component-analysis/).
+
+*Interessant* wird in der PCA operationalisiert als die neuen Dimensionen, 
+entlang derer die Daten am meisten variieren.
+
+
+Angenommen, wir haben eine Datenmatrix mit $p=2$ und die beiden (metrischen) Variablen sind korreliert, vgl. Abb. \@ref(fig:pca1), [Quelle](https://machinelearningcoban.com/2017/06/15/pca/).
+
+
+```{r pca1, fig.cap = "Zwei korrelierte, metrische Variablen",  out.width="33%"}
+knitr::include_graphics("img/pca_var0.png")
+```
+
+
+Wir könnten argumentieren, dass diese 2D-Daten mit wenig Informationsverlust anhand *einer* Dimension
+beschrieben werden können. Diese Dimension ist so in die Daten "gelegt", dass ihr Vektor in die Richtung zeigt,
+der die Varianz maximiert.
+Gleichzeitig ist die Streuung der Daten innerhalb dieser Dimension minimiert,
+s. Abb. \@ref(fig:pca2). 
+In der Abbildung ist die Dimension,
+die in in Richtung der maximalen Streuung der Daten zeigt, mit $u_1$ beschrieben.
+In einem 2D-System kann es maximale zwei (orthogonale) Dimensionen geben.
+Die zweite Dimension ist mit $u_2$ bezeichnet und bindet (relativ zu $u_1$) 
+wenig Streuung auf sich.
+
+
+
+```{r pca2, fig.cap = "Zwei korrelierte, metrische Variablen", out.width="33%"}
+knitr::include_graphics("img/pca_var.png")
+```
+
+
+Geometrisch betrachtet ist die PCA also ein Rotationsverfahren,
+das neue Achsen findet und zwar so,
+dass die Achsen die Daten "gut beschreiben", "interessant sind",
+also in die Richtung der maximalen Varianz zeigen.
+Geometrisch kann man das für 2-3 Dimensionen gut veranschaulichen,
+aber dankbarerweise funktioniert die Algebra auch bei $p$ Dimension ohne Murren.
+
+
+### Was sind Hauptkomponenten?
+
+
+Hauptkomponenten (Principal Components, PC) nennt man die Dimensionen,
+die die $p$ Variablen des Datensatzes zusammenfassen sollen.
+Jede dieser Dimensionen ist eine *Linearkombination* der $p$ Variablen [@islr].
+
+Die erste Hauptkomponente kann man dabei so darstellen: 
+
+$$\underbrace{Z_1}_{Score} = \underbrace{\phi_{11}}_{Ladung 1}\underbrace{X_1}_{Prädiktor 1} + \phi_{21}X_2 + \cdots + \phi_{p1}X_p$$
+
+Dabei wird $Z_1$ so gewählt, dass die Varianz maximal ist.
+Außerdem gilt die Nebenbedingung, dass $\sum_{j=1}^p \phi^2_{j1}= 1$.
+Anders gesagt müssen die Ladungen so gewählt werden, dass die Summe ihrer Quadrate 1 ergibt.
+Andernfalls gäbe es beliebig viele Lösungen (mit beliebig großen Ladungen).
+Bildlich gesprochen wird die Varianz der auf die Hauptkomponente projizierten Daten maximiert [@rhys],
+vgl. Abb. \@ref(fig:pca3). 
+Da wir nicht am Mittelwert, sondern nur den Streuungen interessiert sind,
+gehen wir von zentrierten Daten aus.
+
+```{r pca3, fig.cap ="Die Hauptkomponente maximiert die Varianz"}
+knitr::include_graphics("img/fig13-3_alt.jpeg")
+```
+
+Anders gesagt optimiert die erste Hauptkomponente das folgende Optimierungsproblem:
+
+$$
+\begin{equation}
+\underbrace{\operatorname{maximize}}_{\phi_11, \ldots, \phi_1p}\left\{  n^{-1}\sum_{i=1}^n \left( \sum_{j=1}^p \phi_{j1}x_{ij} \right)^2 \right\}.
+\end{equation}
+$$

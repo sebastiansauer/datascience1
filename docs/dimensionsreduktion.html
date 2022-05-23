@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Page not found | DataScience1</title>
+  <title>Kapitel 14 Dimensionsreduktion | DataScience1</title>
   <meta name="description" content="Grundlagen der Prognosemodellierung mit tidymodels" />
   <meta name="generator" content="bookdown 0.26.2 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Page not found | DataScience1" />
+  <meta property="og:title" content="Kapitel 14 Dimensionsreduktion | DataScience1" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Grundlagen der Prognosemodellierung mit tidymodels" />
   <meta name="github-repo" content="sebastiansauer/datascience1" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Page not found | DataScience1" />
+  <meta name="twitter:title" content="Kapitel 14 Dimensionsreduktion | DataScience1" />
   
   <meta name="twitter:description" content="Grundlagen der Prognosemodellierung mit tidymodels" />
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-
+<link rel="prev" href="kaggle.html"/>
+<link rel="next" href="references.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -632,19 +632,176 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="page-not-found" class="section level1">
-<h1>Page not found</h1>
-<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
-<p>You may want to try searching to find the page's new location, or use
-the table of contents to find the page you are looking for.</p>
+<div id="dimensionsreduktion" class="section level1 hasAnchor" number="14">
+<h1><span class="header-section-number">Kapitel 14</span> Dimensionsreduktion<a href="dimensionsreduktion.html#dimensionsreduktion" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="lernsteuerung-10" class="section level2 hasAnchor" number="14.1">
+<h2><span class="header-section-number">14.1</span> Lernsteuerung<a href="dimensionsreduktion.html#lernsteuerung-10" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="lernziele-11" class="section level3 hasAnchor" number="14.1.1">
+<h3><span class="header-section-number">14.1.1</span> Lernziele<a href="dimensionsreduktion.html#lernziele-11" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Sie kennen den Principal-Components-Algorithmus (PCA) und können ihn in Grundzügen erläutern</li>
+<li>Sie können eine PCA in R berechnen</li>
+<li>Sie wissen um Vorteile und Beschränkungen dieses Algorithmus</li>
+</ul>
+</div>
+<div id="literatur-10" class="section level3 hasAnchor" number="14.1.2">
+<h3><span class="header-section-number">14.1.2</span> Literatur<a href="dimensionsreduktion.html#literatur-10" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Rhys, Kap. 13</li>
+</ul>
+</div>
+</div>
+<div id="vorbereitung-9" class="section level2 hasAnchor" number="14.2">
+<h2><span class="header-section-number">14.2</span> Vorbereitung<a href="dimensionsreduktion.html#vorbereitung-9" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In diesem Kapitel werden folgende R-Pakete benötigt:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="dimensionsreduktion.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb1-2"><a href="dimensionsreduktion.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)  </span></code></pre></div>
+</div>
+<div id="dimensionsreduktion-mit-der-hauptkomponentenanalyse" class="section level2 hasAnchor" number="14.3">
+<h2><span class="header-section-number">14.3</span> Dimensionsreduktion mit der Hauptkomponentenanalyse<a href="dimensionsreduktion.html#dimensionsreduktion-mit-der-hauptkomponentenanalyse" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Sagen wir, Sie möchten das Körpergewicht einer Person vorhersagen und haben dafür mehrere Prädiktoren zur Verfügung, vgl. Abb. <a href="dimensionsreduktion.html#fig:redundpred">14.1</a>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:redundpred"></span>
+<div id="htmlwidget-523905571964c4a98a32" style="width:100%;height:300px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-523905571964c4a98a32">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n[Armlänge] -> [Gewicht]\n  [Beinlänge] -> [Gewicht]\n  [Handlänge] -> [Gewicht]\n  [Fußlänge] -> [Gewicht]\n  ","svg":false},"evals":[],"jsHooks":[]}</script>
+<p class="caption">
+Figure 14.1: Vorhersage von Gewicht mit mehreren hochkorrelierten Prädiktoren
+</p>
+</div>
+<p>Sicherlich sind die ganzen “XXX_Länge-Prädiktoren” alle gut mit einer Variablen <em>Körpergröße</em> zusammenzufassen.
+Man kann also die Komplexität der Vorhersage deutlich reduzieren,
+indem man die Prädiktoren zu einer bzw. zumindest weniger neuen Dimensionen zusammenfasst.
+Eine Methode dazu ist die Hauptkomponentenanalyse (Principal Component Analysis, PCA).</p>
+<div id="wozu-dimensionsreduktion" class="section level3 hasAnchor" number="14.3.1">
+<h3><span class="header-section-number">14.3.1</span> Wozu Dimensionsreduktion?<a href="dimensionsreduktion.html#wozu-dimensionsreduktion" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Einerseits ist es nützlich, zusätzliche Prädiktoren zu einem prädiktiven Modell hinzuzufügen -
+vorausgesetzt sie sind mit der Outcome-Variablen korreliert.
+Auf der anderen Seite steigt der Stichprobenbedarf <em>exponenziell</em> der der Anzahl der Prädiktoren,
+vgl. Abb. <a href="dimensionsreduktion.html#fig:curse1">14.2</a>, man spricht vom <a href="https://en.wikipedia.org/wiki/Curse_of_dimensionality">Fluch der Dimension</a>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:curse1"></span>
+<img src="img/curse1.png" alt="Illustration des Fluchs der Dimension" width="100%" />
+<p class="caption">
+Figure 14.2: Illustration des Fluchs der Dimension
+</p>
+</div>
+<p>Anders formuliert: Bei steigender Dimensionszahl sind die einzelnen Datenpunkte immer weiter voneinander entfernt,
+die Datenlage wird “spärlicher” (sparse), vgl. Abb. <a href="dimensionsreduktion.html#fig:curse2">14.3</a> aus <span class="citation">Altman and Krzywinski (<a href="#ref-altman_curses_2018" role="doc-biblioref">2018</a>)</span>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:curse2"></span>
+<img src="img/curse2.png" alt="Je mehr Dimensionen, desto weniger Daten pro Einheit" width="50%" />
+<p class="caption">
+Figure 14.3: Je mehr Dimensionen, desto weniger Daten pro Einheit
+</p>
+</div>
+<p>Man könnte also sagen: Das Hinzufügen von Prädiktoren ist sinnvoll, <em>wenn</em> sie prädiktiv und die Stichprobe groß genug ist.</p>
+<p>Außerdem ist es schwierig, sich (als Mensch, nicht unbedingt wenn Sie eine Maschine sind) im hochdimensionalen Raum zu orientieren.
+Man könnte sogar zugespitzt behaupten, dass das Maschinelle Lernen nur deswegen erfunden wurde,
+weil sich Menschen nur im 3D-Raum orientieren können.</p>
+<p>Sagen wir, Sie haben <span class="math inline">\(p=10\)</span> Prädiktoren, das ergibt dann <span class="math inline">\({p \choose 2} = p(p-1)/2\)</span> Möglichkeiten, also 45 bei <span class="math inline">\(p=10\)</span>.</p>
+<p>Im Datensatz <code>mtcars</code> sieht das so aus, nur mal zur Verdeutlichung, s. Abb. <a href="dimensionsreduktion.html#fig:manyscatter">14.4</a>.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="dimensionsreduktion.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
+<span id="cb2-2"><a href="dimensionsreduktion.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
+<span id="cb2-3"><a href="dimensionsreduktion.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(mtcars)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:manyscatter"></span>
+<img src="140-Dimensionsreduktion_files/figure-html/manyscatter-1.png" alt="Viele Streudiagramm" width="100%" />
+<p class="caption">
+Figure 14.4: Viele Streudiagramm
+</p>
+</div>
+</div>
+<div id="pca-ungeleitetes-verfahren" class="section level3 hasAnchor" number="14.3.2">
+<h3><span class="header-section-number">14.3.2</span> PCA: ungeleitetes Verfahren<a href="dimensionsreduktion.html#pca-ungeleitetes-verfahren" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>PCA ist ein <em>ungeleitetes</em> bzw. <em>unüberwachtes</em> Verfahren, es gibt also mehrere Variablen, aber keine “Outcome-Variable”.
+Es geht daher nicht um Vorhersage - die ist nicht möglich, da es keine Zielvariable gibt.
+Stattdessen kann das Ziel nur sein, Muster in den Variablen zu finden,
+so dass man die Anzahl der Variablen reduzieren kann.</p>
+<p>Die PCA versucht also, eine niedrig dimensionale Repräsentation der Datenmatrix <span class="math inline">\(\boldsymbol{X}\)</span> zu erstellen,
+eine “Informationsverdichtung”, wenn es gut läuft.</p>
+<p>Aus den <span class="math inline">\(p\)</span> Dimensionen von <span class="math inline">\(\boldsymbol{X}\)</span> suchen wir eine kleine Zahl an zusammengefassten <em>interessanten</em> Prädiktoren.</p>
+</div>
+<div id="pca-veranschaulicht" class="section level3 hasAnchor" number="14.3.3">
+<h3><span class="header-section-number">14.3.3</span> PCA veranschaulicht<a href="dimensionsreduktion.html#pca-veranschaulicht" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>PCA wird zur Dimensionsreduktion in verschiedenen Anwendungsbereichen verwendet, zum Beispiel zur Datenkompression, etwa bei Bildern, wie <a href="https://theanlim.rbind.io/project/image-compression-with-principal-component-analysis/">hier anschaulich dargestellt</a>.</p>
+<p><em>Interessant</em> wird in der PCA operationalisiert als die neuen Dimensionen,
+entlang derer die Daten am meisten variieren.</p>
+<p>Angenommen, wir haben eine Datenmatrix mit <span class="math inline">\(p=2\)</span> und die beiden (metrischen) Variablen sind korreliert, vgl. Abb. <a href="dimensionsreduktion.html#fig:pca1">14.5</a>, <a href="https://machinelearningcoban.com/2017/06/15/pca/">Quelle</a>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:pca1"></span>
+<img src="img/pca_var0.png" alt="Zwei korrelierte, metrische Variablen" width="33%" />
+<p class="caption">
+Figure 14.5: Zwei korrelierte, metrische Variablen
+</p>
+</div>
+<p>Wir könnten argumentieren, dass diese 2D-Daten mit wenig Informationsverlust anhand <em>einer</em> Dimension
+beschrieben werden können. Diese Dimension ist so in die Daten “gelegt”, dass ihr Vektor in die Richtung zeigt,
+der die Varianz maximiert.
+Gleichzeitig ist die Streuung der Daten innerhalb dieser Dimension minimiert,
+s. Abb. <a href="dimensionsreduktion.html#fig:pca2">14.6</a>.
+In der Abbildung ist die Dimension,
+die in in Richtung der maximalen Streuung der Daten zeigt, mit <span class="math inline">\(u_1\)</span> beschrieben.
+In einem 2D-System kann es maximale zwei (orthogonale) Dimensionen geben.
+Die zweite Dimension ist mit <span class="math inline">\(u_2\)</span> bezeichnet und bindet (relativ zu <span class="math inline">\(u_1\)</span>)
+wenig Streuung auf sich.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:pca2"></span>
+<img src="img/pca_var.png" alt="Zwei korrelierte, metrische Variablen" width="33%" />
+<p class="caption">
+Figure 14.6: Zwei korrelierte, metrische Variablen
+</p>
+</div>
+<p>Geometrisch betrachtet ist die PCA also ein Rotationsverfahren,
+das neue Achsen findet und zwar so,
+dass die Achsen die Daten “gut beschreiben”, “interessant sind”,
+also in die Richtung der maximalen Varianz zeigen.
+Geometrisch kann man das für 2-3 Dimensionen gut veranschaulichen,
+aber dankbarerweise funktioniert die Algebra auch bei <span class="math inline">\(p\)</span> Dimension ohne Murren.</p>
+</div>
+<div id="was-sind-hauptkomponenten" class="section level3 hasAnchor" number="14.3.4">
+<h3><span class="header-section-number">14.3.4</span> Was sind Hauptkomponenten?<a href="dimensionsreduktion.html#was-sind-hauptkomponenten" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Hauptkomponenten (Principal Components, PC) nennt man die Dimensionen,
+die die <span class="math inline">\(p\)</span> Variablen des Datensatzes zusammenfassen sollen.
+Jede dieser Dimensionen ist eine <em>Linearkombination</em> der <span class="math inline">\(p\)</span> Variablen <span class="citation">(<a href="#ref-islr" role="doc-biblioref">James et al. 2021</a>)</span>.</p>
+<p>Die erste Hauptkomponente kann man dabei so darstellen:</p>
+<p><span class="math display">\[\underbrace{Z_1}_{Score} = \underbrace{\phi_{11}}_{Ladung 1}\underbrace{X_1}_{Prädiktor 1} + \phi_{21}X_2 + \cdots + \phi_{p1}X_p\]</span></p>
+<p>Dabei wird <span class="math inline">\(Z_1\)</span> so gewählt, dass die Varianz maximal ist.
+Außerdem gilt die Nebenbedingung, dass <span class="math inline">\(\sum_{j=1}^p \phi^2_{j1}= 1\)</span>.
+Anders gesagt müssen die Ladungen so gewählt werden, dass die Summe ihrer Quadrate 1 ergibt.
+Andernfalls gäbe es beliebig viele Lösungen (mit beliebig großen Ladungen).
+Bildlich gesprochen wird die Varianz der auf die Hauptkomponente projizierten Daten maximiert <span class="citation">(<a href="#ref-rhys" role="doc-biblioref">Rhys 2020</a>)</span>,
+vgl. Abb. <a href="dimensionsreduktion.html#fig:pca3">14.7</a>.
+Da wir nicht am Mittelwert, sondern nur den Streuungen interessiert sind,
+gehen wir von zentrierten Daten aus.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:pca3"></span>
+<img src="img/fig13-3_alt.jpeg" alt="Die Hauptkomponente maximiert die Varianz" width="100%" />
+<p class="caption">
+Figure 14.7: Die Hauptkomponente maximiert die Varianz
+</p>
+</div>
+<p>Anders gesagt optimiert die erste Hauptkomponente das folgende Optimierungsproblem:</p>
+<p><span class="math display">\[
+\begin{equation}
+\underbrace{\operatorname{maximize}}_{\phi_11, \ldots, \phi_1p}\left\{  n^{-1}\sum_{i=1}^n \left( \sum_{j=1}^p \phi_{j1}x_{ij} \right)^2 \right\}.
+\end{equation}
+\]</span></p>
+
+</div>
+</div>
+</div>
+<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-altman_curses_2018" class="csl-entry">
+Altman, Naomi, and Martin Krzywinski. 2018. <span>“The Curse(s) of Dimensionality.”</span> <em>Nature Methods</em> 15 (6): 399–400. <a href="https://doi.org/10.1038/s41592-018-0019-x">https://doi.org/10.1038/s41592-018-0019-x</a>.
+</div>
+<div id="ref-islr" class="csl-entry">
+James, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2021. <em>An Introduction to Statistical Learning: With Applications in r</em>. Second edition. Springer Texts in Statistics. New York: Springer. <a href="https://link.springer.com/book/10.1007/978-1-0716-1418-1">https://link.springer.com/book/10.1007/978-1-0716-1418-1</a>.
+</div>
+<div id="ref-rhys" class="csl-entry">
+Rhys, Hefin. 2020. <em>Machine Learning with r, the Tidyverse, and Mlr</em>. Shelter Island, <span>NY</span>: Manning publications.
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-
+<a href="kaggle.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -675,7 +832,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/sebastiansauer/datascience1%s",
+"link": "https://github.com/sebastiansauer/datascience1140-Dimensionsreduktion.Rmd",
 "text": "Edit"
 },
 "history": {
