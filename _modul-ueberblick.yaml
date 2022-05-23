@@ -177,6 +177,13 @@ thema10:
     - "Sie wissen, anhand welche Tuningparamter man Overfitting bei diesen Algorithmen begrenzen kann"
     - "Sie können diese Verfahren in R berechnen"
   
+  
+  Aufgaben:
+    - "[Aufgaben zu Tidymodels, PDF](https://github.com/sebastiansauer/datascience1/blob/main/Aufgaben/Thema11-Loesungen1.pdf)"
+    - "[Aufgaben zu Tidymodels, HTML](https://github.com/sebastiansauer/datascience1/blob/main/Aufgaben/Thema11-Loesungen1.html)"
+
+  Hinweise:
+    - "[Nutzen Sie StackOverflow als Forum für Ihre Fragen - Hier ein Beispiel zu einer Fehlermeldung, die mir Kopfzerbrechen bereitete](https://stackoverflow.com/questions/72333419/error-on-running-predict-in-tidymodels-error-in-dplyrselect-cant-su/72341769#72341769)"
 
   Literatur:
     - "Rhys, Kap. 8"
@@ -225,8 +232,6 @@ thema11:
     - "Machen Sie sich mit Kaggle vertraut. Als Übungs-Wettbewerb dient uns `TMDB Box-office Revenue`"
   
   Aufgaben:
-    - "[Aufgaben zu Tidymodels, PDF](https://github.com/sebastiansauer/datascience1/blob/main/Aufgaben/Thema11-Loesungen1.pdf)"
-    - "[Aufgaben zu Tidymodels, HTML](https://github.com/sebastiansauer/datascience1/blob/main/Aufgaben/Thema11-Loesungen1.html)"
 
     - "[Fallstudie Einfache lineare Regression mit Tidymodels, Competition TMDB](https://www.kaggle.com/ssauer/simple-linear-model-tidymodels)"
     - "[Fallstudie Einfaches Random-Forest-Modell mit Tidymodels, Competition TMDB](https://www.kaggle.com/code/ssauer/simple-rf-tuned)"

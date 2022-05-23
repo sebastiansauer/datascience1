@@ -114,9 +114,9 @@
 <li>Sie wissen, dass Tidymodels im Rezept keine Transformationen im Test-Sample berücksichtigt und wie man damit umgeht</li>
 </ul>
 </div>
-<div id="hinweise-4" class="section level3" number="12.1.3">
+<div id="hinweise-5" class="section level3" number="12.1.3">
 <h3>
-<span class="header-section-number">12.1.3</span> Hinweise<a class="anchor" aria-label="anchor" href="#hinweise-4"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.1.3</span> Hinweise<a class="anchor" aria-label="anchor" href="#hinweise-5"><i class="fas fa-link"></i></a>
 </h3>
 <ul>
 <li>Machen Sie sich mit Kaggle vertraut. Als Übungs-Wettbewerb dient uns <code>TMDB Box-office Revenue</code>
@@ -162,9 +162,9 @@ in diesem Fall für Filme.</p>
 </h3>
 <p>Reichen Sie bei Kaggle eine Submission für die Fallstudie ein! Berichten Sie den Score!</p>
 </div>
-<div id="hinweise-5" class="section level3" number="12.3.2">
+<div id="hinweise-6" class="section level3" number="12.3.2">
 <h3>
-<span class="header-section-number">12.3.2</span> Hinweise<a class="anchor" aria-label="anchor" href="#hinweise-5"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.3.2</span> Hinweise<a class="anchor" aria-label="anchor" href="#hinweise-6"><i class="fas fa-link"></i></a>
 </h3>
 <ul>
 <li>Sie müssen sich bei Kaggle ein Konto anlegen (kostenlos und anonym möglich); alternativ können Sie sich mit einem Google-Konto anmelden.</li>
@@ -320,12 +320,12 @@ was die Größe des Datensatzes massiv reduziert.</p>
 <pre><code>## # A tibble: 6 × 6
 ##   number operation type       trained skip  id              
 ##    &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;      &lt;lgl&gt;   &lt;lgl&gt; &lt;chr&gt;           
-## 1      1 step      mutate     FALSE   FALSE mutate_ojV0s    
-## 2      2 step      log        FALSE   FALSE log_yW1rc       
-## 3      3 step      mutate     FALSE   FALSE mutate_GWGx4    
-## 4      4 step      date       FALSE   FALSE date_vtFid      
-## 5      5 step      impute_knn FALSE   FALSE impute_knn_vEwvI
-## 6      6 step      dummy      FALSE   FALSE dummy_2iWuq</code></pre>
+## 1      1 step      mutate     FALSE   FALSE mutate_r82a1    
+## 2      2 step      log        FALSE   FALSE log_VvEMy       
+## 3      3 step      mutate     FALSE   FALSE mutate_4pcXl    
+## 4      4 step      date       FALSE   FALSE date_RHcbT      
+## 5      5 step      impute_knn FALSE   FALSE impute_knn_LKOhR
+## 6      6 step      dummy      FALSE   FALSE dummy_4wvo6</code></pre>
 </div>
 <div id="check-das-rezept" class="section level3" number="12.4.2">
 <h3>
@@ -624,7 +624,7 @@ einiges spricht für das Boosting-Modell, <code>rec1_boost1</code>.</p>
 <code class="sourceCode R"><span class="va">fit_final</span> <span class="op">&lt;-</span>
   <span class="va">best_wf_finalized</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu">fit</span><span class="op">(</span><span class="va">d_train</span><span class="op">)</span></code></pre></div>
-<pre><code>## [00:49:12] WARNING: amalgamation/../src/learner.cc:576: 
+<pre><code>## [08:54:25] WARNING: amalgamation/../src/learner.cc:576: 
 ## Parameters: { "nthreads" } might not be used.
 ## 
 ##   This could be a false alarm, with some parameters getting used by language bindings but
@@ -648,7 +648,7 @@ einiges spricht für das Boosting-Modell, <code>rec1_boost1</code>.</p>
 ## 
 ## ── Model ───────────────────────────────────────────────────────────────────────
 ## ##### xgb.Booster
-## raw: 366.3 Kb 
+## raw: 342.7 Kb 
 ## call:
 ##   xgboost::xgb.train(params = list(eta = 0.3, max_depth = 6, gamma = 0, 
 ##     colsample_bytree = 1, colsample_bynode = 0.4, min_child_weight = 4L, 
@@ -666,11 +666,11 @@ einiges spricht für das Boosting-Modell, <code>rec1_boost1</code>.</p>
 ## nfeatures : 15 
 ## evaluation_log:
 ##     iter training_rmse
-##        1     122375032
-##        2     101813640
+##        1     121287928
+##        2     101605152
 ## ---                   
-##       99      27234148
-##      100      26951212</code></pre>
+##       99      28559654
+##      100      28483118</code></pre>
 <div class="sourceCode" id="cb482"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">d_test</span><span class="op">$</span><span class="va">revenue</span> <span class="op">&lt;-</span> <span class="cn">NA</span>
 
@@ -705,9 +705,9 @@ einiges spricht für das Boosting-Modell, <code>rec1_boost1</code>.</p>
 <!-- ## Aufgaben und Vertiefung -->
 </div>
 </div>
-<div id="aufgaben-9" class="section level2" number="12.12">
+<div id="aufgaben-10" class="section level2" number="12.12">
 <h2>
-<span class="header-section-number">12.12</span> Aufgaben<a class="anchor" aria-label="anchor" href="#aufgaben-9"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.12</span> Aufgaben<a class="anchor" aria-label="anchor" href="#aufgaben-10"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>Arbeiten Sie sich so gut als möglich durch <a href="https://github.com/sebastiansauer/covid-icu">diese Analyse zum Verlauf von Covid-Fällen</a>
@@ -737,7 +737,7 @@ einiges spricht für das Boosting-Modell, <code>rec1_boost1</code>.</p>
 <a class="nav-link" href="#vorbereitung-8"><span class="header-section-number">12.1</span> Vorbereitung</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#lernsteuerung-9"><span class="header-section-number">12.1.1</span> Lernsteuerung</a></li>
 <li><a class="nav-link" href="#lernziele-10"><span class="header-section-number">12.1.2</span> Lernziele</a></li>
-<li><a class="nav-link" href="#hinweise-4"><span class="header-section-number">12.1.3</span> Hinweise</a></li>
+<li><a class="nav-link" href="#hinweise-5"><span class="header-section-number">12.1.3</span> Hinweise</a></li>
 <li><a class="nav-link" href="#r-pakete"><span class="header-section-number">12.1.4</span> R-Pakete</a></li>
 </ul>
 </li>
@@ -745,7 +745,7 @@ einiges spricht für das Boosting-Modell, <code>rec1_boost1</code>.</p>
 <li>
 <a class="nav-link" href="#fallstudie-tmdb"><span class="header-section-number">12.3</span> Fallstudie TMDB</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#aufgabe"><span class="header-section-number">12.3.1</span> Aufgabe</a></li>
-<li><a class="nav-link" href="#hinweise-5"><span class="header-section-number">12.3.2</span> Hinweise</a></li>
+<li><a class="nav-link" href="#hinweise-6"><span class="header-section-number">12.3.2</span> Hinweise</a></li>
 <li><a class="nav-link" href="#daten-1"><span class="header-section-number">12.3.3</span> Daten</a></li>
 <li><a class="nav-link" href="#train-set-verschlanken"><span class="header-section-number">12.3.4</span> Train-Set verschlanken</a></li>
 <li><a class="nav-link" href="#datensatz-kennenlernen"><span class="header-section-number">12.3.5</span> Datensatz kennenlernen</a></li>
@@ -784,7 +784,7 @@ einiges spricht für das Boosting-Modell, <code>rec1_boost1</code>.</p>
 <li><a class="nav-link" href="#kaggle-score"><span class="header-section-number">12.11.2</span> Kaggle Score</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#aufgaben-9"><span class="header-section-number">12.12</span> Aufgaben</a></li>
+<li><a class="nav-link" href="#aufgaben-10"><span class="header-section-number">12.12</span> Aufgaben</a></li>
 <li><a class="nav-link" href="#vertiefung-5"><span class="header-section-number">12.13</span> Vertiefung</a></li>
 </ul>
 
@@ -803,7 +803,7 @@ einiges spricht für das Boosting-Modell, <code>rec1_boost1</code>.</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-05-22 00:46:40.</p>
+    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-05-23 08:51:57.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
