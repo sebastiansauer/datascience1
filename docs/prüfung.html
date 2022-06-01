@@ -6,14 +6,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Kapitel 2 Prüfung | DataScience1</title>
 <meta name="author" content="Sebastian Sauer">
-<meta name="description" content="2.1 Prüfungleistung Die Prüfungsleistung besteht aus einem Prognosewettbewerb.  2.2 tl;dr: Zusammenfassung Vorhersagen sind eine praktische Sache, zumindest wenn Sie stimmen. Wenn Sie den...">
+<meta name="description" content="2.1 Prüfungleistung Die Prüfungsleistung besteht aus einem Prognosewettbewerb.   2.2 tl;dr: Zusammenfassung Vorhersagen sind eine praktische Sache, zumindest wenn Sie stimmen. Wenn Sie den...">
 <meta name="generator" content="bookdown 0.26.2 with bs4_book()">
 <meta property="og:title" content="Kapitel 2 Prüfung | DataScience1">
 <meta property="og:type" content="book">
-<meta property="og:description" content="2.1 Prüfungleistung Die Prüfungsleistung besteht aus einem Prognosewettbewerb.  2.2 tl;dr: Zusammenfassung Vorhersagen sind eine praktische Sache, zumindest wenn Sie stimmen. Wenn Sie den...">
+<meta property="og:description" content="2.1 Prüfungleistung Die Prüfungsleistung besteht aus einem Prognosewettbewerb.   2.2 tl;dr: Zusammenfassung Vorhersagen sind eine praktische Sache, zumindest wenn Sie stimmen. Wenn Sie den...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kapitel 2 Prüfung | DataScience1">
-<meta name="twitter:description" content="2.1 Prüfungleistung Die Prüfungsleistung besteht aus einem Prognosewettbewerb.  2.2 tl;dr: Zusammenfassung Vorhersagen sind eine praktische Sache, zumindest wenn Sie stimmen. Wenn Sie den...">
+<meta name="twitter:description" content="2.1 Prüfungleistung Die Prüfungsleistung besteht aus einem Prognosewettbewerb.   2.2 tl;dr: Zusammenfassung Vorhersagen sind eine praktische Sache, zumindest wenn Sie stimmen. Wenn Sie den...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -82,6 +82,7 @@
 <li><a class="" href="ensemble-lerner.html"><span class="header-section-number">10</span> Ensemble Lerner</a></li>
 <li><a class="" href="regularisierte-modelle.html"><span class="header-section-number">11</span> Regularisierte Modelle</a></li>
 <li><a class="" href="kaggle.html"><span class="header-section-number">12</span> Kaggle</a></li>
+<li><a class="" href="dimensionsreduktion.html"><span class="header-section-number">13</span> Dimensionsreduktion</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
 
@@ -99,6 +100,7 @@
 <span class="header-section-number">2.1</span> Prüfungleistung<a class="anchor" aria-label="anchor" href="#pr%C3%BCfungleistung"><i class="fas fa-link"></i></a>
 </h2>
 <p>Die Prüfungsleistung besteht aus einem <em>Prognosewettbewerb</em>.</p>
+<!-- CHILD Document -->
 </div>
 <div id="tldr-zusammenfassung" class="section level2" number="2.2">
 <h2>
@@ -338,13 +340,25 @@ Eine gute Modellierung auf den <em>Trainingsdaten</em> (z.B. hohes <span class="
 <li><p>Während der Prüfungsphase werden keine inhaltlichen Fragen (“wie macht man nochmal eine Log-Transformation?”) und keine technischen Fragen (“wie installiert man nochmal ein R-Paket?”) beantwortet.</p></li>
 </ol>
 </div>
-<div id="wo-finde-ich-beispiele" class="section level2" number="2.11">
+<div id="ich-brauche-hilfe" class="section level2" number="2.11">
 <h2>
-<span class="header-section-number">2.11</span> Wo finde ich Beispiele?<a class="anchor" aria-label="anchor" href="#wo-finde-ich-beispiele"><i class="fas fa-link"></i></a>
+<span class="header-section-number">2.11</span> Ich brauche Hilfe!<a class="anchor" aria-label="anchor" href="#ich-brauche-hilfe"><i class="fas fa-link"></i></a>
 </h2>
+<div id="wo-finde-ich-beispiele" class="section level3" number="2.11.1">
+<h3>
+<span class="header-section-number">2.11.1</span> Wo finde ich Beispiele?<a class="anchor" aria-label="anchor" href="#wo-finde-ich-beispiele"><i class="fas fa-link"></i></a>
+</h3>
 <p>Eine Beispiel-Modellierung finden Sie in der Datei <code>Beispielanalyse-Prognose-Wettbewerb.Rmd</code>.
 Eine beispielhafte Vorlage (Template), die Sie als Richtschnur nutzen können, ist mit der Datei <code>Template-Vorhersagemodellierung.Rmd</code> <a href="https://github.com/sebastiansauer/vorhersagemodellierung/tree/main/Material">hier</a> bereitgestellt.
 Im Internet finden sich viele Fallstudien, von denen Sie sich inspirieren lassen können.</p>
+</div>
+<div id="videos-1" class="section level3" number="2.11.2">
+<h3>
+<span class="header-section-number">2.11.2</span> Videos<a class="anchor" aria-label="anchor" href="#videos-1"><i class="fas fa-link"></i></a>
+</h3>
+<p><a href="https://youtube.com/playlist?list=PLRR4REmBgpIH6uG8LZWPTSMReX1OFxfUx">Diese Playlist</a> beinhaltet Videos,
+die die Rahmenbedingungen der Prüfungsleistung vorstellt.</p>
+</div>
 </div>
 <div id="plagiatskontrolle" class="section level2" number="2.12">
 <h2>
@@ -389,7 +403,12 @@ Im Internet finden sich viele Fallstudien, von denen Sie sich inspirieren lassen
 </li>
 <li><a class="nav-link" href="#hinweise-1"><span class="header-section-number">2.9</span> Hinweise</a></li>
 <li><a class="nav-link" href="#formalia"><span class="header-section-number">2.10</span> Formalia</a></li>
-<li><a class="nav-link" href="#wo-finde-ich-beispiele"><span class="header-section-number">2.11</span> Wo finde ich Beispiele?</a></li>
+<li>
+<a class="nav-link" href="#ich-brauche-hilfe"><span class="header-section-number">2.11</span> Ich brauche Hilfe!</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#wo-finde-ich-beispiele"><span class="header-section-number">2.11.1</span> Wo finde ich Beispiele?</a></li>
+<li><a class="nav-link" href="#videos-1"><span class="header-section-number">2.11.2</span> Videos</a></li>
+</ul>
+</li>
 <li><a class="nav-link" href="#plagiatskontrolle"><span class="header-section-number">2.12</span> Plagiatskontrolle</a></li>
 </ul>
 
@@ -408,7 +427,7 @@ Im Internet finden sich viele Fallstudien, von denen Sie sich inspirieren lassen
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-05-23 08:51:57.</p>
+    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-06-01 14:44:11.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

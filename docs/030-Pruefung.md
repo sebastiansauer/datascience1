@@ -6,6 +6,9 @@
 Die Prüfungsleistung besteht aus einem *Prognosewettbewerb*.
 
 
+<!-- CHILD Document -->
+
+
 ## tl;dr: Zusammenfassung
 
 Vorhersagen sind eine praktische Sache, zumindest wenn Sie stimmen. 
@@ -272,14 +275,21 @@ Eine gute Modellierung auf den *Trainingsdaten* (z.B. hohes $R^2$) bedeutet nich
 
 
 
+## Ich brauche Hilfe!
 
-
-## Wo finde ich Beispiele?
+### Wo finde ich Beispiele?
 
 
 Eine Beispiel-Modellierung finden Sie in der Datei `Beispielanalyse-Prognose-Wettbewerb.Rmd`. 
 Eine beispielhafte Vorlage (Template), die Sie als Richtschnur nutzen können, ist mit der Datei `Template-Vorhersagemodellierung.Rmd` [hier](https://github.com/sebastiansauer/vorhersagemodellierung/tree/main/Material) bereitgestellt. 
 Im Internet finden sich viele Fallstudien, von denen Sie sich inspirieren lassen können.
+
+### Videos
+
+[Diese Playlist](https://youtube.com/playlist?list=PLRR4REmBgpIH6uG8LZWPTSMReX1OFxfUx) beinhaltet Videos,
+die die Rahmenbedingungen der Prüfungsleistung vorstellt.
+
+
 
 
 

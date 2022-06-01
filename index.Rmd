@@ -75,6 +75,12 @@ typisches Gebabbel des Fachgebiet mit Lässigkeit mitzumachen.
 Ach ja, und mit einigem Erfolg Vorhersagemodelle entwickeln.
 
 
+## Zitation
+
+Nutzen Sie diese DOI, um dieses Buch zu zitieren: [![DOI](https://zenodo.org/badge/461950782.svg)](https://zenodo.org/badge/latestdoi/461950782)
+
+
+
 ## Technische Details
 
 

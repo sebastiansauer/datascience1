@@ -82,6 +82,7 @@
 <li><a class="" href="ensemble-lerner.html"><span class="header-section-number">10</span> Ensemble Lerner</a></li>
 <li><a class="" href="regularisierte-modelle.html"><span class="header-section-number">11</span> Regularisierte Modelle</a></li>
 <li><a class="active" href="kaggle.html"><span class="header-section-number">12</span> Kaggle</a></li>
+<li><a class="" href="dimensionsreduktion.html"><span class="header-section-number">13</span> Dimensionsreduktion</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
 
@@ -320,12 +321,12 @@ was die Größe des Datensatzes massiv reduziert.</p>
 <pre><code>## # A tibble: 6 × 6
 ##   number operation type       trained skip  id              
 ##    &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;      &lt;lgl&gt;   &lt;lgl&gt; &lt;chr&gt;           
-## 1      1 step      mutate     FALSE   FALSE mutate_r82a1    
-## 2      2 step      log        FALSE   FALSE log_VvEMy       
-## 3      3 step      mutate     FALSE   FALSE mutate_4pcXl    
-## 4      4 step      date       FALSE   FALSE date_RHcbT      
-## 5      5 step      impute_knn FALSE   FALSE impute_knn_LKOhR
-## 6      6 step      dummy      FALSE   FALSE dummy_4wvo6</code></pre>
+## 1      1 step      mutate     FALSE   FALSE mutate_i2Rv2    
+## 2      2 step      log        FALSE   FALSE log_HMpt3       
+## 3      3 step      mutate     FALSE   FALSE mutate_RoOXN    
+## 4      4 step      date       FALSE   FALSE date_tqm7p      
+## 5      5 step      impute_knn FALSE   FALSE impute_knn_ZFKx5
+## 6      6 step      dummy      FALSE   FALSE dummy_vwRgq</code></pre>
 </div>
 <div id="check-das-rezept" class="section level3" number="12.4.2">
 <h3>
@@ -624,7 +625,7 @@ einiges spricht für das Boosting-Modell, <code>rec1_boost1</code>.</p>
 <code class="sourceCode R"><span class="va">fit_final</span> <span class="op">&lt;-</span>
   <span class="va">best_wf_finalized</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu">fit</span><span class="op">(</span><span class="va">d_train</span><span class="op">)</span></code></pre></div>
-<pre><code>## [08:54:25] WARNING: amalgamation/../src/learner.cc:576: 
+<pre><code>## [14:46:49] WARNING: amalgamation/../src/learner.cc:576: 
 ## Parameters: { "nthreads" } might not be used.
 ## 
 ##   This could be a false alarm, with some parameters getting used by language bindings but
@@ -648,7 +649,7 @@ einiges spricht für das Boosting-Modell, <code>rec1_boost1</code>.</p>
 ## 
 ## ── Model ───────────────────────────────────────────────────────────────────────
 ## ##### xgb.Booster
-## raw: 342.7 Kb 
+## raw: 360 Kb 
 ## call:
 ##   xgboost::xgb.train(params = list(eta = 0.3, max_depth = 6, gamma = 0, 
 ##     colsample_bytree = 1, colsample_bynode = 0.4, min_child_weight = 4L, 
@@ -666,11 +667,11 @@ einiges spricht für das Boosting-Modell, <code>rec1_boost1</code>.</p>
 ## nfeatures : 15 
 ## evaluation_log:
 ##     iter training_rmse
-##        1     121287928
-##        2     101605152
+##        1     122211512
+##        2     101732888
 ## ---                   
-##       99      28559654
-##      100      28483118</code></pre>
+##       99      27016296
+##      100      26760424</code></pre>
 <div class="sourceCode" id="cb482"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">d_test</span><span class="op">$</span><span class="va">revenue</span> <span class="op">&lt;-</span> <span class="cn">NA</span>
 
@@ -728,7 +729,7 @@ einiges spricht für das Boosting-Modell, <code>rec1_boost1</code>.</p>
 </div>
   <div class="chapter-nav">
 <div class="prev"><a href="regularisierte-modelle.html"><span class="header-section-number">11</span> Regularisierte Modelle</a></div>
-<div class="next"><a href="references.html">References</a></div>
+<div class="next"><a href="dimensionsreduktion.html"><span class="header-section-number">13</span> Dimensionsreduktion</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
@@ -803,7 +804,7 @@ einiges spricht für das Boosting-Modell, <code>rec1_boost1</code>.</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-05-23 08:51:57.</p>
+    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-06-01 14:44:11.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

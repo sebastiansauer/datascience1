@@ -200,8 +200,8 @@ Der Bagging-Algorithmus ist in Abbildung \@ref(fig:bag) dargestellt.
 <div class="figure" style="text-align: center">
 
 ```{=html}
-<div id="htmlwidget-2a6dad5a2a680e322b55" style="width:100%;height:350px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-2a6dad5a2a680e322b55">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n  [<database> Datensatz] ->zmz [Baum 1]\n[<database> Datensatz] ->zmz [Baum 2]\n[<database> Datensatz] ->zmz [Baum ...]\n[<database> Datensatz] ->zmz [Baum B]\n[Baum 1] -> [Modus als Vorhersagewert]\n[Baum 2] -> [Modus als Vorhersagewert]\n[Baum ...] -> [Modus als Vorhersagewert]\n[Baum B] -> [Modus als Vorhersagewert]\n  ","svg":false},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-e539b4f26d4ea759645a" style="width:100%;height:350px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e539b4f26d4ea759645a">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n  [<database> Datensatz] ->zmz [Baum 1]\n[<database> Datensatz] ->zmz [Baum 2]\n[<database> Datensatz] ->zmz [Baum ...]\n[<database> Datensatz] ->zmz [Baum B]\n[Baum 1] -> [Modus als Vorhersagewert]\n[Baum 2] -> [Modus als Vorhersagewert]\n[Baum ...] -> [Modus als Vorhersagewert]\n[Baum B] -> [Modus als Vorhersagewert]\n  ","svg":false},"evals":[],"jsHooks":[]}</script>
 ```
 
 <p class="caption">(\#fig:bag)Bagging schematisch illustriert</p>
@@ -274,8 +274,8 @@ Der Random-Forest-Algorithmus ist in Abb. \@ref(fig:rf1) illustriert.
 <div class="figure" style="text-align: center">
 
 ```{=html}
-<div id="htmlwidget-235a281a091cab7e31b3" style="width:100%;height:700px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-235a281a091cab7e31b3">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n#direction:down\n                 [<database> Datensatz] ->zmz [Baum1\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n\n[<database> Datensatz] ->zmz [Baum2\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[<database> Datensatz] ->zmz [Baum ...\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[<database> Datensatz] ->zmz [Baum B\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[Baum1\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n] -> [Modus als Vorhersagewert]\n[Baum2\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n] -> [Modus als Vorhersagewert]\n[Baum ...] -> [Modus als Vorhersagewert]\n[Baum B] -> [Modus als Vorhersagewert]\n                 ","svg":false},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-e04fdf1f03c9a957cfe7" style="width:100%;height:700px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e04fdf1f03c9a957cfe7">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n#direction:down\n                 [<database> Datensatz] ->zmz [Baum1\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n\n[<database> Datensatz] ->zmz [Baum2\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[<database> Datensatz] ->zmz [Baum ...\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[<database> Datensatz] ->zmz [Baum B\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[Baum1\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n] -> [Modus als Vorhersagewert]\n[Baum2\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n] -> [Modus als Vorhersagewert]\n[Baum ...] -> [Modus als Vorhersagewert]\n[Baum B] -> [Modus als Vorhersagewert]\n                 ","svg":false},"evals":[],"jsHooks":[]}</script>
 ```
 
 <p class="caption">(\#fig:rf1)Zufallswälder durch Ziehen mit Zurücklegen (zmz) und Ziehen ohne Zurücklegen (ZoZ)</p>
@@ -343,8 +343,8 @@ Die Bäume bei AdaBoost sind eigentlich nur "Stümpfe": Sie bestehen aus einem e
 <div class="figure" style="text-align: center">
 
 ```{=html}
-<div id="htmlwidget-52b7efa35f49e5483485" style="width:100%;height:200px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-52b7efa35f49e5483485">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: topdown\n  [root] -> [leaf1]\n  [root] -> [leaf2]\n  ","svg":false},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-e9992b3849579b01c6a9" style="width:100%;height:200px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e9992b3849579b01c6a9">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: topdown\n  [root] -> [leaf1]\n  [root] -> [leaf2]\n  ","svg":false},"evals":[],"jsHooks":[]}</script>
 ```
 
 <p class="caption">(\#fig:stump)Ein Baumstumpf bei AdaBoost</p>
@@ -402,8 +402,8 @@ Das Vorgehen von AdaBoost ist in Abb. \@ref(fig:ada) illustriert.
 <div class="figure" style="text-align: center">
 
 ```{=html}
-<div id="htmlwidget-5af0a46b497d277c4700" style="width:100%;height:450px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-5af0a46b497d277c4700">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n  [m1] -> [ensemble]\n  [ensemble] -> [m2]\n  [m2] -> [ensemble]\n  [ensemble] -> [m3]\n  [m3] -> [ensemble]\n  [ensemble] -> [m4]\n  [m4] -> [ensemble]\n  [ensemble] -> [M ...]\n  [M ...] -> [ensemble]\n  [ensemble] -> [M B]\n  ","svg":false},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-e67745a68cf817158fc0" style="width:100%;height:450px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e67745a68cf817158fc0">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n  [m1] -> [ensemble]\n  [ensemble] -> [m2]\n  [m2] -> [ensemble]\n  [ensemble] -> [m3]\n  [m3] -> [ensemble]\n  [ensemble] -> [m4]\n  [m4] -> [ensemble]\n  [ensemble] -> [M ...]\n  [M ...] -> [ensemble]\n  [ensemble] -> [M B]\n  ","svg":false},"evals":[],"jsHooks":[]}</script>
 ```
 
 <p class="caption">(\#fig:ada)AdaBoost illustriert</p>
@@ -464,12 +464,12 @@ churn_df %>%
 ```
 
 ```{=html}
-<div id="bhrcfkxukv" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="kpfwlijkmc" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#bhrcfkxukv .gt_table {
+#kpfwlijkmc .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -494,7 +494,7 @@ churn_df %>%
   border-left-color: #D3D3D3;
 }
 
-#bhrcfkxukv .gt_heading {
+#kpfwlijkmc .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -506,7 +506,7 @@ churn_df %>%
   border-right-color: #D3D3D3;
 }
 
-#bhrcfkxukv .gt_title {
+#kpfwlijkmc .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -516,7 +516,7 @@ churn_df %>%
   border-bottom-width: 0;
 }
 
-#bhrcfkxukv .gt_subtitle {
+#kpfwlijkmc .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -526,13 +526,13 @@ churn_df %>%
   border-top-width: 0;
 }
 
-#bhrcfkxukv .gt_bottom_border {
+#kpfwlijkmc .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#bhrcfkxukv .gt_col_headings {
+#kpfwlijkmc .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -547,7 +547,7 @@ churn_df %>%
   border-right-color: #D3D3D3;
 }
 
-#bhrcfkxukv .gt_col_heading {
+#kpfwlijkmc .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -567,7 +567,7 @@ churn_df %>%
   overflow-x: hidden;
 }
 
-#bhrcfkxukv .gt_column_spanner_outer {
+#kpfwlijkmc .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -579,15 +579,15 @@ churn_df %>%
   padding-right: 4px;
 }
 
-#bhrcfkxukv .gt_column_spanner_outer:first-child {
+#kpfwlijkmc .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#bhrcfkxukv .gt_column_spanner_outer:last-child {
+#kpfwlijkmc .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#bhrcfkxukv .gt_column_spanner {
+#kpfwlijkmc .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -599,7 +599,7 @@ churn_df %>%
   width: 100%;
 }
 
-#bhrcfkxukv .gt_group_heading {
+#kpfwlijkmc .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -621,7 +621,7 @@ churn_df %>%
   vertical-align: middle;
 }
 
-#bhrcfkxukv .gt_empty_group_heading {
+#kpfwlijkmc .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -636,15 +636,15 @@ churn_df %>%
   vertical-align: middle;
 }
 
-#bhrcfkxukv .gt_from_md > :first-child {
+#kpfwlijkmc .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#bhrcfkxukv .gt_from_md > :last-child {
+#kpfwlijkmc .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#bhrcfkxukv .gt_row {
+#kpfwlijkmc .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -663,7 +663,7 @@ churn_df %>%
   overflow-x: hidden;
 }
 
-#bhrcfkxukv .gt_stub {
+#kpfwlijkmc .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -675,7 +675,7 @@ churn_df %>%
   padding-left: 12px;
 }
 
-#bhrcfkxukv .gt_summary_row {
+#kpfwlijkmc .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -685,7 +685,7 @@ churn_df %>%
   padding-right: 5px;
 }
 
-#bhrcfkxukv .gt_first_summary_row {
+#kpfwlijkmc .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -695,7 +695,7 @@ churn_df %>%
   border-top-color: #D3D3D3;
 }
 
-#bhrcfkxukv .gt_grand_summary_row {
+#kpfwlijkmc .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -705,7 +705,7 @@ churn_df %>%
   padding-right: 5px;
 }
 
-#bhrcfkxukv .gt_first_grand_summary_row {
+#kpfwlijkmc .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -715,11 +715,11 @@ churn_df %>%
   border-top-color: #D3D3D3;
 }
 
-#bhrcfkxukv .gt_striped {
+#kpfwlijkmc .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#bhrcfkxukv .gt_table_body {
+#kpfwlijkmc .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -728,7 +728,7 @@ churn_df %>%
   border-bottom-color: #D3D3D3;
 }
 
-#bhrcfkxukv .gt_footnotes {
+#kpfwlijkmc .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -742,13 +742,13 @@ churn_df %>%
   border-right-color: #D3D3D3;
 }
 
-#bhrcfkxukv .gt_footnote {
+#kpfwlijkmc .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#bhrcfkxukv .gt_sourcenotes {
+#kpfwlijkmc .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -762,41 +762,41 @@ churn_df %>%
   border-right-color: #D3D3D3;
 }
 
-#bhrcfkxukv .gt_sourcenote {
+#kpfwlijkmc .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#bhrcfkxukv .gt_left {
+#kpfwlijkmc .gt_left {
   text-align: left;
 }
 
-#bhrcfkxukv .gt_center {
+#kpfwlijkmc .gt_center {
   text-align: center;
 }
 
-#bhrcfkxukv .gt_right {
+#kpfwlijkmc .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#bhrcfkxukv .gt_font_normal {
+#kpfwlijkmc .gt_font_normal {
   font-weight: normal;
 }
 
-#bhrcfkxukv .gt_font_bold {
+#kpfwlijkmc .gt_font_bold {
   font-weight: bold;
 }
 
-#bhrcfkxukv .gt_font_italic {
+#kpfwlijkmc .gt_font_italic {
   font-style: italic;
 }
 
-#bhrcfkxukv .gt_super {
+#kpfwlijkmc .gt_super {
   font-size: 65%;
 }
 
-#bhrcfkxukv .gt_footnote_marks {
+#kpfwlijkmc .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -1067,7 +1067,7 @@ toc()
 ```
 
 ```
-## 15.127 sec elapsed
+## 16.358 sec elapsed
 ```
 
 Im Standard werden 10 Modellkandidaten getuned.
@@ -1102,16 +1102,16 @@ tree_fit$.metrics[[1]]
 ## # A tibble: 30 × 7
 ##    cost_complexity tree_depth min_n .metric .estimator .estimate .config        
 ##              <dbl>      <int> <int> <chr>   <chr>          <dbl> <chr>          
-##  1      0.00000254          7    14 sens    binary         0.827 Preprocessor1_…
-##  2      0.00000254          7    14 spec    binary         0.885 Preprocessor1_…
-##  3      0.00000254          7    14 roc_auc binary         0.922 Preprocessor1_…
-##  4      0.0000401          11    33 sens    binary         0.780 Preprocessor1_…
-##  5      0.0000401          11    33 spec    binary         0.904 Preprocessor1_…
-##  6      0.0000401          11    33 roc_auc binary         0.923 Preprocessor1_…
-##  7      0.00268             9    21 sens    binary         0.823 Preprocessor1_…
-##  8      0.00268             9    21 spec    binary         0.888 Preprocessor1_…
-##  9      0.00268             9    21 roc_auc binary         0.921 Preprocessor1_…
-## 10      0.0959              6    26 sens    binary         0.773 Preprocessor1_…
+##  1     0.0000390           15    35 sens    binary         0.864 Preprocessor1_…
+##  2     0.0000390           15    35 spec    binary         0.891 Preprocessor1_…
+##  3     0.0000390           15    35 roc_auc binary         0.931 Preprocessor1_…
+##  4     0.000877             8    11 sens    binary         0.835 Preprocessor1_…
+##  5     0.000877             8    11 spec    binary         0.884 Preprocessor1_…
+##  6     0.000877             8    11 roc_auc binary         0.922 Preprocessor1_…
+##  7     0.000000703         14    30 sens    binary         0.871 Preprocessor1_…
+##  8     0.000000703         14    30 spec    binary         0.894 Preprocessor1_…
+##  9     0.000000703         14    30 roc_auc binary         0.934 Preprocessor1_…
+## 10     0.00452              7    15 sens    binary         0.867 Preprocessor1_…
 ## # … with 20 more rows
 ```
 
@@ -1132,11 +1132,11 @@ show_best(tree_fit)
 ## # A tibble: 5 × 9
 ##   cost_complexity tree_depth min_n .metric .estimator  mean     n std_err
 ##             <dbl>      <int> <int> <chr>   <chr>      <dbl> <int>   <dbl>
-## 1        2.95e- 4         14    30 roc_auc binary     0.927     5 0.00401
-## 2        4.01e- 5         11    33 roc_auc binary     0.927     5 0.00398
-## 3        7.29e-10         13    36 roc_auc binary     0.924     5 0.00430
-## 4        2.54e- 6          7    14 roc_auc binary     0.917     5 0.00587
-## 5        2.68e- 3          9    21 roc_auc binary     0.914     5 0.00752
+## 1     0.0000390           15    35 roc_auc binary     0.928     5 0.00643
+## 2     0.000000703         14    30 roc_auc binary     0.927     5 0.00636
+## 3     0.0000205           10    27 roc_auc binary     0.926     5 0.00735
+## 4     0.000877             8    11 roc_auc binary     0.919     5 0.00871
+## 5     0.00452              7    15 roc_auc binary     0.908     5 0.00947
 ## # … with 1 more variable: .config <chr>
 ```
 
@@ -1629,8 +1629,8 @@ collect_metrics(fit_final)
 ## # A tibble: 2 × 4
 ##   .metric  .estimator .estimate .config             
 ##   <chr>    <chr>          <dbl> <chr>               
-## 1 accuracy binary         0.887 Preprocessor1_Model1
-## 2 roc_auc  binary         0.951 Preprocessor1_Model1
+## 1 accuracy binary         0.894 Preprocessor1_Model1
+## 2 roc_auc  binary         0.967 Preprocessor1_Model1
 ```
 
 
@@ -1655,7 +1655,7 @@ fit_final %>%
 ## parsnip model object
 ## 
 ## ##### xgb.Booster
-## raw: 109.4 Kb 
+## raw: 112 Kb 
 ## call:
 ##   xgboost::xgb.train(params = list(eta = 0.3, max_depth = 6, gamma = 0, 
 ##     colsample_bytree = 1, colsample_bynode = 0.285714285714286, 
@@ -1673,11 +1673,11 @@ fit_final %>%
 ## nfeatures : 21 
 ## evaluation_log:
 ##     iter training_logloss
-##        1         0.575796
-##        2         0.494264
+##        1         0.577509
+##        2         0.497445
 ## ---                      
-##       79         0.185203
-##       80         0.184775
+##       79         0.193960
+##       80         0.193736
 ```
 
 *Dieses* Objekt übergeben wir dann an `{vip}`:
@@ -1713,16 +1713,16 @@ fit_final %>%
 ## # A tibble: 998 × 7
 ##    id              .pred_yes .pred_no  .row .pred_class canceled_service .config
 ##    <chr>               <dbl>    <dbl> <int> <fct>       <fct>            <chr>  
-##  1 train/test spl…   0.00251  0.997       1 no          yes              Prepro…
-##  2 train/test spl…   0.147    0.853       4 no          yes              Prepro…
-##  3 train/test spl…   0.996    0.00359     5 yes         yes              Prepro…
-##  4 train/test spl…   0.998    0.00217     7 yes         yes              Prepro…
-##  5 train/test spl…   0.932    0.0678      9 yes         yes              Prepro…
-##  6 train/test spl…   0.993    0.00723    11 yes         yes              Prepro…
-##  7 train/test spl…   0.519    0.481      13 yes         yes              Prepro…
-##  8 train/test spl…   0.999    0.00145    16 yes         yes              Prepro…
-##  9 train/test spl…   0.959    0.0411     21 yes         yes              Prepro…
-## 10 train/test spl…   0.996    0.00449    27 yes         yes              Prepro…
+##  1 train/test spl…     0.984  0.0161     11 yes         yes              Prepro…
+##  2 train/test spl…     0.922  0.0776     14 yes         yes              Prepro…
+##  3 train/test spl…     0.950  0.0496     15 yes         yes              Prepro…
+##  4 train/test spl…     0.993  0.00650    16 yes         yes              Prepro…
+##  5 train/test spl…     0.850  0.150      17 yes         yes              Prepro…
+##  6 train/test spl…     0.958  0.0417     21 yes         yes              Prepro…
+##  7 train/test spl…     0.990  0.00966    22 yes         yes              Prepro…
+##  8 train/test spl…     0.983  0.0168     24 yes         yes              Prepro…
+##  9 train/test spl…     0.987  0.0131     30 yes         yes              Prepro…
+## 10 train/test spl…     0.684  0.316      33 yes         yes              Prepro…
 ## # … with 988 more rows
 ```
 
