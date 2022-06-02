@@ -53,8 +53,8 @@ Sagen wir, Sie möchten das Körpergewicht einer Person vorhersagen und haben da
 <div class="figure" style="text-align: center">
 
 ```{=html}
-<div id="htmlwidget-08d2f945c79437b63c16" style="width:100%;height:300px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-08d2f945c79437b63c16">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n[Armlänge] -> [Gewicht]\n  [Beinlänge] -> [Gewicht]\n  [Handlänge] -> [Gewicht]\n  [Fußlänge] -> [Gewicht]\n  ","svg":false},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-bfc47240687c6811b56a" style="width:100%;height:300px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-bfc47240687c6811b56a">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n[Armlänge] -> [Gewicht]\n  [Beinlänge] -> [Gewicht]\n  [Handlänge] -> [Gewicht]\n  [Fußlänge] -> [Gewicht]\n  ","svg":false},"evals":[],"jsHooks":[]}</script>
 ```
 
 <p class="caption">(\#fig:redundpred)Vorhersage von Gewicht mit mehreren hochkorrelierten Prädiktoren</p>

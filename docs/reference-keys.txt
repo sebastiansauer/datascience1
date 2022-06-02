@@ -97,6 +97,12 @@ vorhersage
 hauptziel-genaue-prognose
 zum-aufbau-ihrer-prognosedatei-im-csv-format
 einzureichende-dateien
+gliederung-ihrer-analyse
+abschnitt-forschungsfrage-und-hintergrund
+vorbereitung
+explorative-datenanalyse
+modellierung
+vorhersagen
 tipps
 tipps-für-eine-gute-prognose
 tipps-zur-datenverarbeitung
@@ -115,7 +121,7 @@ videos-1
 plagiatskontrolle
 statistisches-lernen
 lernsteuerung
-vorbereitung
+vorbereitung-1
 lernziele-1
 literatur-1
 hinweise-2
@@ -139,7 +145,7 @@ aufgaben
 vertiefung
 r-zweiter-blick
 lernsteuerung-1
-vorbereitung-1
+vorbereitung-2
 lernziele-2
 literatur-2
 objekttypen-in-r
@@ -171,7 +177,7 @@ aufgaben-1
 vertiefung-1
 tidymodels
 lernsteuerung-2
-vorbereitung-2
+vorbereitung-3
 lernziele-3
 literatur-3
 daten
@@ -179,7 +185,7 @@ train--vs-test-datensatz-aufteilen
 grundlagen-der-modellierung-mit-tidymodels
 modelle-spezifizieren
 modelle-berechnen
-vorhersagen
+vorhersagen-1
 vorhersagen-im-train-datensatz
 modellkoeffizienten-im-train-datensatz
 parsnip-rstudio-add-in
@@ -208,12 +214,12 @@ analog-zu-timbers-et-al.
 rezept-definieren
 modell-definieren
 workflow-definieren
-vorhersagen-1
+vorhersagen-2
 mit-train-test-aufteilung
 rezept-definieren-1
 modell-definieren-1
 workflow-definieren-1
-vorhersagen-2
+vorhersagen-3
 modellgüte-1
 visualisierung
 kennzahlen-der-klassifikation
@@ -221,7 +227,7 @@ krebstest-beispiel
 aufgaben-3
 resampling-und-tuning
 lernsteuerung-4
-vorbereitung-3
+vorbereitung-4
 lernziele-5
 literatur-5
 überblick-2
@@ -251,7 +257,7 @@ aufgaben-4
 vertiefung-2
 logistische-regression
 lernsteuerung-5
-vorbereitung-4
+vorbereitung-5
 lernziele-6
 literatur-6
 intuitive-erklärung-1
@@ -281,7 +287,7 @@ entscheidungsbäume
 lernsteuerung-6
 lernziele-7
 literatur-7
-vorbereitung-5
+vorbereitung-6
 anatomie-eines-baumes
 bäume-als-regelmaschinen-rekursiver-partionierung
 klassifikation
@@ -308,7 +314,7 @@ lernsteuerung-7
 lernziele-8
 literatur-8
 hinweise-3
-vorbereitung-6
+vorbereitung-7
 hinweise-zur-literatur
 wir-brauchen-einen-wald
 was-ist-ein-ensemble-lerner
@@ -346,7 +352,7 @@ lernsteuerung-8
 lernziele-9
 literatur-9
 hinweise-4
-vorbereitung-7
+vorbereitung-8
 regularisierung
 was-ist-regularisierung
 ähnliche-verfahren
@@ -362,7 +368,7 @@ wer-ist-stärker
 elastic-net-als-kompromiss
 aufgaben-9
 kaggle
-vorbereitung-8
+vorbereitung-9
 lernsteuerung-9
 lernziele-10
 hinweise-5
@@ -400,7 +406,7 @@ dimensionsreduktion
 lernsteuerung-10
 lernziele-11
 literatur-10
-vorbereitung-9
+vorbereitung-10
 dimensionsreduktion-mit-der-hauptkomponentenanalyse
 wozu-dimensionsreduktion
 pca-ungeleitetes-verfahren

@@ -118,12 +118,12 @@
 </ul>
 </div>
 </div>
-<div id="vorbereitung-9" class="section level2" number="13.2">
+<div id="vorbereitung-10" class="section level2" number="13.2">
 <h2>
-<span class="header-section-number">13.2</span> Vorbereitung<a class="anchor" aria-label="anchor" href="#vorbereitung-9"><i class="fas fa-link"></i></a>
+<span class="header-section-number">13.2</span> Vorbereitung<a class="anchor" aria-label="anchor" href="#vorbereitung-10"><i class="fas fa-link"></i></a>
 </h2>
 <p>In diesem Kapitel werden folgende R-Pakete benötigt:</p>
-<div class="sourceCode" id="cb485"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb486"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>  </code></pre></div>
 </div>
@@ -134,8 +134,8 @@
 <p>Sagen wir, Sie möchten das Körpergewicht einer Person vorhersagen und haben dafür mehrere Prädiktoren zur Verfügung, vgl. Abb. <a href="dimensionsreduktion.html#fig:redundpred">13.1</a>.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:redundpred"></span>
-<div id="htmlwidget-08d2f945c79437b63c16" style="width:100%;height:300px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-08d2f945c79437b63c16">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n[Armlänge] -> [Gewicht]\n  [Beinlänge] -> [Gewicht]\n  [Handlänge] -> [Gewicht]\n  [Fußlänge] -> [Gewicht]\n  ","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
+<div id="htmlwidget-bfc47240687c6811b56a" style="width:100%;height:300px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-bfc47240687c6811b56a">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n[Armlänge] -> [Gewicht]\n  [Beinlänge] -> [Gewicht]\n  [Handlänge] -> [Gewicht]\n  [Fußlänge] -> [Gewicht]\n  ","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
 Figure 13.1: Vorhersage von Gewicht mit mehreren hochkorrelierten Prädiktoren
 </p>
 </div>
@@ -171,7 +171,7 @@ Man könnte sogar zugespitzt behaupten, dass das Maschinelle Lernen nur deswegen
 weil sich Menschen nur im 3D-Raum orientieren können.</p>
 <p>Sagen wir, Sie haben <span class="math inline">\(p=10\)</span> Prädiktoren, das ergibt dann <span class="math inline">\({p \choose 2} = p(p-1)/2\)</span> Möglichkeiten, also 45 bei <span class="math inline">\(p=10\)</span>.</p>
 <p>Im Datensatz <code>mtcars</code> sieht das so aus, nur mal zur Verdeutlichung, s. Abb. <a href="dimensionsreduktion.html#fig:manyscatter">13.4</a>.</p>
-<div class="sourceCode" id="cb486"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb487"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggobi.github.io/ggally/">GGally</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span>
 <span class="fu"><a href="https://ggobi.github.io/ggally/reference/ggpairs.html">ggpairs</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span></code></pre></div>
@@ -277,7 +277,7 @@ Figure 13.7: Die Hauptkomponente maximiert die Varianz
 <li><a class="nav-link" href="#literatur-10"><span class="header-section-number">13.1.2</span> Literatur</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#vorbereitung-9"><span class="header-section-number">13.2</span> Vorbereitung</a></li>
+<li><a class="nav-link" href="#vorbereitung-10"><span class="header-section-number">13.2</span> Vorbereitung</a></li>
 <li>
 <a class="nav-link" href="#dimensionsreduktion-mit-der-hauptkomponentenanalyse"><span class="header-section-number">13.3</span> Dimensionsreduktion mit der Hauptkomponentenanalyse</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#wozu-dimensionsreduktion"><span class="header-section-number">13.3.1</span> Wozu Dimensionsreduktion?</a></li>
@@ -303,7 +303,7 @@ Figure 13.7: Die Hauptkomponente maximiert die Varianz
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-06-01 14:44:11.</p>
+    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-06-02 15:01:22.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

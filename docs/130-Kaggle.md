@@ -281,12 +281,12 @@ tidy(rec1)
 ## # A tibble: 6 × 6
 ##   number operation type       trained skip  id              
 ##    <int> <chr>     <chr>      <lgl>   <lgl> <chr>           
-## 1      1 step      mutate     FALSE   FALSE mutate_i2Rv2    
-## 2      2 step      log        FALSE   FALSE log_HMpt3       
-## 3      3 step      mutate     FALSE   FALSE mutate_RoOXN    
-## 4      4 step      date       FALSE   FALSE date_tqm7p      
-## 5      5 step      impute_knn FALSE   FALSE impute_knn_ZFKx5
-## 6      6 step      dummy      FALSE   FALSE dummy_vwRgq
+## 1      1 step      mutate     FALSE   FALSE mutate_95zfT    
+## 2      2 step      log        FALSE   FALSE log_AtOWH       
+## 3      3 step      mutate     FALSE   FALSE mutate_Vz78i    
+## 4      4 step      date       FALSE   FALSE date_SjMwY      
+## 5      5 step      impute_knn FALSE   FALSE impute_knn_2wDsS
+## 6      6 step      dummy      FALSE   FALSE dummy_LMd5A
 ```
 
 
@@ -687,7 +687,7 @@ fit_final <-
 ```
 
 ```
-## [14:46:49] WARNING: amalgamation/../src/learner.cc:576: 
+## [15:04:04] WARNING: amalgamation/../src/learner.cc:576: 
 ## Parameters: { "nthreads" } might not be used.
 ## 
 ##   This could be a false alarm, with some parameters getting used by language bindings but
@@ -716,7 +716,7 @@ fit_final
 ## 
 ## ── Model ───────────────────────────────────────────────────────────────────────
 ## ##### xgb.Booster
-## raw: 360 Kb 
+## raw: 362.3 Kb 
 ## call:
 ##   xgboost::xgb.train(params = list(eta = 0.3, max_depth = 6, gamma = 0, 
 ##     colsample_bytree = 1, colsample_bynode = 0.4, min_child_weight = 4L, 
@@ -734,11 +734,11 @@ fit_final
 ## nfeatures : 15 
 ## evaluation_log:
 ##     iter training_rmse
-##        1     122211512
-##        2     101732888
+##        1     130788504
+##        2     109589488
 ## ---                   
-##       99      27016296
-##      100      26760424
+##       99      27122390
+##      100      27036782
 ```
 
 
