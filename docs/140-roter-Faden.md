@@ -2,6 +2,8 @@
 # Der rote Faden
 
 
+
+
 Mittlerweile haben wir einiges zum Thema Data Science bzw. maschinelles Lernen behandelt (und sie hoffentlich viel gelernt).
 
 Da ist es an der Zeit, einen Schritt zurück zu treten,
@@ -13,6 +15,31 @@ In diesem Kapitel werden wir verschiedene "Aussichtspfade" suchen, um im Bild zu
 die uns einen Überblick über das Gelände versprechen.
 
 
+
+
+<!-- Chapter Start sections: Lernziele, Literatur, Hinweise, ... -->
+
+
+### Lernziele 
+
+- Sie sind in der Lage, einfache Klassifikationsmodelle zu spezifizieren mit tidymodels
+- Sie können den knn-Algorithmus erläutern
+- Sie können den knn-Algorithmus in tidymodels anwenden
+- Sie können die Gütemetriken von Klassifikationsmodellen einschätzen
+
+
+
+### Literatur 
+
+- Rhys, Kap. 3
+- [Timbers et al., Kap. 5](https://datasciencebook.ca/classification.html#classification)
+
+
+
+
+
+
+
 ## Aussichtspunkt 1: Blick vom hohen Berg
 
 
@@ -20,7 +47,7 @@ die uns einen Überblick über das Gelände versprechen.
 
 
 
-Und so zeigt sich ein "Flussbild" (Abb. \@ref(fig:bigpic)).
+Und so zeigt sich ein "Flussbild"^[Wem das Bild zu klein gezeichnet ist, der nehme entweder eine Lupe oder öffne das Bild per Rechtsklick in einem neuen Tab.] (Abb. \@ref(fig:bigpic)).
 
 
 <div class="figure" style="text-align: center">

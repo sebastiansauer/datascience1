@@ -2,6 +2,8 @@
 # Der rote Faden
 
 
+
+
 Mittlerweile haben wir einiges zum Thema Data Science bzw. maschinelles Lernen behandelt (und sie hoffentlich viel gelernt).
 
 Da ist es an der Zeit, einen Schritt zurück zu treten,
@@ -11,6 +13,21 @@ in den groben Linien, um einen (klareren) Überblick über das Terrain zu bekomm
 
 In diesem Kapitel werden wir verschiedene "Aussichtspfade" suchen, um im Bild zu bleiben,
 die uns einen Überblick über das Gelände versprechen.
+
+
+
+
+<!-- Chapter Start sections: Lernziele, Literatur, Hinweise, ... -->
+
+```{r chapter-start-sections, echo = FALSE, results = "asis"}
+source("funs/chapter-start-sections.R")
+chapter_start_sections(title = "kNN") 
+```
+
+
+
+
+
 
 
 ## Aussichtspunkt 1: Blick vom hohen Berg

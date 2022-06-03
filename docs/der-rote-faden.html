@@ -103,11 +103,32 @@ den berühmten “roten Faden” zu sehen, den zurückgelegten Weg nachzuzeichne
 in den groben Linien, um einen (klareren) Überblick über das Terrain zu bekommen.</p>
 <p>In diesem Kapitel werden wir verschiedene “Aussichtspfade” suchen, um im Bild zu bleiben,
 die uns einen Überblick über das Gelände versprechen.</p>
+<!-- Chapter Start sections: Lernziele, Literatur, Hinweise, ... -->
+<div id="lernziele-11" class="section level3" number="13.0.1">
+<h3>
+<span class="header-section-number">13.0.1</span> Lernziele<a class="anchor" aria-label="anchor" href="#lernziele-11"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>Sie sind in der Lage, einfache Klassifikationsmodelle zu spezifizieren mit tidymodels</li>
+<li>Sie können den knn-Algorithmus erläutern</li>
+<li>Sie können den knn-Algorithmus in tidymodels anwenden</li>
+<li>Sie können die Gütemetriken von Klassifikationsmodellen einschätzen</li>
+</ul>
+</div>
+<div id="literatur-10" class="section level3" number="13.0.2">
+<h3>
+<span class="header-section-number">13.0.2</span> Literatur<a class="anchor" aria-label="anchor" href="#literatur-10"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>Rhys, Kap. 3</li>
+<li><a href="https://datasciencebook.ca/classification.html#classification">Timbers et al., Kap. 5</a></li>
+</ul>
+</div>
 <div id="aussichtspunkt-1-blick-vom-hohen-berg" class="section level2" number="13.1">
 <h2>
 <span class="header-section-number">13.1</span> Aussichtspunkt 1: Blick vom hohen Berg<a class="anchor" aria-label="anchor" href="#aussichtspunkt-1-blick-vom-hohen-berg"><i class="fas fa-link"></i></a>
 </h2>
-<p>Und so zeigt sich ein “Flussbild” (Abb. <a href="der-rote-faden.html#fig:bigpic">13.1</a>).</p>
+<p>Und so zeigt sich ein “Flussbild”<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Wem das Bild zu klein gezeichnet ist, der nehme entweder eine Lupe oder öffne das Bild per Rechtsklick in einem neuen Tab.&lt;/p&gt;"><sup>9</sup></a> (Abb. <a href="der-rote-faden.html#fig:bigpic">13.1</a>).</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:bigpic"></span>
 <img src="https://mermaid.ink/svg/pako:eNptksFunDAQhl_F8jmbB9hDpVQtUaQirbJoOZgcDB7AXWOvhvFWTZQ3yy0v1sHeTYkUIfAw_zc_4zEvsgsG5Fb2LvzpRo0kfj02XojDWR0CngE1tmAp-uFJbDbfRK3qgMeFflqwslAlGzjXB5zAfc2EC_OleufUnRsCWhqnOGekDIvyMKmH6eRgAk8W8KOFrLLlYvu5ZE_q-fb7La_aG43GzuvCw3lhijozBYwOvAFRAxKsiZpj0b-_ofgNBry49puQKnrrhwWbYzugPo2r1Cr5CLPm7j-ElVRYIvDXNPeQw0twWbJp-mRbqhZmAhR5jkfenDWa0vzaMjFFpbKt0LEXg_bPokJt_Wa_dAEJLaqE7iq1QzC2o8RWbL2mdpkS5f3l2Ib3N8pSeZ8kHyfFN6Cdu3EtHJ2e1fKYbW-PmsJ_ovH5EkLeSC6dtDX8270kTdLIp9zILYcGeh0dNbLxr4zGE28UfhrLZnJLGOFG6khh_9d31_fM_LCaxzvl5Os_ERX1KQ" alt="Ein Flussbild des maschinellen Lernens" width="70%"><p class="caption">
@@ -228,13 +249,19 @@ die Grundlagen zu unserem Landstrich erläutert.</p>
 </ul>
 </div>
 </div>
+
   <div class="chapter-nav">
 <div class="prev"><a href="kaggle.html"><span class="header-section-number">12</span> Kaggle</a></div>
 <div class="next"><a href="dimensionsreduktion.html"><span class="header-section-number">14</span> Dimensionsreduktion</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#der-rote-faden"><span class="header-section-number">13</span> Der rote Faden</a></li>
+<li>
+<a class="nav-link" href="#der-rote-faden"><span class="header-section-number">13</span> Der rote Faden</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#lernziele-11"><span class="header-section-number">13.0.1</span> Lernziele</a></li>
+<li><a class="nav-link" href="#literatur-10"><span class="header-section-number">13.0.2</span> Literatur</a></li>
+</ul>
+</li>
 <li><a class="nav-link" href="#aussichtspunkt-1-blick-vom-hohen-berg"><span class="header-section-number">13.1</span> Aussichtspunkt 1: Blick vom hohen Berg</a></li>
 <li>
 <a class="nav-link" href="#aussichtspunkt-2-blick-in-den-hof-der-handwerker"><span class="header-section-number">13.2</span> Aussichtspunkt 2: Blick in den Hof der Handwerker</a><ul class="nav navbar-nav">
@@ -263,7 +290,7 @@ die Grundlagen zu unserem Landstrich erläutert.</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-06-03 15:46:10.</p>
+    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-06-03 16:05:19.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
