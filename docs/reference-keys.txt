@@ -415,6 +415,7 @@ aussichtspunkt-3-der-nebelberg-quiz
 aussichtspunkt-4-der-exerzitien-park
 yacsda-collection
 aussichtspunkt-5-in-der-bibliothek
+krafttraining
 dimensionsreduktion
 lernsteuerung-10
 lernziele-12

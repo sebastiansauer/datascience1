@@ -241,6 +241,25 @@ Etwas weiter leiten uns diese Erzähler:
 
 
 
+## Krafttraining
+
+Um die Aussicht genießen zu können, muss man manchmal ausgesetzte Plätze 
+in ~~schwindelerregenden~~ ~~einigermaßen steilen~~ als Hügel erkennbaren Höhen erreichen...
+
+Sportliche Leistungen erreicht nur, wer trainiert ist.
+Das ist im Land des Data Science nicht anders.
+
+Hier ist eine Liste von Übungen, die Ihre Datenkraft stählen soll:
+
+1. *Lerngruppe*: Den Wert einer Lerngruppe kann man kaum unterschätzen. Die Motivation, der Austausch, der Zwang seine Gedanken geordnet darzustellen, das wechselseitige Abfragen - diese Dinge machen eine Lerngruppe zu einem der wichtigsten Erfolgsgarant in Ihren Lernbemühungen.
+2. *Exzerpte*: Exzerpte, Zusammenfassungen also, sind nötig, um von einer vermeintlichen "Jaja, easy, versthe ich alles" Oberflächen-Verarbeitung zu einem (ausgeprägterem) Tiefenverständnis vorzudringen.
+3. *Aufgaben*: Manchmal stellt ein Dozent Aufgaben ein. Die Chance sollte man nutzen, denn zwar ist vieles in der Didaktikforschung noch unsicher, aber dass Aufgaben lösen beim Lernen hilft, und zwar viel, ist eines der wenigen unstrittigen Erkenntnisse.
+4. *Fallstudien*: Ähnliches wie Aufgaben, die oft kleinteilig-akademisch angelegt sind, hilft die große Schwester der schnöden Aufgabe, die Fallstudie, beim Vordringen in Verständnistiefen.
+5. *Lesen*: Ja, Lesen ist voll Old School. Aber so was Ähnliches wie Updaten der Brain-Software. Nützlich, weil die alte Software irgendwann nicht mehr supported wird.
+6. *Forum*: Sie haben eine Frage, aber Sie können unmöglich ein paar Tage warten, bis Sie den Dozenten im Unterricht sprechen? Posten Sie die Frage in einem Forum! Vielleicht im Forum des Moduls oder aber in einem geeigneten Forum im Internet.
+7. *Youtube*: Zwar wettern Dozentis gerne über die mangelnde Verarbeitungstiefe beim Fern schauen. Außerdem sind Lehrvideos didaktisch echt asbachuralt. Aber okay, manchmal und in überschaubarer Dosis ist ein Lehrvideo eine nützliche Ergänzung zu den übrigen Maßnahmen.
+
+
 
 
 
