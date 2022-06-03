@@ -10,6 +10,23 @@ Benötigte R-Pakete für dieses Kapitel:
 
 
 
+<!-- ```{r global-knitr-options, include=FALSE} -->
+<!--   knitr::opts_chunk$set( -->
+<!--   fig.pos = 'H', -->
+<!--   fig.asp = 0.618, -->
+<!--   fig.align='center', -->
+<!--   fig.width = 5, -->
+<!--   out.width = "100%", -->
+<!--   # fig.cap = "",  -->
+<!--   dpi = 300, -->
+<!--   # tidy = TRUE, -->
+<!--   echo = TRUE, -->
+<!--   message = FALSE, -->
+<!--   warning = FALSE, -->
+<!--   cache = FALSE, -->
+<!--   fig.show = "hold") -->
+<!-- ``` -->
+
 
 
 ## Lernsteuerung
@@ -59,7 +76,7 @@ Eine alternative, hilfreich Abbildung findet sich [hier](https://www.tmwr.org/re
 
 
 <div class="figure" style="text-align: center">
-<img src="https://nomnoml.com/image.svg?source=%23direction%3A%20right%0A%5B%3Cdatabase%3E%20Gesamtdatensatz%5D%20-%3E%20%20%5BSplitte%20in%20Train-%20und%20Test-Sample%5D%0A%5BSplitte%20in%20Train-%20und%20Test-Sample%5D%20-%3E%20%5BF%C3%BCr%20jeden%20Modell-Kandidaten%20i%3D1%2C2%2C..%2Cn%20%7C%0A%20%20%5BTrain-Test%20Modellkandidat%20i%7C%0A%20%20%20%20%5BFitte%20in%20Train-Sample%5D%20-%3E%20%5BTeste%20im%20Assessment-Sample%5D%5D%0A%20%20%5D%20%0A%20%20%5BF%C3%BCr%20jeden%20Modell-Kandidaten%20i%3D1%2C2%2C..%2Cn%20%7C%0A%20%20%5BTrain-Test%20Modellkandidat%20i%7C%0A%20%20%20%20%5BFitte%20in%20Train-Sample%5D%20-%3E%20%5BTeste%20im%20Assessment-Sample%5D%5D%0A%20%20%5D%20-%3E%20%5BBestimme%20besten%20Modell-Kandidaten%5D%0A%20%20%5BBestimme%20besten%20Modell-Kandidaten%5D%20-%3E%20%5BFitte%20Modell%20im%20Train-Datensatz%5D%0A%20%20%5BFitte%20Modell%20im%20Train-Datensatz%5D%20-%3E%20%5BTest%20im%20Test-Datensatz%5D%0A%20%20%5BTest%20im%20Test-Datensatz%5D%20-%3E%20%5B%3Cend%3E%20Ende%5D" alt="Standardablauf des maschinellen Lernens mit Tuning und Resampling" width="100%" />
+<img src="https://nomnoml.com/image.svg?source=%23direction%3A%20right%0A%5B%3Cdatabase%3E%20Gesamtdatensatz%5D%20-%3E%20%20%5BSplitte%20in%20Train-%20und%20Test-Sample%5D%0A%5BSplitte%20in%20Train-%20und%20Test-Sample%5D%20-%3E%20%5BF%C3%BCr%20jeden%20Modell-Kandidaten%20i%3D1%2C2%2C..%2Cn%20%7C%0A%20%20%5BTrain-Test%20Modellkandidat%20i%7C%0A%20%20%20%20%5BFitte%20in%20Train-Sample%5D%20-%3E%20%5BTeste%20im%20Assessment-Sample%5D%5D%0A%20%20%5D%20%0A%20%20%5BF%C3%BCr%20jeden%20Modell-Kandidaten%20i%3D1%2C2%2C..%2Cn%20%7C%0A%20%20%5BTrain-Test%20Modellkandidat%20i%7C%0A%20%20%20%20%5BFitte%20in%20Train-Sample%5D%20-%3E%20%5BTeste%20im%20Assessment-Sample%5D%5D%0A%20%20%5D%20-%3E%20%5BBestimme%20besten%20Modell-Kandidaten%5D%0A%20%20%5BBestimme%20besten%20Modell-Kandidaten%5D%20-%3E%20%5BFitte%20Modell%20im%20Train-Datensatz%5D%0A%20%20%5BFitte%20Modell%20im%20Train-Datensatz%5D%20-%3E%20%5BTest%20im%20Test-Datensatz%5D%0A%20%20%5BTest%20im%20Test-Datensatz%5D%20-%3E%20%5B%3Cend%3E%20Ende%5D" alt="Standardablauf des maschinellen Lernens mit Tuning und Resampling" width="70%" />
 <p class="caption">(\#fig:process1)Standardablauf des maschinellen Lernens mit Tuning und Resampling</p>
 </div>
 
@@ -73,15 +90,6 @@ Eine alternative, hilfreich Abbildung findet sich [hier](https://www.tmwr.org/re
 
 
 
-```r
-data(ames)
-
-set.seed(4595)
-data_split <- initial_split(ames, strata = "Sale_Price")
-
-ames_train <- training(data_split)
-ames_test <- testing(data_split)
-```
 
 
 ### Rezept, Modell und Workflow definieren
@@ -90,33 +98,10 @@ In gewohnter Weise definieren wir den Workflow
 mit einem kNN-Modell.
 
 
-```r
-ames_rec <-
-  recipe(Sale_Price ~ ., data = ames_train) %>%
-  step_log(Sale_Price, base = 10) %>%
-  step_other(Neighborhood, threshold = .1)  %>%
-  step_dummy(all_nominal()) %>%
-  step_zv(all_predictors()) 
-
-knn_model <-
-  nearest_neighbor(
-    mode = "regression",
-  ) %>%
-  set_engine("kknn")
-
-ames_wflow <-
-  workflow() %>%
-  add_recipe(ames_rec) %>%
-  add_model(knn_model)
-```
 
 Das kNN-Modell ist noch *nicht* *berechnet*,
 es ist nur ein "Rezept" erstellt:
 
-
-```r
-knn_model
-```
 
 ```
 ## K-Nearest Neighbor Model Specification (regression)
@@ -124,10 +109,6 @@ knn_model
 ## Computational engine: kknn
 ```
 
-
-```r
-ames_wflow
-```
 
 ```
 ## ══ Workflow ════════════════════════════════════════════════════════════════════
@@ -200,7 +181,7 @@ manchmal auch als "Faltungen" bezeichnet werden.
 @modar stellt das Resampling so dar (S. 259), s. Abb. \@ref(fig:cvmodar).
 
 <div class="figure" style="text-align: center">
-<img src="img/crossval.png" alt="Kreuzvalidierung, Aufteilung in Train- vs. Testsample" width="100%" />
+<img src="img/crossval.png" alt="Kreuzvalidierung, Aufteilung in Train- vs. Testsample" width="70%" />
 <p class="caption">(\#fig:cvmodar)Kreuzvalidierung, Aufteilung in Train- vs. Testsample</p>
 </div>
 
@@ -233,7 +214,7 @@ Die $r$-fach wiederholte Kreuzvalidierung wiederholte die einfache Kreuzvalidier
 
 
 <div class="figure" style="text-align: center">
-<img src="img/crossval_repeated.png" alt="Wiederholte Kreuzvalidierung" width="100%" />
+<img src="img/crossval_repeated.png" alt="Wiederholte Kreuzvalidierung" width="70%" />
 <p class="caption">(\#fig:cvrep)Wiederholte Kreuzvalidierung</p>
 </div>
 
@@ -244,7 +225,7 @@ s. Abb. \@ref(fig:repcvred).
 
 
 <div class="figure" style="text-align: center">
-<img src="https://www.tmwr.org/figures/variance-reduction-1.png" alt="Reduktion des Schätzfehlers als Funktion der r Wiederhoulugen der Kreuzvalidierung" width="100%" />
+<img src="https://www.tmwr.org/figures/variance-reduction-1.png" alt="Reduktion des Schätzfehlers als Funktion der r Wiederhoulugen der Kreuzvalidierung" width="70%" />
 <p class="caption">(\#fig:repcvred)Reduktion des Schätzfehlers als Funktion der r Wiederhoulugen der Kreuzvalidierung</p>
 </div>
 
@@ -275,7 +256,7 @@ Dieser Sachverhalt ist in Abb. \@ref(fig:initialsplit), aus @silge_tidy_2022, il
 
 
 <div class="figure" style="text-align: center">
-<img src="https://www.tmwr.org/premade/resampling.svg" alt="Resampling im Train-, nicht im Test-Sample" width="100%" />
+<img src="https://www.tmwr.org/premade/resampling.svg" alt="Resampling im Train-, nicht im Test-Sample" width="70%" />
 <p class="caption">(\#fig:initialsplit)Resampling im Train-, nicht im Test-Sample</p>
 </div>
 
@@ -342,7 +323,7 @@ thin_cum_mean %>%
 ```
 
 <div class="figure" style="text-align: center">
-<img src="080-Resampling-Tuning_files/figure-html/lln-1.png" alt="Gesetz der großen Zahl" width="100%" />
+<img src="080-Resampling-Tuning_files/figure-html/lln-1.png" alt="Gesetz der großen Zahl" width="70%" />
 <p class="caption">(\#fig:lln)Gesetz der großen Zahl</p>
 </div>
 
@@ -385,12 +366,6 @@ Abb. \@ref(fig:overfitting-4-plots) zeigt:
 So kann man eine *einfache* v-fache Kreuzvalidierung in Tidymodels auszeichnen:
 
 
-```r
-set.seed(2453)
-ames_folds <- vfold_cv(ames_train, strata = "Sale_Price")
-ames_folds
-```
-
 ```
 ## #  10-fold cross-validation using stratification 
 ## # A tibble: 10 × 2
@@ -411,10 +386,6 @@ ames_folds
 Werfen wir einen Blick in die Spalte `splits`, erste Zeile:
 
 
-```r
-ames_folds %>% pluck(1, 1)
-```
-
 ```
 ## <Analysis/Assess/Total>
 ## <1976/221/2197>
@@ -429,14 +400,6 @@ Möchte man die Defaults vpn `vfold_cv` wissen, schaut man in der Hilfe nach: `?
 
 Probieren wir $v=5$ und $r=2$:
 
-
-```r
-ames_folds_rep <- vfold_cv(ames_train, 
-                           strata = "Sale_Price", 
-                           v = 5,
-                           repeats = 2)
-ames_folds_rep
-```
 
 ```
 ## #  5-fold cross-validation repeated 2 times using stratification 
@@ -463,11 +426,6 @@ Hat unser Computer mehrere Rechenkerne, dann können wir diese nutzen und die Be
 Im Standard wird sonst nur ein Kern verwendet.
 
 
-```r
-mycores <- parallel::detectCores(logical = FALSE)
-mycores
-```
-
 ```
 ## [1] 4
 ```
@@ -475,25 +433,12 @@ mycores
 Auf Unix/MacOC-Systemen kann man dann die Anzahl der parallen Kerne so einstellen:
 
 
-```r
-library(doMC)
-registerDoMC(cores = mycores)
-```
 
 
 
 So, und jetzt fitten wir die Resamples und trachten die Modellgüte in den Resamples:
 
 
-
-```r
-ames_resamples_fit <- 
-  ames_wflow %>% 
-  fit_resamples(ames_folds)
-
- ames_resamples_fit %>%
-  collect_metrics()
-```
 
 ```
 ## # A tibble: 2 × 6
@@ -509,16 +454,7 @@ Natürlich interessiert uns primär die Modellgüte im Test-Sample:
 
 
 
-```r
-final_ames <-
-  last_fit(ames_wflow, data_split)
-```
 
-
-```r
-final_ames %>% 
-  collect_metrics()
-```
 
 ```
 ## # A tibble: 2 × 4
@@ -538,27 +474,11 @@ welche Parameter wir tunen möchten.
 Wir könenn
 
 
-```r
-knn_model <-
-  nearest_neighbor(
-    mode = "regression",
-    neighbors = tune()
-  ) %>%
-  set_engine("kknn")
-```
 
 
 Wir können dem Tuningparameter auch einen Namen (ID/Laben) geben, z.B. "K":
 
 
-```r
-knn_model <-
-  nearest_neighbor(
-    mode = "regression",
-    neighbors = tune("K")
-  ) %>%
-  set_engine("kknn")
-```
 
 
 ### Grid Search vs. Iterative Search
@@ -587,7 +507,7 @@ Vorhersagen eines Modells haben.
 
 
 <div class="figure" style="text-align: center">
-<img src="https://www.tmwr.org/figures/two-class-boundaries-1.png" alt="Overfitting als Funktion der Modellparameter und insofern als Problem de Wahl der Tuningparameter" width="100%" />
+<img src="https://www.tmwr.org/figures/two-class-boundaries-1.png" alt="Overfitting als Funktion der Modellparameter und insofern als Problem de Wahl der Tuningparameter" width="70%" />
 <p class="caption">(\#fig:nnoverfit)Overfitting als Funktion der Modellparameter und insofern als Problem de Wahl der Tuningparameter</p>
 </div>
 
@@ -604,7 +524,7 @@ Der Unterschied beider Ansätze ist in @silge_tidy_2022 wie in Abb. \@ref(fig:tu
 
 
 <div class="figure" style="text-align: center">
-<img src="https://www.tmwr.org/figures/tuning-strategies-1.png" alt="Links: Grid Search. Rechts: Iterative Search2" width="100%" />
+<img src="https://www.tmwr.org/figures/tuning-strategies-1.png" alt="Links: Grid Search. Rechts: Iterative Search2" width="70%" />
 <p class="caption">(\#fig:tuning1)Links: Grid Search. Rechts: Iterative Search2</p>
 </div>
 
@@ -623,10 +543,6 @@ Möchte man wissen,
 welche und wie viele Tuningparameter tidymodels in einem Modell berücksichtigt,
 kann man `extract_parameter_set_dials()` aufrufen:
 
-
-```r
-extract_parameter_set_dials(knn_model)
-```
 
 ```
 ## Collection of 1 parameters for tuning
@@ -648,11 +564,6 @@ auf welchen Wertebereich `tidymodels` den Parameter $K$ begrenzt hat:
 
 
 
-```r
-knn_model %>% 
-  extract_parameter_dials("K")
-```
-
 ```
 ## # Nearest Neighbors (quantitative)
 ## Range: [1, 15]
@@ -662,11 +573,6 @@ knn_model %>%
 Aktualisieren wir mal unseren Workflow entsprechend:
 
 
-```r
-ames_wflow <-
-  ames_wflow %>% 
-  update_model(knn_model)
-```
 
 
 
@@ -674,14 +580,6 @@ Wir können auch Einfluss nehmen und angeben,
 dass die Grenzen des Wertebereichs zwischen 1 und 50 liegen soll 
 (für den Tuningparameter `neighbors`):
 
-
-```r
-ames_set <-
-  extract_parameter_set_dials(ames_wflow) %>%
-  update(K = neighbors(c(1, 50)))
-
-ames_set
-```
 
 ```
 ## Collection of 1 parameters for tuning
@@ -715,14 +613,6 @@ dass du, wenn du den Datensatz kennst, die Werte des Tuningparameter noch änder
 
 
 
-```r
-ames_set <-
-  workflow() %>% 
-  add_model(knn_model) %>% 
-  add_recipe(ames_rec) %>% 
-  extract_parameter_set_dials() %>% 
-  finalize(ames_train)
-```
 
 
 ### Modelle mit Tuning berechnen
@@ -731,15 +621,6 @@ Nachdem wir die Tuningwerte bestimmt haben,
 können wir jetzt das Modell berechnen:
 Für jeden Wert des Tuningparameters wird ein Modell berechnet:
 
-
-```r
-ames_grid_search <-
-  tune_grid(
-    ames_wflow,
-    resamples = ames_folds
-  )
-ames_grid_search
-```
 
 ```
 ## # Tuning results
@@ -763,11 +644,6 @@ Im Default berechnet `tiymodels` 10 Kandidatenmodelle.
 
 Die Spalte `.metrics` beinhaltet die Modellgüte für jedes Kandidatenmodell.
 
-
-```r
-ames_grid_search %>% 
-  collect_metrics()
-```
 
 ```
 ## # A tibble: 16 × 7
@@ -793,12 +669,7 @@ ames_grid_search %>%
 
 Das können wir uns einfach visualisieren lassen:
 
-
-```r
-autoplot(ames_grid_search)
-```
-
-<img src="080-Resampling-Tuning_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="080-Resampling-Tuning_files/figure-html/unnamed-chunk-19-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 Auf Basis dieser Ergebnisse könnte es Sinn machen, 
@@ -808,10 +679,6 @@ noch größere Werte für $K$ zu überprüfen.
 
 Welches Modellkandidat war jetzt am besten?
 
-
-```r
-show_best(ames_grid_search)
-```
 
 ```
 ## # A tibble: 5 × 7
@@ -828,10 +695,6 @@ show_best(ames_grid_search)
 Wählen wir jetzt mal das beste Modell aus (im Sinne des Optimierungskriteriusms):
 
 
-```r
-select_best(ames_grid_search)
-```
-
 ```
 ## # A tibble: 1 × 2
 ##       K .config             
@@ -845,18 +708,10 @@ im besten Kandiatenmodell.
 In diesem Fall hat das Modull nur einen Tuningparameter:
 
 
-```r
-ames_knn_best_params <-
-  tibble(K = 15)
-```
 
 Unser Workflow weiß noch nicht,
 welche Tuningparameterwerte am besten sind:
 
-
-```r
-ames_wflow
-```
 
 ```
 ## ══ Workflow ════════════════════════════════════════════════════════════════════
@@ -888,14 +743,6 @@ eben aus dem besten Kandidatenmodell,
 verwenden:
 
 
-
-```r
-ames_final_wflow <-
-  ames_wflow %>% 
-  finalize_workflow(ames_knn_best_params)
-
-ames_final_wflow
-```
 
 ```
 ## ══ Workflow ════════════════════════════════════════════════════════════════════
@@ -932,13 +779,6 @@ wir das TestSample vorher:
 
 
 
-```r
-final_ames_knn_fit <-
-  last_fit(ames_final_wflow, data_split)
-
-final_ames_knn_fit
-```
-
 ```
 ## # Resampling results
 ## # Manual resampling 
@@ -950,10 +790,6 @@ final_ames_knn_fit
 
 Holen wir uns die Modellgüte:
 
-
-```r
-collect_metrics(final_ames_knn_fit)
-```
 
 ```
 ## # A tibble: 2 × 4

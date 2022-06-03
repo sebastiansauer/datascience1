@@ -2,7 +2,22 @@
 # Entscheidungsbäume
 
 
-
+<!-- ```{r global-knitr-options, include=FALSE} -->
+<!--   knitr::opts_chunk$set( -->
+<!--   fig.pos = 'H', -->
+<!--   fig.asp = 0.618, -->
+<!--   fig.align='center', -->
+<!--   fig.width = 5, -->
+<!--   out.width = "100%", -->
+<!--   fig.cap = "",  -->
+<!--   dpi = 300, -->
+<!--   # tidy = TRUE, -->
+<!--   echo = FALSE, -->
+<!--   message = FALSE, -->
+<!--   warning = FALSE, -->
+<!--   cache = TRUE, -->
+<!--   fig.show = "hold") -->
+<!-- ``` -->
 
 
 
@@ -106,7 +121,7 @@ Für Abb. \@ref(fig:tree1) ergibt sich eine komplexere Aufteilung, s. auch Abb. 
 
 
 <div class="figure" style="text-align: center">
-<img src="100-Entscheidungsbäume_files/figure-html/tree1-1.png" alt="Beispiel für einen Entscheidungsbaum" width="100%" />
+<img src="100-Entscheidungsbäume_files/figure-html/tree1-1.png" alt="Beispiel für einen Entscheidungsbaum" width="70%" />
 <p class="caption">(\#fig:tree1)Beispiel für einen Entscheidungsbaum</p>
 </div>
 
@@ -118,7 +133,7 @@ Kleine Lesehilft für Abb. \@ref(fig:tree1):
 
 
 <div class="figure" style="text-align: center">
-<img src="img/recursive-part.png" alt="Partionierung in Rechtecke durch Entscheidungsbäume" width="100%" />
+<img src="img/recursive-part.png" alt="Partionierung in Rechtecke durch Entscheidungsbäume" width="70%" />
 <p class="caption">(\#fig:recursive-part)Partionierung in Rechtecke durch Entscheidungsbäume</p>
 </div>
 
@@ -212,7 +227,7 @@ Untenrechts ist der Baum in 3D dargestellt.
 
 
 <div class="figure" style="text-align: center">
-<img src="img/8.3.png" alt="Ein weiteres Beispiel zur Darstellung von Entscheidungsbäumen" width="100%" />
+<img src="img/8.3.png" alt="Ein weiteres Beispiel zur Darstellung von Entscheidungsbäumen" width="70%" />
 <p class="caption">(\#fig:tree3)Ein weiteres Beispiel zur Darstellung von Entscheidungsbäumen</p>
 </div>
 
@@ -377,7 +392,7 @@ Abbildung \@ref(fig:tree-metr) stellt dieses Vorgehen schematisch dar [@rhys].
 
 
 <div class="figure" style="text-align: center">
-<img src="img/fig7-5_alt.jpeg" alt="Aufteilungswert bei metrischen Prädiktoren" width="100%" />
+<img src="img/fig7-5_alt.jpeg" alt="Aufteilungswert bei metrischen Prädiktoren" width="70%" />
 <p class="caption">(\#fig:tree-metr)Aufteilungswert bei metrischen Prädiktoren</p>
 </div>
 
@@ -435,7 +450,7 @@ Abb. \@ref(fig:rechteck) verdeutlicht diesen Unterschied [@islr].
 
 
 <div class="figure" style="text-align: center">
-<img src="img/8.7.png" alt="Rechteckige vs. lineare Partionierung" width="100%" />
+<img src="img/8.7.png" alt="Rechteckige vs. lineare Partionierung" width="70%" />
 <p class="caption">(\#fig:rechteck)Rechteckige vs. lineare Partionierung</p>
 </div>
 
@@ -866,7 +881,7 @@ Praktischerweise gibt es eine Autoplot-Funktion, um die besten Modellparameter a
 autoplot(trees_tuned)
 ```
 
-<img src="100-Entscheidungsbäume_files/figure-html/unnamed-chunk-23-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="100-Entscheidungsbäume_files/figure-html/unnamed-chunk-23-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 ### Bestes Modell auswählen
@@ -987,7 +1002,7 @@ was hätte das jetzt wohl für eine Modellgüte?
 
 
 ```
-## 8.094 sec elapsed
+## 7.754 sec elapsed
 ```
 
 

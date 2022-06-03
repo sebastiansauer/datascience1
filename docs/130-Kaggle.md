@@ -6,6 +6,23 @@
 ## Vorbereitung
 
 
+<!-- ```{r global-knitr-options, include=FALSE} -->
+<!--   knitr::opts_chunk$set( -->
+<!--   fig.pos = 'H', -->
+<!--   fig.asp = 0.618, -->
+<!--   fig.align='center', -->
+<!--   fig.width = 5, -->
+<!--   out.width = "100%", -->
+<!--   fig.cap = "",  -->
+<!--   fig.path = "chunk-img/", -->
+<!--   dpi = 300, -->
+<!--   # tidy = TRUE, -->
+<!--   echo = TRUE, -->
+<!--   message = FALSE, -->
+<!--   warning = FALSE, -->
+<!--   cache = TRUE, -->
+<!--   fig.show = "hold") -->
+<!-- ``` -->
 
 
 
@@ -92,27 +109,15 @@ wenn Sie `revenue` logarithmiert haben.
 Die Daten können Sie von der Kaggle-Projektseite beziehen oder so:
 
 
-```r
-d_train_path <- "https://raw.githubusercontent.com/sebastiansauer/Lehre/main/data/tmdb-box-office-prediction/train.csv"
-d_test_path <- "https://raw.githubusercontent.com/sebastiansauer/Lehre/main/data/tmdb-box-office-prediction/test.csv"
-```
 
 
 
 
 
-```r
-d_train_raw <- read_csv(d_train_path)
-d_test <- read_csv(d_test_path)
-```
 
 
 Mal einen Blick werfen:
 
-
-```r
-glimpse(d_train_raw)
-```
 
 ```
 ## Rows: 3,000
@@ -140,10 +145,6 @@ glimpse(d_train_raw)
 ## $ cast                  <chr> "[{'cast_id': 4, 'character': 'Lou', 'credit_id'…
 ## $ crew                  <chr> "[{'credit_id': '59ac067c92514107af02c8c8', 'dep…
 ## $ revenue               <dbl> 12314651, 95149435, 13092000, 16000000, 3923970,…
-```
-
-```r
-glimpse(d_test)
 ```
 
 ```
@@ -181,11 +182,6 @@ entfernen wir diese Spalten,
 was die Größe des Datensatzes massiv reduziert.
 
 
-```r
-d_train <-
-  d_train_raw %>% 
-  select(popularity, runtime, revenue, budget, release_date) 
-```
 
 
 
@@ -199,13 +195,7 @@ d_train <-
 
 
 
-
-```r
-library(visdat)
-vis_dat(d_train)
-```
-
-<img src="chunk-img/unnamed-chunk-6-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="130-Kaggle_files/figure-html/unnamed-chunk-6-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 ### Fehlende Werte prüfen
@@ -213,22 +203,12 @@ vis_dat(d_train)
 Welche Spalten haben viele fehlende Werte?
 
 
-
-```r
-vis_miss(d_train)
-```
-
-<img src="chunk-img/unnamed-chunk-7-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="130-Kaggle_files/figure-html/unnamed-chunk-7-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 Mit `{VIM}` kann man einen Datensatz gut auf fehlende Werte hin untersuchen:
 
-
-```r
-aggr(d_train)
-```
-
-<img src="chunk-img/unnamed-chunk-8-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="130-Kaggle_files/figure-html/unnamed-chunk-8-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 ## Rezept
@@ -236,22 +216,6 @@ aggr(d_train)
 ### Rezept definieren
 
 
-
-```r
-rec1 <-
-  recipe(revenue ~ ., data = d_train) %>% 
-  #update_role(all_predictors(), new_role = "id") %>% 
-  #update_role(popularity, runtime, revenue, budget, original_language) %>% 
-  #update_role(revenue, new_role = "outcome") %>% 
-  step_mutate(budget = if_else(budget < 10, 10, budget)) %>% 
-  step_log(budget) %>% 
-  step_mutate(release_date = mdy(release_date)) %>% 
-  step_date(release_date, features = c("year", "month"), keep_original_cols = FALSE) %>% 
-  step_impute_knn(all_predictors()) %>% 
-  step_dummy(all_nominal())
-
-rec1
-```
 
 ```
 ## Recipe
@@ -273,20 +237,16 @@ rec1
 ```
 
 
-```r
-tidy(rec1)
-```
-
 ```
 ## # A tibble: 6 × 6
 ##   number operation type       trained skip  id              
 ##    <int> <chr>     <chr>      <lgl>   <lgl> <chr>           
-## 1      1 step      mutate     FALSE   FALSE mutate_95zfT    
-## 2      2 step      log        FALSE   FALSE log_AtOWH       
-## 3      3 step      mutate     FALSE   FALSE mutate_Vz78i    
-## 4      4 step      date       FALSE   FALSE date_SjMwY      
-## 5      5 step      impute_knn FALSE   FALSE impute_knn_2wDsS
-## 6      6 step      dummy      FALSE   FALSE dummy_LMd5A
+## 1      1 step      mutate     FALSE   FALSE mutate_NPsDj    
+## 2      2 step      log        FALSE   FALSE log_uY0o5       
+## 3      3 step      mutate     FALSE   FALSE mutate_5L3cX    
+## 4      4 step      date       FALSE   FALSE date_fbNLA      
+## 5      5 step      impute_knn FALSE   FALSE impute_knn_qa3u3
+## 6      6 step      dummy      FALSE   FALSE dummy_pzH9K
 ```
 
 
@@ -294,10 +254,6 @@ tidy(rec1)
 ### Check das Rezept 
 
 
-
-```r
-prep(rec1, verbose = TRUE)
-```
 
 ```
 ## oper 1 step mutate [training] 
@@ -333,11 +289,6 @@ prep(rec1, verbose = TRUE)
 
 
 
-```r
-prep(rec1) %>% 
-  bake(new_data = NULL) 
-```
-
 ```
 ## # A tibble: 3,000 × 16
 ##    popularity runtime budget  revenue release_date_year release_date_month_Feb
@@ -364,19 +315,10 @@ prep(rec1) %>%
 Wir definieren eine Helper-Funktion:
 
 
-```r
-sum_isna <- function(x) {sum(is.na(x))}
-```
 
 
 Und wenden diese auf jede Spalte an:
 
-
-```r
-prep(rec1) %>% 
-  bake(new_data = NULL) %>%  
-  map_df(sum_isna)
-```
 
 ```
 ## # A tibble: 1 × 16
@@ -396,11 +338,6 @@ Keine fehlenden Werte mehr *in den Prädiktoren*.
 
 Nach fehlenden Werten könnte man z.B. auch so suchen:
 
-
-```r
-datawizard::describe_distribution(d_train)
-```
-
 Variable   |     Mean |       SD |      IQR |              Range | Skewness | Kurtosis |    n | n_Missing
 ---------------------------------------------------------------------------------------------------------
 popularity |     8.46 |    12.10 |     6.88 | [1.00e-06, 294.34] |    14.38 |   280.10 | 3000 |         0
@@ -417,11 +354,6 @@ Das Test-Sample backen wir auch mal.
 
 Wichtig: Wir preppen den Datensatz mit dem *Train-Sample*.
 
-
-```r
-bake(prep(rec1), new_data = d_test) %>% 
-  head()
-```
 
 ```
 ## # A tibble: 6 × 15
@@ -447,11 +379,6 @@ bake(prep(rec1), new_data = d_test) %>%
 
 
 
-```r
-cv_scheme <- vfold_cv(d_train,
-                      v = 5, 
-                      repeats = 3)
-```
 
 
 ## Modelle
@@ -460,12 +387,6 @@ cv_scheme <- vfold_cv(d_train,
 
 
 
-```r
-mod_tree <-
-  decision_tree(cost_complexity = tune(),
-                tree_depth = tune(),
-                mode = "regression")
-```
 
 
 
@@ -473,20 +394,9 @@ mod_tree <-
 
 
 
-```r
-doParallel::registerDoParallel()
-```
 
 
 
-```r
-mod_rf <-
-  rand_forest(mtry = tune(),
-              min_n = tune(),
-              trees = 1000,
-              mode = "regression") %>% 
-  set_engine("ranger", num.threads = 4)
-```
 
 
 
@@ -494,23 +404,12 @@ mod_rf <-
 
 
 
-```r
-mod_boost <- boost_tree(mtry = tune(),
-                        min_n = tune(),
-                        trees = tune()) %>% 
-  set_engine("xgboost", nthreads = parallel::detectCores()) %>% 
-  set_mode("regression")
-```
 
 
 ### LM
 
 
 
-```r
-mod_lm <-
-  linear_reg()
-```
 
 
 
@@ -518,44 +417,18 @@ mod_lm <-
 
 
 
-```r
-preproc <- list(rec1 = rec1)
-models <- list(tree1 = mod_tree, rf1 = mod_rf, boost1 = mod_boost, lm1 = mod_lm)
- 
- 
-all_workflows <- workflow_set(preproc, models)
-```
 
 
 ## Fitten und tunen
 
 
 
-```r
-if (file.exists("objects/tmdb_model_set.rds")) {
-  tmdb_model_set <- read_rds("objects/tmdb_model_set.rds")
-} else {
-  tic()
-  tmdb_model_set <-
-    all_workflows %>% 
-    workflow_map(
-      resamples = cv_scheme,
-      grid = 10,
-    #  metrics = metric_set(rmse),
-      seed = 42,  # reproducibility
-      verbose = TRUE)
-  toc()
-}
-```
 
 
 Man kann sich das Ergebnisobjekt abspeichern, 
 um künftig Rechenzeit zu sparen:
 
 
-```r
-write_rds(tmdb_model_set, "objects/tmdb_model_set.rds")
-```
 
 
 Professioneller ist der Ansatz mit dem R-Paket [target](https://books.ropensci.org/targets/).
@@ -571,13 +444,7 @@ Genauer geagt, welches Modell, denn es ist ja nicht nur ein Algorithmus,
 sondern ein Algorithmus plus ein Rezept plus die Parameterinstatiierung plus
 ein spezifischer Datensatz.
 
-
-```r
-tune::autoplot(tmdb_model_set) +
-  theme(legend.position = "bottom")
-```
-
-<img src="chunk-img/unnamed-chunk-25-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="130-Kaggle_files/figure-html/unnamed-chunk-25-1.png" width="70%" style="display: block; margin: auto;" />
 
 R-Quadrat ist nicht entscheidend; `rmse` ist wichtiger.
 
@@ -585,13 +452,6 @@ Die Ergebnislage ist nicht ganz klar, aber
 einiges spricht für das Boosting-Modell, `rec1_boost1`.
 
 
-
-```r
-tmdb_model_set %>% 
-  collect_metrics() %>% 
-  arrange(-mean) %>% 
-  head(10)
-```
 
 ```
 ## # A tibble: 10 × 9
@@ -611,14 +471,6 @@ tmdb_model_set %>%
 
 
 
-```r
-best_model_params <-
-extract_workflow_set_result(tmdb_model_set, "rec1_boost1") %>% 
-  select_best()
-
-best_model_params
-```
-
 ```
 ## # A tibble: 1 × 4
 ##    mtry trees min_n .config              
@@ -629,23 +481,8 @@ best_model_params
 
 
 
-```r
-best_wf <- 
-all_workflows %>% 
-  extract_workflow("rec1_boost1")
-
-#best_wf
-```
 
 
-
-```r
-best_wf_finalized <- 
-  best_wf %>% 
-  finalize_workflow(best_model_params)
-
-best_wf_finalized
-```
 
 ```
 ## ══ Workflow ════════════════════════════════════════════════════════════════════
@@ -680,23 +517,13 @@ best_wf_finalized
 
 
 
-```r
-fit_final <-
-  best_wf_finalized %>% 
-  fit(d_train)
 ```
-
-```
-## [15:04:04] WARNING: amalgamation/../src/learner.cc:576: 
+## [15:37:43] WARNING: amalgamation/../src/learner.cc:576: 
 ## Parameters: { "nthreads" } might not be used.
 ## 
 ##   This could be a false alarm, with some parameters getting used by language bindings but
 ##   then being mistakenly passed down to XGBoost core, or some parameter actually being used
 ##   but getting flagged wrongly here. Please open an issue if you find any such cases.
-```
-
-```r
-fit_final
 ```
 
 ```
@@ -716,7 +543,7 @@ fit_final
 ## 
 ## ── Model ───────────────────────────────────────────────────────────────────────
 ## ##### xgb.Booster
-## raw: 362.3 Kb 
+## raw: 351.6 Kb 
 ## call:
 ##   xgboost::xgb.train(params = list(eta = 0.3, max_depth = 6, gamma = 0, 
 ##     colsample_bytree = 1, colsample_bynode = 0.4, min_child_weight = 4L, 
@@ -734,25 +561,17 @@ fit_final
 ## nfeatures : 15 
 ## evaluation_log:
 ##     iter training_rmse
-##        1     130788504
-##        2     109589488
+##        1     121004840
+##        2     100166656
 ## ---                   
-##       99      27122390
-##      100      27036782
+##       99      27574408
+##      100      27248100
 ```
 
 
 
 
 
-```r
-d_test$revenue <- NA
-
-final_preds <- 
-  fit_final %>% 
-  predict(new_data = d_test) %>% 
-  bind_cols(d_test)
-```
 
 
 ## Submission
@@ -761,19 +580,11 @@ final_preds <-
 ### Submission vorbereiten
 
 
-```r
-submission_df <-
-  final_preds %>% 
-  select(id, revenue = .pred)
-```
 
 
 Abspeichern und einreichen:
 
 
-```r
-write_csv(submission_df, file = "objects/submission.csv")
-```
 
 Diese CSV-Datei reichen wir dann bei Kagglei ein.
 

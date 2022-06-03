@@ -233,10 +233,10 @@ thema11:
   
   Aufgaben:
 
-    - "[Fallstudie Einfache lineare Regression mit Tidymodels, Competition TMDB](https://www.kaggle.com/ssauer/simple-linear-model-tidymodels)"
-    - "[Fallstudie Einfaches Random-Forest-Modell mit Tidymodels, Competition TMDB](https://www.kaggle.com/code/ssauer/simple-rf-tuned)"
-    - "[Fallstudie Einfache lineare Regression in Base-R, Anfängerniveau, Competition TMDB](https://www.kaggle.com/code/ssauer/tmdb-simple-regression-beginners)"
-    - "[Fallstudie Workflow-Set mit Tidymodels, Competition TMDB](https://www.kaggle.com/ssauer/tmdb-xgboost-tidymodels)"
+    - "[Fallstudie Einfache lineare Regression mit Tidymodels, Kaggle-Competition TMDB](https://www.kaggle.com/ssauer/simple-linear-model-tidymodels)"
+    - "[Fallstudie Einfaches Random-Forest-Modell mit Tidymodels, Kaggle-Competition TMDB](https://www.kaggle.com/code/ssauer/simple-rf-tuned)"
+    - "[Fallstudie Einfache lineare Regression in Base-R, Anfängerniveau, Kaggle-Competition TMDB](https://www.kaggle.com/code/ssauer/tmdb-simple-regression-beginners)"
+    - "[Fallstudie Workflow-Set mit Tidymodels, Kaggle-Competition TMDB](https://www.kaggle.com/ssauer/tmdb-xgboost-tidymodels)"
 
 
   
@@ -249,7 +249,7 @@ thema12:
 
   Hinweise:
 
-  Aufgabe:
+  Aufgaben:
     - "[Fallstudie Titanic mit Tidymodels bei Kaggle](https://www.kaggle.com/code/modesty520/a-tutorial-with-tidymodels/report#modeling)"
     - "[Einfache Fallstudie mit Tidymodels bei Kaggle](https://www.kaggle.com/code/benthecoder/tidymodels-in-r-using-measles-data/notebook)"
     

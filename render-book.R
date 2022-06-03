@@ -11,7 +11,10 @@ bookdown::preview_chapter("100-Entscheidungsbäume.Rmd")
 bookdown::preview_chapter("110-Ensemble-Lerner.Rmd")
 bookdown::preview_chapter("120-Regularisierte-Modelle.Rmd")
 bookdown::preview_chapter("130-Kaggle.Rmd")
-bookdown::preview_chapter("140-Dimensionsreduktion.Rmd")
+
+bookdown::preview_chapter("140-roter-Faden.Rmd")
+
+bookdown::preview_chapter("150-Dimensionsreduktion.Rmd")
 
 bookdown::render_book("index.Rmd", output_format = "bookdown::bs4_book")
 

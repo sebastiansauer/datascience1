@@ -70,6 +70,7 @@ fig:lasso-l1
 fig:l1l2
 fig:l2-penalty
 fig:l1-penalty
+fig:bigpic
 fig:redundpred
 fig:curse1
 fig:curse2
@@ -116,7 +117,8 @@ bewertungsprozess
 hinweise-1
 formalia
 ich-brauche-hilfe
-wo-finde-ich-beispiele
+wo-finde-ich-beispiele-und-vorlagen
+materialsammlung
 videos-1
 plagiatskontrolle
 statistisches-lernen
@@ -402,6 +404,15 @@ submission-vorbereiten
 kaggle-score
 aufgaben-10
 vertiefung-5
+der-rote-faden
+aussichtspunkt-1-blick-vom-hohen-berg
+aussichtspunkt-2-blick-in-den-hof-der-handwerker
+ein-maximale-einfaches-werkstück-mit-tidymodels
+ein-immer-noch-recht-einfaches-werkstück-mit-tidymodels
+aussichtspunkt-3-der-nebelberg-quiz
+aussichtspunkt-4-der-exerzitien-park
+yacsda-collection
+aussichtspunkt-5-in-der-bibliothek
 dimensionsreduktion
 lernsteuerung-10
 lernziele-11

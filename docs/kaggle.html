@@ -6,14 +6,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Kapitel 12 Kaggle | DataScience1</title>
 <meta name="author" content="Sebastian Sauer">
-<meta name="description" content="12.1 Vorbereitung  12.1.1 Lernsteuerung   12.1.2 Lernziele Sie wissen, wie man einen Datensatz für einen Prognosewettbwerb bei Kaggle einreicht Sie kennen einige Beispiele von Notebooks auf Kaggle...">
+<meta name="description" content="12.1 Vorbereitung           12.1.1 Lernsteuerung   12.1.2 Lernziele Sie wissen, wie man einen Datensatz für einen Prognosewettbwerb bei Kaggle einreicht Sie kennen einige Beispiele von Notebooks...">
 <meta name="generator" content="bookdown 0.26.2 with bs4_book()">
 <meta property="og:title" content="Kapitel 12 Kaggle | DataScience1">
 <meta property="og:type" content="book">
-<meta property="og:description" content="12.1 Vorbereitung  12.1.1 Lernsteuerung   12.1.2 Lernziele Sie wissen, wie man einen Datensatz für einen Prognosewettbwerb bei Kaggle einreicht Sie kennen einige Beispiele von Notebooks auf Kaggle...">
+<meta property="og:description" content="12.1 Vorbereitung           12.1.1 Lernsteuerung   12.1.2 Lernziele Sie wissen, wie man einen Datensatz für einen Prognosewettbwerb bei Kaggle einreicht Sie kennen einige Beispiele von Notebooks...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kapitel 12 Kaggle | DataScience1">
-<meta name="twitter:description" content="12.1 Vorbereitung  12.1.1 Lernsteuerung   12.1.2 Lernziele Sie wissen, wie man einen Datensatz für einen Prognosewettbwerb bei Kaggle einreicht Sie kennen einige Beispiele von Notebooks auf Kaggle...">
+<meta name="twitter:description" content="12.1 Vorbereitung           12.1.1 Lernsteuerung   12.1.2 Lernziele Sie wissen, wie man einen Datensatz für einen Prognosewettbwerb bei Kaggle einreicht Sie kennen einige Beispiele von Notebooks...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -82,7 +82,8 @@
 <li><a class="" href="ensemble-lerner.html"><span class="header-section-number">10</span> Ensemble Lerner</a></li>
 <li><a class="" href="regularisierte-modelle.html"><span class="header-section-number">11</span> Regularisierte Modelle</a></li>
 <li><a class="active" href="kaggle.html"><span class="header-section-number">12</span> Kaggle</a></li>
-<li><a class="" href="dimensionsreduktion.html"><span class="header-section-number">13</span> Dimensionsreduktion</a></li>
+<li><a class="" href="der-rote-faden.html"><span class="header-section-number">13</span> Der rote Faden</a></li>
+<li><a class="" href="dimensionsreduktion.html"><span class="header-section-number">14</span> Dimensionsreduktion</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
 
@@ -99,6 +100,23 @@
 <h2>
 <span class="header-section-number">12.1</span> Vorbereitung<a class="anchor" aria-label="anchor" href="#vorbereitung-9"><i class="fas fa-link"></i></a>
 </h2>
+<!-- ```{r global-knitr-options, include=FALSE} -->
+<!--   knitr::opts_chunk$set( -->
+<!--   fig.pos = 'H', -->
+<!--   fig.asp = 0.618, -->
+<!--   fig.align='center', -->
+<!--   fig.width = 5, -->
+<!--   out.width = "100%", -->
+<!--   fig.cap = "",  -->
+<!--   fig.path = "chunk-img/", -->
+<!--   dpi = 300, -->
+<!--   # tidy = TRUE, -->
+<!--   echo = TRUE, -->
+<!--   message = FALSE, -->
+<!--   warning = FALSE, -->
+<!--   cache = TRUE, -->
+<!--   fig.show = "hold") -->
+<!-- ``` -->
 <div id="lernsteuerung-9" class="section level3" number="12.1.1">
 <h3>
 <span class="header-section-number">12.1.1</span> Lernsteuerung<a class="anchor" aria-label="anchor" href="#lernsteuerung-9"><i class="fas fa-link"></i></a>
@@ -129,7 +147,7 @@
 <span class="header-section-number">12.1.4</span> R-Pakete<a class="anchor" aria-label="anchor" href="#r-pakete"><i class="fas fa-link"></i></a>
 </h3>
 <p>In diesem Kapitel werden folgende R-Pakete benötigt:</p>
-<div class="sourceCode" id="cb436"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb293"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/collectivemedia/tictoc">tictoc</a></span><span class="op">)</span>  <span class="co"># Rechenzeit messen</span>
@@ -182,15 +200,7 @@ wenn Sie <code>revenue</code> logarithmiert haben.</li>
 <span class="header-section-number">12.3.3</span> Daten<a class="anchor" aria-label="anchor" href="#daten-1"><i class="fas fa-link"></i></a>
 </h3>
 <p>Die Daten können Sie von der Kaggle-Projektseite beziehen oder so:</p>
-<div class="sourceCode" id="cb437"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">d_train_path</span> <span class="op">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/sebastiansauer/Lehre/main/data/tmdb-box-office-prediction/train.csv"</span>
-<span class="va">d_test_path</span> <span class="op">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/sebastiansauer/Lehre/main/data/tmdb-box-office-prediction/test.csv"</span></code></pre></div>
-<div class="sourceCode" id="cb438"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">d_train_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="va">d_train_path</span><span class="op">)</span>
-<span class="va">d_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="va">d_test_path</span><span class="op">)</span></code></pre></div>
 <p>Mal einen Blick werfen:</p>
-<div class="sourceCode" id="cb439"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">d_train_raw</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 3,000
 ## Columns: 23
 ## $ id                    &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 1…
@@ -216,8 +226,6 @@ wenn Sie <code>revenue</code> logarithmiert haben.</li>
 ## $ cast                  &lt;chr&gt; "[{'cast_id': 4, 'character': 'Lou', 'credit_id'…
 ## $ crew                  &lt;chr&gt; "[{'credit_id': '59ac067c92514107af02c8c8', 'dep…
 ## $ revenue               &lt;dbl&gt; 12314651, 95149435, 13092000, 16000000, 3923970,…</code></pre>
-<div class="sourceCode" id="cb441"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">d_test</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 4,398
 ## Columns: 22
 ## $ id                    &lt;dbl&gt; 3001, 3002, 3003, 3004, 3005, 3006, 3007, 3008, …
@@ -250,32 +258,21 @@ wenn Sie <code>revenue</code> logarithmiert haben.</li>
 <p>Da wir aus Gründen der Einfachheit einige Spalten nicht berücksichtigen,
 entfernen wir diese Spalten,
 was die Größe des Datensatzes massiv reduziert.</p>
-<div class="sourceCode" id="cb443"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">d_train</span> <span class="op">&lt;-</span>
-  <span class="va">d_train_raw</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">popularity</span>, <span class="va">runtime</span>, <span class="va">revenue</span>, <span class="va">budget</span>, <span class="va">release_date</span><span class="op">)</span> </code></pre></div>
 </div>
 <div id="datensatz-kennenlernen" class="section level3" number="12.3.5">
 <h3>
 <span class="header-section-number">12.3.5</span> Datensatz kennenlernen<a class="anchor" aria-label="anchor" href="#datensatz-kennenlernen"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb444"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://visdat.njtierney.com/">visdat</a></span><span class="op">)</span>
-<span class="fu"><a href="https://docs.ropensci.org/visdat/reference/vis_dat.html">vis_dat</a></span><span class="op">(</span><span class="va">d_train</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="chunk-img/unnamed-chunk-6-1.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="130-Kaggle_files/figure-html/unnamed-chunk-6-1.png" width="70%" style="display: block; margin: auto;"></div>
 </div>
 <div id="fehlende-werte-prüfen" class="section level3" number="12.3.6">
 <h3>
 <span class="header-section-number">12.3.6</span> Fehlende Werte prüfen<a class="anchor" aria-label="anchor" href="#fehlende-werte-pr%C3%BCfen"><i class="fas fa-link"></i></a>
 </h3>
 <p>Welche Spalten haben viele fehlende Werte?</p>
-<div class="sourceCode" id="cb445"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://docs.ropensci.org/visdat/reference/vis_miss.html">vis_miss</a></span><span class="op">(</span><span class="va">d_train</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="chunk-img/unnamed-chunk-7-1.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="130-Kaggle_files/figure-html/unnamed-chunk-7-1.png" width="70%" style="display: block; margin: auto;"></div>
 <p>Mit <a href="https://github.com/statistikat/VIM">VIM</a> kann man einen Datensatz gut auf fehlende Werte hin untersuchen:</p>
-<div class="sourceCode" id="cb446"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/VIM/man/aggr.html">aggr</a></span><span class="op">(</span><span class="va">d_train</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="chunk-img/unnamed-chunk-8-1.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="130-Kaggle_files/figure-html/unnamed-chunk-8-1.png" width="70%" style="display: block; margin: auto;"></div>
 </div>
 </div>
 <div id="rezept" class="section level2" number="12.4">
@@ -286,20 +283,6 @@ was die Größe des Datensatzes massiv reduziert.</p>
 <h3>
 <span class="header-section-number">12.4.1</span> Rezept definieren<a class="anchor" aria-label="anchor" href="#rezept-definieren-3"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb447"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">rec1</span> <span class="op">&lt;-</span>
-  <span class="fu">recipe</span><span class="op">(</span><span class="va">revenue</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">d_train</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="co">#update_role(all_predictors(), new_role = "id") %&gt;% </span>
-  <span class="co">#update_role(popularity, runtime, revenue, budget, original_language) %&gt;% </span>
-  <span class="co">#update_role(revenue, new_role = "outcome") %&gt;% </span>
-  <span class="fu">step_mutate</span><span class="op">(</span>budget <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/if_else.html">if_else</a></span><span class="op">(</span><span class="va">budget</span> <span class="op">&lt;</span> <span class="fl">10</span>, <span class="fl">10</span>, <span class="va">budget</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">step_log</span><span class="op">(</span><span class="va">budget</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">step_mutate</span><span class="op">(</span>release_date <span class="op">=</span> <span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd.html">mdy</a></span><span class="op">(</span><span class="va">release_date</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">step_date</span><span class="op">(</span><span class="va">release_date</span>, features <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"year"</span>, <span class="st">"month"</span><span class="op">)</span>, keep_original_cols <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">step_impute_knn</span><span class="op">(</span><span class="fu">all_predictors</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">step_dummy</span><span class="op">(</span><span class="fu">all_nominal</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-
-<span class="va">rec1</span></code></pre></div>
 <pre><code>## Recipe
 ## 
 ## Inputs:
@@ -316,24 +299,20 @@ was die Größe des Datensatzes massiv reduziert.</p>
 ## Date features from release_date
 ## K-nearest neighbor imputation for all_predictors()
 ## Dummy variables from all_nominal()</code></pre>
-<div class="sourceCode" id="cb449"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">rec1</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 6
 ##   number operation type       trained skip  id              
 ##    &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;      &lt;lgl&gt;   &lt;lgl&gt; &lt;chr&gt;           
-## 1      1 step      mutate     FALSE   FALSE mutate_95zfT    
-## 2      2 step      log        FALSE   FALSE log_AtOWH       
-## 3      3 step      mutate     FALSE   FALSE mutate_Vz78i    
-## 4      4 step      date       FALSE   FALSE date_SjMwY      
-## 5      5 step      impute_knn FALSE   FALSE impute_knn_2wDsS
-## 6      6 step      dummy      FALSE   FALSE dummy_LMd5A</code></pre>
+## 1      1 step      mutate     FALSE   FALSE mutate_NPsDj    
+## 2      2 step      log        FALSE   FALSE log_uY0o5       
+## 3      3 step      mutate     FALSE   FALSE mutate_5L3cX    
+## 4      4 step      date       FALSE   FALSE date_fbNLA      
+## 5      5 step      impute_knn FALSE   FALSE impute_knn_qa3u3
+## 6      6 step      dummy      FALSE   FALSE dummy_pzH9K</code></pre>
 </div>
 <div id="check-das-rezept" class="section level3" number="12.4.2">
 <h3>
 <span class="header-section-number">12.4.2</span> Check das Rezept<a class="anchor" aria-label="anchor" href="#check-das-rezept"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb451"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">prep</span><span class="op">(</span><span class="va">rec1</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <pre><code>## oper 1 step mutate [training] 
 ## oper 2 step log [training] 
 ## oper 3 step mutate [training] 
@@ -359,9 +338,6 @@ was die Größe des Datensatzes massiv reduziert.</p>
 ## Date features from release_date [trained]
 ## K-nearest neighbor imputation for runtime, budget, release_date_year, release_da... [trained]
 ## Dummy variables from release_date_month [trained]</code></pre>
-<div class="sourceCode" id="cb454"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">prep</span><span class="op">(</span><span class="va">rec1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">bake</span><span class="op">(</span>new_data <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> </code></pre></div>
 <pre><code>## # A tibble: 3,000 × 16
 ##    popularity runtime budget  revenue release_date_year release_date_month_Feb
 ##         &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;             &lt;dbl&gt;                  &lt;dbl&gt;
@@ -382,13 +358,7 @@ was die Größe des Datensatzes massiv reduziert.</p>
 ## #   release_date_month_Oct &lt;dbl&gt;, release_date_month_Nov &lt;dbl&gt;,
 ## #   release_date_month_Dec &lt;dbl&gt;</code></pre>
 <p>Wir definieren eine Helper-Funktion:</p>
-<div class="sourceCode" id="cb456"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">sum_isna</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">}</span></code></pre></div>
 <p>Und wenden diese auf jede Spalte an:</p>
-<div class="sourceCode" id="cb457"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">prep</span><span class="op">(</span><span class="va">rec1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">bake</span><span class="op">(</span>new_data <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>  
-  <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_df</a></span><span class="op">(</span><span class="va">sum_isna</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 16
 ##   popularity runtime budget revenue release_date_year release_date_month_Feb
 ##        &lt;int&gt;   &lt;int&gt;  &lt;int&gt;   &lt;int&gt;             &lt;int&gt;                  &lt;int&gt;
@@ -401,8 +371,6 @@ was die Größe des Datensatzes massiv reduziert.</p>
 ## #   release_date_month_Dec &lt;int&gt;</code></pre>
 <p>Keine fehlenden Werte mehr <em>in den Prädiktoren</em>.</p>
 <p>Nach fehlenden Werten könnte man z.B. auch so suchen:</p>
-<div class="sourceCode" id="cb459"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">datawizard</span><span class="fu">::</span><span class="fu"><a href="https://easystats.github.io/datawizard/reference/describe_distribution.html">describe_distribution</a></span><span class="op">(</span><span class="va">d_train</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
 <div id="variable-mean-sd-iqr-range-skewness-kurtosis-n-n_missing" class="section level2" number="12.5">
@@ -420,9 +388,6 @@ budget | 2.25e+07 | 3.70e+07 | 2.90e+07 | [0.00, 3.80e+08] | 3.10 | 13.23 | 3000
 </h3>
 <p>Das Test-Sample backen wir auch mal.</p>
 <p>Wichtig: Wir preppen den Datensatz mit dem <em>Train-Sample</em>.</p>
-<div class="sourceCode" id="cb460"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">bake</span><span class="op">(</span><span class="fu">prep</span><span class="op">(</span><span class="va">rec1</span><span class="op">)</span>, new_data <span class="op">=</span> <span class="va">d_test</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 15
 ##   popularity runtime budget release_date_year release_date_mon… release_date_mo…
 ##        &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt;            &lt;dbl&gt;
@@ -443,10 +408,6 @@ budget | 2.25e+07 | 3.70e+07 | 2.90e+07 | [0.00, 3.80e+08] | 3.10 | 13.23 | 3000
 <h2>
 <span class="header-section-number">12.6</span> Kreuzvalidierung<a class="anchor" aria-label="anchor" href="#kreuzvalidierung"><i class="fas fa-link"></i></a>
 </h2>
-<div class="sourceCode" id="cb462"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">cv_scheme</span> <span class="op">&lt;-</span> <span class="fu">vfold_cv</span><span class="op">(</span><span class="va">d_train</span>,
-                      v <span class="op">=</span> <span class="fl">5</span>, 
-                      repeats <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="modelle-1" class="section level2" number="12.7">
 <h2>
@@ -456,80 +417,34 @@ budget | 2.25e+07 | 3.70e+07 | 2.90e+07 | [0.00, 3.80e+08] | 3.10 | 13.23 | 3000
 <h3>
 <span class="header-section-number">12.7.1</span> Baum<a class="anchor" aria-label="anchor" href="#baum-1"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb463"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mod_tree</span> <span class="op">&lt;-</span>
-  <span class="fu">decision_tree</span><span class="op">(</span>cost_complexity <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="op">)</span>,
-                tree_depth <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="op">)</span>,
-                mode <span class="op">=</span> <span class="st">"regression"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="random-forest" class="section level3" number="12.7.2">
 <h3>
 <span class="header-section-number">12.7.2</span> Random Forest<a class="anchor" aria-label="anchor" href="#random-forest"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb464"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">doParallel</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/doParallel/man/registerDoParallel.html">registerDoParallel</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb465"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mod_rf</span> <span class="op">&lt;-</span>
-  <span class="fu">rand_forest</span><span class="op">(</span>mtry <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="op">)</span>,
-              min_n <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="op">)</span>,
-              trees <span class="op">=</span> <span class="fl">1000</span>,
-              mode <span class="op">=</span> <span class="st">"regression"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">set_engine</span><span class="op">(</span><span class="st">"ranger"</span>, num.threads <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="xgboost-2" class="section level3" number="12.7.3">
 <h3>
 <span class="header-section-number">12.7.3</span> XGBoost<a class="anchor" aria-label="anchor" href="#xgboost-2"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb466"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mod_boost</span> <span class="op">&lt;-</span> <span class="fu">boost_tree</span><span class="op">(</span>mtry <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="op">)</span>,
-                        min_n <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="op">)</span>,
-                        trees <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">set_engine</span><span class="op">(</span><span class="st">"xgboost"</span>, nthreads <span class="op">=</span> <span class="fu">parallel</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/parallel/detectCores.html">detectCores</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">set_mode</span><span class="op">(</span><span class="st">"regression"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="lm" class="section level3" number="12.7.4">
 <h3>
 <span class="header-section-number">12.7.4</span> LM<a class="anchor" aria-label="anchor" href="#lm"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb467"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">mod_lm</span> <span class="op">&lt;-</span>
-  <span class="fu">linear_reg</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
 <div id="workflows-2" class="section level2" number="12.8">
 <h2>
 <span class="header-section-number">12.8</span> Workflows<a class="anchor" aria-label="anchor" href="#workflows-2"><i class="fas fa-link"></i></a>
 </h2>
-<div class="sourceCode" id="cb468"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">preproc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>rec1 <span class="op">=</span> <span class="va">rec1</span><span class="op">)</span>
-<span class="va">models</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>tree1 <span class="op">=</span> <span class="va">mod_tree</span>, rf1 <span class="op">=</span> <span class="va">mod_rf</span>, boost1 <span class="op">=</span> <span class="va">mod_boost</span>, lm1 <span class="op">=</span> <span class="va">mod_lm</span><span class="op">)</span>
- 
- 
-<span class="va">all_workflows</span> <span class="op">&lt;-</span> <span class="fu">workflow_set</span><span class="op">(</span><span class="va">preproc</span>, <span class="va">models</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="fitten-und-tunen" class="section level2" number="12.9">
 <h2>
 <span class="header-section-number">12.9</span> Fitten und tunen<a class="anchor" aria-label="anchor" href="#fitten-und-tunen"><i class="fas fa-link"></i></a>
 </h2>
-<div class="sourceCode" id="cb469"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/files.html">file.exists</a></span><span class="op">(</span><span class="st">"objects/tmdb_model_set.rds"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">tmdb_model_set</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">read_rds</a></span><span class="op">(</span><span class="st">"objects/tmdb_model_set.rds"</span><span class="op">)</span>
-<span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">tic</a></span><span class="op">(</span><span class="op">)</span>
-  <span class="va">tmdb_model_set</span> <span class="op">&lt;-</span>
-    <span class="va">all_workflows</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-    <span class="fu">workflow_map</span><span class="op">(</span>
-      resamples <span class="op">=</span> <span class="va">cv_scheme</span>,
-      grid <span class="op">=</span> <span class="fl">10</span>,
-    <span class="co">#  metrics = metric_set(rmse),</span>
-      seed <span class="op">=</span> <span class="fl">42</span>,  <span class="co"># reproducibility</span>
-      verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">toc</a></span><span class="op">(</span><span class="op">)</span>
-<span class="op">}</span></code></pre></div>
 <p>Man kann sich das Ergebnisobjekt abspeichern,
 um künftig Rechenzeit zu sparen:</p>
-<div class="sourceCode" id="cb470"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">write_rds</a></span><span class="op">(</span><span class="va">tmdb_model_set</span>, <span class="st">"objects/tmdb_model_set.rds"</span><span class="op">)</span></code></pre></div>
 <p>Professioneller ist der Ansatz mit dem R-Paket <a href="https://books.ropensci.org/targets/">target</a>.</p>
 </div>
 <div id="finalisieren" class="section level2" number="12.10">
@@ -543,18 +458,10 @@ um künftig Rechenzeit zu sparen:</p>
 <p>Genauer geagt, welches Modell, denn es ist ja nicht nur ein Algorithmus,
 sondern ein Algorithmus plus ein Rezept plus die Parameterinstatiierung plus
 ein spezifischer Datensatz.</p>
-<div class="sourceCode" id="cb471"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">tune</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot</a></span><span class="op">(</span><span class="va">tmdb_model_set</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="chunk-img/unnamed-chunk-25-1.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="130-Kaggle_files/figure-html/unnamed-chunk-25-1.png" width="70%" style="display: block; margin: auto;"></div>
 <p>R-Quadrat ist nicht entscheidend; <code>rmse</code> ist wichtiger.</p>
 <p>Die Ergebnislage ist nicht ganz klar, aber
 einiges spricht für das Boosting-Modell, <code>rec1_boost1</code>.</p>
-<div class="sourceCode" id="cb472"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tmdb_model_set</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">collect_metrics</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="op">-</span><span class="va">mean</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 10 × 9
 ##    wflow_id    .config     preproc model .metric .estimator   mean     n std_err
 ##    &lt;chr&gt;       &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt;
@@ -568,28 +475,10 @@ einiges spricht für das Boosting-Modell, <code>rec1_boost1</code>.</p>
 ##  8 rec1_tree1  Preprocess… recipe  deci… rmse    standard   9.21e7    15  1.91e6
 ##  9 rec1_tree1  Preprocess… recipe  deci… rmse    standard   9.21e7    15  1.91e6
 ## 10 rec1_boost1 Preprocess… recipe  boos… rmse    standard   9.21e7    15  1.73e6</code></pre>
-<div class="sourceCode" id="cb474"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">best_model_params</span> <span class="op">&lt;-</span>
-<span class="fu">extract_workflow_set_result</span><span class="op">(</span><span class="va">tmdb_model_set</span>, <span class="st">"rec1_boost1"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">select_best</span><span class="op">(</span><span class="op">)</span>
-
-<span class="va">best_model_params</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 4
 ##    mtry trees min_n .config              
 ##   &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;                
 ## 1     6   100     4 Preprocessor1_Model04</code></pre>
-<div class="sourceCode" id="cb476"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">best_wf</span> <span class="op">&lt;-</span> 
-<span class="va">all_workflows</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">extract_workflow</span><span class="op">(</span><span class="st">"rec1_boost1"</span><span class="op">)</span>
-
-<span class="co">#best_wf</span></code></pre></div>
-<div class="sourceCode" id="cb477"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">best_wf_finalized</span> <span class="op">&lt;-</span> 
-  <span class="va">best_wf</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">finalize_workflow</span><span class="op">(</span><span class="va">best_model_params</span><span class="op">)</span>
-
-<span class="va">best_wf_finalized</span></code></pre></div>
 <pre><code>## ══ Workflow ════════════════════════════════════════════════════════════════════
 ## Preprocessor: Recipe
 ## Model: boost_tree()
@@ -621,18 +510,12 @@ einiges spricht für das Boosting-Modell, <code>rec1_boost1</code>.</p>
 <h3>
 <span class="header-section-number">12.10.2</span> Final Fit<a class="anchor" aria-label="anchor" href="#final-fit-1"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb479"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">fit_final</span> <span class="op">&lt;-</span>
-  <span class="va">best_wf_finalized</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">fit</span><span class="op">(</span><span class="va">d_train</span><span class="op">)</span></code></pre></div>
-<pre><code>## [15:04:04] WARNING: amalgamation/../src/learner.cc:576: 
+<pre><code>## [15:37:43] WARNING: amalgamation/../src/learner.cc:576: 
 ## Parameters: { "nthreads" } might not be used.
 ## 
 ##   This could be a false alarm, with some parameters getting used by language bindings but
 ##   then being mistakenly passed down to XGBoost core, or some parameter actually being used
 ##   but getting flagged wrongly here. Please open an issue if you find any such cases.</code></pre>
-<div class="sourceCode" id="cb481"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">fit_final</span></code></pre></div>
 <pre><code>## ══ Workflow [trained] ══════════════════════════════════════════════════════════
 ## Preprocessor: Recipe
 ## Model: boost_tree()
@@ -649,7 +532,7 @@ einiges spricht für das Boosting-Modell, <code>rec1_boost1</code>.</p>
 ## 
 ## ── Model ───────────────────────────────────────────────────────────────────────
 ## ##### xgb.Booster
-## raw: 362.3 Kb 
+## raw: 351.6 Kb 
 ## call:
 ##   xgboost::xgb.train(params = list(eta = 0.3, max_depth = 6, gamma = 0, 
 ##     colsample_bytree = 1, colsample_bynode = 0.4, min_child_weight = 4L, 
@@ -667,18 +550,11 @@ einiges spricht für das Boosting-Modell, <code>rec1_boost1</code>.</p>
 ## nfeatures : 15 
 ## evaluation_log:
 ##     iter training_rmse
-##        1     130788504
-##        2     109589488
+##        1     121004840
+##        2     100166656
 ## ---                   
-##       99      27122390
-##      100      27036782</code></pre>
-<div class="sourceCode" id="cb483"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">d_test</span><span class="op">$</span><span class="va">revenue</span> <span class="op">&lt;-</span> <span class="cn">NA</span>
-
-<span class="va">final_preds</span> <span class="op">&lt;-</span> 
-  <span class="va">fit_final</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span>new_data <span class="op">=</span> <span class="va">d_test</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_cols</a></span><span class="op">(</span><span class="va">d_test</span><span class="op">)</span></code></pre></div>
+##       99      27574408
+##      100      27248100</code></pre>
 </div>
 </div>
 <div id="submission" class="section level2" number="12.11">
@@ -689,13 +565,7 @@ einiges spricht für das Boosting-Modell, <code>rec1_boost1</code>.</p>
 <h3>
 <span class="header-section-number">12.11.1</span> Submission vorbereiten<a class="anchor" aria-label="anchor" href="#submission-vorbereiten"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb484"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">submission_df</span> <span class="op">&lt;-</span>
-  <span class="va">final_preds</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">id</span>, revenue <span class="op">=</span> <span class="va">.pred</span><span class="op">)</span></code></pre></div>
 <p>Abspeichern und einreichen:</p>
-<div class="sourceCode" id="cb485"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://readr.tidyverse.org/reference/write_delim.html">write_csv</a></span><span class="op">(</span><span class="va">submission_df</span>, file <span class="op">=</span> <span class="st">"objects/submission.csv"</span><span class="op">)</span></code></pre></div>
 <p>Diese CSV-Datei reichen wir dann bei Kagglei ein.</p>
 </div>
 <div id="kaggle-score" class="section level3" number="12.11.2">
@@ -729,7 +599,7 @@ einiges spricht für das Boosting-Modell, <code>rec1_boost1</code>.</p>
 </div>
   <div class="chapter-nav">
 <div class="prev"><a href="regularisierte-modelle.html"><span class="header-section-number">11</span> Regularisierte Modelle</a></div>
-<div class="next"><a href="dimensionsreduktion.html"><span class="header-section-number">13</span> Dimensionsreduktion</a></div>
+<div class="next"><a href="der-rote-faden.html"><span class="header-section-number">13</span> Der rote Faden</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
@@ -804,7 +674,7 @@ einiges spricht für das Boosting-Modell, <code>rec1_boost1</code>.</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-06-02 15:01:22.</p>
+    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-06-03 15:46:10.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -6,16 +6,27 @@ editor_options:
 # Logistische Regression
 
 
-
+<!-- ```{r global-knitr-options, include=FALSE} -->
+<!--   knitr::opts_chunk$set( -->
+<!--   fig.pos = 'H', -->
+<!--   fig.asp = 0.618, -->
+<!--   fig.align='center', -->
+<!--   fig.width = 5, -->
+<!--   out.width = "100%", -->
+<!--   fig.cap = "",  -->
+<!--   fig.path = "chunk-img/tidymodels", -->
+<!--   dpi = 300, -->
+<!--   # tidy = TRUE, -->
+<!--   echo = TRUE, -->
+<!--   message = FALSE, -->
+<!--   warning = FALSE, -->
+<!--   cache = TRUE, -->
+<!--   fig.show = "hold") -->
+<!-- ``` -->
 
 Benötigte R-Pakete für dieses Kapitel:
 
 
-```r
-library(tidyverse)
-library(tidymodels)
-library(datawizard)
-```
 
 
 
@@ -82,8 +93,8 @@ dass die logistische Regression eine Wahrscheinlichkeit der Klassenzugehörigkei
 <div class="figure" style="text-align: center">
 
 ```{=html}
-<div id="htmlwidget-7a94ec73e741b54c15f5" style="width:100%;height:300px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-7a94ec73e741b54c15f5">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: right\n [Daten] -> [Modell] \n [Modell] -> [Wskt] \n [Wskt] -> [Klassifikation]\n","svg":false},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-7cf50ab0006e507cf047" style="width:100%;height:300px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7cf50ab0006e507cf047">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: right\n [Daten] -> [Modell] \n [Modell] -> [Wskt] \n [Wskt] -> [Klassifikation]\n","svg":false},"evals":[],"jsHooks":[]}</script>
 ```
 
 <p class="caption">(\#fig:logist-regr)Definition eines Models in tidymodels</p>
@@ -96,12 +107,12 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
 
 
 ```{=html}
-<div id="zmnuspanmx" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="lgpruuecde" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#zmnuspanmx .gt_table {
+#lgpruuecde .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -126,7 +137,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-left-color: #D3D3D3;
 }
 
-#zmnuspanmx .gt_heading {
+#lgpruuecde .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -138,7 +149,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-right-color: #D3D3D3;
 }
 
-#zmnuspanmx .gt_title {
+#lgpruuecde .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -148,7 +159,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-bottom-width: 0;
 }
 
-#zmnuspanmx .gt_subtitle {
+#lgpruuecde .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -158,13 +169,13 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-top-width: 0;
 }
 
-#zmnuspanmx .gt_bottom_border {
+#lgpruuecde .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#zmnuspanmx .gt_col_headings {
+#lgpruuecde .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -179,7 +190,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-right-color: #D3D3D3;
 }
 
-#zmnuspanmx .gt_col_heading {
+#lgpruuecde .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -199,7 +210,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   overflow-x: hidden;
 }
 
-#zmnuspanmx .gt_column_spanner_outer {
+#lgpruuecde .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -211,15 +222,15 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   padding-right: 4px;
 }
 
-#zmnuspanmx .gt_column_spanner_outer:first-child {
+#lgpruuecde .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#zmnuspanmx .gt_column_spanner_outer:last-child {
+#lgpruuecde .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#zmnuspanmx .gt_column_spanner {
+#lgpruuecde .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -231,7 +242,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   width: 100%;
 }
 
-#zmnuspanmx .gt_group_heading {
+#lgpruuecde .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -253,7 +264,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   vertical-align: middle;
 }
 
-#zmnuspanmx .gt_empty_group_heading {
+#lgpruuecde .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -268,15 +279,15 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   vertical-align: middle;
 }
 
-#zmnuspanmx .gt_from_md > :first-child {
+#lgpruuecde .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#zmnuspanmx .gt_from_md > :last-child {
+#lgpruuecde .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#zmnuspanmx .gt_row {
+#lgpruuecde .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -295,7 +306,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   overflow-x: hidden;
 }
 
-#zmnuspanmx .gt_stub {
+#lgpruuecde .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -307,7 +318,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   padding-left: 12px;
 }
 
-#zmnuspanmx .gt_summary_row {
+#lgpruuecde .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -317,7 +328,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   padding-right: 5px;
 }
 
-#zmnuspanmx .gt_first_summary_row {
+#lgpruuecde .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -327,7 +338,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-top-color: #D3D3D3;
 }
 
-#zmnuspanmx .gt_grand_summary_row {
+#lgpruuecde .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -337,7 +348,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   padding-right: 5px;
 }
 
-#zmnuspanmx .gt_first_grand_summary_row {
+#lgpruuecde .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -347,11 +358,11 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-top-color: #D3D3D3;
 }
 
-#zmnuspanmx .gt_striped {
+#lgpruuecde .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#zmnuspanmx .gt_table_body {
+#lgpruuecde .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -360,7 +371,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-bottom-color: #D3D3D3;
 }
 
-#zmnuspanmx .gt_footnotes {
+#lgpruuecde .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -374,13 +385,13 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-right-color: #D3D3D3;
 }
 
-#zmnuspanmx .gt_footnote {
+#lgpruuecde .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#zmnuspanmx .gt_sourcenotes {
+#lgpruuecde .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -394,41 +405,41 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-right-color: #D3D3D3;
 }
 
-#zmnuspanmx .gt_sourcenote {
+#lgpruuecde .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#zmnuspanmx .gt_left {
+#lgpruuecde .gt_left {
   text-align: left;
 }
 
-#zmnuspanmx .gt_center {
+#lgpruuecde .gt_center {
   text-align: center;
 }
 
-#zmnuspanmx .gt_right {
+#lgpruuecde .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#zmnuspanmx .gt_font_normal {
+#lgpruuecde .gt_font_normal {
   font-weight: normal;
 }
 
-#zmnuspanmx .gt_font_bold {
+#lgpruuecde .gt_font_bold {
   font-weight: bold;
 }
 
-#zmnuspanmx .gt_font_italic {
+#lgpruuecde .gt_font_italic {
   font-style: italic;
 }
 
-#zmnuspanmx .gt_super {
+#lgpruuecde .gt_super {
   font-size: 65%;
 }
 
-#zmnuspanmx .gt_footnote_marks {
+#lgpruuecde .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -467,25 +478,13 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
 *Forschungsfrage*: Kann man anhand des Spritverbrauchs vorhersagen, ob ein Auto eine Automatik- bzw. ein manuelle Schaltung hat? Anders gesagt: Hängen Spritverbrauch und Getriebeart? (Datensatz `mtcars`)
 
 
-```r
-data(mtcars)
-d <-
-  mtcars %>% 
-  mutate(mpg_z = standardize(mpg),
-         iv = mpg_z,
-         dv = am)
-
-m81 <- lm(dv ~ iv, data = d)
-coef(m81)
-```
-
 ```
 ## (Intercept)          iv 
 ##   0.4062500   0.2993109
 ```
 
 
-<img src="chunk-img/tidymodelsunnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="090-logistische-Regression_files/figure-html/unnamed-chunk-4-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 $Pr(\text{am}=1|m91,\text{mpg_z}=0) = 0.46$: 
@@ -543,7 +542,7 @@ Schauen Sie sich mal die Vorhersage an für `mpg_z=5` 🤯
 ... wenn der vorhergesagte Wert eine Wahrscheinlichkeit, $p_i$, ist.
 
 
-<img src="chunk-img/tidymodelsunnamed-chunk-7-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="090-logistische-Regression_files/figure-html/unnamed-chunk-7-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 Die *schwarze* Gerade verlässt den Wertebereich der Wahrscheinlichkeit.
@@ -617,13 +616,6 @@ $$\mathcal{L} = \text{log} \frac{p_i}{1-p_i} = \alpha + \beta x_i$$
 Wie war eigentlich *insgesamt*, also ohne auf einen (oder mehrere) Prädiktoren zu bedingen, die Überlebenswahrscheinlichkeit?
 
 
-```r
-data(titanic_train, package = "titanic")
-
-m82 <- lm(Survived ~ 1, data = titanic_train)
-coef(m82)
-```
-
 ```
 ## (Intercept) 
 ##   0.3838384
@@ -633,12 +625,6 @@ Die Wahrscheinlichkeit zu Überleben $Pr(y=1)$ lag bei einem guten Drittel (0.38
 
 Das hätte man auch so ausrechnen:
 
-
-```r
-titanic_train %>% 
-  count(Survived) %>% 
-   mutate(prop = n/sum(n))
-```
 
 ```
 ##   Survived   n      prop
@@ -656,21 +642,10 @@ Anders gesagt: $p(y=1) = \frac{549}{549+342} \approx 0.38$
 Berechnen wir jetzt ein lineares Modell für die AV `Survived` mit dem Geschlecht als Pädiktor:
 
 
-```r
-d <-
-  titanic_train %>% 
-  filter(Fare > 0) %>% 
-  mutate(iv = log(Fare),
-         dv = factor(Survived))
-```
 
 
 Die Faktorstufen, genannt `levels` von `Survived` sind:
 
-
-```r
-levels(d$dv)
-```
 
 ```
 ## [1] "0" "1"
@@ -687,11 +662,6 @@ Tidymodels greift intern auf diese Funktion zurück.
 Daher sind die Ergebnisse numerisch identisch.
 
 
-```r
-lm83 <- glm(dv ~ iv, data = d, family = "binomial")
-coef(lm83)
-```
-
 ```
 ## (Intercept)          iv 
 ##  -2.6827432   0.7479317
@@ -707,13 +677,6 @@ Mit `{easystats}` kann man sich `model_parameter()` einfach ausgeben lassen:
 
 
 
-```r
-library(easystats)
-
-
-model_parameters(lm83)
-```
-
 ```
 ## Parameter   | Log-Odds |   SE |         95% CI |      z |      p
 ## ----------------------------------------------------------------
@@ -724,12 +687,7 @@ model_parameters(lm83)
 
 Und auch visualisieren lassen:
 
-
-```r
-plot(model_parameters(lm83))
-```
-
-<img src="chunk-img/tidymodelsunnamed-chunk-11-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="090-logistische-Regression_files/figure-html/unnamed-chunk-11-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 ## m83, tidymodels
@@ -745,19 +703,10 @@ sondern die *erste* als Ereignis modelliert wird.
 Daher wechseln wir die *ref*erenzkategorie, wir "re-leveln", mit `relevel()`:
 
 
-```r
-d2 <-
-  d %>% 
-  mutate(dv = relevel(dv, ref = "1"))
-```
 
 
 Check:
 
-
-```r
-levels(d2$dv)
-```
 
 ```
 ## [1] "1" "0"
@@ -774,33 +723,18 @@ Die erste Stufe ist jetzt `1`, also Überleben.
 Jetzt berechnen wir das Modell in gewohnter Weise mit `tidymodels`.
 
 
-```r
-m83_mod <-
-  logistic_reg()
-
-m83_rec <-
-  recipe(dv ~ iv, data = d2)
-
-m83_wf <-
-  workflow() %>% 
-  add_model(m83_mod) %>% 
-  add_recipe(m83_rec)
-
-m83_fit <-
-  fit(m83_wf, data = d2)
-```
 
 
 Hier sind die Koeffizienten, die kann man sich aus `m83_fit` herausziehen:
 
 
 ```{=html}
-<div id="uijujodawd" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="whjtxzvoko" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#uijujodawd .gt_table {
+#whjtxzvoko .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -825,7 +759,7 @@ Hier sind die Koeffizienten, die kann man sich aus `m83_fit` herausziehen:
   border-left-color: #D3D3D3;
 }
 
-#uijujodawd .gt_heading {
+#whjtxzvoko .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -837,7 +771,7 @@ Hier sind die Koeffizienten, die kann man sich aus `m83_fit` herausziehen:
   border-right-color: #D3D3D3;
 }
 
-#uijujodawd .gt_title {
+#whjtxzvoko .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -847,7 +781,7 @@ Hier sind die Koeffizienten, die kann man sich aus `m83_fit` herausziehen:
   border-bottom-width: 0;
 }
 
-#uijujodawd .gt_subtitle {
+#whjtxzvoko .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -857,13 +791,13 @@ Hier sind die Koeffizienten, die kann man sich aus `m83_fit` herausziehen:
   border-top-width: 0;
 }
 
-#uijujodawd .gt_bottom_border {
+#whjtxzvoko .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#uijujodawd .gt_col_headings {
+#whjtxzvoko .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -878,7 +812,7 @@ Hier sind die Koeffizienten, die kann man sich aus `m83_fit` herausziehen:
   border-right-color: #D3D3D3;
 }
 
-#uijujodawd .gt_col_heading {
+#whjtxzvoko .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -898,7 +832,7 @@ Hier sind die Koeffizienten, die kann man sich aus `m83_fit` herausziehen:
   overflow-x: hidden;
 }
 
-#uijujodawd .gt_column_spanner_outer {
+#whjtxzvoko .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -910,15 +844,15 @@ Hier sind die Koeffizienten, die kann man sich aus `m83_fit` herausziehen:
   padding-right: 4px;
 }
 
-#uijujodawd .gt_column_spanner_outer:first-child {
+#whjtxzvoko .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#uijujodawd .gt_column_spanner_outer:last-child {
+#whjtxzvoko .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#uijujodawd .gt_column_spanner {
+#whjtxzvoko .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -930,7 +864,7 @@ Hier sind die Koeffizienten, die kann man sich aus `m83_fit` herausziehen:
   width: 100%;
 }
 
-#uijujodawd .gt_group_heading {
+#whjtxzvoko .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -952,7 +886,7 @@ Hier sind die Koeffizienten, die kann man sich aus `m83_fit` herausziehen:
   vertical-align: middle;
 }
 
-#uijujodawd .gt_empty_group_heading {
+#whjtxzvoko .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -967,15 +901,15 @@ Hier sind die Koeffizienten, die kann man sich aus `m83_fit` herausziehen:
   vertical-align: middle;
 }
 
-#uijujodawd .gt_from_md > :first-child {
+#whjtxzvoko .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#uijujodawd .gt_from_md > :last-child {
+#whjtxzvoko .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#uijujodawd .gt_row {
+#whjtxzvoko .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -994,7 +928,7 @@ Hier sind die Koeffizienten, die kann man sich aus `m83_fit` herausziehen:
   overflow-x: hidden;
 }
 
-#uijujodawd .gt_stub {
+#whjtxzvoko .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1006,7 +940,7 @@ Hier sind die Koeffizienten, die kann man sich aus `m83_fit` herausziehen:
   padding-left: 12px;
 }
 
-#uijujodawd .gt_summary_row {
+#whjtxzvoko .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1016,7 +950,7 @@ Hier sind die Koeffizienten, die kann man sich aus `m83_fit` herausziehen:
   padding-right: 5px;
 }
 
-#uijujodawd .gt_first_summary_row {
+#whjtxzvoko .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1026,7 +960,7 @@ Hier sind die Koeffizienten, die kann man sich aus `m83_fit` herausziehen:
   border-top-color: #D3D3D3;
 }
 
-#uijujodawd .gt_grand_summary_row {
+#whjtxzvoko .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1036,7 +970,7 @@ Hier sind die Koeffizienten, die kann man sich aus `m83_fit` herausziehen:
   padding-right: 5px;
 }
 
-#uijujodawd .gt_first_grand_summary_row {
+#whjtxzvoko .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1046,11 +980,11 @@ Hier sind die Koeffizienten, die kann man sich aus `m83_fit` herausziehen:
   border-top-color: #D3D3D3;
 }
 
-#uijujodawd .gt_striped {
+#whjtxzvoko .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#uijujodawd .gt_table_body {
+#whjtxzvoko .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1059,7 +993,7 @@ Hier sind die Koeffizienten, die kann man sich aus `m83_fit` herausziehen:
   border-bottom-color: #D3D3D3;
 }
 
-#uijujodawd .gt_footnotes {
+#whjtxzvoko .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1073,13 +1007,13 @@ Hier sind die Koeffizienten, die kann man sich aus `m83_fit` herausziehen:
   border-right-color: #D3D3D3;
 }
 
-#uijujodawd .gt_footnote {
+#whjtxzvoko .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#uijujodawd .gt_sourcenotes {
+#whjtxzvoko .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1093,41 +1027,41 @@ Hier sind die Koeffizienten, die kann man sich aus `m83_fit` herausziehen:
   border-right-color: #D3D3D3;
 }
 
-#uijujodawd .gt_sourcenote {
+#whjtxzvoko .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#uijujodawd .gt_left {
+#whjtxzvoko .gt_left {
   text-align: left;
 }
 
-#uijujodawd .gt_center {
+#whjtxzvoko .gt_center {
   text-align: center;
 }
 
-#uijujodawd .gt_right {
+#whjtxzvoko .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#uijujodawd .gt_font_normal {
+#whjtxzvoko .gt_font_normal {
   font-weight: normal;
 }
 
-#uijujodawd .gt_font_bold {
+#whjtxzvoko .gt_font_bold {
   font-weight: bold;
 }
 
-#uijujodawd .gt_font_italic {
+#whjtxzvoko .gt_font_italic {
   font-style: italic;
 }
 
-#uijujodawd .gt_super {
+#whjtxzvoko .gt_super {
   font-size: 65%;
 }
 
-#uijujodawd .gt_footnote_marks {
+#whjtxzvoko .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -1184,7 +1118,7 @@ In Abb. \@ref(fig:m83-plot) ist das Modell und die Daten visualisiert.
 
 
 <div class="figure" style="text-align: center">
-<img src="chunk-img/tidymodelsm83-plot-1.png" alt="m83 und die Titanic-Daten" width="100%" />
+<img src="090-logistische-Regression_files/figure-html/m83-plot-1.png" alt="m83 und die Titanic-Daten" width="70%" />
 <p class="caption">(\#fig:m83-plot)m83 und die Titanic-Daten</p>
 </div>
 
@@ -1204,11 +1138,6 @@ $odds = \frac{p}{1-p}$
 In R:
 
 
-```r
-odds <- 0.38 / 0.62
-odds
-```
-
 ```
 ## [1] 0.6129032
 ```
@@ -1217,7 +1146,7 @@ Bildlich gesprochen sagen die Odds: für 38 Menschen, die überlebt haben, komme
 
 
 <div class="figure" style="text-align: center">
-<img src="chunk-img/tidymodelsodds1-1.png" alt="Odds: 38 zu 62" width="100%" />
+<img src="090-logistische-Regression_files/figure-html/odds1-1.png" alt="Odds: 38 zu 62" width="70%" />
 <p class="caption">(\#fig:odds1)Odds: 38 zu 62</p>
 </div>
 
@@ -1231,7 +1160,7 @@ Plotten wir die Odds als Funktion der UV, s. Abb. \@ref(fig:odds2).
 
 
 <div class="figure" style="text-align: center">
-<img src="chunk-img/tidymodelsodds2-1.png" alt="Odds als Funktion der UV" width="100%" />
+<img src="090-logistische-Regression_files/figure-html/odds2-1.png" alt="Odds als Funktion der UV" width="70%" />
 <p class="caption">(\#fig:odds2)Odds als Funktion der UV</p>
 </div>
 
@@ -1248,7 +1177,7 @@ Wenn wir jetzt den Logarithmus berechnen der Log-Odds bekommen wir eine "brav ge
 $$\mathcal{L} = log (odds) = log \left(\frac{p}{1-p}\right)$$
 
 <div class="figure" style="text-align: center">
-<img src="chunk-img/tidymodelslogit2-1.png" alt="Logit als Funktion der UV" width="100%" />
+<img src="090-logistische-Regression_files/figure-html/logit2-1.png" alt="Logit als Funktion der UV" width="70%" />
 <p class="caption">(\#fig:logit2)Logit als Funktion der UV</p>
 </div>
 
@@ -1300,18 +1229,6 @@ Praktisch können wir uns die Logits und ihre zugehörige Wahrscheinlichkeit ein
 
 
 
-```r
-d3 <-
-  d2 %>% 
-  bind_cols(predict(m83_fit, new_data = d2, type = "prob")) %>% 
-  bind_cols(predict(m83_fit, new_data = d2)) %>%  # Klasse
-  bind_cols(logits = predict(m83_fit, new_data = d2, type = "raw"))  # Logits
-  
-d3 %>% 
-  slice_head(n = 3) %>% 
-  select(Name, last_col())
-```
-
 ```
 ##                                                  Name     logits
 ## 1                             Braund, Mr. Owen Harris  1.2010894
@@ -1338,7 +1255,7 @@ mehr dazu findet sich z.B. [hier](https://probably.tidymodels.org/articles/where
 ### Logit
 $(0,1) \rightarrow (-\infty, +\infty)$
 
-<img src="chunk-img/tidymodelsunnamed-chunk-18-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="090-logistische-Regression_files/figure-html/unnamed-chunk-18-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 
@@ -1352,7 +1269,7 @@ $$p \rightarrow \fbox{logit} \rightarrow \alpha + \beta x$$
 
 $(-\infty, +\infty) \rightarrow (0,1)$
 
-<img src="chunk-img/tidymodelsinv-logit-plot-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="090-logistische-Regression_files/figure-html/inv-logit-plot-1.png" width="70%" style="display: block; margin: auto;" />
 
 Praktisch, um in Wahrscheinlichkeiten umzurechnen.
 
@@ -1388,7 +1305,7 @@ $$
 
 ### Die Koeffizienten sind schwer zu interpretieren
 
-<img src="chunk-img/tidymodelslogit-convert-plot-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="090-logistische-Regression_files/figure-html/logit-convert-plot-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 

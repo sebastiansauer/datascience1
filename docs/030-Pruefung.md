@@ -367,12 +367,23 @@ Eine gute Modellierung auf den *Trainingsdaten* (z.B. hohes $R^2$) bedeutet nich
 
 ## Ich brauche Hilfe!
 
-### Wo finde ich Beispiele?
+### Wo finde ich Beispiele und Vorlagen?
 
+Im Rahmen des Unterrichts wurden mehrere Fallstudien erarbeitet bzw. bereitgestellt,
+diese dienen Ihnen als ideale Vorlage.
 
 Eine Beispiel-Modellierung finden Sie in der Datei `Beispielanalyse-Prognose-Wettbewerb.Rmd`. 
-Eine beispielhafte Vorlage (Template), die Sie als Richtschnur nutzen können, ist mit der Datei `Template-Vorhersagemodellierung.Rmd` [hier](https://github.com/sebastiansauer/vorhersagemodellierung/tree/main/Material) bereitgestellt. 
+Eine beispielhafte Vorlage (Template), die Sie als Richtschnur nutzen können, ist mit der Datei `Template-Vorhersagemodellierung.Rmd` [hier](https://github.com/sebastiansauer/Lehre/blob/main/Hinweise/Prognosewettbewerb/Template-Vorhersagemodellierung.Rmd) bereitgestellt. 
+
+
 Im Internet finden sich viele Fallstudien, von denen Sie sich inspirieren lassen können.
+
+
+### Materialsammlung
+
+In [diesem Ordner]((https://github.com/sebastiansauer/Lehre/tree/main/Hinweise/Prognosewettbewerb) finden Sie eine Materialsammlung zum Prognosewettbewerb.
+
+
 
 ### Videos
 

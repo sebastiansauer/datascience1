@@ -209,7 +209,7 @@ Abb. \@ref(fig:l2-shrink) verdeutlicht dies [@islr].
 
 
 <div class="figure" style="text-align: center">
-<img src="img/6.4.png" alt="Links: Regressionskoeffizienten als Funktion von lambda. Rechts: L2-Norm der Ridge-Regression im Verhältnis zur OLS-Regression" width="100%" />
+<img src="img/6.4.png" alt="Links: Regressionskoeffizienten als Funktion von lambda. Rechts: L2-Norm der Ridge-Regression im Verhältnis zur OLS-Regression" width="70%" />
 <p class="caption">(\#fig:l2-shrink)Links: Regressionskoeffizienten als Funktion von lambda. Rechts: L2-Norm der Ridge-Regression im Verhältnis zur OLS-Regression</p>
 </div>
 
@@ -267,7 +267,7 @@ stehen also für eine gleichwertige OLS-Lösung.
 
 
 <div class="figure" style="text-align: center">
-<img src="img/6.6.png" alt="lambda in der Lasso-Regression" width="100%" />
+<img src="img/6.6.png" alt="lambda in der Lasso-Regression" width="70%" />
 <p class="caption">(\#fig:lasso-l1)lambda in der Lasso-Regression</p>
 </div>
 
@@ -280,7 +280,7 @@ Es ist eine Regression mit zwei Prädiktoren, also den zwei Koeffizienten $\beta
 
 
 <div class="figure" style="text-align: center">
-<img src="img/6.6.png" alt="Verlauf des Strafterms bei der L1-Norm (links) und der L2-Norm (rechts)" width="100%" />
+<img src="img/6.6.png" alt="Verlauf des Strafterms bei der L1-Norm (links) und der L2-Norm (rechts)" width="70%" />
 <p class="caption">(\#fig:l1l2)Verlauf des Strafterms bei der L1-Norm (links) und der L2-Norm (rechts)</p>
 </div>
 
@@ -291,7 +291,7 @@ das in Abb. \@ref(fig:l2-penalty) in den Fokus gerückt wird [@rhys].
 
 
 <div class="figure" style="text-align: center">
-<img src="img/l2-penalty.png" alt="Verlauf des Strafterms bei der L2-Norm" width="100%" />
+<img src="img/l2-penalty.png" alt="Verlauf des Strafterms bei der L2-Norm" width="70%" />
 <p class="caption">(\#fig:l2-penalty)Verlauf des Strafterms bei der L2-Norm</p>
 </div>
 
@@ -316,7 +316,7 @@ Anders ist die Situation bei der L1-Norm, dem Lasso, vgl. Abb. \@ref(fig:l1-pena
 
 
 <div class="figure" style="text-align: center">
-<img src="img/l1-penalty.png" alt="Verlauf des Strafterms bei der L1-Norm" width="100%" />
+<img src="img/l1-penalty.png" alt="Verlauf des Strafterms bei der L1-Norm" width="70%" />
 <p class="caption">(\#fig:l1-penalty)Verlauf des Strafterms bei der L1-Norm</p>
 </div>
 
