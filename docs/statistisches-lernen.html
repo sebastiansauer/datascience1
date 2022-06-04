@@ -221,13 +221,13 @@ Nutzer füttern Daten in dieses System. Das System leitet dann daraus Antworten 
 <p>Sicherlich könnte man das schlauer programmieren, vielleicht so:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">d</span> <span class="op">&lt;-</span> 
-  <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>
+  <span class="fu">tibble</span><span class="op">(</span>
   lernzeit <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">20</span><span class="op">)</span>,
   schlauer_nebensitzer <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span><span class="op">)</span>
 <span class="op">)</span>
 
-<span class="va">d</span> <span class="op"><a href="https://ggobi.github.io/ggally/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>bestanden <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">lernzeit</span> <span class="op">&gt;</span> <span class="fl">10</span> <span class="op">|</span> <span class="va">schlauer_nebensitzer</span> <span class="op">==</span> <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="va">d</span> <span class="op">%&gt;%</span> 
+  <span class="fu">mutate</span><span class="op">(</span>bestanden <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">lernzeit</span> <span class="op">&gt;</span> <span class="fl">10</span> <span class="op">|</span> <span class="va">schlauer_nebensitzer</span> <span class="op">==</span> <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 4 × 3
 ##   lernzeit schlauer_nebensitzer bestanden
 ##      &lt;dbl&gt; &lt;lgl&gt;                &lt;lgl&gt;    
@@ -603,7 +603,7 @@ Figure 3.18: Abwängung von Bias vs. Varianz
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-06-03 16:34:56.</p>
+    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-06-04 12:01:19.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
