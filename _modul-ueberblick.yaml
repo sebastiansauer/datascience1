@@ -218,6 +218,28 @@ thema14:
 
 
 
+    
+thema13:
+  Titel: "Blockwoche: kein Unterricht in dieser Woche"
+
+
+
+
+
+
+
+thema12:
+  Titel: "Der rote Faden"
+  Lernziele:
+    - "Sie erarbeiten sich einen Überblick über den bisher gelernten Stoff bzw. verfeinern Ihren bestehenden Überblick"
+  Literatur:
+    - Rhys im Überblick
+    
+    
+
+    
+
+
 
 thema11:
   Titel: "Kaggle"
@@ -244,19 +266,6 @@ thema11:
     - "[Kaggle-Blog](https://medium.com/kaggle-blog)"
 
 
-thema12:
-  Titel: "Roter Faden"
-  Lernziele:
-    - "Sie erarbeiten sich einen Überblick über den bisher gelernten Stoff bzw. verfeinern Ihren bestehenden Überblick"
-  Literatur:
-    - Rhys im Überblick
-    
-    
-
-    
-    
-thema13:
-  Titel: "Fallstudienarbeit"
 
 
 
@@ -272,8 +281,7 @@ thema15:
     - "[Hausmeisterarbeit mit {{janitor}}](https://albert-rapp.de/post/2022-01-12-janitor-showcase/)"
 
   Aufgaben:
-    - "[Bearbeiten Sie eine Auswahl von Fallstudien Ihrer Wahl (aus den bisher bereitgestellten Aufgaben)](https://sebastiansauer.github.io/Lehre/Material/yacsdas.html)"
-
+    - "[Bearbeiten Sie eine Auswahl von Fallstudien Ihrer Wahl aus dieser Sammlung](https://sebastiansauer.github.io/Lehre/Material/yacsdas.html)"
 
 
 

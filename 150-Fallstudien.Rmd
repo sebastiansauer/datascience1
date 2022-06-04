@@ -1,0 +1,43 @@
+# Fallstudien
+
+
+
+## Fallstudien zur explorativen Datenanalyse
+
+
+```{r child1, results='asis', echo = FALSE}
+url <- "https://raw.githubusercontent.com/sebastiansauer/Lehre/main/Material/yacsdas-EDA.md"
+childtext <- readLines(url)
+cat(childtext, sep="\n")
+```
+
+
+
+
+
+
+
+
+## Fallstudien zu linearen Modellen
+
+
+
+
+```{r child2, results='asis', echo = FALSE}
+url <- "https://raw.githubusercontent.com/sebastiansauer/Lehre/main/Material/yacsdas-lm.md"
+childtext <- readLines(url)
+cat(childtext, sep="\n")
+```
+
+
+
+## Fallstudien zum maschinellen Lernen mit Tidymodels
+
+
+
+```{r child3, results='asis', echo = FALSE}
+url <- "https://raw.githubusercontent.com/sebastiansauer/Lehre/main/Material/yacsdas-tidymodels.md"
+childtext <- readLines(url)
+cat(childtext, sep="\n")
+```
+

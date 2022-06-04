@@ -99,24 +99,24 @@ die das Online-Zusammenarbeiten vereinfachen:
 
 
 
-| KW|Terminhinweise                          | Kurswoche|Titel_Link                                                                                          |
-|--:|:---------------------------------------|---------:|:---------------------------------------------------------------------------------------------------|
-| 11|Lehrbeginn am Dienstag                  |         1|[Statistisches Lernen](https://sebastiansauer.github.io/datascience1/statistisches-lernen.html)     |
-| 12|NA                                      |         2|[R, zweiter Blick](https://sebastiansauer.github.io/datascience1/r-zweiter-blick.html)              |
-| 13|NA                                      |         3|[R, zweiter Blick 2](https://sebastiansauer.github.io/datascience1/r-zweiter-blick-2.html)          |
-| 14|NA                                      |         4|[tidymodels](https://sebastiansauer.github.io/datascience1/tidymodels.html)                         |
-| 15|NA                                      |         5|[kNN](https://sebastiansauer.github.io/datascience1/knn.html)                                       |
-| 16|NA                                      |         6|[Wiederholung](https://sebastiansauer.github.io/datascience1/wiederholung.html)                     |
-| 17|NA                                      |         7|[Resampling und Tuning](https://sebastiansauer.github.io/datascience1/resampling-und-tuning.html)   |
-| 18|NA                                      |         8|[Logistische Regression](https://sebastiansauer.github.io/datascience1/logistische-regression.html) |
-| 19|NA                                      |         9|[Entscheidungsbäume](https://sebastiansauer.github.io/datascience1/entscheidungsbäume.html)         |
-| 20|NA                                      |        10|[Ensemble-Lerner](https://sebastiansauer.github.io/datascience1/ensemble-lerner.html)               |
-| 21|nächste Woche ist Projektwoche          |        11|[Regularisierung](https://sebastiansauer.github.io/datascience1/regularisierung.html)               |
-| 22|Projektwoche, kein regulärer Unterricht |        11|[Kaggle](https://sebastiansauer.github.io/datascience1/kaggle.html)                                 |
-| 23|Pfingsten, keine Vorlesung              |        12|[Wiederholung](https://sebastiansauer.github.io/datascience1/wiederholung.html)                     |
-| 24|Fronleichnam, keine Übung               |        13|[Dimensionsreduktion](https://sebastiansauer.github.io/datascience1/dimensionsreduktion.html)       |
-| 25|NA                                      |        14|[Neuronale Netze](https://sebastiansauer.github.io/datascience1/neuronale-netze.html)               |
-| 26|Letzte Unterrichtswoche                 |        15|[Vertiefung](https://sebastiansauer.github.io/datascience1/vertiefung.html)                         |
+| KW|Terminhinweise                                                                    | Kurswoche|Titel_Link                                                                                                                                    |
+|--:|:---------------------------------------------------------------------------------|---------:|:---------------------------------------------------------------------------------------------------------------------------------------------|
+| 11|Lehrbeginn am Dienstag                                                            |         1|[Statistisches Lernen](https://sebastiansauer.github.io/datascience1/statistisches-lernen.html)                                               |
+| 12|NA                                                                                |         2|[R, zweiter Blick](https://sebastiansauer.github.io/datascience1/r-zweiter-blick.html)                                                        |
+| 13|NA                                                                                |         3|[R, zweiter Blick 2](https://sebastiansauer.github.io/datascience1/r-zweiter-blick-2.html)                                                    |
+| 14|NA                                                                                |         4|[tidymodels](https://sebastiansauer.github.io/datascience1/tidymodels.html)                                                                   |
+| 15|NA                                                                                |         5|[kNN](https://sebastiansauer.github.io/datascience1/knn.html)                                                                                 |
+| 16|NA                                                                                |         6|[Wiederholung](https://sebastiansauer.github.io/datascience1/wiederholung.html)                                                               |
+| 17|NA                                                                                |         7|[Resampling und Tuning](https://sebastiansauer.github.io/datascience1/resampling-und-tuning.html)                                             |
+| 18|NA                                                                                |         8|[Logistische Regression](https://sebastiansauer.github.io/datascience1/logistische-regression.html)                                           |
+| 19|NA                                                                                |         9|[Entscheidungsbäume](https://sebastiansauer.github.io/datascience1/entscheidungsbäume.html)                                                   |
+| 20|NA                                                                                |        10|[Ensemble-Lerner](https://sebastiansauer.github.io/datascience1/ensemble-lerner.html)                                                         |
+| 21|nächste Woche ist Projektwoche                                                    |        11|[Regularisierung](https://sebastiansauer.github.io/datascience1/regularisierung.html)                                                         |
+| 22|Projektwoche, kein regulärer Unterricht                                           |        11|[Blockwoche: kein Unterricht in dieser Woche](https://sebastiansauer.github.io/datascience1/blockwoche:-kein-unterricht-in-dieser-woche.html) |
+| 23|Pfingsten, keine Vorlesung. Die Übung findet NUR ONLINE statt.                    |        12|[Der rote Faden](https://sebastiansauer.github.io/datascience1/der-rote-faden.html)                                                           |
+| 24|Fronleichnam; die Übung findet ASYNCHRON als E-Learning statt (NICHT in Präsenz). |        13|[Kaggle](https://sebastiansauer.github.io/datascience1/kaggle.html)                                                                           |
+| 25|vorletzte Unterrichtswoche                                                        |        14|[Wiederholung und Vertiefung](https://sebastiansauer.github.io/datascience1/wiederholung-und-vertiefung.html)                                 |
+| 26|Letzte Unterrichtswoche                                                           |        15|[Dimensionsreduktion](https://sebastiansauer.github.io/datascience1/dimensionsreduktion.html)                                                 |
 
 
 
