@@ -37,6 +37,12 @@ In diesem Kapitel geht es um das Verfahren *KNN*, *K-Nächste-Nachbarn*.
 
 
 
+```{r}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
 
 Benötigte R-Pakete für dieses Kapitel:
 

@@ -1001,12 +1001,43 @@ was hätte das jetzt wohl für eine Modellgüte?
 
 
 
+
+```r
+lm_model <-
+  linear_reg()
 ```
-## 7.754 sec elapsed
+
+
+
+```r
+lm_wf <-
+  workflow() %>% 
+  add_model(lm_model) %>% 
+  add_recipe(recipe1)
 ```
 
 
 
+```r
+tic()
+lm_fit <-
+  fit_resamples(
+    lm_wf,
+    resamples = d_cv
+  )
+toc()
+```
+
+```
+## 7.062 sec elapsed
+```
+
+
+
+
+```r
+collect_metrics(lm_fit)
+```
 
 ```
 ## # A tibble: 2 × 6
@@ -1018,10 +1049,18 @@ was hätte das jetzt wohl für eine Modellgüte?
 
 
 
+```r
+lm_fit_final <- 
+  last_fit(lm_wf, d_split)
+```
 
 
 Wie präzise ist die Vorhersage im Test-Sample?
 
+
+```r
+collect_metrics(lm_fit_final)
+```
 
 ```
 ## # A tibble: 2 × 4

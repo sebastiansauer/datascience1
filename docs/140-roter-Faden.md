@@ -73,12 +73,13 @@ Werfen wir also einen Blick in den "Hof der Handwerker",
 wo grundlegende Werkstücke gefertigt werden,
 und wir jeden Handgriff aus der Nähe mitverfolgen können.
 
-Weniger blumig ausgedrückt: Schauen wir uns ein maximal einfaches Beispiel an,
-wie man mit Tidymodels Vorhersagen tätigt.
 
 
 ### Ein maximale einfaches Werkstück mit Tidymodels
 
+Weniger blumig ausgedrückt: Schauen wir uns ein maximal einfaches Beispiel an,
+wie man mit Tidymodels Vorhersagen tätigt.
+Genauer gesagt bearbeiten wir [einen sehr einfachen Ansatz](https://www.kaggle.com/code/ssauer/simple-linear-model-tidymodels) für einen Kaggle-Prognosewettbewerb.
 
 
 
@@ -88,8 +89,12 @@ wie man mit Tidymodels Vorhersagen tätigt.
 
 ### Ein immer noch recht einfaches Werkstück mit Tidymodels
 
+Dieses Beispiel ist nur wenig aufwändiger als das vorherige.
+
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/QS94JTMpnHc" frameborder="0" allowfullscreen></iframe>
+
+
 
 
 ## Aussichtspunkt 3: Der Nebelberg (Quiz)

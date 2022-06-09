@@ -148,7 +148,7 @@
 <span class="header-section-number">12.1.4</span> R-Pakete<a class="anchor" aria-label="anchor" href="#r-pakete"><i class="fas fa-link"></i></a>
 </h3>
 <p>In diesem Kapitel werden folgende R-Pakete benötigt:</p>
-<div class="sourceCode" id="cb293"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb459"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/collectivemedia/tictoc">tictoc</a></span><span class="op">)</span>  <span class="co"># Rechenzeit messen</span>
@@ -264,16 +264,16 @@ was die Größe des Datensatzes massiv reduziert.</p>
 <h3>
 <span class="header-section-number">12.3.5</span> Datensatz kennenlernen<a class="anchor" aria-label="anchor" href="#datensatz-kennenlernen"><i class="fas fa-link"></i></a>
 </h3>
-<div class="inline-figure"><img src="130-Kaggle_files/figure-html/unnamed-chunk-6-1.png" width="70%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="130-Kaggle_files/figure-html/unnamed-chunk-7-1.png" width="70%" style="display: block; margin: auto;"></div>
 </div>
 <div id="fehlende-werte-prüfen" class="section level3" number="12.3.6">
 <h3>
 <span class="header-section-number">12.3.6</span> Fehlende Werte prüfen<a class="anchor" aria-label="anchor" href="#fehlende-werte-pr%C3%BCfen"><i class="fas fa-link"></i></a>
 </h3>
 <p>Welche Spalten haben viele fehlende Werte?</p>
-<div class="inline-figure"><img src="130-Kaggle_files/figure-html/unnamed-chunk-7-1.png" width="70%" style="display: block; margin: auto;"></div>
-<p>Mit <a href="https://github.com/statistikat/VIM">VIM</a> kann man einen Datensatz gut auf fehlende Werte hin untersuchen:</p>
 <div class="inline-figure"><img src="130-Kaggle_files/figure-html/unnamed-chunk-8-1.png" width="70%" style="display: block; margin: auto;"></div>
+<p>Mit <a href="https://github.com/statistikat/VIM">VIM</a> kann man einen Datensatz gut auf fehlende Werte hin untersuchen:</p>
+<div class="inline-figure"><img src="130-Kaggle_files/figure-html/unnamed-chunk-9-1.png" width="70%" style="display: block; margin: auto;"></div>
 </div>
 </div>
 <div id="rezept" class="section level2" number="12.4">
@@ -303,12 +303,12 @@ was die Größe des Datensatzes massiv reduziert.</p>
 <pre><code>## # A tibble: 6 × 6
 ##   number operation type       trained skip  id              
 ##    &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;      &lt;lgl&gt;   &lt;lgl&gt; &lt;chr&gt;           
-## 1      1 step      mutate     FALSE   FALSE mutate_NPsDj    
-## 2      2 step      log        FALSE   FALSE log_uY0o5       
-## 3      3 step      mutate     FALSE   FALSE mutate_5L3cX    
-## 4      4 step      date       FALSE   FALSE date_fbNLA      
-## 5      5 step      impute_knn FALSE   FALSE impute_knn_qa3u3
-## 6      6 step      dummy      FALSE   FALSE dummy_pzH9K</code></pre>
+## 1      1 step      mutate     FALSE   FALSE mutate_75CmV    
+## 2      2 step      log        FALSE   FALSE log_eVdPd       
+## 3      3 step      mutate     FALSE   FALSE mutate_mfjIO    
+## 4      4 step      date       FALSE   FALSE date_X07c8      
+## 5      5 step      impute_knn FALSE   FALSE impute_knn_0drHe
+## 6      6 step      dummy      FALSE   FALSE dummy_l3BKg</code></pre>
 </div>
 <div id="check-das-rezept" class="section level3" number="12.4.2">
 <h3>
@@ -459,7 +459,7 @@ um künftig Rechenzeit zu sparen:</p>
 <p>Genauer geagt, welches Modell, denn es ist ja nicht nur ein Algorithmus,
 sondern ein Algorithmus plus ein Rezept plus die Parameterinstatiierung plus
 ein spezifischer Datensatz.</p>
-<div class="inline-figure"><img src="130-Kaggle_files/figure-html/unnamed-chunk-25-1.png" width="70%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="130-Kaggle_files/figure-html/unnamed-chunk-26-1.png" width="70%" style="display: block; margin: auto;"></div>
 <p>R-Quadrat ist nicht entscheidend; <code>rmse</code> ist wichtiger.</p>
 <p>Die Ergebnislage ist nicht ganz klar, aber
 einiges spricht für das Boosting-Modell, <code>rec1_boost1</code>.</p>
@@ -511,7 +511,7 @@ einiges spricht für das Boosting-Modell, <code>rec1_boost1</code>.</p>
 <h3>
 <span class="header-section-number">12.10.2</span> Final Fit<a class="anchor" aria-label="anchor" href="#final-fit-1"><i class="fas fa-link"></i></a>
 </h3>
-<pre><code>## [15:37:43] WARNING: amalgamation/../src/learner.cc:576: 
+<pre><code>## [16:27:37] WARNING: amalgamation/../src/learner.cc:576: 
 ## Parameters: { "nthreads" } might not be used.
 ## 
 ##   This could be a false alarm, with some parameters getting used by language bindings but
@@ -533,7 +533,7 @@ einiges spricht für das Boosting-Modell, <code>rec1_boost1</code>.</p>
 ## 
 ## ── Model ───────────────────────────────────────────────────────────────────────
 ## ##### xgb.Booster
-## raw: 351.6 Kb 
+## raw: 358.1 Kb 
 ## call:
 ##   xgboost::xgb.train(params = list(eta = 0.3, max_depth = 6, gamma = 0, 
 ##     colsample_bytree = 1, colsample_bynode = 0.4, min_child_weight = 4L, 
@@ -551,11 +551,11 @@ einiges spricht für das Boosting-Modell, <code>rec1_boost1</code>.</p>
 ## nfeatures : 15 
 ## evaluation_log:
 ##     iter training_rmse
-##        1     121004840
-##        2     100166656
+##        1     121115472
+##        2     105803368
 ## ---                   
-##       99      27574408
-##      100      27248100</code></pre>
+##       99      27270578
+##      100      27153332</code></pre>
 </div>
 </div>
 <div id="submission" class="section level2" number="12.11">
@@ -675,7 +675,7 @@ einiges spricht für das Boosting-Modell, <code>rec1_boost1</code>.</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-06-09 16:08:55.</p>
+    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-06-09 16:24:59.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

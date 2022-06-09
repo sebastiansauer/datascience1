@@ -39,6 +39,12 @@ chapter_start_sections(title = "Dimensionsreduktion")
 
 
 
+```{r echo = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
 
 ## Vorbereitung
 
@@ -59,7 +65,7 @@ library(tidyverse)
 Sagen wir, Sie möchten das Körpergewicht einer Person vorhersagen und haben dafür mehrere Prädiktoren zur Verfügung, vgl. Abb. \@ref(fig:redundpred).
 
 
-```{r redundpred, fig.cap = "Vorhersage von Gewicht mit mehreren hochkorrelierten Prädiktoren"}
+```{r redundpred, fig.cap = "Vorhersage von Gewicht mit mehreren hochkorrelierten Prädiktoren", echo = FALSE}
 nomnoml::nomnoml(
   "[Armlänge] -> [Gewicht]
   [Beinlänge] -> [Gewicht]
@@ -85,7 +91,7 @@ vorausgesetzt sie sind mit der Outcome-Variablen korreliert.
 Auf der anderen Seite steigt der Stichprobenbedarf *exponenziell* der der Anzahl der Prädiktoren,
 vgl. Abb. \@ref(fig:curse1), man spricht vom [Fluch der Dimension](https://en.wikipedia.org/wiki/Curse_of_dimensionality).
 
-```{r curse1, fig.cap = "Illustration des Fluchs der Dimension"}
+```{r curse1, fig.cap = "Illustration des Fluchs der Dimension", echo = FALSE}
 knitr::include_graphics("img/curse1.png")
 ```
 
@@ -94,7 +100,7 @@ Anders formuliert: Bei steigender Dimensionszahl sind die einzelnen Datenpunkte 
 die Datenlage wird "spärlicher" (sparse), vgl. Abb. \@ref(fig:curse2) aus @altman_curses_2018.
 
 
-```{r curse2, fig.cap = "Je mehr Dimensionen, desto weniger Daten pro Einheit", out.width="50%"}
+```{r curse2, fig.cap = "Je mehr Dimensionen, desto weniger Daten pro Einheit", out.width="50%", echo = FALSE}
 knitr::include_graphics("img/curse2.png")
 ```
 
@@ -143,7 +149,7 @@ entlang derer die Daten am meisten variieren.
 Angenommen, wir haben eine Datenmatrix mit $p=2$ und die beiden (metrischen) Variablen sind korreliert, vgl. Abb. \@ref(fig:pca1), [Quelle](https://machinelearningcoban.com/2017/06/15/pca/).
 
 
-```{r pca1, fig.cap = "Zwei korrelierte, metrische Variablen",  out.width="33%"}
+```{r pca1, fig.cap = "Zwei korrelierte, metrische Variablen",  out.width="33%", echo = FALSE}
 knitr::include_graphics("img/pca_var0.png")
 ```
 
@@ -161,7 +167,7 @@ wenig Streuung auf sich.
 
 
 
-```{r pca2, fig.cap = "Zwei korrelierte, metrische Variablen", out.width="33%"}
+```{r pca2, fig.cap = "Zwei korrelierte, metrische Variablen", out.width="33%", echo = FALSE}
 knitr::include_graphics("img/pca_var.png")
 ```
 
@@ -194,7 +200,7 @@ vgl. Abb. \@ref(fig:pca3).
 Da wir nicht am Mittelwert, sondern nur den Streuungen interessiert sind,
 gehen wir von zentrierten Daten aus.
 
-```{r pca3, fig.cap ="Die Hauptkomponente maximiert die Varianz"}
+```{r pca3, fig.cap ="Die Hauptkomponente maximiert die Varianz", echo = FALSE}
 knitr::include_graphics("img/fig13-3_alt.jpeg")
 ```
 

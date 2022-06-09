@@ -95,6 +95,12 @@ wenn Sie `revenue` logarithmiert haben.
 
 ### Daten
 
+
+```{r echo = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
 Die Daten können Sie von der Kaggle-Projektseite beziehen oder so:
 
 ```{r}

@@ -6,14 +6,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Kapitel 8 Logistische Regression | DataScience1</title>
 <meta name="author" content="Sebastian Sauer">
-<meta name="description" content="Benötigte R-Pakete für dieses Kapitel:  8.1 Lernsteuerung   8.1.1 Vorbereitung Frischen Sie Ihr Wissen zur logistischen Regression auf bzw. machen Sie sich mit den Grundlagen des Verfahrens...">
+<meta name="description" content="Benötigte R-Pakete für dieses Kapitel: library(tidyverse) library(tidymodels) library(datawizard)  8.1 Lernsteuerung   8.1.1 Vorbereitung Frischen Sie Ihr Wissen zur logistischen Regression auf...">
 <meta name="generator" content="bookdown 0.26.2 with bs4_book()">
 <meta property="og:title" content="Kapitel 8 Logistische Regression | DataScience1">
 <meta property="og:type" content="book">
-<meta property="og:description" content="Benötigte R-Pakete für dieses Kapitel:  8.1 Lernsteuerung   8.1.1 Vorbereitung Frischen Sie Ihr Wissen zur logistischen Regression auf bzw. machen Sie sich mit den Grundlagen des Verfahrens...">
+<meta property="og:description" content="Benötigte R-Pakete für dieses Kapitel: library(tidyverse) library(tidymodels) library(datawizard)  8.1 Lernsteuerung   8.1.1 Vorbereitung Frischen Sie Ihr Wissen zur logistischen Regression auf...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kapitel 8 Logistische Regression | DataScience1">
-<meta name="twitter:description" content="Benötigte R-Pakete für dieses Kapitel:  8.1 Lernsteuerung   8.1.1 Vorbereitung Frischen Sie Ihr Wissen zur logistischen Regression auf bzw. machen Sie sich mit den Grundlagen des Verfahrens...">
+<meta name="twitter:description" content="Benötigte R-Pakete für dieses Kapitel: library(tidyverse) library(tidymodels) library(datawizard)  8.1 Lernsteuerung   8.1.1 Vorbereitung Frischen Sie Ihr Wissen zur logistischen Regression auf...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -115,6 +115,10 @@
 <!--   fig.show = "hold") -->
 <!-- ``` -->
 <p>Benötigte R-Pakete für dieses Kapitel:</p>
+<div class="sourceCode" id="cb304"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://easystats.github.io/datawizard/">datawizard</a></span><span class="op">)</span></code></pre></div>
 <div id="lernsteuerung-5" class="section level2" number="8.1">
 <h2>
 <span class="header-section-number">8.1</span> Lernsteuerung<a class="anchor" aria-label="anchor" href="#lernsteuerung-5"><i class="fas fa-link"></i></a>
@@ -555,9 +559,19 @@ Figure 8.1: Definition eines Models in tidymodels
 <span class="header-section-number">8.4</span> Warum nicht die lineare Regression verwenden?<a class="anchor" aria-label="anchor" href="#warum-nicht-die-lineare-regression-verwenden"><i class="fas fa-link"></i></a>
 </h2>
 <p><em>Forschungsfrage</em>: Kann man anhand des Spritverbrauchs vorhersagen, ob ein Auto eine Automatik- bzw. ein manuelle Schaltung hat? Anders gesagt: Hängen Spritverbrauch und Getriebeart? (Datensatz <code>mtcars</code>)</p>
+<div class="sourceCode" id="cb305"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span>
+<span class="va">d</span> <span class="op">&lt;-</span>
+  <span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>mpg_z <span class="op">=</span> <span class="fu"><a href="https://easystats.github.io/datawizard/reference/standardize.html">standardize</a></span><span class="op">(</span><span class="va">mpg</span><span class="op">)</span>,
+         iv <span class="op">=</span> <span class="va">mpg_z</span>,
+         dv <span class="op">=</span> <span class="va">am</span><span class="op">)</span>
+
+<span class="va">m81</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">dv</span> <span class="op">~</span> <span class="va">iv</span>, data <span class="op">=</span> <span class="va">d</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">m81</span><span class="op">)</span></code></pre></div>
 <pre><code>## (Intercept)          iv 
 ##   0.4062500   0.2993109</code></pre>
-<div class="inline-figure"><img src="090-logistische-Regression_files/figure-html/unnamed-chunk-4-1.png" width="70%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="090-logistische-Regression_files/figure-html/unnamed-chunk-5-1.png" width="70%" style="display: block; margin: auto;"></div>
 <p><span class="math inline">\(Pr(\text{am}=1|m91,\text{mpg_z}=0) = 0.46\)</span>:
 Die Wahrscheinlichkeit einer manuelle Schaltung,
 gegeben einem durchschnittlichen Verbrauch (und dem Modell <code>m81</code>) liegt bei knapp 50%.</p>
@@ -569,7 +583,7 @@ gegeben einem durchschnittlichen Verbrauch (und dem Modell <code>m81</code>) lie
 <ul>
 <li>… bei <code>mpg_z = -2</code>?</li>
 </ul>
-<div class="sourceCode" id="cb204"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb307"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">m81</span>, newdata <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>iv <span class="op">=</span> <span class="op">-</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>##          1 
 ## -0.1923719</code></pre>
@@ -577,7 +591,7 @@ gegeben einem durchschnittlichen Verbrauch (und dem Modell <code>m81</code>) lie
 <ul>
 <li>… bei <code>mpg_z = +2</code>?</li>
 </ul>
-<div class="sourceCode" id="cb206"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb309"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">m81</span>, newdata <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>iv <span class="op">=</span> <span class="op">+</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>##        1 
 ## 1.004872</code></pre>
@@ -589,7 +603,7 @@ gegeben einem durchschnittlichen Verbrauch (und dem Modell <code>m81</code>) lie
 <span class="header-section-number">8.4.2</span> Wir müssen die Regressionsgerade umbiegen<a class="anchor" aria-label="anchor" href="#wir-m%C3%BCssen-die-regressionsgerade-umbiegen"><i class="fas fa-link"></i></a>
 </h3>
 <p>… wenn der vorhergesagte Wert eine Wahrscheinlichkeit, <span class="math inline">\(p_i\)</span>, ist.</p>
-<div class="inline-figure"><img src="090-logistische-Regression_files/figure-html/unnamed-chunk-7-1.png" width="70%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="090-logistische-Regression_files/figure-html/unnamed-chunk-8-1.png" width="70%" style="display: block; margin: auto;"></div>
 <p>Die <em>schwarze</em> Gerade verlässt den Wertebereich der Wahrscheinlichkeit.
 Die <em>blaue</em> Kurve, <span class="math inline">\(\mathcal{f}\)</span>, bleibt im erlaubten Bereich, <span class="math inline">\(Pr(y) \in [0,1]\)</span>.
 Wir müssen also die linke oder die rechte Seite des linearen Modells transformieren:
@@ -639,10 +653,19 @@ die man als <em>logistische Regression</em> bezeichnet.</p>
 </h2>
 <p><em>Forschungsfrage</em>: Hängt das Überleben (statistisch) auf der Titanic vom Geschlecht ab?</p>
 <p>Wie war eigentlich <em>insgesamt</em>, also ohne auf einen (oder mehrere) Prädiktoren zu bedingen, die Überlebenswahrscheinlichkeit?</p>
+<div class="sourceCode" id="cb311"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">titanic_train</span>, package <span class="op">=</span> <span class="st">"titanic"</span><span class="op">)</span>
+
+<span class="va">m82</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Survived</span> <span class="op">~</span> <span class="fl">1</span>, data <span class="op">=</span> <span class="va">titanic_train</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">m82</span><span class="op">)</span></code></pre></div>
 <pre><code>## (Intercept) 
 ##   0.3838384</code></pre>
 <p>Die Wahrscheinlichkeit zu Überleben <span class="math inline">\(Pr(y=1)\)</span> lag bei einem guten Drittel (0.38).</p>
 <p>Das hätte man auch so ausrechnen:</p>
+<div class="sourceCode" id="cb313"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">titanic_train</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">Survived</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>prop <span class="op">=</span> <span class="va">n</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>##   Survived   n      prop
 ## 1        0 549 0.6161616
 ## 2        1 342 0.3838384</code></pre>
@@ -652,7 +675,15 @@ die man als <em>logistische Regression</em> bezeichnet.</p>
 <span class="header-section-number">8.6.1</span> tidymodels, m83<a class="anchor" aria-label="anchor" href="#tidymodels-m83"><i class="fas fa-link"></i></a>
 </h3>
 <p>Berechnen wir jetzt ein lineares Modell für die AV <code>Survived</code> mit dem Geschlecht als Pädiktor:</p>
+<div class="sourceCode" id="cb315"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">d</span> <span class="op">&lt;-</span>
+  <span class="va">titanic_train</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Fare</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>iv <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">Fare</span><span class="op">)</span>,
+         dv <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">Survived</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Die Faktorstufen, genannt <code>levels</code> von <code>Survived</code> sind:</p>
+<div class="sourceCode" id="cb316"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">d</span><span class="op">$</span><span class="va">dv</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "0" "1"</code></pre>
 <p>Und zwar genau in dieser Reihenfolge.</p>
 </div>
@@ -665,6 +696,9 @@ die man als <em>logistische Regression</em> bezeichnet.</p>
 mit der Funktion <code><a href="https://rdrr.io/r/stats/glm.html">glm()</a></code>.
 Tidymodels greift intern auf diese Funktion zurück.
 Daher sind die Ergebnisse numerisch identisch.</p>
+<div class="sourceCode" id="cb318"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">lm83</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span><span class="op">(</span><span class="va">dv</span> <span class="op">~</span> <span class="va">iv</span>, data <span class="op">=</span> <span class="va">d</span>, family <span class="op">=</span> <span class="st">"binomial"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">lm83</span><span class="op">)</span></code></pre></div>
 <pre><code>## (Intercept)          iv 
 ##  -2.6827432   0.7479317</code></pre>
 <ul>
@@ -672,12 +706,19 @@ Daher sind die Ergebnisse numerisch identisch.</p>
 <li>UV: Ticketpreis</li>
 </ul>
 <p>Mit <a href="https://github.com/easystats/easystats">easystats</a> kann man sich <code>model_parameter()</code> einfach ausgeben lassen:</p>
+<div class="sourceCode" id="cb320"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/easystats/easystats">easystats</a></span><span class="op">)</span>
+
+
+<span class="fu">model_parameters</span><span class="op">(</span><span class="va">lm83</span><span class="op">)</span></code></pre></div>
 <pre><code>## Parameter   | Log-Odds |   SE |         95% CI |      z |      p
 ## ----------------------------------------------------------------
 ## (Intercept) |    -2.68 | 0.26 | [-3.19, -2.19] | -10.46 | &lt; .001
 ## iv          |     0.75 | 0.08 | [ 0.59,  0.91] |   9.13 | &lt; .001</code></pre>
 <p>Und auch visualisieren lassen:</p>
-<div class="inline-figure"><img src="090-logistische-Regression_files/figure-html/unnamed-chunk-11-1.png" width="70%" style="display: block; margin: auto;"></div>
+<div class="sourceCode" id="cb322"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu">model_parameters</span><span class="op">(</span><span class="va">lm83</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="090-logistische-Regression_files/figure-html/unnamed-chunk-12-1.png" width="70%" style="display: block; margin: auto;"></div>
 </div>
 <div id="m83-tidymodels" class="section level2" number="8.8">
 <h2>
@@ -688,11 +729,31 @@ Außerdem wird bei <code>tidymodels</code>, im Gegensatz zu <code>(g)lm</code> n
 sondern die <em>erste</em> als Ereignis modelliert wird.</p>
 <p>`</p>
 <p>Daher wechseln wir die <em>ref</em>erenzkategorie, wir “re-leveln”, mit <code><a href="https://rdrr.io/r/stats/relevel.html">relevel()</a></code>:</p>
+<div class="sourceCode" id="cb323"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">d2</span> <span class="op">&lt;-</span>
+  <span class="va">d</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>dv <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/relevel.html">relevel</a></span><span class="op">(</span><span class="va">dv</span>, ref <span class="op">=</span> <span class="st">"1"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Check:</p>
+<div class="sourceCode" id="cb324"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">d2</span><span class="op">$</span><span class="va">dv</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "1" "0"</code></pre>
 <p>Passt.</p>
 <p>Die erste Stufe ist jetzt <code>1</code>, also Überleben.</p>
 <p>Jetzt berechnen wir das Modell in gewohnter Weise mit <code>tidymodels</code>.</p>
+<div class="sourceCode" id="cb326"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">m83_mod</span> <span class="op">&lt;-</span>
+  <span class="fu">logistic_reg</span><span class="op">(</span><span class="op">)</span>
+
+<span class="va">m83_rec</span> <span class="op">&lt;-</span>
+  <span class="fu">recipe</span><span class="op">(</span><span class="va">dv</span> <span class="op">~</span> <span class="va">iv</span>, data <span class="op">=</span> <span class="va">d2</span><span class="op">)</span>
+
+<span class="va">m83_wf</span> <span class="op">&lt;-</span>
+  <span class="fu">workflow</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu">add_model</span><span class="op">(</span><span class="va">m83_mod</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu">add_recipe</span><span class="op">(</span><span class="va">m83_rec</span><span class="op">)</span>
+
+<span class="va">m83_fit</span> <span class="op">&lt;-</span>
+  <span class="fu">fit</span><span class="op">(</span><span class="va">m83_wf</span>, data <span class="op">=</span> <span class="va">d2</span><span class="op">)</span></code></pre></div>
 <p>Hier sind die Koeffizienten, die kann man sich aus <code>m83_fit</code> herausziehen:</p>
 <div id="whjtxzvoko" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
@@ -1081,6 +1142,9 @@ Figure 8.2: m83 und die Titanic-Daten
 <p>Probieren wir Folgendes: Rechnen wir die Wahrscheinlichkeit zu Überlegen für <span class="math inline">\(y\)</span>, kurz <span class="math inline">\(p\)</span>, in <em>Odds</em> (Chancen) um.</p>
 <p><span class="math inline">\(odds = \frac{p}{1-p}\)</span></p>
 <p>In R:</p>
+<div class="sourceCode" id="cb329"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">odds</span> <span class="op">&lt;-</span> <span class="fl">0.38</span> <span class="op">/</span> <span class="fl">0.62</span>
+<span class="va">odds</span></code></pre></div>
 <pre><code>## [1] 0.6129032</code></pre>
 <p>Bildlich gesprochen sagen die Odds: für 38 Menschen, die überlebt haben, kommen (ca.) 62 Menschen, die nicht überlebt haben, s. Abb. <a href="logistische-regression.html#fig:odds1">8.3</a>.</p>
 <div class="figure" style="text-align: center">
@@ -1143,6 +1207,16 @@ p &amp;= \frac{e^{\alpha + \beta x_i}}{1 + e^{\alpha + \beta x_i}} = \mathcal{L}
 <span class="header-section-number">8.10</span> Vom Logit zur Klasse<a class="anchor" aria-label="anchor" href="#vom-logit-zur-klasse"><i class="fas fa-link"></i></a>
 </h2>
 <p>Praktisch können wir uns die Logits und ihre zugehörige Wahrscheinlichkeit einfach ausgeben lassen mit R. Und die vorhergesagte Klasse (<code>.pred_class</code>) auch:</p>
+<div class="sourceCode" id="cb331"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">d3</span> <span class="op">&lt;-</span>
+  <span class="va">d2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_cols</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">m83_fit</span>, new_data <span class="op">=</span> <span class="va">d2</span>, type <span class="op">=</span> <span class="st">"prob"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_cols</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">m83_fit</span>, new_data <span class="op">=</span> <span class="va">d2</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>  <span class="co"># Klasse</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_cols</a></span><span class="op">(</span>logits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">m83_fit</span>, new_data <span class="op">=</span> <span class="va">d2</span>, type <span class="op">=</span> <span class="st">"raw"</span><span class="op">)</span><span class="op">)</span>  <span class="co"># Logits</span>
+  
+<span class="va">d3</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">Name</span>, <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">last_col</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>##                                                  Name     logits
 ## 1                             Braund, Mr. Owen Harris  1.2010894
 ## 2 Cumings, Mrs. John Bradley (Florence Briggs Thayer) -0.5084287
@@ -1171,7 +1245,7 @@ mehr dazu findet sich z.B. <a href="https://probably.tidymodels.org/articles/whe
 <span class="header-section-number">8.11.1</span> Logit<a class="anchor" aria-label="anchor" href="#logit"><i class="fas fa-link"></i></a>
 </h3>
 <p><span class="math inline">\((0,1) \rightarrow (-\infty, +\infty)\)</span></p>
-<div class="inline-figure"><img src="090-logistische-Regression_files/figure-html/unnamed-chunk-18-1.png" width="70%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="090-logistische-Regression_files/figure-html/unnamed-chunk-19-1.png" width="70%" style="display: block; margin: auto;"></div>
 <p>Praktisch, um Wahrscheinlichkeit zu modellieren.</p>
 <p><span class="math display">\[p \rightarrow \fbox{logit} \rightarrow \alpha + \beta x\]</span></p>
 </div>
@@ -1226,7 +1300,7 @@ y_i &amp;\sim \mathcal{B}(1, p_i) \\
 <h3>
 <span class="header-section-number">8.12.2</span> Logits vs. Wahrscheinlichkeiten<a class="anchor" aria-label="anchor" href="#logits-vs.-wahrscheinlichkeiten"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb218"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb333"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">konvert_logits</span> <span class="op">&lt;-</span>
   <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>
     logit <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span> <span class="op">-</span><span class="fl">10</span>, <span class="op">-</span><span class="fl">3</span>, 
@@ -1320,7 +1394,7 @@ y_i &amp;\sim \mathcal{B}(1, p_i) \\
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-06-09 16:08:55.</p>
+    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-06-09 16:24:59.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

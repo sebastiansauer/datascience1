@@ -628,7 +628,7 @@ dass sich am Modell nichts geändert hat.
 
 
 
-```{r eval = FALSE, message=FALSE, warning=FALSE, echo = TRUE}
+```{r eval = FALSE, message=FALSE, warning=FALSE, echo = TRUE, results = "hide"}
 doParallel::registerDoParallel()  # mehrere Kerne parallel nutzen
 
 set.seed(42)
@@ -765,6 +765,15 @@ also sozusagen die Kürze der Fehlerbalken.
 
 Ein einfaches lineares Modell,
 was hätte das jetzt wohl für eine Modellgüte?
+
+
+
+
+```{r echo = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
 
 
 ```{r}

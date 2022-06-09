@@ -24,6 +24,14 @@ editor_options:
 <!--   fig.show = "hold") -->
 <!-- ``` -->
 
+
+
+```{r}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
 Benötigte R-Pakete für dieses Kapitel:
 
 ```{r}

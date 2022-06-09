@@ -106,6 +106,10 @@ wenn Sie `revenue` logarithmiert haben.
 
 ### Daten
 
+
+
+
+
 Die Daten können Sie von der Kaggle-Projektseite beziehen oder so:
 
 
@@ -195,7 +199,7 @@ was die Größe des Datensatzes massiv reduziert.
 
 
 
-<img src="130-Kaggle_files/figure-html/unnamed-chunk-6-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="130-Kaggle_files/figure-html/unnamed-chunk-7-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 ### Fehlende Werte prüfen
@@ -203,12 +207,12 @@ was die Größe des Datensatzes massiv reduziert.
 Welche Spalten haben viele fehlende Werte?
 
 
-<img src="130-Kaggle_files/figure-html/unnamed-chunk-7-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="130-Kaggle_files/figure-html/unnamed-chunk-8-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 Mit `{VIM}` kann man einen Datensatz gut auf fehlende Werte hin untersuchen:
 
-<img src="130-Kaggle_files/figure-html/unnamed-chunk-8-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="130-Kaggle_files/figure-html/unnamed-chunk-9-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 ## Rezept
@@ -241,12 +245,12 @@ Mit `{VIM}` kann man einen Datensatz gut auf fehlende Werte hin untersuchen:
 ## # A tibble: 6 × 6
 ##   number operation type       trained skip  id              
 ##    <int> <chr>     <chr>      <lgl>   <lgl> <chr>           
-## 1      1 step      mutate     FALSE   FALSE mutate_NPsDj    
-## 2      2 step      log        FALSE   FALSE log_uY0o5       
-## 3      3 step      mutate     FALSE   FALSE mutate_5L3cX    
-## 4      4 step      date       FALSE   FALSE date_fbNLA      
-## 5      5 step      impute_knn FALSE   FALSE impute_knn_qa3u3
-## 6      6 step      dummy      FALSE   FALSE dummy_pzH9K
+## 1      1 step      mutate     FALSE   FALSE mutate_75CmV    
+## 2      2 step      log        FALSE   FALSE log_eVdPd       
+## 3      3 step      mutate     FALSE   FALSE mutate_mfjIO    
+## 4      4 step      date       FALSE   FALSE date_X07c8      
+## 5      5 step      impute_knn FALSE   FALSE impute_knn_0drHe
+## 6      6 step      dummy      FALSE   FALSE dummy_l3BKg
 ```
 
 
@@ -444,7 +448,7 @@ Genauer geagt, welches Modell, denn es ist ja nicht nur ein Algorithmus,
 sondern ein Algorithmus plus ein Rezept plus die Parameterinstatiierung plus
 ein spezifischer Datensatz.
 
-<img src="130-Kaggle_files/figure-html/unnamed-chunk-25-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="130-Kaggle_files/figure-html/unnamed-chunk-26-1.png" width="70%" style="display: block; margin: auto;" />
 
 R-Quadrat ist nicht entscheidend; `rmse` ist wichtiger.
 
@@ -518,7 +522,7 @@ einiges spricht für das Boosting-Modell, `rec1_boost1`.
 
 
 ```
-## [15:37:43] WARNING: amalgamation/../src/learner.cc:576: 
+## [16:27:37] WARNING: amalgamation/../src/learner.cc:576: 
 ## Parameters: { "nthreads" } might not be used.
 ## 
 ##   This could be a false alarm, with some parameters getting used by language bindings but
@@ -543,7 +547,7 @@ einiges spricht für das Boosting-Modell, `rec1_boost1`.
 ## 
 ## ── Model ───────────────────────────────────────────────────────────────────────
 ## ##### xgb.Booster
-## raw: 351.6 Kb 
+## raw: 358.1 Kb 
 ## call:
 ##   xgboost::xgb.train(params = list(eta = 0.3, max_depth = 6, gamma = 0, 
 ##     colsample_bytree = 1, colsample_bynode = 0.4, min_child_weight = 4L, 
@@ -561,11 +565,11 @@ einiges spricht für das Boosting-Modell, `rec1_boost1`.
 ## nfeatures : 15 
 ## evaluation_log:
 ##     iter training_rmse
-##        1     121004840
-##        2     100166656
+##        1     121115472
+##        2     105803368
 ## ---                   
-##       99      27574408
-##      100      27248100
+##       99      27270578
+##      100      27153332
 ```
 
 

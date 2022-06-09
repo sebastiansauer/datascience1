@@ -51,6 +51,10 @@
 
 
 
+
+
+
+
 ## Vorbereitung
 
 
@@ -169,6 +173,11 @@ Allerdins kommen nicht alle Fälle (in der Regel) in den "Boostrap-Beutel" (in b
 sondern einige Fälle werden oft mehrfach gezogen, so dass
 einige Fälle nicht gezogen werden (out of bag).
 
+
+```r
+knitr::include_graphics("img/zmz.png")
+```
+
 <div class="figure" style="text-align: center">
 <img src="img/zmz.png" alt="Bootstrapping: Der Topf links symbolisiert die Original-Stichprobe, aus der wir hier mehrere ZMZ-Stichproben ziehen (Rechts), dargestellt mit 'in bag'" width="70%" />
 <p class="caption">(\#fig:zmz)Bootstrapping: Der Topf links symbolisiert die Original-Stichprobe, aus der wir hier mehrere ZMZ-Stichproben ziehen (Rechts), dargestellt mit 'in bag'</p>
@@ -212,11 +221,28 @@ $$\hat{f}_{\text{bag}} = \frac{1}{B}\sum_{b=1}^{B}\hat{f}^{*b}$$
 Der Bagging-Algorithmus ist in Abbildung \@ref(fig:bag) dargestellt.
 
 
+
+```r
+nomnoml::nomnoml(
+  "
+  [<database> Datensatz] ->zmz [Baum 1]
+[<database> Datensatz] ->zmz [Baum 2]
+[<database> Datensatz] ->zmz [Baum ...]
+[<database> Datensatz] ->zmz [Baum B]
+[Baum 1] -> [Modus als Vorhersagewert]
+[Baum 2] -> [Modus als Vorhersagewert]
+[Baum ...] -> [Modus als Vorhersagewert]
+[Baum B] -> [Modus als Vorhersagewert]
+  ", 
+height = 350
+)
+```
+
 <div class="figure" style="text-align: center">
 
 ```{=html}
-<div id="htmlwidget-6d01b9e260bdb9b31431" style="width:70%;height:350px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-6d01b9e260bdb9b31431">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n  [<database> Datensatz] ->zmz [Baum 1]\n[<database> Datensatz] ->zmz [Baum 2]\n[<database> Datensatz] ->zmz [Baum ...]\n[<database> Datensatz] ->zmz [Baum B]\n[Baum 1] -> [Modus als Vorhersagewert]\n[Baum 2] -> [Modus als Vorhersagewert]\n[Baum ...] -> [Modus als Vorhersagewert]\n[Baum B] -> [Modus als Vorhersagewert]\n  ","svg":false},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-912831f0b7231e2be93f" style="width:70%;height:350px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-912831f0b7231e2be93f">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n  [<database> Datensatz] ->zmz [Baum 1]\n[<database> Datensatz] ->zmz [Baum 2]\n[<database> Datensatz] ->zmz [Baum ...]\n[<database> Datensatz] ->zmz [Baum B]\n[Baum 1] -> [Modus als Vorhersagewert]\n[Baum 2] -> [Modus als Vorhersagewert]\n[Baum ...] -> [Modus als Vorhersagewert]\n[Baum B] -> [Modus als Vorhersagewert]\n  ","svg":false},"evals":[],"jsHooks":[]}</script>
 ```
 
 <p class="caption">(\#fig:bag)Bagging schematisch illustriert</p>
@@ -286,11 +312,46 @@ In den meisten Implementationen wird $m$ mit `mtry` bezeichnet (so auch in Tidym
 
 Der Random-Forest-Algorithmus ist in Abb. \@ref(fig:rf1) illustriert.
 
+
+```r
+nomnoml::nomnoml("
+#direction:down
+                 [<database> Datensatz] ->zmz [Baum1
+[ZoZ]->[ZOZ2]
+[ZoZ]->[ZoZ3]
+]
+
+[<database> Datensatz] ->zmz [Baum2
+[ZoZ]->[ZOZ2]
+[ZoZ]->[ZoZ3]
+]
+[<database> Datensatz] ->zmz [Baum ...
+[ZoZ]->[ZOZ2]
+[ZoZ]->[ZoZ3]
+]
+[<database> Datensatz] ->zmz [Baum B
+[ZoZ]->[ZOZ2]
+[ZoZ]->[ZoZ3]
+]
+[Baum1
+[ZoZ]->[ZOZ2]
+[ZoZ]->[ZoZ3]
+] -> [Modus als Vorhersagewert]
+[Baum2
+[ZoZ]->[ZOZ2]
+[ZoZ]->[ZoZ3]
+] -> [Modus als Vorhersagewert]
+[Baum ...] -> [Modus als Vorhersagewert]
+[Baum B] -> [Modus als Vorhersagewert]
+                 ",
+height = 700)
+```
+
 <div class="figure" style="text-align: center">
 
 ```{=html}
-<div id="htmlwidget-0ab816d7f847cf8f5449" style="width:100%;height:700px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-0ab816d7f847cf8f5449">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n#direction:down\n                 [<database> Datensatz] ->zmz [Baum1\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n\n[<database> Datensatz] ->zmz [Baum2\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[<database> Datensatz] ->zmz [Baum ...\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[<database> Datensatz] ->zmz [Baum B\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[Baum1\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n] -> [Modus als Vorhersagewert]\n[Baum2\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n] -> [Modus als Vorhersagewert]\n[Baum ...] -> [Modus als Vorhersagewert]\n[Baum B] -> [Modus als Vorhersagewert]\n                 ","svg":false},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-063260d8edc6f0367724" style="width:100%;height:700px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-063260d8edc6f0367724">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n#direction:down\n                 [<database> Datensatz] ->zmz [Baum1\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n\n[<database> Datensatz] ->zmz [Baum2\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[<database> Datensatz] ->zmz [Baum ...\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[<database> Datensatz] ->zmz [Baum B\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[Baum1\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n] -> [Modus als Vorhersagewert]\n[Baum2\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n] -> [Modus als Vorhersagewert]\n[Baum ...] -> [Modus als Vorhersagewert]\n[Baum B] -> [Modus als Vorhersagewert]\n                 ","svg":false},"evals":[],"jsHooks":[]}</script>
 ```
 
 <p class="caption">(\#fig:rf1)Zufallswälder durch Ziehen mit Zurücklegen (zmz) und Ziehen ohne Zurücklegen (ZoZ)</p>
@@ -301,6 +362,11 @@ Der Random-Forest-Algorithmus ist in Abb. \@ref(fig:rf1) illustriert.
 Abb. \@ref(fig:comp-trees) vergleicht die Test-Sample-Vorhersagegüte von Bagging- und Random-Forest-Algorithmen aus @islr.
 In diesem Fall ist die Vorhersagegüte deutlich unter der OOB-Güte; laut @islr ist dies hier "Zufall".
 
+
+```r
+knitr::include_graphics("img/8.8.png")
+```
+
 <div class="figure" style="text-align: center">
 <img src="img/8.8.png" alt="Test-Sample-Vorhersagegüte von Bagging- und Random-Forest-Algorithmen" width="70%" />
 <p class="caption">(\#fig:comp-trees)Test-Sample-Vorhersagegüte von Bagging- und Random-Forest-Algorithmen</p>
@@ -310,6 +376,11 @@ In diesem Fall ist die Vorhersagegüte deutlich unter der OOB-Güte; laut @islr 
 Den Effekt von $m$ (Anzahl der Prädiktoren pro Split) ist in Abb. \@ref(fig:mtry) dargestellt [@islr].
 Man erkennt, dass der Zusatznutzen an zusätzlichen Bäumen, $B$, sich abschwächt.
 $m=\sqrt{p}$ schneidet wie erwartet am besten ab.
+
+
+```r
+knitr::include_graphics("img/8.10.png")
+```
 
 <div class="figure" style="text-align: center">
 <img src="img/8.10.png" alt="Test-Sample-Vorhersagegüte von Bagging- und Random-Forest-Algorithmen" width="70%" />
@@ -355,11 +426,21 @@ haben zunächst alle Fälle die gleiche Wahrscheinlichkeit, in das Bootstrap-Sam
 Die Bäume bei AdaBoost sind eigentlich nur "Stümpfe": Sie bestehen aus einem einzelnen Split, s. Abb. \@ref(fig:stump).
 
 
+
+```r
+nomnoml::nomnoml(
+  "#direction: topdown
+  [root] -> [leaf1]
+  [root] -> [leaf2]
+  ", height = 200
+)
+```
+
 <div class="figure" style="text-align: center">
 
 ```{=html}
-<div id="htmlwidget-0211cee68564c9d1629c" style="width:70%;height:200px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-0211cee68564c9d1629c">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: topdown\n  [root] -> [leaf1]\n  [root] -> [leaf2]\n  ","svg":false},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-8c73cf7abafc820158fd" style="width:70%;height:200px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8c73cf7abafc820158fd">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: topdown\n  [root] -> [leaf1]\n  [root] -> [leaf2]\n  ","svg":false},"evals":[],"jsHooks":[]}</script>
 ```
 
 <p class="caption">(\#fig:stump)Ein Baumstumpf bei AdaBoost</p>
@@ -414,11 +495,30 @@ aber schlecht klassifizierten Fällen mehr Gehör.
 
 Das Vorgehen von AdaBoost ist in Abb. \@ref(fig:ada) illustriert.
 
+
+```r
+nomnoml::nomnoml(
+  "
+  [m1] -> [ensemble]
+  [ensemble] -> [m2]
+  [m2] -> [ensemble]
+  [ensemble] -> [m3]
+  [m3] -> [ensemble]
+  [ensemble] -> [m4]
+  [m4] -> [ensemble]
+  [ensemble] -> [M ...]
+  [M ...] -> [ensemble]
+  [ensemble] -> [M B]
+  ",
+  height = 450
+)
+```
+
 <div class="figure" style="text-align: center">
 
 ```{=html}
-<div id="htmlwidget-dc17514fa31c4b8f3e1e" style="width:70%;height:450px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-dc17514fa31c4b8f3e1e">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n  [m1] -> [ensemble]\n  [ensemble] -> [m2]\n  [m2] -> [ensemble]\n  [ensemble] -> [m3]\n  [m3] -> [ensemble]\n  [ensemble] -> [m4]\n  [m4] -> [ensemble]\n  [ensemble] -> [M ...]\n  [M ...] -> [ensemble]\n  [ensemble] -> [M B]\n  ","svg":false},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-03ec0d5bcd60ee839bd4" style="width:70%;height:450px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-03ec0d5bcd60ee839bd4">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n  [m1] -> [ensemble]\n  [ensemble] -> [m2]\n  [m2] -> [ensemble]\n  [ensemble] -> [m3]\n  [m3] -> [ensemble]\n  [ensemble] -> [m4]\n  [m4] -> [ensemble]\n  [ensemble] -> [M ...]\n  [M ...] -> [ensemble]\n  [ensemble] -> [M B]\n  ","svg":false},"evals":[],"jsHooks":[]}</script>
 ```
 
 <p class="caption">(\#fig:ada)AdaBoost illustriert</p>
@@ -444,6 +544,11 @@ Die hohe Vorhersagegüte von Boosting-Modellen ist exemplarisch in Abb. \@ref(fi
 Allerdings verwenden die Autoren Friedmans [-@friedman_greedy_2001] *Gradient Boosting Machine*, eine weitere Variante des Boosting .
 
 
+
+```r
+knitr::include_graphics("img/8.10.png")
+```
+
 <div class="figure" style="text-align: center">
 <img src="img/8.10.png" alt="Vorhersagegüte von Boosting und Random Forest" width="70%" />
 <p class="caption">(\#fig:boost)Vorhersagegüte von Boosting und Random Forest</p>
@@ -462,20 +567,32 @@ Wir betrachten einen Datensatz zur Kundenabwanderung (Churn) aus [dieser Quelle]
 
 
 
+```r
+knitr::opts_chunk$set(echo = TRUE)
+```
 
 
 
+```r
+churn_df <- read_rds('https://gmudatamining.com/data/churn_data.rds')
+```
 
 Ein Blick in die Daten:
 
 
+```r
+churn_df %>% 
+  head() %>% 
+  gt::gt()
+```
+
 ```{=html}
-<div id="xrjpaoimsw" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="blwafnxpol" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#xrjpaoimsw .gt_table {
+#blwafnxpol .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -500,7 +617,7 @@ Ein Blick in die Daten:
   border-left-color: #D3D3D3;
 }
 
-#xrjpaoimsw .gt_heading {
+#blwafnxpol .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -512,7 +629,7 @@ Ein Blick in die Daten:
   border-right-color: #D3D3D3;
 }
 
-#xrjpaoimsw .gt_title {
+#blwafnxpol .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -522,7 +639,7 @@ Ein Blick in die Daten:
   border-bottom-width: 0;
 }
 
-#xrjpaoimsw .gt_subtitle {
+#blwafnxpol .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -532,13 +649,13 @@ Ein Blick in die Daten:
   border-top-width: 0;
 }
 
-#xrjpaoimsw .gt_bottom_border {
+#blwafnxpol .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#xrjpaoimsw .gt_col_headings {
+#blwafnxpol .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -553,7 +670,7 @@ Ein Blick in die Daten:
   border-right-color: #D3D3D3;
 }
 
-#xrjpaoimsw .gt_col_heading {
+#blwafnxpol .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -573,7 +690,7 @@ Ein Blick in die Daten:
   overflow-x: hidden;
 }
 
-#xrjpaoimsw .gt_column_spanner_outer {
+#blwafnxpol .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -585,15 +702,15 @@ Ein Blick in die Daten:
   padding-right: 4px;
 }
 
-#xrjpaoimsw .gt_column_spanner_outer:first-child {
+#blwafnxpol .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#xrjpaoimsw .gt_column_spanner_outer:last-child {
+#blwafnxpol .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#xrjpaoimsw .gt_column_spanner {
+#blwafnxpol .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -605,7 +722,7 @@ Ein Blick in die Daten:
   width: 100%;
 }
 
-#xrjpaoimsw .gt_group_heading {
+#blwafnxpol .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -627,7 +744,7 @@ Ein Blick in die Daten:
   vertical-align: middle;
 }
 
-#xrjpaoimsw .gt_empty_group_heading {
+#blwafnxpol .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -642,15 +759,15 @@ Ein Blick in die Daten:
   vertical-align: middle;
 }
 
-#xrjpaoimsw .gt_from_md > :first-child {
+#blwafnxpol .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#xrjpaoimsw .gt_from_md > :last-child {
+#blwafnxpol .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#xrjpaoimsw .gt_row {
+#blwafnxpol .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -669,7 +786,7 @@ Ein Blick in die Daten:
   overflow-x: hidden;
 }
 
-#xrjpaoimsw .gt_stub {
+#blwafnxpol .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -681,7 +798,7 @@ Ein Blick in die Daten:
   padding-left: 12px;
 }
 
-#xrjpaoimsw .gt_summary_row {
+#blwafnxpol .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -691,7 +808,7 @@ Ein Blick in die Daten:
   padding-right: 5px;
 }
 
-#xrjpaoimsw .gt_first_summary_row {
+#blwafnxpol .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -701,7 +818,7 @@ Ein Blick in die Daten:
   border-top-color: #D3D3D3;
 }
 
-#xrjpaoimsw .gt_grand_summary_row {
+#blwafnxpol .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -711,7 +828,7 @@ Ein Blick in die Daten:
   padding-right: 5px;
 }
 
-#xrjpaoimsw .gt_first_grand_summary_row {
+#blwafnxpol .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -721,11 +838,11 @@ Ein Blick in die Daten:
   border-top-color: #D3D3D3;
 }
 
-#xrjpaoimsw .gt_striped {
+#blwafnxpol .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#xrjpaoimsw .gt_table_body {
+#blwafnxpol .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -734,7 +851,7 @@ Ein Blick in die Daten:
   border-bottom-color: #D3D3D3;
 }
 
-#xrjpaoimsw .gt_footnotes {
+#blwafnxpol .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -748,13 +865,13 @@ Ein Blick in die Daten:
   border-right-color: #D3D3D3;
 }
 
-#xrjpaoimsw .gt_footnote {
+#blwafnxpol .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#xrjpaoimsw .gt_sourcenotes {
+#blwafnxpol .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -768,41 +885,41 @@ Ein Blick in die Daten:
   border-right-color: #D3D3D3;
 }
 
-#xrjpaoimsw .gt_sourcenote {
+#blwafnxpol .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#xrjpaoimsw .gt_left {
+#blwafnxpol .gt_left {
   text-align: left;
 }
 
-#xrjpaoimsw .gt_center {
+#blwafnxpol .gt_center {
   text-align: center;
 }
 
-#xrjpaoimsw .gt_right {
+#blwafnxpol .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#xrjpaoimsw .gt_font_normal {
+#blwafnxpol .gt_font_normal {
   font-weight: normal;
 }
 
-#xrjpaoimsw .gt_font_bold {
+#blwafnxpol .gt_font_bold {
   font-weight: bold;
 }
 
-#xrjpaoimsw .gt_font_italic {
+#blwafnxpol .gt_font_italic {
   font-style: italic;
 }
 
-#xrjpaoimsw .gt_super {
+#blwafnxpol .gt_super {
   font-size: 65%;
 }
 
-#xrjpaoimsw .gt_footnote_marks {
+#blwafnxpol .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -956,6 +1073,16 @@ Das Kreuzvalidieren (CV) fassen wir auch unter diesen Punkt.
 
 
 
+```r
+churn_split <- initial_split(churn_df, prop = 0.75, 
+                             strata = canceled_service)
+
+churn_training <- churn_split %>% training()
+
+churn_test <- churn_split %>% testing()
+
+churn_folds <- vfold_cv(churn_training, v = 5)
+```
 
 
 
@@ -967,6 +1094,16 @@ Gleichzeitig verändern wir die Prädiktoren (normalisieren, dummysieren, ...).
 Das nennt man auch *Feature Engineering*.
 
 
+```r
+churn_recipe1 <- recipe(canceled_service ~ ., data = churn_training) %>% 
+                       step_normalize(all_numeric(), -all_outcomes()) %>% 
+                       step_dummy(all_nominal(), -all_outcomes())
+
+churn_recipe2 <- recipe(canceled_service ~ ., data = churn_training) %>% 
+                       step_YeoJohnson(all_numeric(), -all_outcomes()) %>% 
+                       step_normalize(all_numeric(), -all_outcomes()) %>% 
+                       step_dummy(all_nominal(), -all_outcomes())
+```
 
 
 `step_YeoJohnson()` reduziert Schiefe in der Verteilung.
@@ -977,6 +1114,29 @@ Das nennt man auch *Feature Engineering*.
 
 
 
+```r
+tree_model <- decision_tree(cost_complexity = tune(),
+                            tree_depth = tune(),
+                            min_n = tune()) %>% 
+              set_engine('rpart') %>% 
+              set_mode('classification')
+
+rf_model <- rand_forest(mtry = tune(),
+                        trees = tune(),
+                        min_n = tune()) %>% 
+            set_engine('ranger') %>% 
+            set_mode('classification')
+
+
+boost_model <- boost_tree(mtry = tune(),
+                        min_n = tune(),
+                        trees = tune()) %>% 
+  set_engine("xgboost", nthreads = parallel::detectCores()) %>% 
+  set_mode("classification")
+
+
+glm_model <- logistic_reg()
+```
 
 
 
@@ -987,6 +1147,13 @@ Wir definieren ein Workflow-Set:
 
 
 
+```r
+preproc <- list(rec1 = churn_recipe1, rec2 = churn_recipe2)
+models <- list(tree1 = tree_model, rf1 = rf_model, boost1 = boost_model, glm1 = glm_model)
+ 
+ 
+all_workflows <- workflow_set(preproc, models)
+```
 
 Infos zu `workflow_set` bekommt man wie gewohnt mit `?workflow_set`.
 
@@ -1005,13 +1172,34 @@ Wir könnten jetzt jedes Modell einzeln tunen, wenn wir wollen.
 #### Baum
 
 
+```r
+tree_wf <-
+  workflow() %>% 
+  add_model(tree_model) %>% 
+  add_recipe(churn_recipe1)
+
+
+tic()
+tree_fit <-
+  tree_wf %>% 
+  tune_grid(
+    resamples = churn_folds,
+    metrics =  metric_set(roc_auc, sens, yardstick::spec)
+    )
+toc()
 ```
-## 16.001 sec elapsed
+
+```
+## 15.256 sec elapsed
 ```
 
 Im Standard werden 10 Modellkandidaten getuned.
 
 
+
+```r
+tree_fit
+```
 
 ```
 ## # Tuning results
@@ -1029,20 +1217,24 @@ Im Standard werden 10 Modellkandidaten getuned.
 Schauen wir uns das Objekt etwas näher an:
 
 
+```r
+tree_fit$.metrics[[1]]
+```
+
 ```
 ## # A tibble: 30 × 7
 ##    cost_complexity tree_depth min_n .metric .estimator .estimate .config        
 ##              <dbl>      <int> <int> <chr>   <chr>          <dbl> <chr>          
-##  1        2.96e- 2          6     6 sens    binary         0.659 Preprocessor1_…
-##  2        2.96e- 2          6     6 spec    binary         0.955 Preprocessor1_…
-##  3        2.96e- 2          6     6 roc_auc binary         0.857 Preprocessor1_…
-##  4        1.63e- 3         14    39 sens    binary         0.799 Preprocessor1_…
-##  5        1.63e- 3         14    39 spec    binary         0.913 Preprocessor1_…
-##  6        1.63e- 3         14    39 roc_auc binary         0.910 Preprocessor1_…
-##  7        6.08e- 6          1    20 sens    binary         0.860 Preprocessor1_…
-##  8        6.08e- 6          1    20 spec    binary         0.642 Preprocessor1_…
-##  9        6.08e- 6          1    20 roc_auc binary         0.751 Preprocessor1_…
-## 10        1.34e-10          3    26 sens    binary         0.780 Preprocessor1_…
+##  1     0.000000392         15    26 sens    binary         0.845 Preprocessor1_…
+##  2     0.000000392         15    26 spec    binary         0.833 Preprocessor1_…
+##  3     0.000000392         15    26 roc_auc binary         0.908 Preprocessor1_…
+##  4     0.000116             5    34 sens    binary         0.860 Preprocessor1_…
+##  5     0.000116             5    34 spec    binary         0.803 Preprocessor1_…
+##  6     0.000116             5    34 roc_auc binary         0.901 Preprocessor1_…
+##  7     0.00000236           6     3 sens    binary         0.852 Preprocessor1_…
+##  8     0.00000236           6     3 spec    binary         0.836 Preprocessor1_…
+##  9     0.00000236           6     3 roc_auc binary         0.906 Preprocessor1_…
+## 10     0.0495              11    20 sens    binary         0.777 Preprocessor1_…
 ## # … with 20 more rows
 ```
 
@@ -1055,15 +1247,19 @@ Für jeden der 5 Faltungen haben wir also 10 Submodelle.
 Welches Modell ist das beste?
 
 
+```r
+show_best(tree_fit)
+```
+
 ```
 ## # A tibble: 5 × 9
 ##   cost_complexity tree_depth min_n .metric .estimator  mean     n std_err
 ##             <dbl>      <int> <int> <chr>   <chr>      <dbl> <int>   <dbl>
-## 1        2.15e- 7          9    22 roc_auc binary     0.923     5 0.00444
-## 2        8.84e-10          7    33 roc_auc binary     0.923     5 0.00198
-## 3        1.53e- 3          9    31 roc_auc binary     0.921     5 0.00266
-## 4        1.12e- 6         12    14 roc_auc binary     0.916     5 0.00458
-## 5        1.63e- 3         14    39 roc_auc binary     0.908     5 0.00454
+## 1        4.28e- 6          7    22 roc_auc binary     0.923     5 0.00291
+## 2        3.92e- 7         15    26 roc_auc binary     0.923     5 0.00440
+## 3        2.91e- 9         11    37 roc_auc binary     0.923     5 0.00344
+## 4        1.22e-10          8    17 roc_auc binary     0.920     5 0.00547
+## 5        1.16e- 4          5    34 roc_auc binary     0.910     5 0.00489
 ## # … with 1 more variable: .config <chr>
 ```
 
@@ -1071,7 +1267,12 @@ Aha, das sind die fünf besten Modelle, bzw. ihre Tuningparameter,
 ihre mittlere Güte zusammen mit dem Standardfehler.
 
 
-<img src="110-Ensemble-Lerner_files/figure-html/unnamed-chunk-10-1.png" width="70%" style="display: block; margin: auto;" />
+
+```r
+autoplot(tree_fit)
+```
+
+<img src="110-Ensemble-Lerner_files/figure-html/unnamed-chunk-11-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 #### RF
@@ -1079,6 +1280,10 @@ ihre mittlere Güte zusammen mit dem Standardfehler.
 
 Was für Tuningparameter hat den der Algorithmus bzw. seine Implementierung?
 
+
+```r
+show_model_info("rand_forest")
+```
 
 ```
 ## Information for `rand_forest`
@@ -1128,15 +1333,42 @@ von der Festplatte lesen (sofern es existiert).
 Ansonsten berechnet man neu:
 
 
+```r
+if (file.exists("objects/rf_fit1.rds")){
+  rf_fit1 <- read_rds("objects/rf_fit1.rds")
+} else {
+rf_wf1 <-
+  workflow() %>% 
+  add_model(rf_model) %>% 
+  add_recipe(churn_recipe1)
+
+
+tic()
+rf_fit1 <-
+  rf_wf1 %>% 
+  tune_grid(
+    resamples = churn_folds,
+    metrics =  metric_set(roc_auc, sens, spec)
+    )
+toc()
+}
+```
 
 So
 kann man das berechnete Objekt abspeichern auf Festplatte,
 um künftig Zeit zu sparen:
 
 
+```r
+write_rds(rf_fit1, file = "objects/rf_fit1.rds")
+```
 
 
 
+
+```r
+rf_fit1
+```
 
 ```
 ## # Tuning results
@@ -1152,6 +1384,10 @@ um künftig Zeit zu sparen:
 ```
 
 
+
+```r
+show_best(rf_fit1)
+```
 
 ```
 ## # A tibble: 5 × 9
@@ -1171,11 +1407,30 @@ um künftig Zeit zu sparen:
 
 
 
+```r
+boost_wf1 <-
+  workflow() %>% 
+  add_model(boost_model) %>% 
+  add_recipe(churn_recipe1)
+
+
+tic()
+boost_fit1 <-
+  boost_wf1 %>% 
+  tune_grid(
+    resamples = churn_folds,
+    metrics =  metric_set(roc_auc, sens, spec)
+    )
+toc()
+```
 
 
 Wieder auf Festplatte speichern:
 
 
+```r
+write_rds(boost_fit1, file = "objects/boost_fit1.rds")
+```
 
 
 Und so weiter.
@@ -1183,6 +1438,22 @@ Und so weiter.
 ### Workflow-Set tunen
 
 
+```r
+if (file.exists("objects/churn_model_set.rds")) {
+  churn_model_set <- read_rds("objects/churn_model_set.rds")
+} else {
+  tic()
+  churn_model_set <-
+    all_workflows %>% 
+    workflow_map(
+      resamples = churn_folds,
+      grid = 20,
+      metrics = metric_set(roc_auc),
+      seed = 42,  # reproducibility
+      verbose = TRUE)
+  toc()
+}
+```
 
 
 
@@ -1190,6 +1461,9 @@ Da die Berechnung schon etwas Zeit braucht,
 macht es Sinn, das Modell (bzw. das Ergebnisobjekt) auf Festplatte zu speichern:
 
 
+```r
+write_rds(churn_model_set, file = "objects/churn_model_set.rds")
+```
 
 
 *Achtung* Dieser Schritt ist *gefährlich*:
@@ -1202,6 +1476,9 @@ ohne durch eine Fehlermeldung gewarnt zu werden.
 Entsprechend kann man das Modellobjekt wieder importieren, wenn einmal abgespeichert:
 
 
+```r
+churn_model_set <- read_rds(file = "objects/churn_model_set.rds")
+```
 
 
 ### Ergebnisse im Train-Sest
@@ -1209,6 +1486,10 @@ Entsprechend kann man das Modellobjekt wieder importieren, wenn einmal abgespeic
 
 Hier ist die Rangfolge der Modelle, geordnet nach mittlerem ROC AUC:
 
+
+```r
+rank_results(churn_model_set, rank_metric = "roc_auc")
+```
 
 ```
 ## # A tibble: 122 × 9
@@ -1229,7 +1510,12 @@ Hier ist die Rangfolge der Modelle, geordnet nach mittlerem ROC AUC:
 
 
 
-<img src="110-Ensemble-Lerner_files/figure-html/unnamed-chunk-19-1.png" width="70%" style="display: block; margin: auto;" />
+
+```r
+autoplot(churn_model_set, metric = "roc_auc")
+```
+
+<img src="110-Ensemble-Lerner_files/figure-html/unnamed-chunk-20-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 
@@ -1238,7 +1524,15 @@ Hier ist die Rangfolge der Modelle, geordnet nach mittlerem ROC AUC:
 Und hier nur der beste Kandidat pro Algorithmus:
 
 
-<img src="110-Ensemble-Lerner_files/figure-html/unnamed-chunk-20-1.png" width="70%" style="display: block; margin: auto;" />
+
+```r
+autoplot(churn_model_set, metric = "roc_auc", select_best = "TRUE") +
+  geom_text(aes(y = mean - .01, label = wflow_id), angle = 90, hjust = 1) +
+  theme(legend.position = "none") +
+  lims(y = c(0.85, 1))
+```
+
+<img src="110-Ensemble-Lerner_files/figure-html/unnamed-chunk-21-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 Boosting hat  - knapp - am besten abgeschnitten. 
@@ -1255,6 +1549,10 @@ sondern nur für das Ergebnisobjekt von `tune_grid`.
 
 
 
+```r
+select_best(churn_model_set, metric = "roc_auc")
+```
+
 ```
 ## Error in `is_metric_maximize()`:
 ## ! Please check the value of `metric`.
@@ -1264,6 +1562,10 @@ sondern nur für das Ergebnisobjekt von `tune_grid`.
 `rf_fit1` haben wir mit `tune_grid()` berechnet;
 mit diesem Modell kann `select_best()` arbeiten: 
 
+
+```r
+select_best(rf_fit1)
+```
 
 ```
 ## # A tibble: 1 × 4
@@ -1277,6 +1579,12 @@ Aber wir können uns händisch behelfen.
 
 Schauen wir uns mal die Metriken (Vorhersagegüte) an:
 
+
+```r
+churn_model_set %>% 
+  collect_metrics() %>% 
+  arrange(-mean)
+```
 
 ```
 ## # A tibble: 122 × 9
@@ -1299,6 +1607,14 @@ Schauen wir uns mal die Metriken (Vorhersagegüte) an:
 
 
 
+```r
+best_model_params <-
+extract_workflow_set_result(churn_model_set, "rec1_boost1") %>% 
+  select_best()
+
+best_model_params
+```
+
 ```
 ## # A tibble: 1 × 4
 ##    mtry trees min_n .config              
@@ -1320,6 +1636,15 @@ Finalisierte Form heißt:
 
 
 
+
+```r
+# Schritt 1:
+best_wf <- 
+all_workflows %>% 
+  extract_workflow("rec1_boost1")
+
+best_wf
+```
 
 ```
 ## ══ Workflow ════════════════════════════════════════════════════════════════════
@@ -1357,6 +1682,15 @@ d.h. wir setzen die Parameterwerte des besten Submodells ein:
 
 
 
+```r
+# Schritt 2:
+best_wf_finalized <- 
+  best_wf %>% 
+  finalize_workflow(best_model_params)
+
+best_wf_finalized
+```
+
 ```
 ## ══ Workflow ════════════════════════════════════════════════════════════════════
 ## Preprocessor: Recipe
@@ -1390,6 +1724,14 @@ d.h. wir setzen die Parameterwerte des besten Submodells ein:
 
 
 
+```r
+fit_final <-
+  best_wf_finalized %>% 
+  last_fit(churn_split)
+
+fit_final
+```
+
 ```
 ## # Resampling results
 ## # Manual resampling 
@@ -1402,12 +1744,16 @@ d.h. wir setzen die Parameterwerte des besten Submodells ein:
 
 
 
+```r
+collect_metrics(fit_final)
+```
+
 ```
 ## # A tibble: 2 × 4
 ##   .metric  .estimator .estimate .config             
 ##   <chr>    <chr>          <dbl> <chr>               
-## 1 accuracy binary         0.895 Preprocessor1_Model1
-## 2 roc_auc  binary         0.959 Preprocessor1_Model1
+## 1 accuracy binary         0.873 Preprocessor1_Model1
+## 2 roc_auc  binary         0.953 Preprocessor1_Model1
 ```
 
 
@@ -1423,11 +1769,16 @@ das wäre `glm()` bei einer logistischen Regression oder `xgboost::xgb.train()` 
 XGBoost:
 
 
+```r
+fit_final %>% 
+  extract_fit_parsnip()
+```
+
 ```
 ## parsnip model object
 ## 
 ## ##### xgb.Booster
-## raw: 112.2 Kb 
+## raw: 110.6 Kb 
 ## call:
 ##   xgboost::xgb.train(params = list(eta = 0.3, max_depth = 6, gamma = 0, 
 ##     colsample_bytree = 1, colsample_bynode = 0.285714285714286, 
@@ -1445,16 +1796,23 @@ XGBoost:
 ## nfeatures : 21 
 ## evaluation_log:
 ##     iter training_logloss
-##        1         0.561902
-##        2         0.486567
+##        1         0.560271
+##        2         0.474941
 ## ---                      
-##       79         0.187956
-##       80         0.187517
+##       79         0.184024
+##       80         0.183830
 ```
 
 *Dieses* Objekt übergeben wir dann an `{vip}`:
 
-<img src="110-Ensemble-Lerner_files/figure-html/unnamed-chunk-27-1.png" width="70%" style="display: block; margin: auto;" />
+
+```r
+fit_final %>% 
+  extract_fit_parsnip() %>% 
+  vip()
+```
+
+<img src="110-Ensemble-Lerner_files/figure-html/unnamed-chunk-28-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 
@@ -1469,20 +1827,25 @@ bzw. aus dem Vergleich von Vorhersagen und wahrem Wert (d.h. der beobachtete Wer
 Ziehen wir also zuerst die Vorhersagen heraus:
 
 
+```r
+fit_final %>% 
+  collect_predictions()
+```
+
 ```
 ## # A tibble: 998 × 7
 ##    id              .pred_yes .pred_no  .row .pred_class canceled_service .config
 ##    <chr>               <dbl>    <dbl> <int> <fct>       <fct>            <chr>  
-##  1 train/test spl…     0.546 0.454        2 yes         yes              Prepro…
-##  2 train/test spl…     0.925 0.0749       9 yes         yes              Prepro…
-##  3 train/test spl…     0.656 0.344       13 yes         yes              Prepro…
-##  4 train/test spl…     0.918 0.0823      15 yes         yes              Prepro…
-##  5 train/test spl…     0.866 0.134       20 yes         yes              Prepro…
-##  6 train/test spl…     0.903 0.0974      21 yes         yes              Prepro…
-##  7 train/test spl…     0.997 0.00348     22 yes         yes              Prepro…
-##  8 train/test spl…     0.994 0.00595     23 yes         yes              Prepro…
-##  9 train/test spl…     0.979 0.0207      24 yes         yes              Prepro…
-## 10 train/test spl…     0.999 0.000919    26 yes         yes              Prepro…
+##  1 train/test spl…     0.996  0.00379     5 yes         yes              Prepro…
+##  2 train/test spl…     0.997  0.00343     7 yes         yes              Prepro…
+##  3 train/test spl…     0.978  0.0218      9 yes         yes              Prepro…
+##  4 train/test spl…     0.992  0.00846    11 yes         yes              Prepro…
+##  5 train/test spl…     0.920  0.0801     17 yes         yes              Prepro…
+##  6 train/test spl…     0.959  0.0408     19 yes         yes              Prepro…
+##  7 train/test spl…     0.996  0.00384    22 yes         yes              Prepro…
+##  8 train/test spl…     0.969  0.0313     24 yes         yes              Prepro…
+##  9 train/test spl…     0.996  0.00407    27 yes         yes              Prepro…
+## 10 train/test spl…     0.949  0.0505     31 yes         yes              Prepro…
 ## # … with 988 more rows
 ```
 
@@ -1491,7 +1854,15 @@ ausch angegeben.
 
 Dann berechnen wir die `roc_curve` und `autoplot`ten sie.
 
-<img src="110-Ensemble-Lerner_files/figure-html/unnamed-chunk-29-1.png" width="70%" style="display: block; margin: auto;" />
+
+```r
+fit_final %>% 
+  collect_predictions() %>% 
+  roc_curve(canceled_service, .pred_yes) %>% 
+  autoplot()
+```
+
+<img src="110-Ensemble-Lerner_files/figure-html/unnamed-chunk-30-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 

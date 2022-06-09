@@ -101,6 +101,13 @@ Kommazahlen und Ganze Zahlen zusammen bilden den Typ `numeric` (numerisch) in R.
 
 
 
+```{r}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+
 Den Typ eines Vektors kann man mit `typeof()` ausgeben lassen:
 
 ```{r}
