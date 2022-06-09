@@ -22,17 +22,13 @@ die uns einen Überblick über das Gelände versprechen.
 
 ### Lernziele 
 
-- Sie sind in der Lage, einfache Klassifikationsmodelle zu spezifizieren mit tidymodels
-- Sie können den knn-Algorithmus erläutern
-- Sie können den knn-Algorithmus in tidymodels anwenden
-- Sie können die Gütemetriken von Klassifikationsmodellen einschätzen
+- Sie erarbeiten sich einen Überblick über den bisher gelernten Stoff bzw. verfeinern Ihren bestehenden Überblick
 
 
 
 ### Literatur 
 
-- Rhys, Kap. 3
-- [Timbers et al., Kap. 5](https://datasciencebook.ca/classification.html#classification)
+- Rhys im Überblick
 
 
 
@@ -260,6 +256,25 @@ Hier ist eine Liste von Übungen, die Ihre Datenkraft stählen soll:
 7. *Youtube*: Zwar wettern Dozentis gerne über die mangelnde Verarbeitungstiefe beim Fern schauen. Außerdem sind Lehrvideos didaktisch echt asbachuralt. Aber okay, manchmal und in überschaubarer Dosis ist ein Lehrvideo eine nützliche Ergänzung zu den übrigen Maßnahmen.
 
 
+
+
+
+<!-- ## Aufgaben und Vertiefung -->
+
+
+
+
+## Aufgaben 
+
+- [Einfache Random-Forest-Modellierung bei Kaggle](https://www.kaggle.com/code/ssauer/simple-rf-tuned)
+- [Bearbeiten Sie so viele Fallstudien (aus obiger Liste) wie nötig, um den Stoff flüssig zu beherrschen
+
+
+
+## Vertiefung 
+
+- [Mathematische Grundlagen können Sie z.B. hier vertiefen](https://deisenroth.cc/publication/deisenroth-2020/)
+- [Gute Fallstudie bei Kaggle für Regressionsprobleme: House Prices](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques)
 
 
 

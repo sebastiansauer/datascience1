@@ -21,7 +21,7 @@ die uns einen Überblick über das Gelände versprechen.
 
 ```{r chapter-start-sections, echo = FALSE, results = "asis"}
 source("funs/chapter-start-sections.R")
-chapter_start_sections(title = "kNN") 
+chapter_start_sections(title = "Der rote Faden") 
 ```
 
 
@@ -90,12 +90,12 @@ Werfen wir also einen Blick in den "Hof der Handwerker",
 wo grundlegende Werkstücke gefertigt werden,
 und wir jeden Handgriff aus der Nähe mitverfolgen können.
 
-Weniger blumig ausgedrückt: Schauen wir uns ein maximal einfaches Beispiel an,
-wie man mit Tidymodels Vorhersagen tätigt.
 
 
 ### Ein maximale einfaches Werkstück mit Tidymodels
 
+Weniger blumig ausgedrückt: Schauen wir uns ein maximal einfaches Beispiel an,
+wie man mit Tidymodels Vorhersagen tätigt.
 
 
 
@@ -104,6 +104,8 @@ wie man mit Tidymodels Vorhersagen tätigt.
 
 
 ### Ein immer noch recht einfaches Werkstück mit Tidymodels
+
+Dieses Beispiel ist nur wenig aufwändiger als das vorherige.
 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/QS94JTMpnHc" frameborder="0" allowfullscreen></iframe>
@@ -177,6 +179,31 @@ Hier ist eine Liste von Übungen, die Ihre Datenkraft stählen soll:
 7. *Youtube*: Zwar wettern Dozentis gerne über die mangelnde Verarbeitungstiefe beim Fern schauen. Außerdem sind Lehrvideos didaktisch echt asbachuralt. Aber okay, manchmal und in überschaubarer Dosis ist ein Lehrvideo eine nützliche Ergänzung zu den übrigen Maßnahmen.
 
 
+
+
+
+<!-- ## Aufgaben und Vertiefung -->
+
+
+
+
+```{r render-outline-vertiefung-aufgaben, results = "asis", echo = FALSE, message = FALSE}
+
+  render_section(course_dates_file,
+                 content_file,
+                 i = NULL, 
+                 title = "Der rote Faden",
+                 name = "Aufgaben",
+                 header_level = 1)
+
+
+render_section(course_dates_file,
+               content_file,
+               i = NULL, 
+               title = "Der rote Faden",
+               name = "Vertiefung",
+               header_level = 1)
+```
 
 
 

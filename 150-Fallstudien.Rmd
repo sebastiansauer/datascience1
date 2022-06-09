@@ -2,6 +2,16 @@
 
 
 
+
+<!-- Chapter Start sections: Lernziele, Literatur, Hinweise, ... -->
+
+```{r chapter-start-sections, echo = FALSE, results = "asis"}
+source("funs/chapter-start-sections.R")
+chapter_start_sections(title = "Fallstudien") 
+```
+
+
+
 ## Fallstudien zur explorativen Datenanalyse
 
 
@@ -40,4 +50,34 @@ url <- "https://raw.githubusercontent.com/sebastiansauer/Lehre/main/Material/yac
 childtext <- readLines(url)
 cat(childtext, sep="\n")
 ```
+
+
+
+
+
+
+<!-- ## Aufgaben und Vertiefung -->
+
+
+
+
+```{r render-outline-vertiefung-aufgaben, results = "asis", echo = FALSE, message = FALSE}
+
+  render_section(course_dates_file,
+                 content_file,
+                 i = NULL, 
+                 title = "Fallstudien",
+                 name = "Aufgaben",
+                 header_level = 1)
+
+
+render_section(course_dates_file,
+               content_file,
+               i = NULL, 
+               title = "Fallstudien",
+               name = "Vertiefung",
+               header_level = 1)
+```
+
+
 

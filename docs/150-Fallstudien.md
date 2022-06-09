@@ -2,6 +2,22 @@
 
 
 
+
+<!-- Chapter Start sections: Lernziele, Literatur, Hinweise, ... -->
+
+
+### Lernziele 
+
+- Sie können die Techniken des Maschinellen Lernens mit dem Tidymodels-Ansatz flüssig anbringen
+
+
+
+### Literatur 
+
+- Rhys, Kap. 12
+
+
+
 ## Fallstudien zur explorativen Datenanalyse
 
 
@@ -156,4 +172,27 @@
 - [Fallstudie Titanic mit Tidymodels bei Kaggle](https://www.kaggle.com/code/modesty520/a-tutorial-with-tidymodels/report#modeling)
 
 - [Einfache Fallstudie mit Tidymodels bei Kaggle](https://www.kaggle.com/code/benthecoder/tidymodels-in-r-using-measles-data/notebook)
+
+
+
+
+
+
+<!-- ## Aufgaben und Vertiefung -->
+
+
+
+
+## Aufgaben 
+
+- [Bearbeiten Sie eine Auswahl von Fallstudien Ihrer Wahl aus dieser Sammlung](https://sebastiansauer.github.io/Lehre/Material/yacsdas.html)
+
+
+
+## Vertiefung 
+
+- [Wie man eine Data-Science-Projekt strukturiert](https://medium.com/swlh/how-to-structure-a-python-based-data-science-project-a-short-tutorial-for-beginners-7e00bff14f56)
+- [Hausmeisterarbeit mit {{janitor}}](https://albert-rapp.de/post/2022-01-12-janitor-showcase/)
+
+
 

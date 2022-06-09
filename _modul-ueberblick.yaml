@@ -228,18 +228,6 @@ thema13:
 
 
 
-thema12:
-  Titel: "Der rote Faden"
-  Lernziele:
-    - "Sie erarbeiten sich einen Überblick über den bisher gelernten Stoff bzw. verfeinern Ihren bestehenden Überblick"
-  Literatur:
-    - Rhys im Überblick
-    
-    
-
-    
-
-
 
 thema11:
   Titel: "Kaggle"
@@ -251,7 +239,7 @@ thema11:
  
 
   Hinweise:
-    - "Machen Sie sich mit Kaggle vertraut. Als Übungs-Wettbewerb dient uns `TMDB Box-office Revenue`"
+    - "Machen Sie sich mit Kaggle vertraut. Als Übungs-Wettbewerb dient uns `TMDB Box-office Revenue` (s. Aufgaben)"
   
   Aufgaben:
 
@@ -267,11 +255,28 @@ thema11:
 
 
 
+thema12:
+  Titel: "Der rote Faden"
+  Lernziele:
+    - "Sie erarbeiten sich einen Überblick über den bisher gelernten Stoff bzw. verfeinern Ihren bestehenden Überblick"
+  Literatur:
+    - Rhys im Überblick
+  Aufgaben:
+    - "[Einfache Random-Forest-Modellierung bei Kaggle](https://www.kaggle.com/code/ssauer/simple-rf-tuned)"
+    - "Bearbeiten Sie so viele Fallstudien (aus obiger Liste) wie nötig, um den Stoff flüssig zu beherrschen"
+  Vertiefung:
+    - "[Mathematische Grundlagen können Sie z.B. hier vertiefen](https://deisenroth.cc/publication/deisenroth-2020/)"
+    - "[Gute Fallstudie bei Kaggle für Regressionsprobleme: House Prices](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques)"
+
+
+
 
 
 
 thema15:
-  Titel: "Wiederholung und Vertiefung"
+  Titel: "Fallstudien"
+  Lernziele:
+    - "Sie können die Techniken des Maschinellen Lernens mit dem Tidymodels-Ansatz flüssig anbringen"
 
   Literatur:
     - "Rhys, Kap. 12"    
@@ -292,7 +297,7 @@ thema8:
   Lernziele:
     - "Sie kennen den Principal-Components-Algorithmus (PCA) und können ihn in Grundzügen erläutern"
     - "Sie können eine PCA in R berechnen"
-    - "Sie wissen um Vorteile und Beschränkungen dieses Algorithmus"
+    - "Sie wissen um Vorteile und Beschränkungen dieses Algorithmusses"
 
   Literatur:
     - "Rhys, Kap. 13"    
