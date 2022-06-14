@@ -60,6 +60,17 @@ ti_tree <-
 ```
 
 
+## Lernsteuerung
+
+```{r chapter-start-sections, echo = FALSE, results = "asis"}
+source("funs/chapter-start-sections.R")
+chapter_start_sections(title = "Entscheidungsbäume")
+```
+
+
+
+
+
 ## Anatomie eines Baumes
 
 Ein Baum 🌳 hat (u.a.):
@@ -827,15 +838,6 @@ Man beachte, dass die Modellgüte im Train-Samle höher ist als im Test-Sample (
 
 
 
-
-
-
-
-
-
-
-
-<!-- ## Aufgaben und Vertiefung -->
 
 
 

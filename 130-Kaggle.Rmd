@@ -109,7 +109,7 @@ d_test_path <- "https://raw.githubusercontent.com/sebastiansauer/Lehre/main/data
 ```
 
 
-
+Wir importieren die Daten von der Online-Quelle:
 
 ```{r}
 d_train_raw <- read_csv(d_train_path)
@@ -186,7 +186,8 @@ rec1 <-
   step_mutate(budget = if_else(budget < 10, 10, budget)) %>% 
   step_log(budget) %>% 
   step_mutate(release_date = mdy(release_date)) %>% 
-  step_date(release_date, features = c("year", "month"), keep_original_cols = FALSE) %>% 
+  step_date(release_date, features = c("year", "month"), 
+            keep_original_cols = FALSE) %>% 
   step_impute_knn(all_predictors()) %>% 
   step_dummy(all_nominal())
 

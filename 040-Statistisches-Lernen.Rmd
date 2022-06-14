@@ -165,7 +165,6 @@ d <-
 
 d %>% 
   mutate(bestanden = ifelse(lernzeit > 10 | schlauer_nebensitzer == TRUE, TRUE, FALSE))
-
 ```
 
 
@@ -563,7 +562,7 @@ knitr::include_graphics("img/plot-bias-variance-1.png")
 
 ```{r render-outline-vertiefung-aufgaben, results = "asis", echo = FALSE, message = FALSE}
 
-  render_section(course_dates_file,
+render_section(course_dates_file,
                  content_file,
                  i = NULL,
                  title = "Statistisches Lernen",
