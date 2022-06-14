@@ -3,7 +3,7 @@ title: "DataScience1"
 subtitle: Grundlagen der Prognosemodellierung 🔮🧰
 
 author: "Sebastian Sauer"
-date: "2022-05-08 07:43:06"
+date: "2022-06-09 16:24:59"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -16,7 +16,23 @@ github-repo: sebastiansauer/datascience1
 ---
 
 
-
+<!-- ```{r global-knitr-options, include=FALSE} -->
+<!--   knitr::opts_chunk$set( -->
+<!--   fig.pos = 'H', -->
+<!--   fig.asp = 0.618, -->
+<!--   fig.align='center', -->
+<!--   fig.width = 5, -->
+<!--   out.width = "70%", -->
+<!--   fig.cap = "",  -->
+<!--   fig.path = "chunk-img/", -->
+<!--   dpi = 300, -->
+<!--   # tidy = TRUE, -->
+<!--   echo = FALSE, -->
+<!--   message = FALSE, -->
+<!--   warning = FALSE, -->
+<!--   cache = FALSE, -->
+<!--   fig.show = "hold") -->
+<!-- ``` -->
 
 
 
@@ -50,11 +66,17 @@ typisches Gebabbel des Fachgebiet mit Lässigkeit mitzumachen.
 Ach ja, und mit einigem Erfolg Vorhersagemodelle entwickeln.
 
 
+## Zitation
+
+Nutzen Sie diese DOI, um dieses Buch zu zitieren: [![DOI](https://zenodo.org/badge/461950782.svg)](https://zenodo.org/badge/latestdoi/461950782)
+
+
+
 ## Technische Details
 
 
 
-- Diese Version des Buches wurde erstellt am: 2022-05-08 07:43:06
+- Diese Version des Buches wurde erstellt am: 2022-06-09 16:24:59
 
 
 - Die URL zu diesem Buch lautet <https://sebastiansauer.github.io/datascience1/> und ist bei [GitHub Pages](https://pages.github.com/) gehostet.
@@ -80,7 +102,7 @@ Ach ja, und mit einigem Erfolg Vorhersagemodelle entwickeln.
 |dials        |0.1.1      |CRAN (R 4.1.2)                     |
 |downlit      |0.4.0      |CRAN (R 4.1.0)                     |
 |dplyr        |1.0.9      |CRAN (R 4.1.2)                     |
-|ggplot2      |3.3.5      |CRAN (R 4.1.0)                     |
+|ggplot2      |3.3.6      |CRAN (R 4.1.2)                     |
 |glmnet       |4.1-3      |CRAN (R 4.1.0)                     |
 |infer        |1.0.0      |CRAN (R 4.1.0)                     |
 |ISLR         |1.4        |CRAN (R 4.1.0)                     |
@@ -96,7 +118,7 @@ Ach ja, und mit einigem Erfolg Vorhersagemodelle entwickeln.
 |readr        |2.1.2      |CRAN (R 4.1.2)                     |
 |rsample      |0.1.1      |CRAN (R 4.1.0)                     |
 |rstatix      |0.7.0      |CRAN (R 4.1.0)                     |
-|tibble       |3.1.6      |CRAN (R 4.1.0)                     |
+|tibble       |3.1.7      |CRAN (R 4.1.2)                     |
 |tidymodels   |0.1.4      |CRAN (R 4.1.0)                     |
 |tidyr        |1.2.0      |CRAN (R 4.1.2)                     |
 |tidyverse    |1.3.1      |CRAN (R 4.1.0)                     |

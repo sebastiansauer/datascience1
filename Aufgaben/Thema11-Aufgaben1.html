@@ -1,0 +1,324 @@
+
+<html>
+
+<head>
+<title>Aufgaben</title>
+<style type="text/css">
+body{font-family: Arial, Helvetica, Sans;}
+</style>
+
+<meta charset="UTF-8">
+
+<script type="text/javascript"   src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+</head>
+
+<body>
+<h2>Aufgaben</h2>
+
+<ol>
+<li>
+<h4>Aufgabe</h4>
+<p>Melden Sie sich an für die Kaggle Competition <a
+href="https://www.kaggle.com/competitions/tmdb-box-office-prediction/overview">TMDB
+Box Office Prediction - Can you predict a movie’s worldwide box office
+revenue?</a>.</p>
+<p>Sie benötigen dazu ein Konto; es ist auch möglich, sich mit seinem
+Google-Konto anzumelden.</p>
+<p>Bei diesem Prognosewettbewerb geht es darum, vorherzusagen, wieviel
+Umsatz wohl einige Filme machen werden. Als Prädiktoren stehen einige
+Infos wie Budget, Genre, Titel etc. zur Verfügung. Eine klassische
+“predictive Competition” also :-) Allerdings können immer ein paar
+Schwierigkeiten auftreten ;-)</p>
+<p><em>Aufgabe</em></p>
+<p>Erstellen Sie ein Random-Forest-Modell mit Tidymodels! Reichen Sie es
+bei Kaggle ein un berichten Sie den Score!</p>
+<p><em>Hinweise</em></p>
+<!-- - Nehmen Sie folgende Prädiktoren auf: `budget` und `popularity` -->
+<ul>
+<li>Verzichten Sie auf Vorverarbeitung.</li>
+<li>Tunen Sie die typischen Parameter.</li>
+<li>Begrenzen Sie sich auf folgende Prädiktoren.</li>
+</ul>
+<pre class="text"><code>preds_chosen &lt;- 
+  c(&quot;id&quot;, &quot;budget&quot;, &quot;popularity&quot;, &quot;runtime&quot;)</code></pre>
+<br/>
+</li>
+<li>
+<h4>Aufgabe</h4>
+<p>Wir bearbeiten hier die Fallstudie <a
+href="https://www.kaggle.com/competitions/tmdb-box-office-prediction/overview">TMDB
+Box Office Prediction - Can you predict a movie’s worldwide box office
+revenue?</a>, ein <a
+href="https://www.kaggle.com/">Kaggle</a>-Prognosewettbewerb.</p>
+<p>Ziel ist es, genaue Vorhersagen zu machen, in diesem Fall für
+Filme.</p>
+<p>Die Daten können Sie von der Kaggle-Projektseite beziehen oder
+so:</p>
+<pre class="text"><code>d_train_path &lt;- &quot;https://raw.githubusercontent.com/sebastiansauer/Lehre/main/data/tmdb-box-office-prediction/train.csv&quot;
+d_test_path &lt;- &quot;https://raw.githubusercontent.com/sebastiansauer/Lehre/main/data/tmdb-box-office-prediction/test.csv&quot;</code></pre>
+<h1 id="aufgabe">Aufgabe</h1>
+<p>Reichen Sie bei Kaggle eine Submission für die Fallstudie ein!
+Berichten Sie den Kaggle-Score</p>
+<p>Hinweise:</p>
+<ul>
+<li>Sie müssen sich bei Kaggle ein Konto anlegen (kostenlos und anonym
+möglich); alternativ können Sie sich mit einem Google-Konto
+anmelden.</li>
+<li>Berechnen Sie einen Entscheidungsbaum und einen Random-Forest.</li>
+<li>Tunen Sie nach Bedarf; verwenden Sie aber Default-Werte.</li>
+<li>Verwenden Sie Tidymodels.</li>
+</ul>
+<br/>
+</li>
+<li>
+<h4>Aufgabe</h4>
+<p>Wir bearbeiten hier die Fallstudie <a
+href="https://www.kaggle.com/competitions/tmdb-box-office-prediction/overview">TMDB
+Box Office Prediction - Can you predict a movie’s worldwide box office
+revenue?</a>, ein <a
+href="https://www.kaggle.com/">Kaggle</a>-Prognosewettbewerb.</p>
+<p>Ziel ist es, genaue Vorhersagen zu machen, in diesem Fall für
+Filme.</p>
+<p>Die Daten können Sie von der Kaggle-Projektseite beziehen oder
+so:</p>
+<pre class="text"><code>d_train_path &lt;- &quot;https://raw.githubusercontent.com/sebastiansauer/Lehre/main/data/tmdb-box-office-prediction/train.csv&quot;
+d_test_path &lt;- &quot;https://raw.githubusercontent.com/sebastiansauer/Lehre/main/data/tmdb-box-office-prediction/test.csv&quot;</code></pre>
+<h1 id="aufgabe">Aufgabe</h1>
+<p>Reichen Sie bei Kaggle eine Submission für die Fallstudie ein!
+Berichten Sie den Score!</p>
+<p>Hinweise:</p>
+<ul>
+<li>Sie müssen sich bei Kaggle ein Konto anlegen (kostenlos und anonym
+möglich); alternativ können Sie sich mit einem Google-Konto
+anmelden.</li>
+<li>Verwenden Sie <em>mehrere, und zwar folgende Algorithmen</em>:
+Random Forest, Boosting, lineare Regression. Tipp: Ein Workflow-Set ist
+hilfreich.</li>
+<li>Logarithmieren Sie <code>budget</code>.</li>
+<li>Betreiben Sie Feature Engineering, zumindest etwas. Insbesondere
+sollten Sie den Monat und das Jahr aus dem Datum extrahieren und als
+Features (Prädiktoren) nutzen.</li>
+<li>Verwenden Sie <code>tidymodels</code>.</li>
+<li>Die Zielgröße ist <code>revenue</code> in Dollars; nicht in
+“Log-Dollars”. Sie müssen also rücktransformieren, falls Sie
+<code>revenue</code> logarithmiert haben.</li>
+</ul>
+<br/>
+</li>
+<li>
+<h4>Aufgabe</h4>
+<p>Wir bearbeiten hier die Fallstudie <a
+href="https://www.kaggle.com/competitions/tmdb-box-office-prediction/overview">TMDB
+Box Office Prediction - Can you predict a movie’s worldwide box office
+revenue?</a>, ein <a
+href="https://www.kaggle.com/">Kaggle</a>-Prognosewettbewerb.</p>
+<p>Ziel ist es, genaue Vorhersagen zu machen, in diesem Fall für
+Filme.</p>
+<p>Die Daten können Sie von der Kaggle-Projektseite beziehen oder
+so:</p>
+<pre class="text"><code>d_train_path &lt;- &quot;https://raw.githubusercontent.com/sebastiansauer/Lehre/main/data/tmdb-box-office-prediction/train.csv&quot;
+d_test_path &lt;- &quot;https://raw.githubusercontent.com/sebastiansauer/Lehre/main/data/tmdb-box-office-prediction/test.csv&quot;</code></pre>
+<h1 id="aufgabe">Aufgabe</h1>
+<p>Reichen Sie bei Kaggle eine Submission für die Fallstudie ein!
+Berichten Sie den Score!</p>
+<p>Hinweise:</p>
+<ul>
+<li>Sie müssen sich bei Kaggle ein Konto anlegen (kostenlos und anonym
+möglich); alternativ können Sie sich mit einem Google-Konto
+anmelden.</li>
+<li>Halten Sie das Modell so <em>einfach</em> wie möglich. Verwenden Sie
+als Algorithmus die <em>lineare Regression</em> ohne weitere
+Schnörkel.</li>
+<li>Logarithmieren Sie <code>budget</code> und
+<code>revenue</code>.</li>
+<li>Minimieren Sie die Vorverarbeitung (<code>steps</code>) so weit als
+möglich.</li>
+<li>Verwenden Sie <code>tidymodels</code>.</li>
+<li>Die Zielgröße ist <code>revenue</code> in Dollars; nicht in
+“Log-Dollars”. Sie müssen also rücktransformieren, wenn Sie
+<code>revenue</code> logarithmiert haben, bevor Sie Ihre Prognose
+einreichen.</li>
+</ul>
+<br/>
+</li>
+<li>
+<h4>Aufgabe</h4>
+<p>Melden Sie sich an für die Kaggle Competition <a
+href="https://www.kaggle.com/competitions/tmdb-box-office-prediction/overview">TMDB
+Box Office Prediction - Can you predict a movie’s worldwide box office
+revenue?</a>.</p>
+<p>Sie benötigen dazu ein Konto; es ist auch möglich, sich mit seinem
+Google-Konto anzumelden.</p>
+<p>Bei diesem Prognosewettbewerb geht es darum, vorherzusagen, wieviel
+Umsatz wohl einige Filme machen werden. Als Prädiktoren stehen einige
+Infos wie Budget, Genre, Titel etc. zur Verfügung. Eine klassische
+“predictive Competition” also :-) Allerdings können immer ein paar
+Schwierigkeiten auftreten ;-)</p>
+<p><em>Aufgabe</em></p>
+<p>Erstellen Sie ein Random-Forest-Modell mit Tidymodels!</p>
+<p><em>Hinweise</em></p>
+<!-- - Nehmen Sie folgende Prädiktoren auf: `budget` und `popularity` -->
+<ul>
+<li>Verzichten Sie auf Vorverarbeitung.</li>
+<li>Tunen Sie die typischen Parameter.</li>
+<li>Reichen Sie das Modell ein und berichten Sie Ihren Score.</li>
+<li>Begrenzen Sie sich auf folgende Prädiktoren.</li>
+<li>Verwenden Sie (langweiligerweise) nur ein lineares Modell.</li>
+</ul>
+<pre class="text"><code>preds_chosen &lt;- 
+  c(&quot;id&quot;, &quot;budget&quot;, &quot;popularity&quot;, &quot;runtime&quot;)</code></pre>
+<br/>
+</li>
+<li>
+<h4>Aufgabe</h4>
+<p>Ein merkwürdiger Fehler bzw. eine merkwürdige Fehlermeldung in
+Tidymodels - das untersuchen wir hier genauer und versuchen das Phänomen
+zu erklären.</p>
+<p><em>Aufgabe</em></p>
+<p>Erläutern Sie die Ursachen des Fehlers! Schalten Sie den Fehler an
+und ab, um zu zeigen, dass Sie Ihn verstehen.</p>
+<h1 id="startup">Startup</h1>
+<pre class="text"><code>library(tidyverse)
+library(tidymodels)</code></pre>
+<h1 id="data-import">Data import</h1>
+<pre class="text"><code>data(&quot;mtcars&quot;)
+
+d_train &lt;- mtcars %&gt;% slice(1:20)
+d_test &lt;- mtcars %&gt;% slice(21:nrow(mtcars))</code></pre>
+<h1 id="recipe">Recipe</h1>
+<pre class="text"><code>preds_chosen &lt;- c(&quot;hp&quot;, &quot;disp&quot;, &quot;am&quot;)</code></pre>
+<pre class="text"><code>rec1 &lt;- 
+  recipe( ~ ., data = d_train) %&gt;% 
+  update_role(all_predictors(), new_role = &quot;id&quot;) %&gt;% 
+  update_role(all_of(preds_chosen), new_role = &quot;predictor&quot;) %&gt;% 
+  update_role(mpg, new_role = &quot;outcome&quot;)
+rec1</code></pre>
+<pre><code>## Recipe
+## 
+## Inputs:
+## 
+##       role #variables
+##         id          7
+##    outcome          1
+##  predictor          3</code></pre>
+<pre class="text"><code>d_train_baked &lt;-
+  rec1 %&gt;% 
+  prep() %&gt;% 
+  bake(new_data = NULL)
+
+glimpse(d_train_baked)</code></pre>
+<pre><code>## Rows: 20
+## Columns: 11
+## $ mpg  &lt;dbl&gt; 21.0, 21.0, 22.8, 21.4, 18.7, 18.1, 14.3, 24.4, 22.8, …
+## $ cyl  &lt;dbl&gt; 6, 6, 4, 6, 8, 6, 8, 4, 4, 6, 6, 8, 8, 8, 8, 8, 8, 4, …
+## $ disp &lt;dbl&gt; 160.0, 160.0, 108.0, 258.0, 360.0, 225.0, 360.0, 146.7…
+## $ hp   &lt;dbl&gt; 110, 110, 93, 110, 175, 105, 245, 62, 95, 123, 123, 18…
+## $ drat &lt;dbl&gt; 3.90, 3.90, 3.85, 3.08, 3.15, 2.76, 3.21, 3.69, 3.92, …
+## $ wt   &lt;dbl&gt; 2.620, 2.875, 2.320, 3.215, 3.440, 3.460, 3.570, 3.190…
+## $ qsec &lt;dbl&gt; 16.46, 17.02, 18.61, 19.44, 17.02, 20.22, 15.84, 20.00…
+## $ vs   &lt;dbl&gt; 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, …
+## $ am   &lt;dbl&gt; 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, …
+## $ gear &lt;dbl&gt; 4, 4, 4, 3, 3, 3, 3, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 4, …
+## $ carb &lt;dbl&gt; 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, 3, 3, 3, 4, 4, 4, 1, …</code></pre>
+<h1 id="model-1">Model 1</h1>
+<pre class="text"><code>model_lm &lt;- linear_reg()</code></pre>
+<h1 id="workflow-1">Workflow 1</h1>
+<pre class="text"><code>wf1 &lt;-
+  workflow() %&gt;% 
+  add_model(model_lm) %&gt;% 
+  add_recipe(rec1)</code></pre>
+<h1 id="fit">Fit</h1>
+<pre class="text"><code>lm_fit1 &lt;-
+  wf1 %&gt;% 
+  fit(d_train)</code></pre>
+<pre class="text"><code>preds &lt;-
+  lm_fit1 %&gt;% 
+  predict(d_test)
+
+head(preds)</code></pre>
+<pre><code>## # A tibble: 6 × 1
+##   .pred
+##   &lt;dbl&gt;
+## 1  22.6
+## 2  17.2
+## 3  17.4
+## 4  12.1
+## 5  14.9
+## 6  28.2</code></pre>
+<p>Aus Gründen der Reproduzierbarkeit bietet es sich an, eine
+<code>SessionInfo</code> anzugeben:</p>
+<pre class="text"><code>sessionInfo()</code></pre>
+<pre><code>## R version 4.1.3 (2022-03-10)
+## Platform: x86_64-apple-darwin17.0 (64-bit)
+## Running under: macOS Monterey 12.3.1
+## 
+## Matrix products: default
+## LAPACK: /Library/Frameworks/R.framework/Versions/4.1/Resources/lib/libRlapack.dylib
+## 
+## locale:
+## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+## 
+## attached base packages:
+## [1] grid      stats     graphics  grDevices utils     datasets 
+## [7] methods   base     
+## 
+## other attached packages:
+##  [1] visdat_0.5.3        VIM_6.1.1           colorspace_2.0-3   
+##  [4] lubridate_1.8.0     rpart_4.1.16        ranger_0.13.1      
+##  [7] report_0.5.1.1      see_0.7.0.1         correlation_0.8.0.1
+## [10] modelbased_0.8.0    effectsize_0.6.0.1  parameters_0.17.0.9
+## [13] performance_0.9.0.2 bayestestR_0.12.1   datawizard_0.4.0.17
+## [16] insight_0.17.0.6    easystats_0.4.3     tictoc_1.0.1       
+## [19] yardstick_0.0.9     workflowsets_0.1.0  workflows_0.2.6    
+## [22] tune_0.2.0.9000     rsample_0.1.1       recipes_0.2.0      
+## [25] parsnip_0.2.1       modeldata_0.1.1     infer_1.0.0        
+## [28] dials_0.1.1         scales_1.2.0        broom_0.8.0        
+## [31] tidymodels_0.1.4    forcats_0.5.1       stringr_1.4.0      
+## [34] purrr_0.3.4         readr_2.1.2         tidyr_1.2.0        
+## [37] tibble_3.1.7        ggplot2_3.3.6       tidyverse_1.3.1    
+## [40] exams_2.3-6         dplyr_1.0.9         colorout_1.2-2     
+## 
+## loaded via a namespace (and not attached):
+##   [1] readxl_1.3.1       backports_1.4.1    primes_1.1.0      
+##   [4] plyr_1.8.7         sp_1.4-6           splines_4.1.3     
+##   [7] listenv_0.8.0      TH.data_1.1-1      digest_0.6.29     
+##  [10] foreach_1.5.2      htmltools_0.5.2    fansi_1.0.3       
+##  [13] magrittr_2.0.3     doParallel_1.0.17  openxlsx_4.2.5    
+##  [16] tzdb_0.1.2         globals_0.14.0     modelr_0.1.8      
+##  [19] gower_1.0.0        vroom_1.5.7        sandwich_3.0-1    
+##  [22] hardhat_0.2.0      rvest_1.0.2        haven_2.4.3       
+##  [25] xfun_0.30          crayon_1.5.1       jsonlite_1.8.0    
+##  [28] survival_3.2-13    zoo_1.8-9          iterators_1.0.14  
+##  [31] glue_1.6.2         gtable_0.3.0       ipred_0.9-12      
+##  [34] emmeans_1.7.3      car_3.0-11         future.apply_1.8.1
+##  [37] DEoptimR_1.0-10    abind_1.4-5        mvtnorm_1.1-3     
+##  [40] DBI_1.1.2          Rcpp_1.0.8.3       laeken_0.5.2      
+##  [43] xtable_1.8-4       foreign_0.8-82     proxy_0.4-26      
+##  [46] GPfit_1.0-8        bit_4.0.4          lava_1.6.10       
+##  [49] prodlim_2019.11.13 vcd_1.4-9          httr_1.4.3        
+##  [52] ellipsis_0.3.2     farver_2.1.0       pkgconfig_2.0.3   
+##  [55] nnet_7.3-17        dbplyr_2.1.1       utf8_1.2.2        
+##  [58] labeling_0.4.2     tidyselect_1.1.2   rlang_1.0.2       
+##  [61] DiceDesign_1.9     munsell_0.5.0      cellranger_1.1.0  
+##  [64] tools_4.1.3        xgboost_1.5.2.1    cli_3.3.0         
+##  [67] generics_0.1.2     evaluate_0.15      fastmap_1.1.0     
+##  [70] knitr_1.39         bit64_4.0.5        fs_1.5.2          
+##  [73] zip_2.2.0          robustbase_0.93-9  future_1.24.0     
+##  [76] xml2_1.3.3         compiler_4.1.3     rstudioapi_0.13   
+##  [79] curl_4.3.2         e1071_1.7-9        reprex_2.0.1      
+##  [82] lhs_1.1.5          stringi_1.7.6      highr_0.9         
+##  [85] lattice_0.20-45    Matrix_1.4-0       vctrs_0.4.1       
+##  [88] pillar_1.7.0       lifecycle_1.0.1    furrr_0.2.3       
+##  [91] lmtest_0.9-39      estimability_1.3   data.table_1.14.2 
+##  [94] R6_2.5.1           rio_0.5.29         parallelly_1.31.0 
+##  [97] codetools_0.2-18   boot_1.3-28        MASS_7.3-55       
+## [100] assertthat_0.2.1   withr_2.5.0        multcomp_1.4-19   
+## [103] parallel_4.1.3     hms_1.1.1          timeDate_3043.102 
+## [106] coda_0.19-4        class_7.3-20       rmarkdown_2.14    
+## [109] carData_3.0-4      pROC_1.18.0        base64enc_0.1-3</code></pre>
+<br/>
+</li>
+</ol>
+
+</body>
+</html>

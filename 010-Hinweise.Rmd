@@ -1,14 +1,13 @@
----
-output: html_document
-editor_options: 
-  chunk_output_type: console
----
+
 
 <!-- # (PART) Organisatorisches {-} -->
 
 # Hinweise 
 
 
+```{r}
+knitr::opts_chunk$set(cache = FALSE)
+```
 
 
 
@@ -101,8 +100,9 @@ die das Online-Zusammenarbeiten vereinfachen:
 
 
 
-```{r echo = FALSE}
+```{r source-stuff, echo = FALSE}
 source("https://raw.githubusercontent.com/sebastiansauer/Lehre/main/R-Code/render-course-sections.R")
+source("funs/define-constants.R")
 ```
 
 
@@ -110,11 +110,6 @@ source("https://raw.githubusercontent.com/sebastiansauer/Lehre/main/R-Code/rende
 
 
 ```{r render-outline-course-small-table, results = "asis", echo = FALSE, message = FALSE}
-
-course_dates_file <- here::here("course-dates.yaml")
-content_file <- here::here("_modul-ueberblick.yaml")
-link_stump <- "https://sebastiansauer.github.io/datascience1/"
-
 stopifnot(file.exists(course_dates_file))
 stopifnot(file.exists(content_file))
 

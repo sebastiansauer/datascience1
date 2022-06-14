@@ -26,6 +26,10 @@ thema1:
   Aufgaben:
     - "[Machen Sie sich mit 'Kaggle' vertraut](https://www.kaggle.com/)"
     - "[Bearbeiten Sie die Fallstudie 'TitaRnic' auf Kaggle](https://www.kaggle.com/code/headsortails/tidy-titarnic/report)"
+    - "[Machen Sie sich mit dieser einfachen Fallstudie zur linearen Regression vertraut: The Movie Data Base Revenue (Kaggle)](https://www.kaggle.com/code/ssauer/notebook9188bfa616)"
+  Videos:
+    - "[Prognose-Wettbewerbe bei Kaggle am Beispiel von *The Movie Data Base Revenue*](https://youtu.be/vR9l-k50I1M)"
+
 
 thema2:
   Titel: "R, zweiter Blick"
@@ -42,13 +46,12 @@ thema2:
   Vorbereitung:
     - Lesen Sie die Literatur.
   Aufgaben:
-    - "[Aufgaben](https://sebastiansauer.github.io/datascience1/r-zweiter-blick.html#aufgaben-2)"
+
+  Vertiefung:
+    - "[Funktionale Programmierung mit R](https://albert-rapp.de/post/2021-09-16-similar-data-and-list-like-columns/)"
     - "[Lernen Sie Wiederholungsstrukturen mit ggplot](https://data-se.netlify.app/2021/02/06/plotting-multiple-plots-using-purrr-map-and-ggplot/)"
     - "[Fallstudie Flugverspätungen](https://data-se.netlify.app/2021/03/10/fallstudie-modellierung-von-flugversp%C3%A4tungen/)"
     - "[Fallstudie Getreideernte](https://juliasilge.com/blog/crop-yields/)" 
-  Vertiefung:
-    - "[Funktionale Programmierung mit R](https://albert-rapp.de/post/2021-09-16-similar-data-and-list-like-columns/)"
- 
 
 thema3:
   Titel: "R, zweiter Blick 2"
@@ -70,6 +73,7 @@ thema3a:
   Aufgaben:
     - "[Fallstudie Seegurken](https://www.tidymodels.org/start/models/)"
     - "[Sehr einfache Fallstudie zur Modellierung einer Regression mit tidymodels](https://juliasilge.com/blog/student-debt/)"
+    - "[Fallstudie zur linearen Regression mit Tidymodels](https://www.gmudatamining.com/lesson-10-r-tutorial.html)"
 
 
 
@@ -151,10 +155,17 @@ thema7:
 
 thema9:
   Titel: "Entscheidungsbäume"
+<<<<<<< HEAD
   
   Lernziele:
     - "Sie können den rpart-Algorithmus erläutern, für Klassifikation und Regression"
     - "Sie wissen, wie man einen Entscheidungsbaum in R berechnet"
+=======
+  Lernziele:
+    - "Sie können den rpart-Algorithmus erklären"
+    - "Sie wissen, wie man Overfitting bei Entscheidungsbäume begrenzen kann"
+    - "Sie können Entscheidungsbäume in R berechnen"
+>>>>>>> 7e4b6db9ba989a326bbbb4b186b614657eed8bf8
 
   Literatur:
     - "Rhys, Kap. 7"
@@ -168,6 +179,7 @@ thema9:
 
 
 
+<<<<<<< HEAD
 
 
 
@@ -176,64 +188,148 @@ thema9:
 
 
 
+=======
+>>>>>>> 7e4b6db9ba989a326bbbb4b186b614657eed8bf8
 thema10:
-  Titel: "Zufallswälder"
+  Titel: "Ensemble-Lerner"
+  Lernziele:
+    - "Sie können Algorithmen für Ensemble-Lernen erklären, d.i. Bagging, AdaBoost, XGBoost, Random Forest"
+    - "Sie wissen, anhand welche Tuningparamter man Overfitting bei diesen Algorithmen begrenzen kann"
+    - "Sie können diese Verfahren in R berechnen"
+  
+  
+  Aufgaben:
+    - "[Aufgaben zu Tidymodels, PDF](https://github.com/sebastiansauer/datascience1/blob/main/Aufgaben/Thema11-Loesungen1.pdf)"
+    - "[Aufgaben zu Tidymodels, HTML](https://github.com/sebastiansauer/datascience1/blob/main/Aufgaben/Thema11-Loesungen1.html)"
+
+  Hinweise:
+    - "[Nutzen Sie StackOverflow als Forum für Ihre Fragen - Hier ein Beispiel zu einer Fehlermeldung, die mir Kopfzerbrechen bereitete](https://stackoverflow.com/questions/72333419/error-on-running-predict-in-tidymodels-error-in-dplyrselect-cant-su/72341769#72341769)"
 
   Literatur:
     - "Rhys, Kap. 8"
-    
-    
+  Vertiefung:
+    - "[Einfache Durchführung eines Modellierung mit XGBoost](https://data-se.netlify.app/2020/12/14/titanic-tidymodels-boost/)"
+    - "[Fallstudie Oregon Schools](https://bcullen.rbind.io/post/2020-06-02-tidymodels-decision-tree-learning-in-r/)"
+    - "[Fallstudie Churn](https://www.gmudatamining.com/lesson-13-r-tutorial.html)"
+    - "[Fallstudie Ikea](https://juliasilge.com/blog/ikea-prices/)" 
+    - "[Fallstudie Wasserquellen in Sierra Leone](https://juliasilge.com/blog/water-sources/)" 
+    - "[Fallstudie Bäume in San Francisco](https://dev.to/juliasilge/tuning-random-forest-hyperparameters-in-r-with-tidytuesday-trees-data-4ilh)"
+    - "[Fallstudie Vulkanausbrüche](https://juliasilge.com/blog/multinomial-volcano-eruptions/)"
+    - "[Fallstudie Brettspiele mit XGBoost](https://juliasilge.com/blog/board-games/)"
+ 
 
-thema8:
-  Titel: "Dimensionsreduktion"
-
+    
+thema14:
+  Titel: "Regularisierung"
+  Lernziele:
+    - "Sie können Algorithmen für regularisierte lineare Modell erklären, d.h. Lasso- und Ridge-Regression"
+    - "Sie wissen, anhand welche Tuningparamter man Overfitting bei diesen Algorithmen begrenzen kann"
+    - "Sie können diese Verfahren in R berechnen"
+  
   Literatur:
-    - "Rhys, Kap. 13  "    
+    - "Rhys, Kap. 11"
+  
+  Aufgaben:
+    - "[Fallstudie Serie The Office](https://juliasilge.com/blog/lasso-the-office/)"
+    - "[Fallstudie NBER Papers](https://juliasilge.com/blog/nber-papers/)"
     
+  Hinweise:
+    - "Rhys und ISLR sind eine gute Quelle zum Einstieg in das Thema"
+
+
+
+    
+thema13:
+  Titel: "Blockwoche: kein Unterricht in dieser Woche"
+
+
+
+
+
+
+
 
 thema11:
-  Titel: "Fallstudie"
+  Titel: "Kaggle"
+  Lernziele:
+    - "Sie wissen, wie man einen Datensatz für einen Prognosewettbwerb bei Kaggle einreicht"
+    - "Sie kennen einige Beispiele von Notebooks auf Kaggle (für die Sprache R)"
+    - "Sie wissen, wie man ein Workflow-Set in Tidymodels berechnet"
+    - "Sie wissen, dass Tidymodels im Rezept keine Transformationen im Test-Sample berücksichtigt und wie man damit umgeht"
+ 
 
   Hinweise:
-    - Nächste Woche ist Blockwoche, zu der kein regulärer Unterricht stattfindet.
-    - Diese Woche fällt die Übung aus.
-  Literatur:
-    - "Rhys, Kap.9"
+    - "Machen Sie sich mit Kaggle vertraut. Als Übungs-Wettbewerb dient uns `TMDB Box-office Revenue` (s. Aufgaben)"
+  
+  Aufgaben:
+
+    - "[Fallstudie Einfache lineare Regression mit Tidymodels, Kaggle-Competition TMDB](https://www.kaggle.com/ssauer/simple-linear-model-tidymodels)"
+    - "[Fallstudie Einfaches Random-Forest-Modell mit Tidymodels, Kaggle-Competition TMDB](https://www.kaggle.com/code/ssauer/simple-rf-tuned)"
+    - "[Fallstudie Einfache lineare Regression in Base-R, Anfängerniveau, Kaggle-Competition TMDB](https://www.kaggle.com/code/ssauer/tmdb-simple-regression-beginners)"
+    - "[Fallstudie Workflow-Set mit Tidymodels, Kaggle-Competition TMDB](https://www.kaggle.com/ssauer/tmdb-xgboost-tidymodels)"
+
+
+  
+  Vertiefung:
+    - "[Kaggle-Blog](https://medium.com/kaggle-blog)"
+
 
 
 thema12:
-  Titel: "Wiederholung"
-
-  Hinweise:
-    - In dieser Woche fällt die Vorlesung aus (Pfingsten).
-
-thema13:
-  Titel: "GAM"
-
+  Titel: "Der rote Faden"
+  Lernziele:
+    - "Sie erarbeiten sich einen Überblick über den bisher gelernten Stoff bzw. verfeinern Ihren bestehenden Überblick"
   Literatur:
-    - "Rhys, Kap. 10"
+    - Rhys im Überblick
+  Aufgaben:
+    - "[Einfache Random-Forest-Modellierung bei Kaggle](https://www.kaggle.com/code/ssauer/simple-rf-tuned)"
+    - "Bearbeiten Sie so viele Fallstudien (aus obiger Liste) wie nötig, um den Stoff flüssig zu beherrschen"
+  Vertiefung:
+    - "[Mathematische Grundlagen können Sie z.B. hier vertiefen](https://deisenroth.cc/publication/deisenroth-2020/)"
+    - "[Gute Fallstudie bei Kaggle für Regressionsprobleme: House Prices](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques)"
 
 
 
-
-thema14:
-  Titel: "Lasso und Co"
-
-  Literatur:
-    - "Rhys, Kap. 11"
 
 
 
 thema15:
-  Titel: "Vertiefung"
+  Titel: "Fallstudien"
+  Lernziele:
+    - "Sie können die Techniken des Maschinellen Lernens mit dem Tidymodels-Ansatz flüssig anbringen"
 
   Literatur:
     - "Rhys, Kap. 12"    
-  Hinweise:
-    - Nach dieser Woche endet der Unterricht.
+
   Vertiefung:
     - "[Wie man eine Data-Science-Projekt strukturiert](https://medium.com/swlh/how-to-structure-a-python-based-data-science-project-a-short-tutorial-for-beginners-7e00bff14f56)"
     - "[Hausmeisterarbeit mit {{janitor}}](https://albert-rapp.de/post/2022-01-12-janitor-showcase/)"
+
+  Aufgaben:
+    - "[Bearbeiten Sie eine Auswahl von Fallstudien Ihrer Wahl aus dieser Sammlung](https://sebastiansauer.github.io/Lehre/Material/yacsdas.html)"
+
+
+
+thema8:
+  Titel: "Dimensionsreduktion"
+
+
+  Lernziele:
+    - "Sie kennen den Principal-Components-Algorithmus (PCA) und können ihn in Grundzügen erläutern"
+    - "Sie können eine PCA in R berechnen"
+    - "Sie wissen um Vorteile und Beschränkungen dieses Algorithmusses"
+
+  Literatur:
+    - "Rhys, Kap. 13"    
+  
+  Aufgaben:
+    - "[Fallstudie Cocktailrezepte](https://juliasilge.com/blog/cocktail-recipes-umap/)"
+    - "[Fallstudie Hiphop-Songs](https://juliasilge.com/blog/best-hip-hop/)"
+    - "[Fallstudie StackOverflow](https://juliasilge.com/blog/stack-overflow-pca/)"
+    
+    
+    
+    
 
 
 

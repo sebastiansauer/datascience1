@@ -1,14 +1,43 @@
 # Resampling und Tuning
 
 
+
+
+
+
+
+
+
 Benötigte R-Pakete für dieses Kapitel:
 
 
+```r
+library(tidyverse)
+library(tidymodels)
+library(tune)
+```
 
 
 
 
 
+
+<!-- ```{r global-knitr-options, include=FALSE} -->
+<!--   knitr::opts_chunk$set( -->
+<!--   fig.pos = 'H', -->
+<!--   fig.asp = 0.618, -->
+<!--   fig.align='center', -->
+<!--   fig.width = 5, -->
+<!--   out.width = "100%", -->
+<!--   # fig.cap = "",  -->
+<!--   dpi = 300, -->
+<!--   # tidy = TRUE, -->
+<!--   echo = TRUE, -->
+<!--   message = FALSE, -->
+<!--   warning = FALSE, -->
+<!--   cache = FALSE, -->
+<!--   fig.show = "hold") -->
+<!-- ``` -->
 
 
 
@@ -59,7 +88,7 @@ Eine alternative, hilfreich Abbildung findet sich [hier](https://www.tmwr.org/re
 
 
 <div class="figure" style="text-align: center">
-<img src="https://nomnoml.com/image.svg?source=%23direction%3A%20right%0A%5B%3Cdatabase%3E%20Gesamtdatensatz%5D%20-%3E%20%20%5BSplitte%20in%20Train-%20und%20Test-Sample%5D%0A%5BSplitte%20in%20Train-%20und%20Test-Sample%5D%20-%3E%20%5BF%C3%BCr%20jeden%20Modell-Kandidaten%20i%3D1%2C2%2C..%2Cn%20%7C%0A%20%20%5BTrain-Test%20Modellkandidat%20i%7C%0A%20%20%20%20%5BFitte%20in%20Train-Sample%5D%20-%3E%20%5BTeste%20im%20Assessment-Sample%5D%5D%0A%20%20%5D%20%0A%20%20%5BF%C3%BCr%20jeden%20Modell-Kandidaten%20i%3D1%2C2%2C..%2Cn%20%7C%0A%20%20%5BTrain-Test%20Modellkandidat%20i%7C%0A%20%20%20%20%5BFitte%20in%20Train-Sample%5D%20-%3E%20%5BTeste%20im%20Assessment-Sample%5D%5D%0A%20%20%5D%20-%3E%20%5BBestimme%20besten%20Modell-Kandidaten%5D%0A%20%20%5BBestimme%20besten%20Modell-Kandidaten%5D%20-%3E%20%5BFitte%20Modell%20im%20Train-Datensatz%5D%0A%20%20%5BFitte%20Modell%20im%20Train-Datensatz%5D%20-%3E%20%5BTest%20im%20Test-Datensatz%5D%0A%20%20%5BTest%20im%20Test-Datensatz%5D%20-%3E%20%5B%3Cend%3E%20Ende%5D" alt="Standardablauf des maschinellen Lernens mit Tuning und Resampling" width="100%" />
+<img src="https://nomnoml.com/image.svg?source=%23direction%3A%20right%0A%5B%3Cdatabase%3E%20Gesamtdatensatz%5D%20-%3E%20%20%5BSplitte%20in%20Train-%20und%20Test-Sample%5D%0A%5BSplitte%20in%20Train-%20und%20Test-Sample%5D%20-%3E%20%5BF%C3%BCr%20jeden%20Modell-Kandidaten%20i%3D1%2C2%2C..%2Cn%20%7C%0A%20%20%5BTrain-Test%20Modellkandidat%20i%7C%0A%20%20%20%20%5BFitte%20in%20Train-Sample%5D%20-%3E%20%5BTeste%20im%20Assessment-Sample%5D%5D%0A%20%20%5D%20%0A%20%20%5BF%C3%BCr%20jeden%20Modell-Kandidaten%20i%3D1%2C2%2C..%2Cn%20%7C%0A%20%20%5BTrain-Test%20Modellkandidat%20i%7C%0A%20%20%20%20%5BFitte%20in%20Train-Sample%5D%20-%3E%20%5BTeste%20im%20Assessment-Sample%5D%5D%0A%20%20%5D%20-%3E%20%5BBestimme%20besten%20Modell-Kandidaten%5D%0A%20%20%5BBestimme%20besten%20Modell-Kandidaten%5D%20-%3E%20%5BFitte%20Modell%20im%20Train-Datensatz%5D%0A%20%20%5BFitte%20Modell%20im%20Train-Datensatz%5D%20-%3E%20%5BTest%20im%20Test-Datensatz%5D%0A%20%20%5BTest%20im%20Test-Datensatz%5D%20-%3E%20%5B%3Cend%3E%20Ende%5D" alt="Standardablauf des maschinellen Lernens mit Tuning und Resampling" width="70%" />
 <p class="caption">(\#fig:process1)Standardablauf des maschinellen Lernens mit Tuning und Resampling</p>
 </div>
 
@@ -200,7 +229,7 @@ manchmal auch als "Faltungen" bezeichnet werden.
 @modar stellt das Resampling so dar (S. 259), s. Abb. \@ref(fig:cvmodar).
 
 <div class="figure" style="text-align: center">
-<img src="img/crossval.png" alt="Kreuzvalidierung, Aufteilung in Train- vs. Testsample" width="100%" />
+<img src="img/crossval.png" alt="Kreuzvalidierung, Aufteilung in Train- vs. Testsample" width="70%" />
 <p class="caption">(\#fig:cvmodar)Kreuzvalidierung, Aufteilung in Train- vs. Testsample</p>
 </div>
 
@@ -233,7 +262,7 @@ Die $r$-fach wiederholte Kreuzvalidierung wiederholte die einfache Kreuzvalidier
 
 
 <div class="figure" style="text-align: center">
-<img src="img/crossval_repeated.png" alt="Wiederholte Kreuzvalidierung" width="100%" />
+<img src="img/crossval_repeated.png" alt="Wiederholte Kreuzvalidierung" width="70%" />
 <p class="caption">(\#fig:cvrep)Wiederholte Kreuzvalidierung</p>
 </div>
 
@@ -244,7 +273,7 @@ s. Abb. \@ref(fig:repcvred).
 
 
 <div class="figure" style="text-align: center">
-<img src="https://www.tmwr.org/figures/variance-reduction-1.png" alt="Reduktion des Schätzfehlers als Funktion der r Wiederhoulugen der Kreuzvalidierung" width="100%" />
+<img src="https://www.tmwr.org/figures/variance-reduction-1.png" alt="Reduktion des Schätzfehlers als Funktion der r Wiederhoulugen der Kreuzvalidierung" width="70%" />
 <p class="caption">(\#fig:repcvred)Reduktion des Schätzfehlers als Funktion der r Wiederhoulugen der Kreuzvalidierung</p>
 </div>
 
@@ -275,7 +304,7 @@ Dieser Sachverhalt ist in Abb. \@ref(fig:initialsplit), aus @silge_tidy_2022, il
 
 
 <div class="figure" style="text-align: center">
-<img src="https://www.tmwr.org/premade/resampling.svg" alt="Resampling im Train-, nicht im Test-Sample" width="100%" />
+<img src="https://www.tmwr.org/premade/resampling.svg" alt="Resampling im Train-, nicht im Test-Sample" width="70%" />
 <p class="caption">(\#fig:initialsplit)Resampling im Train-, nicht im Test-Sample</p>
 </div>
 
@@ -342,7 +371,7 @@ thin_cum_mean %>%
 ```
 
 <div class="figure" style="text-align: center">
-<img src="080-Resampling-Tuning_files/figure-html/lln-1.png" alt="Gesetz der großen Zahl" width="100%" />
+<img src="080-Resampling-Tuning_files/figure-html/lln-1.png" alt="Gesetz der großen Zahl" width="70%" />
 <p class="caption">(\#fig:lln)Gesetz der großen Zahl</p>
 </div>
 
@@ -587,7 +616,7 @@ Vorhersagen eines Modells haben.
 
 
 <div class="figure" style="text-align: center">
-<img src="https://www.tmwr.org/figures/two-class-boundaries-1.png" alt="Overfitting als Funktion der Modellparameter und insofern als Problem de Wahl der Tuningparameter" width="100%" />
+<img src="https://www.tmwr.org/figures/two-class-boundaries-1.png" alt="Overfitting als Funktion der Modellparameter und insofern als Problem de Wahl der Tuningparameter" width="70%" />
 <p class="caption">(\#fig:nnoverfit)Overfitting als Funktion der Modellparameter und insofern als Problem de Wahl der Tuningparameter</p>
 </div>
 
@@ -604,7 +633,7 @@ Der Unterschied beider Ansätze ist in @silge_tidy_2022 wie in Abb. \@ref(fig:tu
 
 
 <div class="figure" style="text-align: center">
-<img src="https://www.tmwr.org/figures/tuning-strategies-1.png" alt="Links: Grid Search. Rechts: Iterative Search2" width="100%" />
+<img src="https://www.tmwr.org/figures/tuning-strategies-1.png" alt="Links: Grid Search. Rechts: Iterative Search2" width="70%" />
 <p class="caption">(\#fig:tuning1)Links: Grid Search. Rechts: Iterative Search2</p>
 </div>
 
@@ -798,7 +827,7 @@ Das können wir uns einfach visualisieren lassen:
 autoplot(ames_grid_search)
 ```
 
-<img src="080-Resampling-Tuning_files/figure-html/unnamed-chunk-19-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="080-Resampling-Tuning_files/figure-html/unnamed-chunk-20-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 Auf Basis dieser Ergebnisse könnte es Sinn machen, 

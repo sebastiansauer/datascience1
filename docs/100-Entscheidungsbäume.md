@@ -2,6 +2,45 @@
 # Entscheidungsbäume
 
 
+<!-- ```{r global-knitr-options, include=FALSE} -->
+<!--   knitr::opts_chunk$set( -->
+<!--   fig.pos = 'H', -->
+<!--   fig.asp = 0.618, -->
+<!--   fig.align='center', -->
+<!--   fig.width = 5, -->
+<!--   out.width = "100%", -->
+<!--   fig.cap = "",  -->
+<!--   dpi = 300, -->
+<!--   # tidy = TRUE, -->
+<!--   echo = FALSE, -->
+<!--   message = FALSE, -->
+<!--   warning = FALSE, -->
+<!--   cache = TRUE, -->
+<!--   fig.show = "hold") -->
+<!-- ``` -->
+
+
+
+
+## Lernsteuerung
+
+
+### Lernziele 
+
+- Sie können den rpart-Algorithmus erklären
+- Sie wissen, wie man Overfitting bei Entscheidungsbäume begrenzen kann
+- Sie können Entscheidungsbäume in R berechnen
+
+
+
+### Literatur 
+
+- Rhys, Kap. 7
+
+
+
+
+
 
 
 
@@ -82,7 +121,7 @@ Für Abb. \@ref(fig:tree1) ergibt sich eine komplexere Aufteilung, s. auch Abb. 
 
 
 <div class="figure" style="text-align: center">
-<img src="100-Entscheidungsbäume_files/figure-html/tree1-1.png" alt="Beispiel für einen Entscheidungsbaum" width="100%" />
+<img src="100-Entscheidungsbäume_files/figure-html/tree1-1.png" alt="Beispiel für einen Entscheidungsbaum" width="70%" />
 <p class="caption">(\#fig:tree1)Beispiel für einen Entscheidungsbaum</p>
 </div>
 
@@ -94,7 +133,7 @@ Kleine Lesehilft für Abb. \@ref(fig:tree1):
 
 
 <div class="figure" style="text-align: center">
-<img src="img/recursive-part.png" alt="Partionierung in Rechtecke durch Entscheidungsbäume" width="100%" />
+<img src="img/recursive-part.png" alt="Partionierung in Rechtecke durch Entscheidungsbäume" width="70%" />
 <p class="caption">(\#fig:recursive-part)Partionierung in Rechtecke durch Entscheidungsbäume</p>
 </div>
 
@@ -188,7 +227,7 @@ Untenrechts ist der Baum in 3D dargestellt.
 
 
 <div class="figure" style="text-align: center">
-<img src="img/8.3.png" alt="Ein weiteres Beispiel zur Darstellung von Entscheidungsbäumen" width="100%" />
+<img src="img/8.3.png" alt="Ein weiteres Beispiel zur Darstellung von Entscheidungsbäumen" width="70%" />
 <p class="caption">(\#fig:tree3)Ein weiteres Beispiel zur Darstellung von Entscheidungsbäumen</p>
 </div>
 
@@ -353,7 +392,7 @@ Abbildung \@ref(fig:tree-metr) stellt dieses Vorgehen schematisch dar [@rhys].
 
 
 <div class="figure" style="text-align: center">
-<img src="img/fig7-5_alt.jpeg" alt="Aufteilungswert bei metrischen Prädiktoren" width="100%" />
+<img src="img/fig7-5_alt.jpeg" alt="Aufteilungswert bei metrischen Prädiktoren" width="70%" />
 <p class="caption">(\#fig:tree-metr)Aufteilungswert bei metrischen Prädiktoren</p>
 </div>
 
@@ -411,7 +450,7 @@ Abb. \@ref(fig:rechteck) verdeutlicht diesen Unterschied [@islr].
 
 
 <div class="figure" style="text-align: center">
-<img src="img/8.7.png" alt="Rechteckige vs. lineare Partionierung" width="100%" />
+<img src="img/8.7.png" alt="Rechteckige vs. lineare Partionierung" width="70%" />
 <p class="caption">(\#fig:rechteck)Rechteckige vs. lineare Partionierung</p>
 </div>
 
@@ -519,6 +558,10 @@ bietet es sich an, eine kleine Zahl an Faltungen (`folds`) zu wählen.
 Bei 10 Faltungen beinhaltete eine Stichprobe gerade 10% der Fälle in Train-Sample,
 also etwa ... 2!
 
+
+Zur Erinnerung:
+Je größer die Anzahl der Repeats,
+desto genauer schätzen wir die Modellgüte.
 
 
 ### Rezept definieren
@@ -750,25 +793,25 @@ trees_tuned
 
 ```
 ## # Tuning results
-## # 10-fold cross-validation repeated 10 times using stratification 
-## # A tibble: 100 × 5
-##    splits         id       id2    .metrics           .notes           
-##    <list>         <chr>    <chr>  <list>             <list>           
-##  1 <split [21/3]> Repeat01 Fold01 <tibble [250 × 7]> <tibble [50 × 3]>
-##  2 <split [21/3]> Repeat01 Fold02 <tibble [250 × 7]> <tibble [50 × 3]>
-##  3 <split [21/3]> Repeat01 Fold03 <tibble [250 × 7]> <tibble [51 × 3]>
-##  4 <split [21/3]> Repeat01 Fold04 <tibble [250 × 7]> <tibble [50 × 3]>
-##  5 <split [22/2]> Repeat01 Fold05 <tibble [250 × 7]> <tibble [51 × 3]>
-##  6 <split [22/2]> Repeat01 Fold06 <tibble [250 × 7]> <tibble [51 × 3]>
-##  7 <split [22/2]> Repeat01 Fold07 <tibble [250 × 7]> <tibble [51 × 3]>
-##  8 <split [22/2]> Repeat01 Fold08 <tibble [250 × 7]> <tibble [50 × 3]>
-##  9 <split [22/2]> Repeat01 Fold09 <tibble [250 × 7]> <tibble [51 × 3]>
-## 10 <split [22/2]> Repeat01 Fold10 <tibble [250 × 7]> <tibble [50 × 3]>
-## # … with 90 more rows
+## # 5-fold cross-validation repeated 5 times using stratification 
+## # A tibble: 25 × 5
+##    splits         id      id2   .metrics           .notes           
+##    <list>         <chr>   <chr> <list>             <list>           
+##  1 <split [19/5]> Repeat1 Fold1 <tibble [128 × 7]> <tibble [32 × 3]>
+##  2 <split [19/5]> Repeat1 Fold2 <tibble [128 × 7]> <tibble [32 × 3]>
+##  3 <split [19/5]> Repeat1 Fold3 <tibble [128 × 7]> <tibble [32 × 3]>
+##  4 <split [19/5]> Repeat1 Fold4 <tibble [128 × 7]> <tibble [32 × 3]>
+##  5 <split [20/4]> Repeat1 Fold5 <tibble [128 × 7]> <tibble [32 × 3]>
+##  6 <split [19/5]> Repeat2 Fold1 <tibble [128 × 7]> <tibble [32 × 3]>
+##  7 <split [19/5]> Repeat2 Fold2 <tibble [128 × 7]> <tibble [32 × 3]>
+##  8 <split [19/5]> Repeat2 Fold3 <tibble [128 × 7]> <tibble [32 × 3]>
+##  9 <split [19/5]> Repeat2 Fold4 <tibble [128 × 7]> <tibble [32 × 3]>
+## 10 <split [20/4]> Repeat2 Fold5 <tibble [128 × 7]> <tibble [32 × 3]>
+## # … with 15 more rows
 ## 
 ## There were issues with some computations:
 ## 
-##   - Warning(s) x1000: 30 samples were requested but there were 21 rows in the data. 21 ...   - Warning(s) x1500: 30 samples were requested but there were 21 rows in the data. 21 ...   - Warning(s) x1000: 30 samples were requested but there were 21 rows in the data. 21 ...   - Warning(s) x1500: 30 samples were requested but there were 21 rows in the data. 21 ...   - Warning(s) x45: 30 samples were requested but there were 21 rows in the data. 21 ...
+##   - Warning(s) x320: 27 samples were requested but there were 19 rows in the data. 19 ...   - Warning(s) x80: 27 samples were requested but there were 19 rows in the data. 19 ...   - Warning(s) x320: 27 samples were requested but there were 19 rows in the data. 19 ...   - Warning(s) x80: 27 samples were requested but there were 19 rows in the data. 19 ...   - Warning(s) x4: 27 samples were requested but there were 19 rows in the data. 19 ...
 ## 
 ## Use `collect_notes(object)` for more information.
 ```
@@ -782,20 +825,20 @@ collect_notes(trees_tuned)
 ```
 
 ```
-## # A tibble: 5,045 × 5
-##    id       id2    location                       type    note                  
-##    <chr>    <chr>  <chr>                          <chr>   <chr>                 
-##  1 Repeat01 Fold01 preprocessor 1/1, model 76/125 warning 30 samples were reque…
-##  2 Repeat01 Fold01 preprocessor 1/1, model 77/125 warning 30 samples were reque…
-##  3 Repeat01 Fold01 preprocessor 1/1, model 78/125 warning 30 samples were reque…
-##  4 Repeat01 Fold01 preprocessor 1/1, model 79/125 warning 30 samples were reque…
-##  5 Repeat01 Fold01 preprocessor 1/1, model 80/125 warning 30 samples were reque…
-##  6 Repeat01 Fold01 preprocessor 1/1, model 81/125 warning 30 samples were reque…
-##  7 Repeat01 Fold01 preprocessor 1/1, model 82/125 warning 30 samples were reque…
-##  8 Repeat01 Fold01 preprocessor 1/1, model 83/125 warning 30 samples were reque…
-##  9 Repeat01 Fold01 preprocessor 1/1, model 84/125 warning 30 samples were reque…
-## 10 Repeat01 Fold01 preprocessor 1/1, model 85/125 warning 30 samples were reque…
-## # … with 5,035 more rows
+## # A tibble: 804 × 5
+##    id      id2   location                      type    note                     
+##    <chr>   <chr> <chr>                         <chr>   <chr>                    
+##  1 Repeat1 Fold1 preprocessor 1/1, model 33/64 warning 27 samples were requeste…
+##  2 Repeat1 Fold1 preprocessor 1/1, model 34/64 warning 27 samples were requeste…
+##  3 Repeat1 Fold1 preprocessor 1/1, model 35/64 warning 27 samples were requeste…
+##  4 Repeat1 Fold1 preprocessor 1/1, model 36/64 warning 27 samples were requeste…
+##  5 Repeat1 Fold1 preprocessor 1/1, model 37/64 warning 27 samples were requeste…
+##  6 Repeat1 Fold1 preprocessor 1/1, model 38/64 warning 27 samples were requeste…
+##  7 Repeat1 Fold1 preprocessor 1/1, model 39/64 warning 27 samples were requeste…
+##  8 Repeat1 Fold1 preprocessor 1/1, model 40/64 warning 27 samples were requeste…
+##  9 Repeat1 Fold1 preprocessor 1/1, model 41/64 warning 27 samples were requeste…
+## 10 Repeat1 Fold1 preprocessor 1/1, model 42/64 warning 27 samples were requeste…
+## # … with 794 more rows
 ```
 
 
@@ -814,20 +857,20 @@ collect_metrics(trees_tuned)
 ```
 
 ```
-## # A tibble: 250 × 9
+## # A tibble: 128 × 9
 ##    cost_complexity tree_depth min_n .metric .estimator  mean     n std_err
 ##              <dbl>      <int> <int> <chr>   <chr>      <dbl> <int>   <dbl>
-##  1    0.0000000001          1     2 rmse    standard   3.31    100  0.161 
-##  2    0.0000000001          1     2 rsq     standard   0.881    55  0.0284
-##  3    0.0000000178          1     2 rmse    standard   3.31    100  0.161 
-##  4    0.0000000178          1     2 rsq     standard   0.881    55  0.0284
-##  5    0.00000316            1     2 rmse    standard   3.31    100  0.161 
-##  6    0.00000316            1     2 rsq     standard   0.881    55  0.0284
-##  7    0.000562              1     2 rmse    standard   3.31    100  0.161 
-##  8    0.000562              1     2 rsq     standard   0.881    55  0.0284
-##  9    0.1                   1     2 rmse    standard   3.31    100  0.161 
-## 10    0.1                   1     2 rsq     standard   0.881    55  0.0284
-## # … with 240 more rows, and 1 more variable: .config <chr>
+##  1    0.0000000001          1     2 rmse    standard   3.46     25  0.223 
+##  2    0.0000000001          1     2 rsq     standard   0.666    21  0.0385
+##  3    0.0000001             1     2 rmse    standard   3.46     25  0.223 
+##  4    0.0000001             1     2 rsq     standard   0.666    21  0.0385
+##  5    0.0001                1     2 rmse    standard   3.46     25  0.223 
+##  6    0.0001                1     2 rsq     standard   0.666    21  0.0385
+##  7    0.1                   1     2 rmse    standard   3.46     25  0.223 
+##  8    0.1                   1     2 rsq     standard   0.666    21  0.0385
+##  9    0.0000000001          5     2 rmse    standard   2.62     25  0.265 
+## 10    0.0000000001          5     2 rsq     standard   0.863    25  0.0279
+## # … with 118 more rows, and 1 more variable: .config <chr>
 ```
 
 
@@ -838,7 +881,7 @@ Praktischerweise gibt es eine Autoplot-Funktion, um die besten Modellparameter a
 autoplot(trees_tuned)
 ```
 
-<img src="100-Entscheidungsbäume_files/figure-html/unnamed-chunk-23-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="100-Entscheidungsbäume_files/figure-html/unnamed-chunk-23-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 ### Bestes Modell auswählen
@@ -853,9 +896,9 @@ select_best(trees_tuned)
 
 ```
 ## # A tibble: 1 × 4
-##   cost_complexity tree_depth min_n .config               
-##             <dbl>      <int> <int> <chr>                 
-## 1    0.0000000001          4     2 Preprocessor1_Model006
+##   cost_complexity tree_depth min_n .config              
+##             <dbl>      <int> <int> <chr>                
+## 1          0.0001          5     2 Preprocessor1_Model07
 ```
 
 
@@ -875,8 +918,8 @@ tree_final
 ## Decision Tree Model Specification (regression)
 ## 
 ## Main Arguments:
-##   cost_complexity = 1e-10
-##   tree_depth = 4
+##   cost_complexity = 1e-04
+##   tree_depth = 5
 ##   min_n = 2
 ## 
 ## Computational engine: rpart
@@ -930,14 +973,19 @@ collect_metrics(tree_fit_final)
 ## # A tibble: 2 × 4
 ##   .metric .estimator .estimate .config             
 ##   <chr>   <chr>          <dbl> <chr>               
-## 1 rmse    standard       3.90  Preprocessor1_Model1
-## 2 rsq     standard       0.687 Preprocessor1_Model1
+## 1 rmse    standard       3.93  Preprocessor1_Model1
+## 2 rsq     standard       0.683 Preprocessor1_Model1
 ```
 
 
 Voilà: Die Modellgüte für das Test-Sample:
 Im Schnitt liegen wir ca. 4 Meilen daneben mit unseren Vorhersagen,
 wenn wir RMSE mal so locker interpretieren wollen.
+
+In der Regel ist übrigens RMSE interessanter als R-Quadrat,
+da R-Quadrat die Güte eines Korrelationsmusters vorhersagt,
+aber RMSE die Präzision der Vorhersage,
+also sozusagen die Kürze der Fehlerbalken.
 
 
 ### Nur zum Spaß: Vergleich mit linearem Modell
@@ -953,12 +1001,43 @@ was hätte das jetzt wohl für eine Modellgüte?
 
 
 
+
+```r
+lm_model <-
+  linear_reg()
 ```
-## 7.664 sec elapsed
+
+
+
+```r
+lm_wf <-
+  workflow() %>% 
+  add_model(lm_model) %>% 
+  add_recipe(recipe1)
 ```
 
 
 
+```r
+tic()
+lm_fit <-
+  fit_resamples(
+    lm_wf,
+    resamples = d_cv
+  )
+toc()
+```
+
+```
+## 7.062 sec elapsed
+```
+
+
+
+
+```r
+collect_metrics(lm_fit)
+```
 
 ```
 ## # A tibble: 2 × 6
@@ -970,9 +1049,18 @@ was hätte das jetzt wohl für eine Modellgüte?
 
 
 
+```r
+lm_fit_final <- 
+  last_fit(lm_wf, d_split)
+```
 
 
+Wie präzise ist die Vorhersage im Test-Sample?
 
+
+```r
+collect_metrics(lm_fit_final)
+```
 
 ```
 ## # A tibble: 2 × 4
@@ -985,5 +1073,34 @@ was hätte das jetzt wohl für eine Modellgüte?
 Das lineare Modell schneidet etwas (deutlich?) schlechter ab als das einfache Baummodell.
 
 
+Man beachte, dass die Modellgüte im Train-Samle höher ist als im Test-Sample (Overfitting).
 
+
+
+
+
+
+
+
+
+
+
+
+<!-- ## Aufgaben und Vertiefung -->
+
+
+
+
+## Aufgaben 
+
+- [Fallstudie Oregon Schools](https://bcullen.rbind.io/post/2020-06-02-tidymodels-decision-tree-learning-in-r/)
+- [Fallstudie Windturbinen](https://juliasilge.com/blog/wind-turbine/)
+- [Fallstudie Churn](https://www.gmudatamining.com/lesson-13-r-tutorial.html)
+
+
+
+## Vertiefung 
+
+- [Visualisierung des ML-Ablaufs am Beispiel des Entscheidungsbaums, Teil 1](http://www.r2d3.us/visual-intro-to-machine-learning-part-1/)
+- [Visualisierung des ML-Ablaufs am Beispiel des Entscheidungsbaums, Teil 2](http://www.r2d3.us/visual-intro-to-machine-learning-part-2/)
 

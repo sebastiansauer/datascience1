@@ -1,6 +1,15 @@
 # Resampling und Tuning
 
 
+
+```{r}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+
+
 Benötigte R-Pakete für dieses Kapitel:
 
 ```{r}
@@ -14,22 +23,24 @@ library(tune)
 
 
 
-```{r global-knitr-options, include=FALSE}
-  knitr::opts_chunk$set(
-  fig.pos = 'H',
-  fig.asp = 0.618,
-  fig.align='center',
-  fig.width = 5,
-  out.width = "100%",
-  # fig.cap = "", 
-  dpi = 300,
-  # tidy = TRUE,
-  echo = TRUE,
-  message = FALSE,
-  warning = FALSE,
-  cache = FALSE,
-  fig.show = "hold")
-```
+<!-- ```{r global-knitr-options, include=FALSE} -->
+<!--   knitr::opts_chunk$set( -->
+<!--   fig.pos = 'H', -->
+<!--   fig.asp = 0.618, -->
+<!--   fig.align='center', -->
+<!--   fig.width = 5, -->
+<!--   out.width = "100%", -->
+<!--   # fig.cap = "",  -->
+<!--   dpi = 300, -->
+<!--   # tidy = TRUE, -->
+<!--   echo = TRUE, -->
+<!--   message = FALSE, -->
+<!--   warning = FALSE, -->
+<!--   cache = FALSE, -->
+<!--   fig.show = "hold") -->
+<!-- ``` -->
+
+
 
 ## Lernsteuerung
 
@@ -74,14 +85,14 @@ process1 <-
   [Fitte Modell im Train-Datensatz] -> [Test im Test-Datensatz]
   [Test im Test-Datensatz] -> [<end> Ende]"
 
-nomnoml::nomnoml(process1, height = 200)
+nomnoml::nomnoml(process1, height = 200, png = "standard-ml.png")
 ```
 
 
 
 
 ```{r  process1, echo = FALSE, fig.cap = "Standardablauf des maschinellen Lernens mit Tuning und Resampling"}
-knitr::include_graphics("https://nomnoml.com/image.svg?source=%23direction%3A%20right%0A%5B%3Cdatabase%3E%20Gesamtdatensatz%5D%20-%3E%20%20%5BSplitte%20in%20Train-%20und%20Test-Sample%5D%0A%5BSplitte%20in%20Train-%20und%20Test-Sample%5D%20-%3E%20%5BF%C3%BCr%20jeden%20Modell-Kandidaten%20i%3D1%2C2%2C..%2Cn%20%7C%0A%20%20%5BTrain-Test%20Modellkandidat%20i%7C%0A%20%20%20%20%5BFitte%20in%20Train-Sample%5D%20-%3E%20%5BTeste%20im%20Assessment-Sample%5D%5D%0A%20%20%5D%20%0A%20%20%5BF%C3%BCr%20jeden%20Modell-Kandidaten%20i%3D1%2C2%2C..%2Cn%20%7C%0A%20%20%5BTrain-Test%20Modellkandidat%20i%7C%0A%20%20%20%20%5BFitte%20in%20Train-Sample%5D%20-%3E%20%5BTeste%20im%20Assessment-Sample%5D%5D%0A%20%20%5D%20-%3E%20%5BBestimme%20besten%20Modell-Kandidaten%5D%0A%20%20%5BBestimme%20besten%20Modell-Kandidaten%5D%20-%3E%20%5BFitte%20Modell%20im%20Train-Datensatz%5D%0A%20%20%5BFitte%20Modell%20im%20Train-Datensatz%5D%20-%3E%20%5BTest%20im%20Test-Datensatz%5D%0A%20%20%5BTest%20im%20Test-Datensatz%5D%20-%3E%20%5B%3Cend%3E%20Ende%5D")
+knitr::include_graphics("img/standard-ml.png")
 ```
 
 
