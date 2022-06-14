@@ -327,7 +327,7 @@ levels(d$dv)
 Und zwar genau in dieser Reihenfolge.
 
 
-## m83, glm
+## lm83, glm
 
 Die klassische Methoden in R, ein logistisches Modell zu berechnen, ist
 mit der Funktion `glm()`.
@@ -340,22 +340,63 @@ coef(lm83)
 ```
 
 
+- AV: Überleben (binär/Faktor)
+- UV: Ticketpreis
+
+
+
+Mit `{easystats}` kann man sich `model_parameter()` einfach ausgeben lassen:
+
+
+```{r}
+library(easystats)
+
+
+model_parameters(lm83)
+```
+
+
+Und auch visualisieren lassen:
+
+```{r}
+plot(model_parameters(lm83))
+```
+
+
+## m83, tidymodels
+
+
 *Achtung*! Bei tidymodels muss bei einer Klassifikation die AV vom Type `factor` sein.
 Außerdem wird bei `tidymodels`, im Gegensatz zu `(g)lm` nicht die zweite,
 sondern die *erste* als Ereignis modelliert wird.
+
+`
+
 
 Daher wechseln wir die *ref*erenzkategorie, wir "re-leveln", mit `relevel()`:
 
 ```{r}
 d2 <-
-  titanic_train %>% 
-  filter(Fare > 0) %>% 
-  mutate(iv = log(Fare),
-         dv = factor(Survived),
-         dv = relevel(dv, ref = "1"))
+  d %>% 
+  mutate(dv = relevel(dv, ref = "1"))
 ```
 
-Jetzt berechnen wir das Modell in gewohnter Weise.
+
+Check:
+
+```{r}
+levels(d2$dv)
+```
+
+
+Passt.
+
+
+
+Die erste Stufe ist jetzt `1`, also Überleben.
+
+
+Jetzt berechnen wir das Modell in gewohnter Weise mit `tidymodels`.
 
 ```{r}
 m83_mod <-
@@ -374,9 +415,9 @@ m83_fit <-
 ```
 
 
-Hier sind die Koeffizienten:
+Hier sind die Koeffizienten, die kann man sich aus `m83_fit` herausziehen:
 
-```{r m83-coefs}
+```{r m83-coefs, echo = FALSE}
 m83_fit %>% 
   tidy() %>% 
   gt() %>% 
@@ -390,6 +431,13 @@ coefm83
 ```
 
 
+```{r eval = TRUE, echo = FALSE}
+m83_fit %>% 
+  tidy() 
+```
+
+
+Die Koeffizienten werden in Logits angegeben.
 
 
 In Abb. \@ref(fig:m83-plot) ist das Modell und die Daten visualisiert.
@@ -399,12 +447,13 @@ In Abb. \@ref(fig:m83-plot) ist das Modell und die Daten visualisiert.
 d2 %>% 
   ggplot(aes(x = iv, y = Survived)) +
   geom_hline(yintercept = 0.5, color = "white", size = 2) +
-  geom_jitter(alpha = .5) +
+  geom_jitter(alpha = .5, height = 0) +
   geom_abline(intercept = coefm83[1],
               slope = coefm83[2],
               color = "blue") +
   scale_x_continuous(limits = c(0, 10)) +
-  labs(y = "Wahrscheinlichkeit")
+  labs(y = "Wahrscheinlichkeit (Überleben)",
+       x = "Ticketpreis")
 ```
 
 
@@ -430,7 +479,7 @@ odds
 Bildlich gesprochen sagen die Odds: für 38 Menschen, die überlebt haben, kommen (ca.) 62 Menschen, die nicht überlebt haben, s. Abb. \@ref(fig:odds1).
 
 
-```{r odds1, fig.cap = "Odds: 38 zu 62"}
+```{r odds1, fig.cap = "Odds: 38 zu 62", echo = FALSE}
 d2_odds <-
   tibble(x = c(rep("0", 38), rep("1", 62)),
          y = c(rep(1, 38), rep(1, 62)))
@@ -465,7 +514,7 @@ d_pred <-
 d_pred %>% 
   ggplot(aes(x = iv, y = odds)) +
   geom_jitter(alpha = .5) +
-  labs(y = "Odds")
+  labs(y = "Odds (Sterben)")
 ```
 
 
@@ -565,7 +614,7 @@ mehr dazu findet sich z.B. [hier](https://probably.tidymodels.org/articles/where
 ### Logit
 $(0,1) \rightarrow (-\infty, +\infty)$
 
-```{r dpi = 300}
+```{r dpi = 300, echo = FALSE}
 ggplot() +
   annotate("segment", 
            x = 0,
@@ -645,7 +694,7 @@ $$p \rightarrow \fbox{logit} \rightarrow \alpha + \beta x$$
 
 $(-\infty, +\infty) \rightarrow (0,1)$
 
-```{r inv-logit-plot}
+```{r inv-logit-plot, echo = FALSE}
 ggplot() +
   annotate("segment", 
            x = 0,
@@ -745,7 +794,7 @@ $$
 
 ### Die Koeffizienten sind schwer zu interpretieren
 
-```{r logit-convert-plot, fig.asp=0.4}
+```{r logit-convert-plot, fig.asp=0.4, echo = FALSE}
 s_fun <- function(x) exp(x) / (1 + exp(x))
 inv_logist <- function(x) x
 

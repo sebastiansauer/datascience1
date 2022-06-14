@@ -82,8 +82,8 @@ dass die logistische Regression eine Wahrscheinlichkeit der Klassenzugehörigkei
 <div class="figure" style="text-align: center">
 
 ```{=html}
-<div id="htmlwidget-cf9d370fc329293c7d99" style="width:100%;height:300px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-cf9d370fc329293c7d99">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: right\n [Daten] -> [Modell] \n [Modell] -> [Wskt] \n [Wskt] -> [Klassifikation]\n","svg":false},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-b83a6d891ca706d9a980" style="width:100%;height:300px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b83a6d891ca706d9a980">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: right\n [Daten] -> [Modell] \n [Modell] -> [Wskt] \n [Wskt] -> [Klassifikation]\n","svg":false},"evals":[],"jsHooks":[]}</script>
 ```
 
 <p class="caption">(\#fig:logist-regr)Definition eines Models in tidymodels</p>
@@ -96,12 +96,12 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
 
 
 ```{=html}
-<div id="vrjuypujhu" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="lqnoarbyxx" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#vrjuypujhu .gt_table {
+#lqnoarbyxx .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -126,7 +126,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-left-color: #D3D3D3;
 }
 
-#vrjuypujhu .gt_heading {
+#lqnoarbyxx .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -138,7 +138,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-right-color: #D3D3D3;
 }
 
-#vrjuypujhu .gt_title {
+#lqnoarbyxx .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -148,7 +148,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-bottom-width: 0;
 }
 
-#vrjuypujhu .gt_subtitle {
+#lqnoarbyxx .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -158,13 +158,13 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-top-width: 0;
 }
 
-#vrjuypujhu .gt_bottom_border {
+#lqnoarbyxx .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#vrjuypujhu .gt_col_headings {
+#lqnoarbyxx .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -179,7 +179,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-right-color: #D3D3D3;
 }
 
-#vrjuypujhu .gt_col_heading {
+#lqnoarbyxx .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -199,7 +199,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   overflow-x: hidden;
 }
 
-#vrjuypujhu .gt_column_spanner_outer {
+#lqnoarbyxx .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -211,15 +211,15 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   padding-right: 4px;
 }
 
-#vrjuypujhu .gt_column_spanner_outer:first-child {
+#lqnoarbyxx .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#vrjuypujhu .gt_column_spanner_outer:last-child {
+#lqnoarbyxx .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#vrjuypujhu .gt_column_spanner {
+#lqnoarbyxx .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -231,7 +231,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   width: 100%;
 }
 
-#vrjuypujhu .gt_group_heading {
+#lqnoarbyxx .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -253,7 +253,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   vertical-align: middle;
 }
 
-#vrjuypujhu .gt_empty_group_heading {
+#lqnoarbyxx .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -268,15 +268,15 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   vertical-align: middle;
 }
 
-#vrjuypujhu .gt_from_md > :first-child {
+#lqnoarbyxx .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#vrjuypujhu .gt_from_md > :last-child {
+#lqnoarbyxx .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#vrjuypujhu .gt_row {
+#lqnoarbyxx .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -295,7 +295,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   overflow-x: hidden;
 }
 
-#vrjuypujhu .gt_stub {
+#lqnoarbyxx .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -307,7 +307,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   padding-left: 12px;
 }
 
-#vrjuypujhu .gt_summary_row {
+#lqnoarbyxx .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -317,7 +317,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   padding-right: 5px;
 }
 
-#vrjuypujhu .gt_first_summary_row {
+#lqnoarbyxx .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -327,7 +327,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-top-color: #D3D3D3;
 }
 
-#vrjuypujhu .gt_grand_summary_row {
+#lqnoarbyxx .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -337,7 +337,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   padding-right: 5px;
 }
 
-#vrjuypujhu .gt_first_grand_summary_row {
+#lqnoarbyxx .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -347,11 +347,11 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-top-color: #D3D3D3;
 }
 
-#vrjuypujhu .gt_striped {
+#lqnoarbyxx .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#vrjuypujhu .gt_table_body {
+#lqnoarbyxx .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -360,7 +360,7 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-bottom-color: #D3D3D3;
 }
 
-#vrjuypujhu .gt_footnotes {
+#lqnoarbyxx .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -374,13 +374,13 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-right-color: #D3D3D3;
 }
 
-#vrjuypujhu .gt_footnote {
+#lqnoarbyxx .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#vrjuypujhu .gt_sourcenotes {
+#lqnoarbyxx .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -394,41 +394,41 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
   border-right-color: #D3D3D3;
 }
 
-#vrjuypujhu .gt_sourcenote {
+#lqnoarbyxx .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#vrjuypujhu .gt_left {
+#lqnoarbyxx .gt_left {
   text-align: left;
 }
 
-#vrjuypujhu .gt_center {
+#lqnoarbyxx .gt_center {
   text-align: center;
 }
 
-#vrjuypujhu .gt_right {
+#lqnoarbyxx .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#vrjuypujhu .gt_font_normal {
+#lqnoarbyxx .gt_font_normal {
   font-weight: normal;
 }
 
-#vrjuypujhu .gt_font_bold {
+#lqnoarbyxx .gt_font_bold {
   font-weight: bold;
 }
 
-#vrjuypujhu .gt_font_italic {
+#lqnoarbyxx .gt_font_italic {
   font-style: italic;
 }
 
-#vrjuypujhu .gt_super {
+#lqnoarbyxx .gt_super {
   font-size: 65%;
 }
 
-#vrjuypujhu .gt_footnote_marks {
+#lqnoarbyxx .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -679,7 +679,7 @@ levels(d$dv)
 Und zwar genau in dieser Reihenfolge.
 
 
-## m83, glm
+## lm83, glm
 
 Die klassische Methoden in R, ein logistisches Modell zu berechnen, ist
 mit der Funktion `glm()`.
@@ -698,23 +698,80 @@ coef(lm83)
 ```
 
 
+- AV: Überleben (binär/Faktor)
+- UV: Ticketpreis
+
+
+
+Mit `{easystats}` kann man sich `model_parameter()` einfach ausgeben lassen:
+
+
+
+```r
+library(easystats)
+
+
+model_parameters(lm83)
+```
+
+```
+## Parameter   | Log-Odds |   SE |         95% CI |      z |      p
+## ----------------------------------------------------------------
+## (Intercept) |    -2.68 | 0.26 | [-3.19, -2.19] | -10.46 | < .001
+## iv          |     0.75 | 0.08 | [ 0.59,  0.91] |   9.13 | < .001
+```
+
+
+Und auch visualisieren lassen:
+
+
+```r
+plot(model_parameters(lm83))
+```
+
+<img src="chunk-img/tidymodelsunnamed-chunk-11-1.png" width="100%" style="display: block; margin: auto;" />
+
+
+## m83, tidymodels
+
+
 *Achtung*! Bei tidymodels muss bei einer Klassifikation die AV vom Type `factor` sein.
 Außerdem wird bei `tidymodels`, im Gegensatz zu `(g)lm` nicht die zweite,
 sondern die *erste* als Ereignis modelliert wird.
+
+`
+
 
 Daher wechseln wir die *ref*erenzkategorie, wir "re-leveln", mit `relevel()`:
 
 
 ```r
 d2 <-
-  titanic_train %>% 
-  filter(Fare > 0) %>% 
-  mutate(iv = log(Fare),
-         dv = factor(Survived),
-         dv = relevel(dv, ref = "1"))
+  d %>% 
+  mutate(dv = relevel(dv, ref = "1"))
 ```
 
-Jetzt berechnen wir das Modell in gewohnter Weise.
+
+Check:
+
+
+```r
+levels(d2$dv)
+```
+
+```
+## [1] "1" "0"
+```
+
+
+Passt.
+
+
+
+Die erste Stufe ist jetzt `1`, also Überleben.
+
+
+Jetzt berechnen wir das Modell in gewohnter Weise mit `tidymodels`.
 
 
 ```r
@@ -734,23 +791,16 @@ m83_fit <-
 ```
 
 
-Hier sind die Koeffizienten:
+Hier sind die Koeffizienten, die kann man sich aus `m83_fit` herausziehen:
 
-
-```r
-m83_fit %>% 
-  tidy() %>% 
-  gt() %>% 
-  fmt_number(where(is.numeric))
-```
 
 ```{=html}
-<div id="bgaviuwspb" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="brjgahibpw" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#bgaviuwspb .gt_table {
+#brjgahibpw .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -775,7 +825,7 @@ m83_fit %>%
   border-left-color: #D3D3D3;
 }
 
-#bgaviuwspb .gt_heading {
+#brjgahibpw .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -787,7 +837,7 @@ m83_fit %>%
   border-right-color: #D3D3D3;
 }
 
-#bgaviuwspb .gt_title {
+#brjgahibpw .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -797,7 +847,7 @@ m83_fit %>%
   border-bottom-width: 0;
 }
 
-#bgaviuwspb .gt_subtitle {
+#brjgahibpw .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -807,13 +857,13 @@ m83_fit %>%
   border-top-width: 0;
 }
 
-#bgaviuwspb .gt_bottom_border {
+#brjgahibpw .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#bgaviuwspb .gt_col_headings {
+#brjgahibpw .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -828,7 +878,7 @@ m83_fit %>%
   border-right-color: #D3D3D3;
 }
 
-#bgaviuwspb .gt_col_heading {
+#brjgahibpw .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -848,7 +898,7 @@ m83_fit %>%
   overflow-x: hidden;
 }
 
-#bgaviuwspb .gt_column_spanner_outer {
+#brjgahibpw .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -860,15 +910,15 @@ m83_fit %>%
   padding-right: 4px;
 }
 
-#bgaviuwspb .gt_column_spanner_outer:first-child {
+#brjgahibpw .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#bgaviuwspb .gt_column_spanner_outer:last-child {
+#brjgahibpw .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#bgaviuwspb .gt_column_spanner {
+#brjgahibpw .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -880,7 +930,7 @@ m83_fit %>%
   width: 100%;
 }
 
-#bgaviuwspb .gt_group_heading {
+#brjgahibpw .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -902,7 +952,7 @@ m83_fit %>%
   vertical-align: middle;
 }
 
-#bgaviuwspb .gt_empty_group_heading {
+#brjgahibpw .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -917,15 +967,15 @@ m83_fit %>%
   vertical-align: middle;
 }
 
-#bgaviuwspb .gt_from_md > :first-child {
+#brjgahibpw .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#bgaviuwspb .gt_from_md > :last-child {
+#brjgahibpw .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#bgaviuwspb .gt_row {
+#brjgahibpw .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -944,7 +994,7 @@ m83_fit %>%
   overflow-x: hidden;
 }
 
-#bgaviuwspb .gt_stub {
+#brjgahibpw .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -956,7 +1006,7 @@ m83_fit %>%
   padding-left: 12px;
 }
 
-#bgaviuwspb .gt_summary_row {
+#brjgahibpw .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -966,7 +1016,7 @@ m83_fit %>%
   padding-right: 5px;
 }
 
-#bgaviuwspb .gt_first_summary_row {
+#brjgahibpw .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -976,7 +1026,7 @@ m83_fit %>%
   border-top-color: #D3D3D3;
 }
 
-#bgaviuwspb .gt_grand_summary_row {
+#brjgahibpw .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -986,7 +1036,7 @@ m83_fit %>%
   padding-right: 5px;
 }
 
-#bgaviuwspb .gt_first_grand_summary_row {
+#brjgahibpw .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -996,11 +1046,11 @@ m83_fit %>%
   border-top-color: #D3D3D3;
 }
 
-#bgaviuwspb .gt_striped {
+#brjgahibpw .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#bgaviuwspb .gt_table_body {
+#brjgahibpw .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1009,7 +1059,7 @@ m83_fit %>%
   border-bottom-color: #D3D3D3;
 }
 
-#bgaviuwspb .gt_footnotes {
+#brjgahibpw .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1023,13 +1073,13 @@ m83_fit %>%
   border-right-color: #D3D3D3;
 }
 
-#bgaviuwspb .gt_footnote {
+#brjgahibpw .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#bgaviuwspb .gt_sourcenotes {
+#brjgahibpw .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1043,41 +1093,41 @@ m83_fit %>%
   border-right-color: #D3D3D3;
 }
 
-#bgaviuwspb .gt_sourcenote {
+#brjgahibpw .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#bgaviuwspb .gt_left {
+#brjgahibpw .gt_left {
   text-align: left;
 }
 
-#bgaviuwspb .gt_center {
+#brjgahibpw .gt_center {
   text-align: center;
 }
 
-#bgaviuwspb .gt_right {
+#brjgahibpw .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#bgaviuwspb .gt_font_normal {
+#brjgahibpw .gt_font_normal {
   font-weight: normal;
 }
 
-#bgaviuwspb .gt_font_bold {
+#brjgahibpw .gt_font_bold {
   font-weight: bold;
 }
 
-#bgaviuwspb .gt_font_italic {
+#brjgahibpw .gt_font_italic {
   font-style: italic;
 }
 
-#bgaviuwspb .gt_super {
+#brjgahibpw .gt_super {
   font-size: 65%;
 }
 
-#bgaviuwspb .gt_footnote_marks {
+#brjgahibpw .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -1112,19 +1162,22 @@ m83_fit %>%
 </div>
 ```
 
-```r
-coefm83 <-
-  m83_fit %>% 
-  tidy() %>% 
-  pull(2)
-coefm83
-```
-
 ```
 ## [1]  2.6827432 -0.7479317
 ```
 
 
+
+```
+## # A tibble: 2 × 5
+##   term        estimate std.error statistic  p.value
+##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
+## 1 (Intercept)    2.68     0.256      10.5  1.26e-25
+## 2 iv            -0.748    0.0819     -9.13 6.87e-20
+```
+
+
+Die Koeffizienten werden in Logits angegeben.
 
 
 In Abb. \@ref(fig:m83-plot) ist das Modell und die Daten visualisiert.
@@ -1162,17 +1215,6 @@ odds
 
 Bildlich gesprochen sagen die Odds: für 38 Menschen, die überlebt haben, kommen (ca.) 62 Menschen, die nicht überlebt haben, s. Abb. \@ref(fig:odds1).
 
-
-
-```r
-d2_odds <-
-  tibble(x = c(rep("0", 38), rep("1", 62)),
-         y = c(rep(1, 38), rep(1, 62)))
-
-d2_odds %>% 
-  ggplot(aes(x, y)) +
-  geom_jitter(width = .2, alpha = .7)
-```
 
 <div class="figure" style="text-align: center">
 <img src="chunk-img/tidymodelsodds1-1.png" alt="Odds: 38 zu 62" width="100%" />
@@ -1296,76 +1338,7 @@ mehr dazu findet sich z.B. [hier](https://probably.tidymodels.org/articles/where
 ### Logit
 $(0,1) \rightarrow (-\infty, +\infty)$
 
-
-```r
-ggplot() +
-  annotate("segment", 
-           x = 0,
-           xend = 0,
-           y = 0,
-           yend = 1) +
-  scale_x_continuous(breaks = c(0,1), labels = c("p", "Logit")) +
-  scale_y_continuous(breaks = NULL) +
-  annotate("label",
-           x = c(0, 0),
-             y = c(0, 1),
-             label = c("0", "1")) +
-  annotate("segment", 
-           x = 1,
-           xend = 1,
-           y = -1,
-           yend = 2) +
-  annotate("segment", 
-           x = 1,
-           xend = 1,
-           y = -2,
-           yend = 3,
-           linetype = "dotted") +
-  annotate("label",
-           x = c(1, 1),
-             y = c(-2, 3),
-             label = c("-∞", "+∞")) +
-  annotate("segment",
-           x = 0.02,
-           xend = 0.98,
-           y = 0,
-           yend = -2,
-           #linetype = "dotted",
-           size = 0.1,
-           arrow = arrow()) +
-  annotate("segment",
-           x = 0.02,
-           xend = 0.98,
-           y = 1,
-           yend = 3,
-           #linetype = "dotted",
-           size = 0.1,
-           arrow = arrow()) +
-  labs(x = "",
-       y = "") +
-  annotate("label",
-           x = c(1.01),
-             y = c(.5),
-             label = c("0"),
-           size = 4) +
-  labs(x = "",
-       y = "") +
-  annotate("label",
-           x = c(-0.01),
-             y = c(.5),
-             label = c("0.5"),
-           size = 4) +
-  annotate("segment",
-           x = 0.02,
-           xend = 0.98,
-           yend = .5,
-           y = .5,
-           #linetype = "dotted",
-           size = 0.1,
-           arrow = arrow())
-```
-
-<img src="chunk-img/tidymodelsunnamed-chunk-14-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="chunk-img/tidymodelsunnamed-chunk-18-1.png" width="100%" style="display: block; margin: auto;" />
 
 
 
@@ -1378,73 +1351,6 @@ $$p \rightarrow \fbox{logit} \rightarrow \alpha + \beta x$$
 ### Inv-Logit
 
 $(-\infty, +\infty) \rightarrow (0,1)$
-
-
-```r
-ggplot() +
-  annotate("segment", 
-           x = 0,
-           xend = 0,
-           y = 0,
-           yend = 1) +
-  scale_x_continuous(breaks = c(0,1), labels = c("p", "Logit")) +
-  scale_y_continuous(breaks = NULL) +
-  annotate("label",
-           x = c(0, 0),
-             y = c(0, 1),
-             label = c("0", "1")) +
-  annotate("segment", 
-           x = 1,
-           xend = 1,
-           y = -1,
-           yend = 2) +
-  annotate("segment", 
-           x = 1,
-           xend = 1,
-           y = -2,
-           yend = 3,
-           linetype = "dotted") +
-  annotate("label",
-           x = c(1, 1),
-             y = c(-2, 3),
-             label = c("-∞", "+∞")) +
-  annotate("segment",
-           xend = 0.02,
-           x = 0.98,
-           yend = 0,
-           y = -2,
-           #linetype = "dotted",
-           size = 0.1,
-           arrow = arrow()) +
-  annotate("segment",
-           xend = 0.02,
-           x = 0.98,
-           yend = 1,
-           y = 3,
-           #linetype = "dotted",
-           size = 0.1,
-           arrow = arrow()) +
-  annotate("label",
-           x = c(1.01),
-             y = c(.5),
-             label = c("0"),
-           size = 3) +
-  labs(x = "",
-       y = "") +
-  annotate("label",
-           x = c(-0.01),
-             y = c(.5),
-             label = c("0.5"),
-           size = 3) +
-  annotate("segment",
-           xend = 0.02,
-           x = 0.98,
-           yend = .5,
-           y = .5,
-           #linetype = "dotted",
-           size = 0.1,
-           arrow = arrow())
-```
 
 <img src="chunk-img/tidymodelsinv-logit-plot-1.png" width="100%" style="display: block; margin: auto;" />
 
@@ -1481,34 +1387,6 @@ $$
 
 
 ### Die Koeffizienten sind schwer zu interpretieren
-
-
-```r
-s_fun <- function(x) exp(x) / (1 + exp(x))
-inv_logist <- function(x) x
-
-p_logist1 <- 
-  ggplot(tibble(x=c(-2,2))) +
-  aes(x=x) +
-  labs(x = "x",
-       title = "Logistische Regression",
-       y = "Pr(y=1)=p") +
-  scale_x_continuous(limits = c(-3,3)) +
-  scale_y_continuous(limits = c(-0.5, 1.5)) +
-  stat_function( fun = plogis) 
-
-p_logist2 <- 
-  ggplot(tibble(x=c(-2,2))) +
-  aes(x=x) +
-  labs(x = "x",
-       title = "Lineare Regression",
-       y = "Logit") +
-  scale_x_continuous(limits = c(-3,3)) +
-  scale_y_continuous(limits = c(-5, 5)) +
-  stat_function(fun = inv_logist)  
-
-p_logist1 + p_logist2
-```
 
 <img src="chunk-img/tidymodelslogit-convert-plot-1.png" width="100%" style="display: block; margin: auto;" />
 

@@ -78,6 +78,7 @@
 <li><a class="" href="knn.html"><span class="header-section-number">6</span> kNN</a></li>
 <li><a class="" href="resampling-und-tuning.html"><span class="header-section-number">7</span> Resampling und Tuning</a></li>
 <li><a class="active" href="logistische-regression.html"><span class="header-section-number">8</span> Logistische Regression</a></li>
+<li><a class="" href="entscheidungsb%C3%A4ume.html"><span class="header-section-number">9</span> Entscheidungsbäume</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
 
@@ -152,8 +153,8 @@ sondern auch eine <em>Indikation der Stärke</em> (epistemologisch) der Klassenz
 dass die logistische Regression eine Wahrscheinlichkeit der Klassenzugehörigkeit zurückliefert.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:logist-regr"></span>
-<div id="htmlwidget-cf9d370fc329293c7d99" style="width:100%;height:300px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-cf9d370fc329293c7d99">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: right\n [Daten] -> [Modell] \n [Modell] -> [Wskt] \n [Wskt] -> [Klassifikation]\n","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
+<div id="htmlwidget-b83a6d891ca706d9a980" style="width:100%;height:300px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b83a6d891ca706d9a980">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: right\n [Daten] -> [Modell] \n [Modell] -> [Wskt] \n [Wskt] -> [Klassifikation]\n","svg":false},"evals":[],"jsHooks":[]}</script><p class="caption">
 Figure 8.1: Definition eines Models in tidymodels
 </p>
 </div>
@@ -163,12 +164,12 @@ Figure 8.1: Definition eines Models in tidymodels
 <span class="header-section-number">8.3</span> Profil<a class="anchor" aria-label="anchor" href="#profil"><i class="fas fa-link"></i></a>
 </h2>
 <p>Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. <a href="logistische-regression.html#tab:prof-logist">8.1</a>.</p>
-<div id="vrjuypujhu" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="lqnoarbyxx" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#vrjuypujhu .gt_table {
+#lqnoarbyxx .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -193,7 +194,7 @@ Figure 8.1: Definition eines Models in tidymodels
   border-left-color: #D3D3D3;
 }
 
-#vrjuypujhu .gt_heading {
+#lqnoarbyxx .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -205,7 +206,7 @@ Figure 8.1: Definition eines Models in tidymodels
   border-right-color: #D3D3D3;
 }
 
-#vrjuypujhu .gt_title {
+#lqnoarbyxx .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -215,7 +216,7 @@ Figure 8.1: Definition eines Models in tidymodels
   border-bottom-width: 0;
 }
 
-#vrjuypujhu .gt_subtitle {
+#lqnoarbyxx .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -225,13 +226,13 @@ Figure 8.1: Definition eines Models in tidymodels
   border-top-width: 0;
 }
 
-#vrjuypujhu .gt_bottom_border {
+#lqnoarbyxx .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#vrjuypujhu .gt_col_headings {
+#lqnoarbyxx .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -246,7 +247,7 @@ Figure 8.1: Definition eines Models in tidymodels
   border-right-color: #D3D3D3;
 }
 
-#vrjuypujhu .gt_col_heading {
+#lqnoarbyxx .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -266,7 +267,7 @@ Figure 8.1: Definition eines Models in tidymodels
   overflow-x: hidden;
 }
 
-#vrjuypujhu .gt_column_spanner_outer {
+#lqnoarbyxx .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -278,15 +279,15 @@ Figure 8.1: Definition eines Models in tidymodels
   padding-right: 4px;
 }
 
-#vrjuypujhu .gt_column_spanner_outer:first-child {
+#lqnoarbyxx .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#vrjuypujhu .gt_column_spanner_outer:last-child {
+#lqnoarbyxx .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#vrjuypujhu .gt_column_spanner {
+#lqnoarbyxx .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -298,7 +299,7 @@ Figure 8.1: Definition eines Models in tidymodels
   width: 100%;
 }
 
-#vrjuypujhu .gt_group_heading {
+#lqnoarbyxx .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -320,7 +321,7 @@ Figure 8.1: Definition eines Models in tidymodels
   vertical-align: middle;
 }
 
-#vrjuypujhu .gt_empty_group_heading {
+#lqnoarbyxx .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -335,15 +336,15 @@ Figure 8.1: Definition eines Models in tidymodels
   vertical-align: middle;
 }
 
-#vrjuypujhu .gt_from_md > :first-child {
+#lqnoarbyxx .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#vrjuypujhu .gt_from_md > :last-child {
+#lqnoarbyxx .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#vrjuypujhu .gt_row {
+#lqnoarbyxx .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -362,7 +363,7 @@ Figure 8.1: Definition eines Models in tidymodels
   overflow-x: hidden;
 }
 
-#vrjuypujhu .gt_stub {
+#lqnoarbyxx .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -374,7 +375,7 @@ Figure 8.1: Definition eines Models in tidymodels
   padding-left: 12px;
 }
 
-#vrjuypujhu .gt_summary_row {
+#lqnoarbyxx .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -384,7 +385,7 @@ Figure 8.1: Definition eines Models in tidymodels
   padding-right: 5px;
 }
 
-#vrjuypujhu .gt_first_summary_row {
+#lqnoarbyxx .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -394,7 +395,7 @@ Figure 8.1: Definition eines Models in tidymodels
   border-top-color: #D3D3D3;
 }
 
-#vrjuypujhu .gt_grand_summary_row {
+#lqnoarbyxx .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -404,7 +405,7 @@ Figure 8.1: Definition eines Models in tidymodels
   padding-right: 5px;
 }
 
-#vrjuypujhu .gt_first_grand_summary_row {
+#lqnoarbyxx .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -414,11 +415,11 @@ Figure 8.1: Definition eines Models in tidymodels
   border-top-color: #D3D3D3;
 }
 
-#vrjuypujhu .gt_striped {
+#lqnoarbyxx .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#vrjuypujhu .gt_table_body {
+#lqnoarbyxx .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -427,7 +428,7 @@ Figure 8.1: Definition eines Models in tidymodels
   border-bottom-color: #D3D3D3;
 }
 
-#vrjuypujhu .gt_footnotes {
+#lqnoarbyxx .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -441,13 +442,13 @@ Figure 8.1: Definition eines Models in tidymodels
   border-right-color: #D3D3D3;
 }
 
-#vrjuypujhu .gt_footnote {
+#lqnoarbyxx .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#vrjuypujhu .gt_sourcenotes {
+#lqnoarbyxx .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -461,41 +462,41 @@ Figure 8.1: Definition eines Models in tidymodels
   border-right-color: #D3D3D3;
 }
 
-#vrjuypujhu .gt_sourcenote {
+#lqnoarbyxx .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#vrjuypujhu .gt_left {
+#lqnoarbyxx .gt_left {
   text-align: left;
 }
 
-#vrjuypujhu .gt_center {
+#lqnoarbyxx .gt_center {
   text-align: center;
 }
 
-#vrjuypujhu .gt_right {
+#lqnoarbyxx .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#vrjuypujhu .gt_font_normal {
+#lqnoarbyxx .gt_font_normal {
   font-weight: normal;
 }
 
-#vrjuypujhu .gt_font_bold {
+#lqnoarbyxx .gt_font_bold {
   font-weight: bold;
 }
 
-#vrjuypujhu .gt_font_italic {
+#lqnoarbyxx .gt_font_italic {
   font-style: italic;
 }
 
-#vrjuypujhu .gt_super {
+#lqnoarbyxx .gt_super {
   font-size: 65%;
 }
 
-#vrjuypujhu .gt_footnote_marks {
+#lqnoarbyxx .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -664,9 +665,9 @@ die man als <em>logistische Regression</em> bezeichnet.</p>
 <p>Und zwar genau in dieser Reihenfolge.</p>
 </div>
 </div>
-<div id="m83-glm" class="section level2" number="8.7">
+<div id="lm83-glm" class="section level2" number="8.7">
 <h2>
-<span class="header-section-number">8.7</span> m83, glm<a class="anchor" aria-label="anchor" href="#m83-glm"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.7</span> lm83, glm<a class="anchor" aria-label="anchor" href="#lm83-glm"><i class="fas fa-link"></i></a>
 </h2>
 <p>Die klassische Methoden in R, ein logistisches Modell zu berechnen, ist
 mit der Funktion <code><a href="https://rdrr.io/r/stats/glm.html">glm()</a></code>.
@@ -677,19 +678,46 @@ Daher sind die Ergebnisse numerisch identisch.</p>
 <span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">lm83</span><span class="op">)</span></code></pre></div>
 <pre><code>## (Intercept)          iv 
 ##  -2.6827432   0.7479317</code></pre>
+<ul>
+<li>AV: Überleben (binär/Faktor)</li>
+<li>UV: Ticketpreis</li>
+</ul>
+<p>Mit <a href="https://github.com/easystats/easystats">easystats</a> kann man sich <code>model_parameter()</code> einfach ausgeben lassen:</p>
+<div class="sourceCode" id="cb311"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/easystats/easystats">easystats</a></span><span class="op">)</span>
+
+
+<span class="fu">model_parameters</span><span class="op">(</span><span class="va">lm83</span><span class="op">)</span></code></pre></div>
+<pre><code>## Parameter   | Log-Odds |   SE |         95% CI |      z |      p
+## ----------------------------------------------------------------
+## (Intercept) |    -2.68 | 0.26 | [-3.19, -2.19] | -10.46 | &lt; .001
+## iv          |     0.75 | 0.08 | [ 0.59,  0.91] |   9.13 | &lt; .001</code></pre>
+<p>Und auch visualisieren lassen:</p>
+<div class="sourceCode" id="cb313"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu">model_parameters</span><span class="op">(</span><span class="va">lm83</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="chunk-img/tidymodelsunnamed-chunk-11-1.png" width="100%" style="display: block; margin: auto;"></div>
+</div>
+<div id="m83-tidymodels" class="section level2" number="8.8">
+<h2>
+<span class="header-section-number">8.8</span> m83, tidymodels<a class="anchor" aria-label="anchor" href="#m83-tidymodels"><i class="fas fa-link"></i></a>
+</h2>
 <p><em>Achtung</em>! Bei tidymodels muss bei einer Klassifikation die AV vom Type <code>factor</code> sein.
 Außerdem wird bei <code>tidymodels</code>, im Gegensatz zu <code>(g)lm</code> nicht die zweite,
 sondern die <em>erste</em> als Ereignis modelliert wird.</p>
+<p>`</p>
 <p>Daher wechseln wir die <em>ref</em>erenzkategorie, wir “re-leveln”, mit <code><a href="https://rdrr.io/r/stats/relevel.html">relevel()</a></code>:</p>
-<div class="sourceCode" id="cb311"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb314"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">d2</span> <span class="op">&lt;-</span>
-  <span class="va">titanic_train</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Fare</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>iv <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">Fare</span><span class="op">)</span>,
-         dv <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">Survived</span><span class="op">)</span>,
-         dv <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/relevel.html">relevel</a></span><span class="op">(</span><span class="va">dv</span>, ref <span class="op">=</span> <span class="st">"1"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p>Jetzt berechnen wir das Modell in gewohnter Weise.</p>
-<div class="sourceCode" id="cb312"><pre class="downlit sourceCode r">
+  <span class="va">d</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>dv <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/relevel.html">relevel</a></span><span class="op">(</span><span class="va">dv</span>, ref <span class="op">=</span> <span class="st">"1"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>Check:</p>
+<div class="sourceCode" id="cb315"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">d2</span><span class="op">$</span><span class="va">dv</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "1" "0"</code></pre>
+<p>Passt.</p>
+<p>Die erste Stufe ist jetzt <code>1</code>, also Überleben.</p>
+<p>Jetzt berechnen wir das Modell in gewohnter Weise mit <code>tidymodels</code>.</p>
+<div class="sourceCode" id="cb317"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">m83_mod</span> <span class="op">&lt;-</span>
   <span class="fu">logistic_reg</span><span class="op">(</span><span class="op">)</span>
 
@@ -703,18 +731,13 @@ sondern die <em>erste</em> als Ereignis modelliert wird.</p>
 
 <span class="va">m83_fit</span> <span class="op">&lt;-</span>
   <span class="fu">fit</span><span class="op">(</span><span class="va">m83_wf</span>, data <span class="op">=</span> <span class="va">d2</span><span class="op">)</span></code></pre></div>
-<p>Hier sind die Koeffizienten:</p>
-<div class="sourceCode" id="cb313"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">m83_fit</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">gt</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">fmt_number</span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div id="bgaviuwspb" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<p>Hier sind die Koeffizienten, die kann man sich aus <code>m83_fit</code> herausziehen:</p>
+<div id="brjgahibpw" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#bgaviuwspb .gt_table {
+#brjgahibpw .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -739,7 +762,7 @@ sondern die <em>erste</em> als Ereignis modelliert wird.</p>
   border-left-color: #D3D3D3;
 }
 
-#bgaviuwspb .gt_heading {
+#brjgahibpw .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -751,7 +774,7 @@ sondern die <em>erste</em> als Ereignis modelliert wird.</p>
   border-right-color: #D3D3D3;
 }
 
-#bgaviuwspb .gt_title {
+#brjgahibpw .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -761,7 +784,7 @@ sondern die <em>erste</em> als Ereignis modelliert wird.</p>
   border-bottom-width: 0;
 }
 
-#bgaviuwspb .gt_subtitle {
+#brjgahibpw .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -771,13 +794,13 @@ sondern die <em>erste</em> als Ereignis modelliert wird.</p>
   border-top-width: 0;
 }
 
-#bgaviuwspb .gt_bottom_border {
+#brjgahibpw .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#bgaviuwspb .gt_col_headings {
+#brjgahibpw .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -792,7 +815,7 @@ sondern die <em>erste</em> als Ereignis modelliert wird.</p>
   border-right-color: #D3D3D3;
 }
 
-#bgaviuwspb .gt_col_heading {
+#brjgahibpw .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -812,7 +835,7 @@ sondern die <em>erste</em> als Ereignis modelliert wird.</p>
   overflow-x: hidden;
 }
 
-#bgaviuwspb .gt_column_spanner_outer {
+#brjgahibpw .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -824,15 +847,15 @@ sondern die <em>erste</em> als Ereignis modelliert wird.</p>
   padding-right: 4px;
 }
 
-#bgaviuwspb .gt_column_spanner_outer:first-child {
+#brjgahibpw .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#bgaviuwspb .gt_column_spanner_outer:last-child {
+#brjgahibpw .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#bgaviuwspb .gt_column_spanner {
+#brjgahibpw .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -844,7 +867,7 @@ sondern die <em>erste</em> als Ereignis modelliert wird.</p>
   width: 100%;
 }
 
-#bgaviuwspb .gt_group_heading {
+#brjgahibpw .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -866,7 +889,7 @@ sondern die <em>erste</em> als Ereignis modelliert wird.</p>
   vertical-align: middle;
 }
 
-#bgaviuwspb .gt_empty_group_heading {
+#brjgahibpw .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -881,15 +904,15 @@ sondern die <em>erste</em> als Ereignis modelliert wird.</p>
   vertical-align: middle;
 }
 
-#bgaviuwspb .gt_from_md > :first-child {
+#brjgahibpw .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#bgaviuwspb .gt_from_md > :last-child {
+#brjgahibpw .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#bgaviuwspb .gt_row {
+#brjgahibpw .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -908,7 +931,7 @@ sondern die <em>erste</em> als Ereignis modelliert wird.</p>
   overflow-x: hidden;
 }
 
-#bgaviuwspb .gt_stub {
+#brjgahibpw .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -920,7 +943,7 @@ sondern die <em>erste</em> als Ereignis modelliert wird.</p>
   padding-left: 12px;
 }
 
-#bgaviuwspb .gt_summary_row {
+#brjgahibpw .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -930,7 +953,7 @@ sondern die <em>erste</em> als Ereignis modelliert wird.</p>
   padding-right: 5px;
 }
 
-#bgaviuwspb .gt_first_summary_row {
+#brjgahibpw .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -940,7 +963,7 @@ sondern die <em>erste</em> als Ereignis modelliert wird.</p>
   border-top-color: #D3D3D3;
 }
 
-#bgaviuwspb .gt_grand_summary_row {
+#brjgahibpw .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -950,7 +973,7 @@ sondern die <em>erste</em> als Ereignis modelliert wird.</p>
   padding-right: 5px;
 }
 
-#bgaviuwspb .gt_first_grand_summary_row {
+#brjgahibpw .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -960,11 +983,11 @@ sondern die <em>erste</em> als Ereignis modelliert wird.</p>
   border-top-color: #D3D3D3;
 }
 
-#bgaviuwspb .gt_striped {
+#brjgahibpw .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#bgaviuwspb .gt_table_body {
+#brjgahibpw .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -973,7 +996,7 @@ sondern die <em>erste</em> als Ereignis modelliert wird.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#bgaviuwspb .gt_footnotes {
+#brjgahibpw .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -987,13 +1010,13 @@ sondern die <em>erste</em> als Ereignis modelliert wird.</p>
   border-right-color: #D3D3D3;
 }
 
-#bgaviuwspb .gt_footnote {
+#brjgahibpw .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#bgaviuwspb .gt_sourcenotes {
+#brjgahibpw .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1007,41 +1030,41 @@ sondern die <em>erste</em> als Ereignis modelliert wird.</p>
   border-right-color: #D3D3D3;
 }
 
-#bgaviuwspb .gt_sourcenote {
+#brjgahibpw .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#bgaviuwspb .gt_left {
+#brjgahibpw .gt_left {
   text-align: left;
 }
 
-#bgaviuwspb .gt_center {
+#brjgahibpw .gt_center {
   text-align: center;
 }
 
-#bgaviuwspb .gt_right {
+#brjgahibpw .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#bgaviuwspb .gt_font_normal {
+#brjgahibpw .gt_font_normal {
   font-weight: normal;
 }
 
-#bgaviuwspb .gt_font_bold {
+#brjgahibpw .gt_font_bold {
   font-weight: bold;
 }
 
-#bgaviuwspb .gt_font_italic {
+#brjgahibpw .gt_font_italic {
   font-style: italic;
 }
 
-#bgaviuwspb .gt_super {
+#brjgahibpw .gt_super {
   font-size: 65%;
 }
 
-#bgaviuwspb .gt_footnote_marks {
+#brjgahibpw .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -1073,13 +1096,13 @@ sondern die <em>erste</em> als Ereignis modelliert wird.</p>
 </tbody>
 </table></div>
 </div>
-<div class="sourceCode" id="cb314"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">coefm83</span> <span class="op">&lt;-</span>
-  <span class="va">m83_fit</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span>
-<span class="va">coefm83</span></code></pre></div>
 <pre><code>## [1]  2.6827432 -0.7479317</code></pre>
+<pre><code>## # A tibble: 2 × 5
+##   term        estimate std.error statistic  p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)    2.68     0.256      10.5  1.26e-25
+## 2 iv            -0.748    0.0819     -9.13 6.87e-20</code></pre>
+<p>Die Koeffizienten werden in Logits angegeben.</p>
 <p>In Abb. <a href="logistische-regression.html#fig:m83-plot">8.2</a> ist das Modell und die Daten visualisiert.</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:m83-plot"></span>
@@ -1089,26 +1112,18 @@ Figure 8.2: m83 und die Titanic-Daten
 </div>
 <p>Definieren wir als <span class="math inline">\(y=1\)</span> das zu modellierende Ereignis, hier “Überleben auf der Titanic” (hat also überlebt).</p>
 <p>Wie wir oben schon gesehen haben, funktioniert die lineare Regression nicht einwandfrei bei binären (oder dichotomen) AV.</p>
-<div id="wahrscheinlichkeit-in-odds" class="section level3" number="8.7.1">
+<div id="wahrscheinlichkeit-in-odds" class="section level3" number="8.8.1">
 <h3>
-<span class="header-section-number">8.7.1</span> Wahrscheinlichkeit in Odds<a class="anchor" aria-label="anchor" href="#wahrscheinlichkeit-in-odds"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.8.1</span> Wahrscheinlichkeit in Odds<a class="anchor" aria-label="anchor" href="#wahrscheinlichkeit-in-odds"><i class="fas fa-link"></i></a>
 </h3>
 <p>Probieren wir Folgendes: Rechnen wir die Wahrscheinlichkeit zu Überlegen für <span class="math inline">\(y\)</span>, kurz <span class="math inline">\(p\)</span>, in <em>Odds</em> (Chancen) um.</p>
 <p><span class="math inline">\(odds = \frac{p}{1-p}\)</span></p>
 <p>In R:</p>
-<div class="sourceCode" id="cb316"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb320"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">odds</span> <span class="op">&lt;-</span> <span class="fl">0.38</span> <span class="op">/</span> <span class="fl">0.62</span>
 <span class="va">odds</span></code></pre></div>
 <pre><code>## [1] 0.6129032</code></pre>
 <p>Bildlich gesprochen sagen die Odds: für 38 Menschen, die überlebt haben, kommen (ca.) 62 Menschen, die nicht überlebt haben, s. Abb. <a href="logistische-regression.html#fig:odds1">8.3</a>.</p>
-<div class="sourceCode" id="cb318"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">d2_odds</span> <span class="op">&lt;-</span>
-  <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"0"</span>, <span class="fl">38</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"1"</span>, <span class="fl">62</span><span class="op">)</span><span class="op">)</span>,
-         y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">38</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">62</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-
-<span class="va">d2_odds</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html">geom_jitter</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">.2</span>, alpha <span class="op">=</span> <span class="fl">.7</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:odds1"></span>
 <img src="chunk-img/tidymodelsodds1-1.png" alt="Odds: 38 zu 62" width="100%"><p class="caption">
@@ -1125,9 +1140,9 @@ Figure 8.4: Odds als Funktion der UV
 <p>Wir sind noch nicht am Ziel;
 die Variable ist noch nicht “richtig gebogen”.</p>
 </div>
-<div id="von-odds-zu-log-odds" class="section level3" number="8.7.2">
+<div id="von-odds-zu-log-odds" class="section level3" number="8.8.2">
 <h3>
-<span class="header-section-number">8.7.2</span> Von Odds zu Log-Odds<a class="anchor" aria-label="anchor" href="#von-odds-zu-log-odds"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.8.2</span> Von Odds zu Log-Odds<a class="anchor" aria-label="anchor" href="#von-odds-zu-log-odds"><i class="fas fa-link"></i></a>
 </h3>
 <p>Wenn wir jetzt den Logarithmus berechnen der Log-Odds bekommen wir eine “brav gebogenen” Funktion, die Log-Odds, <span class="math inline">\(\mathcal{L}\)</span>, als Funktion der UV, s. Abb. <a href="logistische-regression.html#fig:logit2">8.5</a>.</p>
 <p><span class="math display">\[\mathcal{L} = log (odds) = log \left(\frac{p}{1-p}\right)\]</span></p>
@@ -1143,9 +1158,9 @@ Figure 8.5: Logit als Funktion der UV
 <p>Log-Odds (Log-Odds) bezeichnet man auch als <em>Logits</em>.</p>
 </div>
 </div>
-<div id="inverser-logit" class="section level2" number="8.8">
+<div id="inverser-logit" class="section level2" number="8.9">
 <h2>
-<span class="header-section-number">8.8</span> Inverser Logit<a class="anchor" aria-label="anchor" href="#inverser-logit"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.9</span> Inverser Logit<a class="anchor" aria-label="anchor" href="#inverser-logit"><i class="fas fa-link"></i></a>
 </h2>
 <p>Um nach <span class="math inline">\(p\)</span> aufzulösen, müssen wir einige Algebra bemühen:</p>
 <p><span class="math display">\[
@@ -1164,12 +1179,12 @@ p &amp;= \frac{e^{\alpha + \beta x_i}}{1 + e^{\alpha + \beta x_i}} = \mathcal{L}
 <p>Diese Funktion nennt man auch <em>inverser Logit</em>, <span class="math inline">\(\text{logit}^{-1}, \mathcal{L}^{-1}\)</span>.</p>
 <p>Zum Glück macht das alles die Rechenmaschine für uns 😄.</p>
 </div>
-<div id="vom-logit-zur-klasse" class="section level2" number="8.9">
+<div id="vom-logit-zur-klasse" class="section level2" number="8.10">
 <h2>
-<span class="header-section-number">8.9</span> Vom Logit zur Klasse<a class="anchor" aria-label="anchor" href="#vom-logit-zur-klasse"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.10</span> Vom Logit zur Klasse<a class="anchor" aria-label="anchor" href="#vom-logit-zur-klasse"><i class="fas fa-link"></i></a>
 </h2>
 <p>Praktisch können wir uns die Logits und ihre zugehörige Wahrscheinlichkeit einfach ausgeben lassen mit R. Und die vorhergesagte Klasse (<code>.pred_class</code>) auch:</p>
-<div class="sourceCode" id="cb319"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb322"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">d3</span> <span class="op">&lt;-</span>
   <span class="va">d2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_cols</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">m83_fit</span>, new_data <span class="op">=</span> <span class="va">d2</span>, type <span class="op">=</span> <span class="st">"prob"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
@@ -1183,9 +1198,9 @@ p &amp;= \frac{e^{\alpha + \beta x_i}}{1 + e^{\alpha + \beta x_i}} = \mathcal{L}
 ## 1                             Braund, Mr. Owen Harris  1.2010894
 ## 2 Cumings, Mrs. John Bradley (Florence Briggs Thayer) -0.5084287
 ## 3                              Heikkinen, Miss. Laina  1.1345079</code></pre>
-<div id="grenzwert-wechseln" class="section level3" number="8.9.1">
+<div id="grenzwert-wechseln" class="section level3" number="8.10.1">
 <h3>
-<span class="header-section-number">8.9.1</span> Grenzwert wechseln<a class="anchor" aria-label="anchor" href="#grenzwert-wechseln"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.10.1</span> Grenzwert wechseln<a class="anchor" aria-label="anchor" href="#grenzwert-wechseln"><i class="fas fa-link"></i></a>
 </h3>
 <p>Im Standard wird 50% als Grenzwert für die vorhergesagte Klasse <span class="math inline">\(c\)</span> genommen:</p>
 <ul>
@@ -1198,162 +1213,32 @@ p &amp;= \frac{e^{\alpha + \beta x_i}}{1 + e^{\alpha + \beta x_i}} = \mathcal{L}
 mehr dazu findet sich z.B. <a href="https://probably.tidymodels.org/articles/where-to-use.html">hier</a>.</p>
 </div>
 </div>
-<div id="logit-und-inverser-logit" class="section level2" number="8.10">
+<div id="logit-und-inverser-logit" class="section level2" number="8.11">
 <h2>
-<span class="header-section-number">8.10</span> Logit und Inverser Logit<a class="anchor" aria-label="anchor" href="#logit-und-inverser-logit"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.11</span> Logit und Inverser Logit<a class="anchor" aria-label="anchor" href="#logit-und-inverser-logit"><i class="fas fa-link"></i></a>
 </h2>
-<div id="logit" class="section level3" number="8.10.1">
+<div id="logit" class="section level3" number="8.11.1">
 <h3>
-<span class="header-section-number">8.10.1</span> Logit<a class="anchor" aria-label="anchor" href="#logit"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.11.1</span> Logit<a class="anchor" aria-label="anchor" href="#logit"><i class="fas fa-link"></i></a>
 </h3>
 <p><span class="math inline">\((0,1) \rightarrow (-\infty, +\infty)\)</span></p>
-<div class="sourceCode" id="cb321"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"segment"</span>, 
-           x <span class="op">=</span> <span class="fl">0</span>,
-           xend <span class="op">=</span> <span class="fl">0</span>,
-           y <span class="op">=</span> <span class="fl">0</span>,
-           yend <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"p"</span>, <span class="st">"Logit"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"label"</span>,
-           x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>,
-             y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>,
-             label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"0"</span>, <span class="st">"1"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"segment"</span>, 
-           x <span class="op">=</span> <span class="fl">1</span>,
-           xend <span class="op">=</span> <span class="fl">1</span>,
-           y <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>,
-           yend <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"segment"</span>, 
-           x <span class="op">=</span> <span class="fl">1</span>,
-           xend <span class="op">=</span> <span class="fl">1</span>,
-           y <span class="op">=</span> <span class="op">-</span><span class="fl">2</span>,
-           yend <span class="op">=</span> <span class="fl">3</span>,
-           linetype <span class="op">=</span> <span class="st">"dotted"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"label"</span>,
-           x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>,
-             y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span>,
-             label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"-∞"</span>, <span class="st">"+∞"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"segment"</span>,
-           x <span class="op">=</span> <span class="fl">0.02</span>,
-           xend <span class="op">=</span> <span class="fl">0.98</span>,
-           y <span class="op">=</span> <span class="fl">0</span>,
-           yend <span class="op">=</span> <span class="op">-</span><span class="fl">2</span>,
-           <span class="co">#linetype = "dotted",</span>
-           size <span class="op">=</span> <span class="fl">0.1</span>,
-           arrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/arrow.html">arrow</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"segment"</span>,
-           x <span class="op">=</span> <span class="fl">0.02</span>,
-           xend <span class="op">=</span> <span class="fl">0.98</span>,
-           y <span class="op">=</span> <span class="fl">1</span>,
-           yend <span class="op">=</span> <span class="fl">3</span>,
-           <span class="co">#linetype = "dotted",</span>
-           size <span class="op">=</span> <span class="fl">0.1</span>,
-           arrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/arrow.html">arrow</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">""</span>,
-       y <span class="op">=</span> <span class="st">""</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"label"</span>,
-           x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1.01</span><span class="op">)</span>,
-             y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.5</span><span class="op">)</span>,
-             label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"0"</span><span class="op">)</span>,
-           size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">""</span>,
-       y <span class="op">=</span> <span class="st">""</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"label"</span>,
-           x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.01</span><span class="op">)</span>,
-             y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.5</span><span class="op">)</span>,
-             label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"0.5"</span><span class="op">)</span>,
-           size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"segment"</span>,
-           x <span class="op">=</span> <span class="fl">0.02</span>,
-           xend <span class="op">=</span> <span class="fl">0.98</span>,
-           yend <span class="op">=</span> <span class="fl">.5</span>,
-           y <span class="op">=</span> <span class="fl">.5</span>,
-           <span class="co">#linetype = "dotted",</span>
-           size <span class="op">=</span> <span class="fl">0.1</span>,
-           arrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/arrow.html">arrow</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div class="inline-figure"><img src="chunk-img/tidymodelsunnamed-chunk-14-1.png" width="100%" style="display: block; margin: auto;"></div>
+<div class="inline-figure"><img src="chunk-img/tidymodelsunnamed-chunk-18-1.png" width="100%" style="display: block; margin: auto;"></div>
 <p>Praktisch, um Wahrscheinlichkeit zu modellieren.</p>
 <p><span class="math display">\[p \rightarrow \fbox{logit} \rightarrow \alpha + \beta x\]</span></p>
 </div>
-<div id="inv-logit" class="section level3" number="8.10.2">
+<div id="inv-logit" class="section level3" number="8.11.2">
 <h3>
-<span class="header-section-number">8.10.2</span> Inv-Logit<a class="anchor" aria-label="anchor" href="#inv-logit"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.11.2</span> Inv-Logit<a class="anchor" aria-label="anchor" href="#inv-logit"><i class="fas fa-link"></i></a>
 </h3>
 <p><span class="math inline">\((-\infty, +\infty) \rightarrow (0,1)\)</span></p>
-<div class="sourceCode" id="cb322"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"segment"</span>, 
-           x <span class="op">=</span> <span class="fl">0</span>,
-           xend <span class="op">=</span> <span class="fl">0</span>,
-           y <span class="op">=</span> <span class="fl">0</span>,
-           yend <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"p"</span>, <span class="st">"Logit"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"label"</span>,
-           x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>,
-             y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>,
-             label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"0"</span>, <span class="st">"1"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"segment"</span>, 
-           x <span class="op">=</span> <span class="fl">1</span>,
-           xend <span class="op">=</span> <span class="fl">1</span>,
-           y <span class="op">=</span> <span class="op">-</span><span class="fl">1</span>,
-           yend <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"segment"</span>, 
-           x <span class="op">=</span> <span class="fl">1</span>,
-           xend <span class="op">=</span> <span class="fl">1</span>,
-           y <span class="op">=</span> <span class="op">-</span><span class="fl">2</span>,
-           yend <span class="op">=</span> <span class="fl">3</span>,
-           linetype <span class="op">=</span> <span class="st">"dotted"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"label"</span>,
-           x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>,
-             y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span>,
-             label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"-∞"</span>, <span class="st">"+∞"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"segment"</span>,
-           xend <span class="op">=</span> <span class="fl">0.02</span>,
-           x <span class="op">=</span> <span class="fl">0.98</span>,
-           yend <span class="op">=</span> <span class="fl">0</span>,
-           y <span class="op">=</span> <span class="op">-</span><span class="fl">2</span>,
-           <span class="co">#linetype = "dotted",</span>
-           size <span class="op">=</span> <span class="fl">0.1</span>,
-           arrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/arrow.html">arrow</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"segment"</span>,
-           xend <span class="op">=</span> <span class="fl">0.02</span>,
-           x <span class="op">=</span> <span class="fl">0.98</span>,
-           yend <span class="op">=</span> <span class="fl">1</span>,
-           y <span class="op">=</span> <span class="fl">3</span>,
-           <span class="co">#linetype = "dotted",</span>
-           size <span class="op">=</span> <span class="fl">0.1</span>,
-           arrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/arrow.html">arrow</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"label"</span>,
-           x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1.01</span><span class="op">)</span>,
-             y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.5</span><span class="op">)</span>,
-             label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"0"</span><span class="op">)</span>,
-           size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">""</span>,
-       y <span class="op">=</span> <span class="st">""</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"label"</span>,
-           x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.01</span><span class="op">)</span>,
-             y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.5</span><span class="op">)</span>,
-             label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"0.5"</span><span class="op">)</span>,
-           size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"segment"</span>,
-           xend <span class="op">=</span> <span class="fl">0.02</span>,
-           x <span class="op">=</span> <span class="fl">0.98</span>,
-           yend <span class="op">=</span> <span class="fl">.5</span>,
-           y <span class="op">=</span> <span class="fl">.5</span>,
-           <span class="co">#linetype = "dotted",</span>
-           size <span class="op">=</span> <span class="fl">0.1</span>,
-           arrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/arrow.html">arrow</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="inline-figure"><img src="chunk-img/tidymodelsinv-logit-plot-1.png" width="100%" style="display: block; margin: auto;"></div>
 <p>Praktisch, um in Wahrscheinlichkeiten umzurechnen.</p>
 <p><span class="math display">\[p \leftarrow \fbox{inv-logit} \leftarrow \alpha + \beta x\]</span></p>
 </div>
 </div>
-<div id="logistische-regression-im-überblick" class="section level2" number="8.11">
+<div id="logistische-regression-im-überblick" class="section level2" number="8.12">
 <h2>
-<span class="header-section-number">8.11</span> Logistische Regression im Überblick<a class="anchor" aria-label="anchor" href="#logistische-regression-im-%C3%BCberblick"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.12</span> Logistische Regression im Überblick<a class="anchor" aria-label="anchor" href="#logistische-regression-im-%C3%BCberblick"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li><p>Eine Regression mit binomial verteilter AV und Logit-Link nennt man <em>logistische Regression</em>.</p></li>
@@ -1377,35 +1262,10 @@ y_i &amp;\sim \mathcal{B}(1, p_i) \\
 <li><p>Da es sich um eine normale, lineare Regression handelt, sind alle bekannten Methoden und Techniken der linearen Regression zulässig.</p></li>
 <li><p>Da Logits nicht einfach zu interpretieren sind, rechnet man nach der Berechnung des Modells den Logit häufig in Wahrscheinlichkeiten um.</p></li>
 </ul>
-<div id="die-koeffizienten-sind-schwer-zu-interpretieren" class="section level3" number="8.11.1">
+<div id="die-koeffizienten-sind-schwer-zu-interpretieren" class="section level3" number="8.12.1">
 <h3>
-<span class="header-section-number">8.11.1</span> Die Koeffizienten sind schwer zu interpretieren<a class="anchor" aria-label="anchor" href="#die-koeffizienten-sind-schwer-zu-interpretieren"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.12.1</span> Die Koeffizienten sind schwer zu interpretieren<a class="anchor" aria-label="anchor" href="#die-koeffizienten-sind-schwer-zu-interpretieren"><i class="fas fa-link"></i></a>
 </h3>
-<div class="sourceCode" id="cb323"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">s_fun</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>
-<span class="va">inv_logist</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="va">x</span>
-
-<span class="va">p_logist1</span> <span class="op">&lt;-</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>x<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">x</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"x"</span>,
-       title <span class="op">=</span> <span class="st">"Logistische Regression"</span>,
-       y <span class="op">=</span> <span class="st">"Pr(y=1)=p"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">3</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.5</span>, <span class="fl">1.5</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_function.html">stat_function</a></span><span class="op">(</span> fun <span class="op">=</span> <span class="va">plogis</span><span class="op">)</span> 
-
-<span class="va">p_logist2</span> <span class="op">&lt;-</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>x<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">x</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"x"</span>,
-       title <span class="op">=</span> <span class="st">"Lineare Regression"</span>,
-       y <span class="op">=</span> <span class="st">"Logit"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">3</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_function.html">stat_function</a></span><span class="op">(</span>fun <span class="op">=</span> <span class="va">inv_logist</span><span class="op">)</span>  
-
-<span class="va">p_logist1</span> <span class="op">+</span> <span class="va">p_logist2</span></code></pre></div>
 <div class="inline-figure"><img src="chunk-img/tidymodelslogit-convert-plot-1.png" width="100%" style="display: block; margin: auto;"></div>
 <ul>
 <li>In der logistischen Regression gilt <em>nicht</em> mehr, dass eine konstante Veränderung in der UV mit einer konstanten Veränderung in der AV einhergeht.</li>
@@ -1413,9 +1273,9 @@ y_i &amp;\sim \mathcal{B}(1, p_i) \\
 <li>Beim logistischen Modell hier gilt, dass in der Nähe von <span class="math inline">\(x=0\)</span> die größte Veränderung in <span class="math inline">\(p\)</span> von statten geht; je weiter weg von <span class="math inline">\(x=0\)</span>, desto geringer ist die Veränderung in <span class="math inline">\(p\)</span>.</li>
 </ul>
 </div>
-<div id="logits-vs.-wahrscheinlichkeiten" class="section level3" number="8.11.2">
+<div id="logits-vs.-wahrscheinlichkeiten" class="section level3" number="8.12.2">
 <h3>
-<span class="header-section-number">8.11.2</span> Logits vs. Wahrscheinlichkeiten<a class="anchor" aria-label="anchor" href="#logits-vs.-wahrscheinlichkeiten"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.12.2</span> Logits vs. Wahrscheinlichkeiten<a class="anchor" aria-label="anchor" href="#logits-vs.-wahrscheinlichkeiten"><i class="fas fa-link"></i></a>
 </h3>
 <div class="sourceCode" id="cb324"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">konvert_logits</span> <span class="op">&lt;-</span>
@@ -1432,9 +1292,9 @@ y_i &amp;\sim \mathcal{B}(1, p_i) \\
 <!-- ## Aufgaben und Vertiefung -->
 </div>
 </div>
-<div id="aufgaben-5" class="section level2" number="8.12">
+<div id="aufgaben-5" class="section level2" number="8.13">
 <h2>
-<span class="header-section-number">8.12</span> Aufgaben<a class="anchor" aria-label="anchor" href="#aufgaben-5"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.13</span> Aufgaben<a class="anchor" aria-label="anchor" href="#aufgaben-5"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li><a href="https://juliasilge.com/blog/tuition-resampling/">Fallstudien zu Studiengebühren</a></li>
@@ -1445,7 +1305,7 @@ y_i &amp;\sim \mathcal{B}(1, p_i) \\
 </div>
   <div class="chapter-nav">
 <div class="prev"><a href="resampling-und-tuning.html"><span class="header-section-number">7</span> Resampling und Tuning</a></div>
-<div class="next"><a href="references.html">References</a></div>
+<div class="next"><a href="entscheidungsb%C3%A4ume.html"><span class="header-section-number">9</span> Entscheidungsbäume</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
@@ -1470,29 +1330,30 @@ y_i &amp;\sim \mathcal{B}(1, p_i) \\
 <li>
 <a class="nav-link" href="#aber-warum"><span class="header-section-number">8.6</span> Aber warum?</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#tidymodels-m83"><span class="header-section-number">8.6.1</span> tidymodels, m83</a></li></ul>
 </li>
+<li><a class="nav-link" href="#lm83-glm"><span class="header-section-number">8.7</span> lm83, glm</a></li>
 <li>
-<a class="nav-link" href="#m83-glm"><span class="header-section-number">8.7</span> m83, glm</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#wahrscheinlichkeit-in-odds"><span class="header-section-number">8.7.1</span> Wahrscheinlichkeit in Odds</a></li>
-<li><a class="nav-link" href="#von-odds-zu-log-odds"><span class="header-section-number">8.7.2</span> Von Odds zu Log-Odds</a></li>
+<a class="nav-link" href="#m83-tidymodels"><span class="header-section-number">8.8</span> m83, tidymodels</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#wahrscheinlichkeit-in-odds"><span class="header-section-number">8.8.1</span> Wahrscheinlichkeit in Odds</a></li>
+<li><a class="nav-link" href="#von-odds-zu-log-odds"><span class="header-section-number">8.8.2</span> Von Odds zu Log-Odds</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#inverser-logit"><span class="header-section-number">8.8</span> Inverser Logit</a></li>
+<li><a class="nav-link" href="#inverser-logit"><span class="header-section-number">8.9</span> Inverser Logit</a></li>
 <li>
-<a class="nav-link" href="#vom-logit-zur-klasse"><span class="header-section-number">8.9</span> Vom Logit zur Klasse</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#grenzwert-wechseln"><span class="header-section-number">8.9.1</span> Grenzwert wechseln</a></li></ul>
+<a class="nav-link" href="#vom-logit-zur-klasse"><span class="header-section-number">8.10</span> Vom Logit zur Klasse</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#grenzwert-wechseln"><span class="header-section-number">8.10.1</span> Grenzwert wechseln</a></li></ul>
 </li>
 <li>
-<a class="nav-link" href="#logit-und-inverser-logit"><span class="header-section-number">8.10</span> Logit und Inverser Logit</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#logit"><span class="header-section-number">8.10.1</span> Logit</a></li>
-<li><a class="nav-link" href="#inv-logit"><span class="header-section-number">8.10.2</span> Inv-Logit</a></li>
+<a class="nav-link" href="#logit-und-inverser-logit"><span class="header-section-number">8.11</span> Logit und Inverser Logit</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#logit"><span class="header-section-number">8.11.1</span> Logit</a></li>
+<li><a class="nav-link" href="#inv-logit"><span class="header-section-number">8.11.2</span> Inv-Logit</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#logistische-regression-im-%C3%BCberblick"><span class="header-section-number">8.11</span> Logistische Regression im Überblick</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#die-koeffizienten-sind-schwer-zu-interpretieren"><span class="header-section-number">8.11.1</span> Die Koeffizienten sind schwer zu interpretieren</a></li>
-<li><a class="nav-link" href="#logits-vs.-wahrscheinlichkeiten"><span class="header-section-number">8.11.2</span> Logits vs. Wahrscheinlichkeiten</a></li>
+<a class="nav-link" href="#logistische-regression-im-%C3%BCberblick"><span class="header-section-number">8.12</span> Logistische Regression im Überblick</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#die-koeffizienten-sind-schwer-zu-interpretieren"><span class="header-section-number">8.12.1</span> Die Koeffizienten sind schwer zu interpretieren</a></li>
+<li><a class="nav-link" href="#logits-vs.-wahrscheinlichkeiten"><span class="header-section-number">8.12.2</span> Logits vs. Wahrscheinlichkeiten</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#aufgaben-5"><span class="header-section-number">8.12</span> Aufgaben</a></li>
+<li><a class="nav-link" href="#aufgaben-5"><span class="header-section-number">8.13</span> Aufgaben</a></li>
 </ul>
 
       <div class="book-extra">
@@ -1510,7 +1371,7 @@ y_i &amp;\sim \mathcal{B}(1, p_i) \\
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-05-05 16:57:10.</p>
+    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-05-08 07:43:06.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
