@@ -262,12 +262,14 @@ thema12:
   Literatur:
     - Rhys im Überblick
   Aufgaben:
-    - "[Einfache Random-Forest-Modellierung bei Kaggle](https://www.kaggle.com/code/ssauer/simple-rf-tuned)"
-    - "Bearbeiten Sie so viele Fallstudien (aus obiger Liste) wie nötig, um den Stoff flüssig zu beherrschen"
+    - "[Einfache Random-Forest-Modellierung bei Kaggle (TMDB)](https://www.kaggle.com/code/ssauer/simple-rf-tuned)"
+    - "[Einfache Workflow-Set-Modellierung bei Kaggle (TMDB)](https://www.kaggle.com/code/ssauer/tmdb-xgboost-tidymodels)"
+    - "Bearbeiten Sie so viele Fallstudien der Fallstudiensammlung wie nötig, um den Stoff flüssig zu beherrschen"
+    
   Vertiefung:
     - "[Mathematische Grundlagen können Sie z.B. hier vertiefen](https://deisenroth.cc/publication/deisenroth-2020/)"
     - "[Gute Fallstudie bei Kaggle für Regressionsprobleme: House Prices](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques)"
-
+    - "[Sie möchten schnell ein Code-Schnipsel (öffentlich sichtbar) teilen? Probieren Sie Github Gists aus](https://gist.github.com/)"
 
 
 
