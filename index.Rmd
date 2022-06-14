@@ -40,7 +40,7 @@ options(
   htmltools.dir.version = FALSE,
   formatR.indent = 2,
   width = 55, 
-  digits = 4, 
+  digits = 2, 
   warnPartialMatchAttr = FALSE, 
   warnPartialMatchDollar = FALSE
 )

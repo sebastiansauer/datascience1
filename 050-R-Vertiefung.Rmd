@@ -676,8 +676,9 @@ Die "Mastertabelle" kann man mit folgender Funktion erstellen:
 
 
 ```{r echo = TRUE}
-mastertable <- build_master_course_table(course_dates_file = dates_file,
-                                         content_file = course_content_file)
+mastertable <- build_master_course_table(
+  course_dates_file =  course_dates_file,
+  content_file = content_file)
 ```
 
 Betrachten Sie die Tabelle in Ruhe!
@@ -802,12 +803,11 @@ Eine Einführung findet sich z.B.
 
 source("https://raw.githubusercontent.com/sebastiansauer/Lehre/main/R-Code/render-course-sections.R")
 
+# 
+# course_dates_file <- here::here("course-dates.yaml")
+# content_file <- here::here("_modul-ueberblick.yaml")
+# 
 
-course_dates_file <- here::here("course-dates.yaml")
-content_file <- here::here("_modul-ueberblick.yaml")
-
-stopifnot(file.exists(course_dates_file))
-stopifnot(file.exists(content_file))
 
 #debug(render_course_outline)
 # render_course_outline(course_dates_file, content_file, small_table = TRUE, header_level = 3)

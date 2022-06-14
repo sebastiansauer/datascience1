@@ -235,7 +235,7 @@ Keine fehlenden Werte mehr *in den Prädiktoren*.
 
 Nach fehlenden Werten könnte man z.B. auch so suchen:
 
-```{r results = "asis"}
+```{r descr-distr}
 datawizard::describe_distribution(d_train)
 ```
 
@@ -259,7 +259,7 @@ bake(prep(rec1), new_data = d_test) %>%
 ## Kreuzvalidierung
 
 
-```{r}
+```{r cv-scheme}
 cv_scheme <- vfold_cv(d_train,
                       v = 5, 
                       repeats = 3)
@@ -288,7 +288,7 @@ doParallel::registerDoParallel()
 ```
 
 
-```{r}
+```{r rand-for-def}
 mod_rf <-
   rand_forest(mtry = tune(),
               min_n = tune(),
@@ -302,7 +302,7 @@ mod_rf <-
 ### XGBoost
 
 
-```{r}
+```{r xgboost-def}
 mod_boost <- boost_tree(mtry = tune(),
                         min_n = tune(),
                         trees = tune()) %>% 
@@ -324,7 +324,7 @@ mod_lm <-
 ## Workflows
 
 
-```{r}
+```{r wfs}
 preproc <- list(rec1 = rec1)
 models <- list(tree1 = mod_tree, rf1 = mod_rf, boost1 = mod_boost, lm1 = mod_lm)
  
@@ -354,7 +354,7 @@ if (file.exists("objects/tmdb_model_set.rds")) {
 ```
 
 
-Man kann sich das Ergebnisobjekt abspeichern, 
+Man könnte sich das Ergebnisobjekt abspeichern, 
 um künftig Rechenzeit zu sparen:
 
 ```{r eval = FALSE}
@@ -362,6 +362,8 @@ write_rds(tmdb_model_set, "objects/tmdb_model_set.rds")
 ```
 
 
+*Aber Achtung:* Wenn Sie vergessen, das Objekt auf der Festplatte zu aktualisieren, haben Sie eine zusätzliche Fehlerquelle. 
+Gefahr im Verzug.
 Professioneller ist der Ansatz mit dem R-Paket [target](https://books.ropensci.org/targets/).
 
 

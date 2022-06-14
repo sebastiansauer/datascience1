@@ -1,3 +1,408 @@
+--- 
+title: "DataScience1"
+subtitle: Grundlagen der Prognosemodellierung 🔮🧰
+
+author: "Sebastian Sauer"
+date: "2022-06-09 16:24:59"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+description: "Grundlagen der Prognosemodellierung mit tidymodels"
+github-repo: sebastiansauer/datascience1
+# description: "Ein Kurs zu den Grundlagen des statistischen Lernens mit einem Fokus auf Prognosemodelle für hoch strukturierte Daten"
+---
+
+# description: "Ein Kurs zu den Grundlagen des statistischen Lernens mit einem Fokus auf Prognosemodelle für hoch strukturierte Daten"
+
+Placeholder
+
+
+## Was Sie hier lernen und wozu das gut ist
+## Zitation
+## Technische Details
+
+<!--chapter:end:index.Rmd-->
+
+
+# Hinweise 
+
+Placeholder
+
+
+## Lernziele
+## Voraussetzungen
+## Lernhilfen
+### Software
+### Videos
+### Online-Zusammenarbeit
+## Modulzeitplan
+## Literatur
+## FAQ
+
+<!--chapter:end:010-Hinweise.Rmd-->
+
+
+# Prüfung
+
+Placeholder
+
+
+## Prüfungleistung
+## tl;dr: Zusammenfassung
+## Vorhersage 
+## Hauptziel: Genaue Prognose
+## Zum Aufbau Ihrer Prognosedatei im CSV-Format
+## Einzureichende Dateien
+## Gliederung Ihrer Analyse
+### Abschnitt Forschungsfrage und Hintergrund
+### Vorbereitung
+### Explorative Datenanalyse
+### Modellierung
+### Vorhersagen
+## Tipps
+### Tipps für eine gute Prognose
+### Tipps zur Datenverarbeitung
+### Tipps zum Aufbau des Analyseskripts
+### Sonstiges
+## Bewertung
+### Kriterien
+### Kennzahl der Modellgüte
+### Notenstufen
+### Bewertungsprozess
+## Hinweise
+## Formalia
+## Ich brauche Hilfe!
+### Wo finde ich Beispiele und Vorlagen?
+### Materialsammlung
+### Videos
+## Plagiatskontrolle
+
+<!--chapter:end:030-Pruefung.Rmd-->
+
+
+# (PART) Themen {-}
+# Statistisches Lernen 
+
+Placeholder
+
+
+## Lernsteuerung
+### Vorbereitung 
+### Lernziele 
+### Literatur 
+### Hinweise 
+## Was ist Data Science?
+## Was ist Machine Learning?
+### Rule-based
+### Data-based
+## Modell vs. Algorithmus
+### Modell 
+### Beispiel für einen ML-Algorithmus
+## Taxonomie
+### Geleitetes Lernen
+#### Regression: Numerische Vorhersage
+#### Klassifikation: Nominale Vorhersage
+### Ungeleitetes Lernen
+## Ziele des ML
+## Über- vs. Unteranpassung
+## No free lunch
+## Bias-Varianz-Abwägung
+## Aufgaben 
+## Vertiefung 
+
+<!--chapter:end:040-Statistisches-Lernen.Rmd-->
+
+
+# R, zweiter Blick
+
+Placeholder
+
+
+## Lernsteuerung
+### Vorbereitung 
+### Lernziele 
+### Literatur 
+## Objekttypen in R
+### Überblick
+### Taxonomie
+#### Vektoren
+#### Faktoren
+#### Listen
+#### Tibbles
+### Indizieren
+#### Reine Vektoren
+#### Listen
+#### Tibbles
+### Weiterführende Hinweise
+### Indizieren mit dem Tidyverse 
+## Datensätze von lang nach breit umformatieren
+## Funktionen
+## Wiederholungen programmieren
+### `across()`
+### `map()`
+### Weiterführende Hinweise
+## Listenspalten
+### Wozu Listenspalten?
+### Beispiele für Listenspalten
+#### tidymodel
+#### Kurs DataScience1
+### Programmieren mit dem Tidyverse
+## Aufgaben
+## Vertiefung 
+
+<!--chapter:end:050-R-Vertiefung.Rmd-->
+
+
+# tidymodels
+
+Placeholder
+
+
+## Lernsteuerung
+### Vorbereitung 
+### Lernziele 
+### Literatur 
+## Daten
+## Train- vs Test-Datensatz aufteilen
+## Grundlagen der Modellierung mit tidymodels
+### Modelle spezifizieren
+### Modelle berechnen
+### Vorhersagen
+### Vorhersagen im Train-Datensatz
+### Modellkoeffizienten im Train-Datensatz
+### Parsnip RStudio add-in
+## Workflows
+### Konzept des Workflows in Tidymodels
+### Einfaches Beispiel
+### Vorhersage mit einem Workflow
+### Modellgüte
+### Vorhersage von Hand
+## Rezepte zur Vorverarbeitung
+### Was ist Rezept und wozu ist es gut?
+### Workflows mit Rezepten
+### Spaltenrollen
+### Fazit
+## Aufgaben 
+
+<!--chapter:end:060-tidymodels.Rmd-->
+
+
+# kNN
+
+Placeholder
+
+
+## Lernsteuerung
+### Lernziele 
+### Literatur 
+## Überblick
+## Intuitive Erklärung
+## Krebsdiagnostik
+## Berechnung der Nähe
+## kNN mit Tidymodels
+### Analog zu Timbers et al.
+### Rezept definieren
+### Modell definieren
+### Workflow definieren
+### Vorhersagen
+## Mit Train-Test-Aufteilung
+### Rezept definieren
+### Modell definieren
+### Workflow definieren
+### Vorhersagen
+### Modellgüte
+### Visualisierung
+## Kennzahlen der Klassifikation
+## Krebstest-Beispiel
+## Aufgaben 
+
+<!--chapter:end:070-knn.Rmd-->
+
+
+# Resampling und Tuning
+
+Placeholder
+
+
+## Lernsteuerung
+### Vorbereitung 
+### Lernziele 
+### Literatur 
+## Überblick
+## tidymodels
+### Datensatz aufteilen
+### Rezept, Modell und Workflow definieren
+## Resampling
+## Illustration des Resampling
+### Einfache v-fache Kreuzvalidierung
+### Wiederholte Kreuzvalidierung
+### Resampling passiert im Train-Sample
+### Andere Illustrationen
+## Gesetz der großen Zahl
+## Über- und Unteranpassung an einem Beispiel
+## CV in tidymodels
+### CV definieren
+### Resamples fitten
+## Tuning
+### Tuning auszeichnen
+### Grid Search vs. Iterative Search
+## Tuning mit Tidymodels
+#### Tuningparameter betrachten
+### Datenabhängige Tuningparameter
+### Modelle mit Tuning berechnen
+### Vorhersage im Test-Sample
+## Aufgaben 
+## Vertiefung 
+
+<!--chapter:end:080-Resampling-Tuning.Rmd-->
+
+
+# Logistische Regression
+
+Placeholder
+
+
+## Lernsteuerung
+### Vorbereitung 
+### Lernziele 
+### Literatur 
+## Intuitive Erklärung
+## Profil
+## Warum nicht die lineare Regression verwenden?
+### Lineare Modelle running wild
+### Wir müssen die Regressionsgerade umbiegen
+### Verallgemeinerte lineare Modelle zur Rettung
+## Der Logit-Link
+## Aber warum?
+### tidymodels, m83
+## lm83, glm
+## m83, tidymodels
+### Wahrscheinlichkeit in Odds
+### Von Odds zu Log-Odds
+## Inverser Logit
+## Vom Logit zur Klasse
+### Grenzwert wechseln
+## Logit und Inverser Logit
+### Logit
+### Inv-Logit
+## Logistische Regression im Überblick
+### Die Koeffizienten sind schwer zu interpretieren
+### Logits vs. Wahrscheinlichkeiten 
+## Aufgaben 
+
+<!--chapter:end:090-logistische-Regression.Rmd-->
+
+
+# Entscheidungsbäume
+
+Placeholder
+
+
+## Lernsteuerung
+### Lernziele 
+### Literatur 
+## Vorbereitung
+## Anatomie eines Baumes
+## Bäume als Regelmaschinen rekursiver Partionierung
+## Klassifikation
+## Gini als Optimierungskriterium
+## Metrische Prädiktoren
+## Regressionbäume
+## Baum beschneiden
+## Das Rechteck schlägt zurück
+## Tidymodels
+### Initiale Datenaufteilung
+### Kreuzvalidierung definieren
+### Rezept definieren
+### Modell definieren
+### Workflow definieren
+### Modell tunen und berechnen
+### Modellgüte evaluieren
+### Bestes Modell auswählen
+### Final Fit
+### Nur zum Spaß: Vergleich mit linearem Modell
+## Aufgaben 
+## Vertiefung 
+
+<!--chapter:end:100-Entscheidungsbäume.Rmd-->
+
+
+# Ensemble Lerner
+
+Placeholder
+
+
+## Lernsteuerung
+### Lernziele 
+### Literatur 
+### Hinweise 
+## Vorbereitung
+## Hinweise zur Literatur
+## Wir brauchen einen Wald
+## Was ist ein Ensemble-Lerner?
+## Bagging
+### Bootstrapping
+## Bagging-Algorithmus
+### Variablenrelevanz
+### Out of Bag Vorhersagen
+## Random Forests
+## Boosting
+### AdaBoost
+### XGBoost
+## Tidymodels
+### Datensatz Churn
+### Data Splitting und CV
+### Feature Engineering
+### Modelle
+### Workflows
+### Modelle berechnen mit Tuning, einzeln
+#### Baum
+#### RF
+#### XGBoost
+### Workflow-Set tunen
+### Ergebnisse im Train-Sest
+### Bestes Modell
+### Finalisisieren
+### Last Fit
+### Variablenrelevanz
+### ROC-Curve
+## Aufgaben
+## Aufgaben 
+## Vertiefung 
+
+<!--chapter:end:110-Ensemble-Lerner.Rmd-->
+
+
+# Regularisierte Modelle
+
+Placeholder
+
+
+## Lernsteuerung
+### Lernziele 
+### Literatur 
+### Hinweise 
+## Vorbereitung
+## Regularisierung
+### Was ist Regularisierung?
+### Ähnliche Verfahren
+### Normale Regression (OLS)
+## Ridge Regression, L2
+### Strafterm
+### Standardisierung
+## Lasso, L1
+### Strafterm
+### Variablenselektion
+## L1 vs. L2
+### Wer ist stärker?
+### Elastic Net als Kompromiss
+## Aufgaben 
+
+<!--chapter:end:120-Regularisierte-Modelle.Rmd-->
+
 # Kaggle
 
 
@@ -113,27 +518,15 @@ wenn Sie `revenue` logarithmiert haben.
 Die Daten können Sie von der Kaggle-Projektseite beziehen oder so:
 
 
-```r
-d_train_path <- "https://raw.githubusercontent.com/sebastiansauer/Lehre/main/data/tmdb-box-office-prediction/train.csv"
-d_test_path <- "https://raw.githubusercontent.com/sebastiansauer/Lehre/main/data/tmdb-box-office-prediction/test.csv"
-```
 
 
 Wir importieren die Daten von der Online-Quelle:
 
 
-```r
-d_train_raw <- read_csv(d_train_path)
-d_test <- read_csv(d_test_path)
-```
 
 
 Mal einen Blick werfen:
 
-
-```r
-glimpse(d_train_raw)
-```
 
 ```
 ## Rows: 3,000
@@ -161,10 +554,6 @@ glimpse(d_train_raw)
 ## $ cast                  <chr> "[{'cast_id': 4, 'character': 'Lou', 'credit_id'…
 ## $ crew                  <chr> "[{'credit_id': '59ac067c92514107af02c8c8', 'dep…
 ## $ revenue               <dbl> 12314651, 95149435, 13092000, 16000000, 3923970,…
-```
-
-```r
-glimpse(d_test)
 ```
 
 ```
@@ -202,11 +591,6 @@ entfernen wir diese Spalten,
 was die Größe des Datensatzes massiv reduziert.
 
 
-```r
-d_train <-
-  d_train_raw %>% 
-  select(popularity, runtime, revenue, budget, release_date) 
-```
 
 
 
@@ -220,12 +604,6 @@ d_train <-
 
 
 
-
-```r
-library(visdat)
-vis_dat(d_train)
-```
-
 <img src="130-Kaggle_files/figure-html/unnamed-chunk-7-1.png" width="70%" style="display: block; margin: auto;" />
 
 
@@ -234,20 +612,10 @@ vis_dat(d_train)
 Welche Spalten haben viele fehlende Werte?
 
 
-
-```r
-vis_miss(d_train)
-```
-
 <img src="130-Kaggle_files/figure-html/unnamed-chunk-8-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 Mit `{VIM}` kann man einen Datensatz gut auf fehlende Werte hin untersuchen:
-
-
-```r
-aggr(d_train)
-```
 
 <img src="130-Kaggle_files/figure-html/unnamed-chunk-9-1.png" width="70%" style="display: block; margin: auto;" />
 
@@ -257,23 +625,6 @@ aggr(d_train)
 ### Rezept definieren
 
 
-
-```r
-rec1 <-
-  recipe(revenue ~ ., data = d_train) %>% 
-  #update_role(all_predictors(), new_role = "id") %>% 
-  #update_role(popularity, runtime, revenue, budget, original_language) %>% 
-  #update_role(revenue, new_role = "outcome") %>% 
-  step_mutate(budget = if_else(budget < 10, 10, budget)) %>% 
-  step_log(budget) %>% 
-  step_mutate(release_date = mdy(release_date)) %>% 
-  step_date(release_date, features = c("year", "month"), 
-            keep_original_cols = FALSE) %>% 
-  step_impute_knn(all_predictors()) %>% 
-  step_dummy(all_nominal())
-
-rec1
-```
 
 ```
 ## Recipe
@@ -295,20 +646,16 @@ rec1
 ```
 
 
-```r
-tidy(rec1)
-```
-
 ```
 ## # A tibble: 6 × 6
 ##   number operation type       trained skip  id              
 ##    <int> <chr>     <chr>      <lgl>   <lgl> <chr>           
-## 1      1 step      mutate     FALSE   FALSE mutate_28SEk    
-## 2      2 step      log        FALSE   FALSE log_or8J3       
-## 3      3 step      mutate     FALSE   FALSE mutate_LR3Na    
-## 4      4 step      date       FALSE   FALSE date_Le53p      
-## 5      5 step      impute_knn FALSE   FALSE impute_knn_i2CM6
-## 6      6 step      dummy      FALSE   FALSE dummy_42T5J
+## 1      1 step      mutate     FALSE   FALSE mutate_SPrjJ    
+## 2      2 step      log        FALSE   FALSE log_nrYfh       
+## 3      3 step      mutate     FALSE   FALSE mutate_UqfdB    
+## 4      4 step      date       FALSE   FALSE date_zQ1ua      
+## 5      5 step      impute_knn FALSE   FALSE impute_knn_rpC2T
+## 6      6 step      dummy      FALSE   FALSE dummy_osN9C
 ```
 
 
@@ -316,10 +663,6 @@ tidy(rec1)
 ### Check das Rezept 
 
 
-
-```r
-prep(rec1, verbose = TRUE)
-```
 
 ```
 ## oper 1 step mutate [training] 
@@ -355,11 +698,6 @@ prep(rec1, verbose = TRUE)
 
 
 
-```r
-prep(rec1) %>% 
-  bake(new_data = NULL) 
-```
-
 ```
 ## # A tibble: 3,000 × 16
 ##    popularity runtime budget  revenue release_date_year release_date_month_Feb
@@ -386,19 +724,10 @@ prep(rec1) %>%
 Wir definieren eine Helper-Funktion:
 
 
-```r
-sum_isna <- function(x) {sum(is.na(x))}
-```
 
 
 Und wenden diese auf jede Spalte an:
 
-
-```r
-prep(rec1) %>% 
-  bake(new_data = NULL) %>%  
-  map_df(sum_isna)
-```
 
 ```
 ## # A tibble: 1 × 16
@@ -418,19 +747,12 @@ Keine fehlenden Werte mehr *in den Prädiktoren*.
 
 Nach fehlenden Werten könnte man z.B. auch so suchen:
 
-
-```r
-datawizard::describe_distribution(d_train)
-```
-
-```
-## Variable   |     Mean |       SD |      IQR |              Range | Skewness | Kurtosis |    n | n_Missing
-## ---------------------------------------------------------------------------------------------------------
-## popularity |     8.46 |    12.10 |     6.88 | [1.00e-06, 294.34] |    14.38 |   280.10 | 3000 |         0
-## runtime    |   107.86 |    22.09 |    24.00 |     [0.00, 338.00] |     1.02 |     8.19 | 2998 |         2
-## revenue    | 6.67e+07 | 1.38e+08 | 6.66e+07 |   [1.00, 1.52e+09] |     4.54 |    27.78 | 3000 |         0
-## budget     | 2.25e+07 | 3.70e+07 | 2.90e+07 |   [0.00, 3.80e+08] |     3.10 |    13.23 | 3000 |         0
-```
+Variable   |     Mean |       SD |      IQR |              Range | Skewness | Kurtosis |    n | n_Missing
+---------------------------------------------------------------------------------------------------------
+popularity |     8.46 |    12.10 |     6.88 | [1.00e-06, 294.34] |    14.38 |   280.10 | 3000 |         0
+runtime    |   107.86 |    22.09 |    24.00 |     [0.00, 338.00] |     1.02 |     8.19 | 2998 |         2
+revenue    | 6.67e+07 | 1.38e+08 | 6.66e+07 |   [1.00, 1.52e+09] |     4.54 |    27.78 | 3000 |         0
+budget     | 2.25e+07 | 3.70e+07 | 2.90e+07 |   [0.00, 3.80e+08] |     3.10 |    13.23 | 3000 |         0
 
 
 So bekommt man gleich noch ein paar Infos über die Verteilung der Variablen. Praktische Sache.
@@ -441,11 +763,6 @@ Das Test-Sample backen wir auch mal.
 
 Wichtig: Wir preppen den Datensatz mit dem *Train-Sample*.
 
-
-```r
-bake(prep(rec1), new_data = d_test) %>% 
-  head()
-```
 
 ```
 ## # A tibble: 6 × 15
@@ -471,11 +788,6 @@ bake(prep(rec1), new_data = d_test) %>%
 
 
 
-```r
-cv_scheme <- vfold_cv(d_train,
-                      v = 5, 
-                      repeats = 3)
-```
 
 
 ## Modelle
@@ -484,12 +796,6 @@ cv_scheme <- vfold_cv(d_train,
 
 
 
-```r
-mod_tree <-
-  decision_tree(cost_complexity = tune(),
-                tree_depth = tune(),
-                mode = "regression")
-```
 
 
 
@@ -497,20 +803,9 @@ mod_tree <-
 
 
 
-```r
-doParallel::registerDoParallel()
-```
 
 
 
-```r
-mod_rf <-
-  rand_forest(mtry = tune(),
-              min_n = tune(),
-              trees = 1000,
-              mode = "regression") %>% 
-  set_engine("ranger", num.threads = 4)
-```
 
 
 
@@ -518,23 +813,12 @@ mod_rf <-
 
 
 
-```r
-mod_boost <- boost_tree(mtry = tune(),
-                        min_n = tune(),
-                        trees = tune()) %>% 
-  set_engine("xgboost", nthreads = parallel::detectCores()) %>% 
-  set_mode("regression")
-```
 
 
 ### LM
 
 
 
-```r
-mod_lm <-
-  linear_reg()
-```
 
 
 
@@ -542,44 +826,18 @@ mod_lm <-
 
 
 
-```r
-preproc <- list(rec1 = rec1)
-models <- list(tree1 = mod_tree, rf1 = mod_rf, boost1 = mod_boost, lm1 = mod_lm)
- 
- 
-all_workflows <- workflow_set(preproc, models)
-```
 
 
 ## Fitten und tunen
 
 
 
-```r
-if (file.exists("objects/tmdb_model_set.rds")) {
-  tmdb_model_set <- read_rds("objects/tmdb_model_set.rds")
-} else {
-  tic()
-  tmdb_model_set <-
-    all_workflows %>% 
-    workflow_map(
-      resamples = cv_scheme,
-      grid = 10,
-    #  metrics = metric_set(rmse),
-      seed = 42,  # reproducibility
-      verbose = TRUE)
-  toc()
-}
-```
 
 
 Man kann sich das Ergebnisobjekt abspeichern, 
 um künftig Rechenzeit zu sparen:
 
 
-```r
-write_rds(tmdb_model_set, "objects/tmdb_model_set.rds")
-```
 
 
 Professioneller ist der Ansatz mit dem R-Paket [target](https://books.ropensci.org/targets/).
@@ -595,12 +853,6 @@ Genauer geagt, welches Modell, denn es ist ja nicht nur ein Algorithmus,
 sondern ein Algorithmus plus ein Rezept plus die Parameterinstatiierung plus
 ein spezifischer Datensatz.
 
-
-```r
-tune::autoplot(tmdb_model_set) +
-  theme(legend.position = "bottom")
-```
-
 <img src="130-Kaggle_files/figure-html/unnamed-chunk-26-1.png" width="70%" style="display: block; margin: auto;" />
 
 R-Quadrat ist nicht entscheidend; `rmse` ist wichtiger.
@@ -609,13 +861,6 @@ Die Ergebnislage ist nicht ganz klar, aber
 einiges spricht für das Boosting-Modell, `rec1_boost1`.
 
 
-
-```r
-tmdb_model_set %>% 
-  collect_metrics() %>% 
-  arrange(-mean) %>% 
-  head(10)
-```
 
 ```
 ## # A tibble: 10 × 9
@@ -635,14 +880,6 @@ tmdb_model_set %>%
 
 
 
-```r
-best_model_params <-
-extract_workflow_set_result(tmdb_model_set, "rec1_boost1") %>% 
-  select_best()
-
-best_model_params
-```
-
 ```
 ## # A tibble: 1 × 4
 ##    mtry trees min_n .config              
@@ -653,23 +890,8 @@ best_model_params
 
 
 
-```r
-best_wf <- 
-all_workflows %>% 
-  extract_workflow("rec1_boost1")
-
-#best_wf
-```
 
 
-
-```r
-best_wf_finalized <- 
-  best_wf %>% 
-  finalize_workflow(best_model_params)
-
-best_wf_finalized
-```
 
 ```
 ## ══ Workflow ════════════════════════════════════════════════════════════════════
@@ -704,23 +926,13 @@ best_wf_finalized
 
 
 
-```r
-fit_final <-
-  best_wf_finalized %>% 
-  fit(d_train)
 ```
-
-```
-## [22:14:17] WARNING: amalgamation/../src/learner.cc:627: 
+## [22:11:09] WARNING: amalgamation/../src/learner.cc:627: 
 ## Parameters: { "nthreads" } might not be used.
 ## 
 ##   This could be a false alarm, with some parameters getting used by language bindings but
 ##   then being mistakenly passed down to XGBoost core, or some parameter actually being used
 ##   but getting flagged wrongly here. Please open an issue if you find any such cases.
-```
-
-```r
-fit_final
 ```
 
 ```
@@ -740,7 +952,7 @@ fit_final
 ## 
 ## ── Model ───────────────────────────────────────────────────────────────────────
 ## ##### xgb.Booster
-## raw: 263.7 Kb 
+## raw: 257.2 Kb 
 ## call:
 ##   xgboost::xgb.train(params = list(eta = 0.3, max_depth = 6, gamma = 0, 
 ##     colsample_bytree = 1, colsample_bynode = 0.4, min_child_weight = 4L, 
@@ -758,25 +970,17 @@ fit_final
 ## nfeatures : 15 
 ## evaluation_log:
 ##     iter training_rmse
-##        1     121479786
-##        2     101522821
+##        1     122302751
+##        2     103202902
 ## ---                   
-##       99      26986730
-##      100      26920945
+##       99      29100929
+##      100      28949059
 ```
 
 
 
 
 
-```r
-d_test$revenue <- NA
-
-final_preds <- 
-  fit_final %>% 
-  predict(new_data = d_test) %>% 
-  bind_cols(d_test)
-```
 
 
 ## Submission
@@ -785,19 +989,11 @@ final_preds <-
 ### Submission vorbereiten
 
 
-```r
-submission_df <-
-  final_preds %>% 
-  select(id, revenue = .pred)
-```
 
 
 Abspeichern und einreichen:
 
 
-```r
-write_csv(submission_df, file = "objects/submission.csv")
-```
 
 Diese CSV-Datei reichen wir dann bei Kagglei ein.
 
@@ -833,4 +1029,69 @@ Diese Submission erzielte einen Score von **4.79227** (RMSLE).
 
 
 
+
+
+<!--chapter:end:130-Kaggle.Rmd-->
+
+
+# Der rote Faden
+
+Placeholder
+
+
+### Lernziele 
+### Literatur 
+## Aussichtspunkt 1: Blick vom hohen Berg
+## Aussichtspunkt 2: Blick in den Hof der Handwerker
+### Ein maximale einfaches Werkstück mit Tidymodels
+### Ein immer noch recht einfaches Werkstück mit Tidymodels
+## Aussichtspunkt 3: Der Nebelberg (Quiz)
+## Aussichtspunkt 4: Der Exerzitien-Park
+## YACSDA-Collection
+## Aussichtspunkt 5: In der Bibliothek
+## Krafttraining
+## Aufgaben 
+## Vertiefung 
+
+<!--chapter:end:140-roter-Faden.Rmd-->
+
+
+# Fallstudien
+
+Placeholder
+
+
+### Lernziele 
+### Literatur 
+## Fallstudien zur explorativen Datenanalyse
+## Fallstudien zu linearen Modellen
+## Fallstudien zum maschinellen Lernen mit Tidymodels
+## Aufgaben 
+## Vertiefung 
+
+<!--chapter:end:150-Fallstudien.Rmd-->
+
+
+# Dimensionsreduktion
+
+Placeholder
+
+
+## Lernsteuerung
+### Lernziele 
+### Literatur 
+## Vorbereitung
+## Dimensionsreduktion mit der Hauptkomponentenanalyse
+### Wozu Dimensionsreduktion?
+### PCA: ungeleitetes Verfahren
+### PCA veranschaulicht
+### Was sind Hauptkomponenten?
+
+<!--chapter:end:160-Dimensionsreduktion.Rmd-->
+
+
+# References {-}
+
+
+<!--chapter:end:900-references.Rmd-->
 

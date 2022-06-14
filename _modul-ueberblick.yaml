@@ -155,31 +155,20 @@ thema7:
 
 thema9:
   Titel: "Entscheidungsbäume"
-<<<<<<< HEAD
-  
   Lernziele:
-    - "Sie können den rpart-Algorithmus erläutern, für Klassifikation und Regression"
-    - "Sie wissen, wie man einen Entscheidungsbaum in R berechnet"
-=======
-  Lernziele:
-    - "Sie können den rpart-Algorithmus erklären"
-    - "Sie wissen, wie man Overfitting bei Entscheidungsbäume begrenzen kann"
-    - "Sie können Entscheidungsbäume in R berechnen"
->>>>>>> 7e4b6db9ba989a326bbbb4b186b614657eed8bf8
-
-  Literatur:
-    - "Rhys, Kap. 7"
-  Vertiefung:
-    - "[Visualisierung des ML-Ablaufs am Beispiel des Entscheidungsbaums, Teil 1](http://www.r2d3.us/visual-intro-to-machine-learning-part-1/)"
-    - "[Visualisierung des ML-Ablaufs am Beispiel des Entscheidungsbaums, Teil 2](http://www.r2d3.us/visual-intro-to-machine-learning-part-2/)"
-  Aufgaben:
-    - "[Fallstudie Oregon Schools](https://bcullen.rbind.io/post/2020-06-02-tidymodels-decision-tree-learning-in-r/)"
-    - "[Fallstudie Windturbinen](https://juliasilge.com/blog/wind-turbine/)"
-    - "[Fallstudie Churn](https://www.gmudatamining.com/lesson-13-r-tutorial.html)"
-
-
-
-<<<<<<< HEAD
+    # - "Sie können den rpart-Algorithmus erklären"
+    # - "Sie wissen, wie man Overfitting bei Entscheidungsbäume begrenzen kann"
+    # - "Sie können Entscheidungsbäume in R berechnen"
+  # Literatur:
+  #   - "Rhys, Kap. 7"
+  # Vertiefung:
+  #   - "[Visualisierung des ML-Ablaufs am Beispiel des Entscheidungsbaums, Teil 1](http://www.r2d3.us/visual-intro-to-machine-learning-part-1/)"
+  #   - "[Visualisierung des ML-Ablaufs am Beispiel des Entscheidungsbaums, Teil 2](http://www.r2d3.us/visual-intro-to-machine-learning-part-2/)"
+  # Aufgaben:
+  #   - "[Fallstudie Oregon Schools](https://bcullen.rbind.io/post/2020-06-02-tidymodels-decision-tree-learning-in-r/)"
+  #   - "[Fallstudie Windturbinen](https://juliasilge.com/blog/wind-turbine/)"
+  #   - "[Fallstudie Churn](https://www.gmudatamining.com/lesson-13-r-tutorial.html)"
+  # 
 
 
 
@@ -188,8 +177,7 @@ thema9:
 
 
 
-=======
->>>>>>> 7e4b6db9ba989a326bbbb4b186b614657eed8bf8
+
 thema10:
   Titel: "Ensemble-Lerner"
   Lernziele:

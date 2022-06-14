@@ -147,10 +147,6 @@ Kommazahlen und Ganze Zahlen zusammen bilden den Typ `numeric` (numerisch) in R.
 Den Typ eines Vektors kann man mit `typeof()` ausgeben lassen:
 
 
-```r
-typeof(ein_vektor)
-```
-
 ```
 ## [1] "double"
 ```
@@ -284,10 +280,6 @@ ein_vektor[1,2]
 Man darf Vektoren auch wie Listen ansprechen, also eine doppelte Eckklammer zum Indizieren verwenden
 
 
-```r
-ein_vektor[[2]]
-```
-
 ```
 ## [1] 2
 ```
@@ -296,10 +288,6 @@ Der Grund ist,
 dass Listen auch Vektoren sind, nur eben ein besonderer Fall eines Vektors:
 
 
-
-```r
-is.vector(eine_liste)
-```
 
 ```
 ## [1] TRUE
@@ -576,11 +564,6 @@ In der Regel müssen die Daten "tidy" sein,
 was meist dem langen Format entspricht, vgl. Abb. \@ref(fig:langbreit) aus @modar.
 
 
-
-```r
-knitr::include_graphics("img/gather_spread.png")
-```
-
 <div class="figure" style="text-align: center">
 <img src="img/gather_spread.png" alt="Von lang nach breit und zurück" width="70%" />
 <p class="caption">(\#fig:langbreit)Von lang nach breit und zurück</p>
@@ -601,11 +584,6 @@ Eine Funktion kann man sich als analog zu einer Variable vorstellen.
 Es ist ein Objekt, das nicht Daten, sondern Syntax beinhaltet, 
 vgl. Abb. \@ref(fig:funs) aus @modar.
 
-
-
-```r
-knitr::include_graphics("img/Funs_def.png")
-```
 
 <div class="figure" style="text-align: center">
 <img src="img/Funs_def.png" alt="Sinnbild einer Funktion" width="70%" />
@@ -704,11 +682,6 @@ mtcars %>%
 `map(x, f)` wenden die Funktion `f` auf jedes Element von `x` an.
 Ist `x` ein Tibble, so wird `f` demnach auf jede Spalte von `x` angewendet ("zugeordnet", daher `map`), vgl. Abb. \@ref(fig:map1) aus @modar.
 
-
-
-```r
-knitr::include_graphics("img/wdh.png")
-```
 
 <div class="figure" style="text-align: center">
 <img src="img/wdh.png" alt="Sinnbild für map" width="70%" />
@@ -906,7 +879,7 @@ str(pos11)
 ##   ..$ am  : num [1:32] 1 1 1 0 0 0 0 0 0 0 ...
 ##   ..$ gear: num [1:32] 4 4 4 3 3 3 3 4 4 4 ...
 ##   ..$ carb: num [1:32] 4 4 1 1 2 1 4 2 2 4 ...
-##  $ in_id : int [1:21] 1 4 5 6 7 10 11 15 16 19 ...
+##  $ in_id : int [1:21] 7 8 9 10 11 13 15 17 19 20 ...
 ##  $ out_id: logi NA
 ##  $ id    : tibble [1 × 1] (S3: tbl_df/tbl/data.frame)
 ##   ..$ id: chr "Fold1"
@@ -989,23 +962,13 @@ Eine Tabelle, einfach gesagt, etwa so:
 
 
 
-```r
-tibble::tribble(
-  ~Nr,   ~Titel,   ~Literatur,   ~Aufgaben,
-   1L, "Titel1", "Literatur1", "Aufgaben1",
-   2L, "Titel2", "Literatur2", "Aufgaben2",
-   3L, "Titel3", "Literatur3", "Aufgaben3"
-  ) %>% 
-  gt::gt()
-```
-
 ```{=html}
-<div id="tsxnthgtnc" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="nctgiamwfn" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#tsxnthgtnc .gt_table {
+#nctgiamwfn .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1030,7 +993,7 @@ tibble::tribble(
   border-left-color: #D3D3D3;
 }
 
-#tsxnthgtnc .gt_heading {
+#nctgiamwfn .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1042,33 +1005,37 @@ tibble::tribble(
   border-right-color: #D3D3D3;
 }
 
-#tsxnthgtnc .gt_title {
+#nctgiamwfn .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
   padding-top: 4px;
   padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
   border-bottom-color: #FFFFFF;
   border-bottom-width: 0;
 }
 
-#tsxnthgtnc .gt_subtitle {
+#nctgiamwfn .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
   padding-top: 0;
   padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
 
-#tsxnthgtnc .gt_bottom_border {
+#nctgiamwfn .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#tsxnthgtnc .gt_col_headings {
+#nctgiamwfn .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1083,7 +1050,7 @@ tibble::tribble(
   border-right-color: #D3D3D3;
 }
 
-#tsxnthgtnc .gt_col_heading {
+#nctgiamwfn .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1103,7 +1070,7 @@ tibble::tribble(
   overflow-x: hidden;
 }
 
-#tsxnthgtnc .gt_column_spanner_outer {
+#nctgiamwfn .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1115,15 +1082,15 @@ tibble::tribble(
   padding-right: 4px;
 }
 
-#tsxnthgtnc .gt_column_spanner_outer:first-child {
+#nctgiamwfn .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#tsxnthgtnc .gt_column_spanner_outer:last-child {
+#nctgiamwfn .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#tsxnthgtnc .gt_column_spanner {
+#nctgiamwfn .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1135,8 +1102,11 @@ tibble::tribble(
   width: 100%;
 }
 
-#tsxnthgtnc .gt_group_heading {
-  padding: 8px;
+#nctgiamwfn .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1157,7 +1127,7 @@ tibble::tribble(
   vertical-align: middle;
 }
 
-#tsxnthgtnc .gt_empty_group_heading {
+#nctgiamwfn .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1172,15 +1142,15 @@ tibble::tribble(
   vertical-align: middle;
 }
 
-#tsxnthgtnc .gt_from_md > :first-child {
+#nctgiamwfn .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#tsxnthgtnc .gt_from_md > :last-child {
+#nctgiamwfn .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#tsxnthgtnc .gt_row {
+#nctgiamwfn .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1199,7 +1169,7 @@ tibble::tribble(
   overflow-x: hidden;
 }
 
-#tsxnthgtnc .gt_stub {
+#nctgiamwfn .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1208,10 +1178,29 @@ tibble::tribble(
   border-right-style: solid;
   border-right-width: 2px;
   border-right-color: #D3D3D3;
-  padding-left: 12px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
-#tsxnthgtnc .gt_summary_row {
+#nctgiamwfn .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#nctgiamwfn .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#nctgiamwfn .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1221,17 +1210,26 @@ tibble::tribble(
   padding-right: 5px;
 }
 
-#tsxnthgtnc .gt_first_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
+#nctgiamwfn .gt_first_summary_row {
   border-top-style: solid;
-  border-top-width: 2px;
   border-top-color: #D3D3D3;
 }
 
-#tsxnthgtnc .gt_grand_summary_row {
+#nctgiamwfn .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#nctgiamwfn .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#nctgiamwfn .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1241,7 +1239,7 @@ tibble::tribble(
   padding-right: 5px;
 }
 
-#tsxnthgtnc .gt_first_grand_summary_row {
+#nctgiamwfn .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1251,11 +1249,11 @@ tibble::tribble(
   border-top-color: #D3D3D3;
 }
 
-#tsxnthgtnc .gt_striped {
+#nctgiamwfn .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#tsxnthgtnc .gt_table_body {
+#nctgiamwfn .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1264,7 +1262,7 @@ tibble::tribble(
   border-bottom-color: #D3D3D3;
 }
 
-#tsxnthgtnc .gt_footnotes {
+#nctgiamwfn .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1278,13 +1276,16 @@ tibble::tribble(
   border-right-color: #D3D3D3;
 }
 
-#tsxnthgtnc .gt_footnote {
+#nctgiamwfn .gt_footnote {
   margin: 0px;
   font-size: 90%;
-  padding: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
-#tsxnthgtnc .gt_sourcenotes {
+#nctgiamwfn .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1298,44 +1299,80 @@ tibble::tribble(
   border-right-color: #D3D3D3;
 }
 
-#tsxnthgtnc .gt_sourcenote {
+#nctgiamwfn .gt_sourcenote {
   font-size: 90%;
-  padding: 4px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
-#tsxnthgtnc .gt_left {
+#nctgiamwfn .gt_left {
   text-align: left;
 }
 
-#tsxnthgtnc .gt_center {
+#nctgiamwfn .gt_center {
   text-align: center;
 }
 
-#tsxnthgtnc .gt_right {
+#nctgiamwfn .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#tsxnthgtnc .gt_font_normal {
+#nctgiamwfn .gt_font_normal {
   font-weight: normal;
 }
 
-#tsxnthgtnc .gt_font_bold {
+#nctgiamwfn .gt_font_bold {
   font-weight: bold;
 }
 
-#tsxnthgtnc .gt_font_italic {
+#nctgiamwfn .gt_font_italic {
   font-style: italic;
 }
 
-#tsxnthgtnc .gt_super {
+#nctgiamwfn .gt_super {
   font-size: 65%;
 }
 
-#tsxnthgtnc .gt_footnote_marks {
+#nctgiamwfn .gt_two_val_uncert {
+  display: inline-block;
+  line-height: 1em;
+  text-align: right;
+  font-size: 60%;
+  vertical-align: -0.25em;
+  margin-left: 0.1em;
+}
+
+#nctgiamwfn .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
-  font-size: 65%;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#nctgiamwfn .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#nctgiamwfn .gt_slash_mark {
+  font-size: 0.7em;
+  line-height: 0.7em;
+  vertical-align: 0.15em;
+}
+
+#nctgiamwfn .gt_fraction_numerator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: 0.45em;
+}
+
+#nctgiamwfn .gt_fraction_denominator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: -0.05em;
 }
 </style>
 <table class="gt_table">
@@ -1424,8 +1461,9 @@ Die "Mastertabelle" kann man mit folgender Funktion erstellen:
 
 
 ```r
-mastertable <- build_master_course_table(course_dates_file = dates_file,
-                                         content_file = course_content_file)
+mastertable <- build_master_course_table(
+  course_dates_file =  course_dates_file,
+  content_file = content_file)
 ```
 
 Betrachten Sie die Tabelle in Ruhe!
