@@ -24,12 +24,24 @@
 
 
 
-```{r}
+```{r echo = FALSE}
 library(nomnoml)
 library(DiagrammeR)
 
 knitr::knit_hooks$set(crop = knitr::hook_pdfcrop)
 ```
+
+
+
+
+
+Benötigte R-Pakete für dieses Kapitel:
+
+```{r}
+library(tidyverse)
+```
+
+
 
 ## Lernsteuerung
 
@@ -37,7 +49,6 @@ knitr::knit_hooks$set(crop = knitr::hook_pdfcrop)
 source("funs/chapter-start-sections.R")
 chapter_start_sections(title = "Statistisches Lernen")
 ```
-
 
 
 
@@ -186,7 +197,7 @@ ML kann man auffassen als eine Menge an Verfahren, um $f$ zu schätzen.
 
 Ein Beispiel ist in Abb. \@ref(fig:statlearning) gezeigt [@islr].
 
-```{r statlearning, fig.cap = "Vorhersage des Einkommens durch Ausbildungsjahre", out.width = "50%"}
+```{r statlearning, fig.cap = "Vorhersage des Einkommens durch Ausbildungsjahre", out.width = "50%", echo = FALSE}
 knitr::include_graphics("img/2-2.png")
 ```
 
@@ -194,7 +205,7 @@ knitr::include_graphics("img/2-2.png")
 Natürlich kann $X$ mehr als eine Variable beinhalten, vgl. Abb. \@ref(fig:sl2) [@islr].
 
 
-```{r sl2, fig.cap = "Vorhersage des Einkommens als Funktion von Ausbildungsjahren und Dienstjahren"}
+```{r sl2, fig.cap = "Vorhersage des Einkommens als Funktion von Ausbildungsjahren und Dienstjahren", echo = FALSE}
 knitr::include_graphics("img/2-3.png")
 ```
 
@@ -222,7 +233,7 @@ Anders gesagt: traditionelle KI-Systeme werden mit Daten und Regeln gefüttert u
 ML-Systeme werden mit Daten und Antworten gefüttert und liefern Regeln zurück, vgl. Abb. \@ref(fig:ki-ml2).
 
 
-```{r ki-ml2, fig.cap = "Vergleich von klassischer KI und ML", fig.align = "center", echo = FALSE}
+```{r ki-ml2, fig.cap = "Vergleich von klassischer KI und ML", fig.align = "center", echo = FALSE, echo = FALSE}
 nomnoml::nomnoml(
   "#direction: leftright
   [rule-based|
@@ -249,7 +260,7 @@ height = 450
 Ein Modell, s. Abb. \@ref(fig:vw) [@spurzem_vw_2017]!
 
 
-```{r vw, echo = FALSE, fig.cap = "Ein Modell-Auto", out.width="33%"}
+```{r vw, echo = FALSE, fig.cap = "Ein Modell-Auto", out.width="33%", echo = FALSE}
 knitr::include_graphics("img/vw_modell.JPG")
 ```
 
@@ -369,7 +380,7 @@ Wir sind nicht adaran interessiert die Vorhersagegenauigkeit in den bekannten Da
 
 
 
-```{r }
+```{r aktienplot1, echo = FALSE}
 knitr::include_graphics("img/aktien-plot-1.png")
 ```
 
@@ -413,7 +424,7 @@ Ungeleitetes Lernen kann man wiederum in zwei Arten unterteilen, vgl. Abb. \@ref
 1. Fallreduzierendes Modellieren (Clustering)
 2. Dimensionsreduzierendes Modellieren (z.B. Faktorenanalyse)
 
-```{r ungel, fig.cap = "Zwei Arten von ungeleitetem Modellieren"}
+```{r ungel, fig.cap = "Zwei Arten von ungeleitetem Modellieren", echo = FALSE}
 knitr::include_graphics("img/ungeleitetes_Modellieren_crop.png")
 ```
 
@@ -450,7 +461,7 @@ height = 350
 Wie "gut" ein Modell ist, quantifiziert man in verschiedenen Kennzahlen; man spricht von Modellgüte oder *model fit*. 
 Je schlechter die Modellgüte, desto höher der *Modellfehler*, vgl. Abb. \@ref(fig:resid).
 
-```{r resid, fig.cap = "Wenig (links) vs. viel (rechts) Vorhersagefehler"}
+```{r resid, fig.cap = "Wenig (links) vs. viel (rechts) Vorhersagefehler", echo = FALSE}
 knitr::include_graphics("img/resids-plot-1.png")
 ```
 
@@ -489,7 +500,7 @@ Es gilt, ein Modell mit "mittlerer" Komplexität zu finden, um Über- und Untera
 Leider ist es nicht möglich, vorab zu sagen, was der richtige, "mittlere" Wert an Komplexität eines Modells ist, vgl. Abb. \@ref(fig:overfitting) aus [@modar].
 
 
-```{r overfitting, fig.cap = "Mittlere Modellkomplexität führt zur besten Vorhersagegüte"}
+```{r overfitting, fig.cap = "Mittlere Modellkomplexität führt zur besten Vorhersagegüte", echo = FALSE}
 knitr::include_graphics("img/overfitting-crop.png")
 ```
 
@@ -516,7 +527,7 @@ also viel Modellfehler (für eine Test-Stichprobe).
 Die grüne Funktion in  Abb. \@ref(fig:2-10) wird neue, beim Modelltraining unbekannte Beobachtungen ($y_0$) vergleichsweise schlecht vorhersagen. In Abb. \@ref(fig:2-11)  ist es umgekehrt.
 :::
 
-```{r 2-10, fig.cap = "Ein lineare Funktion verlangt ein lineares Modell; ein nichtlineares Modell wird in einem höheren Vorhersagefehler (bei neuen Daten!) resultieren."}
+```{r 2-10, fig.cap = "Ein lineare Funktion verlangt ein lineares Modell; ein nichtlineares Modell wird in einem höheren Vorhersagefehler (bei neuen Daten!) resultieren.", echo = FALSE}
 knitr::include_graphics("img/2-10.png")
 ```
 
@@ -527,7 +538,7 @@ Ein lineares Modell wird der Komplexität von $f$ nicht gerecht,
 Unteranpassung (underfitting) liegt vor.
 
 
-```{r 2-11, fig.cap = "Eine nichtlineare Funktion (schwarz) verlangt eine nichtlineares Modell. Ein lineares Modell (orange) ist unterangepasst und hat eine schlechte Vorhersageleistung."}
+```{r 2-11, fig.cap = "Eine nichtlineare Funktion (schwarz) verlangt eine nichtlineares Modell. Ein lineares Modell (orange) ist unterangepasst und hat eine schlechte Vorhersageleistung.", echo = FALSE}
 knitr::include_graphics("img/2-11.png")
 ```
 
@@ -544,7 +555,7 @@ Dabei meint $\epsilon$ den *nicht reduzierbaren Fehler*, z.B. weil dem Modell In
 Bias und Varianz sind Kontrahenten: Ein Modell, das wenig Bias hat, neigt tendenziell zu wenig Varianz und umgekehrt, vgl. Abb. \@ref(fig:bias-var) aus @modar.
 
 
-```{r bias-var, fig.cap = "Abwängung von Bias vs. Varianz"}
+```{r bias-var, fig.cap = "Abwängung von Bias vs. Varianz", echo = FALSE}
 knitr::include_graphics("img/plot-bias-variance-1.png")
 ```
 

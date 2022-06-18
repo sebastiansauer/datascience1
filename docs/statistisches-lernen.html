@@ -6,14 +6,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Kapitel 3 Statistisches Lernen | DataScience1</title>
 <meta name="author" content="Sebastian Sauer">
-<meta name="description" content="3.1 Lernsteuerung  3.1.1 Vorbereitung Lesen Sie die Hinweise zum Modul. Installieren (oder Updaten) Sie die für dieses Modul angegeben Software. Lesen Sie die Literatur.  3.1.2 Lernziele Sie...">
+<meta name="description" content="Benötigte R-Pakete für dieses Kapitel: library(tidyverse)  3.1 Lernsteuerung  3.1.1 Vorbereitung Lesen Sie die Hinweise zum Modul. Installieren (oder Updaten) Sie die für dieses Modul angegeben...">
 <meta name="generator" content="bookdown 0.26 with bs4_book()">
 <meta property="og:title" content="Kapitel 3 Statistisches Lernen | DataScience1">
 <meta property="og:type" content="book">
-<meta property="og:description" content="3.1 Lernsteuerung  3.1.1 Vorbereitung Lesen Sie die Hinweise zum Modul. Installieren (oder Updaten) Sie die für dieses Modul angegeben Software. Lesen Sie die Literatur.  3.1.2 Lernziele Sie...">
+<meta property="og:description" content="Benötigte R-Pakete für dieses Kapitel: library(tidyverse)  3.1 Lernsteuerung  3.1.1 Vorbereitung Lesen Sie die Hinweise zum Modul. Installieren (oder Updaten) Sie die für dieses Modul angegeben...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kapitel 3 Statistisches Lernen | DataScience1">
-<meta name="twitter:description" content="3.1 Lernsteuerung  3.1.1 Vorbereitung Lesen Sie die Hinweise zum Modul. Installieren (oder Updaten) Sie die für dieses Modul angegeben Software. Lesen Sie die Literatur.  3.1.2 Lernziele Sie...">
+<meta name="twitter:description" content="Benötigte R-Pakete für dieses Kapitel: library(tidyverse)  3.1 Lernsteuerung  3.1.1 Vorbereitung Lesen Sie die Hinweise zum Modul. Installieren (oder Updaten) Sie die für dieses Modul angegeben...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -113,6 +113,9 @@
 <!--   cache = FALSE, -->
 <!--   fig.show = "hold") -->
 <!-- ``` -->
+<p>Benötigte R-Pakete für dieses Kapitel:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></code></pre></div>
 <div id="lernsteuerung" class="section level2" number="3.1">
 <h2>
 <span class="header-section-number">3.1</span> Lernsteuerung<a class="anchor" aria-label="anchor" href="#lernsteuerung"><i class="fas fa-link"></i></a>
@@ -201,7 +204,7 @@ Figure 3.2: ML-Matroschka
 <p>Klassische (ältere) KI implementiert Regeln “hartverdrahtet” in ein Computersystem.
 Nutzer füttern Daten in dieses System. Das System leitet dann daraus Antworten ab.</p>
 <p><em>Regeln</em> kann man prototypisch mit <em>Wenn-Dann-Abfragen</em> darstellen:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">lernzeit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">20</span><span class="op">)</span>
 <span class="va">schlauer_nebensitzer</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span><span class="op">)</span>
 
@@ -219,15 +222,15 @@ Nutzer füttern Daten in dieses System. Das System leitet dann daraus Antworten 
 ## [1] "bestanden!"
 ## [1] "bestanden!"</code></pre>
 <p>Sicherlich könnte man das schlauer programmieren, vielleicht so:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">d</span> <span class="op">&lt;-</span> 
-  <span class="fu">tibble</span><span class="op">(</span>
+  <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>
   lernzeit <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">20</span><span class="op">)</span>,
   schlauer_nebensitzer <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span><span class="op">)</span>
 <span class="op">)</span>
 
-<span class="va">d</span> <span class="op">%&gt;%</span> 
-  <span class="fu">mutate</span><span class="op">(</span>bestanden <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">lernzeit</span> <span class="op">&gt;</span> <span class="fl">10</span> <span class="op">|</span> <span class="va">schlauer_nebensitzer</span> <span class="op">==</span> <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="va">d</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>bestanden <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">lernzeit</span> <span class="op">&gt;</span> <span class="fl">10</span> <span class="op">|</span> <span class="va">schlauer_nebensitzer</span> <span class="op">==</span> <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 4 × 3
 ##   lernzeit schlauer_nebensitzer bestanden
 ##      &lt;dbl&gt; &lt;lgl&gt;                &lt;lgl&gt;    
@@ -363,7 +366,13 @@ Figure 3.9: Geleitetes Lernen geschieht in zwei Phasen
 <h4>
 <span class="header-section-number">3.5.1.1</span> Regression: Numerische Vorhersage<a class="anchor" aria-label="anchor" href="#regression-numerische-vorhersage"><i class="fas fa-link"></i></a>
 </h4>
-<div class="inline-figure"><img src="040-Statistisches-Lernen_files/figure-html/unnamed-chunk-4-1.png" width="70%" style="display: block; margin: auto;"></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">hp</span>, y <span class="op">=</span> <span class="va">mpg</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="040-Statistisches-Lernen_files/figure-html/unnamed-chunk-5-1.png" width="70%" style="display: block; margin: auto;"></div>
 <p>Die Modellgüte eines numerischen Vorhersagemodells wird oft mit (einem der) folgenden <em>Gütekoeffizienten</em> gemessen:</p>
 <ul>
 <li>Mean Squared Error (Mittlerer Quadratfehler):</li>
@@ -450,6 +459,8 @@ an denen das Modell nicht trainiert wurde.</p>
 <p><em>Overfitting</em>: Ein Modell sagt die Trainingsdaten zu genau vorher - es nimmt Rauschen als “bare Münze”, also fälschlich als Signal. Solche Modelle haben zu viel <em>Varianz</em> in ihren Vorhersagen.</p>
 <p><em>Underfitting</em>: Ein Modell ist zu simpel (ungenau, grobkörnig) - es unterschlägt Nuancen des tatsächlichen Musters. Solche Modelle haben zu viel <em>Verzerrung</em> (Bias) in ihren Vorhersagen.</p>
 <p>Welches der folgenden Modelle (B,C,D) passt am besten zu den Daten (A), s. Abb. <a href="statistisches-lernen.html#fig:overunder">3.14</a>, vgl. <span class="citation">(<a href="references.html#ref-modar" role="doc-biblioref">Sauer 2019</a>)</span>, Kap. 15.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html">include_graphics</a></span><span class="op">(</span><span class="st">"img/overfitting-4-plots-1.png"</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:overunder"></span>
 <img src="img/overfitting-4-plots-1.png" alt="Over- vs. Underfitting" width="70%"><p class="caption">
@@ -603,7 +614,7 @@ Figure 3.18: Abwängung von Bias vs. Varianz
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-06-18 17:01:53.</p>
+    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-06-18 17:42:29.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

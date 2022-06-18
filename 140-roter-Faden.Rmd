@@ -64,7 +64,7 @@ diagram <- "flowchart LR
 Und so zeigt sich ein "Flussbild"^[Wem das Bild zu klein gezeichnet ist, der nehme entweder eine Lupe oder öffne das Bild per Rechtsklick in einem neuen Tab.] (Abb. \@ref(fig:bigpic)).
 
 
-```{r bigpic, fig.cap = "Ein Flussbild des maschinellen Lernens"}
+```{r bigpic, fig.cap = "Ein Flussbild des maschinellen Lernens", echo = FALSE}
 knitr::include_graphics("https://mermaid.ink/svg/pako:eNptksFunDAQhl_F8jmbB9hDpVQtUaQirbJoOZgcDB7AXWOvhvFWTZQ3yy0v1sHeTYkUIfAw_zc_4zEvsgsG5Fb2LvzpRo0kfj02XojDWR0CngE1tmAp-uFJbDbfRK3qgMeFflqwslAlGzjXB5zAfc2EC_OleufUnRsCWhqnOGekDIvyMKmH6eRgAk8W8KOFrLLlYvu5ZE_q-fb7La_aG43GzuvCw3lhijozBYwOvAFRAxKsiZpj0b-_ofgNBry49puQKnrrhwWbYzugPo2r1Cr5CLPm7j-ElVRYIvDXNPeQw0twWbJp-mRbqhZmAhR5jkfenDWa0vzaMjFFpbKt0LEXg_bPokJt_Wa_dAEJLaqE7iq1QzC2o8RWbL2mdpkS5f3l2Ib3N8pSeZ8kHyfFN6Cdu3EtHJ2e1fKYbW-PmsJ_ovH5EkLeSC6dtDX8270kTdLIp9zILYcGeh0dNbLxr4zGE28UfhrLZnJLGOFG6khh_9d31_fM_LCaxzvl5Os_ERX1KQ")
 ```
 

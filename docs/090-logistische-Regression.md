@@ -29,6 +29,39 @@
 Benötigte R-Pakete für dieses Kapitel:
 
 
+```r
+library(tidyverse)
+library(tidymodels)
+library(easystats)
+```
+
+
+`{datawizard}` ist, wie Tidymodels und Tidyverse, ein Metapaket,
+ein R-Paket also, das mehrere Pakete verwaltet und startet.
+[Hier](https://easystats.github.io/easystats/) findet sich mehr Info zu Easystats.
+
+
+*Achtung* Easystats ist (noch) nicht auf CRAN.
+Sie können Easystats so installieren:
+
+
+```r
+install.packages("easystats", repos = "https://easystats.r-universe.dev")
+```
+
+
+Einen flotten Spruch bekommen wir von Easystats gratis dazu:
+
+
+```r
+easystats_zen()
+```
+
+```
+## [1] "Patience you must have my young padawan."
+```
+
+
 
 
 
@@ -554,13 +587,25 @@ Das Profil des Modells kann man wie folgt charakterisieren, vgl. Tab. \@ref(tab:
 *Forschungsfrage*: Kann man anhand des Spritverbrauchs vorhersagen, ob ein Auto eine Automatik- bzw. ein manuelle Schaltung hat? Anders gesagt: Hängen Spritverbrauch und Getriebeart? (Datensatz `mtcars`)
 
 
+```r
+data(mtcars)
+d <-
+  mtcars %>% 
+  mutate(mpg_z = standardize(mpg),
+         iv = mpg_z,
+         dv = am)
+
+m81 <- lm(dv ~ iv, data = d)
+coef(m81)
+```
+
 ```
 ## (Intercept)          iv 
 ##   0.4062500   0.2993109
 ```
 
 
-<img src="090-logistische-Regression_files/figure-html/unnamed-chunk-5-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="090-logistische-Regression_files/figure-html/unnamed-chunk-7-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 $Pr(\text{am}=1|m91,\text{mpg_z}=0) = 0.46$: 
@@ -618,7 +663,7 @@ Schauen Sie sich mal die Vorhersage an für `mpg_z=5` 🤯
 ... wenn der vorhergesagte Wert eine Wahrscheinlichkeit, $p_i$, ist.
 
 
-<img src="090-logistische-Regression_files/figure-html/unnamed-chunk-8-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="090-logistische-Regression_files/figure-html/unnamed-chunk-10-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 Die *schwarze* Gerade verlässt den Wertebereich der Wahrscheinlichkeit.
@@ -692,6 +737,13 @@ $$\mathcal{L} = \text{log} \frac{p_i}{1-p_i} = \alpha + \beta x_i$$
 Wie war eigentlich *insgesamt*, also ohne auf einen (oder mehrere) Prädiktoren zu bedingen, die Überlebenswahrscheinlichkeit?
 
 
+```r
+data(titanic_train, package = "titanic")
+
+m82 <- lm(Survived ~ 1, data = titanic_train)
+coef(m82)
+```
+
 ```
 ## (Intercept) 
 ##   0.3838384
@@ -701,6 +753,12 @@ Die Wahrscheinlichkeit zu Überleben $Pr(y=1)$ lag bei einem guten Drittel (0.38
 
 Das hätte man auch so ausrechnen:
 
+
+```r
+titanic_train %>% 
+  count(Survived) %>% 
+   mutate(prop = n/sum(n))
+```
 
 ```
 ##   Survived   n      prop
@@ -718,10 +776,21 @@ Anders gesagt: $p(y=1) = \frac{549}{549+342} \approx 0.38$
 Berechnen wir jetzt ein lineares Modell für die AV `Survived` mit dem Geschlecht als Pädiktor:
 
 
+```r
+d <-
+  titanic_train %>% 
+  filter(Fare > 0) %>% 
+  mutate(iv = log(Fare),
+         dv = factor(Survived))
+```
 
 
 Die Faktorstufen, genannt `levels` von `Survived` sind:
 
+
+```r
+levels(d$dv)
+```
 
 ```
 ## [1] "0" "1"
@@ -738,6 +807,11 @@ Tidymodels greift intern auf diese Funktion zurück.
 Daher sind die Ergebnisse numerisch identisch.
 
 
+```r
+lm83 <- glm(dv ~ iv, data = d, family = "binomial")
+coef(lm83)
+```
+
 ```
 ## (Intercept)          iv 
 ##  -2.6827432   0.7479317
@@ -753,6 +827,13 @@ Mit `{easystats}` kann man sich `model_parameter()` einfach ausgeben lassen:
 
 
 
+```r
+library(easystats)
+
+
+model_parameters(lm83)
+```
+
 ```
 ## Parameter   | Log-Odds |   SE |         95% CI |      z |      p
 ## ----------------------------------------------------------------
@@ -763,7 +844,12 @@ Mit `{easystats}` kann man sich `model_parameter()` einfach ausgeben lassen:
 
 Und auch visualisieren lassen:
 
-<img src="090-logistische-Regression_files/figure-html/unnamed-chunk-12-1.png" width="70%" style="display: block; margin: auto;" />
+
+```r
+plot(model_parameters(lm83))
+```
+
+<img src="090-logistische-Regression_files/figure-html/unnamed-chunk-14-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 ## m83, tidymodels
@@ -773,16 +859,24 @@ Und auch visualisieren lassen:
 Außerdem wird bei `tidymodels`, im Gegensatz zu `(g)lm` nicht die zweite,
 sondern die *erste* als Ereignis modelliert wird.
 
-`
 
 
 Daher wechseln wir die *ref*erenzkategorie, wir "re-leveln", mit `relevel()`:
 
 
+```r
+d2 <-
+  d %>% 
+  mutate(dv = relevel(dv, ref = "1"))
+```
 
 
 Check:
 
+
+```r
+levels(d2$dv)
+```
 
 ```
 ## [1] "1" "0"
@@ -799,6 +893,21 @@ Die erste Stufe ist jetzt `1`, also Überleben.
 Jetzt berechnen wir das Modell in gewohnter Weise mit `tidymodels`.
 
 
+```r
+m83_mod <-
+  logistic_reg()
+
+m83_rec <-
+  recipe(dv ~ iv, data = d2)
+
+m83_wf <-
+  workflow() %>% 
+  add_model(m83_mod) %>% 
+  add_recipe(m83_rec)
+
+m83_fit <-
+  fit(m83_wf, data = d2)
+```
 
 
 Hier sind die Koeffizienten, die kann man sich aus `m83_fit` herausziehen:
@@ -1288,6 +1397,11 @@ $odds = \frac{p}{1-p}$
 In R:
 
 
+```r
+odds <- 0.38 / 0.62
+odds
+```
+
 ```
 ## [1] 0.6129032
 ```
@@ -1379,6 +1493,18 @@ Praktisch können wir uns die Logits und ihre zugehörige Wahrscheinlichkeit ein
 
 
 
+```r
+d3 <-
+  d2 %>% 
+  bind_cols(predict(m83_fit, new_data = d2, type = "prob")) %>% 
+  bind_cols(predict(m83_fit, new_data = d2)) %>%  # Klasse
+  bind_cols(logits = predict(m83_fit, new_data = d2, type = "raw"))  # Logits
+  
+d3 %>% 
+  slice_head(n = 3) %>% 
+  select(Name, last_col())
+```
+
 ```
 ##                                                  Name     logits
 ## 1                             Braund, Mr. Owen Harris  1.2010894
@@ -1405,7 +1531,7 @@ mehr dazu findet sich z.B. [hier](https://probably.tidymodels.org/articles/where
 ### Logit
 $(0,1) \rightarrow (-\infty, +\infty)$
 
-<img src="090-logistische-Regression_files/figure-html/unnamed-chunk-19-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="090-logistische-Regression_files/figure-html/unnamed-chunk-21-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 

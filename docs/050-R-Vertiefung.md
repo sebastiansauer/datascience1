@@ -5,6 +5,18 @@
 # R, zweiter Blick
 
 
+
+
+Benötigte R-Pakete für dieses Kapitel:
+
+
+```r
+library(tidyverse)
+library(tidymodels)
+```
+
+
+
 ## Lernsteuerung
 
 <!-- Chapter Start sections: Lernziele, Literatur, Hinweise, ... -->
@@ -28,7 +40,6 @@
 
 - Rhys, Kap. 2
 - MODAR, Kap. 5
-
 
 
 
@@ -140,12 +151,19 @@ Kommazahlen und Ganze Zahlen zusammen bilden den Typ `numeric` (numerisch) in R.
 
 
 
+```r
+knitr::opts_chunk$set(echo = TRUE)
+```
 
 
 
 
 Den Typ eines Vektors kann man mit `typeof()` ausgeben lassen:
 
+
+```r
+typeof(ein_vektor)
+```
 
 ```
 ## [1] "double"
@@ -280,6 +298,10 @@ ein_vektor[1,2]
 Man darf Vektoren auch wie Listen ansprechen, also eine doppelte Eckklammer zum Indizieren verwenden
 
 
+```r
+ein_vektor[[2]]
+```
+
 ```
 ## [1] 2
 ```
@@ -288,6 +310,10 @@ Der Grund ist,
 dass Listen auch Vektoren sind, nur eben ein besonderer Fall eines Vektors:
 
 
+
+```r
+is.vector(eine_liste)
+```
 
 ```
 ## [1] TRUE
@@ -564,6 +590,11 @@ In der Regel müssen die Daten "tidy" sein,
 was meist dem langen Format entspricht, vgl. Abb. \@ref(fig:langbreit) aus @modar.
 
 
+
+```r
+knitr::include_graphics("img/gather_spread.png")
+```
+
 <div class="figure" style="text-align: center">
 <img src="img/gather_spread.png" alt="Von lang nach breit und zurück" width="70%" />
 <p class="caption">(\#fig:langbreit)Von lang nach breit und zurück</p>
@@ -695,6 +726,8 @@ Hier ein Beispiel-Code:
 ```r
 data(mtcars)
 
+mtcars <- mtcars %>% select(1:3)  # nur die ersten 3 Spalten
+
 map(mtcars, mean)
 ```
 
@@ -707,30 +740,6 @@ map(mtcars, mean)
 ## 
 ## $disp
 ## [1] 230.7219
-## 
-## $hp
-## [1] 146.6875
-## 
-## $drat
-## [1] 3.596563
-## 
-## $wt
-## [1] 3.21725
-## 
-## $qsec
-## [1] 17.84875
-## 
-## $vs
-## [1] 0.4375
-## 
-## $am
-## [1] 0.40625
-## 
-## $gear
-## [1] 3.6875
-## 
-## $carb
-## [1] 2.8125
 ```
 
 
@@ -961,6 +970,16 @@ Eine Tabelle, einfach gesagt, etwa so:
 
 
 
+
+```r
+tibble::tribble(
+  ~Nr,   ~Titel,   ~Literatur,   ~Aufgaben,
+   1L, "Titel1", "Literatur1", "Aufgaben1",
+   2L, "Titel2", "Literatur2", "Aufgaben2",
+   3L, "Titel3", "Literatur3", "Aufgaben3"
+  ) %>% 
+  gt::gt()
+```
 
 ```{=html}
 <div id="ffomdulass" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">

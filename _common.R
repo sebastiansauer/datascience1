@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
   fig.path = "chunk-img/",
   dpi = 300,
   # tidy = TRUE,
-  echo = FALSE,
+  echo = TRUE,
   message = FALSE,
   warning = FALSE,
   cache = TRUE,

@@ -173,11 +173,6 @@ Allerdins kommen nicht alle Fälle (in der Regel) in den "Boostrap-Beutel" (in b
 sondern einige Fälle werden oft mehrfach gezogen, so dass
 einige Fälle nicht gezogen werden (out of bag).
 
-
-```r
-knitr::include_graphics("img/zmz.png")
-```
-
 <div class="figure" style="text-align: center">
 <img src="img/zmz.png" alt="Bootstrapping: Der Topf links symbolisiert die Original-Stichprobe, aus der wir hier mehrere ZMZ-Stichproben ziehen (Rechts), dargestellt mit 'in bag'" width="70%" />
 <p class="caption">(\#fig:zmz)Bootstrapping: Der Topf links symbolisiert die Original-Stichprobe, aus der wir hier mehrere ZMZ-Stichproben ziehen (Rechts), dargestellt mit 'in bag'</p>
@@ -221,28 +216,11 @@ $$\hat{f}_{\text{bag}} = \frac{1}{B}\sum_{b=1}^{B}\hat{f}^{*b}$$
 Der Bagging-Algorithmus ist in Abbildung \@ref(fig:bag) dargestellt.
 
 
-
-```r
-nomnoml::nomnoml(
-  "
-  [<database> Datensatz] ->zmz [Baum 1]
-[<database> Datensatz] ->zmz [Baum 2]
-[<database> Datensatz] ->zmz [Baum ...]
-[<database> Datensatz] ->zmz [Baum B]
-[Baum 1] -> [Modus als Vorhersagewert]
-[Baum 2] -> [Modus als Vorhersagewert]
-[Baum ...] -> [Modus als Vorhersagewert]
-[Baum B] -> [Modus als Vorhersagewert]
-  ", 
-height = 350
-)
-```
-
 <div class="figure" style="text-align: center">
 
 ```{=html}
-<div id="htmlwidget-e80fbc9853d11773b310" style="width:70%;height:350px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-e80fbc9853d11773b310">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n  [<database> Datensatz] ->zmz [Baum 1]\n[<database> Datensatz] ->zmz [Baum 2]\n[<database> Datensatz] ->zmz [Baum ...]\n[<database> Datensatz] ->zmz [Baum B]\n[Baum 1] -> [Modus als Vorhersagewert]\n[Baum 2] -> [Modus als Vorhersagewert]\n[Baum ...] -> [Modus als Vorhersagewert]\n[Baum B] -> [Modus als Vorhersagewert]\n  ","svg":false,"png":null},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-eb00b6cf3584a5a9a6aa" style="width:70%;height:350px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-eb00b6cf3584a5a9a6aa">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n  [<database> Datensatz] ->zmz [Baum 1]\n[<database> Datensatz] ->zmz [Baum 2]\n[<database> Datensatz] ->zmz [Baum ...]\n[<database> Datensatz] ->zmz [Baum B]\n[Baum 1] -> [Modus als Vorhersagewert]\n[Baum 2] -> [Modus als Vorhersagewert]\n[Baum ...] -> [Modus als Vorhersagewert]\n[Baum B] -> [Modus als Vorhersagewert]\n  ","svg":false,"png":null},"evals":[],"jsHooks":[]}</script>
 ```
 
 <p class="caption">(\#fig:bag)Bagging schematisch illustriert</p>
@@ -312,46 +290,11 @@ In den meisten Implementationen wird $m$ mit `mtry` bezeichnet (so auch in Tidym
 
 Der Random-Forest-Algorithmus ist in Abb. \@ref(fig:rf1) illustriert.
 
-
-```r
-nomnoml::nomnoml("
-#direction:down
-                 [<database> Datensatz] ->zmz [Baum1
-[ZoZ]->[ZOZ2]
-[ZoZ]->[ZoZ3]
-]
-
-[<database> Datensatz] ->zmz [Baum2
-[ZoZ]->[ZOZ2]
-[ZoZ]->[ZoZ3]
-]
-[<database> Datensatz] ->zmz [Baum ...
-[ZoZ]->[ZOZ2]
-[ZoZ]->[ZoZ3]
-]
-[<database> Datensatz] ->zmz [Baum B
-[ZoZ]->[ZOZ2]
-[ZoZ]->[ZoZ3]
-]
-[Baum1
-[ZoZ]->[ZOZ2]
-[ZoZ]->[ZoZ3]
-] -> [Modus als Vorhersagewert]
-[Baum2
-[ZoZ]->[ZOZ2]
-[ZoZ]->[ZoZ3]
-] -> [Modus als Vorhersagewert]
-[Baum ...] -> [Modus als Vorhersagewert]
-[Baum B] -> [Modus als Vorhersagewert]
-                 ",
-height = 700)
-```
-
 <div class="figure" style="text-align: center">
 
 ```{=html}
-<div id="htmlwidget-eded66719a97b61b4130" style="width:100%;height:700px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-eded66719a97b61b4130">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n#direction:down\n                 [<database> Datensatz] ->zmz [Baum1\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n\n[<database> Datensatz] ->zmz [Baum2\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[<database> Datensatz] ->zmz [Baum ...\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[<database> Datensatz] ->zmz [Baum B\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[Baum1\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n] -> [Modus als Vorhersagewert]\n[Baum2\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n] -> [Modus als Vorhersagewert]\n[Baum ...] -> [Modus als Vorhersagewert]\n[Baum B] -> [Modus als Vorhersagewert]\n                 ","svg":false,"png":null},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-e40bf41b8d77da76af7a" style="width:100%;height:700px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e40bf41b8d77da76af7a">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n#direction:down\n                 [<database> Datensatz] ->zmz [Baum1\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n\n[<database> Datensatz] ->zmz [Baum2\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[<database> Datensatz] ->zmz [Baum ...\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[<database> Datensatz] ->zmz [Baum B\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[Baum1\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n] -> [Modus als Vorhersagewert]\n[Baum2\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n] -> [Modus als Vorhersagewert]\n[Baum ...] -> [Modus als Vorhersagewert]\n[Baum B] -> [Modus als Vorhersagewert]\n                 ","svg":false,"png":null},"evals":[],"jsHooks":[]}</script>
 ```
 
 <p class="caption">(\#fig:rf1)Zufallswälder durch Ziehen mit Zurücklegen (zmz) und Ziehen ohne Zurücklegen (ZoZ)</p>
@@ -362,11 +305,6 @@ height = 700)
 Abb. \@ref(fig:comp-trees) vergleicht die Test-Sample-Vorhersagegüte von Bagging- und Random-Forest-Algorithmen aus @islr.
 In diesem Fall ist die Vorhersagegüte deutlich unter der OOB-Güte; laut @islr ist dies hier "Zufall".
 
-
-```r
-knitr::include_graphics("img/8.8.png")
-```
-
 <div class="figure" style="text-align: center">
 <img src="img/8.8.png" alt="Test-Sample-Vorhersagegüte von Bagging- und Random-Forest-Algorithmen" width="70%" />
 <p class="caption">(\#fig:comp-trees)Test-Sample-Vorhersagegüte von Bagging- und Random-Forest-Algorithmen</p>
@@ -376,11 +314,6 @@ knitr::include_graphics("img/8.8.png")
 Den Effekt von $m$ (Anzahl der Prädiktoren pro Split) ist in Abb. \@ref(fig:mtry) dargestellt [@islr].
 Man erkennt, dass der Zusatznutzen an zusätzlichen Bäumen, $B$, sich abschwächt.
 $m=\sqrt{p}$ schneidet wie erwartet am besten ab.
-
-
-```r
-knitr::include_graphics("img/8.10.png")
-```
 
 <div class="figure" style="text-align: center">
 <img src="img/8.10.png" alt="Test-Sample-Vorhersagegüte von Bagging- und Random-Forest-Algorithmen" width="70%" />
@@ -426,21 +359,11 @@ haben zunächst alle Fälle die gleiche Wahrscheinlichkeit, in das Bootstrap-Sam
 Die Bäume bei AdaBoost sind eigentlich nur "Stümpfe": Sie bestehen aus einem einzelnen Split, s. Abb. \@ref(fig:stump).
 
 
-
-```r
-nomnoml::nomnoml(
-  "#direction: topdown
-  [root] -> [leaf1]
-  [root] -> [leaf2]
-  ", height = 200
-)
-```
-
 <div class="figure" style="text-align: center">
 
 ```{=html}
-<div id="htmlwidget-3ce4cb7364bf8cd238a2" style="width:70%;height:200px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-3ce4cb7364bf8cd238a2">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: topdown\n  [root] -> [leaf1]\n  [root] -> [leaf2]\n  ","svg":false,"png":null},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-08615241fbb586731a35" style="width:70%;height:200px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-08615241fbb586731a35">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: topdown\n  [root] -> [leaf1]\n  [root] -> [leaf2]\n  ","svg":false,"png":null},"evals":[],"jsHooks":[]}</script>
 ```
 
 <p class="caption">(\#fig:stump)Ein Baumstumpf bei AdaBoost</p>
@@ -495,30 +418,11 @@ aber schlecht klassifizierten Fällen mehr Gehör.
 
 Das Vorgehen von AdaBoost ist in Abb. \@ref(fig:ada) illustriert.
 
-
-```r
-nomnoml::nomnoml(
-  "
-  [m1] -> [ensemble]
-  [ensemble] -> [m2]
-  [m2] -> [ensemble]
-  [ensemble] -> [m3]
-  [m3] -> [ensemble]
-  [ensemble] -> [m4]
-  [m4] -> [ensemble]
-  [ensemble] -> [M ...]
-  [M ...] -> [ensemble]
-  [ensemble] -> [M B]
-  ",
-  height = 450
-)
-```
-
 <div class="figure" style="text-align: center">
 
 ```{=html}
-<div id="htmlwidget-9fe49727bf811ee71a62" style="width:70%;height:450px;" class="nomnoml html-widget"></div>
-<script type="application/json" data-for="htmlwidget-9fe49727bf811ee71a62">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n  [m1] -> [ensemble]\n  [ensemble] -> [m2]\n  [m2] -> [ensemble]\n  [ensemble] -> [m3]\n  [m3] -> [ensemble]\n  [ensemble] -> [m4]\n  [m4] -> [ensemble]\n  [ensemble] -> [M ...]\n  [M ...] -> [ensemble]\n  [ensemble] -> [M B]\n  ","svg":false,"png":null},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-7172e581f51642da847d" style="width:70%;height:450px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7172e581f51642da847d">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n  [m1] -> [ensemble]\n  [ensemble] -> [m2]\n  [m2] -> [ensemble]\n  [ensemble] -> [m3]\n  [m3] -> [ensemble]\n  [ensemble] -> [m4]\n  [m4] -> [ensemble]\n  [ensemble] -> [M ...]\n  [M ...] -> [ensemble]\n  [ensemble] -> [M B]\n  ","svg":false,"png":null},"evals":[],"jsHooks":[]}</script>
 ```
 
 <p class="caption">(\#fig:ada)AdaBoost illustriert</p>
@@ -543,11 +447,6 @@ Details finden sich z.B. [hier](https://arxiv.org/pdf/1603.02754.pdf), dem Origi
 Die hohe Vorhersagegüte von Boosting-Modellen ist exemplarisch in Abb. \@ref(fig:boost) dargestellt [@islr, S. 358ff].
 Allerdings verwenden die Autoren Friedmans [-@friedman_greedy_2001] *Gradient Boosting Machine*, eine weitere Variante des Boosting .
 
-
-
-```r
-knitr::include_graphics("img/8.10.png")
-```
 
 <div class="figure" style="text-align: center">
 <img src="img/8.10.png" alt="Vorhersagegüte von Boosting und Random Forest" width="70%" />

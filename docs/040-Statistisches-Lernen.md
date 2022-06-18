@@ -26,6 +26,19 @@
 
 
 
+
+
+
+
+Benötigte R-Pakete für dieses Kapitel:
+
+
+```r
+library(tidyverse)
+```
+
+
+
 ## Lernsteuerung
 
 ### Vorbereitung 
@@ -55,7 +68,6 @@
 
 - Bitte beachten Sie die Hinweise zum Präsenzunterricht und der Streamingoption.
 - Bitte stellen Sie sicher, dass Sie einen einsatzbereiten Computer haben und dass die angegebene Software (in aktueller Version) läuft.
-
 
 
 
@@ -341,7 +353,16 @@ Die zwei Phasen des geleiteten Lernens sind in Abb. \@ref(fig:supervid) dargeste
 #### Regression: Numerische Vorhersage
 
 
-<img src="040-Statistisches-Lernen_files/figure-html/unnamed-chunk-4-1.png" width="70%" style="display: block; margin: auto;" />
+
+```r
+ggplot(mtcars) +
+  aes(x = hp, y = mpg) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  theme_minimal()
+```
+
+<img src="040-Statistisches-Lernen_files/figure-html/unnamed-chunk-5-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 Die Modellgüte eines numerischen Vorhersagemodells wird oft mit (einem der) folgenden *Gütekoeffizienten* gemessen:
@@ -453,6 +474,11 @@ an denen das Modell nicht trainiert wurde.
 *Underfitting*: Ein Modell ist zu simpel (ungenau, grobkörnig) - es unterschlägt Nuancen des tatsächlichen Musters. Solche Modelle haben zu viel *Verzerrung* (Bias) in ihren Vorhersagen.
 
 Welches der folgenden Modelle (B,C,D) passt am besten zu den Daten (A), s. Abb. \@ref(fig:overunder), vgl. [@modar], Kap. 15.
+
+
+```r
+knitr::include_graphics("img/overfitting-4-plots-1.png")
+```
 
 <div class="figure" style="text-align: center">
 <img src="img/overfitting-4-plots-1.png" alt="Over- vs. Underfitting" width="70%" />

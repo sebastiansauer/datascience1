@@ -2,7 +2,7 @@
 
 
 
-```{r}
+```{r echo = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -12,10 +12,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Benötigte R-Pakete für dieses Kapitel:
 
-```{r}
+```{r libs-resampling-tuning, echo = TRUE}
 library(tidyverse)
 library(tidymodels)
-library(tune)
+library(tune)  #  wird nicht autaomtisch mit tidymodels gestartet
 ```
 
 
@@ -104,7 +104,7 @@ knitr::include_graphics("img/standard-ml.png")
 ### Datensatz aufteilen
 
 
-```{r ames-split}
+```{r ames-split, echo = TRUE}
 data(ames)
 
 set.seed(4595)
@@ -120,7 +120,7 @@ ames_test <- testing(data_split)
 In gewohnter Weise definieren wir den Workflow
 mit einem kNN-Modell.
 
-```{r ames-wf}
+```{r ames-wf, echo = TRUE}
 ames_rec <-
   recipe(Sale_Price ~ ., data = ames_train) %>%
   step_log(Sale_Price, base = 10) %>%

@@ -6,6 +6,9 @@
 
 
 
+```r
+knitr::opts_chunk$set(cache = FALSE)
+```
 
 
 

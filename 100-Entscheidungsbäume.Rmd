@@ -33,7 +33,7 @@
 In diesem Kapitel werden folgende R-Pakete benötigt:
 
 ```{r echo = TRUE}
-library(titanic)
+library(titanic)  # Datensatzt Titanic
 #library(rpart)  # Berechnung von Entscheidungsbäumen
 library(tidymodels)
 library(tictoc)  # Zeitmessung
@@ -81,7 +81,7 @@ Ein  Beispiel für einen einfachen Baum sowie die zugehörige *rekursive Partion
 man erkennt $R=3$ *Regionen* bzw. Blätter [@islr].
 
 
-```{r rec-part2, out.width = c("45%", "45%"), fig.cap = "Einfaches Beispiel für einen Baum sowie der zugehörigen rekursiven Partionierung", fig.show = "hold"}
+```{r rec-part2, out.width = c("45%", "45%"), fig.cap = "Einfaches Beispiel für einen Baum sowie der zugehörigen rekursiven Partionierung", fig.show = "hold", echo = FALSE}
 knitr::include_graphics("img/8.1.png")
 knitr::include_graphics("img/8.2.png")
 ```
@@ -121,7 +121,7 @@ Für Abb. \@ref(fig:tree1) ergibt sich eine komplexere Aufteilung, s. auch Abb. 
 
 
 
-```{r tree1, fig.cap = "Beispiel für einen Entscheidungsbaum"}
+```{r tree1, fig.cap = "Beispiel für einen Entscheidungsbaum", echo = FALSE}
 library(rpart.plot)
 #knitr::include_graphics("img/tree-titanic.png")
 
@@ -137,7 +137,7 @@ Kleine Lesehilft für Abb. \@ref(fig:tree1):
 - darunter (3. Zeile) steht der Anteil der Fälle (am Gesamt-Datensatz) in diesem Knoten, z.B. `100%`
 
 
-```{r recursive-part, fig.cap = "Partionierung in Rechtecke durch Entscheidungsbäume"}
+```{r recursive-part, fig.cap = "Partionierung in Rechtecke durch Entscheidungsbäume", echo = FALSE}
 knitr::include_graphics("img/recursive-part.png")
 ```
 
@@ -150,7 +150,7 @@ Man nennt (eine Implementierung) dieses Algorithmus auch *rpart*.
 
 Das Regelwerk zum Baum aus Abb. \@ref(fig:tree1) sieht so aus:
 
-```{r message=FALSE, echo = TRUE}
+```{r message=FALSE, echo = TRUE, echo = FALSE}
 titanic_train$Survived = as.factor(titanic_train$Survived)
 
 ti_tree <-
@@ -201,7 +201,7 @@ die sich durch den Entscheidungsbaum unten links ergeben.
 Untenrechts ist der Baum in 3D dargestellt.
 
 
-```{r tree3, fig.cap = "Ein weiteres Beispiel zur Darstellung von Entscheidungsbäumen"}
+```{r tree3, fig.cap = "Ein weiteres Beispiel zur Darstellung von Entscheidungsbäumen", echo = FALSE}
 knitr::include_graphics("img/8.3.png")
 ```
 
@@ -405,7 +405,7 @@ Lineare Modelle durch eine einfache lineare Partionierung (wenn man Klassifizier
 Abb. \@ref(fig:rechteck) verdeutlicht diesen Unterschied [@islr].
 
 
-```{r rechteck, fig.cap = "Rechteckige vs. lineare Partionierung"}
+```{r rechteck, fig.cap = "Rechteckige vs. lineare Partionierung", echo = FALSE}
 knitr::include_graphics("img/8.7.png")
 ```
 
@@ -415,7 +415,7 @@ Wie Abb. \@ref(fig:rechteck) gibt es Datenlagen, in denen das eine Vorgehen zu h
 und Situationen, in denen das andere Vorgehen besser ist, vgl. Abb. \@ref(fig:lunch).
 
 
-```{r lunch, fig.cap = "Free Lunch?", out.width="30%"}
+```{r lunch, fig.cap = "Free Lunch?", out.width="30%", echo = FALSE}
 knitr::include_graphics("http://hephaestus-associates.com/wp-content/uploads/2016/07/What-if-I-told-You-There-is-no-Such-Thing-as-a-Free-Lunch-300x300.jpg")
 ```
 

@@ -160,7 +160,7 @@ Allerdins kommen nicht alle Fälle (in der Regel) in den "Boostrap-Beutel" (in b
 sondern einige Fälle werden oft mehrfach gezogen, so dass
 einige Fälle nicht gezogen werden (out of bag).
 
-```{r zmz, fig.cap = "Bootstrapping: Der Topf links symbolisiert die Original-Stichprobe, aus der wir hier mehrere ZMZ-Stichproben ziehen (Rechts), dargestellt mit 'in bag'"}
+```{r zmz, fig.cap = "Bootstrapping: Der Topf links symbolisiert die Original-Stichprobe, aus der wir hier mehrere ZMZ-Stichproben ziehen (Rechts), dargestellt mit 'in bag'", echo = FALSE}
 knitr::include_graphics("img/zmz.png")
 ```
 
@@ -202,7 +202,7 @@ $$\hat{f}_{\text{bag}} = \frac{1}{B}\sum_{b=1}^{B}\hat{f}^{*b}$$
 Der Bagging-Algorithmus ist in Abbildung \@ref(fig:bag) dargestellt.
 
 
-```{r bag, fig.cap = "Bagging schematisch illustriert"}
+```{r bag, fig.cap = "Bagging schematisch illustriert", echo = FALSE}
 nomnoml::nomnoml(
   "
   [<database> Datensatz] ->zmz [Baum 1]
@@ -283,7 +283,7 @@ In den meisten Implementationen wird $m$ mit `mtry` bezeichnet (so auch in Tidym
 
 Der Random-Forest-Algorithmus ist in Abb. \@ref(fig:rf1) illustriert.
 
-```{r rf1, fig.cap = "Zufallswälder durch Ziehen mit Zurücklegen (zmz) und Ziehen ohne Zurücklegen (ZoZ)", out.width = "100%"}
+```{r rf1, fig.cap = "Zufallswälder durch Ziehen mit Zurücklegen (zmz) und Ziehen ohne Zurücklegen (ZoZ)", out.width = "100%", echo = FALSE}
 nomnoml::nomnoml("
 #direction:down
                  [<database> Datensatz] ->zmz [Baum1
@@ -322,7 +322,7 @@ height = 700)
 Abb. \@ref(fig:comp-trees) vergleicht die Test-Sample-Vorhersagegüte von Bagging- und Random-Forest-Algorithmen aus @islr.
 In diesem Fall ist die Vorhersagegüte deutlich unter der OOB-Güte; laut @islr ist dies hier "Zufall".
 
-```{r comp-trees, fig.cap  ="Test-Sample-Vorhersagegüte von Bagging- und Random-Forest-Algorithmen"}
+```{r comp-trees, fig.cap  ="Test-Sample-Vorhersagegüte von Bagging- und Random-Forest-Algorithmen", echo = FALSE}
 knitr::include_graphics("img/8.8.png")
 ```
 
@@ -331,7 +331,7 @@ Den Effekt von $m$ (Anzahl der Prädiktoren pro Split) ist in Abb. \@ref(fig:mtr
 Man erkennt, dass der Zusatznutzen an zusätzlichen Bäumen, $B$, sich abschwächt.
 $m=\sqrt{p}$ schneidet wie erwartet am besten ab.
 
-```{r mtry, fig.cap = "Test-Sample-Vorhersagegüte von Bagging- und Random-Forest-Algorithmen"}
+```{r mtry, fig.cap = "Test-Sample-Vorhersagegüte von Bagging- und Random-Forest-Algorithmen", echo = FALSE}
 knitr::include_graphics("img/8.10.png")
 ```
 
@@ -374,7 +374,7 @@ haben zunächst alle Fälle die gleiche Wahrscheinlichkeit, in das Bootstrap-Sam
 Die Bäume bei AdaBoost sind eigentlich nur "Stümpfe": Sie bestehen aus einem einzelnen Split, s. Abb. \@ref(fig:stump).
 
 
-```{r stump, fig.cap = "Ein Baumstumpf bei AdaBoost"}
+```{r stump, fig.cap = "Ein Baumstumpf bei AdaBoost", echo = FALSE}
 nomnoml::nomnoml(
   "#direction: topdown
   [root] -> [leaf1]
@@ -432,7 +432,7 @@ aber schlecht klassifizierten Fällen mehr Gehör.
 
 Das Vorgehen von AdaBoost ist in Abb. \@ref(fig:ada) illustriert.
 
-```{r ada, fig.cap = "AdaBoost illustriert"}
+```{r ada, fig.cap = "AdaBoost illustriert", echo = FALSE}
 nomnoml::nomnoml(
   "
   [m1] -> [ensemble]
@@ -470,7 +470,7 @@ Die hohe Vorhersagegüte von Boosting-Modellen ist exemplarisch in Abb. \@ref(fi
 Allerdings verwenden die Autoren Friedmans [-@friedman_greedy_2001] *Gradient Boosting Machine*, eine weitere Variante des Boosting .
 
 
-```{r boost, fig.cap = "Vorhersagegüte von Boosting und Random Forest"}
+```{r boost, fig.cap = "Vorhersagegüte von Boosting und Random Forest", echo = FALSE}
 knitr::include_graphics("img/8.10.png")
 ```
 

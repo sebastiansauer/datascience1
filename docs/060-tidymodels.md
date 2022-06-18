@@ -30,6 +30,26 @@
 Benötigte R-Pakete für dieses Kapitel:
 
 
+```r
+library(tidyverse)
+library(tidymodels)
+```
+
+`{tidymodels}` ist ein *Metapaket*: Ein (R-)Paket,
+das mehrere andere Paket startet und uns damit das Leben einfacher macht.
+Eine Liste der R-Pakete, die durch `tidymodels` gestartet werden,
+findet sich [hier](https://www.tidymodels.org/packages/).
+Probieren Sie auch mal `?tidymodels`. 
+
+Eine Liste aller Pakete, die
+in Tidymodels benutzt werden, die `dependencies`,
+kann man sich so ausgeben lassen:
+
+
+```r
+pkg_deps(x = "tidymodels", recursive = FALSE)
+```
+
 
 
 
@@ -71,6 +91,10 @@ Wir benutzen den Datensatz zu Immobilienpreise aus dem [Ames County](https://en.
 gelegen im Zentrum des Landes.
 
 
+```r
+data(ames)  # Daten wurden über tidymodels mit geladen
+ames <- ames %>% mutate(Sale_Price = log10(Sale_Price))
+```
 
 
 Hier wurde die AV log-transformiert.
@@ -111,13 +135,24 @@ Wir laden die Daten und erstellen einen Index,
 der jeder Beobachtung die Zuteilung zu Train- bzw. zum Test-Datensatz zuweist:
 
 
+```r
+ames_split <- initial_split(ames, prop = 0.80, strata = Sale_Price)
+```
 
 `initial_split()` speichert für spätere komfortable Verwendung auch die Daten.
 Aber eben auch der Index, der bestimmt, welche Beobachtung im Train-Set landet:
 
 
+```r
+ames_split$in_id %>% head(n = 10)
 ```
-##  [1]  27  30  31  32  35  78  84  87  89 120
+
+```
+##  [1]  2 27 28 30 31 32 33 35 78 79
+```
+
+```r
+length(ames_split$in_id)
 ```
 
 ```
@@ -132,6 +167,10 @@ das besorgt das Argument `strata`.
 Die eigentlich Aufteilung in die zwei Datensätze geht dann so:
 
 
+```r
+ames_train <- training(ames_split)
+ames_test  <-  testing(ames_split)
+```
 
 
 
@@ -187,6 +226,12 @@ muss der Modus in diesem Fall nicht angegeben werden.
 Tidymodels erkennt das automatisch.
 
 
+```r
+lm_model <-   
+  linear_reg() %>%   # Algorithmus, Modelltyp
+  set_engine("lm")  # Implementierung
+  # Modus hier nicht nötig, da lineare Modelle immer numerisch klassifizieren
+```
 
 
 ### Modelle berechnen
@@ -206,6 +251,11 @@ berechnet sind.
 
 
 
+```r
+lm_form_fit <- 
+  lm_model %>% 
+  fit(Sale_Price ~ Longitude + Latitude, data = ames_train)
+```
 
 
 ### Vorhersagen
@@ -218,16 +268,21 @@ Schauen wir uns also zunächst diese an.
 Vorhersagen bekommt man recht einfach mit der `predict()` Methode:
 
 
+```r
+predict(lm_form_fit, new_data = ames_test) %>% 
+  head()
+```
+
 ```
 ## # A tibble: 6 × 1
 ##   .pred
 ##   <dbl>
-## 1  5.22
+## 1  5.23
 ## 2  5.28
-## 3  5.27
-## 4  5.27
-## 5  5.26
-## 6  5.24
+## 3  5.26
+## 4  5.25
+## 5  5.25
+## 6  5.25
 ```
 
 
@@ -250,6 +305,10 @@ so wird ein Überblick an relevanten Modellergebnissen am Bildschirm gedruckt:
 
 
 
+```r
+lm_form_fit
+```
+
 ```
 ## parsnip model object
 ## 
@@ -259,13 +318,17 @@ so wird ein Überblick an relevanten Modellergebnissen am Bildschirm gedruckt:
 ## 
 ## Coefficients:
 ## (Intercept)    Longitude     Latitude  
-##    -325.310       -2.213        2.933
+##    -307.303       -2.016        2.944
 ```
 
 Innerhalb des Ergebnisobjekts findet sich eine Liste namens `fit`,
 in der die Koeffizienten (der "Fit") abgelegt sind:
 
 
+```r
+lm_form_fit %>% pluck("fit")
+```
+
 ```
 ## 
 ## Call:
@@ -273,13 +336,21 @@ in der die Koeffizienten (der "Fit") abgelegt sind:
 ## 
 ## Coefficients:
 ## (Intercept)    Longitude     Latitude  
-##    -325.310       -2.213        2.933
+##    -307.303       -2.016        2.944
 ```
 
 Zum Herausholen dieser Infos kann man auch die Funktion `extract_fit_engine()` verwenden:
 
 
 
+```r
+lm_fit <-
+  lm_form_fit %>% 
+  extract_fit_engine()
+
+lm_fit
+```
+
 ```
 ## 
 ## Call:
@@ -287,7 +358,7 @@ Zum Herausholen dieser Infos kann man auch die Funktion `extract_fit_engine()` v
 ## 
 ## Coefficients:
 ## (Intercept)    Longitude     Latitude  
-##    -325.310       -2.213        2.933
+##    -307.303       -2.016        2.944
 ```
 
 Das extrahierte Objekt ist, in diesem Fall, 
@@ -296,9 +367,17 @@ Entsprechend kann man daruaf `coef()` oder `summary()` anwenden.
 
 
 
+```r
+coef(lm_fit)
+```
+
 ```
 ## (Intercept)   Longitude    Latitude 
-## -325.310043   -2.213302    2.932610
+## -307.302809   -2.015932    2.943923
+```
+
+```r
+summary(lm_fit)
 ```
 
 ```
@@ -308,19 +387,19 @@ Entsprechend kann man daruaf `coef()` oder `summary()` anwenden.
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -1.02201 -0.09709 -0.01765  0.09783  0.57405 
+## -1.02949 -0.09534 -0.01772  0.10130  0.57629 
 ## 
 ## Coefficients:
 ##              Estimate Std. Error t value Pr(>|t|)    
-## (Intercept) -325.3100    14.7653  -22.03   <2e-16 ***
-## Longitude     -2.2133     0.1303  -16.99   <2e-16 ***
-## Latitude       2.9326     0.1832   16.01   <2e-16 ***
+## (Intercept) -307.3028    14.6343  -21.00   <2e-16 ***
+## Longitude     -2.0159     0.1320  -15.28   <2e-16 ***
+## Latitude       2.9439     0.1813   16.24   <2e-16 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 0.161 on 2339 degrees of freedom
-## Multiple R-squared:  0.1812,	Adjusted R-squared:  0.1805 
-## F-statistic: 258.9 on 2 and 2339 DF,  p-value: < 2.2e-16
+## Residual standard error: 0.1626 on 2339 degrees of freedom
+## Multiple R-squared:  0.1727,	Adjusted R-squared:  0.172 
+## F-statistic: 244.1 on 2 and 2339 DF,  p-value: < 2.2e-16
 ```
 
 Schicker sind die Pendant-Befehle aus `broom`,
@@ -328,20 +407,29 @@ die jeweils einen Tibble zuückliefern:
 
 
 
+```r
+library(broom)
+tidy(lm_fit) # Koeffizienten
+```
+
 ```
 ## # A tibble: 3 × 5
 ##   term        estimate std.error statistic  p.value
 ##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
-## 1 (Intercept)  -325.      14.8       -22.0 6.60e-98
-## 2 Longitude      -2.21     0.130     -17.0 3.95e-61
-## 3 Latitude        2.93     0.183      16.0 8.27e-55
+## 1 (Intercept)  -307.      14.6       -21.0 7.87e-90
+## 2 Longitude      -2.02     0.132     -15.3 2.66e-50
+## 3 Latitude        2.94     0.181      16.2 2.83e-56
+```
+
+```r
+glance(lm_fit) # Modellgüte
 ```
 
 ```
 ## # A tibble: 1 × 12
-##   r.squared adj.r.squared sigma statistic   p.value    df logLik    AIC    BIC
-##       <dbl>         <dbl> <dbl>     <dbl>     <dbl> <dbl>  <dbl>  <dbl>  <dbl>
-## 1     0.181         0.181 0.161      259. 2.80e-102     2   955. -1902. -1879.
+##   r.squared adj.r.squared sigma statistic  p.value    df logLik    AIC    BIC
+##       <dbl>         <dbl> <dbl>     <dbl>    <dbl> <dbl>  <dbl>  <dbl>  <dbl>
+## 1     0.173         0.172 0.163      244. 5.06e-97     2   932. -1857. -1834.
 ## # … with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
 ```
 
@@ -352,6 +440,9 @@ Mit dem Add-in von Parsnip kann man sich eine Modellspezifikation per Klick ausg
 Nett!
 
 
+```r
+parsnip_addin()
+```
 
 
 
@@ -380,12 +471,22 @@ verzichten auf Vorverarbeitung und fügen ein Modell hinzu:
 
 
 
+```r
+lm_workflow <- 
+  workflow() %>%  # init
+  add_model(lm_model) %>%   # Modell hinzufügen
+  add_formula(Sale_Price ~ Longitude + Latitude)  # Modellformel hinzufügen
+```
 
 
 
 
 Werfen wir einen Blick in das Workflow-Objekt:
 
+
+```r
+lm_workflow
+```
 
 ```
 ## ══ Workflow ════════════════════════════════════════════════════════════════════
@@ -409,6 +510,10 @@ aus Sicht von Tidymodels.
 Was war nochmal im Objekt `lm_model` enthalten?
 
 
+```r
+lm_model
+```
+
 ```
 ## Linear Regression Model Specification (regression)
 ## 
@@ -420,14 +525,26 @@ Jetzt können wir das Modell berechnen (fitten):
 
 
 
+```r
+lm_fit <- 
+  lm_workflow %>%
+  fit(ames_train)
+```
 
 Natürlich kann man synonym auch schreiben:
 
 
+```r
+lm_fit <- fit(lm_wflow, ames_train)
+```
 
 
 Schauen wir uns das Ergebnis an:
 
+
+```r
+lm_fit
+```
 
 ```
 ## ══ Workflow [trained] ══════════════════════════════════════════════════════════
@@ -444,7 +561,7 @@ Schauen wir uns das Ergebnis an:
 ## 
 ## Coefficients:
 ## (Intercept)    Longitude     Latitude  
-##    -325.310       -2.213        2.933
+##    -307.303       -2.016        2.944
 ```
 
 
@@ -459,6 +576,11 @@ die Vorhersagen und die Modellgüte."
 
 So sieht das aus:
 
+
+```r
+final_lm_res <- last_fit(lm_workflow, ames_split)
+final_lm_res
+```
 
 ```
 ## # Resampling results
@@ -478,19 +600,27 @@ Besonders interessant erscheinen natürlich die Listenspalten `.metrics` und `.p
 Schauen wir uns die Vorhersagen an.
 
 
+```r
+lm_preds <- final_lm_res %>% pluck(".predictions", 1)
+```
 
 Es gibt auch eine Funktion, die obige Zeile vereinfacht (also synonym ist):
 
+
+```r
+lm_preds <- collect_predictions(final_lm_res)
+lm_preds %>% slice_head(n = 5)
+```
 
 ```
 ## # A tibble: 5 × 5
 ##   id               .pred  .row Sale_Price .config             
 ##   <chr>            <dbl> <int>      <dbl> <chr>               
-## 1 train/test split  5.22     2       5.02 Preprocessor1_Model1
-## 2 train/test split  5.28     7       5.33 Preprocessor1_Model1
-## 3 train/test split  5.27    12       5.27 Preprocessor1_Model1
-## 4 train/test split  5.27    14       5.23 Preprocessor1_Model1
-## 5 train/test split  5.26    18       5.60 Preprocessor1_Model1
+## 1 train/test split  5.22     3       5.24 Preprocessor1_Model1
+## 2 train/test split  5.27     8       5.28 Preprocessor1_Model1
+## 3 train/test split  5.27    11       5.25 Preprocessor1_Model1
+## 4 train/test split  5.28    13       5.26 Preprocessor1_Model1
+## 5 train/test split  5.25    21       5.28 Preprocessor1_Model1
 ```
 
 
@@ -506,6 +636,9 @@ die schon fertig berechnet im Objekt `final_lm_res` liegen und mit
 `collect_metrics` herausgenommen werden können:
 
 
+```r
+lm_metrics <- collect_metrics(final_lm_res)
+```
 
 
 
@@ -935,11 +1068,11 @@ die schon fertig berechnet im Objekt `final_lm_res` liegen und mit
   <tbody class="gt_table_body">
     <tr><td class="gt_row gt_left">rmse</td>
 <td class="gt_row gt_left">standard</td>
-<td class="gt_row gt_right">1.56 &times; 10<sup class='gt_super'>&minus;1</sup></td>
+<td class="gt_row gt_right">1.62 &times; 10<sup class='gt_super'>&minus;1</sup></td>
 <td class="gt_row gt_left">Preprocessor1_Model1</td></tr>
     <tr><td class="gt_row gt_left">rsq</td>
 <td class="gt_row gt_left">standard</td>
-<td class="gt_row gt_right">1.97 &times; 10<sup class='gt_super'>&minus;1</sup></td>
+<td class="gt_row gt_right">2.01 &times; 10<sup class='gt_super'>&minus;1</sup></td>
 <td class="gt_row gt_left">Preprocessor1_Model1</td></tr>
   </tbody>
   
@@ -953,14 +1086,23 @@ Man kann auch angeben,
 welche Metriken der Modellgüte man bekommen möchte:
 
 
+```r
+ames_metrics <- metric_set(rmse, rsq, mae)
+```
 
+
+```r
+ames_metrics(data = lm_preds, 
+             truth = Sale_Price, 
+             estimate = .pred)
+```
 
 ```
 ## # A tibble: 3 × 3
 ##   .metric .estimator .estimate
 ##   <chr>   <chr>          <dbl>
-## 1 rmse    standard       0.161
-## 2 rsq     standard       0.143
+## 1 rmse    standard       0.162
+## 2 rsq     standard       0.201
 ## 3 mae     standard       0.124
 ```
 
@@ -973,30 +1115,50 @@ Man kann sich die Metriken auch von Hand ausgeben lassen,
 wenn man direktere Kontrolle haben möchte als mit `last_fit` und `collect_metrics`.
 
 
+```r
+ames_test_small <- ames_test %>% slice(1:5)
+predict(lm_form_fit, new_data = ames_test_small)
+```
+
 ```
 ## # A tibble: 5 × 1
 ##   .pred
 ##   <dbl>
-## 1  5.22
+## 1  5.23
 ## 2  5.28
-## 3  5.27
-## 4  5.27
-## 5  5.26
+## 3  5.26
+## 4  5.25
+## 5  5.25
 ```
 
 Jetzt binden wir die Spalten zusammen, also die "Wahrheit" ($y$) und die Vorhersagen:
 
 
 
+```r
+ames_test_small2 <- 
+  ames_test_small %>% 
+  select(Sale_Price) %>% 
+  bind_cols(predict(lm_form_fit, ames_test_small)) %>% 
+  # Add 95% prediction intervals to the results:
+  bind_cols(predict(lm_form_fit, ames_test_small, type = "pred_int")) 
+```
 
 
 
+
+```r
+rsq(ames_test_small2, 
+   truth = Sale_Price,
+   estimate = .pred
+   )
+```
 
 ```
 ## # A tibble: 1 × 3
 ##   .metric .estimator .estimate
 ##   <chr>   <chr>          <dbl>
-## 1 rsq     standard       0.287
+## 1 rsq     standard       0.321
 ```
 
 Andere Koeffizienten der Modellgüte können mit `rmse` oder `mae` abgerufen werden.
@@ -1012,6 +1174,10 @@ Dieser Abschnitt bezieht sich auf [Kapitel 8](https://www.tmwr.org/recipes.html)
 So könnte ein typischer Aufruf von `lm()` aussehen:
 
 
+```r
+lm(Sale_Price ~ Neighborhood + log10(Gr_Liv_Area) + Year_Built + Bldg_Type, 
+   data = ames)
+```
 
 Neben dem Fitten des Modells besorgt die Formel-Schreibweise noch einige zusätzliche nützliche Vorarbeitung:
 
@@ -1031,6 +1197,15 @@ Das ist schön und nütlich, hat aber auch Nachteile:
 Praktischer wäre also, die Schritte der Vorverarbeitung zu ent-flechten.
 Das geht mit einem "Rezept" aus Tidmoodels:
 
+
+```r
+simple_ames <- 
+  recipe(Sale_Price ~ Neighborhood + Gr_Liv_Area + Year_Built + Bldg_Type,
+         data = ames_train) %>%
+  step_log(Gr_Liv_Area, base = 10) %>% 
+  step_dummy(all_nominal_predictors())
+simple_ames
+```
 
 ```
 ## Recipe
@@ -1060,6 +1235,12 @@ Jetzt definieren wir den Workflow nicht nur mit einer Modellformel,
 sondern mit einem Rezept:
 
 
+```r
+lm_workflow <-
+  workflow() %>% 
+  add_model(lm_model) %>% 
+  add_recipe(simple_ames)
+```
 
 
 Sonst hat sich nichts geändert.
@@ -1070,8 +1251,16 @@ Wie vorher, können wir jetzt das Modell berechnen.
 
 
 
+```r
+lm_fit <- fit(lm_workflow, ames_train)
+```
 
 
+
+```r
+final_lm_res <- last_fit(lm_workflow, ames_split)
+final_lm_res
+```
 
 ```
 ## # Resampling results
@@ -1090,12 +1279,17 @@ Wie vorher, können wir jetzt das Modell berechnen.
 
 
 
+```r
+lm_metrics <- collect_metrics(final_lm_res)
+lm_metrics
+```
+
 ```
 ## # A tibble: 2 × 4
 ##   .metric .estimator .estimate .config             
 ##   <chr>   <chr>          <dbl> <chr>               
-## 1 rmse    standard      0.0766 Preprocessor1_Model1
-## 2 rsq     standard      0.806  Preprocessor1_Model1
+## 1 rmse    standard      0.0775 Preprocessor1_Model1
+## 2 rsq     standard      0.816  Preprocessor1_Model1
 ```
 
 
@@ -1107,6 +1301,14 @@ sondern als ID-Variable zu nutzen.
 Das kann man in Tidymodels komfortabel wie folgt angeben:
 
 
+
+```r
+ames_recipe <-
+  simple_ames %>% 
+  update_role(Neighborhood, new_role = "id")
+
+ames_recipe
+```
 
 ```
 ## Recipe

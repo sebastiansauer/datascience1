@@ -22,7 +22,7 @@
 
 
 
-```{r}
+```{r echo=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -35,6 +35,21 @@ Benötigte R-Pakete für dieses Kapitel:
 library(tidyverse)
 library(tidymodels)
 ```
+
+`{tidymodels}` ist ein *Metapaket*: Ein (R-)Paket,
+das mehrere andere Paket startet und uns damit das Leben einfacher macht.
+Eine Liste der R-Pakete, die durch `tidymodels` gestartet werden,
+findet sich [hier](https://www.tidymodels.org/packages/).
+Probieren Sie auch mal `?tidymodels`. 
+
+Eine Liste aller Pakete, die
+in Tidymodels benutzt werden, die `dependencies`,
+kann man sich so ausgeben lassen:
+
+```{r eval = FALSE}
+pkg_deps(x = "tidymodels", recursive = FALSE)
+```
+
 
 
 ```{r include = FALSE}
@@ -533,7 +548,8 @@ Dieser Abschnitt bezieht sich auf [Kapitel 8](https://www.tmwr.org/recipes.html)
 So könnte ein typischer Aufruf von `lm()` aussehen:
 
 ```{r eval = FALSE}
-lm(Sale_Price ~ Neighborhood + log10(Gr_Liv_Area) + Year_Built + Bldg_Type, data = ames)
+lm(Sale_Price ~ Neighborhood + log10(Gr_Liv_Area) + Year_Built + Bldg_Type, 
+   data = ames)
 ```
 
 Neben dem Fitten des Modells besorgt die Formel-Schreibweise noch einige zusätzliche nützliche Vorarbeitung:

@@ -11,6 +11,11 @@
 Benötigte R-Pakete für dieses Kapitel:
 
 
+```r
+library(tidyverse)
+library(tidymodels)
+library(tune)  #  wird nicht autaomtisch mit tidymodels gestartet
+```
 
 
 
@@ -97,6 +102,15 @@ Eine alternative, hilfreich Abbildung findet sich [hier](https://www.tmwr.org/re
 
 
 
+```r
+data(ames)
+
+set.seed(4595)
+data_split <- initial_split(ames, strata = "Sale_Price")
+
+ames_train <- training(data_split)
+ames_test <- testing(data_split)
+```
 
 
 ### Rezept, Modell und Workflow definieren
@@ -105,10 +119,33 @@ In gewohnter Weise definieren wir den Workflow
 mit einem kNN-Modell.
 
 
+```r
+ames_rec <-
+  recipe(Sale_Price ~ ., data = ames_train) %>%
+  step_log(Sale_Price, base = 10) %>%
+  step_other(Neighborhood, threshold = .1)  %>%
+  step_dummy(all_nominal()) %>%
+  step_zv(all_predictors()) 
+
+knn_model <-
+  nearest_neighbor(
+    mode = "regression",
+  ) %>%
+  set_engine("kknn")
+
+ames_wflow <-
+  workflow() %>%
+  add_recipe(ames_rec) %>%
+  add_model(knn_model)
+```
 
 Das kNN-Modell ist noch *nicht* *berechnet*,
 es ist nur ein "Rezept" erstellt:
 
+
+```r
+knn_model
+```
 
 ```
 ## K-Nearest Neighbor Model Specification (regression)
@@ -116,6 +153,10 @@ es ist nur ein "Rezept" erstellt:
 ## Computational engine: kknn
 ```
 
+
+```r
+ames_wflow
+```
 
 ```
 ## ══ Workflow ════════════════════════════════════════════════════════════════════
@@ -373,6 +414,12 @@ Abb. \@ref(fig:overfitting-4-plots) zeigt:
 So kann man eine *einfache* v-fache Kreuzvalidierung in Tidymodels auszeichnen:
 
 
+```r
+set.seed(2453)
+ames_folds <- vfold_cv(ames_train, strata = "Sale_Price")
+ames_folds
+```
+
 ```
 ## #  10-fold cross-validation using stratification 
 ## # A tibble: 10 × 2
@@ -393,6 +440,10 @@ So kann man eine *einfache* v-fache Kreuzvalidierung in Tidymodels auszeichnen:
 Werfen wir einen Blick in die Spalte `splits`, erste Zeile:
 
 
+```r
+ames_folds %>% pluck(1, 1)
+```
+
 ```
 ## <Analysis/Assess/Total>
 ## <1976/221/2197>
@@ -407,6 +458,14 @@ Möchte man die Defaults vpn `vfold_cv` wissen, schaut man in der Hilfe nach: `?
 
 Probieren wir $v=5$ und $r=2$:
 
+
+```r
+ames_folds_rep <- vfold_cv(ames_train, 
+                           strata = "Sale_Price", 
+                           v = 5,
+                           repeats = 2)
+ames_folds_rep
+```
 
 ```
 ## #  5-fold cross-validation repeated 2 times using stratification 
@@ -433,6 +492,11 @@ Hat unser Computer mehrere Rechenkerne, dann können wir diese nutzen und die Be
 Im Standard wird sonst nur ein Kern verwendet.
 
 
+```r
+mycores <- parallel::detectCores(logical = FALSE)
+mycores
+```
+
 ```
 ## [1] 4
 ```
@@ -440,12 +504,25 @@ Im Standard wird sonst nur ein Kern verwendet.
 Auf Unix/MacOC-Systemen kann man dann die Anzahl der parallen Kerne so einstellen:
 
 
+```r
+library(doMC)
+registerDoMC(cores = mycores)
+```
 
 
 
 So, und jetzt fitten wir die Resamples und trachten die Modellgüte in den Resamples:
 
 
+
+```r
+ames_resamples_fit <- 
+  ames_wflow %>% 
+  fit_resamples(ames_folds)
+
+ ames_resamples_fit %>%
+  collect_metrics()
+```
 
 ```
 ## # A tibble: 2 × 6
@@ -461,7 +538,16 @@ Natürlich interessiert uns primär die Modellgüte im Test-Sample:
 
 
 
+```r
+final_ames <-
+  last_fit(ames_wflow, data_split)
+```
 
+
+```r
+final_ames %>% 
+  collect_metrics()
+```
 
 ```
 ## # A tibble: 2 × 4
@@ -481,11 +567,27 @@ welche Parameter wir tunen möchten.
 Wir könenn
 
 
+```r
+knn_model <-
+  nearest_neighbor(
+    mode = "regression",
+    neighbors = tune()
+  ) %>%
+  set_engine("kknn")
+```
 
 
 Wir können dem Tuningparameter auch einen Namen (ID/Laben) geben, z.B. "K":
 
 
+```r
+knn_model <-
+  nearest_neighbor(
+    mode = "regression",
+    neighbors = tune("K")
+  ) %>%
+  set_engine("kknn")
+```
 
 
 ### Grid Search vs. Iterative Search
@@ -551,6 +653,10 @@ welche und wie viele Tuningparameter tidymodels in einem Modell berücksichtigt,
 kann man `extract_parameter_set_dials()` aufrufen:
 
 
+```r
+extract_parameter_set_dials(knn_model)
+```
+
 ```
 ## Collection of 1 parameters for tuning
 ## 
@@ -571,6 +677,11 @@ auf welchen Wertebereich `tidymodels` den Parameter $K$ begrenzt hat:
 
 
 
+```r
+knn_model %>% 
+  extract_parameter_dials("K")
+```
+
 ```
 ## # Nearest Neighbors (quantitative)
 ## Range: [1, 15]
@@ -580,6 +691,11 @@ auf welchen Wertebereich `tidymodels` den Parameter $K$ begrenzt hat:
 Aktualisieren wir mal unseren Workflow entsprechend:
 
 
+```r
+ames_wflow <-
+  ames_wflow %>% 
+  update_model(knn_model)
+```
 
 
 
@@ -587,6 +703,14 @@ Wir können auch Einfluss nehmen und angeben,
 dass die Grenzen des Wertebereichs zwischen 1 und 50 liegen soll 
 (für den Tuningparameter `neighbors`):
 
+
+```r
+ames_set <-
+  extract_parameter_set_dials(ames_wflow) %>%
+  update(K = neighbors(c(1, 50)))
+
+ames_set
+```
 
 ```
 ## Collection of 1 parameters for tuning
@@ -620,6 +744,14 @@ dass du, wenn du den Datensatz kennst, die Werte des Tuningparameter noch änder
 
 
 
+```r
+ames_set <-
+  workflow() %>% 
+  add_model(knn_model) %>% 
+  add_recipe(ames_rec) %>% 
+  extract_parameter_set_dials() %>% 
+  finalize(ames_train)
+```
 
 
 ### Modelle mit Tuning berechnen
@@ -628,6 +760,15 @@ Nachdem wir die Tuningwerte bestimmt haben,
 können wir jetzt das Modell berechnen:
 Für jeden Wert des Tuningparameters wird ein Modell berechnet:
 
+
+```r
+ames_grid_search <-
+  tune_grid(
+    ames_wflow,
+    resamples = ames_folds
+  )
+ames_grid_search
+```
 
 ```
 ## # Tuning results
@@ -651,6 +792,11 @@ Im Default berechnet `tiymodels` 10 Kandidatenmodelle.
 
 Die Spalte `.metrics` beinhaltet die Modellgüte für jedes Kandidatenmodell.
 
+
+```r
+ames_grid_search %>% 
+  collect_metrics()
+```
 
 ```
 ## # A tibble: 16 × 7
@@ -676,7 +822,12 @@ Die Spalte `.metrics` beinhaltet die Modellgüte für jedes Kandidatenmodell.
 
 Das können wir uns einfach visualisieren lassen:
 
-<img src="080-Resampling-Tuning_files/figure-html/unnamed-chunk-20-1.png" width="70%" style="display: block; margin: auto;" />
+
+```r
+autoplot(ames_grid_search)
+```
+
+<img src="080-Resampling-Tuning_files/figure-html/unnamed-chunk-19-1.png" width="70%" style="display: block; margin: auto;" />
 
 
 Auf Basis dieser Ergebnisse könnte es Sinn machen, 
@@ -686,6 +837,10 @@ noch größere Werte für $K$ zu überprüfen.
 
 Welches Modellkandidat war jetzt am besten?
 
+
+```r
+show_best(ames_grid_search)
+```
 
 ```
 ## # A tibble: 5 × 7
@@ -702,6 +857,10 @@ Welches Modellkandidat war jetzt am besten?
 Wählen wir jetzt mal das beste Modell aus (im Sinne des Optimierungskriteriusms):
 
 
+```r
+select_best(ames_grid_search)
+```
+
 ```
 ## # A tibble: 1 × 2
 ##       K .config             
@@ -715,10 +874,18 @@ im besten Kandiatenmodell.
 In diesem Fall hat das Modull nur einen Tuningparameter:
 
 
+```r
+ames_knn_best_params <-
+  tibble(K = 15)
+```
 
 Unser Workflow weiß noch nicht,
 welche Tuningparameterwerte am besten sind:
 
+
+```r
+ames_wflow
+```
 
 ```
 ## ══ Workflow ════════════════════════════════════════════════════════════════════
@@ -750,6 +917,14 @@ eben aus dem besten Kandidatenmodell,
 verwenden:
 
 
+
+```r
+ames_final_wflow <-
+  ames_wflow %>% 
+  finalize_workflow(ames_knn_best_params)
+
+ames_final_wflow
+```
 
 ```
 ## ══ Workflow ════════════════════════════════════════════════════════════════════
@@ -786,6 +961,13 @@ wir das TestSample vorher:
 
 
 
+```r
+final_ames_knn_fit <-
+  last_fit(ames_final_wflow, data_split)
+
+final_ames_knn_fit
+```
+
 ```
 ## # Resampling results
 ## # Manual resampling 
@@ -797,6 +979,10 @@ wir das TestSample vorher:
 
 Holen wir uns die Modellgüte:
 
+
+```r
+collect_metrics(final_ames_knn_fit)
+```
 
 ```
 ## # A tibble: 2 × 4

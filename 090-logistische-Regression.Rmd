@@ -22,7 +22,7 @@
 
 
 
-```{r}
+```{r echo = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -33,8 +33,30 @@ Benötigte R-Pakete für dieses Kapitel:
 ```{r}
 library(tidyverse)
 library(tidymodels)
-library(datawizard)
+library(easystats)
 ```
+
+
+`{datawizard}` ist, wie Tidymodels und Tidyverse, ein Metapaket,
+ein R-Paket also, das mehrere Pakete verwaltet und startet.
+[Hier](https://easystats.github.io/easystats/) findet sich mehr Info zu Easystats.
+
+
+*Achtung* Easystats ist (noch) nicht auf CRAN.
+Sie können Easystats so installieren:
+
+```{r eval = FALSE}
+install.packages("easystats", repos = "https://easystats.r-universe.dev")
+```
+
+
+Einen flotten Spruch bekommen wir von Easystats gratis dazu:
+
+```{r}
+easystats_zen()
+```
+
+
 
 
 ```{r echo = FALSE}
@@ -374,7 +396,6 @@ plot(model_parameters(lm83))
 Außerdem wird bei `tidymodels`, im Gegensatz zu `(g)lm` nicht die zweite,
 sondern die *erste* als Ereignis modelliert wird.
 
-`
 
 
 Daher wechseln wir die *ref*erenzkategorie, wir "re-leveln", mit `relevel()`:

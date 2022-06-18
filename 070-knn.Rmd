@@ -47,7 +47,6 @@ knitr::opts_chunk$set(echo = TRUE)
 Benötigte R-Pakete für dieses Kapitel:
 
 ```{r}
-library(tidyverse)
 library(tidymodels)
 ```
 
@@ -135,6 +134,10 @@ perim_concav <- cancer |>
   theme(text = element_text(size = 12))
 perim_concav
 ```
+
+In diesem Code-Beispiel wird die seit R 4.1.0 verfügbare R-native Pfeife verwendet. 
+Wichtig ist vielleicht vor allem, dass diese Funktion nicht läuft auf R-Versionen vor 4.1.0. 
+Einige Unterschiede zur seit längerem bekannten Magrittr-Pfeife sind [hier](https://stackoverflow.com/questions/67633022/what-are-the-differences-between-rs-new-native-pipe-and-the-magrittr-pipe) erläutert.
 
 Wichtig ist, dass die Merkmale standardisiert sind, also eine identische Skalierung aufweisen,
 da sonst das Merkmal mit kleinerer Skala weniger

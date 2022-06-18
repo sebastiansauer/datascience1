@@ -34,7 +34,7 @@ In diesem Kapitel werden folgende R-Pakete benötigt:
 
 
 ```r
-library(titanic)
+library(titanic)  # Datensatzt Titanic
 #library(rpart)  # Berechnung von Entscheidungsbäumen
 library(tidymodels)
 library(tictoc)  # Zeitmessung
@@ -138,18 +138,6 @@ Man nennt (eine Implementierung) dieses Algorithmus auch *rpart*.
 Das Regelwerk zum Baum aus Abb. \@ref(fig:tree1) sieht so aus:
 
 
-```r
-titanic_train$Survived = as.factor(titanic_train$Survived)
-
-ti_tree <-
-  decision_tree() %>%
-  set_engine("rpart") %>%
-  set_mode("classification") %>%
-  fit(Survived ~ Pclass + Age, data = titanic_train)
-
-ti_tree
-```
-
 ```
 ## parsnip model object
 ## 
@@ -189,6 +177,10 @@ Entsprechendes gilt für jeden weiteren Knoten.
 
 Ein kurzer Check der Häufigkeit am Wurzelknoten:
 
+
+```r
+count(titanic_train, Survived)
+```
 
 ```
 ##   Survived   n
@@ -381,6 +373,11 @@ Nimm den Mittelwert der beiden Werte dieses Paares: Das ist der Aufteilungswert
 
 Abbildung \@ref(fig:tree-metr) stellt dieses Vorgehen schematisch dar [@rhys].
 
+
+
+```r
+knitr::include_graphics("img/fig7-5_alt.jpeg")
+```
 
 <div class="figure" style="text-align: center">
 <img src="img/fig7-5_alt.jpeg" alt="Aufteilungswert bei metrischen Prädiktoren" width="70%" />

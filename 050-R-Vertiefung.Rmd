@@ -7,6 +7,17 @@ source("funs/define-constants.R")
 # R, zweiter Blick
 
 
+
+
+Benötigte R-Pakete für dieses Kapitel:
+
+```{r}
+library(tidyverse)
+library(tidymodels)
+```
+
+
+
 ## Lernsteuerung
 
 <!-- Chapter Start sections: Lernziele, Literatur, Hinweise, ... -->
@@ -15,7 +26,6 @@ source("funs/define-constants.R")
 source("funs/chapter-start-sections.R")
 chapter_start_sections(i = 2)
 ```
-
 
 
 
@@ -32,7 +42,7 @@ Ein Objekt meint ein im Computerspeicher repräsentiertes Ding, etwa eine Tabell
 
 Vektoren und Dataframes (Tibbles) sind die vielleicht gängigsten Objektarten in R (vgl. Abb. \@ref(fig:obs), aus @modar).
 
-```{r obs, fig.cap = "Zentrale Objektarten in R", out.width="70%"}
+```{r obs, fig.cap = "Zentrale Objektarten in R", out.width="70%", echo = FALSE}
 knitr::include_graphics("img/zentrale_objektarten.png")
 ```
 
@@ -41,7 +51,7 @@ Stattdessen nutzt R Vektoren der Länge 1.
 
 Ein nützliches Schema stammt aus @r4ds, s. Abb. \@ref(fig:objtypes).
 
-```{r objtypes, fig.cap = "Objektarten hierarchisch gegliedert", out.width="70%"}
+```{r objtypes, fig.cap = "Objektarten hierarchisch gegliedert", echo = FALSE, out.width="70%"}
 knitr::include_graphics("https://d33wubrfki0l68.cloudfront.net/1d1b4e1cf0dc5f6e80f621b0225354b0addb9578/6ee1c/diagrams/data-structures-overview.png")
 ```
 
@@ -70,7 +80,7 @@ als dass die übrigen Datenstrukturen auf ihnen aufbauen, vgl. Abb. \@ref(fig:ve
 
 Reine (atomare) Vektoren in R sind eine geordnete Liste von Daten eines Typs.
 
-```{r vektorenimzentrum, fig.cap = "Vektoren stehen im Zentrum der Datenstrukturen in R"}
+```{r vektorenimzentrum, fig.cap = "Vektoren stehen im Zentrum der Datenstrukturen in R", echo = FALSE}
 knitr::include_graphics("img/Datenstrukturen.png")
 ```
 
@@ -112,7 +122,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Den Typ eines Vektors kann man mit `typeof()` ausgeben lassen:
 
-```{r}
+```{r echo = TRUE}
 typeof(ein_vektor)
 ```
 
@@ -158,7 +168,7 @@ library(tidyverse)
 ```
 
 
-```{r echo = TRUE}
+```{r tibble-ex, echo = TRUE}
 
 studentis <-
   tibble(
@@ -398,7 +408,7 @@ Es ist ein Objekt, das nicht Daten, sondern Syntax beinhaltet,
 vgl. Abb. \@ref(fig:funs) aus @modar.
 
 
-```{r funs, fig.cap = "Sinnbild einer Funktion"}
+```{r funs, fig.cap = "Sinnbild einer Funktion", echo = FALSE}
 knitr::include_graphics("img/Funs_def.png")
 ```
 
@@ -473,7 +483,7 @@ mtcars %>%
 Ist `x` ein Tibble, so wird `f` demnach auf jede Spalte von `x` angewendet ("zugeordnet", daher `map`), vgl. Abb. \@ref(fig:map1) aus @modar.
 
 
-```{r map1, fig.cap = "Sinnbild für map"}
+```{r map1, fig.cap = "Sinnbild für map", echo = FALSE}
 knitr::include_graphics("img/wdh.png")
 ```
 
@@ -482,6 +492,8 @@ Hier ein Beispiel-Code:
 
 ```{r echo = TRUE}
 data(mtcars)
+
+mtcars <- mtcars %>% select(1:3)  # nur die ersten 3 Spalten
 
 map(mtcars, mean)
 ```
@@ -785,6 +797,21 @@ Eine Einführung findet sich z.B.
 
 
 
+
+## R ist schwierig
+
+Manche behaupten, R [sei ein Inferno](https://www.burns-stat.com/pages/Tutor/R_inferno.pdf).
+
+Zum Glück gibt es auch aufmunternde Stimmen:
+
+```{r}
+praise::praise()
+```
+
+
+
+Hat jemand einen guten Rat für uns?
+Vielleicht ist der häufigste Rate, dass man die [Dokumentation lesen solle](https://en.wikipedia.org/wiki/RTFM).
 
 
 
