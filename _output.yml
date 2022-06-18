@@ -16,16 +16,26 @@ bookdown::bs4_book:
   theme:
     primary: "#26A9C2"
   repo: https://github.com/sebastiansauer/datascience1   
-    
-    
-    
+
+
+
+pagedown::html_paged:
+  toc: true
+  toc_depth: 3
+  # change to true for a self-contained document, but it'll be a litte slower for Pandoc to render
+  self_contained: false
+  repo: https://github.com/sebastiansauer/datascience1   
+
+
+
+
 bookdown::pdf_book:
   includes:
     in_header: preamble.tex
   latex_engine: xelatex
   citation_package: natbib
   keep_tex: yes
-  
-  
+
+
 bookdown::epub_book: default
 

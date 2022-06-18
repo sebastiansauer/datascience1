@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Kapitel 5 tidymodels | DataScience1</title>
+<meta name="author" content="Sebastian Sauer">
+<meta name="description" content="Benötigte R-Pakete für dieses Kapitel:  5.1 Lernsteuerung   5.1.1 Vorbereitung Lesen Sie TMWR, Kapitel 1 Lesen Sie übrige Literatur zu diesem Thema  5.1.2 Lernziele Sie sind in der Lage,...">
+<meta name="generator" content="bookdown 0.26 with bs4_book()">
+<meta property="og:title" content="Kapitel 5 tidymodels | DataScience1">
+<meta property="og:type" content="book">
+<meta property="og:description" content="Benötigte R-Pakete für dieses Kapitel:  5.1 Lernsteuerung   5.1.1 Vorbereitung Lesen Sie TMWR, Kapitel 1 Lesen Sie übrige Literatur zu diesem Thema  5.1.2 Lernziele Sie sind in der Lage,...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kapitel 5 tidymodels | DataScience1">
+<meta name="twitter:description" content="Benötigte R-Pakete für dieses Kapitel:  5.1 Lernsteuerung   5.1.1 Vorbereitung Lesen Sie TMWR, Kapitel 1 Lesen Sie übrige Literatur zu diesem Thema  5.1.2 Lernziele Sie sind in der Lage,...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
+<script src="libs/grViz-binding-1.0.9/grViz.js"></script><script src="libs/es6shim-0.35.6/es6shim.js"></script><script src="libs/es7shim-6.0.0/es7shim.js"></script><script src="libs/graphre-0.1.3/graphre.js"></script><script src="libs/nomnoml-1.4.0/nomnoml.js"></script><script src="libs/nomnoml-binding-0.2.5/nomnoml.js"></script><script src="libs/d3-3.3.8/d3.min.js"></script><script src="libs/dagre-0.4.0/dagre-d3.min.js"></script><link href="libs/mermaid-0.3.0/dist/mermaid.css" rel="stylesheet">
+<script src="libs/mermaid-0.3.0/dist/mermaid.slim.min.js"></script><script src="libs/chromatography-0.1/chromatography.js"></script><script src="libs/DiagrammeR-binding-1.0.9/DiagrammeR.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="style-bs4.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="Grundlagen der Prognosemodellierung 🔮🧰">DataScience1</a>:
+        <small class="text-muted">Grundlagen der Prognosemodellierung 🔮🧰</small>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Zu diesem Buch</a></li>
+<li><a class="" href="hinweise.html"><span class="header-section-number">1</span> Hinweise</a></li>
+<li><a class="" href="pr%C3%BCfung.html"><span class="header-section-number">2</span> Prüfung</a></li>
+<li class="book-part">Themen</li>
+<li><a class="" href="statistisches-lernen.html"><span class="header-section-number">3</span> Statistisches Lernen</a></li>
+<li><a class="" href="r-zweiter-blick.html"><span class="header-section-number">4</span> R, zweiter Blick</a></li>
+<li><a class="active" href="tidymodels.html"><span class="header-section-number">5</span> tidymodels</a></li>
+<li><a class="" href="knn.html"><span class="header-section-number">6</span> kNN</a></li>
+<li><a class="" href="resampling-und-tuning.html"><span class="header-section-number">7</span> Resampling und Tuning</a></li>
+<li><a class="" href="logistische-regression.html"><span class="header-section-number">8</span> Logistische Regression</a></li>
+<li><a class="" href="entscheidungsb%C3%A4ume.html"><span class="header-section-number">9</span> Entscheidungsbäume</a></li>
+<li><a class="" href="ensemble-lerner.html"><span class="header-section-number">10</span> Ensemble Lerner</a></li>
+<li><a class="" href="regularisierte-modelle.html"><span class="header-section-number">11</span> Regularisierte Modelle</a></li>
+<li><a class="" href="kaggle.html"><span class="header-section-number">12</span> Kaggle</a></li>
+<li><a class="" href="der-rote-faden.html"><span class="header-section-number">13</span> Der rote Faden</a></li>
+<li><a class="" href="fallstudien.html"><span class="header-section-number">14</span> Fallstudien</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/sebastiansauer/datascience1">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="tidymodels" class="section level1" number="5">
+<h1>
+<span class="header-section-number">Kapitel 5</span> tidymodels<a class="anchor" aria-label="anchor" href="#tidymodels"><i class="fas fa-link"></i></a>
+</h1>
+<!-- ```{r global-knitr-options, include=FALSE} -->
+<!--   knitr::opts_chunk$set( -->
+<!--   fig.pos = 'H', -->
+<!--   fig.asp = 0.618, -->
+<!--   fig.align='center', -->
+<!--   fig.width = 5, -->
+<!--   out.width = "100%", -->
+<!--   fig.cap = "",  -->
+<!--   fig.path = "chunk-img/tidymodels", -->
+<!--   dpi = 300, -->
+<!--   # tidy = TRUE, -->
+<!--   echo = TRUE, -->
+<!--   message = FALSE, -->
+<!--   warning = FALSE, -->
+<!--   cache = FALSE, -->
+<!--   fig.show = "hold") -->
+<!-- ``` -->
+<p>Benötigte R-Pakete für dieses Kapitel:</p>
+<div id="lernsteuerung-2" class="section level2" number="5.1">
+<h2>
+<span class="header-section-number">5.1</span> Lernsteuerung<a class="anchor" aria-label="anchor" href="#lernsteuerung-2"><i class="fas fa-link"></i></a>
+</h2>
+<!-- Chapter Start sections: Lernziele, Literatur, Hinweise, ... -->
+<div id="vorbereitung-3" class="section level3" number="5.1.1">
+<h3>
+<span class="header-section-number">5.1.1</span> Vorbereitung<a class="anchor" aria-label="anchor" href="#vorbereitung-3"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>Lesen Sie <a href="https://www.tmwr.org/software-modeling.html">TMWR, Kapitel 1</a>
+</li>
+<li>Lesen Sie übrige Literatur zu diesem Thema</li>
+</ul>
+</div>
+<div id="lernziele-3" class="section level3" number="5.1.2">
+<h3>
+<span class="header-section-number">5.1.2</span> Lernziele<a class="anchor" aria-label="anchor" href="#lernziele-3"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>Sie sind in der Lage, Regressionsmodelle mit dem tidymodels-Ansatz zu spezifizieren</li>
+</ul>
+</div>
+<div id="literatur-3" class="section level3" number="5.1.3">
+<h3>
+<span class="header-section-number">5.1.3</span> Literatur<a class="anchor" aria-label="anchor" href="#literatur-3"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>TMWR, Kap. 1, 5, 6, 7, 8, 9</li>
+</ul>
+</div>
+</div>
+<div id="daten" class="section level2" number="5.2">
+<h2>
+<span class="header-section-number">5.2</span> Daten<a class="anchor" aria-label="anchor" href="#daten"><i class="fas fa-link"></i></a>
+</h2>
+<p>Dieser Abschnitt bezieht sich auf <a href="https://www.tmwr.org/ames.html">Kapitel 4</a> in <span class="citation">Silge and Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span>.</p>
+<p>Wir benutzen den Datensatz zu Immobilienpreise aus dem <a href="https://en.wikipedia.org/wiki/Ames,_Iowa">Ames County</a> in Iowa, USA,
+gelegen im Zentrum des Landes.</p>
+<p>Hier wurde die AV log-transformiert.
+Das hat zwei (wichtige) Effekte:</p>
+<ol style="list-style-type: decimal">
+<li>Die Verteilung ist symmetrischer, näher an der Normalverteilung. Damit gibt es mehr Daten im Hauptbereich des Ranges von <code>Sale_Price</code>, was die Vorhersagen stabiler machen dürfte.</li>
+<li>Logarithmiert man die Y-Variable, so kommt dies <a href="https://sebastiansauer.github.io/2021-sose/QuantMeth1/Vertiefung/Log-Log-Regression.html#19">einem multiplikativen Modell gleich</a>, s. auch <a href="https://data-se.netlify.app/2021/06/17/ein-beispiel-zum-nutzen-einer-log-transformation/">hier</a>.</li>
+</ol>
+</div>
+<div id="train--vs-test-datensatz-aufteilen" class="section level2" number="5.3">
+<h2>
+<span class="header-section-number">5.3</span> Train- vs Test-Datensatz aufteilen<a class="anchor" aria-label="anchor" href="#train--vs-test-datensatz-aufteilen"><i class="fas fa-link"></i></a>
+</h2>
+<p>Dieser Abschnitt bezieht sich auf <a href="https://www.tmwr.org/splitting.html">Kapitel 5</a> in <span class="citation">Silge and Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span>.</p>
+<div class="infobox quote">
+<p>Das Aufteilen in Train- und Test-Datensatz ist einer der wesentlichen Grundsätze im maschinellen Lernen. Das Ziel ist, Overfitting abzuwenden.</p>
+</div>
+<p>Im Train-Datensatz werden alle Modelle berechnet.
+Der Test-Datensatz wird nur <em>einmal</em> verwendet, und zwar zur Überprüfung der Modellgüte.</p>
+<!-- [![](https://mermaid.ink/img/pako:eNo9jDEOwjAMRa9ieW4RYkKZ4QTt6MVqDERK0ip1KqGqd8e0Ak_fz-97xWH0gg6nIKBBo0BfOOQWlvkEvczadpymKJTBhnC_EoKD6_nPTNvRxRBlbDBJSRy8_V2_EqG-JAmhs-jlwTVagfJmap08q9x90LGg01KlQa46du88_PbDuQV-Fk4H3D5jVDy8)](https://mermaid.live/edit#pako:eNo9jDEOwjAMRa9ieW4RYkKZ4QTt6MVqDERK0ip1KqGqd8e0Ak_fz-97xWH0gg6nIKBBo0BfOOQWlvkEvczadpymKJTBhnC_EoKD6_nPTNvRxRBlbDBJSRy8_V2_EqG-JAmhs-jlwTVagfJmap08q9x90LGg01KlQa46du88_PbDuQV-Fk4H3D5jVDy8) -->
+<!-- [Quelle](https://gist.github.com/sebastiansauer/be53bfc193fd3c144a430b7d3b922310) -->
+<div class="inline-figure"><img src="060-tidymodels_files/figure-html/train-test-pie-1.png" width="70%" height="200px" style="display: block; margin: auto;"></div>
+<p>Praktisch funktioniert das in <span class="citation">Silge and Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span> wie folgt.</p>
+<p>Wir laden die Daten und erstellen einen Index,
+der jeder Beobachtung die Zuteilung zu Train- bzw. zum Test-Datensatz zuweist:</p>
+<p><code>initial_split()</code> speichert für spätere komfortable Verwendung auch die Daten.
+Aber eben auch der Index, der bestimmt, welche Beobachtung im Train-Set landet:</p>
+<pre><code>##  [1]  27  30  31  32  35  78  84  87  89 120</code></pre>
+<pre><code>## [1] 2342</code></pre>
+<p>Praktisch ist auch,
+dass die AV-Verteilung in beiden Datensätzen ähnlich gehalten wird (Stratifizierung),
+das besorgt das Argument <code>strata</code>.</p>
+<p>Die eigentlich Aufteilung in die zwei Datensätze geht dann so:</p>
+</div>
+<div id="grundlagen-der-modellierung-mit-tidymodels" class="section level2" number="5.4">
+<h2>
+<span class="header-section-number">5.4</span> Grundlagen der Modellierung mit tidymodels<a class="anchor" aria-label="anchor" href="#grundlagen-der-modellierung-mit-tidymodels"><i class="fas fa-link"></i></a>
+</h2>
+<p>Dieser Abschnitt bezieht sich auf <a href="https://www.tmwr.org/models.html">Kapitel 6</a> in <span class="citation">Silge and Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span>.</p>
+<p><code>tidymodels</code> ist eine Sammlung mehrerer, zusammengehöriger Pakete,
+eben zum Thema statistische Modellieren.</p>
+<p>Das kann man analog zur Sammlung <code>tidyverse</code> verstehen,
+zu der z.B. das R-Paket <code>dplyr</code> gehört.</p>
+<p>Das R-Paket innerhalb von <code>tidymodels</code>, das zum “Fitten” von Modellen zuständig ist, heißt <a href="https://parsnip.tidymodels.org/">parsnip</a>.</p>
+<p>Eine Liste der verfügbaren Modelltypen, Modellimplementierungen und Modellparameter, die in Parsnip aktuell unterstützt werden, findet sich <a href="https://www.tidymodels.org/find/parsnip/">hier</a>.</p>
+<div id="modelle-spezifizieren" class="section level3" number="5.4.1">
+<h3>
+<span class="header-section-number">5.4.1</span> Modelle spezifizieren<a class="anchor" aria-label="anchor" href="#modelle-spezifizieren"><i class="fas fa-link"></i></a>
+</h3>
+<p>Ein (statistisches) Modell wird in Tidymodels mit drei Elementen spezifiziert, vgl. Abb. <a href="tidymodels.html#fig:tidymodels-def">5.1</a>.</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:tidymodels-def"></span>
+<div id="htmlwidget-79de4c1e309735076db5" style="width:100%;height:300px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-79de4c1e309735076db5">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: leftright\n[Modell|\n  [type (Algorithmus)|\n    [Regression] \n    [Neuronale Netze] \n    [...]\n  ]  \n  [engine (Implementierung)|\n    [lm]\n    [stan_glm]\n    [...]\n  ]\n  [mode (modus)|\n    [regression]\n    [classification]\n  ]\n  \n]\n","svg":false,"png":null},"evals":[],"jsHooks":[]}</script><p class="caption">
+Figure 5.1: Definition eines Models in tidymodels
+</p>
+</div>
+<p>Die Definition eines Modells in tidymodels folgt diesen Ideen:</p>
+<ol style="list-style-type: decimal">
+<li>Das Modell sollte unabhängig von den Daten spezifiziert sein</li>
+<li>Das Modell sollte unabhängig von den Variablen (AV, UVs) spezifiziert sein</li>
+<li>Das Modell sollte unabhängig von etwaiger Vorverarbeitung (z.B. z-Transformation) spezifiziert sein</li>
+</ol>
+<p>Da bei einer linearen Regression nur der Modus “Regression” möglich ist,
+muss der Modus in diesem Fall nicht angegeben werden.
+Tidymodels erkennt das automatisch.</p>
+</div>
+<div id="modelle-berechnen" class="section level3" number="5.4.2">
+<h3>
+<span class="header-section-number">5.4.2</span> Modelle berechnen<a class="anchor" aria-label="anchor" href="#modelle-berechnen"><i class="fas fa-link"></i></a>
+</h3>
+<p>Nach <span class="citation">Rhys (<a href="references.html#ref-rhys" role="doc-biblioref">2020</a>)</span> ist ein Modell sogar erst ein Modell,
+wenn die Koeffizienten berechnet sind.
+Tidymodels kennt diese Unterscheidung nicht.
+Stattdessen spricht man in Tidymodels von einem “gefitteten” Modell,
+sobald es berechnet ist.
+Ähnlich fancy könnte man von einem “instantiierten” Modell sprechen.</p>
+<p>Für das Beispiel der einfachen linearen Regression heißt das,
+das Modell ist gefittet,
+sobald die Steigung und der Achsenabschnitt (sowie die Residualstreuung)
+berechnet sind.</p>
+</div>
+<div id="vorhersagen-1" class="section level3" number="5.4.3">
+<h3>
+<span class="header-section-number">5.4.3</span> Vorhersagen<a class="anchor" aria-label="anchor" href="#vorhersagen-1"><i class="fas fa-link"></i></a>
+</h3>
+<p>Im maschinellen Lernen ist man primär an den Vorhersagen interessiert,
+häufig nur an Punktschätzungen.
+Schauen wir uns also zunächst diese an.</p>
+<p>Vorhersagen bekommt man recht einfach mit der <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code> Methode:</p>
+<pre><code>## # A tibble: 6 × 1
+##   .pred
+##   &lt;dbl&gt;
+## 1  5.22
+## 2  5.28
+## 3  5.27
+## 4  5.27
+## 5  5.26
+## 6  5.24</code></pre>
+<p>Die Syntax lautet <code>predict(modell, daten_zum_vorhersagen)</code>.</p>
+</div>
+<div id="vorhersagen-im-train-datensatz" class="section level3" number="5.4.4">
+<h3>
+<span class="header-section-number">5.4.4</span> Vorhersagen im Train-Datensatz<a class="anchor" aria-label="anchor" href="#vorhersagen-im-train-datensatz"><i class="fas fa-link"></i></a>
+</h3>
+<p>Vorhersagen im Train-Datensatz machen keinen Sinn,
+da sie nicht gegen Overfitting geschützt sind und daher deutlich zu optimistisch sein können.</p>
+<p>Bei einer linearen Regression ist diese Gefahr nicht so hoch,
+aber bei anderen, flexibleren Modellen, ist diese Gefahr absurd groß.</p>
+</div>
+<div id="modellkoeffizienten-im-train-datensatz" class="section level3" number="5.4.5">
+<h3>
+<span class="header-section-number">5.4.5</span> Modellkoeffizienten im Train-Datensatz<a class="anchor" aria-label="anchor" href="#modellkoeffizienten-im-train-datensatz"><i class="fas fa-link"></i></a>
+</h3>
+<p>Gibt man den Namen des Modellobjekts ein,
+so wird ein Überblick an relevanten Modellergebnissen am Bildschirm gedruckt:</p>
+<pre><code>## parsnip model object
+## 
+## 
+## Call:
+## stats::lm(formula = Sale_Price ~ Longitude + Latitude, data = data)
+## 
+## Coefficients:
+## (Intercept)    Longitude     Latitude  
+##    -325.310       -2.213        2.933</code></pre>
+<p>Innerhalb des Ergebnisobjekts findet sich eine Liste namens <code>fit</code>,
+in der die Koeffizienten (der “Fit”) abgelegt sind:</p>
+<pre><code>## 
+## Call:
+## stats::lm(formula = Sale_Price ~ Longitude + Latitude, data = data)
+## 
+## Coefficients:
+## (Intercept)    Longitude     Latitude  
+##    -325.310       -2.213        2.933</code></pre>
+<p>Zum Herausholen dieser Infos kann man auch die Funktion <code>extract_fit_engine()</code> verwenden:</p>
+<pre><code>## 
+## Call:
+## stats::lm(formula = Sale_Price ~ Longitude + Latitude, data = data)
+## 
+## Coefficients:
+## (Intercept)    Longitude     Latitude  
+##    -325.310       -2.213        2.933</code></pre>
+<p>Das extrahierte Objekt ist, in diesem Fall,
+das typische <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> Objekt.
+Entsprechend kann man daruaf <code><a href="https://rdrr.io/r/stats/coef.html">coef()</a></code> oder <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> anwenden.</p>
+<pre><code>## (Intercept)   Longitude    Latitude 
+## -325.310043   -2.213302    2.932610</code></pre>
+<pre><code>## 
+## Call:
+## stats::lm(formula = Sale_Price ~ Longitude + Latitude, data = data)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1.02201 -0.09709 -0.01765  0.09783  0.57405 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -325.3100    14.7653  -22.03   &lt;2e-16 ***
+## Longitude     -2.2133     0.1303  -16.99   &lt;2e-16 ***
+## Latitude       2.9326     0.1832   16.01   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.161 on 2339 degrees of freedom
+## Multiple R-squared:  0.1812, Adjusted R-squared:  0.1805 
+## F-statistic: 258.9 on 2 and 2339 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Schicker sind die Pendant-Befehle aus <code>broom</code>,
+die jeweils einen Tibble zuückliefern:</p>
+<pre><code>## # A tibble: 3 × 5
+##   term        estimate std.error statistic  p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)  -325.      14.8       -22.0 6.60e-98
+## 2 Longitude      -2.21     0.130     -17.0 3.95e-61
+## 3 Latitude        2.93     0.183      16.0 8.27e-55</code></pre>
+<pre><code>## # A tibble: 1 × 12
+##   r.squared adj.r.squared sigma statistic   p.value    df logLik    AIC    BIC
+##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1     0.181         0.181 0.161      259. 2.80e-102     2   955. -1902. -1879.
+## # … with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
+</div>
+<div id="parsnip-rstudio-add-in" class="section level3" number="5.4.6">
+<h3>
+<span class="header-section-number">5.4.6</span> Parsnip RStudio add-in<a class="anchor" aria-label="anchor" href="#parsnip-rstudio-add-in"><i class="fas fa-link"></i></a>
+</h3>
+<p>Mit dem Add-in von Parsnip kann man sich eine Modellspezifikation per Klick ausgeben lassen.
+Nett!</p>
+</div>
+</div>
+<div id="workflows" class="section level2" number="5.5">
+<h2>
+<span class="header-section-number">5.5</span> Workflows<a class="anchor" aria-label="anchor" href="#workflows"><i class="fas fa-link"></i></a>
+</h2>
+<p>Dieser Abschnitt bezieht sich auf <a href="https://www.tmwr.org/workflows.html">Kapitel 7</a> in <span class="citation">Silge and Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span>.</p>
+<div id="konzept-des-workflows-in-tidymodels" class="section level3" number="5.5.1">
+<h3>
+<span class="header-section-number">5.5.1</span> Konzept des Workflows in Tidymodels<a class="anchor" aria-label="anchor" href="#konzept-des-workflows-in-tidymodels"><i class="fas fa-link"></i></a>
+</h3>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:tidymodels-workflow"></span>
+<div id="htmlwidget-d5cddb1441df2ac16825" style="width:100%;height:500px;" class="nomnoml html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d5cddb1441df2ac16825">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n[Workflow|\n  [preprocessing|\n   Vorverarbeitung;\n   Imputation;\n   Transformation;\n   Prädiktorwahl\n   AV-Wahl\n   ...\n  \n  ]\n  [fitting |\n    Modell berechnen\n    ...\n  ]\n  [postprocessing|\n    Grenzwerte für Klass. festlegen\n    ...\n  ]\n]\n","svg":false,"png":null},"evals":[],"jsHooks":[]}</script><p class="caption">
+Figure 5.2: Definition eines Models in tidymodels
+</p>
+</div>
+</div>
+<div id="einfaches-beispiel" class="section level3" number="5.5.2">
+<h3>
+<span class="header-section-number">5.5.2</span> Einfaches Beispiel<a class="anchor" aria-label="anchor" href="#einfaches-beispiel"><i class="fas fa-link"></i></a>
+</h3>
+<p>Wir initialisieren einen Workflow,
+verzichten auf Vorverarbeitung und fügen ein Modell hinzu:</p>
+<p>Werfen wir einen Blick in das Workflow-Objekt:</p>
+<pre><code>## ══ Workflow ════════════════════════════════════════════════════════════════════
+## Preprocessor: Formula
+## Model: linear_reg()
+## 
+## ── Preprocessor ────────────────────────────────────────────────────────────────
+## Sale_Price ~ Longitude + Latitude
+## 
+## ── Model ───────────────────────────────────────────────────────────────────────
+## Linear Regression Model Specification (regression)
+## 
+## Computational engine: lm</code></pre>
+<p>Wie man sieht,
+gehört die Modellformel (<code>y ~ x</code>) zur Vorverarbeitung
+aus Sicht von Tidymodels.</p>
+<p>Was war nochmal im Objekt <code>lm_model</code> enthalten?</p>
+<pre><code>## Linear Regression Model Specification (regression)
+## 
+## Computational engine: lm</code></pre>
+<p>Jetzt können wir das Modell berechnen (fitten):</p>
+<p>Natürlich kann man synonym auch schreiben:</p>
+<p>Schauen wir uns das Ergebnis an:</p>
+<pre><code>## ══ Workflow [trained] ══════════════════════════════════════════════════════════
+## Preprocessor: Formula
+## Model: linear_reg()
+## 
+## ── Preprocessor ────────────────────────────────────────────────────────────────
+## Sale_Price ~ Longitude + Latitude
+## 
+## ── Model ───────────────────────────────────────────────────────────────────────
+## 
+## Call:
+## stats::lm(formula = ..y ~ ., data = data)
+## 
+## Coefficients:
+## (Intercept)    Longitude     Latitude  
+##    -325.310       -2.213        2.933</code></pre>
+</div>
+<div id="vorhersage-mit-einem-workflow" class="section level3" number="5.5.3">
+<h3>
+<span class="header-section-number">5.5.3</span> Vorhersage mit einem Workflow<a class="anchor" aria-label="anchor" href="#vorhersage-mit-einem-workflow"><i class="fas fa-link"></i></a>
+</h3>
+<p>Die Vorhersage mit einem Tidymodels-Workflow ist einerseits komfortabel,
+da man einfach sagen kann:</p>
+<p>“Nimm die richtigen Koeffizienten des Modells aus dem Train-Set
+und wende sie auf das Test-Sample an. Berechne mir
+die Vorhersagen und die Modellgüte.”</p>
+<p>So sieht das aus:</p>
+<pre><code>## # Resampling results
+## # Manual resampling 
+## # A tibble: 1 × 6
+##   splits             id               .metrics .notes   .predictions .workflow 
+##   &lt;list&gt;             &lt;chr&gt;            &lt;list&gt;   &lt;list&gt;   &lt;list&gt;       &lt;list&gt;    
+## 1 &lt;split [2342/588]&gt; train/test split &lt;tibble&gt; &lt;tibble&gt; &lt;tibble&gt;     &lt;workflow&gt;</code></pre>
+<p>Anderseits wird auch ein recht komplexes Objekt zurückgeliefert,
+das man erst mal durchschauen muss.</p>
+<p>Wie man sieht, gibt es mehrere Listenspalten.
+Besonders interessant erscheinen natürlich die Listenspalten <code>.metrics</code> und <code>.predictions</code>.</p>
+<p>Schauen wir uns die Vorhersagen an.</p>
+<p>Es gibt auch eine Funktion, die obige Zeile vereinfacht (also synonym ist):</p>
+<pre><code>## # A tibble: 5 × 5
+##   id               .pred  .row Sale_Price .config             
+##   &lt;chr&gt;            &lt;dbl&gt; &lt;int&gt;      &lt;dbl&gt; &lt;chr&gt;               
+## 1 train/test split  5.22     2       5.02 Preprocessor1_Model1
+## 2 train/test split  5.28     7       5.33 Preprocessor1_Model1
+## 3 train/test split  5.27    12       5.27 Preprocessor1_Model1
+## 4 train/test split  5.27    14       5.23 Preprocessor1_Model1
+## 5 train/test split  5.26    18       5.60 Preprocessor1_Model1</code></pre>
+</div>
+<div id="modellgüte" class="section level3" number="5.5.4">
+<h3>
+<span class="header-section-number">5.5.4</span> Modellgüte<a class="anchor" aria-label="anchor" href="#modellg%C3%BCte"><i class="fas fa-link"></i></a>
+</h3>
+<p>Dieser Abschnitt bezieht sich auf <a href="https://www.tmwr.org/performance.html">Kapitel 9</a> in <span class="citation">Silge and Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span>.</p>
+<p>Die Vorhersagen bilden die Basis für die Modellgüte (“Metriken”),
+die schon fertig berechnet im Objekt <code>final_lm_res</code> liegen und mit
+<code>collect_metrics</code> herausgenommen werden können:</p>
+<div id="zmqxvhnvvn" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#zmqxvhnvvn .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#zmqxvhnvvn .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#zmqxvhnvvn .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#zmqxvhnvvn .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#zmqxvhnvvn .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zmqxvhnvvn .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#zmqxvhnvvn .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#zmqxvhnvvn .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#zmqxvhnvvn .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#zmqxvhnvvn .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#zmqxvhnvvn .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#zmqxvhnvvn .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#zmqxvhnvvn .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#zmqxvhnvvn .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#zmqxvhnvvn .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#zmqxvhnvvn .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#zmqxvhnvvn .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zmqxvhnvvn .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#zmqxvhnvvn .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#zmqxvhnvvn .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zmqxvhnvvn .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#zmqxvhnvvn .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#zmqxvhnvvn .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zmqxvhnvvn .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zmqxvhnvvn .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#zmqxvhnvvn .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#zmqxvhnvvn .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zmqxvhnvvn .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#zmqxvhnvvn .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zmqxvhnvvn .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#zmqxvhnvvn .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zmqxvhnvvn .gt_left {
+  text-align: left;
+}
+
+#zmqxvhnvvn .gt_center {
+  text-align: center;
+}
+
+#zmqxvhnvvn .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#zmqxvhnvvn .gt_font_normal {
+  font-weight: normal;
+}
+
+#zmqxvhnvvn .gt_font_bold {
+  font-weight: bold;
+}
+
+#zmqxvhnvvn .gt_font_italic {
+  font-style: italic;
+}
+
+#zmqxvhnvvn .gt_super {
+  font-size: 65%;
+}
+
+#zmqxvhnvvn .gt_two_val_uncert {
+  display: inline-block;
+  line-height: 1em;
+  text-align: right;
+  font-size: 60%;
+  vertical-align: -0.25em;
+  margin-left: 0.1em;
+}
+
+#zmqxvhnvvn .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#zmqxvhnvvn .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#zmqxvhnvvn .gt_slash_mark {
+  font-size: 0.7em;
+  line-height: 0.7em;
+  vertical-align: 0.15em;
+}
+
+#zmqxvhnvvn .gt_fraction_numerator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: 0.45em;
+}
+
+#zmqxvhnvvn .gt_fraction_denominator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: -0.05em;
+}
+</style>
+<div class="inline-table"><table class="gt_table">
+<thead class="gt_col_headings"><tr>
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">.metric</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">.estimator</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">.estimate</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">.config</th>
+    </tr></thead>
+<tbody class="gt_table_body">
+<tr>
+<td class="gt_row gt_left">rmse</td>
+<td class="gt_row gt_left">standard</td>
+<td class="gt_row gt_right">1.56 × 10<sup class="gt_super">−1</sup>
+</td>
+<td class="gt_row gt_left">Preprocessor1_Model1</td>
+</tr>
+<tr>
+<td class="gt_row gt_left">rsq</td>
+<td class="gt_row gt_left">standard</td>
+<td class="gt_row gt_right">1.97 × 10<sup class="gt_super">−1</sup>
+</td>
+<td class="gt_row gt_left">Preprocessor1_Model1</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p>Man kann auch angeben,
+welche Metriken der Modellgüte man bekommen möchte:</p>
+<pre><code>## # A tibble: 3 × 3
+##   .metric .estimator .estimate
+##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+## 1 rmse    standard       0.161
+## 2 rsq     standard       0.143
+## 3 mae     standard       0.124</code></pre>
+</div>
+<div id="vorhersage-von-hand" class="section level3" number="5.5.5">
+<h3>
+<span class="header-section-number">5.5.5</span> Vorhersage von Hand<a class="anchor" aria-label="anchor" href="#vorhersage-von-hand"><i class="fas fa-link"></i></a>
+</h3>
+<p>Man kann sich die Metriken auch von Hand ausgeben lassen,
+wenn man direktere Kontrolle haben möchte als mit <code>last_fit</code> und <code>collect_metrics</code>.</p>
+<pre><code>## # A tibble: 5 × 1
+##   .pred
+##   &lt;dbl&gt;
+## 1  5.22
+## 2  5.28
+## 3  5.27
+## 4  5.27
+## 5  5.26</code></pre>
+<p>Jetzt binden wir die Spalten zusammen, also die “Wahrheit” (<span class="math inline">\(y\)</span>) und die Vorhersagen:</p>
+<pre><code>## # A tibble: 1 × 3
+##   .metric .estimator .estimate
+##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+## 1 rsq     standard       0.287</code></pre>
+<p>Andere Koeffizienten der Modellgüte können mit <code>rmse</code> oder <code>mae</code> abgerufen werden.</p>
+</div>
+</div>
+<div id="rezepte-zur-vorverarbeitung" class="section level2" number="5.6">
+<h2>
+<span class="header-section-number">5.6</span> Rezepte zur Vorverarbeitung<a class="anchor" aria-label="anchor" href="#rezepte-zur-vorverarbeitung"><i class="fas fa-link"></i></a>
+</h2>
+<p>Dieser Abschnitt bezieht sich auf <a href="https://www.tmwr.org/recipes.html">Kapitel 8</a> in <span class="citation">Silge and Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span>.</p>
+<div id="was-ist-rezept-und-wozu-ist-es-gut" class="section level3" number="5.6.1">
+<h3>
+<span class="header-section-number">5.6.1</span> Was ist Rezept und wozu ist es gut?<a class="anchor" aria-label="anchor" href="#was-ist-rezept-und-wozu-ist-es-gut"><i class="fas fa-link"></i></a>
+</h3>
+<p>So könnte ein typischer Aufruf von <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> aussehen:</p>
+<p>Neben dem Fitten des Modells besorgt die Formel-Schreibweise noch einige zusätzliche nützliche Vorarbeitung:</p>
+<ol style="list-style-type: decimal">
+<li>Definition von AV und AV</li>
+<li>Log-Transformation von <code>Gr_Liv_Area</code>
+</li>
+<li>Transformation der nominalen Variablen in Dummy-Variablen</li>
+</ol>
+<p>Das ist schön und nütlich, hat aber auch Nachteile:</p>
+<ol style="list-style-type: decimal">
+<li>Das Modell wird nicht nur spezifiziert, sondern auch gleich berechnet. Das ist unpraktisch, weil man die Modellformel vielleicht in anderen Modell wiederverwenden möchte. Außerdem kann das Berechnen lange dauern.</li>
+<li>Die Schritte sind ineinander vermengt, so dass man nicht einfach und übersichtlich die einzelnen Schritte bearbeiten kann.</li>
+</ol>
+<p>Praktischer wäre also, die Schritte der Vorverarbeitung zu ent-flechten.
+Das geht mit einem “Rezept” aus Tidmoodels:</p>
+<pre><code>## Recipe
+## 
+## Inputs:
+## 
+##       role #variables
+##    outcome          1
+##  predictor          4
+## 
+## Operations:
+## 
+## Log transformation on Gr_Liv_Area
+## Dummy variables from all_nominal_predictors()</code></pre>
+<div class="infobox quote">
+<p>Ein Rezept berechnet kein Modell. Es macht nichts außer die Vorverarbeitung des Modells zu spezizifieren (inklusive der Modellformel).</p>
+</div>
+</div>
+<div id="workflows-mit-rezepten" class="section level3" number="5.6.2">
+<h3>
+<span class="header-section-number">5.6.2</span> Workflows mit Rezepten<a class="anchor" aria-label="anchor" href="#workflows-mit-rezepten"><i class="fas fa-link"></i></a>
+</h3>
+<p>Jetzt definieren wir den Workflow nicht nur mit einer Modellformel,
+sondern mit einem Rezept:</p>
+<p>Sonst hat sich nichts geändert.</p>
+<p>Wie vorher, können wir jetzt das Modell berechnen.</p>
+<pre><code>## # Resampling results
+## # Manual resampling 
+## # A tibble: 1 × 6
+##   splits             id               .metrics .notes   .predictions .workflow 
+##   &lt;list&gt;             &lt;chr&gt;            &lt;list&gt;   &lt;list&gt;   &lt;list&gt;       &lt;list&gt;    
+## 1 &lt;split [2342/588]&gt; train/test split &lt;tibble&gt; &lt;tibble&gt; &lt;tibble&gt;     &lt;workflow&gt;
+## 
+## There were issues with some computations:
+## 
+##   - Warning(s) x1: prediction from a rank-deficient fit may be misleading
+## 
+## Use `collect_notes(object)` for more information.</code></pre>
+<pre><code>## # A tibble: 2 × 4
+##   .metric .estimator .estimate .config             
+##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;               
+## 1 rmse    standard      0.0766 Preprocessor1_Model1
+## 2 rsq     standard      0.806  Preprocessor1_Model1</code></pre>
+</div>
+<div id="spaltenrollen" class="section level3" number="5.6.3">
+<h3>
+<span class="header-section-number">5.6.3</span> Spaltenrollen<a class="anchor" aria-label="anchor" href="#spaltenrollen"><i class="fas fa-link"></i></a>
+</h3>
+<p>Eine praktische Funktion ist es,
+bestimmte Spalten nicht als Prädiktor,
+sondern als ID-Variable zu nutzen.
+Das kann man in Tidymodels komfortabel wie folgt angeben:</p>
+<pre><code>## Recipe
+## 
+## Inputs:
+## 
+##       role #variables
+##         id          1
+##    outcome          1
+##  predictor          3
+## 
+## Operations:
+## 
+## Log transformation on Gr_Liv_Area
+## Dummy variables from all_nominal_predictors()</code></pre>
+</div>
+<div id="fazit" class="section level3" number="5.6.4">
+<h3>
+<span class="header-section-number">5.6.4</span> Fazit<a class="anchor" aria-label="anchor" href="#fazit"><i class="fas fa-link"></i></a>
+</h3>
+<p>Mehr zu Rezepten findet sich <a href="https://recipes.tidymodels.org/">hier</a>.
+Ein Überblick zu allen Schritten der Vorverarbeitung findet sich <a href="https://recipes.tidymodels.org/articles/recipes.html">hier</a>.</p>
+<!-- ## Aufgaben und Vertiefung -->
+</div>
+</div>
+<div id="aufgaben-1" class="section level2" number="5.7">
+<h2>
+<span class="header-section-number">5.7</span> Aufgaben<a class="anchor" aria-label="anchor" href="#aufgaben-1"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li><a href="https://www.tidymodels.org/start/models/">Fallstudie Seegurken</a></li>
+<li><a href="https://juliasilge.com/blog/student-debt/">Sehr einfache Fallstudie zur Modellierung einer Regression mit tidymodels</a></li>
+<li><a href="https://www.gmudatamining.com/lesson-10-r-tutorial.html">Fallstudie zur linearen Regression mit Tidymodels</a></li>
+</ul>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="r-zweiter-blick.html"><span class="header-section-number">4</span> R, zweiter Blick</a></div>
+<div class="next"><a href="knn.html"><span class="header-section-number">6</span> kNN</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#tidymodels"><span class="header-section-number">5</span> tidymodels</a></li>
+<li>
+<a class="nav-link" href="#lernsteuerung-2"><span class="header-section-number">5.1</span> Lernsteuerung</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#vorbereitung-3"><span class="header-section-number">5.1.1</span> Vorbereitung</a></li>
+<li><a class="nav-link" href="#lernziele-3"><span class="header-section-number">5.1.2</span> Lernziele</a></li>
+<li><a class="nav-link" href="#literatur-3"><span class="header-section-number">5.1.3</span> Literatur</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#daten"><span class="header-section-number">5.2</span> Daten</a></li>
+<li><a class="nav-link" href="#train--vs-test-datensatz-aufteilen"><span class="header-section-number">5.3</span> Train- vs Test-Datensatz aufteilen</a></li>
+<li>
+<a class="nav-link" href="#grundlagen-der-modellierung-mit-tidymodels"><span class="header-section-number">5.4</span> Grundlagen der Modellierung mit tidymodels</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#modelle-spezifizieren"><span class="header-section-number">5.4.1</span> Modelle spezifizieren</a></li>
+<li><a class="nav-link" href="#modelle-berechnen"><span class="header-section-number">5.4.2</span> Modelle berechnen</a></li>
+<li><a class="nav-link" href="#vorhersagen-1"><span class="header-section-number">5.4.3</span> Vorhersagen</a></li>
+<li><a class="nav-link" href="#vorhersagen-im-train-datensatz"><span class="header-section-number">5.4.4</span> Vorhersagen im Train-Datensatz</a></li>
+<li><a class="nav-link" href="#modellkoeffizienten-im-train-datensatz"><span class="header-section-number">5.4.5</span> Modellkoeffizienten im Train-Datensatz</a></li>
+<li><a class="nav-link" href="#parsnip-rstudio-add-in"><span class="header-section-number">5.4.6</span> Parsnip RStudio add-in</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#workflows"><span class="header-section-number">5.5</span> Workflows</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#konzept-des-workflows-in-tidymodels"><span class="header-section-number">5.5.1</span> Konzept des Workflows in Tidymodels</a></li>
+<li><a class="nav-link" href="#einfaches-beispiel"><span class="header-section-number">5.5.2</span> Einfaches Beispiel</a></li>
+<li><a class="nav-link" href="#vorhersage-mit-einem-workflow"><span class="header-section-number">5.5.3</span> Vorhersage mit einem Workflow</a></li>
+<li><a class="nav-link" href="#modellg%C3%BCte"><span class="header-section-number">5.5.4</span> Modellgüte</a></li>
+<li><a class="nav-link" href="#vorhersage-von-hand"><span class="header-section-number">5.5.5</span> Vorhersage von Hand</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#rezepte-zur-vorverarbeitung"><span class="header-section-number">5.6</span> Rezepte zur Vorverarbeitung</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#was-ist-rezept-und-wozu-ist-es-gut"><span class="header-section-number">5.6.1</span> Was ist Rezept und wozu ist es gut?</a></li>
+<li><a class="nav-link" href="#workflows-mit-rezepten"><span class="header-section-number">5.6.2</span> Workflows mit Rezepten</a></li>
+<li><a class="nav-link" href="#spaltenrollen"><span class="header-section-number">5.6.3</span> Spaltenrollen</a></li>
+<li><a class="nav-link" href="#fazit"><span class="header-section-number">5.6.4</span> Fazit</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#aufgaben-1"><span class="header-section-number">5.7</span> Aufgaben</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/sebastiansauer/datascience1/blob/master/060-tidymodels.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/sebastiansauer/datascience1/edit/master/060-tidymodels.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-06-18 17:01:53.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

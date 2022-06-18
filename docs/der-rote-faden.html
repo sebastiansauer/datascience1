@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Kapitel 13 Der rote Faden | DataScience1</title>
+<meta name="author" content="Sebastian Sauer">
+<meta name="description" content="Mittlerweile haben wir einiges zum Thema Data Science bzw. maschinelles Lernen behandelt (und sie hoffentlich viel gelernt). Da ist es an der Zeit, einen Schritt zurück zu treten, um sich einen...">
+<meta name="generator" content="bookdown 0.26 with bs4_book()">
+<meta property="og:title" content="Kapitel 13 Der rote Faden | DataScience1">
+<meta property="og:type" content="book">
+<meta property="og:description" content="Mittlerweile haben wir einiges zum Thema Data Science bzw. maschinelles Lernen behandelt (und sie hoffentlich viel gelernt). Da ist es an der Zeit, einen Schritt zurück zu treten, um sich einen...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kapitel 13 Der rote Faden | DataScience1">
+<meta name="twitter:description" content="Mittlerweile haben wir einiges zum Thema Data Science bzw. maschinelles Lernen behandelt (und sie hoffentlich viel gelernt). Da ist es an der Zeit, einen Schritt zurück zu treten, um sich einen...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
+<script src="libs/grViz-binding-1.0.9/grViz.js"></script><script src="libs/es6shim-0.35.6/es6shim.js"></script><script src="libs/es7shim-6.0.0/es7shim.js"></script><script src="libs/graphre-0.1.3/graphre.js"></script><script src="libs/nomnoml-1.4.0/nomnoml.js"></script><script src="libs/nomnoml-binding-0.2.5/nomnoml.js"></script><script src="libs/d3-3.3.8/d3.min.js"></script><script src="libs/dagre-0.4.0/dagre-d3.min.js"></script><link href="libs/mermaid-0.3.0/dist/mermaid.css" rel="stylesheet">
+<script src="libs/mermaid-0.3.0/dist/mermaid.slim.min.js"></script><script src="libs/chromatography-0.1/chromatography.js"></script><script src="libs/DiagrammeR-binding-1.0.9/DiagrammeR.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="style-bs4.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="Grundlagen der Prognosemodellierung 🔮🧰">DataScience1</a>:
+        <small class="text-muted">Grundlagen der Prognosemodellierung 🔮🧰</small>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Zu diesem Buch</a></li>
+<li><a class="" href="hinweise.html"><span class="header-section-number">1</span> Hinweise</a></li>
+<li><a class="" href="pr%C3%BCfung.html"><span class="header-section-number">2</span> Prüfung</a></li>
+<li class="book-part">Themen</li>
+<li><a class="" href="statistisches-lernen.html"><span class="header-section-number">3</span> Statistisches Lernen</a></li>
+<li><a class="" href="r-zweiter-blick.html"><span class="header-section-number">4</span> R, zweiter Blick</a></li>
+<li><a class="" href="tidymodels.html"><span class="header-section-number">5</span> tidymodels</a></li>
+<li><a class="" href="knn.html"><span class="header-section-number">6</span> kNN</a></li>
+<li><a class="" href="resampling-und-tuning.html"><span class="header-section-number">7</span> Resampling und Tuning</a></li>
+<li><a class="" href="logistische-regression.html"><span class="header-section-number">8</span> Logistische Regression</a></li>
+<li><a class="" href="entscheidungsb%C3%A4ume.html"><span class="header-section-number">9</span> Entscheidungsbäume</a></li>
+<li><a class="" href="ensemble-lerner.html"><span class="header-section-number">10</span> Ensemble Lerner</a></li>
+<li><a class="" href="regularisierte-modelle.html"><span class="header-section-number">11</span> Regularisierte Modelle</a></li>
+<li><a class="" href="kaggle.html"><span class="header-section-number">12</span> Kaggle</a></li>
+<li><a class="active" href="der-rote-faden.html"><span class="header-section-number">13</span> Der rote Faden</a></li>
+<li><a class="" href="fallstudien.html"><span class="header-section-number">14</span> Fallstudien</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/sebastiansauer/datascience1">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="der-rote-faden" class="section level1" number="13">
+<h1>
+<span class="header-section-number">Kapitel 13</span> Der rote Faden<a class="anchor" aria-label="anchor" href="#der-rote-faden"><i class="fas fa-link"></i></a>
+</h1>
+<p>Mittlerweile haben wir einiges zum Thema Data Science bzw. maschinelles Lernen behandelt (und sie hoffentlich viel gelernt).</p>
+<p>Da ist es an der Zeit, einen Schritt zurück zu treten,
+um sich einen Überblick über den gegangenen Weg zu verschaffen,
+den berühmten “roten Faden” zu sehen, den zurückgelegten Weg nachzuzeichnen
+in den groben Linien, um einen (klareren) Überblick über das Terrain zu bekommen.</p>
+<p>In diesem Kapitel werden wir verschiedene “Aussichtspfade” suchen, um im Bild zu bleiben,
+die uns einen Überblick über das Gelände versprechen.</p>
+<!-- Chapter Start sections: Lernziele, Literatur, Hinweise, ... -->
+<div id="lernziele-10" class="section level3" number="13.0.1">
+<h3>
+<span class="header-section-number">13.0.1</span> Lernziele<a class="anchor" aria-label="anchor" href="#lernziele-10"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>Sie erarbeiten sich einen Überblick über den bisher gelernten Stoff bzw. verfeinern Ihren bestehenden Überblick</li>
+</ul>
+</div>
+<div id="literatur-9" class="section level3" number="13.0.2">
+<h3>
+<span class="header-section-number">13.0.2</span> Literatur<a class="anchor" aria-label="anchor" href="#literatur-9"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>Rhys im Überblick</li>
+</ul>
+</div>
+<div id="aussichtspunkt-1-blick-vom-hohen-berg" class="section level2" number="13.1">
+<h2>
+<span class="header-section-number">13.1</span> Aussichtspunkt 1: Blick vom hohen Berg<a class="anchor" aria-label="anchor" href="#aussichtspunkt-1-blick-vom-hohen-berg"><i class="fas fa-link"></i></a>
+</h2>
+<p>Und so zeigt sich ein “Flussbild”<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Wem das Bild zu klein gezeichnet ist, der nehme entweder eine Lupe oder öffne das Bild per Rechtsklick in einem neuen Tab.&lt;/p&gt;"><sup>9</sup></a> (Abb. <a href="der-rote-faden.html#fig:bigpic">13.1</a>).</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:bigpic"></span>
+<img src="https://mermaid.ink/svg/pako:eNptksFunDAQhl_F8jmbB9hDpVQtUaQirbJoOZgcDB7AXWOvhvFWTZQ3yy0v1sHeTYkUIfAw_zc_4zEvsgsG5Fb2LvzpRo0kfj02XojDWR0CngE1tmAp-uFJbDbfRK3qgMeFflqwslAlGzjXB5zAfc2EC_OleufUnRsCWhqnOGekDIvyMKmH6eRgAk8W8KOFrLLlYvu5ZE_q-fb7La_aG43GzuvCw3lhijozBYwOvAFRAxKsiZpj0b-_ofgNBry49puQKnrrhwWbYzugPo2r1Cr5CLPm7j-ElVRYIvDXNPeQw0twWbJp-mRbqhZmAhR5jkfenDWa0vzaMjFFpbKt0LEXg_bPokJt_Wa_dAEJLaqE7iq1QzC2o8RWbL2mdpkS5f3l2Ib3N8pSeZ8kHyfFN6Cdu3EtHJ2e1fKYbW-PmsJ_ovH5EkLeSC6dtDX8270kTdLIp9zILYcGeh0dNbLxr4zGE28UfhrLZnJLGOFG6khh_9d31_fM_LCaxzvl5Os_ERX1KQ" alt="Ein Flussbild des maschinellen Lernens" width="70%"><p class="caption">
+Figure 13.1: Ein Flussbild des maschinellen Lernens
+</p>
+</div>
+<p>Der Reiseführer erzählt uns zu diesem Bild folgende Geschichte:</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/PO-UrF5hGtY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<p><a href="https://youtu.be/PO-UrF5hGtY">Video-Geschichte</a></p>
+</div>
+<div id="aussichtspunkt-2-blick-in-den-hof-der-handwerker" class="section level2" number="13.2">
+<h2>
+<span class="header-section-number">13.2</span> Aussichtspunkt 2: Blick in den Hof der Handwerker<a class="anchor" aria-label="anchor" href="#aussichtspunkt-2-blick-in-den-hof-der-handwerker"><i class="fas fa-link"></i></a>
+</h2>
+<p>Wenn man auf einem hohen Berg gestanden ist, hat man zwar einen guten Überblick über das Land bekommen,
+aber das konkrete Tun bleibt auf solchen Höhen verborgen.</p>
+<p>Möchte man wissen, wie das geschäftige Leben abläuft, muss man also den tätigen Menschen über die Schulter schauen.
+Werfen wir also einen Blick in den “Hof der Handwerker”,
+wo grundlegende Werkstücke gefertigt werden,
+und wir jeden Handgriff aus der Nähe mitverfolgen können.</p>
+<div id="ein-maximale-einfaches-werkstück-mit-tidymodels" class="section level3" number="13.2.1">
+<h3>
+<span class="header-section-number">13.2.1</span> Ein maximale einfaches Werkstück mit Tidymodels<a class="anchor" aria-label="anchor" href="#ein-maximale-einfaches-werkst%C3%BCck-mit-tidymodels"><i class="fas fa-link"></i></a>
+</h3>
+<p>Weniger blumig ausgedrückt: Schauen wir uns ein maximal einfaches Beispiel an,
+wie man mit Tidymodels Vorhersagen tätigt.
+Genauer gesagt bearbeiten wir <a href="https://www.kaggle.com/code/ssauer/simple-linear-model-tidymodels">einen sehr einfachen Ansatz</a> für einen Kaggle-Prognosewettbewerb.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/QHbIONGgMrA" frameborder="0" allowfullscreen>
+</iframe>
+</div>
+<div id="ein-immer-noch-recht-einfaches-werkstück-mit-tidymodels" class="section level3" number="13.2.2">
+<h3>
+<span class="header-section-number">13.2.2</span> Ein immer noch recht einfaches Werkstück mit Tidymodels<a class="anchor" aria-label="anchor" href="#ein-immer-noch-recht-einfaches-werkst%C3%BCck-mit-tidymodels"><i class="fas fa-link"></i></a>
+</h3>
+<p>Dieses Beispiel ist nur wenig aufwändiger als das vorherige.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/QS94JTMpnHc" frameborder="0" allowfullscreen>
+</iframe>
+</div>
+</div>
+<div id="aussichtspunkt-3-der-nebelberg-quiz" class="section level2" number="13.3">
+<h2>
+<span class="header-section-number">13.3</span> Aussichtspunkt 3: Der Nebelberg (Quiz)<a class="anchor" aria-label="anchor" href="#aussichtspunkt-3-der-nebelberg-quiz"><i class="fas fa-link"></i></a>
+</h2>
+<p>Da der “Nebelberg” zumeist in Wolken verhüllt ist, muss man, wenn man ihn ersteigt und ins Land hinunterschaut,
+erraten, welche Teile zu sehen sind. Sozusagen eine Art Landschafts-Quiz.</p>
+<p>Voilà, hier ist es, das <em>Quiz</em> zum maschinellen Lernen:</p>
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdw9ngLAcs7VMaF5P-nRSS8zCBjLdJyPYXsGTzy1ERmD6oPcQ/viewform?embedded=true" width="640" height="930" frameborder="0" marginheight="0" marginwidth="0">
+Loading…
+</iframe>
+</div>
+<div id="aussichtspunkt-4-der-exerzitien-park" class="section level2" number="13.4">
+<h2>
+<span class="header-section-number">13.4</span> Aussichtspunkt 4: Der Exerzitien-Park<a class="anchor" aria-label="anchor" href="#aussichtspunkt-4-der-exerzitien-park"><i class="fas fa-link"></i></a>
+</h2>
+<p>Wir stehen vor dem Eingang zu einem Park,
+in dem sich viele Menschen an merkwürdigen Übungen, Exerzitien, befleißigen.
+Vielleicht wollen Sie sich auch an einigen Übungen abhärten? Bitte schön,
+lassen Sie sich nicht von mir aufhalten.</p>
+<p>YACSDA: Yet Another Case Study on Data Analysis</p>
+<p>…</p>
+<p><strong>NUR EXPLORATIVE DATENANALYSE</strong></p>
+<ul>
+<li><p><a href="https://allisonhorst.shinyapps.io/dplyr-learnr/#section-welcome">Datenjudo mit Pinguinen</a></p></li>
+<li><p><a href="https://data-se.netlify.app/2021/02/24/exercises-to-data-wrangling-with-the-tidyverse/">Data-Wranglinng-Aufgaben zur Lebenserwartung</a></p></li>
+<li><p><a href="https://data-se.netlify.app/2020/12/07/ex-visualizing-diamonds/">Aufgabe zur Datenvisualisierung des Diamantenpreises</a></p></li>
+<li><p><a href="https://data-se.netlify.app/2021/03/08/eda-zu-flugversp%C3%A4tungen/">Fallstudie Flugverspätungen - EDA</a></p></li>
+<li><p><a href="https://data-se.netlify.app/2021/02/11/yacda-topgear/">Fallstudie zur EDA: Top-Gear</a></p></li>
+<li><p><a href="https://data-se.netlify.app/2021/02/11/explorative-datenanalyse-zum-datensatz-oecd-wellbeing/">Fallstudie zur EDA: OECD-Wellbeing-Studie</a></p></li>
+<li><p><a href="https://minimaxir.com/2018/07/imdb-data-analysis/">Fallstudie zur EDA: Movie Rating</a></p></li>
+<li><p><a href="https://github.com/saghirb/WiP-tidyverse/blob/master/doc/WiP-tidyverse.pdf">Fallstudie zur EDA: Women in Parliament</a></p></li>
+<li><p><a href="https://data-se.netlify.app/2021/05/27/datensatz-flights-finde-den-tag-mit-den-meisten-abfl%C3%BCgen/">Finde den Tag mit den meisten Flugverspätungen, Datensatz ‘nycflights13’</a></p></li>
+</ul>
+<p><strong>NUR LINEARE MODELL</strong></p>
+<ul>
+<li><p><a href="https://youtu.be/5pBTHrnRIZY">Beispiel für Prognosemodellierung 1, grundlegender Anspruch, Video</a></p></li>
+<li><p><a href="https://data-se.netlify.app/2020/11/13/fallstudie-zur-regressionsanalyse-ggplot2movies/">Beispiel für Ihre Prognosemodellierung 2, mittlerer Anspruch</a></p></li>
+<li><p><a href="https://data-se.netlify.app/2021/03/10/fallstudie-modellierung-von-flugversp%C3%A4tungen/">Beispiel für Ihre Prognosemodellierung 3, hoher Anspruch</a></p></li>
+<li><p><a href="https://data-se.netlify.app/2021/03/10/fallstudie-modellierung-von-flugversp%C3%A4tungen/">Fallstudie: Modellierung von Flugverspätungen</a></p></li>
+<li><p><a href="https://data-se.netlify.app/2020/11/13/fallstudie-zur-regressionsanalyse-ggplot2movies/">Movies</a></p></li>
+<li><p><a href="https://www.kaggle.com/code/ssauer/tmdb-simple-regression-beginners">Fallstudie Einfache lineare Regression in Base-R, Anfängerniveau, Kaggle-Competition TMDB</a></p></li>
+<li><p><a href="https://data-se.netlify.app/2022/05/02/fallstudie-spritverbrauch/">Fallstudie Sprit sparen</a></p></li>
+</ul>
+<p><strong>YouTube-PLAYLISTS</strong></p>
+<ul>
+<li><p><a href="https://youtube.com/playlist?list=PLRR4REmBgpIGet_lcNf2wOd0W8j4c9hYN">Playlist YACSDAs</a></p></li>
+<li><p><a href="https://youtube.com/playlist?list=PLRR4REmBgpIH6uG8LZWPTSMReX1OFxfUx">Playlist zur Prüfungsleistung Prognosewettbewerb</a></p></li>
+<li><p><a href="https://youtu.be/vR9l-k50I1M">Kaggle-Fallstudie TMDB: einfache lineare Regression</a></p></li>
+<li><p><a href="https://www.youtube.com/playlist?list=PLRR4REmBgpIGWcSjrtt0m36aXHLaiTgdF">Playlist zum statistischen Modellieren</a></p></li>
+</ul>
+<p><strong>MASCHINELLES LERNEN MIT TIDYMODELS</strong></p>
+<ul>
+<li><p><a href="https://www.r-bloggers.com/2021/08/experimenting-with-machine-learning-in-r-with-tidymodels-and-the-kaggle-titanic-dataset/">Experimenting with machine learning in R with tidymodels and the Kaggle titanic dataset</a></p></li>
+<li><p><a href="https://hansjoerg.me/2020/02/09/tidymodels-for-machine-learning/">Tutorial on tidymodels for Machine Learning</a></p></li>
+<li><p><a href="https://www.kirenz.com/post/2021-02-17-r-classification-tidymodels/">Classification with Tidymodels, Workflows and Recipes</a></p></li>
+<li><p><a href="https://www.kaggle.com/code/varimp/a-mostly-tidyverse-tour-of-the-titanic/report">A (mostly!) tidyverse tour of the Titanic</a></p></li>
+<li><p><a href="https://www.kaggle.com/code/headsortails/personalised-medicine-eda-with-tidy-r/report">Personalised Medicine - EDA with tidy R</a></p></li>
+<li><p><a href="https://www.kaggle.com/code/headsortails/tidy-titarnic/report">Tidy TitaRnic</a></p></li>
+<li><p><a href="https://www.tidymodels.org/start/models/">Fallstudie Seegurken</a></p></li>
+<li><p><a href="https://juliasilge.com/blog/student-debt/">Sehr einfache Fallstudie zur Modellierung einer Regression mit tidymodels</a></p></li>
+<li><p><a href="https://www.gmudatamining.com/lesson-10-r-tutorial.html">Fallstudie zur linearen Regression mit Tidymodels</a></p></li>
+<li><p><a href="https://github.com/sebastiansauer/covid-icu">Analyse zum Verlauf von Covid-Fällen</a></p></li>
+<li><p><a href="https://onezero.blog/modelling-binary-logistic-regression-using-tidymodels-library-in-r-part-1/">Fallstudie zur Modellierung einer logististischen Regression mit tidymodels</a></p></li>
+<li><p><a href="https://juliasilge.com/blog/multinomial-volcano-eruptions/">Fallstudie zu Vulkanausbrüchen</a></p></li>
+<li><p><a href="https://juliasilge.com/blog/himalayan-climbing/">Fallstudie Himalaya</a></p></li>
+<li><p><a href="https://juliasilge.com/blog/tuition-resampling/">Fallstudien zu Studiengebühren</a></p></li>
+<li><p><a href="https://www.tidymodels.org/start/case-study/">1. Modell der Fallstudie Hotel Bookings</a></p></li>
+<li><p><a href="https://github.com/sebastiansauer/datascience1/blob/main/Aufgaben/Thema8-Loesungen1.pdf">Aufgaben zur logistischen Regression, PDF</a></p></li>
+<li><p><a href="https://bcullen.rbind.io/post/2020-06-02-tidymodels-decision-tree-learning-in-r/">Fallstudie Oregon Schools</a></p></li>
+<li><p><a href="https://juliasilge.com/blog/wind-turbine/">Fallstudie Windturbinen</a></p></li>
+<li><p><a href="https://www.gmudatamining.com/lesson-13-r-tutorial.html">Fallstudie Churn</a></p></li>
+<li><p><a href="https://data-se.netlify.app/2020/12/14/titanic-tidymodels-boost/">Einfache Durchführung eines Modellierung mit XGBoost</a></p></li>
+<li><p><a href="https://bcullen.rbind.io/post/2020-06-02-tidymodels-decision-tree-learning-in-r/">Fallstudie Oregon Schools</a></p></li>
+<li><p><a href="https://www.gmudatamining.com/lesson-13-r-tutorial.html">Fallstudie Churn</a></p></li>
+<li><p><a href="https://juliasilge.com/blog/ikea-prices/">Fallstudie Ikea</a></p></li>
+<li><p><a href="https://juliasilge.com/blog/water-sources/">Fallstudie Wasserquellen in Sierra Leone</a></p></li>
+<li><p><a href="https://dev.to/juliasilge/tuning-random-forest-hyperparameters-in-r-with-tidytuesday-trees-data-4ilh">Fallstudie Bäume in San Francisco</a></p></li>
+<li><p><a href="https://juliasilge.com/blog/multinomial-volcano-eruptions/">Fallstudie Vulkanausbrüche</a></p></li>
+<li><p><a href="https://juliasilge.com/blog/board-games/">Fallstudie Brettspiele mit XGBoost</a></p></li>
+<li><p><a href="https://juliasilge.com/blog/lasso-the-office/">Fallstudie Serie The Office</a></p></li>
+<li><p><a href="https://juliasilge.com/blog/nber-papers/">Fallstudie NBER Papers</a></p></li>
+<li><p><a href="https://www.kaggle.com/ssauer/simple-linear-model-tidymodels">Fallstudie Einfache lineare Regression mit Tidymodels, Kaggle-Competition TMDB</a></p></li>
+<li><p><a href="https://www.kaggle.com/code/ssauer/simple-rf-tuned">Fallstudie Einfaches Random-Forest-Modell mit Tidymodels, Kaggle-Competition TMDB</a></p></li>
+<li><p><a href="https://www.kaggle.com/ssauer/tmdb-xgboost-tidymodels">Fallstudie Workflow-Set mit Tidymodels, Kaggle-Competition TMDB</a></p></li>
+<li><p><a href="https://www.kaggle.com/code/modesty520/a-tutorial-with-tidymodels/report#modeling">Fallstudie Titanic mit Tidymodels bei Kaggle</a></p></li>
+<li><p><a href="https://www.kaggle.com/code/benthecoder/tidymodels-in-r-using-measles-data/notebook">Einfache Fallstudie mit Tidymodels bei Kaggle</a></p></li>
+</ul>
+</div>
+<div id="aussichtspunkt-5-in-der-bibliothek" class="section level2" number="13.5">
+<h2>
+<span class="header-section-number">13.5</span> Aussichtspunkt 5: In der Bibliothek<a class="anchor" aria-label="anchor" href="#aussichtspunkt-5-in-der-bibliothek"><i class="fas fa-link"></i></a>
+</h2>
+<p>Einen Überblick über eine Landschaft gewinnt man nicht nur von ausgesetzten Wegpunkten aus,
+sondern auch, manchmal, aus Schriftstücken.
+Hier ist eine Auswahl an Literatur,
+die Grundlagen zu unserem Landstrich erläutert.</p>
+<ul>
+<li><span class="citation">Rhys (<a href="references.html#ref-rhys" role="doc-biblioref">2020</a>)</span></li>
+<li><span class="citation">Silge and Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span></li>
+</ul>
+<p>Etwas weiter leiten uns diese Erzähler:</p>
+<ul>
+<li><span class="citation">James et al. (<a href="references.html#ref-islr" role="doc-biblioref">2021</a>)</span></li>
+<li><span class="citation">Kuhn and Johnson (<a href="references.html#ref-kuhn" role="doc-biblioref">2013</a>)</span></li>
+</ul>
+</div>
+<div id="krafttraining" class="section level2" number="13.6">
+<h2>
+<span class="header-section-number">13.6</span> Krafttraining<a class="anchor" aria-label="anchor" href="#krafttraining"><i class="fas fa-link"></i></a>
+</h2>
+<p>Um die Aussicht genießen zu können, muss man manchmal ausgesetzte Plätze
+in <del>schwindelerregenden</del> <del>einigermaßen steilen</del> als Hügel erkennbaren Höhen erreichen…</p>
+<p>Sportliche Leistungen erreicht nur, wer trainiert ist.
+Das ist im Land des Data Science nicht anders.</p>
+<p>Hier ist eine Liste von Übungen, die Ihre Datenkraft stählen soll:</p>
+<ol style="list-style-type: decimal">
+<li>
+<em>Lerngruppe</em>: Den Wert einer Lerngruppe kann man kaum unterschätzen. Die Motivation, der Austausch, der Zwang seine Gedanken geordnet darzustellen, das wechselseitige Abfragen - diese Dinge machen eine Lerngruppe zu einem der wichtigsten Erfolgsgarant in Ihren Lernbemühungen.</li>
+<li>
+<em>Exzerpte</em>: Exzerpte, Zusammenfassungen also, sind nötig, um von einer vermeintlichen “Jaja, easy, versthe ich alles” Oberflächen-Verarbeitung zu einem (ausgeprägterem) Tiefenverständnis vorzudringen.</li>
+<li>
+<em>Aufgaben</em>: Manchmal stellt ein Dozent Aufgaben ein. Die Chance sollte man nutzen, denn zwar ist vieles in der Didaktikforschung noch unsicher, aber dass Aufgaben lösen beim Lernen hilft, und zwar viel, ist eines der wenigen unstrittigen Erkenntnisse.</li>
+<li>
+<em>Fallstudien</em>: Ähnliches wie Aufgaben, die oft kleinteilig-akademisch angelegt sind, hilft die große Schwester der schnöden Aufgabe, die Fallstudie, beim Vordringen in Verständnistiefen.</li>
+<li>
+<em>Lesen</em>: Ja, Lesen ist voll Old School. Aber so was Ähnliches wie Updaten der Brain-Software. Nützlich, weil die alte Software irgendwann nicht mehr supported wird.</li>
+<li>
+<em>Forum</em>: Sie haben eine Frage, aber Sie können unmöglich ein paar Tage warten, bis Sie den Dozenten im Unterricht sprechen? Posten Sie die Frage in einem Forum! Vielleicht im Forum des Moduls oder aber in einem geeigneten Forum im Internet.</li>
+<li>
+<em>Youtube</em>: Zwar wettern Dozentis gerne über die mangelnde Verarbeitungstiefe beim Fern schauen. Außerdem sind Lehrvideos didaktisch echt asbachuralt. Aber okay, manchmal und in überschaubarer Dosis ist ein Lehrvideo eine nützliche Ergänzung zu den übrigen Maßnahmen.</li>
+</ol>
+<!-- ## Aufgaben und Vertiefung -->
+</div>
+<div id="aufgaben-9" class="section level2" number="13.7">
+<h2>
+<span class="header-section-number">13.7</span> Aufgaben<a class="anchor" aria-label="anchor" href="#aufgaben-9"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li><a href="https://www.kaggle.com/code/ssauer/simple-rf-tuned">Einfache Random-Forest-Modellierung bei Kaggle (TMDB)</a></li>
+<li><a href="https://www.kaggle.com/code/ssauer/tmdb-xgboost-tidymodels">Einfache Workflow-Set-Modellierung bei Kaggle (TMDB)</a></li>
+<li>Bearbeiten Sie so viele Fallstudien der Fallstudiensammlung wie nötig, um den Stoff flüssig zu beherrschen</li>
+</ul>
+</div>
+<div id="vertiefung-5" class="section level2" number="13.8">
+<h2>
+<span class="header-section-number">13.8</span> Vertiefung<a class="anchor" aria-label="anchor" href="#vertiefung-5"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li><a href="https://deisenroth.cc/publication/deisenroth-2020/">Mathematische Grundlagen können Sie z.B. hier vertiefen</a></li>
+<li><a href="https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques">Gute Fallstudie bei Kaggle für Regressionsprobleme: House Prices</a></li>
+<li><a href="https://gist.github.com/">Sie möchten schnell ein Code-Schnipsel (öffentlich sichtbar) teilen? Probieren Sie Github Gists aus</a></li>
+</ul>
+</div>
+</div>
+
+  <div class="chapter-nav">
+<div class="prev"><a href="kaggle.html"><span class="header-section-number">12</span> Kaggle</a></div>
+<div class="next"><a href="fallstudien.html"><span class="header-section-number">14</span> Fallstudien</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li>
+<a class="nav-link" href="#der-rote-faden"><span class="header-section-number">13</span> Der rote Faden</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#lernziele-10"><span class="header-section-number">13.0.1</span> Lernziele</a></li>
+<li><a class="nav-link" href="#literatur-9"><span class="header-section-number">13.0.2</span> Literatur</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#aussichtspunkt-1-blick-vom-hohen-berg"><span class="header-section-number">13.1</span> Aussichtspunkt 1: Blick vom hohen Berg</a></li>
+<li>
+<a class="nav-link" href="#aussichtspunkt-2-blick-in-den-hof-der-handwerker"><span class="header-section-number">13.2</span> Aussichtspunkt 2: Blick in den Hof der Handwerker</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#ein-maximale-einfaches-werkst%C3%BCck-mit-tidymodels"><span class="header-section-number">13.2.1</span> Ein maximale einfaches Werkstück mit Tidymodels</a></li>
+<li><a class="nav-link" href="#ein-immer-noch-recht-einfaches-werkst%C3%BCck-mit-tidymodels"><span class="header-section-number">13.2.2</span> Ein immer noch recht einfaches Werkstück mit Tidymodels</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#aussichtspunkt-3-der-nebelberg-quiz"><span class="header-section-number">13.3</span> Aussichtspunkt 3: Der Nebelberg (Quiz)</a></li>
+<li><a class="nav-link" href="#aussichtspunkt-4-der-exerzitien-park"><span class="header-section-number">13.4</span> Aussichtspunkt 4: Der Exerzitien-Park</a></li>
+<li><a class="nav-link" href="#aussichtspunkt-5-in-der-bibliothek"><span class="header-section-number">13.5</span> Aussichtspunkt 5: In der Bibliothek</a></li>
+<li><a class="nav-link" href="#krafttraining"><span class="header-section-number">13.6</span> Krafttraining</a></li>
+<li><a class="nav-link" href="#aufgaben-9"><span class="header-section-number">13.7</span> Aufgaben</a></li>
+<li><a class="nav-link" href="#vertiefung-5"><span class="header-section-number">13.8</span> Vertiefung</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/sebastiansauer/datascience1/blob/master/140-roter-Faden.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/sebastiansauer/datascience1/edit/master/140-roter-Faden.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-06-18 17:01:53.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

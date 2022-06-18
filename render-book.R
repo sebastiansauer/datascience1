@@ -2,7 +2,9 @@ bookdown::preview_chapter("index.Rmd")
 bookdown::preview_chapter("010-Hinweise.Rmd")
 bookdown::preview_chapter("020-Modulueberblick.Rmd")
 bookdown::preview_chapter("040-Statistisches-Lernen.Rmd")
+
 bookdown::preview_chapter("050-R-Vertiefung.Rmd")
+
 bookdown::preview_chapter("060-tidymodels.Rmd")
 bookdown::preview_chapter("070-knn.Rmd")
 bookdown::preview_chapter("080-Resampling-Tuning.Rmd")

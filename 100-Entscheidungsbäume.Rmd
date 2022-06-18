@@ -22,15 +22,6 @@
 
 
 
-## Lernsteuerung
-
-```{r chapter-start-sections, echo = FALSE, results = "asis"}
-source("funs/chapter-start-sections.R")
-chapter_start_sections(title = "Entscheidungsbäume")
-```
-
-
-
 
 
 

@@ -3,7 +3,7 @@ title: "DataScience1"
 subtitle: Grundlagen der Prognosemodellierung 🔮🧰
 
 author: "Sebastian Sauer"
-date: "2022-06-14 22:26:04"
+date: "2022-06-18 17:01:53"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -76,7 +76,7 @@ Nutzen Sie diese DOI, um dieses Buch zu zitieren: [![DOI](https://zenodo.org/bad
 
 
 
-- Diese Version des Buches wurde erstellt am: 2022-06-14 22:26:04
+- Diese Version des Buches wurde erstellt am: 2022-06-18 17:01:53
 
 
 - Die URL zu diesem Buch lautet <https://sebastiansauer.github.io/datascience1/> und ist bei [GitHub Pages](https://pages.github.com/) gehostet.
@@ -100,7 +100,7 @@ Nutzen Sie diese DOI, um dieses Buch zu zitieren: [![DOI](https://zenodo.org/bad
 |broom        |0.8.0   |CRAN (R 4.2.0) |
 |corrr        |NA      |NA             |
 |dials        |0.1.1   |CRAN (R 4.2.0) |
-|downlit      |NA      |NA             |
+|downlit      |0.4.0   |CRAN (R 4.2.0) |
 |dplyr        |1.0.9   |CRAN (R 4.2.0) |
 |ggplot2      |3.3.6   |CRAN (R 4.2.0) |
 |glmnet       |NA      |NA             |

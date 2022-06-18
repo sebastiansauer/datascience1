@@ -641,7 +641,7 @@ Ein Überblick zu allen Schritten der Vorverarbeitung findet sich [hier](https:/
 
 ```{r render-outline-vertiefung-aufgaben, results = "asis", echo = FALSE, message = FALSE}
 
-source("funs/constants.R")
+source("funs/define-constants.R")
 source(render_file)
 
 render_section(course_dates_file,

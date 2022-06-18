@@ -303,12 +303,12 @@ tidy(rec1)
 ## # A tibble: 6 × 6
 ##   number operation type       trained skip  id              
 ##    <int> <chr>     <chr>      <lgl>   <lgl> <chr>           
-## 1      1 step      mutate     FALSE   FALSE mutate_28SEk    
-## 2      2 step      log        FALSE   FALSE log_or8J3       
-## 3      3 step      mutate     FALSE   FALSE mutate_LR3Na    
-## 4      4 step      date       FALSE   FALSE date_Le53p      
-## 5      5 step      impute_knn FALSE   FALSE impute_knn_i2CM6
-## 6      6 step      dummy      FALSE   FALSE dummy_42T5J
+## 1      1 step      mutate     FALSE   FALSE mutate_2kL7S    
+## 2      2 step      log        FALSE   FALSE log_128kp       
+## 3      3 step      mutate     FALSE   FALSE mutate_Eg81o    
+## 4      4 step      date       FALSE   FALSE date_6vxNg      
+## 5      5 step      impute_knn FALSE   FALSE impute_knn_9kt0N
+## 6      6 step      dummy      FALSE   FALSE dummy_s2O3S
 ```
 
 
@@ -573,7 +573,7 @@ if (file.exists("objects/tmdb_model_set.rds")) {
 ```
 
 
-Man kann sich das Ergebnisobjekt abspeichern, 
+Man könnte sich das Ergebnisobjekt abspeichern, 
 um künftig Rechenzeit zu sparen:
 
 
@@ -582,6 +582,8 @@ write_rds(tmdb_model_set, "objects/tmdb_model_set.rds")
 ```
 
 
+*Aber Achtung:* Wenn Sie vergessen, das Objekt auf der Festplatte zu aktualisieren, haben Sie eine zusätzliche Fehlerquelle. 
+Gefahr im Verzug.
 Professioneller ist der Ansatz mit dem R-Paket [target](https://books.ropensci.org/targets/).
 
 
@@ -601,7 +603,7 @@ tune::autoplot(tmdb_model_set) +
   theme(legend.position = "bottom")
 ```
 
-<img src="130-Kaggle_files/figure-html/unnamed-chunk-26-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="130-Kaggle_files/figure-html/unnamed-chunk-21-1.png" width="70%" style="display: block; margin: auto;" />
 
 R-Quadrat ist nicht entscheidend; `rmse` ist wichtiger.
 
@@ -711,7 +713,7 @@ fit_final <-
 ```
 
 ```
-## [22:14:17] WARNING: amalgamation/../src/learner.cc:627: 
+## [17:04:14] WARNING: amalgamation/../src/learner.cc:627: 
 ## Parameters: { "nthreads" } might not be used.
 ## 
 ##   This could be a false alarm, with some parameters getting used by language bindings but
@@ -740,7 +742,7 @@ fit_final
 ## 
 ## ── Model ───────────────────────────────────────────────────────────────────────
 ## ##### xgb.Booster
-## raw: 263.7 Kb 
+## raw: 261.9 Kb 
 ## call:
 ##   xgboost::xgb.train(params = list(eta = 0.3, max_depth = 6, gamma = 0, 
 ##     colsample_bytree = 1, colsample_bynode = 0.4, min_child_weight = 4L, 
@@ -758,11 +760,11 @@ fit_final
 ## nfeatures : 15 
 ## evaluation_log:
 ##     iter training_rmse
-##        1     121479786
-##        2     101522821
+##        1     120903616
+##        2     102644464
 ## ---                   
-##       99      26986730
-##      100      26920945
+##       99      27965304
+##      100      27760554
 ```
 
 

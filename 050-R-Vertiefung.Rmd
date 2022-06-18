@@ -1,5 +1,7 @@
 
-
+```{r src-constants, eval = TRUE, include = FALSE}
+source("funs/define-constants.R")
+```
 
 
 # R, zweiter Blick
@@ -655,16 +657,16 @@ Die Deskriptoren des Kurses speisen sich aus zwei Textdateien, gespeichert im so
 
 Zum einen eine Datei mit den Datumsangaben:
 
-```{r echo = TRUE}
-dates_file <- "https://raw.githubusercontent.com/sebastiansauer/datascience1/main/course-dates.yaml"
+```{r echo = TRUE, eval = FALSE}
+course_dates_file <- "https://raw.githubusercontent.com/sebastiansauer/datascience1/main/course-dates.yaml"
 ```
 
 
 Zum anderen eine Datei mit den Deskriptoren,
 die unabhängig vom Datum sind:
 
-```{r echo = TRUE}
-course_content_file <- "https://raw.githubusercontent.com/sebastiansauer/datascience1/main/_modul-ueberblick.yaml"
+```{r echo = TRUE, eval = FALSE}
+content_file <- "https://raw.githubusercontent.com/sebastiansauer/datascience1/main/_modul-ueberblick.yaml"
 ```
 
 
@@ -675,7 +677,7 @@ dieses Kurses können Sie die Dateien komfortabel betrachten.
 Die "Mastertabelle" kann man mit folgender Funktion erstellen:
 
 
-```{r echo = TRUE}
+```{r mastertable-illustration, echo = TRUE}
 mastertable <- build_master_course_table(
   course_dates_file =  course_dates_file,
   content_file = content_file)
@@ -784,43 +786,6 @@ Eine Einführung findet sich z.B.
 
 
 
-## Aufgaben
 
-```{r child = "Aufgaben/Thema2-Loesungen1.markdown", results='asis'}
-
- 
-```
-
-
-
-
-
-<!-- # Vertiefung -->
-
-
-```{r render-outline-vertiefung, results = "asis", eval = TRUE, echo = FALSE, message = FALSE}
-
-
-source("https://raw.githubusercontent.com/sebastiansauer/Lehre/main/R-Code/render-course-sections.R")
-
-# 
-# course_dates_file <- here::here("course-dates.yaml")
-# content_file <- here::here("_modul-ueberblick.yaml")
-# 
-
-
-#debug(render_course_outline)
-# render_course_outline(course_dates_file, content_file, small_table = TRUE, header_level = 3)
-
-
-
-render_section(course_dates_file,
-               content_file,
-               i = NULL,
-               title = "R, zweiter Blick",
-               
-               name = "Vertiefung",
-               header_level = 1)
-```
 
 

@@ -45,7 +45,7 @@ chapter_start_sections(title = "Regularisierung")
 
 In diesem Kapitel werden folgende R-Pakete benötigt:
 
-```{r echo = TRUE}
+```{r libs-regul-mods, echo = TRUE}
 library(tidymodels)
 library(tictoc)  # Zeitmessung
 ```

@@ -2,7 +2,7 @@
 
 chapter_start_sections <- function(i = NULL, title = NULL){
   
-  source("funs/constants.R")
+  source("funs/define-constants.R")
   source(render_file)
   
   stopifnot(file.exists(course_dates_file))
