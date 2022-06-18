@@ -87,8 +87,8 @@ Sie können verschiedene Versionen des Buches beziehen.
 Aktuell sind das diese:
 
 - [Pagedown-PDF-Buch]()
-- [HTML-PDF-Buch]()
-- [Epub-Buch]()
+- [HTML-Buch](https://github.com/sebastiansauer/datascience1/raw/main/docs/Data-Science-1-html2.html)
+- [Epub-Buch](https://github.com/sebastiansauer/datascience1/raw/main/docs/Data-Science-1.epub)
 
 
 ## Technische Details
