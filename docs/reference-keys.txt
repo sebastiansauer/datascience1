@@ -114,6 +114,7 @@ wo-finde-ich-beispiele-und-vorlagen
 materialsammlung
 videos-1
 plagiatskontrolle
+part-themen
 statistisches-lernen
 lernsteuerung
 vorbereitung-1
@@ -168,6 +169,9 @@ beispiele-für-listenspalten
 tidymodel
 kurs-datascience1
 programmieren-mit-dem-tidyverse
+r-ist-schwierig
+aufgaben-1
+vertiefung-1
 tidymodels
 lernsteuerung-2
 vorbereitung-3
@@ -193,7 +197,7 @@ was-ist-rezept-und-wozu-ist-es-gut
 workflows-mit-rezepten
 spaltenrollen
 fazit
-aufgaben-1
+aufgaben-2
 knn
 lernsteuerung-3
 lernziele-4
@@ -217,7 +221,7 @@ modellgüte-1
 visualisierung
 kennzahlen-der-klassifikation
 krebstest-beispiel
-aufgaben-2
+aufgaben-3
 resampling-und-tuning
 lernsteuerung-4
 vorbereitung-4
@@ -246,8 +250,8 @@ tuningparameter-betrachten
 datenabhängige-tuningparameter
 modelle-mit-tuning-berechnen
 vorhersage-im-test-sample
-aufgaben-3
-vertiefung-1
+aufgaben-4
+vertiefung-2
 logistische-regression
 lernsteuerung-5
 vorbereitung-5
@@ -275,8 +279,8 @@ inv-logit
 logistische-regression-im-überblick
 die-koeffizienten-sind-schwer-zu-interpretieren
 logits-vs.-wahrscheinlichkeiten
-aufgaben-4
-vertiefung-2
+aufgaben-5
+vertiefung-3
 entscheidungsbäume
 vorbereitung-6
 lernsteuerung-6
@@ -334,9 +338,9 @@ finalisisieren
 last-fit
 variablenrelevanz-1
 roc-curve
-aufgaben-5
 aufgaben-6
-vertiefung-3
+aufgaben-7
+vertiefung-4
 regularisierte-modelle
 lernsteuerung-8
 lernziele-8
@@ -356,7 +360,7 @@ variablenselektion
 l1-vs.-l2
 wer-ist-stärker
 elastic-net-als-kompromiss
-aufgaben-7
+aufgaben-8
 kaggle
 vorbereitung-9
 lernsteuerung-9
@@ -389,8 +393,8 @@ final-fit-1
 submission
 submission-vorbereiten
 kaggle-score
-aufgaben-8
-vertiefung-4
+aufgaben-9
+vertiefung-5
 der-rote-faden
 lernziele-10
 literatur-9
@@ -402,13 +406,13 @@ aussichtspunkt-3-der-nebelberg-quiz
 aussichtspunkt-4-der-exerzitien-park
 aussichtspunkt-5-in-der-bibliothek
 krafttraining
-aufgaben-9
-vertiefung-5
+aufgaben-10
+vertiefung-6
 fallstudien
 lernziele-11
 literatur-10
 fallstudien-zur-explorativen-datenanalyse
 fallstudien-zu-linearen-modellen
 fallstudien-zum-maschinellen-lernen-mit-tidymodels
-aufgaben-10
-vertiefung-6
+aufgaben-11
+vertiefung-7

@@ -1,5 +1,10 @@
 book_filename: "Data Science 1"
 language:
+  label:
+    fig: "Abbildung "
+    tab: "Tabelle "
+    eq: "Gleichung "
+    exr: "Übung "
   ui:
     chapter_name: "Kapitel "
 delete_merged_file: true

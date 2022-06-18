@@ -90,7 +90,7 @@ knitr::include_graphics("img/8.2.png")
 
 
 
-In Abb. \@ref(rec-part2) wird der Knoten an der Spitze auch als *Wurzel(knoten)* bezeichnet.
+In Abb. \@ref(fig:rec-part2) wird der Knoten an der Spitze auch als *Wurzel(knoten)* bezeichnet.
 Von diesem Knoten entspringen alle Pfade.
 Ein Pfad ist die geordnete Menge der Pfade mit ihren Knoten ausgehend von der Wurzel bis zu einem Blatt.
 Knoten, aus denen kein Kanten mehr wegführt ("Endknoten") werden als *Blätter* bezeichnet.

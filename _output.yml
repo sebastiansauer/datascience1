@@ -23,11 +23,16 @@ pagedown::html_paged:
   toc: true
   toc_depth: 3
   # change to true for a self-contained document, but it'll be a litte slower for Pandoc to render
-  self_contained: false
-  repo: https://github.com/sebastiansauer/datascience1   
+  self_contained: TRUE
 
 
-
+bookdown::html_document2:
+  toc: 2
+  toc_depth: 3
+  self_contained: TRUE
+  
+  
+  
 
 bookdown::pdf_book:
   includes:

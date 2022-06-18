@@ -80,7 +80,7 @@ man erkennt $R=3$ *Regionen* bzw. Blätter [@islr].
 
 
 
-In Abb. \@ref(rec-part2) wird der Knoten an der Spitze auch als *Wurzel(knoten)* bezeichnet.
+In Abb. \@ref(fig:rec-part2) wird der Knoten an der Spitze auch als *Wurzel(knoten)* bezeichnet.
 Von diesem Knoten entspringen alle Pfade.
 Ein Pfad ist die geordnete Menge der Pfade mit ihren Knoten ausgehend von der Wurzel bis zu einem Blatt.
 Knoten, aus denen kein Kanten mehr wegführt ("Endknoten") werden als *Blätter* bezeichnet.
@@ -1017,7 +1017,7 @@ toc()
 ```
 
 ```
-## 9.263 sec elapsed
+## 7.572 sec elapsed
 ```
 
 

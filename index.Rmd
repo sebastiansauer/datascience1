@@ -81,6 +81,16 @@ Nutzen Sie diese DOI, um dieses Buch zu zitieren: [![DOI](https://zenodo.org/bad
 
 
 
+## Download des Buches
+
+Sie können verschiedene Versionen des Buches beziehen.
+Aktuell sind das diese:
+
+- [Pagedown-PDF-Buch]()
+- [HTML-PDF-Buch]()
+- [Epub-Buch]()
+
+
 ## Technische Details
 
 

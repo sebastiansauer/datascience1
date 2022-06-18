@@ -140,11 +140,6 @@ Abb. \@ref(fig:ols) visualisiert die Optimierung mit OLS [Quelle](https://www.cr
 An [gleicher Stelle](https://www.crumplab.com/rstatsforpsych/regression.html) findet sich
 eine gute Darstellung zu den (mathematischen) Grundlagen der OLS-Regression.
 
-
-```r
-knitr::include_graphics("https://www.crumplab.com/rstatsforpsych/imgs/regression_squares.gif")
-```
-
 <div class="figure" style="text-align: center">
 <img src="https://www.crumplab.com/rstatsforpsych/imgs/regression_squares.gif" alt="Visualisierung der Minimierung der RSS durch OLS" width="70%" />
 <p class="caption">(\#fig:ols)Visualisierung der Minimierung der RSS durch OLS</p>
@@ -213,13 +208,8 @@ Wenn $\lambda \rightarrow \infty$, werden alle Koeffizienten auf Null geschätzt
 Abb. \@ref(fig:l2-shrink) verdeutlicht dies [@islr].
 
 
-
-```r
-knitr::include_graphics("img/6.4.png")
-```
-
 <div class="figure" style="text-align: center">
-<img src="img/6.4.png" alt="Links: Regressionskoeffizienten als Funktion von lambda. Rechts: L2-Norm der Ridge-Regression im Verhältnis zur OLS-Regression" width="70%" />
+<img src="img/6.4.png" alt="Links: Regressionskoeffizienten als Funktion von lambda. Rechts: L2-Norm der Ridge-Regression im Verhältnis zur OLS-Regression" width="100%" />
 <p class="caption">(\#fig:l2-shrink)Links: Regressionskoeffizienten als Funktion von lambda. Rechts: L2-Norm der Ridge-Regression im Verhältnis zur OLS-Regression</p>
 </div>
 
@@ -276,13 +266,8 @@ haben den gleiche RSS-Wert,
 stehen also für eine gleichwertige OLS-Lösung.
 
 
-
-```r
-knitr::include_graphics("img/6.6.png")
-```
-
 <div class="figure" style="text-align: center">
-<img src="img/6.6.png" alt="lambda in der Lasso-Regression" width="70%" />
+<img src="img/6.6.png" alt="lambda in der Lasso-Regression" width="100%" />
 <p class="caption">(\#fig:lasso-l1)lambda in der Lasso-Regression</p>
 </div>
 
@@ -294,13 +279,8 @@ Abb. \@ref(fig:l1l2) verdeutlicht den Unterschied zwischen L1- und L2-Norm.
 Es ist eine Regression mit zwei Prädiktoren, also den zwei Koeffizienten $\beta1, \beta_2$ dargestellt.
 
 
-
-```r
-knitr::include_graphics("img/6.6.png")
-```
-
 <div class="figure" style="text-align: center">
-<img src="img/6.6.png" alt="Verlauf des Strafterms bei der L1-Norm (links) und der L2-Norm (rechts)" width="70%" />
+<img src="img/6.6.png" alt="Verlauf des Strafterms bei der L1-Norm (links) und der L2-Norm (rechts)" width="100%" />
 <p class="caption">(\#fig:l1l2)Verlauf des Strafterms bei der L1-Norm (links) und der L2-Norm (rechts)</p>
 </div>
 
@@ -310,13 +290,8 @@ das in Abb. \@ref(fig:l2-penalty) in den Fokus gerückt wird [@rhys].
 
 
 
-
-```r
-knitr::include_graphics("img/l2-penalty.png")
-```
-
 <div class="figure" style="text-align: center">
-<img src="img/l2-penalty.png" alt="Verlauf des Strafterms bei der L2-Norm" width="70%" />
+<img src="img/l2-penalty.png" alt="Verlauf des Strafterms bei der L2-Norm" width="100%" />
 <p class="caption">(\#fig:l2-penalty)Verlauf des Strafterms bei der L2-Norm</p>
 </div>
 
@@ -340,13 +315,8 @@ Anders ist die Situation bei der L1-Norm, dem Lasso, vgl. Abb. \@ref(fig:l1-pena
 
 
 
-
-```r
-knitr::include_graphics("img/l1-penalty.png")
-```
-
 <div class="figure" style="text-align: center">
-<img src="img/l1-penalty.png" alt="Verlauf des Strafterms bei der L1-Norm" width="70%" />
+<img src="img/l1-penalty.png" alt="Verlauf des Strafterms bei der L1-Norm" width="100%" />
 <p class="caption">(\#fig:l1-penalty)Verlauf des Strafterms bei der L1-Norm</p>
 </div>
 

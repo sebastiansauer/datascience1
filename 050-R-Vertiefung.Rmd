@@ -816,3 +816,33 @@ Vielleicht ist der häufigste Rate, dass man die [Dokumentation lesen solle](htt
 
 
 
+## Aufgaben
+
+```{r exs, child = "Aufgaben/Thema2-Loesungen1.markdown", results='asis', eval = TRUE}
+
+
+```
+
+
+
+
+
+
+<!-- # Vertiefung -->
+  
+  
+```{r render-outline-vertiefung, results = "asis", eval = TRUE, echo = FALSE, message = FALSE}
+
+
+source("https://raw.githubusercontent.com/sebastiansauer/Lehre/main/R-Code/render-course-sections.R")
+
+
+
+render_section(course_dates_file,
+               content_file,
+               i = NULL,
+               title = "R, zweiter Blick",
+               name = "Vertiefung",
+               header_level = 1)
+```
+

@@ -3,7 +3,7 @@ title: "DataScience1"
 subtitle: Grundlagen der Prognosemodellierung 🔮🧰
 
 author: "Sebastian Sauer"
-date: "2022-06-18 17:42:29"
+date: "2022-06-18 18:15:05"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -76,7 +76,7 @@ Nutzen Sie diese DOI, um dieses Buch zu zitieren: [![DOI](https://zenodo.org/bad
 
 
 
-- Diese Version des Buches wurde erstellt am: 2022-06-18 17:42:29
+- Diese Version des Buches wurde erstellt am: 2022-06-18 18:15:06
 
 
 - Die URL zu diesem Buch lautet <https://sebastiansauer.github.io/datascience1/> und ist bei [GitHub Pages](https://pages.github.com/) gehostet.
@@ -106,7 +106,7 @@ Nutzen Sie diese DOI, um dieses Buch zu zitieren: [![DOI](https://zenodo.org/bad
 |glmnet       |NA      |NA             |
 |infer        |1.0.2   |CRAN (R 4.2.0) |
 |ISLR         |NA      |NA             |
-|kknn         |NA      |NA             |
+|kknn         |1.3.1   |CRAN (R 4.2.0) |
 |klaR         |NA      |NA             |
 |MASS         |7.3-56  |CRAN (R 4.2.0) |
 |modeldata    |0.1.1   |CRAN (R 4.2.0) |
@@ -123,7 +123,7 @@ Nutzen Sie diese DOI, um dieses Buch zu zitieren: [![DOI](https://zenodo.org/bad
 |tidyr        |1.2.0   |CRAN (R 4.2.0) |
 |tidyverse    |1.3.1   |CRAN (R 4.2.0) |
 |tune         |0.2.0   |CRAN (R 4.2.0) |
-|vip          |NA      |NA             |
+|vip          |0.3.2   |CRAN (R 4.2.0) |
 |workflows    |0.2.6   |CRAN (R 4.2.0) |
 |workflowsets |0.2.1   |CRAN (R 4.2.0) |
 |xgboost      |1.6.0.1 |CRAN (R 4.2.0) |
