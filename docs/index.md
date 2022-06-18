@@ -3,9 +3,9 @@ title: "DataScience1"
 subtitle: Grundlagen der Prognosemodellierung 🔮🧰
 
 author: "Sebastian Sauer"
-date: "2022-06-18 18:15:05"
+date: "2022-06-18 18:30:22"
 site: bookdown::bookdown_site
-output: bookdown::gitbook
+# output: bookdown::gitbook
 documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
@@ -14,6 +14,9 @@ description: "Grundlagen der Prognosemodellierung mit tidymodels"
 github-repo: sebastiansauer/datascience1
 # description: "Ein Kurs zu den Grundlagen des statistischen Lernens mit einem Fokus auf Prognosemodelle für hoch strukturierte Daten"
 ---
+
+
+
 
 
 <!-- ```{r global-knitr-options, include=FALSE} -->
@@ -72,11 +75,24 @@ Nutzen Sie diese DOI, um dieses Buch zu zitieren: [![DOI](https://zenodo.org/bad
 
 
 
+## Download des Buches
+
+Sie können verschiedene Versionen des Buches beziehen.
+Aktuell sind das diese:
+
+<!-- - [Pagedown-PDF-Buch]() -->
+- [HTML-Buch](https://github.com/sebastiansauer/datascience1/raw/main/docs/Data-Science-1-html2.html)
+- [Epub-Buch](https://github.com/sebastiansauer/datascience1/raw/main/docs/Data-Science-1.epub)
+- [HTML-PDF-Buch](https://github.com/sebastiansauer/datascience1/raw/main/docs/DataScience1.pdf)
+
+Bitte beachten Sie aber,
+dass diese "schockgefrorenen" Versionen u.U. weniger aktuell sind. Tipp: Vergleichen Sie die Erstellungsdaten der jeweiligen Dokumente.
+
 ## Technische Details
 
 
 
-- Diese Version des Buches wurde erstellt am: 2022-06-18 18:15:06
+- Diese Version des Buches wurde erstellt am: 2022-06-18 18:30:22
 
 
 - Die URL zu diesem Buch lautet <https://sebastiansauer.github.io/datascience1/> und ist bei [GitHub Pages](https://pages.github.com/) gehostet.

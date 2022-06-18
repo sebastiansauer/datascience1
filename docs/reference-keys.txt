@@ -73,6 +73,7 @@ fig:l1-penalty
 fig:bigpic
 was-sie-hier-lernen-und-wozu-das-gut-ist
 zitation
+download-des-buches
 technische-details
 hinweise
 lernziele
@@ -114,7 +115,6 @@ wo-finde-ich-beispiele-und-vorlagen
 materialsammlung
 videos-1
 plagiatskontrolle
-part-themen
 statistisches-lernen
 lernsteuerung
 vorbereitung-1
