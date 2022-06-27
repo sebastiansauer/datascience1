@@ -84,6 +84,7 @@
 <li><a class="" href="kaggle.html"><span class="header-section-number">12</span> Kaggle</a></li>
 <li><a class="" href="der-rote-faden.html"><span class="header-section-number">13</span> Der rote Faden</a></li>
 <li><a class="" href="fallstudien.html"><span class="header-section-number">14</span> Fallstudien</a></li>
+<li><a class="" href="staunen-mit-e.html"><span class="header-section-number">15</span> Staunen mit e</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
 
@@ -132,7 +133,7 @@
 <span class="header-section-number">11.2</span> Vorbereitung<a class="anchor" aria-label="anchor" href="#vorbereitung-8"><i class="fas fa-link"></i></a>
 </h2>
 <p>In diesem Kapitel werden folgende R-Pakete benötigt:</p>
-<div class="sourceCode" id="cb462"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb461"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/collectivemedia/tictoc">tictoc</a></span><span class="op">)</span>  <span class="co"># Zeitmessung</span></code></pre></div>
 </div>
@@ -204,7 +205,7 @@ hier aber zur einfacheren Notation weggelassen sind.</p>
 <p>Abb. <a href="regularisierte-modelle.html#fig:ols">11.1</a> visualisiert die Optimierung mit OLS <a href="https://www.crumplab.com/rstatsforpsych/regression.html">Quelle</a>.
 An <a href="https://www.crumplab.com/rstatsforpsych/regression.html">gleicher Stelle</a> findet sich
 eine gute Darstellung zu den (mathematischen) Grundlagen der OLS-Regression.</p>
-<div class="sourceCode" id="cb463"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb462"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html">include_graphics</a></span><span class="op">(</span><span class="st">"https://www.crumplab.com/rstatsforpsych/imgs/regression_squares.gif"</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ols"></span>
@@ -254,7 +255,7 @@ die Koeffizienten in Richtung Null geschrumpft werden. Wenn <span class="math in
 resultiert OLS.
 Wenn <span class="math inline">\(\lambda \rightarrow \infty\)</span>, werden alle Koeffizienten auf Null geschätzt werden,
 Abb. <a href="regularisierte-modelle.html#fig:l2-shrink">11.2</a> verdeutlicht dies <span class="citation">(<a href="references.html#ref-islr" role="doc-biblioref">James et al. 2021</a>)</span>.</p>
-<div class="sourceCode" id="cb464"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb463"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html">include_graphics</a></span><span class="op">(</span><span class="st">"img/6.4.png"</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:l2-shrink"></span>
@@ -306,7 +307,7 @@ Variablenselektion zu ermöglichen.</p>
 Die Ellipsen um <span class="math inline">\(\hat{beta}\)</span> herum nent man Kontourlinien. Alle Punkte einer Kontourlinie
 haben den gleiche RSS-Wert,
 stehen also für eine gleichwertige OLS-Lösung.</p>
-<div class="sourceCode" id="cb465"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb464"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html">include_graphics</a></span><span class="op">(</span><span class="st">"img/6.6.png"</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:lasso-l1"></span>
@@ -318,7 +319,7 @@ Abbildung 11.3: lambda in der Lasso-Regression
 die L2-Norm aber nicht?
 Abb. <a href="regularisierte-modelle.html#fig:l1l2">11.4</a> verdeutlicht den Unterschied zwischen L1- und L2-Norm.
 Es ist eine Regression mit zwei Prädiktoren, also den zwei Koeffizienten <span class="math inline">\(\beta1, \beta_2\)</span> dargestellt.</p>
-<div class="sourceCode" id="cb466"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb465"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html">include_graphics</a></span><span class="op">(</span><span class="st">"img/6.6.png"</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:l1l2"></span>
@@ -328,7 +329,7 @@ Abbildung 11.4: Verlauf des Strafterms bei der L1-Norm (links) und der L2-Norm (
 </div>
 <p>Betrachten wir zunächst das rechte Teilbild für die L2-Norm aus Abb. <a href="regularisierte-modelle.html#fig:l1l2">11.4</a>,
 das in Abb. <a href="regularisierte-modelle.html#fig:l2-penalty">11.5</a> in den Fokus gerückt wird <span class="citation">(<a href="references.html#ref-rhys" role="doc-biblioref">Rhys 2020</a>)</span>.</p>
-<div class="sourceCode" id="cb467"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb466"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html">include_graphics</a></span><span class="op">(</span><span class="st">"img/l2-penalty.png"</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:l2-penalty"></span>
@@ -345,7 +346,7 @@ Regressionskoeffizienten nicht exakt Null sein.</p>
 <p>Warum lässt die L2-Norm für bestimmte lambda-Werte den charakteristischen Kreis entstehen?
 Die Antwort ist, dass die Lösungen für <span class="math inline">\(\beta_1^2 + \beta_2^2=1\)</span> (mit <span class="math inline">\(\lambda=1\)</span>) graphisch als Kreis dargestellt werden können.</p>
 <p>Anders ist die Situation bei der L1-Norm, dem Lasso, vgl. Abb. <a href="regularisierte-modelle.html#fig:l1-penalty">11.6</a> <span class="citation">(<a href="references.html#ref-rhys" role="doc-biblioref">Rhys 2020</a>)</span>.</p>
-<div class="sourceCode" id="cb468"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb467"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html">include_graphics</a></span><span class="op">(</span><span class="st">"img/l1-penalty.png"</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:l1-penalty"></span>
@@ -467,7 +468,7 @@ Damit wird sozusagen die “Mischung” eingestellt (von L1- vs. L2).</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-06-18 18:30:22.</p>
+    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-06-27 22:49:00.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

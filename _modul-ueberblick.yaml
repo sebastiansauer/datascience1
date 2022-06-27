@@ -175,9 +175,6 @@ thema9:
 
 
 
-
-
-
 thema10:
   Titel: "Ensemble-Lerner"
   Lernziele:
@@ -300,26 +297,37 @@ thema15:
 
 
 
-thema8:
-  Titel: "Dimensionsreduktion"
+# thema8:
+#   Titel: "Dimensionsreduktion"
+# 
+# 
+#   Lernziele:
+#     - "Sie kennen den Principal-Components-Algorithmus (PCA) und können ihn in Grundzügen erläutern"
+#     - "Sie können eine PCA in R berechnen"
+#     - "Sie wissen um Vorteile und Beschränkungen dieses Algorithmusses"
+# 
+#   Literatur:
+#     - "Rhys, Kap. 13"    
+#   
+#   Aufgaben:
+#     - "[Fallstudie Cocktailrezepte](https://juliasilge.com/blog/cocktail-recipes-umap/)"
+#     - "[Fallstudie Hiphop-Songs](https://juliasilge.com/blog/best-hip-hop/)"
+#     - "[Fallstudie StackOverflow](https://juliasilge.com/blog/stack-overflow-pca/)"
+#     
+#     
+#     
+    
 
 
+thema20:
+  Titel: "Staunen"
   Lernziele:
-    - "Sie kennen den Principal-Components-Algorithmus (PCA) und können ihn in Grundzügen erläutern"
-    - "Sie können eine PCA in R berechnen"
-    - "Sie wissen um Vorteile und Beschränkungen dieses Algorithmusses"
-
+    - "Sie wissen um die Bedeutung von e"
+    - "Sie können die Zahl e herleiten"
   Literatur:
-    - "Rhys, Kap. 13"    
-  
-  Aufgaben:
-    - "[Fallstudie Cocktailrezepte](https://juliasilge.com/blog/cocktail-recipes-umap/)"
-    - "[Fallstudie Hiphop-Songs](https://juliasilge.com/blog/best-hip-hop/)"
-    - "[Fallstudie StackOverflow](https://juliasilge.com/blog/stack-overflow-pca/)"
-    
-    
-    
-    
+    - "[Ken Benoit: Lineare Regression mit logarithmischen Transformationen](https://kenbenoit.net/assets/courses/ME104/logmodels2.pdf)"
+  Videos:
+    - "[Intuitive Erklärung zu e](https://www.youtube.com/watch?v=yTfHn9Aj7UM)"
 
 
 

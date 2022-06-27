@@ -84,6 +84,7 @@
 <li><a class="" href="kaggle.html"><span class="header-section-number">12</span> Kaggle</a></li>
 <li><a class="" href="der-rote-faden.html"><span class="header-section-number">13</span> Der rote Faden</a></li>
 <li><a class="" href="fallstudien.html"><span class="header-section-number">14</span> Fallstudien</a></li>
+<li><a class="" href="staunen-mit-e.html"><span class="header-section-number">15</span> Staunen mit e</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
 
@@ -97,7 +98,7 @@
 <span class="header-section-number">Kapitel 4</span> R, zweiter Blick<a class="anchor" aria-label="anchor" href="#r-zweiter-blick"><i class="fas fa-link"></i></a>
 </h1>
 <p>Benötigte R-Pakete für dieses Kapitel:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span></code></pre></div>
 <div id="lernsteuerung-1" class="section level2" number="4.1">
@@ -196,18 +197,18 @@ als dass die übrigen Datenstrukturen auf ihnen aufbauen, vgl. Abb. <a href="r-z
 Abbildung 4.3: Vektoren stehen im Zentrum der Datenstrukturen in R
 </p>
 </div>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ein_vektor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span>
 <span class="va">noch_ein_vektor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span><span class="op">)</span>
 <span class="va">logischer_vektor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p>Mit <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> kann man sich die <code>Str</code>uktur eines Objektsausgeben lassen:</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">ein_vektor</span><span class="op">)</span></code></pre></div>
 <pre><code>##  num [1:3] 1 2 3</code></pre>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">noch_ein_vektor</span><span class="op">)</span></code></pre></div>
 <pre><code>##  chr [1:3] "A" "B" "C"</code></pre>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">logischer_vektor</span><span class="op">)</span></code></pre></div>
 <pre><code>##  logi [1:3] TRUE FALSE TRUE</code></pre>
 <p>Vektoren können von folgenden Typen sein:</p>
@@ -219,10 +220,10 @@ Abbildung 4.3: Vektoren stehen im Zentrum der Datenstrukturen in R
 </li>
 </ul>
 <p>Kommazahlen und Ganze Zahlen zusammen bilden den Typ <code>numeric</code> (numerisch) in R.</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/knitr/man/opts_chunk.html">opts_chunk</a></span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>echo <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p>Den Typ eines Vektors kann man mit <code><a href="https://rdrr.io/r/base/typeof.html">typeof()</a></code> ausgeben lassen:</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">ein_vektor</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "double"</code></pre>
 </div>
@@ -230,10 +231,10 @@ Abbildung 4.3: Vektoren stehen im Zentrum der Datenstrukturen in R
 <h4>
 <span class="header-section-number">4.2.2.2</span> Faktoren<a class="anchor" aria-label="anchor" href="#faktoren"><i class="fas fa-link"></i></a>
 </h4>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sex</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Mann"</span>, <span class="st">"Frau"</span>, <span class="st">"Frau"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Interessant:</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span></code></pre></div>
 <pre><code>##  Factor w/ 2 levels "Frau","Mann": 2 1 1</code></pre>
 <p>Vertiefende Informationen findet sich in <span class="citation">Wickham and Grolemund (<a href="references.html#ref-r4ds" role="doc-biblioref">2016</a>)</span>.</p>
@@ -242,7 +243,7 @@ Abbildung 4.3: Vektoren stehen im Zentrum der Datenstrukturen in R
 <h4>
 <span class="header-section-number">4.2.2.3</span> Listen<a class="anchor" aria-label="anchor" href="#listen"><i class="fas fa-link"></i></a>
 </h4>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">eine_liste</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>titel <span class="op">=</span> <span class="st">"Einführung"</span>,
                    woche <span class="op">=</span> <span class="fl">1</span>,
                    datum <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"2022-03-14"</span>, <span class="st">"2202-03-21"</span><span class="op">)</span>,
@@ -262,9 +263,9 @@ Abbildung 4.3: Vektoren stehen im Zentrum der Datenstrukturen in R
 <span class="header-section-number">4.2.2.4</span> Tibbles<a class="anchor" aria-label="anchor" href="#tibbles"><i class="fas fa-link"></i></a>
 </h4>
 <p>Für <code><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble()</a></code> brauchen wir <code>tidyverse</code>:</p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">studentis</span> <span class="op">&lt;-</span>
   <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>
     name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Anna"</span>, <span class="st">"Berta"</span><span class="op">)</span>,
@@ -288,30 +289,30 @@ Abbildung 4.3: Vektoren stehen im Zentrum der Datenstrukturen in R
 <span class="header-section-number">4.2.3.1</span> Reine Vektoren<a class="anchor" aria-label="anchor" href="#reine-vektoren"><i class="fas fa-link"></i></a>
 </h4>
 <p>Zur Erinnerung:</p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">ein_vektor</span><span class="op">)</span></code></pre></div>
 <pre><code>##  num [1:3] 1 2 3</code></pre>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ein_vektor</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ein_vektor</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] 1 2</code></pre>
 <p>Aber <em>nicht</em> so:</p>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ein_vektor</span><span class="op">[</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">]</span></code></pre></div>
 <pre><code>## Error in ein_vektor[1, 2]: incorrect number of dimensions</code></pre>
 <p>Man darf Vektoren auch wie Listen ansprechen, also eine doppelte Eckklammer zum Indizieren verwenden</p>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ein_vektor</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
 <p>Der Grund ist,
 dass Listen auch Vektoren sind, nur eben ein besonderer Fall eines Vektors:</p>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/vector.html">is.vector</a></span><span class="op">(</span><span class="va">eine_liste</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>Was passiert, wenn man bei einem Vektor der Länge 3 das 4. Element indiziert?</p>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ein_vektor</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] NA</code></pre>
 <p>Ein schnödes <code>NA</code> ist die Antwort. Das ist interessant:
@@ -323,7 +324,7 @@ das angesprochene Element sei leer bzw. nicht verfügbar.</p>
 <h4>
 <span class="header-section-number">4.2.3.2</span> Listen<a class="anchor" aria-label="anchor" href="#listen-1"><i class="fas fa-link"></i></a>
 </h4>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">eine_liste</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code>## List of 5
 ##  $ titel    : chr "Einführung"
@@ -333,11 +334,11 @@ das angesprochene Element sei leer bzw. nicht verfügbar.</p>
 ##  $ lehre    : logi [1:3] TRUE TRUE TRUE</code></pre>
 <p>Listen können wie Vektoren, also mit <code>[</code> ausgelesen werden.
 Dann wird eine Liste zurückgegeben.</p>
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">eine_liste</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></code></pre></div>
 <pre><code>## $titel
 ## [1] "Einführung"</code></pre>
-<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">eine_liste</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></code></pre></div>
 <pre><code>## $woche
 ## [1] 1</code></pre>
@@ -345,7 +346,7 @@ Dann wird eine Liste zurückgegeben.</p>
 dass Listen als eine bestimmte Art von Vektoren implementiert sind.</p>
 <p>Mann kann auch die “doppelte Eckklammer”, <code>[[</code> zum Auslesen verwenden;
 dann wird anstelle einer Liste die einfachere Struktur eines Vektors zurückgegeben:</p>
-<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">eine_liste</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] "Einführung"</code></pre>
 <p>Man könnte sagen,
@@ -354,41 +355,41 @@ wird abgeschält, und man bekommnt die “innere” Schicht,
 den Vektor.</p>
 <p>Mann die Elemente der Liste entweder mit ihrer Positionsnummer (1, 2, …) oder,
 sofern vorhanden, ihren Namen ansprechen:</p>
-<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">eine_liste</span><span class="op">[[</span><span class="st">"titel"</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] "Einführung"</code></pre>
 <p>Dann gibt es noch den Dollar-Operator,
 mit dem Mann benannte Elemente von Listen ansprechen kann:</p>
-<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">eine_liste</span><span class="op">$</span><span class="va">titel</span></code></pre></div>
 <pre><code>## [1] "Einführung"</code></pre>
 <p>Man kann auch tiefer in eine Liste hinein indizieren.
 Sagen wir, uns interessiert das 4. Element der Liste <code>eine_liste</code> -
 und davon das erste Element.</p>
 <p>Das geht dann so:</p>
-<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">eine_liste</span><span class="op">[[</span><span class="fl">4</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> </code></pre></div>
 <pre><code>## [1] "dies"</code></pre>
 <p>Eine einfachere Art des Indizierens von Listen bietet die Funktion <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck()</a></code>, aus dem Paket <code>purrr</code>,
 das Hilfen für den Umgang mit Listen bietet.</p>
-<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span><span class="op">(</span><span class="va">eine_liste</span>, <span class="fl">4</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "dies"          "jenes"         "und noch mehr"</code></pre>
 <p>Und jetzt aus dem 4. Element das 1. Element:</p>
-<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span><span class="op">(</span><span class="va">eine_liste</span>, <span class="fl">4</span>, <span class="fl">1</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "dies"</code></pre>
 <p>Probieren Sie mal, aus einer Liste der Länge 5 das 6. Element auszulesen:</p>
-<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">eine_liste</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 5</code></pre>
-<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">eine_liste</span><span class="op">[[</span><span class="fl">6</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <pre><code>## Error in eine_liste[[6]]: subscript out of bounds</code></pre>
 <p>Unser Versuch wird mit einer Fehlermeldung quittiert.</p>
 <p>Sprechen wir die Liste wie einen (atomaren) Vektor an,
 bekommen wir hingegen ein <code>NA</code> bzw. ein <code>NULL</code>:</p>
-<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">eine_liste</span><span class="op">[</span><span class="fl">6</span><span class="op">]</span></code></pre></div>
 <pre><code>## $&lt;NA&gt;
 ## NULL</code></pre>
@@ -398,7 +399,7 @@ bekommen wir hingegen ein <code>NA</code> bzw. ein <code>NULL</code>:</p>
 <span class="header-section-number">4.2.3.3</span> Tibbles<a class="anchor" aria-label="anchor" href="#tibbles-1"><i class="fas fa-link"></i></a>
 </h4>
 <p>Tibbles lassen sich sowohl wie ein Vektor als auch wie eine Liste indizieren.</p>
-<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">studentis</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 1
 ##   name 
@@ -406,7 +407,7 @@ bekommen wir hingegen ein <code>NA</code> bzw. ein <code>NULL</code>:</p>
 ## 1 Anna 
 ## 2 Berta</code></pre>
 <p>Die Indizierung eines Tibbles mit der einfachen Eckklammer liefert einen Tibble zurück.</p>
-<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">studentis</span><span class="op">[</span><span class="st">"name"</span><span class="op">]</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 1
 ##   name 
@@ -416,11 +417,11 @@ bekommen wir hingegen ein <code>NA</code> bzw. ein <code>NULL</code>:</p>
 <p>Mit doppelter Eckklammer bekommt man,
 analog zur Liste,
 einen Vektor zurück:</p>
-<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">studentis</span><span class="op">[[</span><span class="st">"name"</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] "Anna"  "Berta"</code></pre>
 <p>Beim Dollar-Operator kommt auch eine Liste zurück:</p>
-<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">studentis</span><span class="op">$</span><span class="va">name</span></code></pre></div>
 <pre><code>## [1] "Anna"  "Berta"</code></pre>
 </div>
@@ -454,7 +455,7 @@ Das bietet sich an, wenn zwei Bedingungen erfüllt sind:</p>
 manchmal im <em>breiten</em>.</p>
 <p>In der Regel müssen die Daten “tidy” sein,
 was meist dem langen Format entspricht, vgl. Abb. <a href="r-zweiter-blick.html#fig:langbreit">4.4</a> aus <span class="citation">Sauer (<a href="references.html#ref-modar" role="doc-biblioref">2019</a>)</span>.</p>
-<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html">include_graphics</a></span><span class="op">(</span><span class="st">"img/gather_spread.png"</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:langbreit"></span>
@@ -486,7 +487,7 @@ vgl. Abb. <a href="r-zweiter-blick.html#fig:funs">4.5</a> aus <span class="citat
 Abbildung 4.5: Sinnbild einer Funktion
 </p>
 </div>
-<div class="sourceCode" id="cb76"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mittelwert</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span>
   
   <span class="va">summe</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
@@ -494,7 +495,7 @@ Abbildung 4.5: Sinnbild einer Funktion
   <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">mw</span><span class="op">)</span>
   
 <span class="op">}</span></code></pre></div>
-<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb76"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">mittelwert</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
 <p>Weitere Informationen finden sich in <a href="https://r4ds.had.co.nz/functions.html">Kapitel 19</a> in <span class="citation">Wickham and Grolemund (<a href="references.html#ref-r4ds" role="doc-biblioref">2016</a>)</span>. Alternativ findet sich ein Abschnitt dazu (28.1) in <span class="citation">Sauer (<a href="references.html#ref-modar" role="doc-biblioref">2019</a>)</span>.</p>
@@ -516,7 +517,7 @@ Daher braucht’s Strukturen, die <em>Wiederholungen</em> beschreiben.</p>
 <code>across</code> wendet eine oder mehrere Funktionen (mit <code>.fns</code> bezeichnet) auf die Spalten <code>.col</code> an.</p>
 <p>Das erklärt sich am besten mit einem Beispiel:</p>
 <p>Natürlich hätte man in diesem Fall auch anders vorgehen können:</p>
-<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb78"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span>.cols <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span>,
                    .fns <span class="op">=</span> <span class="va">mean</span><span class="op">)</span><span class="op">)</span></code></pre></div>
@@ -525,7 +526,7 @@ Daher braucht’s Strukturen, die <em>Wiederholungen</em> beschreiben.</p>
 ##     gear   carb
 ## 1 3.6875 2.8125</code></pre>
 <p>Möchte man der Funktion <code>.fns</code> Parameter übergeben, so nutzt man diese Syntax (“Purrr-Lambda”):</p>
-<div class="sourceCode" id="cb81"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span>.cols <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span>,
                    .fns <span class="op">=</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">.</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
@@ -549,7 +550,7 @@ Abbildung 4.6: Sinnbild für map
 </p>
 </div>
 <p>Hier ein Beispiel-Code:</p>
-<div class="sourceCode" id="cb83"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb82"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span>
 
 <span class="va">mtcars</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>  <span class="co"># nur die ersten 3 Spalten</span>
@@ -565,7 +566,7 @@ Abbildung 4.6: Sinnbild für map
 ## [1] 230.7219</code></pre>
 <p>Möchte man der gemappten Funktion Parameter übergeben,
 nutzt man wieder die “Kringel-Schreibweise”:</p>
-<div class="sourceCode" id="cb85"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb84"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">.</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## $mpg
 ## [1] 20.09062
@@ -616,7 +617,7 @@ in dem man mit <code>NA</code> auffüllt.</p>
 werden wir mit Listenspalten zu tun haben.
 Daher ist es praktisch, sich schon mal damit zu beschäftigen.</p>
 <p>Hier ein Beispiel für eine <span class="math inline">\(v=3\)</span>-fache Kreuzvalidierung:</p>
-<div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb86"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span>
 <span class="va">mtcars_cv</span> <span class="op">&lt;-</span>
   <span class="fu">vfold_cv</span><span class="op">(</span><span class="va">mtcars</span>, v <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
@@ -632,7 +633,7 @@ Daher ist es praktisch, sich schon mal damit zu beschäftigen.</p>
 <p>Betrachten wir das Objekt <code>mtcars_cv</code> näher.
 Die Musik spielt in der 1. Spalte.</p>
 <p>Lesen wir den Inhalt der 1. Spalte, 1 Zeile aus (nennen wir das mal “Position 1,1”):</p>
-<div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb88"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pos11</span> <span class="op">&lt;-</span> <span class="va">mtcars_cv</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>
 <span class="va">pos11</span></code></pre></div>
 <pre><code>## &lt;Analysis/Assess/Total&gt;
@@ -641,14 +642,14 @@ Die Musik spielt in der 1. Spalte.</p>
 <p>Schauen wir jetzt in dieses Objekt näher an.
 Das können wir mit <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> tun.
 <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> zeigt uns die Strktur eines Objekts.</p>
-<div class="sourceCode" id="cb91"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb90"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">pos11</span><span class="op">)</span></code></pre></div>
 <pre><code>## List of 4
 ##  $ data  :'data.frame':  32 obs. of  3 variables:
 ##   ..$ mpg : num [1:32] 21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 ...
 ##   ..$ cyl : num [1:32] 6 6 4 6 8 6 8 4 4 6 ...
 ##   ..$ disp: num [1:32] 160 160 108 258 360 ...
-##  $ in_id : int [1:21] 1 3 4 5 7 10 12 13 15 16 ...
+##  $ in_id : int [1:21] 2 6 8 9 10 11 12 14 15 16 ...
 ##  $ out_id: logi NA
 ##  $ id    : tibble [1 × 1] (S3: tbl_df/tbl/data.frame)
 ##   ..$ id: chr "Fold1"
@@ -660,7 +661,7 @@ als ein Skalar bzw. ein einzelnes, atomares Element.</p>
 <p>Damit handelt es sich bei Spalte 1 dieses Dataframes (<code>mtcars_cv</code>) also um eine Listenspalte.</p>
 <p>Üben wir uns noch etwas im Indizieren.</p>
 <p>Sprechen wir in <code>pos11</code> das erste Element an (<code>data</code>) und davon das erste Element:</p>
-<div class="sourceCode" id="cb93"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb92"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pos11</span><span class="op">[[</span><span class="st">"data"</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <pre><code>##  [1] 21.0 21.0 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 17.8 16.4 17.3 15.2 10.4
 ## [16] 10.4 14.7 32.4 30.4 33.9 21.5 15.5 15.2 13.3 19.2 27.3 26.0 30.4 15.8 19.7
@@ -672,7 +673,7 @@ Zur Erinnerung:
 Ein Dataframe ist ein Spezialfall einer Liste,
 also auch eine Liste, nur eine mit bestimmten Eigenschaften.</p>
 <p>Zum Vergleich indizieren wir mal mit einer einfachen Eckklammer:</p>
-<div class="sourceCode" id="cb95"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb94"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pos11</span><span class="op">[[</span><span class="st">"data"</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code>##                    mpg
@@ -685,7 +686,7 @@ also auch eine Liste, nur eine mit bestimmten Eigenschaften.</p>
 <p>Mit <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck()</a></code> bekommen wir das gleiche Ergebnis,
 nur etwas komfortabler,
 da wir keine Eckklammern tippen müssen:</p>
-<div class="sourceCode" id="cb97"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb96"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span><span class="op">(</span><span class="va">pos11</span>, <span class="st">"data"</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] 21</code></pre>
 <p>Wie man sieht, können wir beliebig tief in das Objekt hineinindizieren.</p>
@@ -698,7 +699,7 @@ da wir keine Eckklammern tippen müssen:</p>
 Diese Deskriptoren kann man wiederum jeder Kurswoche oder jedem Kursabschnitt zuordnen,
 so dass eine zweidimensionale Struktur resultiert.
 Eine Tabelle, einfach gesagt, etwa so:</p>
-<div class="sourceCode" id="cb99"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb98"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html">tribble</a></span><span class="op">(</span>
   <span class="op">~</span><span class="va">Nr</span>,   <span class="op">~</span><span class="va">Titel</span>,   <span class="op">~</span><span class="va">Literatur</span>,   <span class="op">~</span><span class="va">Aufgaben</span>,
    <span class="fl">1L</span>, <span class="st">"Titel1"</span>, <span class="st">"Literatur1"</span>, <span class="st">"Aufgaben1"</span>,
@@ -706,12 +707,12 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
    <span class="fl">3L</span>, <span class="st">"Titel3"</span>, <span class="st">"Literatur3"</span>, <span class="st">"Aufgaben3"</span>
   <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<div id="mjybvyscup" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="zxqszbahvq" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#mjybvyscup .gt_table {
+#zxqszbahvq .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -736,7 +737,7 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   border-left-color: #D3D3D3;
 }
 
-#mjybvyscup .gt_heading {
+#zxqszbahvq .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -748,7 +749,7 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   border-right-color: #D3D3D3;
 }
 
-#mjybvyscup .gt_title {
+#zxqszbahvq .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -760,7 +761,7 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   border-bottom-width: 0;
 }
 
-#mjybvyscup .gt_subtitle {
+#zxqszbahvq .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -772,13 +773,13 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   border-top-width: 0;
 }
 
-#mjybvyscup .gt_bottom_border {
+#zxqszbahvq .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#mjybvyscup .gt_col_headings {
+#zxqszbahvq .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -793,7 +794,7 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   border-right-color: #D3D3D3;
 }
 
-#mjybvyscup .gt_col_heading {
+#zxqszbahvq .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -813,7 +814,7 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   overflow-x: hidden;
 }
 
-#mjybvyscup .gt_column_spanner_outer {
+#zxqszbahvq .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -825,15 +826,15 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   padding-right: 4px;
 }
 
-#mjybvyscup .gt_column_spanner_outer:first-child {
+#zxqszbahvq .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#mjybvyscup .gt_column_spanner_outer:last-child {
+#zxqszbahvq .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#mjybvyscup .gt_column_spanner {
+#zxqszbahvq .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -845,7 +846,7 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   width: 100%;
 }
 
-#mjybvyscup .gt_group_heading {
+#zxqszbahvq .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -870,7 +871,7 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   vertical-align: middle;
 }
 
-#mjybvyscup .gt_empty_group_heading {
+#zxqszbahvq .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -885,15 +886,15 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   vertical-align: middle;
 }
 
-#mjybvyscup .gt_from_md > :first-child {
+#zxqszbahvq .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#mjybvyscup .gt_from_md > :last-child {
+#zxqszbahvq .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#mjybvyscup .gt_row {
+#zxqszbahvq .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -912,7 +913,7 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   overflow-x: hidden;
 }
 
-#mjybvyscup .gt_stub {
+#zxqszbahvq .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -925,7 +926,7 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   padding-right: 5px;
 }
 
-#mjybvyscup .gt_stub_row_group {
+#zxqszbahvq .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -939,11 +940,11 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   vertical-align: top;
 }
 
-#mjybvyscup .gt_row_group_first td {
+#zxqszbahvq .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#mjybvyscup .gt_summary_row {
+#zxqszbahvq .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -953,16 +954,16 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   padding-right: 5px;
 }
 
-#mjybvyscup .gt_first_summary_row {
+#zxqszbahvq .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#mjybvyscup .gt_first_summary_row.thick {
+#zxqszbahvq .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#mjybvyscup .gt_last_summary_row {
+#zxqszbahvq .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -972,7 +973,7 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   border-bottom-color: #D3D3D3;
 }
 
-#mjybvyscup .gt_grand_summary_row {
+#zxqszbahvq .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -982,7 +983,7 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   padding-right: 5px;
 }
 
-#mjybvyscup .gt_first_grand_summary_row {
+#zxqszbahvq .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -992,11 +993,11 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   border-top-color: #D3D3D3;
 }
 
-#mjybvyscup .gt_striped {
+#zxqszbahvq .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#mjybvyscup .gt_table_body {
+#zxqszbahvq .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1005,7 +1006,7 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   border-bottom-color: #D3D3D3;
 }
 
-#mjybvyscup .gt_footnotes {
+#zxqszbahvq .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1019,7 +1020,7 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   border-right-color: #D3D3D3;
 }
 
-#mjybvyscup .gt_footnote {
+#zxqszbahvq .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -1028,7 +1029,7 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   padding-right: 5px;
 }
 
-#mjybvyscup .gt_sourcenotes {
+#zxqszbahvq .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1042,7 +1043,7 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   border-right-color: #D3D3D3;
 }
 
-#mjybvyscup .gt_sourcenote {
+#zxqszbahvq .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1050,36 +1051,36 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   padding-right: 5px;
 }
 
-#mjybvyscup .gt_left {
+#zxqszbahvq .gt_left {
   text-align: left;
 }
 
-#mjybvyscup .gt_center {
+#zxqszbahvq .gt_center {
   text-align: center;
 }
 
-#mjybvyscup .gt_right {
+#zxqszbahvq .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#mjybvyscup .gt_font_normal {
+#zxqszbahvq .gt_font_normal {
   font-weight: normal;
 }
 
-#mjybvyscup .gt_font_bold {
+#zxqszbahvq .gt_font_bold {
   font-weight: bold;
 }
 
-#mjybvyscup .gt_font_italic {
+#zxqszbahvq .gt_font_italic {
   font-style: italic;
 }
 
-#mjybvyscup .gt_super {
+#zxqszbahvq .gt_super {
   font-size: 65%;
 }
 
-#mjybvyscup .gt_two_val_uncert {
+#zxqszbahvq .gt_two_val_uncert {
   display: inline-block;
   line-height: 1em;
   text-align: right;
@@ -1088,31 +1089,31 @@ Eine Tabelle, einfach gesagt, etwa so:</p>
   margin-left: 0.1em;
 }
 
-#mjybvyscup .gt_footnote_marks {
+#zxqszbahvq .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#mjybvyscup .gt_asterisk {
+#zxqszbahvq .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#mjybvyscup .gt_slash_mark {
+#zxqszbahvq .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#mjybvyscup .gt_fraction_numerator {
+#zxqszbahvq .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#mjybvyscup .gt_fraction_denominator {
+#zxqszbahvq .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
@@ -1159,29 +1160,29 @@ die erlaubt, in einer Zelle mehr als ein einzelnes Element zu packen.
 Listenspalten erlauben das.</p>
 <p>Schauen wir uns die “Mastertabelle” dieses Kurses an zur Illustration.</p>
 <p>Zunächst <code>source</code>n wir die nötigen Funktionen.</p>
-<div class="sourceCode" id="cb100"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb99"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/sebastiansauer/Lehre/main/R-Code/render-course-sections.R"</span><span class="op">)</span></code></pre></div>
 <p>In Ihrem <code>Environment</code> sollten Sie jetzt die gesourcten Funktionen sehen.
 Mit Klick auf den Funktionsnamen können Sie diese Funktionen auch betrachten.</p>
 <p>Die Deskriptoren des Kurses speisen sich aus zwei Textdateien, gespeichert im sog. YAML-Format, ein einfaches Textformat, und hier nicht weiter von Belang.</p>
 <p>Zum einen eine Datei mit den Datumsangaben:</p>
-<div class="sourceCode" id="cb101"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb100"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">course_dates_file</span> <span class="op">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/sebastiansauer/datascience1/main/course-dates.yaml"</span></code></pre></div>
 <p>Zum anderen eine Datei mit den Deskriptoren,
 die unabhängig vom Datum sind:</p>
-<div class="sourceCode" id="cb102"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb101"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">content_file</span> <span class="op">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/sebastiansauer/datascience1/main/_modul-ueberblick.yaml"</span></code></pre></div>
 <p>Im <a href="https://github.com/sebastiansauer/datascience1">Githup-Repo</a>
 dieses Kurses können Sie die Dateien komfortabel betrachten.</p>
 <p>Die “Mastertabelle” kann man mit folgender Funktion erstellen:</p>
-<div class="sourceCode" id="cb103"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb102"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mastertable</span> <span class="op">&lt;-</span> <span class="fu">build_master_course_table</span><span class="op">(</span>
   course_dates_file <span class="op">=</span>  <span class="va">course_dates_file</span>,
   content_file <span class="op">=</span> <span class="va">content_file</span><span class="op">)</span></code></pre></div>
 <p>Betrachten Sie die Tabelle in Ruhe!
 Sie werden sehen, dass einige Spalten komplex sind,
 also mehr als nur einen einzelnen Wert enthalten:</p>
-<div class="sourceCode" id="cb104"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb103"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mastertable</span><span class="op">[[</span><span class="st">"Vorbereitung"</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] "Lesen Sie die Hinweise zum Modul."                                       
 ## [2] "Installieren (oder Updaten) Sie die für dieses Modul angegeben Software."
@@ -1190,21 +1191,21 @@ also mehr als nur einen einzelnen Wert enthalten:</p>
 die Spalte mit dem Namen <em>Vorbereitung</em> ausgelesen und aus dieser Spalte das erste erste Element.
 Dieses erste Element ist ein Textvektor der Länge 3.</p>
 <p>Daraus könnten wir z.B. das zweite Element auslesen:</p>
-<div class="sourceCode" id="cb106"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb105"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mastertable</span><span class="op">[[</span><span class="st">"Vorbereitung"</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] "Installieren (oder Updaten) Sie die für dieses Modul angegeben Software."</code></pre>
 <p>Was würde passieren, wenn wir anstelle der doppelten Eckklammer einfache Eckklammern verwenden würden?</p>
-<div class="sourceCode" id="cb108"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb107"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mastertable</span><span class="op">[</span><span class="st">"Vorbereitung"</span><span class="op">]</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "tbl_df"     "tbl"        "data.frame"</code></pre>
-<div class="sourceCode" id="cb110"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb109"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mastertable</span><span class="op">[[</span><span class="st">"Vorbereitung"</span><span class="op">]</span><span class="op">]</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "list"</code></pre>
 <p>Das macht noch keinen großen Unterschied,
 aber schauen wir mal weiter.</p>
 <p>Wenn wir das erste Element der Spalte “Vorbereitung” mit <em>doppelter</em> Eckklammer ansprechen,
 bekommen wir einen Text-Vektor (der Länge drei) zurück.</p>
-<div class="sourceCode" id="cb112"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb111"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mastertable</span><span class="op">[[</span><span class="st">"Vorbereitung"</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] "Lesen Sie die Hinweise zum Modul."                                       
 ## [2] "Installieren (oder Updaten) Sie die für dieses Modul angegeben Software."
@@ -1212,7 +1213,7 @@ bekommen wir einen Text-Vektor (der Länge drei) zurück.</p>
 <p>Jetzt können wir, wie oben getan,
 diese einzelnen Elemente ansprechen.</p>
 <p>Aber: Wenn wir das erste Element der Spalte “Vorbereitung” mit einfacher Eckklammer ansprechen, bekommen wir eine Liste <em>mit einem Element</em> zurück.</p>
-<div class="sourceCode" id="cb114"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb113"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mastertable</span><span class="op">[[</span><span class="st">"Vorbereitung"</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></code></pre></div>
 <pre><code>## [[1]]
 ## [1] "Lesen Sie die Hinweise zum Modul."                                       
@@ -1220,24 +1221,24 @@ diese einzelnen Elemente ansprechen.</p>
 ## [3] "Lesen Sie die Literatur."</code></pre>
 <p>Wir können also nicht (ohne weiteres “Abschälen”)
 z.B. das zweite Element des Text-Vektors (“Installieren Sie…”) auslesen:</p>
-<div class="sourceCode" id="cb116"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb115"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mastertable</span><span class="op">[[</span><span class="st">"Vorbereitung"</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></code></pre></div>
 <pre><code>## NULL</code></pre>
 <p>Wenn Sie sich über <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck()</a></code> wundern,
 Sie hätten synonym auch schreiben können:</p>
-<div class="sourceCode" id="cb118"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb117"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mastertable</span><span class="op">[[</span><span class="st">"Vorbereitung"</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></code></pre></div>
 <pre><code>## [[1]]
 ## NULL</code></pre>
 <p>Da die Liste nur aus einem Element besteht,
 könnten wir z.B. nicht das zweite Element der Liste ansprechen:</p>
-<div class="sourceCode" id="cb120"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb119"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mastertable</span><span class="op">[[</span><span class="st">"Vorbereitung"</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <pre><code>## Error in mastertable[["Vorbereitung"]][1][[2]]: subscript out of bounds</code></pre>
 <p>Haben wir aber die doppelte Eckklammer verwendet,
 so bekommen wir einen Vektor der Länge drei zurück (vom Typ Text),
 und daher können wir die Elemente 1 bis 3 ansprechen:</p>
-<div class="sourceCode" id="cb122"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb121"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">mastertable</span><span class="op">[[</span><span class="st">"Vorbereitung"</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] "Installieren (oder Updaten) Sie die für dieses Modul angegeben Software."</code></pre>
 <p>Dabei ist es egal, ob Sie einfache oder doppelte Eckklammern benutzen,
@@ -1264,9 +1265,9 @@ Eine Einführung findet sich z.B.</p>
 </h2>
 <p>Manche behaupten, R <a href="https://www.burns-stat.com/pages/Tutor/R_inferno.pdf">sei ein Inferno</a>.</p>
 <p>Zum Glück gibt es auch aufmunternde Stimmen:</p>
-<div class="sourceCode" id="cb124"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb123"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">praise</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/praise/man/praise.html">praise</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "You are epic!"</code></pre>
+<pre><code>## [1] "You are smashing!"</code></pre>
 <p>Hat jemand einen guten Rat für uns?
 Vielleicht ist der häufigste Rate, dass man die <a href="https://en.wikipedia.org/wiki/RTFM">Dokumentation lesen solle</a>.</p>
 </div>
@@ -1574,7 +1575,7 @@ Syntax.</li>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-06-18 18:30:22.</p>
+    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-06-27 22:49:00.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

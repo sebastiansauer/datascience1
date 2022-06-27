@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Kapitel 15 Staunen mit e | DataScience1</title>
+<meta name="author" content="Sebastian Sauer">
+<meta name="description" content="15.1 Lernsteuerung  15.1.1 Lernziele Sie wissen um die Bedeutung von e Sie können die Zahl e herleiten  15.1.2 Literatur Ken Benoit: Lineare Regression mit logarithmischen Transformationen   15.2...">
+<meta name="generator" content="bookdown 0.26 with bs4_book()">
+<meta property="og:title" content="Kapitel 15 Staunen mit e | DataScience1">
+<meta property="og:type" content="book">
+<meta property="og:description" content="15.1 Lernsteuerung  15.1.1 Lernziele Sie wissen um die Bedeutung von e Sie können die Zahl e herleiten  15.1.2 Literatur Ken Benoit: Lineare Regression mit logarithmischen Transformationen   15.2...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kapitel 15 Staunen mit e | DataScience1">
+<meta name="twitter:description" content="15.1 Lernsteuerung  15.1.1 Lernziele Sie wissen um die Bedeutung von e Sie können die Zahl e herleiten  15.1.2 Literatur Ken Benoit: Lineare Regression mit logarithmischen Transformationen   15.2...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><script src="libs/viz-1.8.2/viz.js"></script><link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
+<script src="libs/grViz-binding-1.0.9/grViz.js"></script><script src="libs/es6shim-0.35.6/es6shim.js"></script><script src="libs/es7shim-6.0.0/es7shim.js"></script><script src="libs/graphre-0.1.3/graphre.js"></script><script src="libs/nomnoml-1.4.0/nomnoml.js"></script><script src="libs/nomnoml-binding-0.2.5/nomnoml.js"></script><script src="libs/d3-3.3.8/d3.min.js"></script><script src="libs/dagre-0.4.0/dagre-d3.min.js"></script><link href="libs/mermaid-0.3.0/dist/mermaid.css" rel="stylesheet">
+<script src="libs/mermaid-0.3.0/dist/mermaid.slim.min.js"></script><script src="libs/chromatography-0.1/chromatography.js"></script><script src="libs/DiagrammeR-binding-1.0.9/DiagrammeR.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="style-bs4.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="Grundlagen der Prognosemodellierung 🔮🧰">DataScience1</a>:
+        <small class="text-muted">Grundlagen der Prognosemodellierung 🔮🧰</small>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Zu diesem Buch</a></li>
+<li><a class="" href="hinweise.html"><span class="header-section-number">1</span> Hinweise</a></li>
+<li><a class="" href="pr%C3%BCfung.html"><span class="header-section-number">2</span> Prüfung</a></li>
+<li class="book-part">Themen</li>
+<li><a class="" href="statistisches-lernen.html"><span class="header-section-number">3</span> Statistisches Lernen</a></li>
+<li><a class="" href="r-zweiter-blick.html"><span class="header-section-number">4</span> R, zweiter Blick</a></li>
+<li><a class="" href="tidymodels.html"><span class="header-section-number">5</span> tidymodels</a></li>
+<li><a class="" href="knn.html"><span class="header-section-number">6</span> kNN</a></li>
+<li><a class="" href="resampling-und-tuning.html"><span class="header-section-number">7</span> Resampling und Tuning</a></li>
+<li><a class="" href="logistische-regression.html"><span class="header-section-number">8</span> Logistische Regression</a></li>
+<li><a class="" href="entscheidungsb%C3%A4ume.html"><span class="header-section-number">9</span> Entscheidungsbäume</a></li>
+<li><a class="" href="ensemble-lerner.html"><span class="header-section-number">10</span> Ensemble Lerner</a></li>
+<li><a class="" href="regularisierte-modelle.html"><span class="header-section-number">11</span> Regularisierte Modelle</a></li>
+<li><a class="" href="kaggle.html"><span class="header-section-number">12</span> Kaggle</a></li>
+<li><a class="" href="der-rote-faden.html"><span class="header-section-number">13</span> Der rote Faden</a></li>
+<li><a class="" href="fallstudien.html"><span class="header-section-number">14</span> Fallstudien</a></li>
+<li><a class="active" href="staunen-mit-e.html"><span class="header-section-number">15</span> Staunen mit e</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/sebastiansauer/datascience1">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="staunen-mit-e" class="section level1" number="15">
+<h1>
+<span class="header-section-number">Kapitel 15</span> Staunen mit e<a class="anchor" aria-label="anchor" href="#staunen-mit-e"><i class="fas fa-link"></i></a>
+</h1>
+<div id="lernsteuerung-10" class="section level2" number="15.1">
+<h2>
+<span class="header-section-number">15.1</span> Lernsteuerung<a class="anchor" aria-label="anchor" href="#lernsteuerung-10"><i class="fas fa-link"></i></a>
+</h2>
+<div id="lernziele-12" class="section level3" number="15.1.1">
+<h3>
+<span class="header-section-number">15.1.1</span> Lernziele<a class="anchor" aria-label="anchor" href="#lernziele-12"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li>Sie wissen um die Bedeutung von e</li>
+<li>Sie können die Zahl e herleiten</li>
+</ul>
+</div>
+<div id="literatur-11" class="section level3" number="15.1.2">
+<h3>
+<span class="header-section-number">15.1.2</span> Literatur<a class="anchor" aria-label="anchor" href="#literatur-11"><i class="fas fa-link"></i></a>
+</h3>
+<ul>
+<li><a href="https://kenbenoit.net/assets/courses/ME104/logmodels2.pdf">Ken Benoit: Lineare Regression mit logarithmischen Transformationen</a></li>
+</ul>
+</div>
+</div>
+<div id="vorbereitung-10" class="section level2" number="15.2">
+<h2>
+<span class="header-section-number">15.2</span> Vorbereitung<a class="anchor" aria-label="anchor" href="#vorbereitung-10"><i class="fas fa-link"></i></a>
+</h2>
+<p>In diesem Kapitel werden folgende R-Pakete benötigt:</p>
+<div class="sourceCode" id="cb519"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span></code></pre></div>
+</div>
+<div id="staunen" class="section level2" number="15.3">
+<h2>
+<span class="header-section-number">15.3</span> Staunen<a class="anchor" aria-label="anchor" href="#staunen"><i class="fas fa-link"></i></a>
+</h2>
+<p>Staunen ist der Ursprung der Philosophie und damit des Denkens und damit vielleicht der Wissenschaft,
+wie es vielleicht recht treffend in <a href="https://www.savagechickens.com/2014/03/pig-mysteries.html">diesem Cartoon von Doug Savage, 2014</a> dargestellt ist.</p>
+<p>Staunen rührt her vom Moment der Erkennens, dem Auftun von Verständnistiefe.</p>
+<p>Und Tiefe des Verständnis findet sich vielleicht <a href="https://xkcd.com/435/">am deutlichsten in der Mathematik, meint XKCD</a>.</p>
+</div>
+<div id="exponenzielles-wachstum" class="section level2" number="15.4">
+<h2>
+<span class="header-section-number">15.4</span> Exponenzielles Wachstum<a class="anchor" aria-label="anchor" href="#exponenzielles-wachstum"><i class="fas fa-link"></i></a>
+</h2>
+<p><em>e</em> wie exponenzielles Wachstum: Wachstum mit konstantem Faktor.</p>
+<p>Verdoppeln ist eine wohl bekannte Art des exponenziellen Wachsens:</p>
+<ul>
+<li>Ein Virus vermehrt sich während der Zeitperiode <span class="math inline">\(z\)</span> um den Faktor 2, verdoppelt seine Zahl also.</li>
+<li>Das Kapitel einer Anlage verdoppelt sich während des Zeitraums <span class="math inline">\(z\)</span>.</li>
+<li>Eine Population verdoppelt sich (während eines Zeitraums <span class="math inline">\(z\)</span>).</li>
+</ul>
+<div class="sourceCode" id="cb520"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">d1</span> <span class="op">&lt;-</span>
+  <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>z <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,
+         y <span class="op">=</span> <span class="fl">2</span><span class="op">^</span><span class="va">z</span><span class="op">)</span>
+
+<span class="va">d1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">z</span>, y <span class="op">=</span> <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="200-staunen-mit-e_files/figure-html/unnamed-chunk-3-1.png" width="70%" style="display: block; margin: auto;"></div>
+<p>“Verdoppeln” meint das Gleiche wie “Wachsen um 100%”: Faktor 2 entspricht also 100%.</p>
+<p>Sagen wir, eine Population mit Startgröße 1 verdoppelt sich drei Mal, Wachstum von 100% über drei Perioden:</p>
+<p><span class="math inline">\(1 \cdot 2^3 = 8\)</span></p>
+<p>Danach ist die Population also 8 mal so groß wie vorher.</p>
+<p>Allgemeiner können wir also schreiben</p>
+<p><span class="math inline">\(2^x = (1+ 100\%)^x\)</span>,</p>
+<p>wobei <span class="math inline">\(x\)</span> die Anzahl der betrachteten Zeitperioden meint.</p>
+<p>Wir können auf der Y-Achse auch die Anzahl der Verdopplungen auftragen,
+denn wir wissen ja,
+dass pro Zeitperiode eine Verdopplung dazu kommt,
+nach zwei Zeitperioden also zwei Verdopplungen,
+nach drei Zeitperioden drei Verdopplungen,
+nach vier Zeitperioden vier Verdopplungen …</p>
+<p>Nur sieht das Diagramm dann dröge aus:</p>
+<div class="sourceCode" id="cb521"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">d1a</span> <span class="op">&lt;-</span>
+  <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>z <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,
+         verdopplung <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span>
+
+<span class="va">d1a</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">z</span>, y <span class="op">=</span> <span class="va">verdopplung</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="200-staunen-mit-e_files/figure-html/unnamed-chunk-4-1.png" width="70%" style="display: block; margin: auto;"></div>
+</div>
+<div id="sofortiges-wachstum" class="section level2" number="15.5">
+<h2>
+<span class="header-section-number">15.5</span> Sofortiges Wachstum<a class="anchor" aria-label="anchor" href="#sofortiges-wachstum"><i class="fas fa-link"></i></a>
+</h2>
+<p>Sagen wir, wir bringen ein Kapitel (in Höhe von einer Geldeinheit) zur Bank.
+Die Bank bietet uns eine traumhafte Verzinsung (r wir Rate) von 100$ pro Jahr.</p>
+<p>Um den Zinzeszinseffekt auszunutzen, heben wir das Geld mehrfach unterjährig ab,
+um es sofort wieder anzulegen:</p>
+<div class="sourceCode" id="cb522"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">d2</span> <span class="op">&lt;-</span>
+  <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>
+    r <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">20</span>,
+    y <span class="op">=</span> <span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="fl">1</span><span class="op">/</span><span class="va">r</span><span class="op">)</span><span class="op">^</span><span class="va">r</span>
+  <span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb523"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">d2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">r</span>,
+      y <span class="op">=</span> <span class="va">y</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="200-staunen-mit-e_files/figure-html/unnamed-chunk-6-1.png" width="70%" style="display: block; margin: auto;"></div>
+<p>Können wir mit dieser Methode unendlich viel Geld erzeugen?</p>
+<div class="sourceCode" id="cb524"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">d2</span> <span class="op">&lt;-</span>
+  <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">10</span>,
+         r <span class="op">=</span> <span class="fl">10</span><span class="op">^</span><span class="va">x</span>,
+         y <span class="op">=</span> <span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="fl">1</span><span class="op">/</span><span class="va">r</span><span class="op">)</span><span class="op">^</span><span class="va">r</span><span class="op">)</span>
+
+<span class="va">d2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>digits <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></code></pre></div>
+<div class="inline-table"><table class="table table-sm">
+<thead><tr class="header">
+<th align="right">x</th>
+<th align="right">r</th>
+<th align="right">y</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">0</td>
+<td align="right">1e+00</td>
+<td align="right">2.000000</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="right">1e+01</td>
+<td align="right">2.593742</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="right">1e+02</td>
+<td align="right">2.704814</td>
+</tr>
+<tr class="even">
+<td align="right">3</td>
+<td align="right">1e+03</td>
+<td align="right">2.716924</td>
+</tr>
+<tr class="odd">
+<td align="right">4</td>
+<td align="right">1e+04</td>
+<td align="right">2.718146</td>
+</tr>
+<tr class="even">
+<td align="right">5</td>
+<td align="right">1e+05</td>
+<td align="right">2.718268</td>
+</tr>
+<tr class="odd">
+<td align="right">6</td>
+<td align="right">1e+06</td>
+<td align="right">2.718280</td>
+</tr>
+<tr class="even">
+<td align="right">7</td>
+<td align="right">1e+07</td>
+<td align="right">2.718282</td>
+</tr>
+<tr class="odd">
+<td align="right">8</td>
+<td align="right">1e+08</td>
+<td align="right">2.718282</td>
+</tr>
+<tr class="even">
+<td align="right">9</td>
+<td align="right">1e+09</td>
+<td align="right">2.718282</td>
+</tr>
+<tr class="odd">
+<td align="right">10</td>
+<td align="right">1e+10</td>
+<td align="right">2.718282</td>
+</tr>
+</tbody>
+</table></div>
+<p>Wenn <span class="math inline">\(r\)</span> gegen unendlich geht:</p>
+<p><span class="math display">\[w = e=\lim _{n\to \infty }\left(1+{\frac {1}{r}}\right)^{r}\]</span></p>
+<p><span class="math inline">\(e\)</span> ist das maximale Wachstum, dass man mit sofortiger, stetiger Verzinsung erreichen kann.</p>
+</div>
+<div id="andere-wachstumsraten" class="section level2" number="15.6">
+<h2>
+<span class="header-section-number">15.6</span> Andere Wachstumsraten<a class="anchor" aria-label="anchor" href="#andere-wachstumsraten"><i class="fas fa-link"></i></a>
+</h2>
+<p>50% Wachstum:</p>
+<p><span class="math display">\[\left(1+{\frac {.50}{50}}\right)^{50}=(1+0.01)^{50} \approx 1.64\]</span></p>
+<p>Etwas genauer:</p>
+<div class="sourceCode" id="cb525"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="op">(</span><span class="fl">.50</span><span class="op">/</span><span class="fl">50</span><span class="op">)</span><span class="op">)</span><span class="op">^</span><span class="fl">50</span></code></pre></div>
+<pre><code>## [1] 1.644632</code></pre>
+<p>50% Wachstum bedeutet also 50 Phasen mit je 1% Wachstum …</p>
+<p>Moment, wenn wir 100% Wachstum so darstellen, also als 100 Wachstumsphasen mit je 1% Wachstum:</p>
+<p><span class="math display">\[\left(1+{\frac {1.00}{100}}\right)^{100}=(1+.01)^{100} \approx e\]</span></p>
+<div class="sourceCode" id="cb527"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1.00</span><span class="op">/</span><span class="fl">100</span><span class="op">)</span><span class="op">)</span><span class="op">^</span><span class="fl">100</span></code></pre></div>
+<pre><code>## [1] 2.704814</code></pre>
+</div>
+<div id="wachstum-mit-basis-e" class="section level2" number="15.7">
+<h2>
+<span class="header-section-number">15.7</span> Wachstum mit Basis e<a class="anchor" aria-label="anchor" href="#wachstum-mit-basis-e"><i class="fas fa-link"></i></a>
+</h2>
+<p>Zwei Perioden Wachstum mit sofortiger, stetiger Verzinsung (100%) erhöht das Kapitel um den Faktor <span class="math inline">\(e^2\)</span>. Beginnt man mit dem Kapitel 1, so beträgt das Endkapitel (Wachstum):</p>
+<p><span class="math display">\[w = e \cdot e = e^2\]</span></p>
+<p>Wächst das Kapitel aber nur mit 50%, so gilt (für zwei Zeitperioden):</p>
+<p><span class="math display">\[w= e^{0.5 \cdot 2} = e^1\]</span></p>
+<p>Allgemeiner:</p>
+<p>Das Wachstum <span class="math inline">\(w\)</span> nach <span class="math inline">\(t\)</span> Perioden und Wachstumsfaktor <span class="math inline">\(r\)</span> beträgt e hoch dem Produkt von <span class="math inline">\(r\)</span> und <span class="math inline">\(z\)</span>:</p>
+<p><span class="math display">\[w=e^{r\cdot t}\]</span></p>
+</div>
+<div id="logarithmus" class="section level2" number="15.8">
+<h2>
+<span class="header-section-number">15.8</span> Logarithmus<a class="anchor" aria-label="anchor" href="#logarithmus"><i class="fas fa-link"></i></a>
+</h2>
+<p>Wächst eine Größe stetig (mit 100%) für <span class="math inline">\(t\)</span> Zeiträume, so ist der resultierende Wachstumswert <span class="math inline">\(w = e^r\)</span>.
+Der Logarithmus (zur Basis <span class="math inline">\(e\)</span>) liefert den Exponenten, <span class="math inline">\(r\)</span> zurück.</p>
+<p>Wachstum für zwei Perioden:</p>
+<div class="sourceCode" id="cb529"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">w</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span>
+<span class="va">w</span></code></pre></div>
+<pre><code>## [1] 7.389056</code></pre>
+<p>Wie viele Perioden waren es noch mal?</p>
+<div class="sourceCode" id="cb531"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">w</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<p>Wie lange dauert es, bis wir das Kapitel verdoppelt haben (stetige Verzinsung mit 100%)?</p>
+<div class="sourceCode" id="cb533"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 0.6931472</code></pre>
+<p>Es dauert ca. 0.7 Zeitperioden bis zur Verdopplung.</p>
+</div>
+<div id="regel-der-72" class="section level2" number="15.9">
+<h2>
+<span class="header-section-number">15.9</span> Regel der 72<a class="anchor" aria-label="anchor" href="#regel-der-72"><i class="fas fa-link"></i></a>
+</h2>
+<p>Von dieser Zahl her rührt die “Regel der 72”.</p>
+<p>72 lässt sich angenehm teilen (2,3,4,6,12, …),
+besser als 69.31…</p>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="fallstudien.html"><span class="header-section-number">14</span> Fallstudien</a></div>
+<div class="next"><a href="references.html">References</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#staunen-mit-e"><span class="header-section-number">15</span> Staunen mit e</a></li>
+<li>
+<a class="nav-link" href="#lernsteuerung-10"><span class="header-section-number">15.1</span> Lernsteuerung</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#lernziele-12"><span class="header-section-number">15.1.1</span> Lernziele</a></li>
+<li><a class="nav-link" href="#literatur-11"><span class="header-section-number">15.1.2</span> Literatur</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#vorbereitung-10"><span class="header-section-number">15.2</span> Vorbereitung</a></li>
+<li><a class="nav-link" href="#staunen"><span class="header-section-number">15.3</span> Staunen</a></li>
+<li><a class="nav-link" href="#exponenzielles-wachstum"><span class="header-section-number">15.4</span> Exponenzielles Wachstum</a></li>
+<li><a class="nav-link" href="#sofortiges-wachstum"><span class="header-section-number">15.5</span> Sofortiges Wachstum</a></li>
+<li><a class="nav-link" href="#andere-wachstumsraten"><span class="header-section-number">15.6</span> Andere Wachstumsraten</a></li>
+<li><a class="nav-link" href="#wachstum-mit-basis-e"><span class="header-section-number">15.7</span> Wachstum mit Basis e</a></li>
+<li><a class="nav-link" href="#logarithmus"><span class="header-section-number">15.8</span> Logarithmus</a></li>
+<li><a class="nav-link" href="#regel-der-72"><span class="header-section-number">15.9</span> Regel der 72</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/sebastiansauer/datascience1/blob/master/200-staunen-mit-e.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/sebastiansauer/datascience1/edit/master/200-staunen-mit-e.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>DataScience1</strong>: Grundlagen der Prognosemodellierung 🔮🧰" was written by Sebastian Sauer. It was last built on 2022-06-27 22:49:00.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

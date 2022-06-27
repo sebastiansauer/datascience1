@@ -19,8 +19,21 @@ bookdown::preview_chapter("150-Fallstudien.Rmd")
 
 bookdown::preview_chapter("160-Dimensionsreduktion.Rmd")
 
+bookdown::preview_chapter("200-staunen-mit-e.Rmd")
+
 bookdown::render_book("index.Rmd", 
                       output_format = "bookdown::bs4_book")
 
 #bookdown::render_book("index.Rmd", output_format = "bookdown::gitbook")
 #bookdown::render_book("index.Rmd", output_format = "bookdown::pdf_book")
+
+
+options(bookdown.clean_book = TRUE)
+bookdown::clean_book(clean = getOption("bookdown.clean_book", FALSE))
+
+
+
+bookdown::render_book(input = "index.Rmd",
+                      output_format = "pagedown::html_paged",
+                      clean = TRUE,
+                      output_dir = "docs/html-paged")

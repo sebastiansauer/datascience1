@@ -416,3 +416,15 @@ fallstudien-zu-linearen-modellen
 fallstudien-zum-maschinellen-lernen-mit-tidymodels
 aufgaben-11
 vertiefung-7
+staunen-mit-e
+lernsteuerung-10
+lernziele-12
+literatur-11
+vorbereitung-10
+staunen
+exponenzielles-wachstum
+sofortiges-wachstum
+andere-wachstumsraten
+wachstum-mit-basis-e
+logarithmus
+regel-der-72

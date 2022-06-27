@@ -168,14 +168,14 @@ Keine Option wird als besser oder schlechter gewertet (vermutlich ist Rmd für S
 
 Sie können Ihr Analysedokument z.B. so gliedern:
 
-    1. Forschungsfrage und Hintergrund (Beschreiben Sie kurz, worum es geht)
-    2. Vorbereitung (Pakete laden, Daten importieren, etc.)
-    3. Explorative Datenanalyse (Untersuchen Sie den Datensatz nach Auffälligkeiten, die Sie dann beim Modellieren nutzen)
-    4. Modellieren (Mehrere Prognosemodelle, z.B. via `lm(av ~ uv)`)
-    5. Vorhersagen (Vorhersage der Test-Daten anhand des besten Vorhersagemodells und Einreichen)
+1. Forschungsfrage und Hintergrund (Beschreiben Sie kurz, worum es geht)
+2. Vorbereitung (Pakete laden, Daten importieren, etc.)
+3. Explorative Datenanalyse (Untersuchen Sie den Datensatz nach Auffälligkeiten, die Sie dann beim Modellieren nutzen)
+4. Modellieren (Mehrere Prognosemodelle, z.B. via `lm(av ~ uv)`)
+5. Vorhersagen (Vorhersage der Test-Daten anhand des besten Vorhersagemodells und Einreichen)
 
 Die Gliederung ist kein Muss; andere Gliederung sind auch möglich.
-Entscheidend ist die fachliche Angemessenheit und die Reproduzierbarkiet.
+Entscheidend ist die fachliche Angemessenheit und die Reproduzierbarkeit.
 
 
 ### Abschnitt Forschungsfrage und Hintergrund
@@ -361,7 +361,7 @@ Eine gute Modellierung auf den *Trainingsdaten* (z.B. hohes $R^2$) bedeutet nich
 
 7. Ein ausgedrucktes Exemplar muss nicht abgegeben werden.
 
-8. Während der Prüfungsphase werden keine inhaltlichen Fragen ("wie macht man nochmal eine Log-Transformation?") und keine technischen Fragen ("wie installiert man nochmal ein R-Paket?") beantwortet.
+8. Während der Prüfungsphase werden *keine* *inhaltlichen* Fragen ("wie macht man nochmal eine Log-Transformation?") und keine *technischen* Fragen ("wie installiert man nochmal ein R-Paket?") beantwortet.
 
 
 
@@ -381,7 +381,7 @@ Im Internet finden sich viele Fallstudien, von denen Sie sich inspirieren lassen
 
 ### Materialsammlung
 
-In [diesem Ordner]((https://github.com/sebastiansauer/Lehre/tree/main/Hinweise/Prognosewettbewerb) finden Sie eine Materialsammlung zum Prognosewettbewerb.
+In [diesem Ordner](https://github.com/sebastiansauer/Lehre/tree/main/Hinweise/Prognosewettbewerb) finden Sie eine Materialsammlung zum Prognosewettbewerb.
 
 
 
