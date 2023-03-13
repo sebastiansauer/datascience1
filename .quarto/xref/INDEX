@@ -1,0 +1,20 @@
+{
+  "index.qmd": {
+    "index.html": "7a777320"
+  },
+  "010-Hinweise.qmd": {
+    "010-Hinweise.html": "d6078cc6"
+  },
+  "030-Pruefung.qmd": {
+    "030-Pruefung.html": "4b3ea48f"
+  },
+  "040-Statistisches-Lernen.qmd": {
+    "040-Statistisches-Lernen.html": "43fde5f0"
+  },
+  "references.qmd": {
+    "references.html": "8aadee32"
+  },
+  "050-R-Vertiefung.qmd": {
+    "050-R-Vertiefung.html": "54378601"
+  }
+}
