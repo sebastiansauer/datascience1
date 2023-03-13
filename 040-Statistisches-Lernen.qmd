@@ -1,0 +1,564 @@
+
+
+# Statistisches Lernen 
+
+
+
+
+```{r echo = FALSE}
+knitr::knit_hooks$set(crop = knitr::hook_pdfcrop)
+library(nomnoml)
+```
+
+
+
+
+
+
+## Lernsteuerung
+
+### Vorbereitung
+
+- Lesen Sie die Hinweise zum Modul.
+- Installieren (oder Updaten) Sie die für dieses Modul angegeben Software.
+ Lesen Sie die Literatur.
+
+
+###  Lernziele
+
+- Sie können erläutern, was man unter statistischem Lernen versteht.
+ Sie wissen, war Overfitting ist, wie es entsteht, und wie es vermieden werden kann.
+ Sie kennen verschiedenen Arten von statistischem Lernen und können Algorithmen zu diesen Arten zuordnen.
+
+
+###  Literatur
+
+- Rhys, Kap. 1
+- evtl. Sauer, Kap. 15
+
+
+### Hinweise
+
+- Bitte beachten Sie die Hinweise zum Präsenzunterricht und der Streamingoption.
+- Bitte stellen Sie sicher, dass Sie einen einsatzbereiten Computer haben und dass die angegebene Software (in aktueller Version) läuft.
+
+
+### R-Pakete
+
+
+
+
+Benötigte R-Pakete für dieses Kapitel:
+
+```{r}
+library(tidyverse)
+```
+
+
+## Was ist Data Science?
+
+
+Es gibt mehrere Definitionen von *Data Science*, aber keinen kompletten Konsens.
+@baumer_modern_2017 definieren Data Science wie folgt (S. 4):
+
+
+::::{.callout-note}
+The science of extracting meaningful information from data.$\square$
+:::
+
+Auf der anderen Seite entgegen viele Statistiker: "Hey, das machen wir doch schon immer!".
+
+
+Eine Antwort auf diesen Einwand ist, dass in Data Science nicht nur die Statistik eine Rolle spielt, sondern auch die Informatik sowie - zu einem geringen Teil - die Fachwissenschafte ("Domäne"), die sozusagen den Empfänger bzw. die Kunden oder den Rahmen stellt.
+Dieser "Dreiklang" ist in folgendem Venn-Diagramm dargestellt.
+
+
+
+
+
+<script type="module" src="https://unpkg.com/venny?module"></script>
+
+<venn-diagram>
+  <venn-set name="A" label="Statistik"></venn-set>
+  <venn-set name="B" label="Informatik"></venn-set>
+  <venn-set name="C" label="Domäne" size = "5"></venn-set>
+  <venn-n sets="A B C">
+</venn-diagram>
+
+
+
+
+## Was ist Machine Learning?
+
+
+:::{#def-ml}
+*Maschinelles Lernen* (ML), oft auch (synonym) als *statistisches Lernen* (statistical learning) bezeichnet, ist ein Teilgebiet der *künstlichen Intelligenz* (KI; artificial intelligence, AI) [@rhys]. ML wird auch als *data-based* bezeichnet in Abgrenzung von *rule-based*, was auch als "klassische KI" bezeichnet wird, vgl. @fig-ai-ml2.
+:::
+
+
+
+
+```{mermaid}
+%%| label: fig-ai-ml2
+%%| fig-cap: "KI und Maschinelles Lernen"
+
+flowchart LR
+  subgraph KI[Künstliche Intelligenz KI]
+    rb[rule based]
+    db[data based]
+  end   
+```
+
+
+
+
+In beiden Fällen finden Algorithmen Verwendung.
+
+:::{#def-algo}
+### Algorithmus
+Algorithmen sind nichts anderes als genaue Schritt-für-Schritt-Anleitungen, um etwas zu erledigen.$\square$
+:::
+
+
+:::{#exm-algo}
+Ein Kochrezept ist ein klassisches Beispiel für einen Algorithmus.$\square$
+:::
+
+[Hier](https://www.c-programming-simple-steps.com/images/xsum-two-numbers-h.png.pagespeed.ic.AM9WYFPgEo.webp) findet sich ein Beispiel für einen einfachen Additionsalgorithmus.
+
+
+
+Es gibt viele ML-Algorithmen, vgl. @fig-algos.
+
+
+```{mermaid}
+%%| label: fig-algos
+%%| fig-cap: ML-Matroschka
+
+flowchart LR
+  subgraph KI[KI]
+    subgraph ML[ML]
+      A[Regression]
+      B[Neuronale Netze]
+      C[weitere]
+    end
+  end
+```
+
+
+
+### Rule-based
+
+Klassische (ältere) KI implementiert Regeln "hartverdrahtet" in ein Computersystem. 
+Nutzer füttern Daten in dieses System. Das System leitet dann daraus Antworten ab.
+
+*Regeln* kann man prototypisch mit *Wenn-Dann-Abfragen* darstellen:
+
+
+```{r echo = TRUE}
+lernzeit <- c(0, 10, 10, 20)
+schlauer_nebensitzer <- c(FALSE, FALSE, TRUE, TRUE)
+
+for (i in 1:4) {
+  if (lernzeit[i] > 10) {
+    print("bestanden!")
+  } else {
+    if (schlauer_nebensitzer[i] == TRUE) {
+      print("bestanden!")
+    } else print("Durchgefallen!")
+  }
+}
+```
+
+
+Sicherlich könnte man das schlauer programmieren, vielleicht so:
+
+```{r echo = TRUE}
+d <- 
+  tibble(
+  lernzeit = c(0, 10, 10, 20),
+  schlauer_nebensitzer = c(FALSE, FALSE, TRUE, TRUE)
+)
+
+d %>% 
+  mutate(bestanden = ifelse(lernzeit > 10 | schlauer_nebensitzer == TRUE, TRUE, FALSE))
+```
+
+
+
+### Data-based
+
+ML hat zum Ziel, Regeln aus den Daten zu lernen. Man füttert Daten und Antworten in das System, das System gibt Regeln zurück.
+
+
+
+@islr definieren ML so:
+Nehmen wir an, wir haben die abhängige Variable $Y$ und $p$ Prädiktoren, $X_1,X_2, \ldots, X_p$.
+Weiter nehmen wir an, die Beziehung zwischen $Y$ und $X = (X_1, X_2, \ldots, X_p)$ kann durch eine Funktion $f$ beschrieben werden.
+Das kann man so darstellen:
+
+$$Y = f(X) + \epsilon$$
+
+ML kann man auffassen als eine Menge an Verfahren, um $f$ zu schätzen.
+
+Ein Beispiel ist in Abb. @fig-statlearning gezeigt [@islr].
+
+![Vorhersage des Einkommens durch Ausbildungsjahre](img/2-2.png){#fig-statlearning}
+
+
+Natürlich kann $X$ mehr als eine Variable beinhalten, vgl. @fig-sl2) [@islr].
+
+![Vorhersage des Einkommens als Funktion von Ausbildungsjahren und Dienstjahren](img/2-3.png){#fig-sl2}
+
+
+Anders gesagt: traditionelle KI-Systeme werden mit Daten und Regeln gefüttert und liefern Antworten.
+ML-Systeme werden mit Daten und Antworten gefüttert und liefern Regeln zurück, s.  @fig-ki-ml2.
+
+```{mermaid}
+%%| label: fig-ki-ml2
+%%| fig-cap: "Vergleich von klassischer KI (rule-based) und ML (data-based)"
+flowchart LR
+  subgraph rb[rule-based]
+  D[Daten] -->A[Antworten]
+  R[Regeln] -->A
+  end
+  subgraph db[data-based]
+  D2[Daten] --> R2[Regeln]
+  A2[Antworten] --> R2
+  end
+```
+
+
+
+## Modell vs. Algorithmus
+
+
+### Modell 
+
+Ein Modell, s. Abb. @fig-vw) [@spurzem_vw_2017]!
+
+![Ein Modell-Auto](img/vw_modell.JPG){#fig-vw width="33%"}
+
+
+
+
+Wie man sieht, ist ein Modell eine vereinfachte Repräsentation eines Gegenstands.
+
+Der Gegenstand definiert (gestaltet) das Modell. Das Modell ist eine Vereinfachung des Gegenstands, vgl. Abb. @fig-modell).
+
+
+![Gegenstand und Modell](img/Modell-crop.png){#fig-modell}
+
+Im maschinellen Lernen meint ein Modell, praktisch gesehen, die Regeln,
+die aus den Daten gelernt wurden.
+
+
+### Beispiel für einen ML-Algorithmus
+
+Unter einem ML-Algorithmus versteht man das (mathematische oder statistische) Verfahren,
+anhand dessen die Beziehung zwischen $X$ und $Y$ "gelernt" wird. Bei @rhys (S. 9) findet sich dazu ein Beispiel, das kurz zusammengefasst etwa so lautet:
+
+
+*Beispiel eines Regressionsalgorithmus*
+
+1. Setze Gerade in die Daten mit $b_0 = \hat{y}, b_1 = 0$
+2. Berechne $MSS = \sum (y_i - \hat{y_i})^2$
+3. "Drehe" die Gerade ein bisschen, d.h. erhöhe $b_1^{neu} = b_1^{alt} + 0.1$
+4. Wiederhole 2-3 solange, bis $MSS < \text{Zielwert}$
+
+
+Diesen Algorithmus kann man "von Hand" z.B. mit [dieser App](https://shinyapps.org/showapp.php?app=https://shiny.psy.lmu.de/felix/lmfit&by=Felix%20Sch%C3%B6nbrodt&title=Find-a-fit!&shorttitle=Find-a-fit!) durchspielen.
+
+
+## Taxonomie
+
+Methoden des maschinellen Lernens lassen sich verschiedentlich gliedern.
+Eine typische Gliederung unterscheidet in *supervidierte* (geleitete) und *nicht-supervidierte* (ungeleitete) Algorithmen, s. Abb. @fig-taxonomie).
+
+
+```{mermaid}
+%%| fig-cap: Taxonomie der Arten des maschinellen Lernens
+%%| label: fig-taxonomie
+
+flowchart LR
+  ML[Maschinelles Lernen]
+  SL[Supervidiertes Lernen]
+  NSL[Nicht-supervidiertes Lernen]
+  Re[Regression]
+  Class[Klassifikation]
+  DimRed[Dimensionsreduktion]
+  Clust[Clustering]
+  ML --> SL
+  ML --> NSL
+  SL --> Re
+  SL --> Class
+  NSL --> DimRed
+  NSL --> Clust
+
+```
+
+
+
+### Geleitetes Lernen
+
+Die zwei Phasen des geleiteten Lernens sind in Abb. @fig-supervid) dargestellt.
+
+```{mermaid}
+%%| label: fig-supervid
+%%| fig-cap: "Geleitetes Lernen geschieht in zwei Phasen"
+
+
+flowchart TD
+  subgraph A[Lernphase]
+    B[Daten mit Antwort] --> C[Geleiteter Algorithmus]
+    C --> D[Modell]
+  end
+  subgraph E[Vorhersagephase]
+    H[Neue Daten ohne Antwort] --> F[Modell]
+    F --> G[Antworten]
+  end
+  A-->E
+```
+
+
+#### Regression: Numerische Vorhersage
+
+
+```{r}
+ggplot(mtcars) +
+  aes(x = hp, y = mpg) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  theme_minimal()
+```
+
+
+Die Modellgüte eines numerischen Vorhersagemodells wird oft mit (einem der) folgenden *Gütekoeffizienten* gemessen:
+
+- Mean Squared Error (Mittlerer Quadratfehler):
+
+$$MSE := \frac{1}{n} \sum (y_i - \hat{y}_i)^2$$
+
+
+- Mean Absolute Error (Mittlerer Absolutfehler):
+
+$$MAE :=  \frac{1}{n} \sum |(y_i - \hat{y}_i)|$$
+
+
+:::: {.infobox .caution}
+Wir sind nicht adaran interessiert die Vorhersagegenauigkeit in den bekannten Daten einzuschätzen, sondern im Hinblick auf neue Daten, die in der Lernphase dem Modell nicht bekannt waren.
+:::
+
+
+#### Klassifikation: Nominale Vorhersage
+
+![Bei einer Klassifikation wird nicht eine Zahl, sondern eine Klasse vorhergesagt](img/aktien-plot-1.png)
+
+
+Die Modellgüte eines numerischen Vorhersagemodells wird oft mit folgendem *Gütekoeffizienten* gemessen:
+
+- Mittlerer Klassifikationfehler $e$:
+
+$$e := \frac{1}{n} I(y_i \ne \hat{y}_i) $$
+
+Dabei ist $I$ eine Indikatorfunktion, die `1` zurückliefert, 
+wenn tatsächlicher Wert und vorhergesagter Wert identisch sind.
+
+### Ungeleitetes Lernen
+
+Die zwei Phasen des ungeleiteten Lernens sind in @fig-unsuper dargestellt.
+
+
+
+```{mermaid}
+%%| label: fig-unsuper
+%%| fig-cap: "Die zwei Phasen des unüberwachten Lernens"
+
+
+flowchart LR
+  subgraph X[Lernphase]
+    A[Daten ohne Antwort] --> B[Ungeleiteter Algorithmus]
+    B --> C[Modell]
+  end
+  subgraph D[Vorhersagephase]
+    E[Neue Daten, ohne Antwort] --> C2[Modell]
+    C2 --> F[Zuordnung zu den Regeln des Modells]
+  end  
+  X--->D
+```
+
+
+
+Ungeleitetes Lernen kann man wiederum in zwei Arten unterteilen, vgl. Abb. @fig-ungel):
+
+1. Fallreduzierendes Modellieren (Clustering)
+2. Dimensionsreduzierendes Modellieren (z.B. Faktorenanalyse)
+
+![Zwei Arten des ungeleitete Modellieren](img/ungeleitetes_Modellieren_crop.png){#fig-ungel}
+
+
+
+
+## Ziele des ML
+
+Man kann vier Ziele des ML unterscheiden, s. @fig-ziele.
+
+```{mermaid}
+%%| label: fig-ziele
+%%| fig-cap: Ziele des maschinellen Lernens
+flowchart TD
+  ML[Maschinelles Lernen]
+  V[Vorhersage]
+  E[Erklärung/kausal]
+  B[Beschreibung]
+  DimRed[Dimensionsreduktion]
+  ML --> V
+  ML --> E
+  ML --> B
+  ML --> DimRed
+```
+
+*Vorhersage* bezieht sich auf die Schätzung der Werte von Zielvariablen (sowie die damit verbundene Unsicherheit).
+*Erklärung* meint die kausale Analyse von Zusammenhängen.
+*Beschreibung* ist praktisch gleichzusetzen mit der Verwendung von deskriptiven Statistiken.
+*Dimensionsreduktion* ist ein Oberbegriff für Verfahren, die die Anzahl der Variablen (Spalten) oder der Beobachtungen (Zeilen) verringert.s
+
+
+Wie "gut" ein Modell ist, quantifiziert man in verschiedenen Kennzahlen; man spricht von Modellgüte oder *model fit*. 
+Je schlechter die Modellgüte, desto höher der *Modellfehler*, vgl. @fig-resid.
+
+
+![Wenig (links) vs. viel (rechts) Vorhersagefehler](img/resids-plot-1.png){#fig-resid}
+
+
+
+
+
+Die Modellgüte eines Modells ist v.a. relevant für *neue Beobachtungen*,
+an denen das Modell *nicht* trainiert wurde.
+
+
+
+
+
+## Über- vs. Unteranpassung
+
+
+:::{#def-overfit}
+
+### Overfitting
+Ein Modell sagt die Trainingsdaten zu genau vorher - es nimmt Rauschen als "bare Münze", also fälschlich als Signal. Solche Modelle haben zu viel *Varianz* in ihren Vorhersagen.$\square$
+:::
+
+
+:::{#def-underfit}
+### Underfitting
+Ein Modell ist zu simpel (ungenau, grobkörnig) - es unterschlägt Nuancen des tatsächlichen Musters. Solche Modelle haben zu viel *Verzerrung* (Bias) in ihren Vorhersagen.$\square$
+:::
+
+
+Welches der folgenden Modelle (B,C,D) passt am besten zu den Daten (A), s. @fig-overunder), vgl. [@modar], Kap. 15?
+
+```{r overunder}
+#| echo: false
+#| label: fig-overunder
+#| fig-cap: "Over- vs. Underfitting"
+knitr::include_graphics("img/overfitting-4-plots-1.png")
+```
+
+
+Welches Modell wird wohl neue Daten am besten vorhersagen? Was meinen Sie?
+
+Modell D zeigt sehr gute Beschreibung ("Retrodiktion") der Werte, anhand derer das Modell trainiert wurde ("Trainingsstichprobe").
+Wird es aber "ehrlich" getestet, d.h. anhand neuer Daten ("Test-Stichprobe"),
+wird es vermutlich *nicht* so gut abschneiden.
+
+
+Es gilt, ein Modell mit "mittlerer" Komplexität zu finden, um Über- und Unteranpassung in Grenzen zu halten.
+Leider ist es nicht möglich, vorab zu sagen, was der richtige, "mittlere" Wert an Komplexität eines Modells ist, vgl. @fig-overfitting aus [@modar].
+
+
+![Mittlere Modellkomplexität führt zur besten Vorhersagegüte: Gute Balance von Bias und Präzision](img/overfitting-crop.png){#fig-overfitting width="50%"}
+
+
+
+
+## No free lunch
+
+![Yoda meint: Es gibt nicht "das" beste Modell](img/yoda-best-model.jpg){width="50%"}
+
+[Quelle: ImgFlip Meme Generator](https://imgflip.com/i/687izk)
+
+
+
+Wenn $f$ (die Beziehung zwischen $Y$ und $X$, auch *datengenerierender Prozess* genannt) linear oder fast linear ist,
+dann wird ein lineare Modell gute Vorhersagen liefern, vgl. Abb. \@ref(fig:2-10) aus @islr, dort zeigt die schwarze Linie den "wahren Zusammenhang", also $f$ an. In orange sieht man ein lineares Modell, in grün ein hoch komplexes Modell,
+das sich in einer "wackligen" Funktion - also mit hoher Varianz - 
+niederschlägt. Das grüne Modell könnte z.B. ein Polynom-Modell hohen Grades sein, z. B. 
+$y = b_0 + b_1 x^{10} + b_2 x^9 + \ldots + b_11 x^1 + \epsilon$. 
+Das lineare Modell hat hingegen wenig Varianz und in diesem Fall wenig Bias.
+Daher ist es für dieses $f$ gut passend.
+Die grüne Funktion zeigt dagegen Überanpassung (overfitting), 
+also viel Modellfehler (für eine Test-Stichprobe).
+
+
+:::: {.callout-caution}
+Die grüne Funktion in  @fig-2-10 wird neue, beim Modelltraining unbekannte Beobachtungen ($y_0$) vergleichsweise schlecht vorhersagen. In @fig-2-11 ist es umgekehrt.
+:::
+
+![Ein lineare Funktion verlangt ein lineares Modell; ein nichtlineares Modell wird in einem höheren Vorhersagefehler (bei neuen Daten!) resultieren](img/2-10.png){#fig-2-10}
+
+
+
+Betrachten wir im Gegensatz dazu  @fig-2-11 aus @islr, die (in schwarz) eine hochgradig *nichtlineare* Funktion $f$ zeigt.
+Entsprechend wird das lineare Modell (orange) nur schlechte Vorhersagen erreichen - es hat zu viel Bias, da zu simpel. 
+Ein lineares Modell wird der Komplexität von $f$ nicht gerecht,
+Unteranpassung (underfitting) liegt vor.
+
+
+
+![Eine nichtlineare Funktion (schwarz) verlangt eine nichtlineares Modell. Ein lineares Modell (orange) ist unterangepasst und hat eine schlechte Vorhersageleistung](2-11.png){#fig-2-11}
+
+
+
+## Bias-Varianz-Abwägung
+
+Der Gesamtfehler $E$ des Modells ist die Summe dreier Terme:
+
+$$E = (y - \hat{y}) = \text{Bias} + \text{Varianz} + \epsilon$$
+
+Dabei meint $\epsilon$ den *nicht reduzierbaren Fehler*, z.B. weil dem Modell Informationen fehlen. So kann man etwa auf der Motivation von Studentis keine perfekte Vorhersage ihrer Noten erreichen (lehrt die Erfahrung).
+
+Bias und Varianz sind Kontrahenten: Ein Modell, das wenig Bias hat, neigt tendenziell zu wenig Varianz und umgekehrt, vgl.  @fig-bias-var aus @modar.
+
+
+![Abwängung von Bias vs. Varianz](img/plot-bias-variance-1.png){#fig-bias-var}
+
+
+
+
+
+
+
+## Vertiefung
+
+
+- [Verdienst einer deutschen Data Scientistin](https://www.zeit.de/arbeit/2020-10/data-scientist-gehalt-geldanlage-programmieren-kontoauszug)
+- [Weitere Fallstudie zum Thema Regression auf Kaggle](https://www.kaggle.com/micahshull/r-bike-sharing-linear-regression)
+- [Crashkurs Data Science (Coursera, Johns Hopkins University) mit 'Star-Dozenten'](https://www.coursera.org/learn/data-science-course)
+- [Arbeiten Sie diese Regressionsfallstudie (zum Thema Gehalt) auf Kaggle auf](https://www.kaggle.com/pranjalpandey12/performing-simple-linear-regression-in-r)
+- [Werfen Sie einen Blick in diese Fallstudie auf Kaggle zum Thema Hauspreise](https://www.kaggle.com/lazaro97/data-preprocessing-and-linear-regression-with-r)
+- [Wiederholen Sie unser Vorgehen in der Fallstudie zu den Flugverspätungen](https://data-se.netlify.app/2021/03/10/fallstudie-modellierung-von-flugversp%C3%A4tungen/)
+
+
+
+##  Aufgaben:
+- [Machen Sie sich mit 'Kaggle' vertraut](https://www.kaggle.com/)
+- [Bearbeiten Sie die Fallstudie 'TitaRnic' auf Kaggle](https://www.kaggle.com/code/headsortails/tidy-titarnic/report)
+- [Machen Sie sich mit dieser einfachen Fallstudie zur linearen Regression vertraut: The Movie Data Base Revenue (Kaggle)](https://www.kaggle.com/code/ssauer/notebook9188bfa616)
+
+
+##  Videos
+
+- [Prognose-Wettbewerbe bei Kaggle am Beispiel von *The Movie Data Base Revenue*](https://youtu.be/vR9l-k50I1M)
+  

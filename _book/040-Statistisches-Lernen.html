@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.247">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Grundlagen der Prognosemodellierung 🔮🧰 - 4&nbsp; Statistisches Lernen</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./050-R-Vertiefung.html" rel="next">
+<link href="./030-Pruefung.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Keine Treffer",
+    "search-matching-documents-text": "Treffer",
+    "search-copy-link-title": "Link in die Suche kopieren",
+    "search-hide-matches-text": "Zusätzliche Treffer verbergen",
+    "search-more-match-text": "weitere Treffer in diesem Dokument",
+    "search-more-matches-text": "weitere Treffer in diesem Dokument",
+    "search-clear-button-title": "Zurücksetzen",
+    "search-detached-cancel-button-title": "Abbrechen",
+    "search-submit-button-title": "Abschicken"
+  }
+}</script><meta name="mermaid-theme" content="neutral">
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script><script src="site_libs/quarto-diagram/mermaid-init.js"></script><link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><link rel="stylesheet" href="styles.css">
+</head>
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./040-Statistisches-Lernen.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Statistisches Lernen</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Grundlagen der Prognosemodellierung 🔮🧰</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Suchen"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Zu diesem Buch</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./010-Hinweise.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Hinweise</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./030-Pruefung.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Prüfung</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./040-Statistisches-Lernen.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Statistisches Lernen</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./050-R-Vertiefung.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">R, zweiter Blick</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul>
+<li>
+<a href="#lernsteuerung" id="toc-lernsteuerung" class="nav-link active" data-scroll-target="#lernsteuerung"><span class="header-section-number">4.1</span> Lernsteuerung</a>
+  <ul class="collapse">
+<li><a href="#vorbereitung" id="toc-vorbereitung" class="nav-link" data-scroll-target="#vorbereitung"><span class="header-section-number">4.1.1</span> Vorbereitung</a></li>
+  <li><a href="#lernziele" id="toc-lernziele" class="nav-link" data-scroll-target="#lernziele"><span class="header-section-number">4.1.2</span> Lernziele</a></li>
+  <li><a href="#literatur" id="toc-literatur" class="nav-link" data-scroll-target="#literatur"><span class="header-section-number">4.1.3</span> Literatur</a></li>
+  <li><a href="#hinweise" id="toc-hinweise" class="nav-link" data-scroll-target="#hinweise"><span class="header-section-number">4.1.4</span> Hinweise</a></li>
+  <li><a href="#r-pakete" id="toc-r-pakete" class="nav-link" data-scroll-target="#r-pakete"><span class="header-section-number">4.1.5</span> R-Pakete</a></li>
+  </ul>
+</li>
+  <li><a href="#was-ist-data-science" id="toc-was-ist-data-science" class="nav-link" data-scroll-target="#was-ist-data-science"><span class="header-section-number">4.2</span> Was ist Data Science?</a></li>
+  <li>
+<a href="#was-ist-machine-learning" id="toc-was-ist-machine-learning" class="nav-link" data-scroll-target="#was-ist-machine-learning"><span class="header-section-number">4.3</span> Was ist Machine Learning?</a>
+  <ul class="collapse">
+<li><a href="#rule-based" id="toc-rule-based" class="nav-link" data-scroll-target="#rule-based"><span class="header-section-number">4.3.1</span> Rule-based</a></li>
+  <li><a href="#data-based" id="toc-data-based" class="nav-link" data-scroll-target="#data-based"><span class="header-section-number">4.3.2</span> Data-based</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#modell-vs.-algorithmus" id="toc-modell-vs.-algorithmus" class="nav-link" data-scroll-target="#modell-vs.-algorithmus"><span class="header-section-number">4.4</span> Modell vs.&nbsp;Algorithmus</a>
+  <ul class="collapse">
+<li><a href="#modell" id="toc-modell" class="nav-link" data-scroll-target="#modell"><span class="header-section-number">4.4.1</span> Modell</a></li>
+  <li><a href="#beispiel-f%C3%BCr-einen-ml-algorithmus" id="toc-beispiel-für-einen-ml-algorithmus" class="nav-link" data-scroll-target="#beispiel-f%C3%BCr-einen-ml-algorithmus"><span class="header-section-number">4.4.2</span> Beispiel für einen ML-Algorithmus</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#taxonomie" id="toc-taxonomie" class="nav-link" data-scroll-target="#taxonomie"><span class="header-section-number">4.5</span> Taxonomie</a>
+  <ul class="collapse">
+<li><a href="#geleitetes-lernen" id="toc-geleitetes-lernen" class="nav-link" data-scroll-target="#geleitetes-lernen"><span class="header-section-number">4.5.1</span> Geleitetes Lernen</a></li>
+  <li><a href="#ungeleitetes-lernen" id="toc-ungeleitetes-lernen" class="nav-link" data-scroll-target="#ungeleitetes-lernen"><span class="header-section-number">4.5.2</span> Ungeleitetes Lernen</a></li>
+  </ul>
+</li>
+  <li><a href="#ziele-des-ml" id="toc-ziele-des-ml" class="nav-link" data-scroll-target="#ziele-des-ml"><span class="header-section-number">4.6</span> Ziele des ML</a></li>
+  <li><a href="#%C3%BCber--vs.-unteranpassung" id="toc-über--vs.-unteranpassung" class="nav-link" data-scroll-target="#%C3%BCber--vs.-unteranpassung"><span class="header-section-number">4.7</span> Über- vs.&nbsp;Unteranpassung</a></li>
+  <li><a href="#no-free-lunch" id="toc-no-free-lunch" class="nav-link" data-scroll-target="#no-free-lunch"><span class="header-section-number">4.8</span> No free lunch</a></li>
+  <li><a href="#bias-varianz-abw%C3%A4gung" id="toc-bias-varianz-abwägung" class="nav-link" data-scroll-target="#bias-varianz-abw%C3%A4gung"><span class="header-section-number">4.9</span> Bias-Varianz-Abwägung</a></li>
+  <li><a href="#vertiefung" id="toc-vertiefung" class="nav-link" data-scroll-target="#vertiefung"><span class="header-section-number">4.10</span> Vertiefung</a></li>
+  <li><a href="#aufgaben" id="toc-aufgaben" class="nav-link" data-scroll-target="#aufgaben"><span class="header-section-number">4.11</span> Aufgaben:</a></li>
+  <li><a href="#videos" id="toc-videos" class="nav-link" data-scroll-target="#videos"><span class="header-section-number">4.12</span> Videos</a></li>
+  </ul></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">
+<span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Statistisches Lernen</span>
+</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header><section id="lernsteuerung" class="level2" data-number="4.1"><h2 data-number="4.1" class="anchored" data-anchor-id="lernsteuerung">
+<span class="header-section-number">4.1</span> Lernsteuerung</h2>
+<section id="vorbereitung" class="level3" data-number="4.1.1"><h3 data-number="4.1.1" class="anchored" data-anchor-id="vorbereitung">
+<span class="header-section-number">4.1.1</span> Vorbereitung</h3>
+<ul>
+<li>Lesen Sie die Hinweise zum Modul.</li>
+<li>Installieren (oder Updaten) Sie die für dieses Modul angegeben Software. Lesen Sie die Literatur.</li>
+</ul></section><section id="lernziele" class="level3" data-number="4.1.2"><h3 data-number="4.1.2" class="anchored" data-anchor-id="lernziele">
+<span class="header-section-number">4.1.2</span> Lernziele</h3>
+<ul>
+<li>Sie können erläutern, was man unter statistischem Lernen versteht. Sie wissen, war Overfitting ist, wie es entsteht, und wie es vermieden werden kann. Sie kennen verschiedenen Arten von statistischem Lernen und können Algorithmen zu diesen Arten zuordnen.</li>
+</ul></section><section id="literatur" class="level3" data-number="4.1.3"><h3 data-number="4.1.3" class="anchored" data-anchor-id="literatur">
+<span class="header-section-number">4.1.3</span> Literatur</h3>
+<ul>
+<li>Rhys, Kap. 1</li>
+<li>evtl. Sauer, Kap. 15</li>
+</ul></section><section id="hinweise" class="level3" data-number="4.1.4"><h3 data-number="4.1.4" class="anchored" data-anchor-id="hinweise">
+<span class="header-section-number">4.1.4</span> Hinweise</h3>
+<ul>
+<li>Bitte beachten Sie die Hinweise zum Präsenzunterricht und der Streamingoption.</li>
+<li>Bitte stellen Sie sicher, dass Sie einen einsatzbereiten Computer haben und dass die angegebene Software (in aktueller Version) läuft.</li>
+</ul></section><section id="r-pakete" class="level3" data-number="4.1.5"><h3 data-number="4.1.5" class="anchored" data-anchor-id="r-pakete">
+<span class="header-section-number">4.1.5</span> R-Pakete</h3>
+<p>Benötigte R-Pakete für dieses Kapitel:</p>
+<div class="cell" data-hash="040-Statistisches-Lernen_cache/html/unnamed-chunk-2_d964496e30b9d1218fb2ca51a4f27c3e">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section><section id="was-ist-data-science" class="level2" data-number="4.2"><h2 data-number="4.2" class="anchored" data-anchor-id="was-ist-data-science">
+<span class="header-section-number">4.2</span> Was ist Data Science?</h2>
+<p>Es gibt mehrere Definitionen von <em>Data Science</em>, aber keinen kompletten Konsens. <span class="citation" data-cites="baumer_modern_2017">Baumer, Kaplan, und Horton (<a href="references.html#ref-baumer_modern_2017" role="doc-biblioref">2017</a>)</span> definieren Data Science wie folgt (S. 4):</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hinweis
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The science of extracting meaningful information from data.<span class="math inline">\(\square\)</span></p>
+</div>
+</div>
+<p>Auf der anderen Seite entgegen viele Statistiker: “Hey, das machen wir doch schon immer!”.</p>
+<p>Eine Antwort auf diesen Einwand ist, dass in Data Science nicht nur die Statistik eine Rolle spielt, sondern auch die Informatik sowie - zu einem geringen Teil - die Fachwissenschafte (“Domäne”), die sozusagen den Empfänger bzw. die Kunden oder den Rahmen stellt. Dieser “Dreiklang” ist in folgendem Venn-Diagramm dargestellt.</p>
+<script type="module" src="https://unpkg.com/venny?module"></script><p><venn-diagram><venn-set name="A" label="Statistik"></venn-set><venn-set name="B" label="Informatik"></venn-set><venn-set name="C" label="Domäne" size="5"></venn-set><venn-n sets="A B C"></venn-n></venn-diagram></p>
+</section><section id="was-ist-machine-learning" class="level2" data-number="4.3"><h2 data-number="4.3" class="anchored" data-anchor-id="was-ist-machine-learning">
+<span class="header-section-number">4.3</span> Was ist Machine Learning?</h2>
+<div id="def-ml" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 4.1 </strong></span><em>Maschinelles Lernen</em> (ML), oft auch (synonym) als <em>statistisches Lernen</em> (statistical learning) bezeichnet, ist ein Teilgebiet der <em>künstlichen Intelligenz</em> (KI; artificial intelligence, AI) <span class="citation" data-cites="rhys">(<a href="references.html#ref-rhys" role="doc-biblioref">Rhys 2020</a>)</span>. ML wird auch als <em>data-based</em> bezeichnet in Abgrenzung von <em>rule-based</em>, was auch als “klassische KI” bezeichnet wird, vgl. <a href="#fig-ai-ml2">Abbildung&nbsp;<span>4.1</span></a>.</p>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-ai-ml2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><div>
+<pre class="mermaid mermaid-js" data-label="fig-ai-ml2">flowchart LR
+  subgraph KI[Künstliche Intelligenz KI]
+    rb[rule based]
+    db[data based]
+  end   
+</pre>
+</div>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;4.1: KI und Maschinelles Lernen</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In beiden Fällen finden Algorithmen Verwendung.</p>
+<div id="def-algo" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 4.2 (Algorithmus) </strong></span>Algorithmen sind nichts anderes als genaue Schritt-für-Schritt-Anleitungen, um etwas zu erledigen.<span class="math inline">\(\square\)</span></p>
+</div>
+<div id="exm-algo" class="theorem example">
+<p><span class="theorem-title"><strong>Beispiel 4.1 </strong></span>Ein Kochrezept ist ein klassisches Beispiel für einen Algorithmus.<span class="math inline">\(\square\)</span></p>
+</div>
+<p><a href="https://www.c-programming-simple-steps.com/images/xsum-two-numbers-h.png.pagespeed.ic.AM9WYFPgEo.webp">Hier</a> findet sich ein Beispiel für einen einfachen Additionsalgorithmus.</p>
+<p>Es gibt viele ML-Algorithmen, vgl. <a href="#fig-algos">Abbildung&nbsp;<span>4.2</span></a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-algos" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><div>
+<pre class="mermaid mermaid-js" data-label="fig-algos">flowchart LR
+  subgraph KI[KI]
+    subgraph ML[ML]
+      A[Regression]
+      B[Neuronale Netze]
+      C[weitere]
+    end
+  end
+</pre>
+</div>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;4.2: ML-Matroschka</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="rule-based" class="level3" data-number="4.3.1"><h3 data-number="4.3.1" class="anchored" data-anchor-id="rule-based">
+<span class="header-section-number">4.3.1</span> Rule-based</h3>
+<p>Klassische (ältere) KI implementiert Regeln “hartverdrahtet” in ein Computersystem. Nutzer füttern Daten in dieses System. Das System leitet dann daraus Antworten ab.</p>
+<p><em>Regeln</em> kann man prototypisch mit <em>Wenn-Dann-Abfragen</em> darstellen:</p>
+<div class="cell" data-hash="040-Statistisches-Lernen_cache/html/unnamed-chunk-5_fc782845c3d76d3d788b814b71804067">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">lernzeit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">20</span><span class="op">)</span></span>
+<span><span class="va">schlauer_nebensitzer</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="va">lernzeit</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&gt;</span> <span class="fl">10</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"bestanden!"</span><span class="op">)</span></span>
+<span>  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>    <span class="kw">if</span> <span class="op">(</span><span class="va">schlauer_nebensitzer</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">==</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">{</span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"bestanden!"</span><span class="op">)</span></span>
+<span>    <span class="op">}</span> <span class="kw">else</span> <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Durchgefallen!"</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span><span class="op">}</span></span>
+<span><span class="co">## [1] "Durchgefallen!"</span></span>
+<span><span class="co">## [1] "Durchgefallen!"</span></span>
+<span><span class="co">## [1] "bestanden!"</span></span>
+<span><span class="co">## [1] "bestanden!"</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Sicherlich könnte man das schlauer programmieren, vielleicht so:</p>
+<div class="cell" data-hash="040-Statistisches-Lernen_cache/html/unnamed-chunk-6_48a8b281d015c00f765e85d1392875ff">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">d</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>  lernzeit <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">20</span><span class="op">)</span>,</span>
+<span>  schlauer_nebensitzer <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">d</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>bestanden <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">lernzeit</span> <span class="op">&gt;</span> <span class="fl">10</span> <span class="op">|</span> <span class="va">schlauer_nebensitzer</span> <span class="op">==</span> <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["lernzeit"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["schlauer_nebensitzer"],"name":[2],"type":["lgl"],"align":["right"]},{"label":["bestanden"],"name":[3],"type":["lgl"],"align":["right"]}],"data":[{"1":"0","2":"FALSE","3":"FALSE"},{"1":"10","2":"FALSE","3":"FALSE"},{"1":"10","2":"TRUE","3":"TRUE"},{"1":"20","2":"TRUE","3":"TRUE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+</section><section id="data-based" class="level3" data-number="4.3.2"><h3 data-number="4.3.2" class="anchored" data-anchor-id="data-based">
+<span class="header-section-number">4.3.2</span> Data-based</h3>
+<p>ML hat zum Ziel, Regeln aus den Daten zu lernen. Man füttert Daten und Antworten in das System, das System gibt Regeln zurück.</p>
+<p><span class="citation" data-cites="islr">James u.&nbsp;a. (<a href="references.html#ref-islr" role="doc-biblioref">2021</a>)</span> definieren ML so: Nehmen wir an, wir haben die abhängige Variable <span class="math inline">\(Y\)</span> und <span class="math inline">\(p\)</span> Prädiktoren, <span class="math inline">\(X_1,X_2, \ldots, X_p\)</span>. Weiter nehmen wir an, die Beziehung zwischen <span class="math inline">\(Y\)</span> und <span class="math inline">\(X = (X_1, X_2, \ldots, X_p)\)</span> kann durch eine Funktion <span class="math inline">\(f\)</span> beschrieben werden. Das kann man so darstellen:</p>
+<p><span class="math display">\[Y = f(X) + \epsilon\]</span></p>
+<p>ML kann man auffassen als eine Menge an Verfahren, um <span class="math inline">\(f\)</span> zu schätzen.</p>
+<p>Ein Beispiel ist in Abb. <a href="#fig-statlearning">Abbildung&nbsp;<span>4.3</span></a> gezeigt <span class="citation" data-cites="islr">(<a href="references.html#ref-islr" role="doc-biblioref">James u.&nbsp;a. 2021</a>)</span>.</p>
+<div id="fig-statlearning" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="img/2-2.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;4.3: Vorhersage des Einkommens durch Ausbildungsjahre</figcaption><p></p>
+</figure>
+</div>
+<p>Natürlich kann <span class="math inline">\(X\)</span> mehr als eine Variable beinhalten, vgl. <a href="#fig-sl2">Abbildung&nbsp;<span>4.4</span></a>) <span class="citation" data-cites="islr">(<a href="references.html#ref-islr" role="doc-biblioref">James u.&nbsp;a. 2021</a>)</span>.</p>
+<div id="fig-sl2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="img/2-3.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;4.4: Vorhersage des Einkommens als Funktion von Ausbildungsjahren und Dienstjahren</figcaption><p></p>
+</figure>
+</div>
+<p>Anders gesagt: traditionelle KI-Systeme werden mit Daten und Regeln gefüttert und liefern Antworten. ML-Systeme werden mit Daten und Antworten gefüttert und liefern Regeln zurück, s. <a href="#fig-ki-ml2">Abbildung&nbsp;<span>4.5</span></a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-ki-ml2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><div>
+<pre class="mermaid mermaid-js" data-label="fig-ki-ml2">flowchart LR
+  subgraph rb[rule-based]
+  D[Daten] --&gt;A[Antworten]
+  R[Regeln] --&gt;A
+  end
+  subgraph db[data-based]
+  D2[Daten] --&gt; R2[Regeln]
+  A2[Antworten] --&gt; R2
+  end
+</pre>
+</div>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;4.5: Vergleich von klassischer KI (rule-based) und ML (data-based)</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section></section><section id="modell-vs.-algorithmus" class="level2" data-number="4.4"><h2 data-number="4.4" class="anchored" data-anchor-id="modell-vs.-algorithmus">
+<span class="header-section-number">4.4</span> Modell vs.&nbsp;Algorithmus</h2>
+<section id="modell" class="level3" data-number="4.4.1"><h3 data-number="4.4.1" class="anchored" data-anchor-id="modell">
+<span class="header-section-number">4.4.1</span> Modell</h3>
+<p>Ein Modell, s. Abb. <a href="#fig-vw">Abbildung&nbsp;<span>4.6</span></a>) <span class="citation" data-cites="spurzem_vw_2017">(<a href="references.html#ref-spurzem_vw_2017" role="doc-biblioref">Spurzem 2017</a>)</span>!</p>
+<div id="fig-vw" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="img/vw_modell.JPG" class="img-fluid figure-img" style="width:33.0%"></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;4.6: Ein Modell-Auto</figcaption><p></p>
+</figure>
+</div>
+<p>Wie man sieht, ist ein Modell eine vereinfachte Repräsentation eines Gegenstands.</p>
+<p>Der Gegenstand definiert (gestaltet) das Modell. Das Modell ist eine Vereinfachung des Gegenstands, vgl. Abb. <a href="#fig-modell">Abbildung&nbsp;<span>4.7</span></a>).</p>
+<div id="fig-modell" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="img/Modell-crop.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;4.7: Gegenstand und Modell</figcaption><p></p>
+</figure>
+</div>
+<p>Im maschinellen Lernen meint ein Modell, praktisch gesehen, die Regeln, die aus den Daten gelernt wurden.</p>
+</section><section id="beispiel-für-einen-ml-algorithmus" class="level3" data-number="4.4.2"><h3 data-number="4.4.2" class="anchored" data-anchor-id="beispiel-für-einen-ml-algorithmus">
+<span class="header-section-number">4.4.2</span> Beispiel für einen ML-Algorithmus</h3>
+<p>Unter einem ML-Algorithmus versteht man das (mathematische oder statistische) Verfahren, anhand dessen die Beziehung zwischen <span class="math inline">\(X\)</span> und <span class="math inline">\(Y\)</span> “gelernt” wird. Bei <span class="citation" data-cites="rhys">Rhys (<a href="references.html#ref-rhys" role="doc-biblioref">2020</a>)</span> (S. 9) findet sich dazu ein Beispiel, das kurz zusammengefasst etwa so lautet:</p>
+<p><em>Beispiel eines Regressionsalgorithmus</em></p>
+<ol type="1">
+<li>Setze Gerade in die Daten mit <span class="math inline">\(b_0 = \hat{y}, b_1 = 0\)</span>
+</li>
+<li>Berechne <span class="math inline">\(MSS = \sum (y_i - \hat{y_i})^2\)</span>
+</li>
+<li>“Drehe” die Gerade ein bisschen, d.h. erhöhe <span class="math inline">\(b_1^{neu} = b_1^{alt} + 0.1\)</span>
+</li>
+<li>Wiederhole 2-3 solange, bis <span class="math inline">\(MSS &lt; \text{Zielwert}\)</span>
+</li>
+</ol>
+<p>Diesen Algorithmus kann man “von Hand” z.B. mit <a href="https://shinyapps.org/showapp.php?app=https://shiny.psy.lmu.de/felix/lmfit&amp;by=Felix%20Sch%C3%B6nbrodt&amp;title=Find-a-fit!&amp;shorttitle=Find-a-fit!">dieser App</a> durchspielen.</p>
+</section></section><section id="taxonomie" class="level2" data-number="4.5"><h2 data-number="4.5" class="anchored" data-anchor-id="taxonomie">
+<span class="header-section-number">4.5</span> Taxonomie</h2>
+<p>Methoden des maschinellen Lernens lassen sich verschiedentlich gliedern. Eine typische Gliederung unterscheidet in <em>supervidierte</em> (geleitete) und <em>nicht-supervidierte</em> (ungeleitete) Algorithmen, s. Abb. <a href="#fig-taxonomie">Abbildung&nbsp;<span>4.8</span></a>).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-taxonomie" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><div>
+<pre class="mermaid mermaid-js" data-label="fig-taxonomie">flowchart LR
+  ML[Maschinelles Lernen]
+  SL[Supervidiertes Lernen]
+  NSL[Nicht-supervidiertes Lernen]
+  Re[Regression]
+  Class[Klassifikation]
+  DimRed[Dimensionsreduktion]
+  Clust[Clustering]
+  ML --&gt; SL
+  ML --&gt; NSL
+  SL --&gt; Re
+  SL --&gt; Class
+  NSL --&gt; DimRed
+  NSL --&gt; Clust
+
+</pre>
+</div>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;4.8: Taxonomie der Arten des maschinellen Lernens</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="geleitetes-lernen" class="level3" data-number="4.5.1"><h3 data-number="4.5.1" class="anchored" data-anchor-id="geleitetes-lernen">
+<span class="header-section-number">4.5.1</span> Geleitetes Lernen</h3>
+<p>Die zwei Phasen des geleiteten Lernens sind in Abb. <a href="#fig-supervid">Abbildung&nbsp;<span>4.9</span></a>) dargestellt.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-supervid" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><div>
+<pre class="mermaid mermaid-js" data-label="fig-supervid">flowchart TD
+  subgraph A[Lernphase]
+    B[Daten mit Antwort] --&gt; C[Geleiteter Algorithmus]
+    C --&gt; D[Modell]
+  end
+  subgraph E[Vorhersagephase]
+    H[Neue Daten ohne Antwort] --&gt; F[Modell]
+    F --&gt; G[Antworten]
+  end
+  A--&gt;E
+</pre>
+</div>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;4.9: Geleitetes Lernen geschieht in zwei Phasen</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="regression-numerische-vorhersage" class="level4" data-number="4.5.1.1"><h4 data-number="4.5.1.1" class="anchored" data-anchor-id="regression-numerische-vorhersage">
+<span class="header-section-number">4.5.1.1</span> Regression: Numerische Vorhersage</h4>
+<div class="cell" data-hash="040-Statistisches-Lernen_cache/html/unnamed-chunk-10_1159516ea66e9d7c770fd13cc5c8c249">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">hp</span>, y <span class="op">=</span> <span class="va">mpg</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="040-Statistisches-Lernen_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Die Modellgüte eines numerischen Vorhersagemodells wird oft mit (einem der) folgenden <em>Gütekoeffizienten</em> gemessen:</p>
+<ul>
+<li>Mean Squared Error (Mittlerer Quadratfehler):</li>
+</ul>
+<p><span class="math display">\[MSE := \frac{1}{n} \sum (y_i - \hat{y}_i)^2\]</span></p>
+<ul>
+<li>Mean Absolute Error (Mittlerer Absolutfehler):</li>
+</ul>
+<p><span class="math display">\[MAE :=  \frac{1}{n} \sum |(y_i - \hat{y}_i)|\]</span></p>
+<div class="infobox caution">
+<p>Wir sind nicht adaran interessiert die Vorhersagegenauigkeit in den bekannten Daten einzuschätzen, sondern im Hinblick auf neue Daten, die in der Lernphase dem Modell nicht bekannt waren.</p>
+</div>
+</section><section id="klassifikation-nominale-vorhersage" class="level4" data-number="4.5.1.2"><h4 data-number="4.5.1.2" class="anchored" data-anchor-id="klassifikation-nominale-vorhersage">
+<span class="header-section-number">4.5.1.2</span> Klassifikation: Nominale Vorhersage</h4>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="img/aktien-plot-1.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Bei einer Klassifikation wird nicht eine Zahl, sondern eine Klasse vorhergesagt</figcaption><p></p>
+</figure>
+</div>
+<p>Die Modellgüte eines numerischen Vorhersagemodells wird oft mit folgendem <em>Gütekoeffizienten</em> gemessen:</p>
+<ul>
+<li>Mittlerer Klassifikationfehler <span class="math inline">\(e\)</span>:</li>
+</ul>
+<p><span class="math display">\[e := \frac{1}{n} I(y_i \ne \hat{y}_i) \]</span></p>
+<p>Dabei ist <span class="math inline">\(I\)</span> eine Indikatorfunktion, die <code>1</code> zurückliefert, wenn tatsächlicher Wert und vorhergesagter Wert identisch sind.</p>
+</section></section><section id="ungeleitetes-lernen" class="level3" data-number="4.5.2"><h3 data-number="4.5.2" class="anchored" data-anchor-id="ungeleitetes-lernen">
+<span class="header-section-number">4.5.2</span> Ungeleitetes Lernen</h3>
+<p>Die zwei Phasen des ungeleiteten Lernens sind in <a href="#fig-unsuper">Abbildung&nbsp;<span>4.10</span></a> dargestellt.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-unsuper" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><div>
+<pre class="mermaid mermaid-js" data-label="fig-unsuper">flowchart LR
+  subgraph X[Lernphase]
+    A[Daten ohne Antwort] --&gt; B[Ungeleiteter Algorithmus]
+    B --&gt; C[Modell]
+  end
+  subgraph D[Vorhersagephase]
+    E[Neue Daten, ohne Antwort] --&gt; C2[Modell]
+    C2 --&gt; F[Zuordnung zu den Regeln des Modells]
+  end  
+  X---&gt;D
+</pre>
+</div>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;4.10: Die zwei Phasen des unüberwachten Lernens</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Ungeleitetes Lernen kann man wiederum in zwei Arten unterteilen, vgl. Abb. <a href="#fig-ungel">Abbildung&nbsp;<span>4.11</span></a>):</p>
+<ol type="1">
+<li>Fallreduzierendes Modellieren (Clustering)</li>
+<li>Dimensionsreduzierendes Modellieren (z.B. Faktorenanalyse)</li>
+</ol>
+<div id="fig-ungel" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="img/ungeleitetes_Modellieren_crop.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;4.11: Zwei Arten des ungeleitete Modellieren</figcaption><p></p>
+</figure>
+</div>
+</section></section><section id="ziele-des-ml" class="level2" data-number="4.6"><h2 data-number="4.6" class="anchored" data-anchor-id="ziele-des-ml">
+<span class="header-section-number">4.6</span> Ziele des ML</h2>
+<p>Man kann vier Ziele des ML unterscheiden, s. <a href="#fig-ziele">Abbildung&nbsp;<span>4.12</span></a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-ziele" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><div>
+<pre class="mermaid mermaid-js" data-label="fig-ziele">flowchart TD
+  ML[Maschinelles Lernen]
+  V[Vorhersage]
+  E[Erklärung/kausal]
+  B[Beschreibung]
+  DimRed[Dimensionsreduktion]
+  ML --&gt; V
+  ML --&gt; E
+  ML --&gt; B
+  ML --&gt; DimRed
+</pre>
+</div>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;4.12: Ziele des maschinellen Lernens</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p><em>Vorhersage</em> bezieht sich auf die Schätzung der Werte von Zielvariablen (sowie die damit verbundene Unsicherheit). <em>Erklärung</em> meint die kausale Analyse von Zusammenhängen. <em>Beschreibung</em> ist praktisch gleichzusetzen mit der Verwendung von deskriptiven Statistiken. <em>Dimensionsreduktion</em> ist ein Oberbegriff für Verfahren, die die Anzahl der Variablen (Spalten) oder der Beobachtungen (Zeilen) verringert.s</p>
+<p>Wie “gut” ein Modell ist, quantifiziert man in verschiedenen Kennzahlen; man spricht von Modellgüte oder <em>model fit</em>. Je schlechter die Modellgüte, desto höher der <em>Modellfehler</em>, vgl. <a href="#fig-resid">Abbildung&nbsp;<span>4.13</span></a>.</p>
+<div id="fig-resid" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="img/resids-plot-1.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;4.13: Wenig (links) vs.&nbsp;viel (rechts) Vorhersagefehler</figcaption><p></p>
+</figure>
+</div>
+<p>Die Modellgüte eines Modells ist nur relevant für <em>neue Beobachtungen</em>, an denen das Modell nicht trainiert wurde.</p>
+</section><section id="über--vs.-unteranpassung" class="level2" data-number="4.7"><h2 data-number="4.7" class="anchored" data-anchor-id="über--vs.-unteranpassung">
+<span class="header-section-number">4.7</span> Über- vs.&nbsp;Unteranpassung</h2>
+<p><em>Overfitting</em>: Ein Modell sagt die Trainingsdaten zu genau vorher - es nimmt Rauschen als “bare Münze”, also fälschlich als Signal. Solche Modelle haben zu viel <em>Varianz</em> in ihren Vorhersagen.</p>
+<p><em>Underfitting</em>: Ein Modell ist zu simpel (ungenau, grobkörnig) - es unterschlägt Nuancen des tatsächlichen Musters. Solche Modelle haben zu viel <em>Verzerrung</em> (Bias) in ihren Vorhersagen.</p>
+<p>Welches der folgenden Modelle (B,C,D) passt am besten zu den Daten (A), s. <a href="#fig-overunder">Abbildung&nbsp;<span>4.14</span></a>), vgl. <span class="citation" data-cites="modar">(<a href="references.html#ref-modar" role="doc-biblioref">Sauer 2019</a>)</span>, Kap. 15.</p>
+<div class="cell" data-hash="040-Statistisches-Lernen_cache/html/fig-overunder_0c5c922df1ee9058bbf91e163e7538b9">
+<div class="cell-output-display">
+<div id="fig-overunder" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="img/overfitting-4-plots-1.png" class="img-fluid figure-img" width="576"></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;4.14: Over- vs.&nbsp;Underfitting</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Welches Modell wird wohl neue Daten am besten vorhersagen? Was meinen Sie?</p>
+<p>Modell D zeigt sehr gute Beschreibung (“Retrodiktion”) der Werte, anhand derer das Modell trainiert wurde (“Trainingsstichprobe”). Wird es aber “ehrlich” getestet, d.h. anhand neuer Daten (“Test-Stichprobe”), wird es vermutlich <em>nicht</em> so gut abschneiden.</p>
+<p>Es gilt, ein Modell mit “mittlerer” Komplexität zu finden, um Über- und Unteranpassung in Grenzen zu halten. Leider ist es nicht möglich, vorab zu sagen, was der richtige, “mittlere” Wert an Komplexität eines Modells ist, vgl. <a href="#fig-overfitting">Abbildung&nbsp;<span>4.15</span></a> aus <span class="citation" data-cites="modar">(<a href="references.html#ref-modar" role="doc-biblioref">Sauer 2019</a>)</span>.</p>
+<div id="fig-overfitting" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="img/overfitting-crop.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;4.15: Mittlere Modellkomplexität führt zur besten Vorhersagegüte: Gute Balance von Bias und Präzision</figcaption><p></p>
+</figure>
+</div>
+</section><section id="no-free-lunch" class="level2" data-number="4.8"><h2 data-number="4.8" class="anchored" data-anchor-id="no-free-lunch">
+<span class="header-section-number">4.8</span> No free lunch</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure"><p><img src="img/yoda-best-model.jpg" class="img-fluid figure-img" style="width:50.0%"></p>
+<p></p><figcaption class="figure-caption">Yoda meint: Es gibt nicht “das” beste Modell</figcaption><p></p>
+</figure>
+</div>
+<p><a href="https://imgflip.com/i/687izk">Quelle: ImgFlip Meme Generator</a></p>
+<p>Wenn <span class="math inline">\(f\)</span> (die Beziehung zwischen <span class="math inline">\(Y\)</span> und <span class="math inline">\(X\)</span>, auch <em>datengenerierender Prozess</em> genannt) linear oder fast linear ist, dann wird ein lineare Modell gute Vorhersagen liefern, vgl. Abb. @ref(fig:2-10) aus <span class="citation" data-cites="islr">James u.&nbsp;a. (<a href="references.html#ref-islr" role="doc-biblioref">2021</a>)</span>, dort zeigt die schwarze Linie den “wahren Zusammenhang”, also <span class="math inline">\(f\)</span> an. In orange sieht man ein lineares Modell, in grün ein hoch komplexes Modell, das sich in einer “wackligen” Funktion - also mit hoher Varianz - niederschlägt. Das grüne Modell könnte z.B. ein Polynom-Modell hohen Grades sein, z. B. <span class="math inline">\(y = b_0 + b_1 x^{10} + b_2 x^9 + \ldots + b_11 x^1 + \epsilon\)</span>. Das lineare Modell hat hingegen wenig Varianz und in diesem Fall wenig Bias. Daher ist es für dieses <span class="math inline">\(f\)</span> gut passend. Die grüne Funktion zeigt dagegen Überanpassung (overfitting), also viel Modellfehler (für eine Test-Stichprobe).</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Vorsicht
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Die grüne Funktion in <a href="#fig-2-10">Abbildung&nbsp;<span>4.16</span></a> wird neue, beim Modelltraining unbekannte Beobachtungen (<span class="math inline">\(y_0\)</span>) vergleichsweise schlecht vorhersagen. In <a href="#fig-2-11">Abbildung&nbsp;<span>4.17</span></a> ist es umgekehrt.</p>
+</div>
+</div>
+<div id="fig-2-10" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="img/2-10.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;4.16: Ein lineare Funktion verlangt ein lineares Modell; ein nichtlineares Modell wird in einem höheren Vorhersagefehler (bei neuen Daten!) resultieren</figcaption><p></p>
+</figure>
+</div>
+<p>Betrachten wir im Gegensatz dazu <a href="#fig-2-11">Abbildung&nbsp;<span>4.17</span></a> aus <span class="citation" data-cites="islr">James u.&nbsp;a. (<a href="references.html#ref-islr" role="doc-biblioref">2021</a>)</span>, die (in schwarz) eine hochgradig <em>nichtlineare</em> Funktion <span class="math inline">\(f\)</span> zeigt. Entsprechend wird das lineare Modell (orange) nur schlechte Vorhersagen erreichen - es hat zu viel Bias, da zu simpel. Ein lineares Modell wird der Komplexität von <span class="math inline">\(f\)</span> nicht gerecht, Unteranpassung (underfitting) liegt vor.</p>
+<div id="fig-2-11" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="2-11.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;4.17: Eine nichtlineare Funktion (schwarz) verlangt eine nichtlineares Modell. Ein lineares Modell (orange) ist unterangepasst und hat eine schlechte Vorhersageleistung</figcaption><p></p>
+</figure>
+</div>
+</section><section id="bias-varianz-abwägung" class="level2" data-number="4.9"><h2 data-number="4.9" class="anchored" data-anchor-id="bias-varianz-abwägung">
+<span class="header-section-number">4.9</span> Bias-Varianz-Abwägung</h2>
+<p>Der Gesamtfehler <span class="math inline">\(E\)</span> des Modells ist die Summe dreier Terme:</p>
+<p><span class="math display">\[E = (y - \hat{y}) = \text{Bias} + \text{Varianz} + \epsilon\]</span></p>
+<p>Dabei meint <span class="math inline">\(\epsilon\)</span> den <em>nicht reduzierbaren Fehler</em>, z.B. weil dem Modell Informationen fehlen. So kann man etwa auf der Motivation von Studentis keine perfekte Vorhersage ihrer Noten erreichen (lehrt die Erfahrung).</p>
+<p>Bias und Varianz sind Kontrahenten: Ein Modell, das wenig Bias hat, neigt tendenziell zu wenig Varianz und umgekehrt, vgl. <a href="#fig-bias-var">Abbildung&nbsp;<span>4.18</span></a> aus <span class="citation" data-cites="modar">Sauer (<a href="references.html#ref-modar" role="doc-biblioref">2019</a>)</span>.</p>
+<div id="fig-bias-var" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="img/plot-bias-variance-1.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;4.18: Abwängung von Bias vs.&nbsp;Varianz</figcaption><p></p>
+</figure>
+</div>
+</section><section id="vertiefung" class="level2" data-number="4.10"><h2 data-number="4.10" class="anchored" data-anchor-id="vertiefung">
+<span class="header-section-number">4.10</span> Vertiefung</h2>
+<ul>
+<li><a href="https://www.zeit.de/arbeit/2020-10/data-scientist-gehalt-geldanlage-programmieren-kontoauszug">Verdienst einer deutschen Data Scientistin</a></li>
+<li><a href="https://www.kaggle.com/micahshull/r-bike-sharing-linear-regression">Weitere Fallstudie zum Thema Regression auf Kaggle</a></li>
+<li><a href="https://www.coursera.org/learn/data-science-course">Crashkurs Data Science (Coursera, Johns Hopkins University) mit ‘Star-Dozenten’</a></li>
+<li><a href="https://www.kaggle.com/pranjalpandey12/performing-simple-linear-regression-in-r">Arbeiten Sie diese Regressionsfallstudie (zum Thema Gehalt) auf Kaggle auf</a></li>
+<li><a href="https://www.kaggle.com/lazaro97/data-preprocessing-and-linear-regression-with-r">Werfen Sie einen Blick in diese Fallstudie auf Kaggle zum Thema Hauspreise</a></li>
+<li><a href="https://data-se.netlify.app/2021/03/10/fallstudie-modellierung-von-flugversp%C3%A4tungen/">Wiederholen Sie unser Vorgehen in der Fallstudie zu den Flugverspätungen</a></li>
+</ul></section><section id="aufgaben" class="level2" data-number="4.11"><h2 data-number="4.11" class="anchored" data-anchor-id="aufgaben">
+<span class="header-section-number">4.11</span> Aufgaben:</h2>
+<ul>
+<li><a href="https://www.kaggle.com/">Machen Sie sich mit ‘Kaggle’ vertraut</a></li>
+<li><a href="https://www.kaggle.com/code/headsortails/tidy-titarnic/report">Bearbeiten Sie die Fallstudie ‘TitaRnic’ auf Kaggle</a></li>
+<li><a href="https://www.kaggle.com/code/ssauer/notebook9188bfa616">Machen Sie sich mit dieser einfachen Fallstudie zur linearen Regression vertraut: The Movie Data Base Revenue (Kaggle)</a></li>
+</ul></section><section id="videos" class="level2" data-number="4.12"><h2 data-number="4.12" class="anchored" data-anchor-id="videos">
+<span class="header-section-number">4.12</span> Videos</h2>
+<ul>
+<li><a href="https://youtu.be/vR9l-k50I1M">Prognose-Wettbewerbe bei Kaggle am Beispiel von <em>The Movie Data Base Revenue</em></a></li>
+</ul>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-baumer_modern_2017" class="csl-entry" role="listitem">
+Baumer, Benjamin S., Daniel T. Kaplan, und Nicholas J. Horton. 2017. <em>Modern Data Science with R (Chapman &amp; Hall/<span>CRC</span> Texts in Statistical Science)</em>. Boca Raton, Florida: Chapman; Hall/<span>CRC</span>.
+</div>
+<div id="ref-islr" class="csl-entry" role="listitem">
+James, Gareth, Daniela Witten, Trevor Hastie, und Robert Tibshirani. 2021. <em>An introduction to statistical learning: with applications in R</em>. Second edition. Springer texts in statistics. New York: Springer. <a href="https://link.springer.com/book/10.1007/978-1-0716-1418-1">https://link.springer.com/book/10.1007/978-1-0716-1418-1</a>.
+</div>
+<div id="ref-rhys" class="csl-entry" role="listitem">
+Rhys, Hefin. 2020. <em>Machine Learning with R, the tidyverse, and mlr</em>. Shelter Island, <span>NY</span>: Manning publications.
+</div>
+<div id="ref-modar" class="csl-entry" role="listitem">
+Sauer, Sebastian. 2019. <em>Moderne Datenanalyse mit R: Daten einlesen, aufbereiten, visualisieren und modellieren</em>. 1. Auflage 2019. <span>FOM</span>-Edition. Wiesbaden: Springer. <a href="https://www.springer.com/de/book/9783658215866">https://www.springer.com/de/book/9783658215866</a>.
+</div>
+<div id="ref-spurzem_vw_2017" class="csl-entry" role="listitem">
+Spurzem, Lothar. 2017. <em><span>VW</span> 1303 von Wiking in 1:87</em>. <a href="https://de.wikipedia.org/wiki/Modellautomobil#/media/File:Wiking-Modell_VW_1303_(um_1975).JPG">https://de.wikipedia.org/wiki/Modellautomobil#/media/File:Wiking-Modell_VW_1303_(um_1975).JPG</a>.
+</div>
+</div>
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Kopiert");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Kopiert");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./030-Pruefung.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Prüfung</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./050-R-Vertiefung.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">R, zweiter Blick</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
