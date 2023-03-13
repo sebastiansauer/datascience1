@@ -1,0 +1,12 @@
+# Prüfung
+
+
+## Prüfungleistung
+
+Die Prüfungsleistung besteht aus einem *Prognosewettbewerb*.
+
+
+
+{{< include children/Hinweise-Pruefung-Prognosewettbewerb-child.qmd >}}
+
+

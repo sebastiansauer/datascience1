@@ -44,3 +44,10 @@ vignettes/*.pdf
 /**/*.rds
 
 
+# Trials
+test*.*
+test/
+test/**
+test*
+
+/.quarto/

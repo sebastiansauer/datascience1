@@ -42,7 +42,6 @@ Imports:
   xgboost,
   yardstick,
   downlit
-Remotes: rstudio/bookdown
 date: 2022-02-22
 Encoding: UTF-8
 LazyData: true

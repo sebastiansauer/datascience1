@@ -1,0 +1,59 @@
+project:
+  type: book
+
+
+lang: de
+
+
+book:
+  title: "Grundlagen der Prognosemodellierung 🔮🧰"
+  author: "Sebastian Sauer"
+  date: now
+  chapters:
+    - index.qmd
+    - 010-Hinweise.qmd
+    - 030-Pruefung.qmd
+    - 040-Statistisches-Lernen.qmd
+    - 050-R-Vertiefung.qmd
+
+    - references.qmd
+    # - test.qmd
+
+
+bibliography: 
+  - book.bib
+  - packages.bib
+
+
+editor: source
+keep-md: false
+prefer-html: true
+
+execute:
+  freeze: auto
+  warning: false
+  cache: true
+
+knitr:
+  opts_knit:
+    verbose: true
+    fig-align: center
+  opts_chunk:
+    collapse: true
+    # comment: "#>"
+    R.options:
+      knitr.graphics.auto_pdf: false
+
+format:
+  html:
+    toc: true
+    theme: lumen
+    css: styles.css
+    number-sections: true
+    df-print: paged
+    code-fold: false
+    fig-align: center
+    code-link: true
+    mermaid:
+      theme: neutral
+
