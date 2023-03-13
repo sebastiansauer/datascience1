@@ -427,16 +427,15 @@ flowchart TD
 Wie "gut" ein Modell ist, quantifiziert man in verschiedenen Kennzahlen; man spricht von Modellgüte oder *model fit*. 
 Je schlechter die Modellgüte, desto höher der *Modellfehler*, vgl. @fig-resid.
 
-```{r resid, fig.cap = "Wenig (links) vs. viel (rechts) Vorhersagefehler", echo = FALSE}
-knitr::include_graphics("img/resids-plot-1.png")
-```
+
+![Wenig (links) vs. viel (rechts) Vorhersagefehler](img/resids-plot-1.png){#fig-resid}
 
 
 
 
 
-Die Modellgüte eines Modells ist nur relevant für *neue Beobachtungen*,
-an denen das Modell nicht trainiert wurde.
+Die Modellgüte eines Modells ist v.a. relevant für *neue Beobachtungen*,
+an denen das Modell *nicht* trainiert wurde.
 
 
 
@@ -444,11 +443,21 @@ an denen das Modell nicht trainiert wurde.
 
 ## Über- vs. Unteranpassung
 
-*Overfitting*: Ein Modell sagt die Trainingsdaten zu genau vorher - es nimmt Rauschen als "bare Münze", also fälschlich als Signal. Solche Modelle haben zu viel *Varianz* in ihren Vorhersagen.
 
-*Underfitting*: Ein Modell ist zu simpel (ungenau, grobkörnig) - es unterschlägt Nuancen des tatsächlichen Musters. Solche Modelle haben zu viel *Verzerrung* (Bias) in ihren Vorhersagen.
+:::{#def-overfit}
 
-Welches der folgenden Modelle (B,C,D) passt am besten zu den Daten (A), s. @fig-overunder), vgl. [@modar], Kap. 15.
+### Overfitting
+Ein Modell sagt die Trainingsdaten zu genau vorher - es nimmt Rauschen als "bare Münze", also fälschlich als Signal. Solche Modelle haben zu viel *Varianz* in ihren Vorhersagen.$\square$
+:::
+
+
+:::{#def-underfit}
+### Underfitting
+Ein Modell ist zu simpel (ungenau, grobkörnig) - es unterschlägt Nuancen des tatsächlichen Musters. Solche Modelle haben zu viel *Verzerrung* (Bias) in ihren Vorhersagen.$\square$
+:::
+
+
+Welches der folgenden Modelle (B,C,D) passt am besten zu den Daten (A), s. @fig-overunder), vgl. [@modar], Kap. 15?
 
 ```{r overunder}
 #| echo: false

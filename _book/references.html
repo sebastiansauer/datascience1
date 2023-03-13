@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.3.247">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="author" content="Sebastian Sauer">
-<title>Grundlagen der Prognosemodellierung 🔮🧰</title>
+
+
+<title>Grundlagen der Prognosemodellierung 🔮🧰 - References</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -18,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
@@ -27,7 +49,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./010-Hinweise.html" rel="next">
+<link href="./050-R-Vertiefung.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -36,7 +58,8 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -54,26 +77,35 @@ ul.task-list li input[type="checkbox"] {
     "search-detached-cancel-button-title": "Abbrechen",
     "search-submit-button-title": "Abschicken"
   }
-}</script><link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
-<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script><link rel="stylesheet" href="styles.css">
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
 </head>
+
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Zu diesem Buch</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./references.html">References</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Grundlagen der Prognosemodellierung 🔮🧰</a> 
     </div>
@@ -85,9 +117,9 @@ ul.task-list li input[type="checkbox"] {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-<li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Zu diesem Buch</span></span></a>
   </div>
 </li>
@@ -117,260 +149,87 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
+  <a href="./references.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">References</span></a>
   </div>
 </li>
     </ul>
-</div>
-</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Inhaltsverzeichnis</h2>
-   
-  <ul>
-<li>
-<a href="#zu-diesem-buch" id="toc-zu-diesem-buch" class="nav-link active" data-scroll-target="#zu-diesem-buch"><span class="header-section-number">1</span> Zu diesem Buch</a>
-  <ul class="collapse">
-<li><a href="#was-r%C3%A4t-meister-yoda" id="toc-was-rät-meister-yoda" class="nav-link" data-scroll-target="#was-r%C3%A4t-meister-yoda"><span class="header-section-number">1.1</span> Was rät Meister Yoda?</a></li>
-  <li><a href="#zitation" id="toc-zitation" class="nav-link" data-scroll-target="#zitation"><span class="header-section-number">1.2</span> Zitation</a></li>
-  <li><a href="#technische-details" id="toc-technische-details" class="nav-link" data-scroll-target="#technische-details"><span class="header-section-number">1.3</span> Technische Details</a></li>
-  </ul>
-</li>
-  </ul></nav>
+        
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title">Grundlagen der Prognosemodellierung 🔮🧰</h1>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">References</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Autor:in</div>
-    <div class="quarto-title-meta-contents">
-             <p>Sebastian Sauer </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Veröffentlichungsdatum</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">13. März 2023</p>
-    </div>
-  </div>
   
     
   </div>
   
 
-</header><section id="zu-diesem-buch" class="level1" data-number="1"><h1 data-number="1">
-<span class="header-section-number">1</span> Zu diesem Buch</h1>
-<p><img src="img/689g8g.jpg" class="img-fluid"></p>
-<p><a href="https://i.imgflip.com/689g8g.jpg">Quelle: ImageFlip</a></p>
-<section id="was-rät-meister-yoda" class="level2" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="was-rät-meister-yoda">
-<span class="header-section-number">1.1</span> Was rät Meister Yoda?</h2>
-<p>Meister Yoda rät: Lesen Sie die Hinweise (<a href="#fig-yoda">Abbildung&nbsp;<span>1.1</span></a>).</p>
-<div id="fig-yoda" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="img/yoda.jpg" class="img-fluid figure-img" style="width:33.0%"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;1.1: Lesen Sie die folgenden Hinweise im eigenen Interesse</figcaption><p></p>
-</figure>
+</header>
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-baumer_modern_2017" class="csl-entry" role="listitem">
+Baumer, Benjamin S., Daniel T. Kaplan, and Nicholas J. Horton. 2017.
+<em>Modern Data Science with r (Chapman &amp; Hall/<span>CRC</span>
+Texts in Statistical Science)</em>. Boca Raton, Florida: Chapman;
+Hall/<span>CRC</span>.
 </div>
-<div class="xsmall">
-<p><a href="&quot;https://imgflip.com/memegenerator&quot;">Quelle: made at imageflip</a></p>
+<div id="ref-islrtidy" class="csl-entry" role="listitem">
+Hvitfeldt, Emil. 2022. <em><span>ISLR</span> Tidymodels Labs</em>. <a href="https://emilhvitfeldt.github.io/ISLR-tidymodels-labs/index.html">https://emilhvitfeldt.github.io/ISLR-tidymodels-labs/index.html</a>.
 </div>
-</section><section id="zitation" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="zitation">
-<span class="header-section-number">1.2</span> Zitation</h2>
-<p>Nutzen Sie diese DOI, um dieses Buch zu zitieren: <a href="https://zenodo.org/badge/latestdoi/461950782"><img src="https://zenodo.org/badge/461950782.svg" class="img-fluid" alt="DOI"></a></p>
-</section><section id="technische-details" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="technische-details">
-<span class="header-section-number">1.3</span> Technische Details</h2>
-<ul>
-<li><p>Diese Version des Buches wurde erstellt am: 2023-03-13 14:21:16</p></li>
-<li><p>Die URL zu diesem Buch lautet <a href="https://sebastiansauer.github.io/datascience1/" class="uri">https://sebastiansauer.github.io/datascience1/</a> und ist bei <a href="https://pages.github.com/">GitHub Pages</a> gehostet.</p></li>
-<li><p>Den Quellcode finden Sie <a href="https://github.com/sebastiansauer/datascience1">in diesem Github-Repo</a>.</p></li>
-<li><p>Sie haben Feedback, Fehlerhinweise oder Wünsche zur Weiterentwicklung? Am besten stellen Sie <a href="https://github.com/sebastiansauer/datascience1/issues">hier</a> einen <em>Issue</em> ein.</p></li>
-<li><p>Dieses Projekt steht unter der <a href="https://github.com/sebastiansauer/datascience1/blob/main/LICENSE">MIT-Lizenz</a>.</p></li>
-<li><p>Dieses Buch wurde in <a href="http://www.rstudio.com/ide/">RStudio</a> mit Hilfe von <a href="http://bookdown.org/">bookdown</a> geschrieben.</p></li>
-<li><p>Diese Version des Buches wurde mit der R-Version R version 4.2.1 (2022-06-23) und den folgenden Paketen erstellt:</p></li>
-</ul>
-<div class="cell" data-hash="index_cache/html/unnamed-chunk-1_45aacf3cce7e5b89db34c5536ca5a2c1">
-<div class="cell-output-display">
-<table class="table table-sm table-striped">
-<thead><tr class="header">
-<th style="text-align: left;">package</th>
-<th style="text-align: left;">version</th>
-<th style="text-align: left;">source</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">bookdown</td>
-<td style="text-align: left;">0.32</td>
-<td style="text-align: left;">CRAN (R 4.2.0)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">broom</td>
-<td style="text-align: left;">1.0.3</td>
-<td style="text-align: left;">CRAN (R 4.2.0)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">corrr</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">dials</td>
-<td style="text-align: left;">1.1.0</td>
-<td style="text-align: left;">CRAN (R 4.2.0)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">downlit</td>
-<td style="text-align: left;">0.4.2</td>
-<td style="text-align: left;">CRAN (R 4.2.0)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">dplyr</td>
-<td style="text-align: left;">1.1.0</td>
-<td style="text-align: left;">CRAN (R 4.2.0)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">ggplot2</td>
-<td style="text-align: left;">3.4.1</td>
-<td style="text-align: left;">CRAN (R 4.2.0)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">glmnet</td>
-<td style="text-align: left;">4.1-6</td>
-<td style="text-align: left;">CRAN (R 4.2.0)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">infer</td>
-<td style="text-align: left;">1.0.4</td>
-<td style="text-align: left;">CRAN (R 4.2.0)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">ISLR</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">kknn</td>
-<td style="text-align: left;">1.3.1</td>
-<td style="text-align: left;">CRAN (R 4.2.0)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">klaR</td>
-<td style="text-align: left;">1.7-1</td>
-<td style="text-align: left;">CRAN (R 4.2.0)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">MASS</td>
-<td style="text-align: left;">7.3-58.2</td>
-<td style="text-align: left;">CRAN (R 4.2.0)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">modeldata</td>
-<td style="text-align: left;">1.0.1</td>
-<td style="text-align: left;">CRAN (R 4.2.0)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">parsnip</td>
-<td style="text-align: left;">1.0.3</td>
-<td style="text-align: left;">CRAN (R 4.2.0)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">patchwork</td>
-<td style="text-align: left;">1.1.2</td>
-<td style="text-align: left;">CRAN (R 4.2.0)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">purrr</td>
-<td style="text-align: left;">1.0.1</td>
-<td style="text-align: left;">CRAN (R 4.2.0)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">randomForest</td>
-<td style="text-align: left;">4.7-1.1</td>
-<td style="text-align: left;">CRAN (R 4.2.0)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">ranger</td>
-<td style="text-align: left;">0.14.1</td>
-<td style="text-align: left;">CRAN (R 4.2.0)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">readr</td>
-<td style="text-align: left;">2.1.4</td>
-<td style="text-align: left;">CRAN (R 4.2.0)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">rsample</td>
-<td style="text-align: left;">1.1.1</td>
-<td style="text-align: left;">CRAN (R 4.2.0)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">rstatix</td>
-<td style="text-align: left;">0.7.2</td>
-<td style="text-align: left;">CRAN (R 4.2.0)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">tibble</td>
-<td style="text-align: left;">3.1.8</td>
-<td style="text-align: left;">CRAN (R 4.2.0)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">tidymodels</td>
-<td style="text-align: left;">1.0.0</td>
-<td style="text-align: left;">CRAN (R 4.2.0)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">tidyr</td>
-<td style="text-align: left;">1.3.0</td>
-<td style="text-align: left;">CRAN (R 4.2.0)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">tidyverse</td>
-<td style="text-align: left;">1.3.2</td>
-<td style="text-align: left;">CRAN (R 4.2.0)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">tune</td>
-<td style="text-align: left;">1.0.1</td>
-<td style="text-align: left;">CRAN (R 4.2.0)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">vip</td>
-<td style="text-align: left;">0.3.2</td>
-<td style="text-align: left;">CRAN (R 4.2.0)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">workflows</td>
-<td style="text-align: left;">1.1.2</td>
-<td style="text-align: left;">CRAN (R 4.2.0)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">workflowsets</td>
-<td style="text-align: left;">1.0.0</td>
-<td style="text-align: left;">CRAN (R 4.2.0)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">xgboost</td>
-<td style="text-align: left;">1.6.0.1</td>
-<td style="text-align: left;">CRAN (R 4.2.0)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">yardstick</td>
-<td style="text-align: left;">1.1.0</td>
-<td style="text-align: left;">CRAN (R 4.2.0)</td>
-</tr>
-</tbody>
-</table>
+<div id="ref-islr" class="csl-entry" role="listitem">
+James, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani.
+2021. <em>An Introduction to Statistical Learning: With Applications in
+r</em>. Second edition. Springer Texts in Statistics. New York:
+Springer. <a href="https://link.springer.com/book/10.1007/978-1-0716-1418-1">https://link.springer.com/book/10.1007/978-1-0716-1418-1</a>.
+</div>
+<div id="ref-rhys" class="csl-entry" role="listitem">
+Rhys, Hefin. 2020. <em>Machine Learning with r, the Tidyverse, and
+Mlr</em>. Shelter Island, <span>NY</span>: Manning publications.
+</div>
+<div id="ref-modar" class="csl-entry" role="listitem">
+Sauer, Sebastian. 2019. <em>Moderne Datenanalyse Mit r: Daten Einlesen,
+Aufbereiten, Visualisieren Und Modellieren</em>. 1. Auflage 2019.
+<span>FOM</span>-Edition. Wiesbaden: Springer. <a href="https://www.springer.com/de/book/9783658215866">https://www.springer.com/de/book/9783658215866</a>.
+</div>
+<div id="ref-silge_tidy_2022" class="csl-entry" role="listitem">
+Silge, Julia, and Max Kuhn. 2022. <em>Tidy <span>Modeling</span> with
+<span>R</span></em>. <a href="https://www.tmwr.org/">https://www.tmwr.org/</a>.
+</div>
+<div id="ref-spurzem_vw_2017" class="csl-entry" role="listitem">
+Spurzem, Lothar. 2017. <em><span>VW</span> 1303 von Wiking in 1:87</em>.
+<a href="https://de.wikipedia.org/wiki/Modellautomobil#/media/File:Wiking-Modell_VW_1303_(um_1975).JPG">https://de.wikipedia.org/wiki/Modellautomobil#/media/File:Wiking-Modell_VW_1303_(um_1975).JPG</a>.
+</div>
+<div id="ref-timbers_data_2022" class="csl-entry" role="listitem">
+Timbers, Tiffany-Anne, Trevor Campbell, and Melissa Lee. 2022. <em>Data
+Science: An Introduction</em>. First edition. Statistics. Boca Raton:
+<span>CRC</span> Press.
+</div>
+<div id="ref-r4ds" class="csl-entry" role="listitem">
+Wickham, Hadley, and Garrett Grolemund. 2016. <em>R for Data Science:
+Visualize, Model, Transform, Tidy, and Import Data</em>. O’Reilly Media.
+<a href="https://r4ds.had.co.nz/index.html">https://r4ds.had.co.nz/index.html</a>.
 </div>
 </div>
 
 
-</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -602,12 +461,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./050-R-Vertiefung.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">R, zweiter Blick</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./010-Hinweise.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Hinweise</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

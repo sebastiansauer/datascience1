@@ -55,7 +55,7 @@ Ein Objekt meint ein im Computerspeicher repräsentiertes Ding, etwa eine Tabell
 Vektoren und Dataframes (Tibbles) sind die vielleicht gängigsten Objektarten in R (vgl. @fig-obs), aus @modar).$\square$
 :::
 
-![Zentrale Objektarten in R](img/zentrale_objektarten.png){fig-obs}
+![Zentrale Objektarten in R](img/zentrale_objektarten.png){#fig-obs}
 
 
 Es gibt in R keine (Objekte für) Skalare (einzelne Zahlen).
@@ -63,7 +63,7 @@ Stattdessen nutzt R Vektoren der Länge 1.
 
 Ein nützliches Schema stammt aus @r4ds, s. @fig-objtypes).
 
-![Objektarten hierarchisch gegliedert](img/data-structures-overview.png){#fig-objtypes}
+![Objektarten hierarchisch gegliedert](img/data-structures-overview.png){#fig-objtypes width="50%"}
 
 
 
@@ -91,9 +91,8 @@ als dass die übrigen Datenstrukturen auf ihnen aufbauen, vgl.  @fig-vektorenimz
 
 Reine (atomare) Vektoren in R sind eine geordnete Liste von Daten eines Typs.
 
-```{r vektorenimzentrum, fig.cap = "Vektoren stehen im Zentrum der Datenstrukturen in R", echo = FALSE}
-knitr::include_graphics("img/Datenstrukturen.png")
-```
+
+![Vektoren stehen im Zentrum der Datenstrukturen in R](img/Datenstrukturen.png){#fig-vektorenimzentrum}
 
 
 ```{r echo = TRUE}
@@ -122,11 +121,6 @@ Vektoren können von folgenden Typen sein:
 
 Kommazahlen und Ganze Zahlen zusammen bilden den Typ `numeric` (numerisch) in R.
 
-
-
-```{r}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
 
 
@@ -420,7 +414,7 @@ Eine Funktion kann man sich als analog zu einer Variable vorstellen.
 Es ist ein Objekt, das nicht Daten, sondern Syntax beinhaltet, 
 vgl.  @fig-funs aus @modar.
 
-![Sinnbild einer Funktion](img/Funs_def.png){#fig-funs}
+![Sinnbild einer Funktion](img/Funs_def.png){#fig-funs width="50%"}
 
 
 
@@ -630,169 +624,6 @@ Wie man sieht, können wir beliebig tief in das Objekt hineinindizieren.
 
 
 
-#### Kurs DataScience1
-
-Ein Kurs, wie dieser, kann anhand einer "Deskriptoren" wie Titel der Inhalte, Lernziele, Literatur und so weiter zusammmengefasst werden.
-Diese Deskriptoren kann man wiederum jeder Kurswoche oder jedem Kursabschnitt zuordnen, 
-so dass eine zweidimensionale Struktur resultiert. 
-Eine Tabelle, einfach gesagt, etwa so:
-
-
-
-```{r}
-tibble::tribble(
-  ~Nr,   ~Titel,   ~Literatur,   ~Aufgaben,
-   1L, "Titel1", "Literatur1", "Aufgaben1",
-   2L, "Titel2", "Literatur2", "Aufgaben2",
-   3L, "Titel3", "Literatur3", "Aufgaben3"
-  ) %>% 
-  gt::gt()
-```
-
-
-Wie man sieht, entspricht jede Spalte einem Deskriptor des Kurses,
-und jede Zeile entspricht einem Thema (oder Woche oder Abschnitt) des Kurses.
-
-
-Jetzt ist es nur so,
-dass einzelne Zellen dieser Tabelle nicht aus nur einem Element bestehen.
-So könnte etwa "Aufgaben1" aus mehreren Aufgaben bestehen, 
-die jeweils wiederum aus mehreren (Text-)Elementen bestehen. 
-Oder "Literatur2" besteht vielleicht aus zwei Literaturquellen.
-
-Kurz gesagt, wir brauchen eine Tabelle,
-die erlaubt, in einer Zelle mehr als ein einzelnes Element zu packen.
-Listenspalten erlauben das.
-
-Schauen wir uns die "Mastertabelle" dieses Kurses an zur Illustration.
-
-Zunächst `source`n wir die nötigen Funktionen.
-
-```{r echo = TRUE}
-source("https://raw.githubusercontent.com/sebastiansauer/Lehre/main/R-Code/render-course-sections.R")
-```
-
-
-In Ihrem `Environment` sollten Sie jetzt die gesourcten Funktionen sehen.
-Mit Klick auf den Funktionsnamen können Sie diese Funktionen auch betrachten.
-
-Die Deskriptoren des Kurses speisen sich aus zwei Textdateien, gespeichert im sog. YAML-Format, ein einfaches Textformat, und hier nicht weiter von Belang.
-
-Zum einen eine Datei mit den Datumsangaben:
-
-```{r echo = TRUE, eval = FALSE}
-course_dates_file <- "https://raw.githubusercontent.com/sebastiansauer/datascience1/sose22/course-dates.yaml"
-```
-
-
-Zum anderen eine Datei mit den Deskriptoren,
-die unabhängig vom Datum sind:
-
-```{r echo = TRUE, eval = FALSE}
-content_file <- "https://raw.githubusercontent.com/sebastiansauer/datascience1/sose22/_modul-ueberblick.yaml"
-```
-
-
-Im [Githup-Repo](https://github.com/sebastiansauer/datascience1) 
-dieses Kurses können Sie die Dateien komfortabel betrachten.
-
-
-Die "Mastertabelle" kann man mit folgender Funktion erstellen:
-
-
-```{r mastertable-illustration, echo = TRUE}
-mastertable <- build_master_course_table(
-  course_dates_file =  course_dates_file,
-  content_file = content_file)
-```
-
-Betrachten Sie die Tabelle in Ruhe!
-Sie werden sehen, dass einige Spalten komplex sind, 
-also mehr als nur einen einzelnen Wert enthalten:
-
-
-```{r echo = TRUE}
-mastertable[["Vorbereitung"]][[1]]
-```
-
-
-Gerade haben wir aus dem Objekt `mastertable`, ein Dataframe, 
-die Spalte mit dem Namen *Vorbereitung*  ausgelesen und aus dieser Spalte das erste erste Element.
-Dieses erste Element ist ein Textvektor der Länge 3.
-
-Daraus könnten wir z.B. das zweite Element auslesen:
-
-
-
-```{r echo = TRUE}
-mastertable[["Vorbereitung"]][[1]][2]
-```
-
-
-Was würde passieren, wenn wir anstelle der doppelten Eckklammer einfache Eckklammern verwenden würden?
-
-
-
-```{r echo = TRUE}
-mastertable["Vorbereitung"] %>% class()
-mastertable[["Vorbereitung"]] %>% class()
-```
-
-Das macht noch keinen großen Unterschied,
-aber schauen wir mal weiter.
-
-Wenn wir das erste Element der Spalte "Vorbereitung" mit *doppelter* Eckklammer ansprechen, 
-bekommen wir einen Text-Vektor (der Länge drei) zurück.
-
-```{r echo = TRUE}
-mastertable[["Vorbereitung"]][[1]]
-```
-
-Jetzt können wir, wie oben getan,
-diese einzelnen Elemente ansprechen.
-
-
-Aber: Wenn wir das erste Element der Spalte "Vorbereitung" mit einfacher Eckklammer ansprechen, bekommen wir eine Liste *mit einem Element* zurück. 
-
-```{r echo = TRUE}
-mastertable[["Vorbereitung"]][1]
-```
-
-Wir können also nicht (ohne weiteres "Abschälen") 
-z.B. das zweite Element des Text-Vektors ("Installieren Sie...") auslesen:
-
-```{r error = TRUE, echo = TRUE}
-mastertable[["Vorbereitung"]][1] %>% pluck(2)
-```
-
-
-Wenn Sie sich über `pluck()` wundern, 
-Sie hätten synonym auch schreiben können:
-
-```{r error = TRUE, echo = TRUE}
-mastertable[["Vorbereitung"]][1][2]
-```
-
-
-Da die Liste nur aus einem Element besteht,
-könnten wir z.B. nicht das zweite Element der Liste ansprechen:
-
-```{r error = TRUE, echo = TRUE}
-mastertable[["Vorbereitung"]][1][[2]]
-```
-
-
-Haben wir aber die doppelte Eckklammer verwendet,
-so bekommen wir einen Vektor der Länge drei zurück (vom Typ Text),
-und daher können wir die Elemente 1 bis 3 ansprechen:
-
-```{r error = TRUE, echo = TRUE}
-mastertable[["Vorbereitung"]][[1]][2]
-```
-
-Dabei ist es egal, ob Sie einfache oder doppelte Eckklammern benutzen,
-da Listen auch Vektoren sind.   
-
 
 
 ### Programmieren mit dem Tidyverse
@@ -822,7 +653,7 @@ praise::praise()
 
 
 Hat jemand einen guten Rat für uns?
-Vielleicht ist der häufigste Rate, dass man die [Dokumentation lesen solle](https://en.wikipedia.org/wiki/RTFM).
+Vielleicht ist der häufigste Rat, dass man die [Dokumentation lesen solle](https://en.wikipedia.org/wiki/RTFM).
 
 
 
