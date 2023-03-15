@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.247">
+<meta name="generator" content="quarto-1.3.269">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Grundlagen der Prognosemodellierung 🔮🧰 - 4&nbsp; Statistisches Lernen</title>
 <style>
@@ -110,7 +110,7 @@ div.csl-indent {
 }</script><meta name="mermaid-theme" content="neutral">
 <script src="site_libs/quarto-diagram/mermaid.min.js"></script><script src="site_libs/quarto-diagram/mermaid-init.js"></script><link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 <link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
-<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><link rel="stylesheet" href="styles.css">
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><link rel="stylesheet" href="styles.css">
 </head>
 <body class="nav-sidebar floating">
 
@@ -217,7 +217,12 @@ div.csl-indent {
   </ul>
 </li>
   <li><a href="#ziele-des-ml" id="toc-ziele-des-ml" class="nav-link" data-scroll-target="#ziele-des-ml"><span class="header-section-number">4.6</span> Ziele des ML</a></li>
-  <li><a href="#%C3%BCber--vs.-unteranpassung" id="toc-über--vs.-unteranpassung" class="nav-link" data-scroll-target="#%C3%BCber--vs.-unteranpassung"><span class="header-section-number">4.7</span> Über- vs.&nbsp;Unteranpassung</a></li>
+  <li>
+<a href="#%C3%BCber--vs.-unteranpassung" id="toc-über--vs.-unteranpassung" class="nav-link" data-scroll-target="#%C3%BCber--vs.-unteranpassung"><span class="header-section-number">4.7</span> Über- vs.&nbsp;Unteranpassung</a>
+  <ul class="collapse">
+<li><a href="#do-it-yourself-under-overfitting" id="toc-do-it-yourself-under-overfitting" class="nav-link" data-scroll-target="#do-it-yourself-under-overfitting"><span class="header-section-number">4.7.1</span> Do-it-yourself Under-/Overfitting</a></li>
+  </ul>
+</li>
   <li><a href="#no-free-lunch" id="toc-no-free-lunch" class="nav-link" data-scroll-target="#no-free-lunch"><span class="header-section-number">4.8</span> No free lunch</a></li>
   <li><a href="#bias-varianz-abw%C3%A4gung" id="toc-bias-varianz-abwägung" class="nav-link" data-scroll-target="#bias-varianz-abw%C3%A4gung"><span class="header-section-number">4.9</span> Bias-Varianz-Abwägung</a></li>
   <li><a href="#vertiefung" id="toc-vertiefung" class="nav-link" data-scroll-target="#vertiefung"><span class="header-section-number">4.10</span> Vertiefung</a></li>
@@ -266,8 +271,10 @@ div.csl-indent {
 </ul></section><section id="r-pakete" class="level3" data-number="4.1.5"><h3 data-number="4.1.5" class="anchored" data-anchor-id="r-pakete">
 <span class="header-section-number">4.1.5</span> R-Pakete</h3>
 <p>Benötigte R-Pakete für dieses Kapitel:</p>
-<div class="cell" data-hash="040-Statistisches-Lernen_cache/html/unnamed-chunk-2_d964496e30b9d1218fb2ca51a4f27c3e">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="040-Statistisches-Lernen_cache/html/unnamed-chunk-2_7f37a2d25af196cd8b81902d40f71170">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://easystats.github.io/easystats/">easystats</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section><section id="was-ist-data-science" class="level2" data-number="4.2"><h2 data-number="4.2" class="anchored" data-anchor-id="was-ist-data-science">
 <span class="header-section-number">4.2</span> Was ist Data Science?</h2>
@@ -386,7 +393,7 @@ Hinweis
 <p>ML kann man auffassen als eine Menge an Verfahren, um <span class="math inline">\(f\)</span> zu schätzen.</p>
 <p>Ein Beispiel ist in Abb. <a href="#fig-statlearning">Abbildung&nbsp;<span>4.3</span></a> gezeigt <span class="citation" data-cites="islr">(<a href="references.html#ref-islr" role="doc-biblioref">James u.&nbsp;a. 2021</a>)</span>.</p>
 <div id="fig-statlearning" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="img/2-2.png" class="img-fluid figure-img"></p>
+<figure class="figure"><p><img src="img/2-2.png" class="quarto-discovered-preview-image img-fluid figure-img"></p>
 <p></p><figcaption class="figure-caption">Abbildung&nbsp;4.3: Vorhersage des Einkommens durch Ausbildungsjahre</figcaption><p></p>
 </figure>
 </div>
@@ -605,12 +612,16 @@ Hinweis
 <p></p><figcaption class="figure-caption">Abbildung&nbsp;4.13: Wenig (links) vs.&nbsp;viel (rechts) Vorhersagefehler</figcaption><p></p>
 </figure>
 </div>
-<p>Die Modellgüte eines Modells ist nur relevant für <em>neue Beobachtungen</em>, an denen das Modell nicht trainiert wurde.</p>
+<p>Die Modellgüte eines Modells ist v.a. relevant für <em>neue Beobachtungen</em>, an denen das Modell <em>nicht</em> trainiert wurde.</p>
 </section><section id="über--vs.-unteranpassung" class="level2" data-number="4.7"><h2 data-number="4.7" class="anchored" data-anchor-id="über--vs.-unteranpassung">
 <span class="header-section-number">4.7</span> Über- vs.&nbsp;Unteranpassung</h2>
-<p><em>Overfitting</em>: Ein Modell sagt die Trainingsdaten zu genau vorher - es nimmt Rauschen als “bare Münze”, also fälschlich als Signal. Solche Modelle haben zu viel <em>Varianz</em> in ihren Vorhersagen.</p>
-<p><em>Underfitting</em>: Ein Modell ist zu simpel (ungenau, grobkörnig) - es unterschlägt Nuancen des tatsächlichen Musters. Solche Modelle haben zu viel <em>Verzerrung</em> (Bias) in ihren Vorhersagen.</p>
-<p>Welches der folgenden Modelle (B,C,D) passt am besten zu den Daten (A), s. <a href="#fig-overunder">Abbildung&nbsp;<span>4.14</span></a>), vgl. <span class="citation" data-cites="modar">(<a href="references.html#ref-modar" role="doc-biblioref">Sauer 2019</a>)</span>, Kap. 15.</p>
+<div id="def-overfit" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 4.3 (Overfitting) </strong></span>Ein Modell sagt die Trainingsdaten zu genau vorher - es nimmt Rauschen als “bare Münze”, also fälschlich als Signal. Solche Modelle haben zu viel <em>Varianz</em> in ihren Vorhersagen.<span class="math inline">\(\square\)</span></p>
+</div>
+<div id="def-underfit" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 4.4 (Underfitting) </strong></span>Ein Modell ist zu simpel (ungenau, grobkörnig) - es unterschlägt Nuancen des tatsächlichen Musters. Solche Modelle haben zu viel <em>Verzerrung</em> (Bias) in ihren Vorhersagen.<span class="math inline">\(\square\)</span></p>
+</div>
+<p>Welches der folgenden Modelle (B,C,D) passt am besten zu den Daten (A), s. <a href="#fig-overunder">Abbildung&nbsp;<span>4.14</span></a>), vgl. <span class="citation" data-cites="modar">(<a href="references.html#ref-modar" role="doc-biblioref">Sauer 2019</a>)</span>, Kap. 15?</p>
 <div class="cell" data-hash="040-Statistisches-Lernen_cache/html/fig-overunder_0c5c922df1ee9058bbf91e163e7538b9">
 <div class="cell-output-display">
 <div id="fig-overunder" class="quarto-figure quarto-figure-center anchored">
@@ -628,7 +639,197 @@ Hinweis
 <p></p><figcaption class="figure-caption">Abbildung&nbsp;4.15: Mittlere Modellkomplexität führt zur besten Vorhersagegüte: Gute Balance von Bias und Präzision</figcaption><p></p>
 </figure>
 </div>
-</section><section id="no-free-lunch" class="level2" data-number="4.8"><h2 data-number="4.8" class="anchored" data-anchor-id="no-free-lunch">
+<section id="do-it-yourself-under-overfitting" class="level3" data-number="4.7.1"><h3 data-number="4.7.1" class="anchored" data-anchor-id="do-it-yourself-under-overfitting">
+<span class="header-section-number">4.7.1</span> Do-it-yourself Under-/Overfitting</h3>
+<p>Erkunden wir die Effekte von Under- und Overfitting an einem einfachen, simulierten Datenbeispiel:</p>
+<div class="cell" data-hash="040-Statistisches-Lernen_cache/html/unnamed-chunk-13_a217c0bd79a1bf68aca0aecf77789228">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>  x <span class="op">=</span> <span class="op">-</span><span class="fl">2</span><span class="op">:</span><span class="fl">2</span>,</span>
+<span>  y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="op">-</span><span class="fl">.5</span>, <span class="fl">0</span>, <span class="fl">0.1</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Jetzt “fitten” wir eine zunehmend komplexe Funktion in diese Daten. Als Funktion wählen wir ein Polynom von Grad 1 bis 4.</p>
+<ul>
+<li>Ein Polynom 1. Grades ist eine lineare Funktion: <span class="math inline">\(y \sim x¹\)</span>.</li>
+<li>Ein Polynom 2. Grades ist eine quadratische Funktion: <span class="math inline">\(y \sim x² + x\)</span>
+</li>
+<li>Ein Polynom <span class="math inline">\(n\)</span>. Grades ist eine Funktion der Form <span class="math inline">\(y \sim x^n + x^{n-1} + x^{n-2} + \ldots + x\)</span>
+</li>
+</ul>
+<p>Polynome werden flexibler (mehr “Täler” und “Gipfel” haben), je höher ihr Grad ist. Daher stellt sich die Frage, welcher Grad der “richtige” ist. Leider wissen wir in der Praxis nicht, welche Funktion die Natur ausgewählt hat. Daher wäre eine Lösung, die Funktion auszuwählen, welche die Daten am besten erklärt.</p>
+<div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span>, formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="va">x</span>, se <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span>, formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/poly.html">poly</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">2</span><span class="op">)</span>, se <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span>, formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/poly.html">poly</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">3</span><span class="op">)</span>, se <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span>, formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/poly.html">poly</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">4</span><span class="op">)</span>, se <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fig-poly" class="cell quarto-layout-panel" data-hash="040-Statistisches-Lernen_cache/html/fig-poly_7e7ceaed0e79596fdc463d9c41fecc5f">
+<figure class="figure"><div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-poly-1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="040-Statistisches-Lernen_files/figure-html/fig-poly-1.png" class="img-fluid figure-img" data-ref-parent="fig-poly" width="672"></p>
+<p></p><figcaption class="figure-caption">(a) Grad 1</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-poly-2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="040-Statistisches-Lernen_files/figure-html/fig-poly-2.png" class="img-fluid figure-img" data-ref-parent="fig-poly" width="672"></p>
+<p></p><figcaption class="figure-caption">(b) Grad 2</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-poly-3" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="040-Statistisches-Lernen_files/figure-html/fig-poly-3.png" class="img-fluid figure-img" data-ref-parent="fig-poly" width="672"></p>
+<p></p><figcaption class="figure-caption">(c) Grad 3</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-poly-4" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="040-Statistisches-Lernen_files/figure-html/fig-poly-4.png" class="img-fluid figure-img" data-ref-parent="fig-poly" width="672"></p>
+<p></p><figcaption class="figure-caption">(d) Grad 4</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;4.16: Polynome vom Grad 1-4</figcaption><p></p>
+</figure>
+</div>
+</div>
+<p>Wie man sieht, wird der Modellfehler immer kleiner, der “Fit” zunehmens besser.</p>
+<p>Das kann man sich natürlich auch präziser berechnen lassen.</p>
+<div class="cell" data-hash="040-Statistisches-Lernen_cache/html/unnamed-chunk-15_2274593bdfb1b305c384351bb8bd5aaa">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">lm1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/poly.html">poly</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">1</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">d</span><span class="op">)</span></span>
+<span><span class="va">lm2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/poly.html">poly</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">2</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">d</span><span class="op">)</span></span>
+<span><span class="va">lm3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/poly.html">poly</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">3</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">d</span><span class="op">)</span></span>
+<span><span class="va">lm4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/poly.html">poly</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">4</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">d</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">results</span> <span class="op">&lt;-</span></span>
+<span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>r2_lm1 <span class="op">=</span> <span class="fu">r2</span><span class="op">(</span><span class="va">lm1</span><span class="op">)</span><span class="op">$</span><span class="va">R2</span>,</span>
+<span>         r2_lm2 <span class="op">=</span> <span class="fu">r2</span><span class="op">(</span><span class="va">lm2</span><span class="op">)</span><span class="op">$</span><span class="va">R2</span>,</span>
+<span>         r2_lm3 <span class="op">=</span> <span class="fu">r2</span><span class="op">(</span><span class="va">lm3</span><span class="op">)</span><span class="op">$</span><span class="va">R2</span>,</span>
+<span>         r2_lm4 <span class="op">=</span> <span class="fu">r2</span><span class="op">(</span><span class="va">lm4</span><span class="op">)</span><span class="op">$</span><span class="va">R2</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">results</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["r2_lm1"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["r2_lm2"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["r2_lm3"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["r2_lm4"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"0.8396299","2":"0.9189338","3":"0.9813856","4":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hinweis
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Je komplexer das Modell, desto besser der Fit<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> in dem Modell, in das Modell berechnet wurde.</p>
+</div>
+</div>
+<p>Aber wie gut werden die Vorhersagen für neue Daten sein?</p>
+<p>Sagen wir, <em>in Wirklichkeit</em> ist der <em>datengenerierende Prozess</em><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> (DGP) eine einfache lineare Funktion, plus etwas Rauschen (Fehler, <span class="math inline">\(\epsilon\)</span>):</p>
+<p><span class="math inline">\(y \sim x + \epsilon\)</span></p>
+<p>Sagen wir, das Rauschen ist normalverteilt mit Streuung 0.5.</p>
+<p>Simulieren wir uns jetzt ein paar neue Daten, die aus dieser Funktion resultieren.</p>
+<div class="cell" data-hash="040-Statistisches-Lernen_cache/html/unnamed-chunk-16_17a3f1f2f9dca0b23a15fc59fea46014">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">d1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>  x <span class="op">=</span> <span class="op">-</span><span class="fl">2</span><span class="op">:</span><span class="fl">2</span>,</span>
+<span>  e <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span>, </span>
+<span>  y <span class="op">=</span> <span class="va">x</span>,  <span class="co"># "wahrer" Wert</span></span>
+<span>  y_hat <span class="op">=</span> <span class="va">y</span> <span class="op">+</span> <span class="va">e</span>  <span class="co"># beobachteter Wert mit Rauschen</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">d1</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["x"],"name":[1],"type":["int"],"align":["right"]},{"label":["e"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["y"],"name":[3],"type":["int"],"align":["right"]},{"label":["y_hat"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"-2","2":"0.03914869","3":"-2","4":"-1.9608513"},{"1":"-1","2":"0.03967611","3":"-1","4":"-0.9603239"},{"1":"0","2":"0.59895226","3":"0","4":"0.5989523"},{"1":"1","2":"-0.26804676","3":"1","4":"0.7319532"},{"1":"2","2":"0.20705056","3":"2","4":"2.2070506"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div id="def-traintest" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 4.5 (Train- und Test-Datensatz) </strong></span>Den Datensatz, in dem man ein Modell berechnet (“fittet”), nennt man auch <em>Train-Datensatz</em>. Einen anderen Datensatz, den man nutzt, um die Güte des Modells zu überprüfen, nennt man <em>Test-Datensatz</em></p>
+</div>
+<p>Damit wir eine stabilere Datenbasis haben, simulieren wir aber pro X-Wert (-2, -1, 0, 1, 2) nicht nur einen Wert, sondern, sagen wir, 10:</p>
+<div class="cell" data-hash="040-Statistisches-Lernen_cache/html/unnamed-chunk-17_8142e8ce587fea17f72e2854cc94a2f7">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">d2</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2</span><span class="op">:</span><span class="fl">2</span>, times <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>,</span>
+<span>    e <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">50</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span>,  <span class="co"># Rauschen, Fehlerterm</span></span>
+<span>    y_hat <span class="op">=</span> <span class="va">x</span>,  <span class="co"># "wahrer" Wert</span></span>
+<span>    y <span class="op">=</span> <span class="va">x</span> <span class="op">+</span> <span class="va">e</span>  <span class="co"># beobachteter Wert mit Rauschen</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="va">d2</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["x"],"name":[1],"type":["int"],"align":["right"]},{"label":["e"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["y_hat"],"name":[3],"type":["int"],"align":["right"]},{"label":["y"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"-2","2":"-0.03597477","3":"-2","4":"-2.03597477"},{"1":"-1","2":"0.64201121","3":"-1","4":"-0.35798879"},{"1":"0","2":"1.06242469","3":"0","4":"1.06242469"},{"1":"1","2":"0.94308244","3":"1","4":"1.94308244"},{"1":"2","2":"-0.72163956","3":"2","4":"1.27836044"},{"1":"-2","2":"0.32994662","3":"-2","4":"-1.67005338"},{"1":"-1","2":"1.12447288","3":"-1","4":"0.12447288"},{"1":"0","2":"-0.23674796","3":"0","4":"-0.23674796"},{"1":"1","2":"-0.01276137","3":"1","4":"0.98723863"},{"1":"2","2":"0.18243037","3":"2","4":"2.18243037"},{"1":"-2","2":"0.42705570","3":"-2","4":"-1.57294430"},{"1":"-1","2":"0.36564161","3":"-1","4":"-0.63435839"},{"1":"0","2":"-0.28865691","3":"0","4":"-0.28865691"},{"1":"1","2":"0.99167732","3":"1","4":"1.99167732"},{"1":"2","2":"0.12548835","3":"2","4":"2.12548835"},{"1":"-2","2":"-0.16610048","3":"-2","4":"-2.16610048"},{"1":"-1","2":"0.57811976","3":"-1","4":"-0.42188024"},{"1":"0","2":"0.26707899","3":"0","4":"0.26707899"},{"1":"1","2":"-1.06418261","3":"1","4":"-0.06418261"},{"1":"2","2":"-0.43045644","3":"2","4":"1.56954356"},{"1":"-2","2":"0.01019720","3":"-2","4":"-1.98980280"},{"1":"-1","2":"-0.04854415","3":"-1","4":"-1.04854415"},{"1":"0","2":"-0.32044413","3":"0","4":"-0.32044413"},{"1":"1","2":"-0.49259774","3":"1","4":"0.50740226"},{"1":"2","2":"-0.07434747","3":"2","4":"1.92565253"},{"1":"-2","2":"0.31993727","3":"-2","4":"-1.68006273"},{"1":"-1","2":"0.46875243","3":"-1","4":"-0.53124757"},{"1":"0","2":"0.48498427","3":"0","4":"0.48498427"},{"1":"1","2":"0.26422578","3":"1","4":"1.26422578"},{"1":"2","2":"-0.30671988","3":"2","4":"1.69328012"},{"1":"-2","2":"0.11178846","3":"-2","4":"-1.88821154"},{"1":"-1","2":"-0.27583953","3":"-1","4":"-1.27583953"},{"1":"0","2":"-0.38251721","3":"0","4":"-0.38251721"},{"1":"1","2":"0.44003301","3":"1","4":"1.44003301"},{"1":"2","2":"0.88905997","3":"2","4":"2.88905997"},{"1":"-2","2":"-0.08187534","3":"-2","4":"-2.08187534"},{"1":"-1","2":"-0.57914721","3":"-1","4":"-1.57914721"},{"1":"0","2":"-0.21093029","3":"0","4":"-0.21093029"},{"1":"1","2":"0.22540240","3":"1","4":"1.22540240"},{"1":"2","2":"-0.83282462","3":"2","4":"1.16717538"},{"1":"-2","2":"-0.08299243","3":"-2","4":"-2.08299243"},{"1":"-1","2":"-0.17778007","3":"-1","4":"-1.17778007"},{"1":"0","2":"-0.55298832","3":"0","4":"-0.55298832"},{"1":"1","2":"-0.14347728","3":"1","4":"0.85652272"},{"1":"2","2":"-0.17599729","3":"2","4":"1.82400271"},{"1":"-2","2":"-1.11603534","3":"-2","4":"-3.11603534"},{"1":"-1","2":"0.45502021","3":"-1","4":"-0.54497979"},{"1":"0","2":"-0.39859817","3":"0","4":"-0.39859817"},{"1":"1","2":"0.10422841","3":"1","4":"1.10422841"},{"1":"2","2":"-0.60279445","3":"2","4":"1.39720555"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div class="cell" data-hash="040-Statistisches-Lernen_cache/html/fig-polytest_5c5c6182f2bf68968f90b520a550a3e4">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"lm"</span>, formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/poly.html">poly</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">4</span><span class="op">)</span>, se <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">d2</span>, color <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span> </span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-polytest" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="040-Statistisches-Lernen_files/figure-html/fig-polytest-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;4.17: In neuen Daten sind die Vorhersagen vom Polynom 4. Grades nicht mehr so gut</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Jetzt sieht das R-Quadrat schon nicht mehr so gut aus, s. <a href="#fig-polytest">Abbildung&nbsp;<span>4.17</span></a>. Berechnen wir mal das R-Quadrat:</p>
+<div class="cell" data-hash="040-Statistisches-Lernen_cache/html/unnamed-chunk-19_ce4e4d638eb6508960e22859e44e3bbe">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">rsq</span><span class="op">(</span>data <span class="op">=</span> <span class="va">d2</span>, truth <span class="op">=</span> <span class="va">y</span>, estimate <span class="op">=</span> <span class="va">y_hat</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":[".metric"],"name":[1],"type":["chr"],"align":["left"]},{"label":[".estimator"],"name":[2],"type":["chr"],"align":["left"]},{"label":[".estimate"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"rsq","2":"standard","3":"0.8738076"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div id="exr-overfitting" class="theorem exercise">
+<p><span class="theorem-title"><strong>Übungsaufgabe 4.1 (Overfitting) </strong></span>Simulieren Sie Daten, um ein Polynom 9. Grades zu berechnen. Die wahre Funktion soll eine einfache lineare Funktion sein (Polynom 1. Grades). Berechnen und visualisieren Sie das Modell. Vergleichen Sie dann das R-Quadrat im Train- und im Test-Datensatz.<span class="math inline">\(\square\)</span></p>
+</div>
+<div id="exr-overfitting2" class="theorem exercise">
+<p><span class="theorem-title"><strong>Übungsaufgabe 4.2 (Overfitting 2) </strong></span>Simulieren Sie Daten, um ein Polynom 9. Grades zu berechnen. Die wahre Funktion soll eine Polynomfunktion sein (Polynom 2. Grades). Berechnen und visualisieren Sie das Modell. Vergleichen Sie dann das R-Quadrat im Train- und im Test-Datensatz.<span class="math inline">\(\square\)</span></p>
+</div>
+</section></section><section id="no-free-lunch" class="level2" data-number="4.8"><h2 data-number="4.8" class="anchored" data-anchor-id="no-free-lunch">
 <span class="header-section-number">4.8</span> No free lunch</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="img/yoda-best-model.jpg" class="img-fluid figure-img" style="width:50.0%"></p>
@@ -647,18 +848,18 @@ Vorsicht
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Die grüne Funktion in <a href="#fig-2-10">Abbildung&nbsp;<span>4.16</span></a> wird neue, beim Modelltraining unbekannte Beobachtungen (<span class="math inline">\(y_0\)</span>) vergleichsweise schlecht vorhersagen. In <a href="#fig-2-11">Abbildung&nbsp;<span>4.17</span></a> ist es umgekehrt.</p>
+<p>Die grüne Funktion in <a href="#fig-2-10">Abbildung&nbsp;<span>4.18</span></a> wird neue, beim Modelltraining unbekannte Beobachtungen (<span class="math inline">\(y_0\)</span>) vergleichsweise schlecht vorhersagen. In <a href="#fig-2-11">Abbildung&nbsp;<span>4.19</span></a> ist es umgekehrt.</p>
 </div>
 </div>
 <div id="fig-2-10" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="img/2-10.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;4.16: Ein lineare Funktion verlangt ein lineares Modell; ein nichtlineares Modell wird in einem höheren Vorhersagefehler (bei neuen Daten!) resultieren</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;4.18: Ein lineare Funktion verlangt ein lineares Modell; ein nichtlineares Modell wird in einem höheren Vorhersagefehler (bei neuen Daten!) resultieren</figcaption><p></p>
 </figure>
 </div>
-<p>Betrachten wir im Gegensatz dazu <a href="#fig-2-11">Abbildung&nbsp;<span>4.17</span></a> aus <span class="citation" data-cites="islr">James u.&nbsp;a. (<a href="references.html#ref-islr" role="doc-biblioref">2021</a>)</span>, die (in schwarz) eine hochgradig <em>nichtlineare</em> Funktion <span class="math inline">\(f\)</span> zeigt. Entsprechend wird das lineare Modell (orange) nur schlechte Vorhersagen erreichen - es hat zu viel Bias, da zu simpel. Ein lineares Modell wird der Komplexität von <span class="math inline">\(f\)</span> nicht gerecht, Unteranpassung (underfitting) liegt vor.</p>
+<p>Betrachten wir im Gegensatz dazu <a href="#fig-2-11">Abbildung&nbsp;<span>4.19</span></a> aus <span class="citation" data-cites="islr">James u.&nbsp;a. (<a href="references.html#ref-islr" role="doc-biblioref">2021</a>)</span>, die (in schwarz) eine hochgradig <em>nichtlineare</em> Funktion <span class="math inline">\(f\)</span> zeigt. Entsprechend wird das lineare Modell (orange) nur schlechte Vorhersagen erreichen - es hat zu viel Bias, da zu simpel. Ein lineares Modell wird der Komplexität von <span class="math inline">\(f\)</span> nicht gerecht, Unteranpassung (underfitting) liegt vor.</p>
 <div id="fig-2-11" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="2-11.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;4.17: Eine nichtlineare Funktion (schwarz) verlangt eine nichtlineares Modell. Ein lineares Modell (orange) ist unterangepasst und hat eine schlechte Vorhersageleistung</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;4.19: Eine nichtlineare Funktion (schwarz) verlangt eine nichtlineares Modell. Ein lineares Modell (orange) ist unterangepasst und hat eine schlechte Vorhersageleistung</figcaption><p></p>
 </figure>
 </div>
 </section><section id="bias-varianz-abwägung" class="level2" data-number="4.9"><h2 data-number="4.9" class="anchored" data-anchor-id="bias-varianz-abwägung">
@@ -666,10 +867,10 @@ Vorsicht
 <p>Der Gesamtfehler <span class="math inline">\(E\)</span> des Modells ist die Summe dreier Terme:</p>
 <p><span class="math display">\[E = (y - \hat{y}) = \text{Bias} + \text{Varianz} + \epsilon\]</span></p>
 <p>Dabei meint <span class="math inline">\(\epsilon\)</span> den <em>nicht reduzierbaren Fehler</em>, z.B. weil dem Modell Informationen fehlen. So kann man etwa auf der Motivation von Studentis keine perfekte Vorhersage ihrer Noten erreichen (lehrt die Erfahrung).</p>
-<p>Bias und Varianz sind Kontrahenten: Ein Modell, das wenig Bias hat, neigt tendenziell zu wenig Varianz und umgekehrt, vgl. <a href="#fig-bias-var">Abbildung&nbsp;<span>4.18</span></a> aus <span class="citation" data-cites="modar">Sauer (<a href="references.html#ref-modar" role="doc-biblioref">2019</a>)</span>.</p>
+<p>Bias und Varianz sind Kontrahenten: Ein Modell, das wenig Bias hat, neigt tendenziell zu wenig Varianz und umgekehrt, vgl. <a href="#fig-bias-var">Abbildung&nbsp;<span>4.20</span></a> aus <span class="citation" data-cites="modar">Sauer (<a href="references.html#ref-modar" role="doc-biblioref">2019</a>)</span>.</p>
 <div id="fig-bias-var" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="img/plot-bias-variance-1.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;4.18: Abwängung von Bias vs.&nbsp;Varianz</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;4.20: Abwängung von Bias vs.&nbsp;Varianz</figcaption><p></p>
 </figure>
 </div>
 </section><section id="vertiefung" class="level2" data-number="4.10"><h2 data-number="4.10" class="anchored" data-anchor-id="vertiefung">
@@ -711,7 +912,11 @@ Sauer, Sebastian. 2019. <em>Moderne Datenanalyse mit R: Daten einlesen, aufberei
 Spurzem, Lothar. 2017. <em><span>VW</span> 1303 von Wiking in 1:87</em>. <a href="https://de.wikipedia.org/wiki/Modellautomobil#/media/File:Wiking-Modell_VW_1303_(um_1975).JPG">https://de.wikipedia.org/wiki/Modellautomobil#/media/File:Wiking-Modell_VW_1303_(um_1975).JPG</a>.
 </div>
 </div>
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+<ol>
+<li id="fn1"><p>ceteris paribus<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>data-generating process, DGP<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");

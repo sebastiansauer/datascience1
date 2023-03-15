@@ -52,6 +52,8 @@ Benötigte R-Pakete für dieses Kapitel:
 
 ```{r}
 library(tidyverse)
+library(easystats)
+library(tidymodels)
 ```
 
 
@@ -479,6 +481,166 @@ Leider ist es nicht möglich, vorab zu sagen, was der richtige, "mittlere" Wert 
 
 
 ![Mittlere Modellkomplexität führt zur besten Vorhersagegüte: Gute Balance von Bias und Präzision](img/overfitting-crop.png){#fig-overfitting width="50%"}
+
+### Do-it-yourself Under-/Overfitting
+
+Erkunden wir die Effekte von Under- und Overfitting an einem einfachen, 
+simulierten Datenbeispiel:
+
+```{r}
+d <- tibble(
+  x = -2:2,
+  y = c(-1, -.5, 0, 0.1, 2)
+)
+```
+
+
+Jetzt "fitten" wir eine zunehmend komplexe Funktion in diese Daten.
+Als Funktion wählen wir ein Polynom von Grad 1 bis 4.
+
+- Ein Polynom 1. Grades ist eine lineare Funktion: $y \sim  x¹$.
+- Ein Polynom 2. Grades ist eine quadratische Funktion: $y \sim x² + x$
+- Ein Polynom $n$. Grades ist eine Funktion der Form $y \sim x^n + x^{n-1} + x^{n-2} + \ldots + x$  
+
+Polynome werden flexibler (mehr "Täler" und "Gipfel" haben), je höher ihr Grad ist.
+Daher stellt sich die Frage, welcher Grad der "richtige" ist.
+Leider wissen wir in der Praxis nicht, welche Funktion die Natur ausgewählt hat.
+Daher wäre eine Lösung, die Funktion auszuwählen, welche die Daten am besten erklärt.
+
+
+```{r}
+#| label: fig-poly
+#| fig-cap: "Polynome vom Grad 1-4"
+#| layout-ncol: 2
+#| fig-subcap: 
+#|   - "Grad 1"
+#|   - "Grad 2"
+#|   - "Grad 3"
+#|   - "Grad 4"
+ggplot(d) +
+  aes(x, y) +
+  geom_point() +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE)
+
+ggplot(d) +
+  aes(x, y) +
+  geom_point() +
+  geom_smooth(method = "lm", formula = y ~ poly(x, 2), se = FALSE)
+
+ggplot(d) +
+  aes(x, y) +
+  geom_point() +
+  geom_smooth(method = "lm", formula = y ~ poly(x, 3), se = FALSE)
+
+ggplot(d) +
+  aes(x, y) +
+  geom_point() +
+  geom_smooth(method = "lm", formula = y ~ poly(x, 4), se = FALSE)
+```
+
+Wie man sieht, wird der Modellfehler immer kleiner, der "Fit" zunehmens besser.
+
+Das kann man sich natürlich auch präziser berechnen lassen.
+
+```{r}
+lm1 <- lm(y ~ poly(x, 1), data = d)
+lm2 <- lm(y ~ poly(x, 2), data = d)
+lm3 <- lm(y ~ poly(x, 3), data = d)
+lm4 <- lm(y ~ poly(x, 4), data = d)
+
+results <-
+  tibble(r2_lm1 = r2(lm1)$R2,
+         r2_lm2 = r2(lm2)$R2,
+         r2_lm3 = r2(lm3)$R2,
+         r2_lm4 = r2(lm4)$R2)
+
+results
+```
+
+:::{.callout-note}
+Je komplexer das Modell, desto besser der Fit^[ceteris paribus]
+in dem Modell, in das Modell berechnet wurde.
+:::
+
+
+Aber wie gut werden die Vorhersagen für neue Daten sein?
+
+Sagen wir, *in Wirklichkeit* ist der *datengenerierende Prozess*^[data-generating process, DGP] (DGP) eine einfache lineare Funktion, plus etwas Rauschen (Fehler, $\epsilon$):
+
+$y \sim x + \epsilon$
+
+Sagen wir, das Rauschen ist normalverteilt mit Streuung 0.5.
+
+Simulieren wir uns jetzt ein paar neue Daten, die aus dieser Funktion resultieren.
+
+```{r}
+d1 <- tibble(
+  x = -2:2,
+  e = rnorm(n = 5, mean = 0, sd = .5), 
+  y = x,  # "wahrer" Wert
+  y_hat = y + e  # beobachteter Wert mit Rauschen
+)
+
+d1
+```
+
+:::{#def-traintest}
+### Train- und Test-Datensatz
+Den Datensatz, in dem man ein Modell berechnet ("fittet"), nennt man auch *Train-Datensatz*.
+Einen anderen Datensatz, den man nutzt, um die Güte des Modells zu überprüfen, nennt man *Test-Datensatz*
+:::
+
+
+
+
+
+Damit wir eine stabilere Datenbasis haben, simulieren wir aber pro X-Wert (-2, -1, 0, 1, 2) nicht nur einen Wert,
+sondern, sagen wir, 10:
+
+```{r}
+d2 <- 
+  tibble(
+    x = rep(-2:2, times = 10),
+    e = rnorm(n = 50, mean = 0, sd = .5),  # Rauschen, Fehlerterm
+    y_hat = x,  # "wahrer" Wert
+    y = x + e  # beobachteter Wert mit Rauschen
+  )
+
+d2
+```
+
+
+```{r}
+#| label: fig-polytest
+#| fig-cap: "In neuen Daten sind die Vorhersagen vom Polynom 4. Grades nicht mehr so gut"
+ggplot(d) +
+  aes(x, y) +
+  geom_point() +
+  geom_smooth(method = "lm", formula = y ~ poly(x, 4), se = FALSE) +
+  geom_point(data = d2, color = "blue") 
+```
+
+
+Jetzt sieht das R-Quadrat schon nicht mehr so gut aus, s. @fig-polytest.
+Berechnen wir mal das R-Quadrat:
+
+```{r}
+rsq(data = d2, truth = y, estimate = y_hat)
+```
+
+
+
+:::{#exr-overfitting}
+### Overfitting
+
+Simulieren Sie Daten, um ein Polynom 9. Grades zu berechnen. Die wahre Funktion soll eine einfache lineare Funktion sein (Polynom 1. Grades). Berechnen und visualisieren Sie das Modell. Vergleichen Sie dann das R-Quadrat im Train- und im Test-Datensatz.$\square$
+:::
+
+:::{#exr-overfitting2}
+### Overfitting 2
+
+Simulieren Sie Daten, um ein Polynom 9. Grades zu berechnen. Die wahre Funktion soll eine  Polynomfunktion sein (Polynom 2. Grades). Berechnen und visualisieren Sie das Modell. Vergleichen Sie dann das R-Quadrat im Train- und im Test-Datensatz.$\square$
+:::
 
 
 

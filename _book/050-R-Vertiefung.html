@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.247">
+<meta name="generator" content="quarto-1.3.269">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Grundlagen der Prognosemodellierung 🔮🧰 - 5&nbsp; R, zweiter Blick</title>
 <style>
@@ -108,7 +108,7 @@ div.csl-indent {
     "search-submit-button-title": "Abschicken"
   }
 }</script><link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
-<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><link rel="stylesheet" href="styles.css">
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><link rel="stylesheet" href="styles.css">
 </head>
 <body class="nav-sidebar floating">
 
@@ -276,14 +276,14 @@ div.csl-indent {
 <p><span class="theorem-title"><strong>Beispiel 5.1 (Beispiele für Objekte) </strong></span>Vektoren und Dataframes (Tibbles) sind die vielleicht gängigsten Objektarten in R (vgl. <a href="#fig-obs">Abbildung&nbsp;<span>5.1</span></a>), aus <span class="citation" data-cites="modar">Sauer (<a href="references.html#ref-modar" role="doc-biblioref">2019</a>)</span>).<span class="math inline">\(\square\)</span></p>
 </div>
 <div id="fig-obs" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="img/zentrale_objektarten.png" class="img-fluid figure-img"></p>
+<figure class="figure"><p><img src="img/zentrale_objektarten.png" class="quarto-discovered-preview-image img-fluid figure-img"></p>
 <p></p><figcaption class="figure-caption">Abbildung&nbsp;5.1: Zentrale Objektarten in R</figcaption><p></p>
 </figure>
 </div>
 <p>Es gibt in R keine (Objekte für) Skalare (einzelne Zahlen). Stattdessen nutzt R Vektoren der Länge 1.</p>
 <p>Ein nützliches Schema stammt aus <span class="citation" data-cites="r4ds">Wickham und Grolemund (<a href="references.html#ref-r4ds" role="doc-biblioref">2016</a>)</span>, s. <a href="#fig-objtypes">Abbildung&nbsp;<span>5.2</span></a>).</p>
 <div id="fig-objtypes" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="img/data-structures-overview.png" class="img-fluid figure-img"></p>
+<figure class="figure"><p><img src="img/data-structures-overview.png" class="img-fluid figure-img" style="width:50.0%"></p>
 <p></p><figcaption class="figure-caption">Abbildung&nbsp;5.2: Objektarten hierarchisch gegliedert</figcaption><p></p>
 </figure>
 </div>
@@ -336,29 +336,26 @@ div.csl-indent {
 </li>
 </ul>
 <p>Kommazahlen und Ganze Zahlen zusammen bilden den Typ <code>numeric</code> (numerisch) in R.</p>
-<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-4_17095909493797b5f6aaa9a5816dc4a8">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/knitr/man/opts_chunk.html">opts_chunk</a></span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>echo <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p>Den Typ eines Vektors kann man mit <code><a href="https://rdrr.io/r/base/typeof.html">typeof()</a></code> ausgeben lassen:</p>
-<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-5_d0f5c9643e460d39a170fcdf5054ad00">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">ein_vektor</span><span class="op">)</span></span>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-4_0640a7597d0b589af61218625acb006b">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">ein_vektor</span><span class="op">)</span></span>
 <span><span class="co">## [1] "double"</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="faktoren" class="level4" data-number="5.2.2.2"><h4 data-number="5.2.2.2" class="anchored" data-anchor-id="faktoren">
 <span class="header-section-number">5.2.2.2</span> Faktoren</h4>
-<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-6_3a540451a71c20d969d8862f17293ec1">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sex</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Mann"</span>, <span class="st">"Frau"</span>, <span class="st">"Frau"</span><span class="op">)</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-5_56a24b034d7b3933c71e565bf9ff0ba5">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sex</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Mann"</span>, <span class="st">"Frau"</span>, <span class="st">"Frau"</span><span class="op">)</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Interessant:</p>
-<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-7_88a5a87aaf1f0bd07a3a18befa44b72d">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span></span>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-6_0526a96ef3a51742a67395d50426f37e">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span></span>
 <span><span class="co">##  Factor w/ 2 levels "Frau","Mann": 2 1 1</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Vertiefende Informationen findet sich in <span class="citation" data-cites="r4ds">Wickham und Grolemund (<a href="references.html#ref-r4ds" role="doc-biblioref">2016</a>)</span>.</p>
 </section><section id="listen" class="level4" data-number="5.2.2.3"><h4 data-number="5.2.2.3" class="anchored" data-anchor-id="listen">
 <span class="header-section-number">5.2.2.3</span> Listen</h4>
-<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-8_8ff37dc5b7f2dcdafa0e4151bf5b1d72">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">eine_liste</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>titel <span class="op">=</span> <span class="st">"Einführung"</span>,</span>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-7_18f5ef03c3872ee1a3e72334d10cddf9">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">eine_liste</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>titel <span class="op">=</span> <span class="st">"Einführung"</span>,</span>
 <span>                   woche <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>                   datum <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"2022-03-14"</span>, <span class="st">"2202-03-21"</span><span class="op">)</span>,</span>
 <span>                   lernziele <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"dies"</span>, <span class="st">"jenes"</span>, <span class="st">"und noch mehr"</span><span class="op">)</span>,</span>
@@ -375,11 +372,11 @@ div.csl-indent {
 </section><section id="tibbles" class="level4" data-number="5.2.2.4"><h4 data-number="5.2.2.4" class="anchored" data-anchor-id="tibbles">
 <span class="header-section-number">5.2.2.4</span> Tibbles</h4>
 <p>Für <code><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble()</a></code> brauchen wir <code>tidyverse</code>:</p>
-<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-9_06786cb0aa278d7c937aed8ebe2dd4ab">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-8_075249b7c0b9dfca0548fd50b2565031">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-hash="050-R-Vertiefung_cache/html/tibble-ex_1c40d071760613beaf4731ca45a84ba3">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
 <span><span class="va">studentis</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Anna"</span>, <span class="st">"Berta"</span><span class="op">)</span>,</span>
@@ -398,42 +395,42 @@ div.csl-indent {
 <section id="reine-vektoren" class="level4" data-number="5.2.3.1"><h4 data-number="5.2.3.1" class="anchored" data-anchor-id="reine-vektoren">
 <span class="header-section-number">5.2.3.1</span> Reine Vektoren</h4>
 <p>Zur Erinnerung:</p>
-<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-10_d542ecd639ef99f0dc9024323af343b6">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">ein_vektor</span><span class="op">)</span></span>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-9_9cfb625a7935e0c0eff09fda87acbd2e">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">ein_vektor</span><span class="op">)</span></span>
 <span><span class="co">##  num [1:3] 1 2 3</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-11_c3595e5353e137f72648c08eaff9a55e">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ein_vektor</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-10_e96ba8acf327ad1309227d989eb433fb">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ein_vektor</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
 <span><span class="co">## [1] 1</span></span>
 <span><span class="va">ein_vektor</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="co">## [1] 1 2</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Aber <em>nicht</em> so:</p>
-<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-12_57be401e632bb9f88ed321df4b50721c">
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ein_vektor</span><span class="op">[</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">]</span></span>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-11_99de1c14641016cc296766213b32d360">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ein_vektor</span><span class="op">[</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">]</span></span>
 <span><span class="co">## Error in ein_vektor[1, 2]: incorrect number of dimensions</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Man darf Vektoren auch wie Listen ansprechen, also eine doppelte Eckklammer zum Indizieren verwenden</p>
-<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-13_16d81a5b57e4bd8348f31ea6808a4c6d">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ein_vektor</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span></span>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-12_3a48f5077e503e67cc203f05a4d1a51a">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ein_vektor</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span></span>
 <span><span class="co">## [1] 2</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Der Grund ist, dass Listen auch Vektoren sind, nur eben ein besonderer Fall eines Vektors:</p>
-<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-14_dbe7e88304e22ba2914cdff22358e03d">
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/vector.html">is.vector</a></span><span class="op">(</span><span class="va">eine_liste</span><span class="op">)</span></span>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-13_51ab115ae6a47cae0ba74675be3f2903">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/vector.html">is.vector</a></span><span class="op">(</span><span class="va">eine_liste</span><span class="op">)</span></span>
 <span><span class="co">## [1] TRUE</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Was passiert, wenn man bei einem Vektor der Länge 3 das 4. Element indiziert?</p>
-<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-15_daaa0c46bd0faeab84b6b03cd991fca4">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ein_vektor</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span></span>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-14_77ad9aecc9581599b266d698493afcca">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ein_vektor</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span></span>
 <span><span class="co">## [1] NA</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Ein schnödes <code>NA</code> ist die Antwort. Das ist interessant: Wir bekommen keine Fehlermeldung, sondern den Hinweis, das angesprochene Element sei leer bzw. nicht verfügbar.</p>
 <p>In <span class="citation" data-cites="modar">Sauer (<a href="references.html#ref-modar" role="doc-biblioref">2019</a>)</span>, Kap. 5.3.1 findet man weitere Indizierungsmöglichkeiten für reine Vektoren.</p>
 </section><section id="listen-1" class="level4" data-number="5.2.3.2"><h4 data-number="5.2.3.2" class="anchored" data-anchor-id="listen-1">
 <span class="header-section-number">5.2.3.2</span> Listen</h4>
-<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-16_d3ee732a4a2d109f47b5444f291cd8a9">
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">eine_liste</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="op">)</span></span>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-15_0ba57ce6bf18259b5e084c928c795399">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">eine_liste</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">## List of 5</span></span>
 <span><span class="co">##  $ titel    : chr "Einführung"</span></span>
 <span><span class="co">##  $ woche    : num 1</span></span>
@@ -442,8 +439,8 @@ div.csl-indent {
 <span><span class="co">##  $ lehre    : logi [1:3] TRUE TRUE TRUE</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Listen können wie Vektoren, also mit <code>[</code> ausgelesen werden. Dann wird eine Liste zurückgegeben.</p>
-<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-17_f88d7b30fa9cb29b07c78bf237b772b5">
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">eine_liste</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-16_d805ee40a614b1c36a7d65b12fa58a3c">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">eine_liste</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
 <span><span class="co">## $titel</span></span>
 <span><span class="co">## [1] "Einführung"</span></span>
 <span><span class="va">eine_liste</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></span>
@@ -452,58 +449,58 @@ div.csl-indent {
 </div>
 <p>Das hat den technischen Hintergrund, dass Listen als eine bestimmte Art von Vektoren implementiert sind.</p>
 <p>Mann kann auch die “doppelte Eckklammer”, <code>[[</code> zum Auslesen verwenden; dann wird anstelle einer Liste die einfachere Struktur eines Vektors zurückgegeben:</p>
-<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-18_beb63291bd622ba0a76d39cbcd71ac4d">
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">eine_liste</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-17_76dd26750aed7b0a17bd3285a010b8c4">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">eine_liste</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
 <span><span class="co">## [1] "Einführung"</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Man könnte sagen, die “äußere Schicht” des Objekts, die Liste, wird abgeschält, und man bekommnt die “innere” Schicht, den Vektor.</p>
 <p>Mann die Elemente der Liste entweder mit ihrer Positionsnummer (1, 2, …) oder, sofern vorhanden, ihren Namen ansprechen:</p>
-<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-19_fde5c917fe78cffbb25679b983305338">
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">eine_liste</span><span class="op">[[</span><span class="st">"titel"</span><span class="op">]</span><span class="op">]</span></span>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-18_91caffbdbe01cc92ff1d196bf03dee1f">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">eine_liste</span><span class="op">[[</span><span class="st">"titel"</span><span class="op">]</span><span class="op">]</span></span>
 <span><span class="co">## [1] "Einführung"</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Dann gibt es noch den Dollar-Operator, mit dem Mann benannte Elemente von Listen ansprechen kann:</p>
-<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-20_4792c292dd489c49bc729be922a82d7f">
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">eine_liste</span><span class="op">$</span><span class="va">titel</span></span>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-19_a5a354cdbaaad3a205e84c87bcdb3525">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">eine_liste</span><span class="op">$</span><span class="va">titel</span></span>
 <span><span class="co">## [1] "Einführung"</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Man kann auch tiefer in eine Liste hinein indizieren. Sagen wir, uns interessiert das 4. Element der Liste <code>eine_liste</code> - und davon das erste Element.</p>
 <p>Das geht dann so:</p>
-<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-21_f97cabfaf9493609fbe75f6fdc141443">
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">eine_liste</span><span class="op">[[</span><span class="fl">4</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> </span>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-20_47981ba7bc2930bb02e650f107bc5328">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">eine_liste</span><span class="op">[[</span><span class="fl">4</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> </span>
 <span><span class="co">## [1] "dies"</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Eine einfachere Art des Indizierens von Listen bietet die Funktion <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck()</a></code>, aus dem Paket <code>purrr</code>, das Hilfen für den Umgang mit Listen bietet.</p>
-<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-22_a267fee7b02547f733666de5d5dd006e">
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span><span class="op">(</span><span class="va">eine_liste</span>, <span class="fl">4</span><span class="op">)</span></span>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-21_c2bd14437aa91dc24941b17ef0a7030e">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span><span class="op">(</span><span class="va">eine_liste</span>, <span class="fl">4</span><span class="op">)</span></span>
 <span><span class="co">## [1] "dies"          "jenes"         "und noch mehr"</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Und jetzt aus dem 4. Element das 1. Element:</p>
-<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-23_456798e609659a78b119d35e51b8bb75">
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span><span class="op">(</span><span class="va">eine_liste</span>, <span class="fl">4</span>, <span class="fl">1</span><span class="op">)</span></span>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-22_994f5cb6a09f1f3efe41f9f27747051c">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span><span class="op">(</span><span class="va">eine_liste</span>, <span class="fl">4</span>, <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="co">## [1] "dies"</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Probieren Sie mal, aus einer Liste der Länge 5 das 6. Element auszulesen:</p>
-<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-24_7e5b2b4084e6886b9f446939de7811f1">
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">eine_liste</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="op">)</span></span>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-23_9decbd993f612099166419af17fd1f2a">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">eine_liste</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">## [1] 5</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-25_1256dd5263baf14501cb9094d0a18897">
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">eine_liste</span><span class="op">[[</span><span class="fl">6</span><span class="op">]</span><span class="op">]</span></span>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-24_4b8d681b5583419995e058423b629241">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">eine_liste</span><span class="op">[[</span><span class="fl">6</span><span class="op">]</span><span class="op">]</span></span>
 <span><span class="co">## Error in eine_liste[[6]]: subscript out of bounds</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Unser Versuch wird mit einer Fehlermeldung quittiert.</p>
 <p>Sprechen wir die Liste wie einen (atomaren) Vektor an, bekommen wir hingegen ein <code>NA</code> bzw. ein <code>NULL</code>:</p>
-<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-26_7dd4add40497929561e8e20031178a1d">
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">eine_liste</span><span class="op">[</span><span class="fl">6</span><span class="op">]</span></span>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-25_8c3cc60a908ff973b66e65cd84e230a8">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">eine_liste</span><span class="op">[</span><span class="fl">6</span><span class="op">]</span></span>
 <span><span class="co">## $&lt;NA&gt;</span></span>
 <span><span class="co">## NULL</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="tibbles-1" class="level4" data-number="5.2.3.3"><h4 data-number="5.2.3.3" class="anchored" data-anchor-id="tibbles-1">
 <span class="header-section-number">5.2.3.3</span> Tibbles</h4>
 <p>Tibbles lassen sich sowohl wie ein Vektor als auch wie eine Liste indizieren.</p>
-<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-27_3618df4acf9e7f09508f2053e85ff574">
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">studentis</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-26_96f6372d4586561216f455c528a0db92">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">studentis</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -514,8 +511,8 @@ div.csl-indent {
 </div>
 </div>
 <p>Die Indizierung eines Tibbles mit der einfachen Eckklammer liefert einen Tibble zurück.</p>
-<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-28_2c1712f1c7764e58d170a4b604b5403d">
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">studentis</span><span class="op">[</span><span class="st">"name"</span><span class="op">]</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-27_443723cf4471c556266c7c7984ccf322">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">studentis</span><span class="op">[</span><span class="st">"name"</span><span class="op">]</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -526,13 +523,13 @@ div.csl-indent {
 </div>
 </div>
 <p>Mit doppelter Eckklammer bekommt man, analog zur Liste, einen Vektor zurück:</p>
-<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-29_cc43ef0c2ccf52e817c66e0100c36e85">
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">studentis</span><span class="op">[[</span><span class="st">"name"</span><span class="op">]</span><span class="op">]</span></span>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-28_1c49e39a2227bb1ffbe544024a75c291">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">studentis</span><span class="op">[[</span><span class="st">"name"</span><span class="op">]</span><span class="op">]</span></span>
 <span><span class="co">## [1] "Anna"  "Berta"</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Beim Dollar-Operator kommt auch eine Liste zurück:</p>
-<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-30_7499987031fb5be629581f044601cd53">
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">studentis</span><span class="op">$</span><span class="va">name</span></span>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-29_4e9aaeb442e0ac99b7c9a9c790644a7c">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">studentis</span><span class="op">$</span><span class="va">name</span></span>
 <span><span class="co">## [1] "Anna"  "Berta"</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section><section id="weiterführende-hinweise" class="level3" data-number="5.2.4"><h3 data-number="5.2.4" class="anchored" data-anchor-id="weiterführende-hinweise">
@@ -574,12 +571,12 @@ div.csl-indent {
 <span class="header-section-number">5.4</span> Funktionen</h2>
 <p>Eine Funktion kann man sich als analog zu einer Variable vorstellen. Es ist ein Objekt, das nicht Daten, sondern Syntax beinhaltet, vgl. <a href="#fig-funs">Abbildung&nbsp;<span>5.6</span></a> aus <span class="citation" data-cites="modar">Sauer (<a href="references.html#ref-modar" role="doc-biblioref">2019</a>)</span>.</p>
 <div id="fig-funs" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="img/Funs_def.png" class="img-fluid figure-img"></p>
+<figure class="figure"><p><img src="img/Funs_def.png" class="img-fluid figure-img" style="width:50.0%"></p>
 <p></p><figcaption class="figure-caption">Abbildung&nbsp;5.6: Sinnbild einer Funktion</figcaption><p></p>
 </figure>
 </div>
-<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-31_7382fabb0e80b65f129188645a38e0d8">
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mittelwert</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span></span>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-30_d227cae0e83484da6cfac406cb099dc4">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mittelwert</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span></span>
 <span>  </span>
 <span>  <span class="va">summe</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span>  <span class="va">mw</span> <span class="op">&lt;-</span> <span class="va">summe</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
@@ -587,8 +584,8 @@ div.csl-indent {
 <span>  </span>
 <span><span class="op">}</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-32_5a9eebf606d23e5b3ebdcce07d4f2230">
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">mittelwert</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-31_392636810bcae3f8784e799daba02a65">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">mittelwert</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">## [1] 2</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Weitere Informationen finden sich in <a href="https://r4ds.had.co.nz/functions.html">Kapitel 19</a> in <span class="citation" data-cites="r4ds">Wickham und Grolemund (<a href="references.html#ref-r4ds" role="doc-biblioref">2016</a>)</span>. Alternativ findet sich ein Abschnitt dazu (28.1) in <span class="citation" data-cites="modar">Sauer (<a href="references.html#ref-modar" role="doc-biblioref">2019</a>)</span>.</p>
@@ -602,8 +599,8 @@ div.csl-indent {
 <p>Handelt es sich um Spalten von Tibbles, dann bietet sich die Funktion <code>across(.col, .fns)</code> an. <code>across</code> wendet eine oder mehrere Funktionen (mit <code>.fns</code> bezeichnet) auf die Spalten <code>.col</code> an.</p>
 <p>Das erklärt sich am besten mit einem Beispiel:</p>
 <p>Natürlich hätte man in diesem Fall auch anders vorgehen können:</p>
-<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-33_24744c24b1bef793df0636f7b2a8b635">
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-32_42803154d95be0158f862ef870938fe0">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span>.cols <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>                   .fns <span class="op">=</span> <span class="va">mean</span><span class="op">)</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -616,8 +613,8 @@ div.csl-indent {
 </div>
 </div>
 <p>Möchte man der Funktion <code>.fns</code> Parameter übergeben, so nutzt man diese Syntax (“Purrr-Lambda”):</p>
-<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-34_6678ff03f630e225e97f423042ae542d">
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-33_14234e71521174afbb122e730fde8190">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span>.cols <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>                   .fns <span class="op">=</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">.</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -641,8 +638,8 @@ div.csl-indent {
 </figure>
 </div>
 <p>Hier ein Beispiel-Code:</p>
-<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-35_29b1a56ca14474a75bc1ba5c8a2fa5aa">
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span></span>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-34_3d84a2519bb0776e0685d976c871200e">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">mtcars</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>  <span class="co"># nur die ersten 3 Spalten</span></span>
 <span></span>
@@ -657,8 +654,8 @@ div.csl-indent {
 <span><span class="co">## [1] 230.7219</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Möchte man der gemappten Funktion Parameter übergeben, nutzt man wieder die “Kringel-Schreibweise”:</p>
-<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-36_5a0de2e07d43823136a408ae967e8146">
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">.</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-35_c1886aabf8b884950fdc794047f322d4">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">.</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">## $mpg</span></span>
 <span><span class="co">## [1] 20.09062</span></span>
 <span><span class="co">## </span></span>
@@ -691,8 +688,8 @@ div.csl-indent {
 <span class="header-section-number">5.6.2.1</span> tidymodel</h4>
 <p>Wenn wir mit <code>tidymodels</code> arbeiten, werden wir mit Listenspalten zu tun haben. Daher ist es praktisch, sich schon mal damit zu beschäftigen.</p>
 <p>Hier ein Beispiel für eine <span class="math inline">\(v=3\)</span>-fache Kreuzvalidierung:</p>
-<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-37_8468616f51089d44898d375ad247a29b">
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span></span>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-36_fe6f11f02f27012f4b93db3b6c7b4846">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span></span>
 <span><span class="va">mtcars_cv</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu">vfold_cv</span><span class="op">(</span><span class="va">mtcars</span>, v <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
 <span></span>
@@ -708,22 +705,22 @@ div.csl-indent {
 </div>
 <p>Betrachten wir das Objekt <code>mtcars_cv</code> näher. Die Musik spielt in der 1. Spalte.</p>
 <p>Lesen wir den Inhalt der 1. Spalte, 1 Zeile aus (nennen wir das mal “Position 1,1”):</p>
-<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-38_df47882de0e05e285e2ed58a1dd02db3">
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pos11</span> <span class="op">&lt;-</span> <span class="va">mtcars_cv</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-37_6fbb69500e2f9a541984bdd83daf18bc">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pos11</span> <span class="op">&lt;-</span> <span class="va">mtcars_cv</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
 <span><span class="va">pos11</span></span>
 <span><span class="co">## &lt;Analysis/Assess/Total&gt;</span></span>
 <span><span class="co">## &lt;21/11/32&gt;</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In dieser Zelle findet sich eine Aufteilung des Komplettdatensatzes in den Analyseteil (Analysis sample) und den Assessmentteil (Assessment Sample).</p>
 <p>Schauen wir jetzt in dieses Objekt näher an. Das können wir mit <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> tun. <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> zeigt uns die Strktur eines Objekts.</p>
-<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-39_9bebee32d7cef6dc2abe4fcb7aacb45a">
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">pos11</span><span class="op">)</span></span>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-38_3ea2e3611275c9c331b7b58220f7f00b">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">pos11</span><span class="op">)</span></span>
 <span><span class="co">## List of 4</span></span>
 <span><span class="co">##  $ data  :'data.frame':  32 obs. of  3 variables:</span></span>
 <span><span class="co">##   ..$ mpg : num [1:32] 21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 ...</span></span>
 <span><span class="co">##   ..$ cyl : num [1:32] 6 6 4 6 8 6 8 4 4 6 ...</span></span>
 <span><span class="co">##   ..$ disp: num [1:32] 160 160 108 258 360 ...</span></span>
-<span><span class="co">##  $ in_id : int [1:21] 1 5 7 8 9 12 13 15 17 18 ...</span></span>
+<span><span class="co">##  $ in_id : int [1:21] 1 2 3 4 6 7 9 10 11 12 ...</span></span>
 <span><span class="co">##  $ out_id: logi NA</span></span>
 <span><span class="co">##  $ id    : tibble [1 × 1] (S3: tbl_df/tbl/data.frame)</span></span>
 <span><span class="co">##   ..$ id: chr "Fold1"</span></span>
@@ -733,16 +730,16 @@ div.csl-indent {
 <p>Damit handelt es sich bei Spalte 1 dieses Dataframes (<code>mtcars_cv</code>) also um eine Listenspalte.</p>
 <p>Üben wir uns noch etwas im Indizieren.</p>
 <p>Sprechen wir in <code>pos11</code> das erste Element an (<code>data</code>) und davon das erste Element:</p>
-<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-40_757985c52a7f43a3afe67892960e05c6">
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pos11</span><span class="op">[[</span><span class="st">"data"</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-39_8b2d70787faccdbbf0cdc4f7e9c5133e">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pos11</span><span class="op">[[</span><span class="st">"data"</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
 <span><span class="co">##  [1] 21.0 21.0 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 17.8 16.4 17.3 15.2 10.4</span></span>
 <span><span class="co">## [16] 10.4 14.7 32.4 30.4 33.9 21.5 15.5 15.2 13.3 19.2 27.3 26.0 30.4 15.8 19.7</span></span>
 <span><span class="co">## [31] 15.0 21.4</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Wir haben hier die doppelten Eckklammern benutzt, um den “eigentlichen” oder “inneren” Vektor zu bekommen, nicht die “außen” herumgewickelte Liste. Zur Erinnerung: Ein Dataframe ist ein Spezialfall einer Liste, also auch eine Liste, nur eine mit bestimmten Eigenschaften.</p>
 <p>Zum Vergleich indizieren wir mal mit einer einfachen Eckklammer:</p>
-<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-41_3e3b62d6eae98be947a36c3592a6bab2">
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pos11</span><span class="op">[[</span><span class="st">"data"</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-40_1878b18ce57bd105c456d7faad20d776">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pos11</span><span class="op">[[</span><span class="st">"data"</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
@@ -754,8 +751,8 @@ div.csl-indent {
 </div>
 </div>
 <p>Mit <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck()</a></code> bekommen wir das gleiche Ergebnis, nur etwas komfortabler, da wir keine Eckklammern tippen müssen:</p>
-<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-42_3beab996c8f624d571e188c100af57c3">
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span><span class="op">(</span><span class="va">pos11</span>, <span class="st">"data"</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span></span>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-41_a4051529b59e88b028b428244d5526e5">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span><span class="op">(</span><span class="va">pos11</span>, <span class="st">"data"</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="co">## [1] 21</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Wie man sieht, können wir beliebig tief in das Objekt hineinindizieren.</p>
@@ -771,11 +768,11 @@ div.csl-indent {
 <span class="header-section-number">5.7</span> R ist schwierig</h2>
 <p>Manche behaupten, R <a href="https://www.burns-stat.com/pages/Tutor/R_inferno.pdf">sei ein Inferno</a>.</p>
 <p>Zum Glück gibt es auch aufmunternde Stimmen:</p>
-<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-43_c0f336d00fc2abbeb832caa8fbb9d58e">
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">praise</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/praise/man/praise.html">praise</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">## [1] "You are prime!"</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-42_e4e9c6b9f35ceee20f180eece742736d">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">praise</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/praise/man/praise.html">praise</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">## [1] "You are luminous!"</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Hat jemand einen guten Rat für uns? Vielleicht ist der häufigste Rate, dass man die <a href="https://en.wikipedia.org/wiki/RTFM">Dokumentation lesen solle</a>.</p>
+<p>Hat jemand einen guten Rat für uns? Vielleicht ist der häufigste Rat, dass man die <a href="https://en.wikipedia.org/wiki/RTFM">Dokumentation lesen solle</a>.</p>
 </section><section id="aufgaben" class="level2" data-number="5.8"><h2 data-number="5.8" class="anchored" data-anchor-id="aufgaben">
 <span class="header-section-number">5.8</span> Aufgaben</h2>
 <ul>
