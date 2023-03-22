@@ -196,6 +196,48 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./100-baeume.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Entscheidungsbäume</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./110-ensemble.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Ensemble Lerner</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./120-regularisierte-modelle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Regularisierte Modelle</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./130-kaggle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Kaggle</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./140-faden.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Der rote Faden</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./150-fallstudien.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Fallstudien</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./160-e.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Staunen mit e</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
@@ -484,8 +526,8 @@ lastFit --&gt; test[Teste im Tes-S]
 <span class="header-section-number">8.6</span> Gesetz der großen Zahl</h2>
 <p>Nach dem <em>Gesetz der großen Zahl</em> (Law of Large Numbers) sollte sich der Mittelwert einer großen Stichprobe dem theoretischen Mittelwert der zugrundeliegenden Verteilung (Population, datengeneriender Prozess) sehr nahe kommen.</p>
 <p><span class="math display">\[\displaystyle \lim _{n\to \infty }\sum _{i=1}^{n}{\frac {X_{i}}{n}}={\overline {X}}\]</span></p>
-<p>David Salazar visualisiert das folgendermaßen in <a href="https://david-salazar.github.io/2020/04/17/fat-vs-thin-does-lln-work/">diesem Post</a> seines lesenswerten <a href="https://david-salazar.github.io/">Blogs</a>, s. <span class="quarto-unresolved-ref">?fig-lln</span>).</p>
-<div class="cell" data-hash="080-Resampling-Tuning_cache/html/lln_07c3f78db4322fa71078d4fa298b87a7">
+<p>David Salazar visualisiert das folgendermaßen in <a href="https://david-salazar.github.io/2020/04/17/fat-vs-thin-does-lln-work/">diesem Post</a> seines lesenswerten <a href="https://david-salazar.github.io/">Blogs</a>, s. <a href="#fig-lln">Abbildung&nbsp;<span>8.7</span></a>).</p>
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/fig-lln_116dd9cc6960879ce9c7b09f1f28276d">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># source: https://david-salazar.github.io/2020/04/17/fat-vs-thin-does-lln-work/</span></span>
 <span><span class="va">samples</span> <span class="op">&lt;-</span> <span class="fl">1000</span></span>
 <span></span>
@@ -513,9 +555,9 @@ lastFit --&gt; test[Teste im Tes-S]
 <span>       title <span class="op">=</span> <span class="st">"Gesetz der großen Zahl"</span>, </span>
 <span>       subtitle <span class="op">=</span> <span class="st">"Kumulierter Mittelwert aus einer Normalverteilung mit sd=20"</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="080-Resampling-Tuning_files/figure-html/lln-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Gesetz der großen Zahl</figcaption><p></p>
+<div id="fig-lln" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="080-Resampling-Tuning_files/figure-html/fig-lln-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;8.7: Gesetz der großen Zahl</figcaption><p></p>
 </figure>
 </div>
 </div>
@@ -524,16 +566,16 @@ lastFit --&gt; test[Teste im Tes-S]
 <p>Achtung: Bei randlastigen Verteilungen darf man dieses schöne, wohlerzogene Verhalten nicht erwarten <span class="citation" data-cites="fattails">(<a href="references.html#ref-fattails" role="doc-biblioref">Taleb 2019</a>)</span>.</p>
 </section><section id="über--und-unteranpassung-an-einem-beispiel" class="level2" data-number="8.7"><h2 data-number="8.7" class="anchored" data-anchor-id="über--und-unteranpassung-an-einem-beispiel">
 <span class="header-section-number">8.7</span> Über- und Unteranpassung an einem Beispiel</h2>
-<div class="cell" data-hash="080-Resampling-Tuning_cache/html/overfitting-4-plots_a0337b1337b73e11e31da448ad3377f9">
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/fig-overfitting-4-plots_53adb86192f1fc826682da08dd250bda">
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><img src="080-Resampling-Tuning_files/figure-html/overfitting-4-plots-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<p></p><figcaption class="figure-caption">Welches Modell (Teile C-E) passt am besten zu den Daten (Teil B)? Die ‘wahre Funktion’, der datengenerierende Prozess ist im Teil A dargestellt</figcaption><p></p>
+<div id="fig-overfitting-4-plots" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="080-Resampling-Tuning_files/figure-html/fig-overfitting-4-plots-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;8.8: Welches Modell (Teile C-E) passt am besten zu den Daten (Teil B)? Die ‘wahre Funktion’, der datengenerierende Prozess ist im Teil A dargestellt</figcaption><p></p>
 </figure>
 </div>
 </div>
 </div>
-<p><span class="quarto-unresolved-ref">?fig-overfitting-4-plots</span> zeigt:</p>
+<p><a href="#fig-overfitting-4-plots">Abbildung&nbsp;<span>8.8</span></a> zeigt:</p>
 <ul>
 <li>Teil <em>A</em>: Die ‘wahre Funktion’, <span class="math inline">\(f\)</span>, die die Daten erzeugt. Man spricht auch von der “datengenerierenden Funktion”. Wir gehen gemeinhin davon aus, dass es eine wahre Funktion gibt. Das heißt nicht, dass die wahre Funktion die Daten perfekt erklärt, schließlich kann die Funktion zwar wahr, aber unvollständig sein oder unsere Messinstrumente sind nicht perfekt präzise.</li>
 <li>Teil <em>B:</em> Die Daten, erzeugt aus A plus etwas zufälliges Fehler (Rauschen).</li>
@@ -545,7 +587,7 @@ lastFit --&gt; test[Teste im Tes-S]
 <section id="cv-definieren" class="level3" data-number="8.8.1"><h3 data-number="8.8.1" class="anchored" data-anchor-id="cv-definieren">
 <span class="header-section-number">8.8.1</span> CV definieren</h3>
 <p>So kann man eine <em>einfache</em> v-fache Kreuzvalidierung in Tidymodels auszeichnen:</p>
-<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-6_38725b0c80a0765357feb8465b3f968c">
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-7_5c2a1082a16dc57d6ac1a33ef6c1df56">
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">2453</span><span class="op">)</span></span>
 <span><span class="va">ames_folds</span> <span class="op">&lt;-</span> <span class="fu">vfold_cv</span><span class="op">(</span><span class="va">ames_train</span>, strata <span class="op">=</span> <span class="st">"Sale_Price"</span><span class="op">)</span></span>
 <span><span class="va">ames_folds</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -559,7 +601,7 @@ lastFit --&gt; test[Teste im Tes-S]
 </div>
 </div>
 <p>Werfen wir einen Blick in die Spalte <code>splits</code>, erste Zeile:</p>
-<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-7_7f6ddac93ec56c563e7394630600bc59">
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-8_3e749cb21cbd332b9a45673bd0fe5346">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ames_folds</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="co">## &lt;Analysis/Assess/Total&gt;</span></span>
 <span><span class="co">## &lt;1976/221/2197&gt;</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -567,7 +609,7 @@ lastFit --&gt; test[Teste im Tes-S]
 <p>Möchte man die Defaults vpn <code>vfold_cv</code> wissen, schaut man in der Hilfe nach: <code>?vfold_cv</code>:</p>
 <p><code>vfold_cv(data, v = 10, repeats = 1, strata = NULL, breaks = 4, pool = 0.1, ...)</code></p>
 <p>Probieren wir <span class="math inline">\(v=5\)</span> und <span class="math inline">\(r=2\)</span>:</p>
-<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-8_16f889f973a41eeef7e9b312ba997e9c">
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-9_a6fcf0bf92ed704d36c181d6ec980a4b">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ames_folds_rep</span> <span class="op">&lt;-</span> <span class="fu">vfold_cv</span><span class="op">(</span><span class="va">ames_train</span>, </span>
 <span>                           strata <span class="op">=</span> <span class="st">"Sale_Price"</span>, </span>
 <span>                           v <span class="op">=</span> <span class="fl">5</span>,</span>
@@ -585,18 +627,18 @@ lastFit --&gt; test[Teste im Tes-S]
 </section><section id="resamples-fitten" class="level3" data-number="8.8.2"><h3 data-number="8.8.2" class="anchored" data-anchor-id="resamples-fitten">
 <span class="header-section-number">8.8.2</span> Resamples fitten</h3>
 <p>Hat unser Computer mehrere Rechenkerne, dann können wir diese nutzen und die Berechnungen beschleunigen. Im Standard wird sonst nur ein Kern verwendet.</p>
-<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-9_1cf6ba188b363ec1d342c38ceb927016">
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-10_85e675fcf613092f61b3a4d96ba5b1fd">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mycores</span> <span class="op">&lt;-</span> <span class="fu">parallel</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/parallel/detectCores.html">detectCores</a></span><span class="op">(</span>logical <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">mycores</span></span>
 <span><span class="co">## [1] 4</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Auf Unix/MacOC-Systemen kann man dann die Anzahl der parallen Kerne so einstellen<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>:</p>
-<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-10_71ce5f7f59ef06f235e357da034b0fbd">
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-11_c2c4e07673b264acc17b271561b444e5">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">doMC</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/doMC/man/registerDoMC.html">registerDoMC</a></span><span class="op">(</span>cores <span class="op">=</span> <span class="va">mycores</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>So, und jetzt fitten wir die Resamples und trachten die Modellgüte in den Resamples:</p>
-<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-11_8b34a660cc25e616622c78bf61d059e5">
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-12_375c3442c36475423e6645dc36aa43cc">
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ames_resamples_fit</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="va">ames_wflow</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://tune.tidymodels.org/reference/fit_resamples.html">fit_resamples</a></span><span class="op">(</span><span class="va">ames_folds</span><span class="op">)</span></span>
@@ -613,11 +655,11 @@ lastFit --&gt; test[Teste im Tes-S]
 </div>
 </div>
 <p>Natürlich interessiert uns primär die Modellgüte im Test-Sample:</p>
-<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-12_2dc4de6849cd5d2f72a6b8102c2697fc">
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-13_844070c735242fce0cd72cb9519558b9">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">final_ames</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu"><a href="https://tune.tidymodels.org/reference/last_fit.html">last_fit</a></span><span class="op">(</span><span class="va">ames_wflow</span>, <span class="va">data_split</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-13_feacc4897b9caea14f1b117f0c3b1fd0">
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-14_cf7e101883238c44c455330b4c85dbfe">
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">final_ames</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://tune.tidymodels.org/reference/collect_predictions.html">collect_metrics</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -634,7 +676,7 @@ lastFit --&gt; test[Teste im Tes-S]
 <section id="tuning-auszeichnen" class="level3" data-number="8.9.1"><h3 data-number="8.9.1" class="anchored" data-anchor-id="tuning-auszeichnen">
 <span class="header-section-number">8.9.1</span> Tuning auszeichnen</h3>
 <p>In der Modellspezifikation des Modells können wir mit <code><a href="https://hardhat.tidymodels.org/reference/tune.html">tune()</a></code> auszeichnen, welche Parameter wir tunen möchten. Wir könenn</p>
-<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-14_085310071747b3fa116eaa98466eaa2a">
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-15_5b87132ddfd7d60ad06c35e9be2722b8">
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">knn_model</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu">nearest_neighbor</span><span class="op">(</span></span>
 <span>    mode <span class="op">=</span> <span class="st">"regression"</span>,</span>
@@ -643,7 +685,7 @@ lastFit --&gt; test[Teste im Tes-S]
 <span>  <span class="fu">set_engine</span><span class="op">(</span><span class="st">"kknn"</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Wir können dem Tuningparameter auch einen Namen (ID/Laben) geben, z.B. “K”:</p>
-<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-15_619eb257b3906fca6e0ce7c1c79baaa2">
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-16_507372555fb1c7c46a5eacca77711a04">
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">knn_model</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu">nearest_neighbor</span><span class="op">(</span></span>
 <span>    mode <span class="op">=</span> <span class="st">"regression"</span>,</span>
@@ -660,12 +702,12 @@ lastFit --&gt; test[Teste im Tes-S]
 <p>wobei <span class="math inline">\(K\)</span> die Anzahl der zu berücksichtigen nächsten Nachbarn darstellt und <span class="math inline">\(x_\ell^*\)</span> die Werte dieser berücksichtiggten Nachbarn.</p>
 <p>Die Wahl von <span class="math inline">\(K\)</span> hat einen gewaltigen Einfluss auf die Vorhersagen und damit auf die Vorhersagegüte. Allerdings wird <span class="math inline">\(K\)</span> nicht vom Modell geschätzt. Es liegt an den Nutzi, diesen Wert zu wählen.</p>
 <p>Parameter dieser Art (die von den Nutzi zu bestimmen sind, nicht vom Algorithmus), nennt man <em>Tuningparameter</em>.</p>
-<p>Abbildung <a href="#fig-nnoverfit">Abbildung&nbsp;<span>8.7</span></a> aus <span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span> stellt exemplarisch dar, welchen großen Einfluss die Wahl des Werts eines Tuningparameters auf die Vorhersagen eines Modells haben.</p>
+<p>Abbildung <a href="#fig-nnoverfit">Abbildung&nbsp;<span>8.9</span></a> aus <span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span> stellt exemplarisch dar, welchen großen Einfluss die Wahl des Werts eines Tuningparameters auf die Vorhersagen eines Modells haben.</p>
 <div class="cell" data-hash="080-Resampling-Tuning_cache/html/fig-nnoverfit_183c3e636ebe31bad469328b9aa8f9b7">
 <div class="cell-output-display">
 <div id="fig-nnoverfit" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="https://www.tmwr.org/figures/two-class-boundaries-1.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;8.7: Overfitting als Funktion der Modellparameter und insofern als Problem de Wahl der Tuningparameter</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;8.9: Overfitting als Funktion der Modellparameter und insofern als Problem de Wahl der Tuningparameter</figcaption><p></p>
 </figure>
 </div>
 </div>
@@ -675,12 +717,12 @@ lastFit --&gt; test[Teste im Tes-S]
 <li><p><em>Grid Search:</em> Probiere viele Werte aus und schaue, welcher der beste ist. Dabei musst du hoffen, dass du die Werte erwischt, die nicht nur im Train-, sondern auch im Test-Sample gut funktionieren werden.</p></li>
 <li><p><em>Iterative Search:</em> Wenn du einen Wert eines Tuningparameters hast, nutze diesen, um intelligenter einen neuen Wert eines Tuningparameters zu finden.</p></li>
 </ol>
-<p>Der Unterschied beider Ansätze ist in <span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span> wie in <a href="#fig-tuning1">Abbildung&nbsp;<span>8.8</span></a> dargestellt.</p>
+<p>Der Unterschied beider Ansätze ist in <span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span> wie in <a href="#fig-tuning1">Abbildung&nbsp;<span>8.10</span></a> dargestellt.</p>
 <div class="cell" data-hash="080-Resampling-Tuning_cache/html/fig-tuning1_f8dc718950a2926ec7554abf9ab3d59b">
 <div class="cell-output-display">
 <div id="fig-tuning1" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="https://www.tmwr.org/figures/tuning-strategies-1.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;8.8: Links: Grid Search. Rechts: Iterative Search2</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;8.10: Links: Grid Search. Rechts: Iterative Search2</figcaption><p></p>
 </figure>
 </div>
 </div>
@@ -691,7 +733,7 @@ lastFit --&gt; test[Teste im Tes-S]
 <section id="tuningparameter-betrachten" class="level4" data-number="8.10.0.1"><h4 data-number="8.10.0.1" class="anchored" data-anchor-id="tuningparameter-betrachten">
 <span class="header-section-number">8.10.0.1</span> Tuningparameter betrachten</h4>
 <p>Möchte man wissen, welche und wie viele Tuningparameter tidymodels in einem Modell berücksichtigt, kann man <code><a href="https://hardhat.tidymodels.org/reference/hardhat-extract.html">extract_parameter_set_dials()</a></code> aufrufen:</p>
-<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-16_0a04c8dee382ad73b9aac7549b2d8115">
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-17_ef485a84e22048c6fbbf48327ae57f2c">
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://hardhat.tidymodels.org/reference/hardhat-extract.html">extract_parameter_set_dials</a></span><span class="op">(</span><span class="va">knn_model</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
@@ -704,14 +746,14 @@ lastFit --&gt; test[Teste im Tes-S]
 </div>
 <p>Die Ausgabe informiert uns, dass es nur einen Tuningparameter gibt in diesem Modell und dass der Name (Label, ID) des Tuningparameters “K” ist. Außerdem sollen die Anzahl der Nachbarn getunt werden. Der Tuningparameter ist numerisch; das sieht man an <code>nparam[+]</code>.</p>
 <p>Schauen wir uns mal an, auf welchen Wertebereich <code>tidymodels</code> den Parameter <span class="math inline">\(K\)</span> begrenzt hat:</p>
-<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-17_a8efb8e70f52361c835ff1fe62995bb6">
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-18_857e726b6f4e7d2612a85a7e0e23fc73">
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">knn_model</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">extract_parameter_dials</span><span class="op">(</span><span class="st">"K"</span><span class="op">)</span></span>
 <span><span class="co">## # Nearest Neighbors (quantitative)</span></span>
 <span><span class="co">## Range: [1, 15]</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Aktualisieren wir mal unseren Workflow entsprechend:</p>
-<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-18_c00eb77cf88f7500e8b78cb7b501ac13">
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-19_4b2185091c6d35066b7d13457053c332">
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ames_wflow</span> <span class="op">&lt;-</span></span>
 <span>  <span class="va">ames_wflow</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">update_model</span><span class="op">(</span><span class="va">knn_model</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -765,7 +807,7 @@ lastFit --&gt; test[Teste im Tes-S]
 </div>
 <p>Im Default berechnet <code>tiymodels</code> 10 Kandidatenmodelle.</p>
 <p>Die Spalte <code>.metrics</code> beinhaltet die Modellgüte für jedes Kandidatenmodell.</p>
-<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-19_1f11316cbb393e045f7a6d2365569d64">
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-20_75ef926c582d59916c6ce940fb97e474">
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ames_grid_search</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://tune.tidymodels.org/reference/collect_predictions.html">collect_metrics</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -778,17 +820,17 @@ lastFit --&gt; test[Teste im Tes-S]
 </div>
 </div>
 <p>Das können wir uns einfach visualisieren lassen:</p>
-<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-20_be1ab9e8e531154d75200686daa6419e">
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-21_ea3a0fad71379e98a40de14c09bac30d">
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot</a></span><span class="op">(</span><span class="va">ames_grid_search</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="080-Resampling-Tuning_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+<p><img src="080-Resampling-Tuning_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Auf Basis dieser Ergebnisse könnte es Sinn machen, noch größere Werte für <span class="math inline">\(K\)</span> zu überprüfen.</p>
 </section><section id="vorhersage-im-test-sample" class="level3" data-number="8.10.3"><h3 data-number="8.10.3" class="anchored" data-anchor-id="vorhersage-im-test-sample">
 <span class="header-section-number">8.10.3</span> Vorhersage im Test-Sample</h3>
 <p>Welches Modellkandidat war jetzt am besten?</p>
-<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-21_d2e518a905a2a5528dcc543f75608d40">
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-22_c39767e38e0c16a8ad9a116918d8f11e">
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://tune.tidymodels.org/reference/show_best.html">show_best</a></span><span class="op">(</span><span class="va">ames_grid_search</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
@@ -800,7 +842,7 @@ lastFit --&gt; test[Teste im Tes-S]
 </div>
 </div>
 <p>Wählen wir jetzt mal das beste Modell aus (im Sinne des Optimierungskriteriusms):</p>
-<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-22_a3b438ef8fdcf002c94069ab31c20d5a">
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-23_4feb34694c00cc666c4621aac376c7f8">
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://tune.tidymodels.org/reference/show_best.html">select_best</a></span><span class="op">(</span><span class="va">ames_grid_search</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
@@ -812,12 +854,12 @@ lastFit --&gt; test[Teste im Tes-S]
 </div>
 </div>
 <p>Ok, notieren wir uns die Kombination der Tuningparameterwerte im besten Kandiatenmodell. In diesem Fall hat das Modull nur einen Tuningparameter:</p>
-<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-23_78940ff89cbee3c4b1817de649f83ea4">
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-24_d3889a3692d6f13d9f7276273abea0f5">
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ames_knn_best_params</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>K <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Unser Workflow weiß noch nicht, welche Tuningparameterwerte am besten sind:</p>
-<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-24_374e2e28354b8839cf5d38234b0267bd">
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-25_b182804b71ffc4fdde5e4f576959b788">
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ames_wflow</span></span>
 <span><span class="co">## ══ Workflow ════════════════════════════════════════════════════════════════════</span></span>
 <span><span class="co">## Preprocessor: Recipe</span></span>
@@ -883,7 +925,7 @@ lastFit --&gt; test[Teste im Tes-S]
 </div>
 </div>
 <p>Holen wir uns die Modellgüte:</p>
-<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-25_66a9bc58549ad31a0a07ba736afeb51b">
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-26_f23fd97add67d3412762cc1ac61bba9d">
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://tune.tidymodels.org/reference/collect_predictions.html">collect_metrics</a></span><span class="op">(</span><span class="va">final_ames_knn_fit</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 

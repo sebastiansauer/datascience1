@@ -20,6 +20,12 @@ book:
     - 080-Resampling-Tuning.qmd
     - 090-glm.qmd
     - 100-baeume.qmd
+    - 110-ensemble.qmd
+    - 120-regularisierte-modelle.qmd
+    - 130-kaggle.qmd
+    - 140-faden.qmd
+    - 150-fallstudien.qmd
+    - 160-e.qmd
     - references.qmd
     # - test.qmd
 

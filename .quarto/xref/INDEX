@@ -28,5 +28,26 @@
   },
   "090-glm.qmd": {
     "090-glm.html": "f2025007"
+  },
+  "100-baeume.qmd": {
+    "100-baeume.html": "15e9778f"
+  },
+  "110-ensemble.qmd": {
+    "110-ensemble.html": "4fa3f0d4"
+  },
+  "120-regularisierte-modelle.qmd": {
+    "120-regularisierte-modelle.html": "6a9a8b78"
+  },
+  "130-kaggle.qmd": {
+    "130-kaggle.html": "4d16978e"
+  },
+  "140-faden.qmd": {
+    "140-faden.html": "0c819641"
+  },
+  "150-fallstudien.qmd": {
+    "150-fallstudien.html": "a1e19bec"
+  },
+  "160-e.qmd": {
+    "160-e.html": "46601981"
   }
 }

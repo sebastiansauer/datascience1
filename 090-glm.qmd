@@ -140,7 +140,7 @@ coef(m81)
 
 
 ```{r echo = FALSE}
-#| label: fig-mtcars1
+#| label: fig-mtcars
 #| fig-cap: Klassifikation von am 
 d %>% 
   ggplot(aes(x = iv, y = dv)) +

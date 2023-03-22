@@ -194,6 +194,48 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./100-baeume.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Entscheidungsbäume</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./110-ensemble.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Ensemble Lerner</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./120-regularisierte-modelle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Regularisierte Modelle</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./130-kaggle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Kaggle</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./140-faden.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Der rote Faden</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./150-fallstudien.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Fallstudien</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./160-e.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Staunen mit e</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
@@ -365,10 +407,10 @@ div.csl-indent {
 </section><section id="berechnung-der-nähe" class="level2" data-number="7.5"><h2 data-number="7.5" class="anchored" data-anchor-id="berechnung-der-nähe">
 <span class="header-section-number">7.5</span> Berechnung der Nähe</h2>
 <p>Es gibt verschiedenen Algorithmen, um die Nähe bzw. Distanz der Nachbarn zum zu klassifizieren Fall zu berechnen.</p>
-<p>Eine gebräuchliche Methode ist der <em>euklidische</em> Abstand, der mit Pythagoras berechnet werden kann, s. <span class="quarto-unresolved-ref">?fig-pyth1</span> aus <span class="citation" data-cites="modar">Sauer (<a href="references.html#ref-modar" role="doc-biblioref">2019</a>)</span>.</p>
-<div class="cell" data-hash="070-knn_cache/html/fig-pyht1_61fba70a92e1ce3eabd5ea015f68146c">
+<p>Eine gebräuchliche Methode ist der <em>euklidische</em> Abstand, der mit Pythagoras berechnet werden kann, s. <a href="#fig-pyth1">Abbildung&nbsp;<span>7.7</span></a> aus <span class="citation" data-cites="modar">Sauer (<a href="references.html#ref-modar" role="doc-biblioref">2019</a>)</span>.</p>
+<div class="cell" data-hash="070-knn_cache/html/fig-pyth1_2014ade9aebcbe9e5f03fa2a93af1d94">
 <div class="cell-output-display">
-<div id="fig-pyht1" class="quarto-figure quarto-figure-center anchored">
+<div id="fig-pyth1" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="img/distanz_crop.png" class="img-fluid figure-img" width="391"></p>
 <p></p><figcaption class="figure-caption">Abbildung&nbsp;7.7: Euklidischer Abstand wird mit der Regel von Pythagoras berechnet</figcaption><p></p>
 </figure>
@@ -381,22 +423,26 @@ div.csl-indent {
 <p><span class="math inline">\(c^2 = 3^2 + 4^2 = 5^2\)</span></p>
 <p>Damit gilt: <span class="math inline">\(c = \sqrt{c^2} = \sqrt{5^2}=5\)</span>.</p>
 <p>Im 2D-Raum ist das so einfach, dass man das (fast) mit bloßem Augenschein entscheiden kann. In mehr als 2 Dimensionen wird es aber schwierig für das Auge, wie ein <a href="https://datasciencebook.ca/classification.html#more-than-two-explanatory-variables">Beispiel</a> aus <span class="citation" data-cites="timbers_data_2022">Timbers, Campbell, und Lee (<a href="references.html#ref-timbers_data_2022" role="doc-biblioref">2022</a>)</span> zeigt.</p>
-<p>Allerdings kann man den guten alten Pythagoras auch auf Dreiecke mit mehr als zwei Dimensionen anwenden, s. <span class="quarto-unresolved-ref">?fig-pyth2</span> aus <span class="citation" data-cites="modar">Sauer (<a href="references.html#ref-modar" role="doc-biblioref">2019</a>)</span>, Kap. 21.1.2.</p>
-<div class="cell" data-hash="070-knn_cache/html/fig-pyth2_96f2e1ceaa8679833fe08b64f0d3057b">
-<div class="cell-output-display">
-<div id="fig-pyth2-1" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="img/pythagoras-crop.png" class="img-fluid figure-img" style="width:45.0%"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;7.8: Pythagoras in der Ebene (links) und in 3D (rechts)</figcaption><p></p>
+<p>Allerdings kann man den guten alten Pythagoras auch auf Dreiecke mit mehr als zwei Dimensionen anwenden, s. <a href="#fig-pyth2">Abbildung&nbsp;<span>7.8</span></a> aus <span class="citation" data-cites="modar">Sauer (<a href="references.html#ref-modar" role="doc-biblioref">2019</a>)</span>, Kap. 21.1.2.</p>
+<div id="fig-pyth2" class="quarto-layout-panel">
+<figure class="figure"><div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-pyth2a" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="img/pythagoras-crop.png" class="img-fluid figure-img" data-ref-parent="fig-pyth2"></p>
+<p></p><figcaption class="figure-caption">(a) Pythagoras mit mehr als zwei Dimensionen</figcaption><p></p>
 </figure>
 </div>
 </div>
-<div class="cell-output-display">
-<div id="fig-pyth2-2" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="img/pythagoras2-crop.png" class="img-fluid figure-img" style="width:45.0%"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;7.9: Pythagoras in der Ebene (links) und in 3D (rechts)</figcaption><p></p>
+<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-pyth2b" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="img/pythagoras2-crop.png" class="img-fluid figure-img" data-ref-parent="fig-pyth2"></p>
+<p></p><figcaption class="figure-caption">(b) Pythagoras mit mehr als zwei Dimensionen</figcaption><p></p>
 </figure>
 </div>
 </div>
+</div>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;7.8: Pythagoras in der Ebene (links) und in 3D (rechts)”</figcaption><p></p>
+</figure>
 </div>
 <p>Bleiben wir beim Beispiel von Anna und Berta und nehmen wir eine dritte Variable hinzu (Statistikliebe). Sagen wir, der Unterschied in dieser dritten Variable zwischen Anna und Berta betrage 2.</p>
 <p>Es gilt:</p>

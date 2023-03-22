@@ -1,0 +1,68 @@
+# Fallstudien
+
+
+## Lernsteuerung
+
+### Lernziele
+
+- Sie können die Techniken des Maschinellen Lernens mit dem Tidymodels-Ansatz flüssig anbringen.
+
+### Literatur
+
+- Rhys, Kap. 12
+
+
+## Fallstudien zur explorativen Datenanalyse
+
+
+```{r child1, results='asis', echo = FALSE}
+url <- "https://raw.githubusercontent.com/sebastiansauer/Lehre/main/Material/yacsdas-EDA.md"
+childtext <- readLines(url)
+cat(childtext, sep="\n")
+```
+
+
+
+
+
+
+
+
+## Fallstudien zu linearen Modellen
+
+
+
+
+```{r child2, results='asis', echo = FALSE}
+url <- "https://raw.githubusercontent.com/sebastiansauer/Lehre/main/Material/yacsdas-lm.md"
+childtext <- readLines(url)
+cat(childtext, sep="\n")
+```
+
+
+
+## Fallstudien zum maschinellen Lernen mit Tidymodels
+
+
+
+```{r child3, results='asis', echo = FALSE}
+url <- "https://raw.githubusercontent.com/sebastiansauer/Lehre/main/Material/yacsdas-tidymodels.md"
+childtext <- readLines(url)
+cat(childtext, sep="\n")
+```
+
+
+
+
+##  Vertiefung
+
+- [Wie man eine Data-Science-Projekt strukturiert](https://medium.com/swlh/how-to-structure-a-python-based-data-science-project-a-short-tutorial-for-beginners-7e00bff14f56)
+- [Hausmeisterarbeit mit {{janitor}}](https://albert-rapp.de/post/2022-01-12-janitor-showcase/)
+
+##  Aufgaben
+
+- [Bearbeiten Sie eine Auswahl von Fallstudien Ihrer Wahl aus dieser Sammlung](https://sebastiansauer.github.io/Lehre/Material/yacsdas.html)
+
+
+
+

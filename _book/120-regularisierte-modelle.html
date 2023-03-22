@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.247">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Grundlagen der Prognosemodellierung 🔮🧰 - 12&nbsp; Regularisierte Modelle</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./130-kaggle.html" rel="next">
+<link href="./110-ensemble.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Keine Treffer",
+    "search-matching-documents-text": "Treffer",
+    "search-copy-link-title": "Link in die Suche kopieren",
+    "search-hide-matches-text": "Zusätzliche Treffer verbergen",
+    "search-more-match-text": "weitere Treffer in diesem Dokument",
+    "search-more-matches-text": "weitere Treffer in diesem Dokument",
+    "search-clear-button-title": "Zurücksetzen",
+    "search-detached-cancel-button-title": "Abbrechen",
+    "search-submit-button-title": "Abschicken"
+  }
+}</script><link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><link rel="stylesheet" href="styles.css">
+</head>
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./120-regularisierte-modelle.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Regularisierte Modelle</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Grundlagen der Prognosemodellierung 🔮🧰</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Suchen"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Zu diesem Buch</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./010-Hinweise.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Hinweise</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./030-Pruefung.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Prüfung</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./040-Statistisches-Lernen.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Statistisches Lernen</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./050-R-Vertiefung.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">R, zweiter Blick</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./060-tidymodels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">tidymodels</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./070-knn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">kNN</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./080-Resampling-Tuning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Resampling und Tuning</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./090-glm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Logistische Regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./100-baeume.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Entscheidungsbäume</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./110-ensemble.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Ensemble Lerner</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./120-regularisierte-modelle.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Regularisierte Modelle</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./130-kaggle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Kaggle</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./140-faden.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Der rote Faden</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./150-fallstudien.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Fallstudien</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./160-e.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Staunen mit e</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul>
+<li>
+<a href="#lernsteuerung" id="toc-lernsteuerung" class="nav-link active" data-scroll-target="#lernsteuerung"><span class="header-section-number">12.1</span> Lernsteuerung</a>
+  <ul class="collapse">
+<li><a href="#lernziele" id="toc-lernziele" class="nav-link" data-scroll-target="#lernziele"><span class="header-section-number">12.1.1</span> Lernziele</a></li>
+  <li><a href="#literatur" id="toc-literatur" class="nav-link" data-scroll-target="#literatur"><span class="header-section-number">12.1.2</span> Literatur</a></li>
+  <li><a href="#hinweise" id="toc-hinweise" class="nav-link" data-scroll-target="#hinweise"><span class="header-section-number">12.1.3</span> Hinweise</a></li>
+  <li><a href="#r-pakete" id="toc-r-pakete" class="nav-link" data-scroll-target="#r-pakete"><span class="header-section-number">12.1.4</span> R-Pakete</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#regularisierung" id="toc-regularisierung" class="nav-link" data-scroll-target="#regularisierung"><span class="header-section-number">12.2</span> Regularisierung</a>
+  <ul class="collapse">
+<li><a href="#was-ist-regularisierung" id="toc-was-ist-regularisierung" class="nav-link" data-scroll-target="#was-ist-regularisierung"><span class="header-section-number">12.2.1</span> Was ist Regularisierung?</a></li>
+  <li><a href="#%C3%A4hnliche-verfahren" id="toc-ähnliche-verfahren" class="nav-link" data-scroll-target="#%C3%A4hnliche-verfahren"><span class="header-section-number">12.2.2</span> Ähnliche Verfahren</a></li>
+  <li><a href="#normale-regression-ols" id="toc-normale-regression-ols" class="nav-link" data-scroll-target="#normale-regression-ols"><span class="header-section-number">12.2.3</span> Normale Regression (OLS)</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#ridge-regression-l2" id="toc-ridge-regression-l2" class="nav-link" data-scroll-target="#ridge-regression-l2"><span class="header-section-number">12.3</span> Ridge Regression, L2</a>
+  <ul class="collapse">
+<li><a href="#strafterm" id="toc-strafterm" class="nav-link" data-scroll-target="#strafterm"><span class="header-section-number">12.3.1</span> Strafterm</a></li>
+  <li><a href="#standardisierung" id="toc-standardisierung" class="nav-link" data-scroll-target="#standardisierung"><span class="header-section-number">12.3.2</span> Standardisierung</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#lasso-l1" id="toc-lasso-l1" class="nav-link" data-scroll-target="#lasso-l1"><span class="header-section-number">12.4</span> Lasso, L1</a>
+  <ul class="collapse">
+<li><a href="#strafterm-1" id="toc-strafterm-1" class="nav-link" data-scroll-target="#strafterm-1"><span class="header-section-number">12.4.1</span> Strafterm</a></li>
+  <li><a href="#variablenselektion" id="toc-variablenselektion" class="nav-link" data-scroll-target="#variablenselektion"><span class="header-section-number">12.4.2</span> Variablenselektion</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#l1-vs.-l2" id="toc-l1-vs.-l2" class="nav-link" data-scroll-target="#l1-vs.-l2"><span class="header-section-number">12.5</span> L1 vs.&nbsp;L2</a>
+  <ul class="collapse">
+<li><a href="#wer-ist-st%C3%A4rker" id="toc-wer-ist-stärker" class="nav-link" data-scroll-target="#wer-ist-st%C3%A4rker"><span class="header-section-number">12.5.1</span> Wer ist stärker?</a></li>
+  <li><a href="#elastic-net-als-kompromiss" id="toc-elastic-net-als-kompromiss" class="nav-link" data-scroll-target="#elastic-net-als-kompromiss"><span class="header-section-number">12.5.2</span> Elastic Net als Kompromiss</a></li>
+  </ul>
+</li>
+  <li><a href="#aufgaben" id="toc-aufgaben" class="nav-link" data-scroll-target="#aufgaben"><span class="header-section-number">12.6</span> Aufgaben</a></li>
+  </ul></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">
+<span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Regularisierte Modelle</span>
+</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header><section id="lernsteuerung" class="level2" data-number="12.1"><h2 data-number="12.1" class="anchored" data-anchor-id="lernsteuerung">
+<span class="header-section-number">12.1</span> Lernsteuerung</h2>
+<section id="lernziele" class="level3" data-number="12.1.1"><h3 data-number="12.1.1" class="anchored" data-anchor-id="lernziele">
+<span class="header-section-number">12.1.1</span> Lernziele</h3>
+<ul>
+<li>“Sie können Algorithmen für regularisierte lineare Modell erklären, d.h. Lasso- und Ridge-Regression”</li>
+<li>“Sie wissen, anhand welche Tuningparamter man Overfitting bei diesen Algorithmen begrenzen kann”</li>
+<li>“Sie können diese Verfahren in R berechnen”</li>
+</ul></section><section id="literatur" class="level3" data-number="12.1.2"><h3 data-number="12.1.2" class="anchored" data-anchor-id="literatur">
+<span class="header-section-number">12.1.2</span> Literatur</h3>
+<ul>
+<li>“Rhys, Kap. 11”</li>
+</ul></section><section id="hinweise" class="level3" data-number="12.1.3"><h3 data-number="12.1.3" class="anchored" data-anchor-id="hinweise">
+<span class="header-section-number">12.1.3</span> Hinweise</h3>
+<p>“Rhys und ISLR sind eine gute Quelle zum Einstieg in das Thema.</p>
+</section><section id="r-pakete" class="level3" data-number="12.1.4"><h3 data-number="12.1.4" class="anchored" data-anchor-id="r-pakete">
+<span class="header-section-number">12.1.4</span> R-Pakete</h3>
+<p>In diesem Kapitel werden folgende R-Pakete benötigt:</p>
+<div class="cell" data-hash="120-regularisierte-modelle_cache/html/libs-regul-mods_dc91e882af0b8b24beef04eef9f5b9c5">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jabiru/tictoc">tictoc</a></span><span class="op">)</span>  <span class="co"># Zeitmessung</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section><section id="regularisierung" class="level2" data-number="12.2"><h2 data-number="12.2" class="anchored" data-anchor-id="regularisierung">
+<span class="header-section-number">12.2</span> Regularisierung</h2>
+<section id="was-ist-regularisierung" class="level3" data-number="12.2.1"><h3 data-number="12.2.1" class="anchored" data-anchor-id="was-ist-regularisierung">
+<span class="header-section-number">12.2.1</span> Was ist Regularisierung?</h3>
+<p>Regularisieren verweist auf “regulär”; laut <a href="">Duden</a> bedeutet das Wort so viel wie “den Regeln, Bestimmungen, Vorschriften entsprechend; vorschriftsmäßig, ordnungsgemäß, richtig” oder “üblich”.</p>
+<p>Im Englischen spricht man auch von “penalized models”, “bestrafte Modell” und von “shrinkage”, von “Schrumpfung” im Zusammenhang mit dieer Art von Modellen.</p>
+<p>Regularisierung ist ein Meta-Algorithmus, also ein Verfahren, was als zweiter Schritt “auf” verschiedene Modelle angewendet werden kann - zumeist aber auf lineare Modelle, worauf wir uns im Folgenden konzentrieren.</p>
+<p>Das Ziel von Regularisierung ist es, Overfitting zu vermeiden, in dem die Komplexität eines Modells reduziert wird. Der Effekt von Regularisierung ist, dass die Varianz der Modelle verringert wird und damit das Overfitting. Der Preis ist, dass der Bias erhöht wird, aber oft geht die Rechnung auf, dass der Gewinn größer ist als der Verlust.</p>
+<p>Im Kontext von linearen Modellen bedeutet das, dass die Koeffizienten (<span class="math inline">\(\beta\)</span>s) im Betrag verringert werden durch Regularisierung, also in Richtung Null “geschrumpft” werden.</p>
+<p>Dem liegt die Idee zugrunde, dass extreme Werte in den Koeffizienten vermutlich nicht “echt”, sondern durch Rauschen fälschlich vorgegaukelt werden.</p>
+<p>Die bekanntesten Vertreter dieser Modellart sind <em>Ridge Regression</em>, <span class="math inline">\(L2\)</span>, das <em>Lasso</em>, <span class="math inline">\(L1\)</span>, sowie <em>Elastic Net</em>.</p>
+</section><section id="ähnliche-verfahren" class="level3" data-number="12.2.2"><h3 data-number="12.2.2" class="anchored" data-anchor-id="ähnliche-verfahren">
+<span class="header-section-number">12.2.2</span> Ähnliche Verfahren</h3>
+<p>Ein ähnliches Ziel wie der Regulaisierung liegt dem Pruning zugrunde, dem nachträglichen Beschneiden von Entscheidungsbäumen. In beiden Fällen wird die Komplexität des Modells verringert, und damit die Varianz auf Kosten eines möglichen Anstiegs der Verzerrung (Bias) des Modells. Unterm Strich hofft man, dass der Gewinn die Kosten übersteigt und somit der Fit im Test-Sample besser wird.</p>
+<p>Eine Andere Art der Regularisierung wird durch die Verwendung von Bayes-Modellen erreicht: Setzt man einen konservativen Prior, etwa mit Mittelwert Null und kleiner Streuung, so werden die Posteriori-Koeffizienten gegen Null hin geschrumpft werden.</p>
+<p>Mit Mehrebenen-Modellen (Multi Level Models) lässt sich ein ähnlicher Effekt erreichen.</p>
+</section><section id="normale-regression-ols" class="level3" data-number="12.2.3"><h3 data-number="12.2.3" class="anchored" data-anchor-id="normale-regression-ols">
+<span class="header-section-number">12.2.3</span> Normale Regression (OLS)</h3>
+<p>Man kann sich fragen, warum sollte man an der normalen Least-Square-Regression (OLS: Ordinary Least Square) weiter herumbasteln wollen, schließlich garantiert das <a href="https://en.wikipedia.org/wiki/Gauss%E2%80%93Markov_theorem">Gauss-Markov-Theorem</a>, dass eine lineare Regression den besten linearen unverzerrten Schätzwert (BLUE, best linear unbiased estimator) stellt, vorausgesetzt die Voraussetzungen der Regression sind erfüllt.</p>
+<p>Ja, die Schätzwerte (Vorhersagen) der Regression sind BLUE, schätzen also den wahren Wert korrekt und maximal präzise. Das gilt (natürlich) nur, wenn die Voraussetzungen der Regression erfüllt sind, also vor allem, dass die Beziehung auch linear-additiv ist.</p>
+<p>Zur Erinnerung, mit OLS minimiert man man den quadrierten Fehler, <span class="math inline">\(RSS\)</span>, Residual Sum of Square:</p>
+<p><span class="math display">\[RSS = \sum_{i=1}^n \left(y_i - \beta_0 - \sum_{j=1}^p \beta_j x_{ij} \right)\]</span></p>
+<p>Man sucht also diejenigen Koeffizientenwerte <span class="math inline">\(\beta\)</span> (Argumente der Loss-Funktion RSS), die RSS minimieren:</p>
+<p><span class="math display">\[\beta = \underset {\beta}{\operatorname {arg\,min(RSS)}}\]</span></p>
+<p>Es handelt sich hier um Schätzwerte, die meist mit dem Hütchen <span class="math inline">\(\hat{\beta}\)</span> ausgedrückt werden, hier aber zur einfacheren Notation weggelassen sind.</p>
+<p>Abb. <a href="#fig-ols">Abbildung&nbsp;<span>12.1</span></a> visualisiert die Optimierung mit OLS <a href="https://www.crumplab.com/rstatsforpsych/regression.html">Quelle</a>. An <a href="https://www.crumplab.com/rstatsforpsych/regression.html">gleicher Stelle</a> findet sich eine gute Darstellung zu den (mathematischen) Grundlagen der OLS-Regression.</p>
+<div id="fig-ols" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="imgregression_squares (1).gif" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;12.1: Visualisierung der Minimierung der RSS durch OLS</figcaption><p></p>
+</figure>
+</div>
+<p>Übrigens nennt man Funktionen, die man minimiert mit Hilfe von Methoden des maschinellen Lernens mit dem Ziel die optimalen Koeffizienten (wie <span class="math inline">\(\beta\)</span>s) zu finden, auch <em>Loss Functions</em> (Kostenfunktion).</p>
+<p>Das Problem der Regression ist, dass die schöne Eigenschaft BLUE nur im <em>Train-Sample</em>, <em>nicht</em> (notwendig) im Test-Sample gilt.</p>
+</section></section><section id="ridge-regression-l2" class="level2" data-number="12.3"><h2 data-number="12.3" class="anchored" data-anchor-id="ridge-regression-l2">
+<span class="header-section-number">12.3</span> Ridge Regression, L2</h2>
+<section id="strafterm" class="level3" data-number="12.3.1"><h3 data-number="12.3.1" class="anchored" data-anchor-id="strafterm">
+<span class="header-section-number">12.3.1</span> Strafterm</h3>
+<p>Ridge Regression ist sehr ähnlich zum OLS-Algorithmus, nur das ein “Strafterm aufgebrummt” wird, der <span class="math inline">\(RSS\)</span> erhöht.</p>
+<p>Der Gesamtterm, der optimiert wird, <span class="math inline">\(L_{L2}\)</span> (Loss Level 2) ist also die Summe aus RSS und dem Strafterm:</p>
+<p><span class="math display">\[L_{L2} = RSS + \text{Strafterm}\]</span></p>
+<p>Der Strafterm ist so aufgebaut, dass (im Absolutbetrag) größere Koeffizienten mehr zum Fehler beitragen, also eine Funktion der (quadrierten) Summe der Absolutwerte der Koeffizienten:</p>
+<p><span class="math display">\[\text{Strafterm} = \lambda \sum_{j=1}^p \beta_j^2\]</span></p>
+<p>Man nennt den L2-Strafterm auch L2-Norm<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<p>Dabei ist <span class="math inline">\(\lambda\)</span> (lambda) ein Tuningparameter, der bestimmt, wie stark die Bestrafung ausfällt. Den Wert von <span class="math inline">\(\lambda\)</span> lassen wir durch Tuning bestimmen, wobei <span class="math inline">\(\lambda \in \mathbb{R}^+\setminus\{0\}\)</span>. Es gilt: Je größer lambda, desto stärker die Schrumpfung der Koeffizienten gegen Null, da der gesamte zu minimierende Term, <span class="math inline">\(L_{L2}\)</span> entsprechend durch lambda vergrößert wird.</p>
+<p>Der Begriff “L2” beschreibt dass es sich um eine quadrierte Normierung handelt.</p>
+<p>Der Begriff “Norm” stammt aus der Vektoralgebra. Die L2-Norm eines Vektors <span class="math inline">\(||v||\)</span> mit <span class="math inline">\(k\)</span> Elementen ist so definiert <a href="https://towardsdatascience.com/intuitions-on-l1-and-l2-regularisation-235f2db4c261">Quelle</a>:</p>
+<p><span class="math display">\[||v|| = \left(|{v_1}|^2+ |{v_2}|^2+ |{v_i}|^2+ \ldots + |{v_k}|^2 \right)^{1/2} \]</span> wobei <span class="math inline">\(|{v_i}|\)</span> den Absolutwert (Betrag) meint de Elements <span class="math inline">\(v_i\)</span> meint. Im Falle von reellen Zahlen und Quadrierung braucht es hier die Absolutfunktion nicht.</p>
+<p>Im Falle von zwei Elementen vereinfacht sich obiger Ausdruck zu:</p>
+<p><span class="math display">\[||v|| = \sqrt{\left({v_1}^2+ {v_2}^2\right)} \]</span></p>
+<p>Das ist nichts anderes als Pythagoras’ Gesetz im euklidischen Raum.</p>
+<p>Der Effekt von <span class="math inline">\(\lambda \sum_{j=1}^p \beta_j^2\)</span> ist wie gesagt, dass die Koeffizienten in Richtung Null geschrumpft werden. Wenn <span class="math inline">\(\lambda = 0\)</span>, resultiert OLS. Wenn <span class="math inline">\(\lambda \rightarrow \infty\)</span>, werden alle Koeffizienten auf Null geschätzt werden, Abb. <a href="#fig-l2-shrink">Abbildung&nbsp;<span>12.2</span></a> verdeutlicht dies <span class="citation" data-cites="islr">(<a href="references.html#ref-islr" role="doc-biblioref">James u.&nbsp;a. 2021</a>)</span>.</p>
+<div id="fig-l2-shrink" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="img/6.4.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;12.2: Links: Regressionskoeffizienten als Funktion von lambda. Rechts: L2-Norm der Ridge-Regression im Verhältnis zur OLS-Regression</figcaption><p></p>
+</figure>
+</div>
+</section><section id="standardisierung" class="level3" data-number="12.3.2"><h3 data-number="12.3.2" class="anchored" data-anchor-id="standardisierung">
+<span class="header-section-number">12.3.2</span> Standardisierung</h3>
+<p>Die Straftermformel sagt uns, dass die Ridge-Regression abhängig von der Skalierung der Prädiktoren ist. Daher sollten die Prädiktoren vor der Ridge-Regression zunächst auf <span class="math inline">\(sd=1\)</span> standardisiert werden. Da wir <span class="math inline">\(\beta_0\)</span> nicht schrumpfen wollen, sondern nur die Koeffizienten der Prädiktoren bietet es sich an, die Prädiktoren dazu noch zu zentieren. Kurz: Die z-Transformation bietet sich als Vorverarbeitung zur Ridge-Regression an.</p>
+</section></section><section id="lasso-l1" class="level2" data-number="12.4"><h2 data-number="12.4" class="anchored" data-anchor-id="lasso-l1">
+<span class="header-section-number">12.4</span> Lasso, L1</h2>
+<section id="strafterm-1" class="level3" data-number="12.4.1"><h3 data-number="12.4.1" class="anchored" data-anchor-id="strafterm-1">
+<span class="header-section-number">12.4.1</span> Strafterm</h3>
+<p>Der Strafterm in der “Lasso-Variante” der regularisierten Regression lautet so:</p>
+<p><span class="math display">\[\text{Strafterm} = \lambda \sum_{j=1}^p |\beta_j|,\]</span></p>
+<p>ist also analog zur Ridge-Regression konzipiert.</p>
+<p>Genau wie bei der L2-Norm-Regularisierung ist ein “guter” Wert von lambda entscheidend. Dieser Wert wird, wie bei der Ridge-Regression, durch Tuning bestimmt.</p>
+<p>Der Unterschied ist, dass die L1-Norm (Absolutwerte) und nicht die L2-Norm (Quadratwerte) verwendet werden.</p>
+<p>Die L1-Norm eines Vektors ist definiert durch <span class="math inline">\(||\beta||_1 = \sum|\beta_j|\)</span>.</p>
+</section><section id="variablenselektion" class="level3" data-number="12.4.2"><h3 data-number="12.4.2" class="anchored" data-anchor-id="variablenselektion">
+<span class="header-section-number">12.4.2</span> Variablenselektion</h3>
+<p>Genau wie die Ridge-Regression führt ein höhere lambda-Wert zu einer Regularisierung (Schrumpfung) der Koeffizienten. Im Unterschied zur Ridge-Regression hat das Lasso die Eigenschaft, einzelne Parameter auf <em>exakt</em> Null zu schrumpfen und damit faktisch als Prädiktor auszuschließen. Anders gesagt hat das Lasso die praktische Eigenschaft, Variablenselektion zu ermöglichen.</p>
+<p>Abb. <a href="#fig-lasso-l1">Abbildung&nbsp;<span>12.3</span></a> verdeutlicht den Effekt der Variablenselektion, vgl. <span class="citation" data-cites="islr">James u.&nbsp;a. (<a href="references.html#ref-islr" role="doc-biblioref">2021</a>)</span>, Kap. 6.2. Die Ellipsen um <span class="math inline">\(\hat{beta}\)</span> herum nent man Kontourlinien. Alle Punkte einer Kontourlinie haben den gleiche RSS-Wert, stehen also für eine gleichwertige OLS-Lösung.</p>
+<div id="fig-lasso-l1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="img/6.6.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;12.3: lambda in der Lasso-Regression</figcaption><p></p>
+</figure>
+</div>
+<p>Warum erlaubt die L1-Norm Variablenselektion, die L2-Norm aber nicht? Abb. <a href="#fig-l1l2">Abbildung&nbsp;<span>12.4</span></a> verdeutlicht den Unterschied zwischen L1- und L2-Norm. Es ist eine Regression mit zwei Prädiktoren, also den zwei Koeffizienten <span class="math inline">\(\beta1, \beta_2\)</span> dargestellt.</p>
+<div id="fig-l1l2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="img/6.6.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;12.4: Verlauf des Strafterms bei der L1-Norm (links) und der L2-Norm (rechts)</figcaption><p></p>
+</figure>
+</div>
+<p>Betrachten wir zunächst das rechte Teilbild für die L2-Norm aus Abb. <a href="#fig-l1l2">Abbildung&nbsp;<span>12.4</span></a>, das in Abb. <a href="#fig-l2-penalty">Abbildung&nbsp;<span>12.5</span></a> in den Fokus gerückt wird <span class="citation" data-cites="rhys">(<a href="references.html#ref-rhys" role="doc-biblioref">Rhys 2020</a>)</span>.</p>
+<div id="fig-l2-penalty" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="img/l2-penalty.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;12.5: Verlauf des Strafterms bei der L1-Norm (links) und der L2-Norm (rechts)</figcaption><p></p>
+</figure>
+</div>
+<p>Wenn lambda gleich Null ist, entspricht <span class="math inline">\(L_{L2}\)</span> genau der OLS-Lösung. Vergrößert man lambda, so liegt <span class="math inline">\(L_{L2}\)</span> dem Schnittpunkt des OLS-Kreises mit dem zugehörigen lambda-Kreis. Wie man sieht, führt eine Erhöhung von lambda zu einer Reduktion der Absolutwerte von <span class="math inline">\(\beta_1\)</span> und <span class="math inline">\(\beta_2\)</span>. Allerdings werden, wie man im Diagramm sieht, auch bei hohen lambda-Werten die Regressionskoeffizienten nicht exakt Null sein.</p>
+<p>Warum lässt die L2-Norm für bestimmte lambda-Werte den charakteristischen Kreis entstehen? Die Antwort ist, dass die Lösungen für <span class="math inline">\(\beta_1^2 + \beta_2^2=1\)</span> (mit <span class="math inline">\(\lambda=1\)</span>) graphisch als Kreis dargestellt werden können.</p>
+<p>Anders ist die Situation bei der L1-Norm, dem Lasso, vgl. Abb. <a href="#fig-l1-penalty">Abbildung&nbsp;<span>12.6</span></a>.</p>
+<div id="fig-l1-penalty" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="img/l1-penalty.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;12.6: Verlauf des Strafterms bei der L1-Norm</figcaption><p></p>
+</figure>
+</div>
+<p>Eine Erhöhung von $ führt aufgrund der charakteristischen Kontourlinie zu einem Schnittpunkt (von OLS-Lösung und lambda-Wert), der - wenn lambda groß genug ist, stets auf einer der beiden Achsen liegt, also zu einer Nullsetzung des Parameters führt.</p>
+<p>Damit kann man argumentieren, dass das Lasso implizit davon ausgeht, dass einige Koeffizienten in Wirklichkeit <em>exakt Null</em> sind, die L2-Norm aber nicht.</p>
+</section></section><section id="l1-vs.-l2" class="level2" data-number="12.5"><h2 data-number="12.5" class="anchored" data-anchor-id="l1-vs.-l2">
+<span class="header-section-number">12.5</span> L1 vs.&nbsp;L2</h2>
+<section id="wer-ist-stärker" class="level3" data-number="12.5.1"><h3 data-number="12.5.1" class="anchored" data-anchor-id="wer-ist-stärker">
+<span class="header-section-number">12.5.1</span> Wer ist stärker?</h3>
+<p>Man kann nicht sagen, dass die L1- oder die L2-Norm strikt besser sei. Es kommt auf den Datensatz an. Wenn man einen Datensatz hat, in dem es eingie wenige starke Prädiktoren gibt und viele sehr schwache (oder exakt irrelevante) Prädiktoren gibt, dann wird L1 tendenziell zu besseren Ergebnissen führen<span class="citation" data-cites="islr">(<a href="references.html#ref-islr" role="doc-biblioref">James u.&nbsp;a. 2021, 246</a>)</span>. Das Lasso hat noch den Vorteil der Einfachheit, da weniger Prädiktoren im Modell verbleiben.</p>
+<p>Ridge-Regression wird dann besser abschneiden (tendenziell), wenn die Prädiktoren etwa alle gleich stark sind.</p>
+</section><section id="elastic-net-als-kompromiss" class="level3" data-number="12.5.2"><h3 data-number="12.5.2" class="anchored" data-anchor-id="elastic-net-als-kompromiss">
+<span class="header-section-number">12.5.2</span> Elastic Net als Kompromiss</h3>
+<p>Das Elastic Net (EN) ist ein Kompromiss zwischen L1- und L2-Norm. <span class="math inline">\(\lambda\)</span> wird auf einen Wert zwischen 1 und 2 eingestellt; auch hier wird der Wert für <span class="math inline">\(\lambda\)</span> wieder per Tuning gefunden.</p>
+<p><span class="math display">\[L_{EN} = RSS + \lambda\left((1-\alpha))\cdot \text{L2-Strafterm} + \alpha \cdot  \text{L1-Strafterm}\right)\]</span></p>
+<p><span class="math inline">\(\alpha\)</span> ist ein Tuningparameter, der einstellt, wie sehr wir uns Richtung L1- vs.&nbsp;L2-Norm bewegen. Damit wird sozusagen die “Mischung” eingestellt (von L1- vs.&nbsp;L2).</p>
+<p>Spezialfälle:</p>
+<ul>
+<li>Wenn <span class="math inline">\(\alpha=0\)</span> resultiert die Ridge-Regression (L1-Strafterm wird Null)</li>
+<li>Wenn <span class="math inline">\(\alpha=1\)</span> resultiert die Lasso-Regression (L2-Strafterm wird Null)</li>
+</ul></section></section><section id="aufgaben" class="level2" data-number="12.6"><h2 data-number="12.6" class="anchored" data-anchor-id="aufgaben">
+<span class="header-section-number">12.6</span> Aufgaben</h2>
+<ul>
+<li>“<a href="https://juliasilge.com/blog/lasso-the-office/">Fallstudie Serie The Office</a>”</li>
+<li>“<a href="https://juliasilge.com/blog/nber-papers/">Fallstudie NBER Papers</a>”</li>
+</ul>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-islr" class="csl-entry" role="listitem">
+James, Gareth, Daniela Witten, Trevor Hastie, und Robert Tibshirani. 2021. <em>An introduction to statistical learning: with applications in R</em>. Second edition. Springer texts in statistics. New York: Springer. <a href="https://link.springer.com/book/10.1007/978-1-0716-1418-1">https://link.springer.com/book/10.1007/978-1-0716-1418-1</a>.
+</div>
+<div id="ref-rhys" class="csl-entry" role="listitem">
+Rhys, Hefin. 2020. <em>Machine Learning with R, the tidyverse, and mlr</em>. Shelter Island, <span>NY</span>: Manning publications.
+</div>
+</div>
+</section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+<ol>
+<li id="fn1"><p>Streng genommen ist er eine Funktion der L2-Norm bzw. mit Lambda-Gewichtet und ohne die Wurzel, die zur Vektornorm gehört<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Kopiert");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Kopiert");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./110-ensemble.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Ensemble Lerner</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./130-kaggle.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Kaggle</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.247">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Grundlagen der Prognosemodellierung 🔮🧰 - 14&nbsp; Der rote Faden</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./150-fallstudien.html" rel="next">
+<link href="./130-kaggle.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Keine Treffer",
+    "search-matching-documents-text": "Treffer",
+    "search-copy-link-title": "Link in die Suche kopieren",
+    "search-hide-matches-text": "Zusätzliche Treffer verbergen",
+    "search-more-match-text": "weitere Treffer in diesem Dokument",
+    "search-more-matches-text": "weitere Treffer in diesem Dokument",
+    "search-clear-button-title": "Zurücksetzen",
+    "search-detached-cancel-button-title": "Abbrechen",
+    "search-submit-button-title": "Abschicken"
+  }
+}</script><meta name="mermaid-theme" content="neutral">
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script><script src="site_libs/quarto-diagram/mermaid-init.js"></script><link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script><link rel="stylesheet" href="styles.css">
+</head>
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./140-faden.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Der rote Faden</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Grundlagen der Prognosemodellierung 🔮🧰</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Suchen"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Zu diesem Buch</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./010-Hinweise.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Hinweise</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./030-Pruefung.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Prüfung</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./040-Statistisches-Lernen.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Statistisches Lernen</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./050-R-Vertiefung.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">R, zweiter Blick</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./060-tidymodels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">tidymodels</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./070-knn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">kNN</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./080-Resampling-Tuning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Resampling und Tuning</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./090-glm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Logistische Regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./100-baeume.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Entscheidungsbäume</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./110-ensemble.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Ensemble Lerner</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./120-regularisierte-modelle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Regularisierte Modelle</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./130-kaggle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Kaggle</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./140-faden.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Der rote Faden</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./150-fallstudien.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Fallstudien</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./160-e.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Staunen mit e</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul>
+<li>
+<a href="#lernsteuerung" id="toc-lernsteuerung" class="nav-link active" data-scroll-target="#lernsteuerung"><span class="header-section-number">14.1</span> Lernsteuerung</a>
+  <ul class="collapse">
+<li><a href="#%C3%BCberblick" id="toc-überblick" class="nav-link" data-scroll-target="#%C3%BCberblick"><span class="header-section-number">14.1.1</span> Überblick</a></li>
+  <li><a href="#lernziele" id="toc-lernziele" class="nav-link" data-scroll-target="#lernziele"><span class="header-section-number">14.1.2</span> Lernziele</a></li>
+  <li><a href="#literatur" id="toc-literatur" class="nav-link" data-scroll-target="#literatur"><span class="header-section-number">14.1.3</span> Literatur</a></li>
+  </ul>
+</li>
+  <li><a href="#aussichtspunkt-1-blick-vom-hohen-berg" id="toc-aussichtspunkt-1-blick-vom-hohen-berg" class="nav-link" data-scroll-target="#aussichtspunkt-1-blick-vom-hohen-berg"><span class="header-section-number">14.2</span> Aussichtspunkt 1: Blick vom hohen Berg</a></li>
+  <li>
+<a href="#aussichtspunkt-2-blick-in-den-hof-der-handwerker" id="toc-aussichtspunkt-2-blick-in-den-hof-der-handwerker" class="nav-link" data-scroll-target="#aussichtspunkt-2-blick-in-den-hof-der-handwerker"><span class="header-section-number">14.3</span> Aussichtspunkt 2: Blick in den Hof der Handwerker</a>
+  <ul class="collapse">
+<li><a href="#ein-maximale-einfaches-werkst%C3%BCck-mit-tidymodels" id="toc-ein-maximale-einfaches-werkstück-mit-tidymodels" class="nav-link" data-scroll-target="#ein-maximale-einfaches-werkst%C3%BCck-mit-tidymodels"><span class="header-section-number">14.3.1</span> Ein maximale einfaches Werkstück mit Tidymodels</a></li>
+  <li><a href="#ein-immer-noch-recht-einfaches-werkst%C3%BCck-mit-tidymodels" id="toc-ein-immer-noch-recht-einfaches-werkstück-mit-tidymodels" class="nav-link" data-scroll-target="#ein-immer-noch-recht-einfaches-werkst%C3%BCck-mit-tidymodels"><span class="header-section-number">14.3.2</span> Ein immer noch recht einfaches Werkstück mit Tidymodels</a></li>
+  </ul>
+</li>
+  <li><a href="#aussichtspunkt-3-der-nebelberg-quiz" id="toc-aussichtspunkt-3-der-nebelberg-quiz" class="nav-link" data-scroll-target="#aussichtspunkt-3-der-nebelberg-quiz"><span class="header-section-number">14.4</span> Aussichtspunkt 3: Der Nebelberg (Quiz)</a></li>
+  <li><a href="#aussichtspunkt-4-der-exerzitien-park" id="toc-aussichtspunkt-4-der-exerzitien-park" class="nav-link" data-scroll-target="#aussichtspunkt-4-der-exerzitien-park"><span class="header-section-number">14.5</span> Aussichtspunkt 4: Der Exerzitien-Park</a></li>
+  <li><a href="#aussichtspunkt-5-in-der-bibliothek" id="toc-aussichtspunkt-5-in-der-bibliothek" class="nav-link" data-scroll-target="#aussichtspunkt-5-in-der-bibliothek"><span class="header-section-number">14.6</span> Aussichtspunkt 5: In der Bibliothek</a></li>
+  <li><a href="#krafttraining" id="toc-krafttraining" class="nav-link" data-scroll-target="#krafttraining"><span class="header-section-number">14.7</span> Krafttraining</a></li>
+  <li><a href="#aufgaben" id="toc-aufgaben" class="nav-link" data-scroll-target="#aufgaben"><span class="header-section-number">14.8</span> Aufgaben</a></li>
+  <li><a href="#vertiefung" id="toc-vertiefung" class="nav-link" data-scroll-target="#vertiefung"><span class="header-section-number">14.9</span> Vertiefung</a></li>
+  </ul></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">
+<span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Der rote Faden</span>
+</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header><section id="lernsteuerung" class="level2" data-number="14.1"><h2 data-number="14.1" class="anchored" data-anchor-id="lernsteuerung">
+<span class="header-section-number">14.1</span> Lernsteuerung</h2>
+<section id="überblick" class="level3" data-number="14.1.1"><h3 data-number="14.1.1" class="anchored" data-anchor-id="überblick">
+<span class="header-section-number">14.1.1</span> Überblick</h3>
+<p>Mittlerweile haben wir einiges zum Thema Data Science bzw. maschinelles Lernen behandelt (und sie hoffentlich viel gelernt).</p>
+<p>Da ist es an der Zeit, einen Schritt zurück zu treten, um sich einen Überblick über den gegangenen Weg zu verschaffen, den berühmten “roten Faden” zu sehen, den zurückgelegten Weg nachzuzeichnen in den groben Linien, um einen (klareren) Überblick über das Terrain zu bekommen.</p>
+<p>In diesem Kapitel werden wir verschiedene “Aussichtspfade” suchen, um im Bild zu bleiben, die uns einen Überblick über das Gelände versprechen.</p>
+</section><section id="lernziele" class="level3" data-number="14.1.2"><h3 data-number="14.1.2" class="anchored" data-anchor-id="lernziele">
+<span class="header-section-number">14.1.2</span> Lernziele</h3>
+<ul>
+<li>Sie erarbeiten sich einen Überblick über den bisher gelernten Stoff bzw. verfeinern Ihren bestehenden Überblick</li>
+</ul></section><section id="literatur" class="level3" data-number="14.1.3"><h3 data-number="14.1.3" class="anchored" data-anchor-id="literatur">
+<span class="header-section-number">14.1.3</span> Literatur</h3>
+<ul>
+<li>Rhys im Überblick</li>
+</ul></section></section><section id="aussichtspunkt-1-blick-vom-hohen-berg" class="level2" data-number="14.2"><h2 data-number="14.2" class="anchored" data-anchor-id="aussichtspunkt-1-blick-vom-hohen-berg">
+<span class="header-section-number">14.2</span> Aussichtspunkt 1: Blick vom hohen Berg</h2>
+<p>Und so zeigt sich ein “Flussbild”<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> (<a href="#fig-fluss">Abbildung&nbsp;<span>14.1</span></a>).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-fluss" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><div>
+<pre class="mermaid mermaid-js" data-label="fig-fluss">flowchart LR
+  Vv[Vorverarbeitung] --&gt; W[Workflow]
+  MF[Modellformel] --&gt; W[Workflow]
+  Mo[Modell] --&gt; W[Workflow]
+  Al[Algorithmus] --&gt; Mo
+  Im[Implementierung] --&gt; Mo
+  Mod[Modus] --&gt; Mo
+  St[z.B. Standardisierung] --&gt; Vv
+  FW[z.B. Fehlende Werte] --&gt; Vv
+  W -- für jeden Workflow --&gt; Tuning
+  subgraph Tuning
+subgraph Resampling
+  subgraph Fitten
+  end
+end
+  end
+  Tuning --&gt; bM[bester Modellkandidat]
+  bM --&gt; FT[Fitten auf ganz Train-Sample]
+  FT --&gt; PT[Predict auf Test-Sample]
+  PT --&gt;  MG[Modellgüte]
+  MG --&gt; num[numerisch]
+  MG --&gt; klas[klassifikatorisch]
+
+</pre>
+</div>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;14.1: Ein Flussbild des maschinellen Lernens</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Der Reiseführer erzählt uns zu diesem Bild folgende Geschichte:</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/PO-UrF5hGtY" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/PO-UrF5hGtY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+<p><a href="https://youtu.be/PO-UrF5hGtY">Video-Geschichte</a></p>
+</section><section id="aussichtspunkt-2-blick-in-den-hof-der-handwerker" class="level2" data-number="14.3"><h2 data-number="14.3" class="anchored" data-anchor-id="aussichtspunkt-2-blick-in-den-hof-der-handwerker">
+<span class="header-section-number">14.3</span> Aussichtspunkt 2: Blick in den Hof der Handwerker</h2>
+<p>Wenn man auf einem hohen Berg gestanden ist, hat man zwar einen guten Überblick über das Land bekommen, aber das konkrete Tun bleibt auf solchen Höhen verborgen.</p>
+<p>Möchte man wissen, wie das geschäftige Leben abläuft, muss man also den tätigen Menschen über die Schulter schauen. Werfen wir also einen Blick in den “Hof der Handwerker”, wo grundlegende Werkstücke gefertigt werden, und wir jeden Handgriff aus der Nähe mitverfolgen können.</p>
+<section id="ein-maximale-einfaches-werkstück-mit-tidymodels" class="level3" data-number="14.3.1"><h3 data-number="14.3.1" class="anchored" data-anchor-id="ein-maximale-einfaches-werkstück-mit-tidymodels">
+<span class="header-section-number">14.3.1</span> Ein maximale einfaches Werkstück mit Tidymodels</h3>
+<p>Weniger blumig ausgedrückt: Schauen wir uns ein maximal einfaches Beispiel an, wie man mit Tidymodels Vorhersagen tätigt. Genauer gesagt bearbeiten wir <a href="https://www.kaggle.com/code/ssauer/simple-linear-model-tidymodels">einen sehr einfachen Ansatz</a> für einen Kaggle-Prognosewettbewerb.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/QHbIONGgMrA" frameborder="0" allowfullscreen="">
+</iframe>
+</section><section id="ein-immer-noch-recht-einfaches-werkstück-mit-tidymodels" class="level3" data-number="14.3.2"><h3 data-number="14.3.2" class="anchored" data-anchor-id="ein-immer-noch-recht-einfaches-werkstück-mit-tidymodels">
+<span class="header-section-number">14.3.2</span> Ein immer noch recht einfaches Werkstück mit Tidymodels</h3>
+<p>Dieses Beispiel ist nur wenig aufwändiger als das vorherige.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/QS94JTMpnHc" frameborder="0" allowfullscreen="">
+</iframe>
+</section></section><section id="aussichtspunkt-3-der-nebelberg-quiz" class="level2" data-number="14.4"><h2 data-number="14.4" class="anchored" data-anchor-id="aussichtspunkt-3-der-nebelberg-quiz">
+<span class="header-section-number">14.4</span> Aussichtspunkt 3: Der Nebelberg (Quiz)</h2>
+<p>Da der “Nebelberg” zumeist in Wolken verhüllt ist, muss man, wenn man ihn ersteigt und ins Land hinunterschaut, erraten, welche Teile zu sehen sind. Sozusagen eine Art Landschafts-Quiz.</p>
+<p>Voilà, hier ist es, das <em>Quiz</em> zum maschinellen Lernen:</p>
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdw9ngLAcs7VMaF5P-nRSS8zCBjLdJyPYXsGTzy1ERmD6oPcQ/viewform?embedded=true" width="640" height="930" frameborder="0" marginheight="0" marginwidth="0">
+Loading…
+</iframe>
+</section><section id="aussichtspunkt-4-der-exerzitien-park" class="level2" data-number="14.5"><h2 data-number="14.5" class="anchored" data-anchor-id="aussichtspunkt-4-der-exerzitien-park">
+<span class="header-section-number">14.5</span> Aussichtspunkt 4: Der Exerzitien-Park</h2>
+<p>Wir stehen vor dem Eingang zu einem Park, in dem sich viele Menschen an merkwürdigen Übungen, Exerzitien, befleißigen. Vielleicht wollen Sie sich auch an einigen Übungen abhärten? Bitte schön, lassen Sie sich nicht von mir aufhalten.</p>
+<div class="cell" data-hash="140-faden_cache/html/yacsdas_3c64ce8807289377953ffe77e39d8dd2">
+<p>YACSDA: Yet Another Case Study on Data Analysis</p>
+<p>…</p>
+<p><strong>NUR EXPLORATIVE DATENANALYSE</strong></p>
+<ul>
+<li><p><a href="https://allisonhorst.shinyapps.io/dplyr-learnr/#section-welcome">Datenjudo mit Pinguinen</a></p></li>
+<li><p><a href="https://data-se.netlify.app/2021/02/24/exercises-to-data-wrangling-with-the-tidyverse/">Data-Wranglinng-Aufgaben zur Lebenserwartung</a></p></li>
+<li><p><a href="https://data-se.netlify.app/2020/12/07/ex-visualizing-diamonds/">Aufgabe zur Datenvisualisierung des Diamantenpreises</a></p></li>
+<li><p><a href="https://data-se.netlify.app/2021/03/08/eda-zu-flugversp%C3%A4tungen/">Fallstudie Flugverspätungen - EDA</a></p></li>
+<li><p><a href="https://data-se.netlify.app/2021/02/11/yacda-topgear/">Fallstudie zur EDA: Top-Gear</a></p></li>
+<li><p><a href="https://data-se.netlify.app/2021/02/11/explorative-datenanalyse-zum-datensatz-oecd-wellbeing/">Fallstudie zur EDA: OECD-Wellbeing-Studie</a></p></li>
+<li><p><a href="https://minimaxir.com/2018/07/imdb-data-analysis/">Fallstudie zur EDA: Movie Rating</a></p></li>
+<li><p><a href="https://github.com/saghirb/WiP-tidyverse/blob/master/doc/WiP-tidyverse.pdf">Fallstudie zur EDA: Women in Parliament</a></p></li>
+<li><p><a href="https://data-se.netlify.app/2021/05/27/datensatz-flights-finde-den-tag-mit-den-meisten-abfl%C3%BCgen/">Finde den Tag mit den meisten Flugverspätungen, Datensatz ‘nycflights13’</a></p></li>
+</ul>
+<p><strong>NUR LINEARE MODELL</strong></p>
+<ul>
+<li><p><a href="https://youtu.be/5pBTHrnRIZY">Beispiel für Prognosemodellierung 1, grundlegender Anspruch, Video</a></p></li>
+<li><p><a href="https://data-se.netlify.app/2020/11/13/fallstudie-zur-regressionsanalyse-ggplot2movies/">Beispiel für Ihre Prognosemodellierung 2, mittlerer Anspruch</a></p></li>
+<li><p><a href="https://data-se.netlify.app/2021/03/10/fallstudie-modellierung-von-flugversp%C3%A4tungen/">Beispiel für Ihre Prognosemodellierung 3, hoher Anspruch</a></p></li>
+<li><p><a href="https://data-se.netlify.app/2021/03/10/fallstudie-modellierung-von-flugversp%C3%A4tungen/">Fallstudie: Modellierung von Flugverspätungen</a></p></li>
+<li><p><a href="https://data-se.netlify.app/2020/11/13/fallstudie-zur-regressionsanalyse-ggplot2movies/">Movies</a></p></li>
+<li><p><a href="https://www.kaggle.com/code/ssauer/tmdb-simple-regression-beginners">Fallstudie Einfache lineare Regression in Base-R, Anfängerniveau, Kaggle-Competition TMDB</a></p></li>
+<li><p><a href="https://data-se.netlify.app/2022/05/02/fallstudie-spritverbrauch/">Fallstudie Sprit sparen</a></p></li>
+</ul>
+<p><strong>YouTube-PLAYLISTS</strong></p>
+<ul>
+<li><p><a href="https://youtube.com/playlist?list=PLRR4REmBgpIGet_lcNf2wOd0W8j4c9hYN">Playlist YACSDAs</a></p></li>
+<li><p><a href="https://youtube.com/playlist?list=PLRR4REmBgpIH6uG8LZWPTSMReX1OFxfUx">Playlist zur Prüfungsleistung Prognosewettbewerb</a></p></li>
+<li><p><a href="https://youtu.be/vR9l-k50I1M">Kaggle-Fallstudie TMDB: einfache lineare Regression</a></p></li>
+<li><p><a href="https://www.youtube.com/playlist?list=PLRR4REmBgpIGWcSjrtt0m36aXHLaiTgdF">Playlist zum statistischen Modellieren</a></p></li>
+</ul>
+<p><strong>MASCHINELLES LERNEN MIT TIDYMODELS</strong></p>
+<ul>
+<li><p><a href="https://www.r-bloggers.com/2021/08/experimenting-with-machine-learning-in-r-with-tidymodels-and-the-kaggle-titanic-dataset/">Experimenting with machine learning in R with tidymodels and the Kaggle titanic dataset</a></p></li>
+<li><p><a href="https://hansjoerg.me/2020/02/09/tidymodels-for-machine-learning/">Tutorial on tidymodels for Machine Learning</a></p></li>
+<li><p><a href="https://www.kirenz.com/post/2021-02-17-r-classification-tidymodels/">Classification with Tidymodels, Workflows and Recipes</a></p></li>
+<li><p><a href="https://www.kaggle.com/code/varimp/a-mostly-tidyverse-tour-of-the-titanic/report">A (mostly!) tidyverse tour of the Titanic</a></p></li>
+<li><p><a href="https://www.kaggle.com/code/headsortails/personalised-medicine-eda-with-tidy-r/report">Personalised Medicine - EDA with tidy R</a></p></li>
+<li><p><a href="https://www.kaggle.com/code/headsortails/tidy-titarnic/report">Tidy TitaRnic</a></p></li>
+<li><p><a href="https://www.tidymodels.org/start/models/">Fallstudie Seegurken</a></p></li>
+<li><p><a href="https://juliasilge.com/blog/student-debt/">Sehr einfache Fallstudie zur Modellierung einer Regression mit tidymodels</a></p></li>
+<li><p><a href="https://www.gmudatamining.com/lesson-10-r-tutorial.html">Fallstudie zur linearen Regression mit Tidymodels</a></p></li>
+<li><p><a href="https://github.com/sebastiansauer/covid-icu">Analyse zum Verlauf von Covid-Fällen</a></p></li>
+<li><p><a href="https://onezero.blog/modelling-binary-logistic-regression-using-tidymodels-library-in-r-part-1/">Fallstudie zur Modellierung einer logististischen Regression mit tidymodels</a></p></li>
+<li><p><a href="https://juliasilge.com/blog/multinomial-volcano-eruptions/">Fallstudie zu Vulkanausbrüchen</a></p></li>
+<li><p><a href="https://juliasilge.com/blog/himalayan-climbing/">Fallstudie Himalaya</a></p></li>
+<li><p><a href="https://juliasilge.com/blog/tuition-resampling/">Fallstudien zu Studiengebühren</a></p></li>
+<li><p><a href="https://www.tidymodels.org/start/case-study/">1. Modell der Fallstudie Hotel Bookings</a></p></li>
+<li><p><a href="https://github.com/sebastiansauer/datascience1/blob/main/Aufgaben/Thema8-Loesungen1.pdf">Aufgaben zur logistischen Regression, PDF</a></p></li>
+<li><p><a href="https://bcullen.rbind.io/post/2020-06-02-tidymodels-decision-tree-learning-in-r/">Fallstudie Oregon Schools</a></p></li>
+<li><p><a href="https://juliasilge.com/blog/wind-turbine/">Fallstudie Windturbinen</a></p></li>
+<li><p><a href="https://www.gmudatamining.com/lesson-13-r-tutorial.html">Fallstudie Churn</a></p></li>
+<li><p><a href="https://data-se.netlify.app/2020/12/14/titanic-tidymodels-boost/">Einfache Durchführung eines Modellierung mit XGBoost</a></p></li>
+<li><p><a href="https://bcullen.rbind.io/post/2020-06-02-tidymodels-decision-tree-learning-in-r/">Fallstudie Oregon Schools</a></p></li>
+<li><p><a href="https://www.gmudatamining.com/lesson-13-r-tutorial.html">Fallstudie Churn</a></p></li>
+<li><p><a href="https://juliasilge.com/blog/ikea-prices/">Fallstudie Ikea</a></p></li>
+<li><p><a href="https://juliasilge.com/blog/water-sources/">Fallstudie Wasserquellen in Sierra Leone</a></p></li>
+<li><p><a href="https://dev.to/juliasilge/tuning-random-forest-hyperparameters-in-r-with-tidytuesday-trees-data-4ilh">Fallstudie Bäume in San Francisco</a></p></li>
+<li><p><a href="https://juliasilge.com/blog/multinomial-volcano-eruptions/">Fallstudie Vulkanausbrüche</a></p></li>
+<li><p><a href="https://juliasilge.com/blog/board-games/">Fallstudie Brettspiele mit XGBoost</a></p></li>
+<li><p><a href="https://juliasilge.com/blog/lasso-the-office/">Fallstudie Serie The Office</a></p></li>
+<li><p><a href="https://juliasilge.com/blog/nber-papers/">Fallstudie NBER Papers</a></p></li>
+<li><p><a href="https://www.kaggle.com/ssauer/simple-linear-model-tidymodels">Fallstudie Einfache lineare Regression mit Tidymodels, Kaggle-Competition TMDB</a></p></li>
+<li><p><a href="https://www.kaggle.com/code/ssauer/simple-rf-tuned">Fallstudie Einfaches Random-Forest-Modell mit Tidymodels, Kaggle-Competition TMDB</a></p></li>
+<li><p><a href="https://www.kaggle.com/ssauer/tmdb-xgboost-tidymodels">Fallstudie Workflow-Set mit Tidymodels, Kaggle-Competition TMDB</a></p></li>
+<li><p><a href="https://www.kaggle.com/code/modesty520/a-tutorial-with-tidymodels/report#modeling">Fallstudie Titanic mit Tidymodels bei Kaggle</a></p></li>
+<li><p><a href="https://www.kaggle.com/code/benthecoder/tidymodels-in-r-using-measles-data/notebook">Einfache Fallstudie mit Tidymodels bei Kaggle</a></p></li>
+</ul>
+</div>
+</section><section id="aussichtspunkt-5-in-der-bibliothek" class="level2" data-number="14.6"><h2 data-number="14.6" class="anchored" data-anchor-id="aussichtspunkt-5-in-der-bibliothek">
+<span class="header-section-number">14.6</span> Aussichtspunkt 5: In der Bibliothek</h2>
+<p>Einen Überblick über eine Landschaft gewinnt man nicht nur von ausgesetzten Wegpunkten aus, sondern auch, manchmal, aus Schriftstücken. Hier ist eine Auswahl an Literatur, die Grundlagen zu unserem Landstrich erläutert.</p>
+<ul>
+<li><span class="citation" data-cites="rhys">Rhys (<a href="references.html#ref-rhys" role="doc-biblioref">2020</a>)</span></li>
+<li><span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span></li>
+</ul>
+<p>Etwas weiter leiten uns diese Erzähler:</p>
+<ul>
+<li><span class="citation" data-cites="islr">James u.&nbsp;a. (<a href="references.html#ref-islr" role="doc-biblioref">2021</a>)</span></li>
+<li><span class="citation" data-cites="kuhn">Kuhn und Johnson (<a href="references.html#ref-kuhn" role="doc-biblioref">2013</a>)</span></li>
+</ul></section><section id="krafttraining" class="level2" data-number="14.7"><h2 data-number="14.7" class="anchored" data-anchor-id="krafttraining">
+<span class="header-section-number">14.7</span> Krafttraining</h2>
+<p>Um die Aussicht genießen zu können, muss man manchmal ausgesetzte Plätze in <del>schwindelerregenden</del> <del>einigermaßen steilen</del> als Hügel erkennbaren Höhen erreichen…</p>
+<p>Sportliche Leistungen erreicht nur, wer trainiert ist. Das ist im Land des Data Science nicht anders.</p>
+<p>Hier ist eine Liste von Übungen, die Ihre Datenkraft stählen soll:</p>
+<ol type="1">
+<li>
+<em>Lerngruppe</em>: Den Wert einer Lerngruppe kann man kaum unterschätzen. Die Motivation, der Austausch, der Zwang seine Gedanken geordnet darzustellen, das wechselseitige Abfragen - diese Dinge machen eine Lerngruppe zu einem der wichtigsten Erfolgsgarant in Ihren Lernbemühungen.</li>
+<li>
+<em>Exzerpte</em>: Exzerpte, Zusammenfassungen also, sind nötig, um von einer vermeintlichen “Jaja, easy, versthe ich alles” Oberflächen-Verarbeitung zu einem (ausgeprägterem) Tiefenverständnis vorzudringen.</li>
+<li>
+<em>Aufgaben</em>: Manchmal stellt ein Dozent Aufgaben ein. Die Chance sollte man nutzen, denn zwar ist vieles in der Didaktikforschung noch unsicher, aber dass Aufgaben lösen beim Lernen hilft, und zwar viel, ist eines der wenigen unstrittigen Erkenntnisse.</li>
+<li>
+<em>Fallstudien</em>: Ähnliches wie Aufgaben, die oft kleinteilig-akademisch angelegt sind, hilft die große Schwester der schnöden Aufgabe, die Fallstudie, beim Vordringen in Verständnistiefen.</li>
+<li>
+<em>Lesen</em>: Ja, Lesen ist voll Old School. Aber so was Ähnliches wie Updaten der Brain-Software. Nützlich, weil die alte Software irgendwann nicht mehr supported wird.</li>
+<li>
+<em>Forum</em>: Sie haben eine Frage, aber Sie können unmöglich ein paar Tage warten, bis Sie den Dozenten im Unterricht sprechen? Posten Sie die Frage in einem Forum! Vielleicht im Forum des Moduls oder aber in einem geeigneten Forum im Internet.</li>
+<li>
+<em>Youtube</em>: Zwar wettern Dozentis gerne über die mangelnde Verarbeitungstiefe beim Fern schauen. Außerdem sind Lehrvideos didaktisch echt asbachuralt. Aber okay, manchmal und in überschaubarer Dosis ist ein Lehrvideo eine nützliche Ergänzung zu den übrigen Maßnahmen.</li>
+</ol>
+<!-- ## Aufgaben und Vertiefung --></section><section id="aufgaben" class="level2" data-number="14.8"><h2 data-number="14.8" class="anchored" data-anchor-id="aufgaben">
+<span class="header-section-number">14.8</span> Aufgaben</h2>
+<ul>
+<li><a href="https://www.kaggle.com/code/ssauer/simple-rf-tuned">Einfache Random-Forest-Modellierung bei Kaggle (TMDB)</a></li>
+<li><a href="https://www.kaggle.com/code/ssauer/tmdb-xgboost-tidymodels">Einfache Workflow-Set-Modellierung bei Kaggle (TMDB)</a></li>
+<li>Bearbeiten Sie so viele Fallstudien der Fallstudiensammlung wie nötig, um den Stoff flüssig zu beherrschen</li>
+</ul></section><section id="vertiefung" class="level2" data-number="14.9"><h2 data-number="14.9" class="anchored" data-anchor-id="vertiefung">
+<span class="header-section-number">14.9</span> Vertiefung</h2>
+<ul>
+<li><a href="https://deisenroth.cc/publication/deisenroth-2020/">Mathematische Grundlagen können Sie z.B. hier vertiefen</a></li>
+<li><a href="https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques">Gute Fallstudie bei Kaggle für Regressionsprobleme: House Prices</a></li>
+<li><a href="https://gist.github.com/">Sie möchten schnell ein Code-Schnipsel (öffentlich sichtbar) teilen? Probieren Sie Github Gists aus</a></li>
+</ul>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-islr" class="csl-entry" role="listitem">
+James, Gareth, Daniela Witten, Trevor Hastie, und Robert Tibshirani. 2021. <em>An introduction to statistical learning: with applications in R</em>. Second edition. Springer texts in statistics. New York: Springer. <a href="https://link.springer.com/book/10.1007/978-1-0716-1418-1">https://link.springer.com/book/10.1007/978-1-0716-1418-1</a>.
+</div>
+<div id="ref-kuhn" class="csl-entry" role="listitem">
+Kuhn, Max, und Kjell Johnson. 2013. <em>Applied predictive modeling</em>. Bd. 26. Springer.
+</div>
+<div id="ref-rhys" class="csl-entry" role="listitem">
+Rhys, Hefin. 2020. <em>Machine Learning with R, the tidyverse, and mlr</em>. Shelter Island, <span>NY</span>: Manning publications.
+</div>
+<div id="ref-silge_tidy_2022" class="csl-entry" role="listitem">
+Silge, Julia, und Max Kuhn. 2022. <em>Tidy <span>Modeling</span> with <span>R</span></em>. <a href="https://www.tmwr.org/">https://www.tmwr.org/</a>.
+</div>
+</div>
+</section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+<ol>
+<li id="fn1"><p>Wem das Bild zu klein gezeichnet ist, der nehme entweder eine Lupe oder öffne das Bild per Rechtsklick in einem neuen Tab.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Kopiert");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Kopiert");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./130-kaggle.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Kaggle</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./150-fallstudien.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Fallstudien</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
