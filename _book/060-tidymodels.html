@@ -79,7 +79,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./references.html" rel="next">
+<link href="./070-knn.html" rel="next">
 <link href="./050-R-Vertiefung.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -107,7 +107,9 @@ div.csl-indent {
     "search-detached-cancel-button-title": "Abbrechen",
     "search-submit-button-title": "Abschicken"
   }
-}</script><script src="site_libs/htmlwidgets-1.6.1/htmlwidgets.js"></script><script src="site_libs/es6shim-0.35.6/es6shim.js"></script><script src="site_libs/es7shim-6.0.0/es7shim.js"></script><script src="site_libs/graphre-0.1.3/graphre.js"></script><script src="site_libs/nomnoml-1.5.3/nomnoml.js"></script><script src="site_libs/nomnoml-binding-0.2.6/nomnoml.js"></script><link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+}</script><meta name="mermaid-theme" content="neutral">
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script><script src="site_libs/quarto-diagram/mermaid-init.js"></script><link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<script src="site_libs/htmlwidgets-1.6.1/htmlwidgets.js"></script><script src="site_libs/es6shim-0.35.6/es6shim.js"></script><script src="site_libs/es7shim-6.0.0/es7shim.js"></script><script src="site_libs/graphre-0.1.3/graphre.js"></script><script src="site_libs/nomnoml-1.5.3/nomnoml.js"></script><script src="site_libs/nomnoml-binding-0.2.6/nomnoml.js"></script><link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
 <script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><link rel="stylesheet" href="styles.css">
 </head>
 <body class="nav-sidebar floating">
@@ -172,6 +174,24 @@ div.csl-indent {
   <div class="sidebar-item-container"> 
   <a href="./060-tidymodels.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">tidymodels</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./070-knn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">kNN</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./080-Resampling-Tuning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Resampling und Tuning</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./090-glm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Logistische Regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -310,11 +330,17 @@ Hinweis
 <!-- [![](https://mermaid.ink/img/pako:eNo9jDEOwjAMRa9ieW4RYkKZ4QTt6MVqDERK0ip1KqGqd8e0Ak_fz-97xWH0gg6nIKBBo0BfOOQWlvkEvczadpymKJTBhnC_EoKD6_nPTNvRxRBlbDBJSRy8_V2_EqG-JAmhs-jlwTVagfJmap08q9x90LGg01KlQa46du88_PbDuQV-Fk4H3D5jVDy8)](https://mermaid.live/edit#pako:eNo9jDEOwjAMRa9ieW4RYkKZ4QTt6MVqDERK0ip1KqGqd8e0Ak_fz-97xWH0gg6nIKBBo0BfOOQWlvkEvczadpymKJTBhnC_EoKD6_nPTNvRxRBlbDBJSRy8_V2_EqG-JAmhs-jlwTVagfJmap08q9x90LGg01KlQa46du88_PbDuQV-Fk4H3D5jVDy8) -->
 <!-- [Quelle](https://gist.github.com/sebastiansauer/be53bfc193fd3c144a430b7d3b922310) -->
 <p>Eine Faustregel ist es, 70-80% der Daten in das Train-Sample und die übrigen 20-30% in das Test-Sample zu stecken, s. <a href="#fig-train-pie">Abbildung&nbsp;<span>6.1</span></a></p>
-<div class="cell" data-layout-align="center" data-hash="060-tidymodels_cache/html/fig-train-pie_3c86df440a03ea9d1a823c841bf0b47d">
+<div class="cell">
 <div class="cell-output-display">
 <div id="fig-train-pie" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="060-tidymodels_files/figure-html/fig-train-pie-1.png" width="672" height="200" class="figure-img"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;6.1: 80-20-Aufteilung der Daten in Train- bzw. Test-Sample</figcaption><p></p>
+<figure class="figure"><div>
+<pre class="mermaid mermaid-js" data-label="fig-train-pie">pie title Pets adopted by volunteers
+    "Train" : 80
+    "Test" : 19
+    "For the unkown God": 1
+</pre>
+</div>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;6.1: 8”0-20-Aufteilung der Daten in Train- bzw. Test-Sample”</figcaption><p></p>
 </figure>
 </div>
 </div>
@@ -322,13 +348,13 @@ Hinweis
 <p>Praktisch funktioniert das in <span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span> wie folgt.</p>
 <p>Wir laden die Daten und erstellen einen Index, der jeder Beobachtung die Zuteilung zu Train- bzw. zum Test-Datensatz zuweist.</p>
 <p>Das kann, mit <code>tidymodels</code> so aussehen:</p>
-<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-5_f93294810d18cbfc5c744e5ee433bf2c">
+<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-6_d511f42b7571deb7867862e6cfb2f3f0">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ames_split</span> <span class="op">&lt;-</span> <span class="fu">initial_split</span><span class="op">(</span><span class="va">ames</span>, prop <span class="op">=</span> <span class="fl">0.80</span>, strata <span class="op">=</span> <span class="va">Sale_Price</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>initial_split()</code> speichert für spätere komfortable Verwendung auch die Daten. Aber eben auch der Index, der bestimmt, welche Beobachtung im Train-Set landet:</p>
-<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-6_6ffd230a52616517f58b780659c0c89c">
+<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-7_3271a8b8d0ad97a7aac5a848b6d5bd70">
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ames_split</span><span class="op">$</span><span class="va">in_id</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
-<span><span class="co">##  [1]  2 28 30 31 32 33 35 78 79 83</span></span>
+<span><span class="co">##  [1]  2 27 28 30 31 32 35 79 84 89</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">ames_split</span><span class="op">$</span><span class="va">in_id</span><span class="op">)</span></span>
 <span><span class="co">## [1] 2342</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -348,11 +374,35 @@ Hinweis
 <section id="modelle-spezifizieren" class="level3" data-number="6.5.1"><h3 data-number="6.5.1" class="anchored" data-anchor-id="modelle-spezifizieren">
 <span class="header-section-number">6.5.1</span> Modelle spezifizieren</h3>
 <p>Ein (statistisches) Modell wird in Tidymodels mit drei Elementen spezifiziert, vgl. <a href="#fig-tidymodels-def">Abbildung&nbsp;<span>6.2</span></a>.</p>
-<div class="cell" data-hash="060-tidymodels_cache/html/fig-tidymodels-def_522860f989d8e7d279e1767726c1d730">
+<div class="cell">
+<div class="cell-output-display">
 <div id="fig-tidymodels-def" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><div id="htmlwidget-1bca897ac70c24bfd885" style="width:100%;height:300px;" class="nomnoml html-widget "></div>
-<script type="application/json" data-for="htmlwidget-1bca897ac70c24bfd885">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n#direction: leftright\n[Modell|\n  [type (Algorithmus)|\n    [Regression] \n    [Neuronale Netze] \n    [...]\n  ]  \n  [engine (Implementierung)|\n    [lm]\n    [stan_glm]\n    [...]\n  ]\n  [mode (modus)|\n    [regression]\n    [classification]\n  ]\n  \n]\n","svg":false,"png":null},"evals":[],"jsHooks":[]}</script><p></p><figcaption class="figure-caption">Abbildung&nbsp;6.2: Definition eines Models in tidymodels</figcaption><p></p>
+<figure class="figure"><div>
+<pre class="mermaid mermaid-js" data-label="fig-tidymodels-def">flowchart LR
+   
+  subgraph Algorithmus
+  R[Regression]
+  NN[Neuronale Netze]
+  div[...]
+  end 
+
+  subgraph Modus
+  r2[egresssion]
+  classification
+  end
+  
+  subgraph Implementierung
+  lm
+  stan_glm
+  div2[...]
+  end
+  
+
+</pre>
+</div>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;6.2: Definition eines Models in tidymodels</figcaption><p></p>
 </figure>
+</div>
 </div>
 </div>
 <p>Die Definition eines Modells in tidymodels folgt diesen Ideen:</p>
@@ -362,7 +412,7 @@ Hinweis
 <li>Das Modell sollte unabhängig von etwaiger Vorverarbeitung (z.B. z-Transformation) spezifiziert sein</li>
 </ol>
 <p>Da bei einer linearen Regression nur der Modus “Regression” möglich ist, muss der Modus in diesem Fall nicht angegeben werden. Tidymodels erkennt das automatisch.</p>
-<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-7_fca48d5226a3d170edd3378a981729a6">
+<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-9_c6f0584896f0d5d39e9025685c022bd5">
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">lm_model</span> <span class="op">&lt;-</span>   </span>
 <span>  <span class="fu">linear_reg</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>   <span class="co"># Algorithmus, Modelltyp</span></span>
 <span>  <span class="fu">set_engine</span><span class="op">(</span><span class="st">"lm"</span><span class="op">)</span>  <span class="co"># Implementierung</span></span>
@@ -372,7 +422,7 @@ Hinweis
 <span class="header-section-number">6.5.2</span> Modelle berechnen</h3>
 <p>Nach <span class="citation" data-cites="rhys">Rhys (<a href="references.html#ref-rhys" role="doc-biblioref">2020</a>)</span> ist ein Modell sogar erst ein Modell, wenn die Koeffizienten berechnet sind. Tidymodels kennt diese Unterscheidung nicht. Stattdessen spricht man in Tidymodels von einem “gefitteten” Modell, sobald es berechnet ist. Ähnlich fancy könnte man von einem “instantiierten” Modell sprechen.</p>
 <p>Für das Beispiel der einfachen linearen Regression heißt das, das Modell ist gefittet, sobald die Steigung und der Achsenabschnitt (sowie die Residualstreuung) berechnet sind.</p>
-<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-8_a47eb36d55f1353ac04b03e9708844f2">
+<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-10_bb9d4a82f55a35e82777a852b3833f45">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">lm_form_fit</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="va">lm_model</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">fit</span><span class="op">(</span><span class="va">Sale_Price</span> <span class="op">~</span> <span class="va">Longitude</span> <span class="op">+</span> <span class="va">Latitude</span>, data <span class="op">=</span> <span class="va">ames_train</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -381,7 +431,7 @@ Hinweis
 <span class="header-section-number">6.5.3</span> Vorhersagen</h3>
 <p>Im maschinellen Lernen ist man primär an den Vorhersagen interessiert, häufig nur an Punktschätzungen. Schauen wir uns also zunächst diese an.</p>
 <p>Vorhersagen bekommt man recht einfach mit der <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code> Methode von tidymodels<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>:</p>
-<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-9_b55d4d366fa226b46b5efb6498ddf390">
+<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-11_dfdf76613c827eb38343564a4a31d6d7">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">lm_form_fit</span>, new_data <span class="op">=</span> <span class="va">ames_test</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -401,7 +451,7 @@ Hinweis
 </section><section id="modellkoeffizienten-im-train-datensatz" class="level3" data-number="6.5.5"><h3 data-number="6.5.5" class="anchored" data-anchor-id="modellkoeffizienten-im-train-datensatz">
 <span class="header-section-number">6.5.5</span> Modellkoeffizienten im Train-Datensatz</h3>
 <p>Gibt man den Namen des Modellobjekts ein, so wird ein Überblick an relevanten Modellergebnissen am Bildschirm gedruckt:</p>
-<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-10_9ecdf2b20bbd3d0a2c49abc150821639">
+<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-12_492b28cee73cbeaab58abacf8ba12bb1">
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">lm_form_fit</span></span>
 <span><span class="co">## parsnip model object</span></span>
 <span><span class="co">## </span></span>
@@ -414,7 +464,7 @@ Hinweis
 <span><span class="co">##    -311.511       -2.109        2.836</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Innerhalb des Ergebnisobjekts findet sich eine Liste namens <code>fit</code>, in der die Koeffizienten (der “Fit”) abgelegt sind:</p>
-<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-11_d99e99789cb38e7837862ab7a1c97147">
+<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-13_12789ff6276a473791cc3b890e021dfd">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">lm_form_fit</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span><span class="op">(</span><span class="st">"fit"</span><span class="op">)</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Call:</span></span>
@@ -425,7 +475,7 @@ Hinweis
 <span><span class="co">##    -311.511       -2.109        2.836</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Zum Herausholen dieser Infos kann man auch alternativ die Funktion <code>extract_fit_engine()</code> verwenden:</p>
-<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-12_9afb37960a1c4957495b366c4430b353">
+<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-14_134e1e0738b53405f6c8451bfdce2657">
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">lm_fit</span> <span class="op">&lt;-</span></span>
 <span>  <span class="va">lm_form_fit</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">extract_fit_engine</span><span class="op">(</span><span class="op">)</span></span>
@@ -453,7 +503,7 @@ Hinweis
 </div>
 </div>
 <p>Das extrahierte Objekt ist, in diesem Fall, das typische <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> Objekt. Entsprechend kann man daruaf <code><a href="https://rdrr.io/r/stats/coef.html">coef()</a></code> oder <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> anwenden.</p>
-<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-13_64926229236cc6953b3ff1fddb31d89d">
+<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-15_bafec50348595fe24d76ffc968262db3">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">lm_fit</span><span class="op">)</span></span>
 <span><span class="co">## (Intercept)   Longitude    Latitude </span></span>
 <span><span class="co">## -311.510950   -2.109107    2.836443</span></span>
@@ -479,7 +529,7 @@ Hinweis
 <span><span class="co">## F-statistic: 246.1 on 2 and 2339 DF,  p-value: &lt; 2.2e-16</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Schicker sind die Pendant-Befehle aus <code>broom</code>, die jeweils einen Tibble zuückliefern:</p>
-<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-14_c6685ca5a5424835dd0815b4f859e6ed">
+<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-16_11b2714d22ee76ed1cc99f3ffd3e9ac1">
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://broom.tidymodels.org/">broom</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span><span class="op">(</span><span class="va">lm_fit</span><span class="op">)</span> <span class="co"># Koeffizienten</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -500,7 +550,7 @@ Hinweis
 </div>
 </div>
 </div>
-<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-15_450c060806ebff247600b3129ca8fcd8">
+<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-17_5cd4f3dfad0df0dfec3bef1e5e18c4f9">
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://easystats.github.io/easystats/">easystats</a></span><span class="op">)</span></span>
 <span><span class="fu">parameters</span><span class="op">(</span><span class="va">lm_form_fit</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -521,7 +571,7 @@ Hinweis
 </section><section id="parsnip-rstudio-add-in" class="level3" data-number="6.5.6"><h3 data-number="6.5.6" class="anchored" data-anchor-id="parsnip-rstudio-add-in">
 <span class="header-section-number">6.5.6</span> Parsnip RStudio add-in</h3>
 <p>Mit dem Add-in von Parsnip kann man sich eine Modellspezifikation per Klick ausgeben lassen. Nett!</p>
-<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-16_5aa3f02ee7aeda483956b83ba41b92f0">
+<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-18_5461edc3fed63a2e765e8de15ff41e21">
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">parsnip_addin</span><span class="op">(</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section><section id="workflows" class="level2" data-number="6.6"><h2 data-number="6.6" class="anchored" data-anchor-id="workflows">
@@ -538,14 +588,14 @@ Hinweis
 </section><section id="einfaches-beispiel" class="level3" data-number="6.6.2"><h3 data-number="6.6.2" class="anchored" data-anchor-id="einfaches-beispiel">
 <span class="header-section-number">6.6.2</span> Einfaches Beispiel</h3>
 <p>Wir initialisieren einen Workflow, verzichten auf Vorverarbeitung und fügen ein Modell hinzu:</p>
-<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-17_a6faad48df6aaf43e94565b043a3e199">
+<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-19_1978bea147a7f89895b465b8454569b5">
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">lm_workflow</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="fu">workflow</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>  <span class="co"># init</span></span>
 <span>  <span class="fu">add_model</span><span class="op">(</span><span class="va">lm_model</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>   <span class="co"># Modell hinzufügen</span></span>
 <span>  <span class="fu">add_formula</span><span class="op">(</span><span class="va">Sale_Price</span> <span class="op">~</span> <span class="va">Longitude</span> <span class="op">+</span> <span class="va">Latitude</span><span class="op">)</span>  <span class="co"># Modellformel hinzufügen</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Werfen wir einen Blick in das Workflow-Objekt:</p>
-<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-18_2b9eac3ba4614f9feb557327580e0570">
+<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-20_1d4c5ea6d69ecacee8bc0b2d5ec60b10">
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">lm_workflow</span></span>
 <span><span class="co">## ══ Workflow ════════════════════════════════════════════════════════════════════</span></span>
 <span><span class="co">## Preprocessor: Formula</span></span>
@@ -561,24 +611,24 @@ Hinweis
 </div>
 <p>Wie man sieht, gehört die <em>Modellformel</em> (<code>y ~ x</code>) zur Vorverarbeitung aus Sicht von Tidymodels.</p>
 <p>Was war nochmal im Objekt <code>lm_model</code> enthalten?</p>
-<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-19_5b8937cc61cad615a119ed99bab2a07c">
+<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-21_caf385baf5ab2fa3cd304a4f5156285e">
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">lm_model</span></span>
 <span><span class="co">## Linear Regression Model Specification (regression)</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Computational engine: lm</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Jetzt können wir das Modell berechnen (fitten):</p>
-<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-20_987ab88f2b2ebd03122e6f04461c0d1d">
+<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-22_6037ab4bba8455bc8ec8a6df642921d7">
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">lm_fit</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="va">lm_workflow</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">fit</span><span class="op">(</span><span class="va">ames_train</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Natürlich kann man synonym auch schreiben:</p>
-<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-21_02534683eb03ea3a5b9215088264b543">
+<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-23_56b934da8dac87e9ffc770984234f2da">
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">lm_fit</span> <span class="op">&lt;-</span> <span class="fu">fit</span><span class="op">(</span><span class="va">lm_wflow</span>, <span class="va">ames_train</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Schauen wir uns das Ergebnis an:</p>
-<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-22_ce4deff9cd0b301a74c90afd4081d8e6">
+<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-24_5ff8934b79de07c40b1a7eadf28036fe">
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">lm_fit</span></span>
 <span><span class="co">## ══ Workflow [trained] ══════════════════════════════════════════════════════════</span></span>
 <span><span class="co">## Preprocessor: Formula</span></span>
@@ -601,7 +651,7 @@ Hinweis
 <p>Die Vorhersage mit einem Tidymodels-Workflow ist einerseits komfortabel, da man einfach sagen kann:</p>
 <p>“Nimm die richtigen Koeffizienten des Modells aus dem Train-Set und wende sie auf das Test-Sample an. Berechne mir die Vorhersagen und die Modellgüte.”</p>
 <p>So sieht das aus:</p>
-<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-23_e08c71c48430f5f3b8d334277d38fe33">
+<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-25_d8ae8afc5d1424996338d1b110e3dbd7">
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">final_lm_res</span> <span class="op">&lt;-</span> <span class="fu">last_fit</span><span class="op">(</span><span class="va">lm_workflow</span>, <span class="va">ames_split</span><span class="op">)</span></span>
 <span><span class="va">final_lm_res</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -622,18 +672,18 @@ Hinweis
 <p>Es wird ein recht komplexes Objekt zurückgeliefert, das man erst mal durchschauen muss.</p>
 <p>Wie man sieht, gibt es mehrere Listenspalten in <code>final_lm_res</code>. Besonders interessant erscheinen natürlich die Listenspalten <code>.metrics</code> und <code>.predictions</code>.</p>
 <p>Schauen wir uns die Vorhersagen an. Diese finden sich im resultierenden Objekt von <code>last_fit</code>, zusammen mit anderen Informationen wie MOdellgüte. Die <code>.predictions</code> sind selber ein Tibble, wo in der ersten Spalte die Vorhersagen stehen.</p>
-<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-24_0eb55c081d614e66d4a1d0e87849bbc7">
+<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-26_75b72efe4bb3690fe2c8cee944d41f9f">
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">lm_preds</span> <span class="op">&lt;-</span> <span class="va">final_lm_res</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span><span class="op">(</span><span class="st">".predictions"</span>, <span class="fl">1</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Es gibt auch eine Funktion, die obige Zeile vereinfacht (also synonym ist):</p>
-<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-25_98aca9cd111b6d3780c6899d172ebd07">
+<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-27_27b27dd18975786558fa8dda3dd3792a">
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">lm_preds</span> <span class="op">&lt;-</span> <span class="fu">collect_predictions</span><span class="op">(</span><span class="va">final_lm_res</span><span class="op">)</span></span>
 <span><span class="va">lm_preds</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["id"],"name":[1],"type":["chr"],"align":["left"]},{"label":[".pred"],"name":[2],"type":["dbl"],"align":["right"]},{"label":[".row"],"name":[3],"type":["int"],"align":["right"]},{"label":["Sale_Price"],"name":[4],"type":["dbl"],"align":["right"]},{"label":[".config"],"name":[5],"type":["chr"],"align":["left"]}],"data":[{"1":"train/test split","2":"5.222288","3":"3","4":"5.235528","5":"Preprocessor1_Model1"},{"1":"train/test split","2":"5.275835","3":"11","4":"5.245266","5":"Preprocessor1_Model1"},{"1":"train/test split","2":"5.261732","3":"16","4":"5.730782","5":"Preprocessor1_Model1"},{"1":"train/test split","2":"5.263796","3":"20","4":"5.322219","5":"Preprocessor1_Model1"},{"1":"train/test split","2":"5.246467","3":"21","4":"5.278754","5":"Preprocessor1_Model1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["id"],"name":[1],"type":["chr"],"align":["left"]},{"label":[".pred"],"name":[2],"type":["dbl"],"align":["right"]},{"label":[".row"],"name":[3],"type":["int"],"align":["right"]},{"label":["Sale_Price"],"name":[4],"type":["dbl"],"align":["right"]},{"label":[".config"],"name":[5],"type":["chr"],"align":["left"]}],"data":[{"1":"train/test split","2":"5.284108","3":"7","4":"5.329398","5":"Preprocessor1_Model1"},{"1":"train/test split","2":"5.280413","3":"13","4":"5.256237","5":"Preprocessor1_Model1"},{"1":"train/test split","2":"5.269243","3":"14","4":"5.234264","5":"Preprocessor1_Model1"},{"1":"train/test split","2":"5.271124","3":"15","4":"5.326336","5":"Preprocessor1_Model1"},{"1":"train/test split","2":"5.242593","3":"19","4":"5.149219","5":"Preprocessor1_Model1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -642,11 +692,11 @@ Hinweis
 <span class="header-section-number">6.6.4</span> Modellgüte</h3>
 <p>Dieser Abschnitt bezieht sich auf <a href="https://www.tmwr.org/performance.html">Kapitel 9</a> in <span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span>.</p>
 <p>Die Vorhersagen bilden die Basis für die Modellgüte (“Metriken”), die schon fertig berechnet im Objekt <code>final_lm_res</code> liegen und mit <code>collect_metrics</code> herausgenommen werden können:</p>
-<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-26_2624b9cccee44c67cd0c7e8318c43610">
+<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-28_718b1db45ac7267dc5e57239c7e4d194">
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">lm_metrics</span> <span class="op">&lt;-</span> <span class="fu">collect_metrics</span><span class="op">(</span><span class="va">final_lm_res</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Alternativ kommt man mit <code>pluck(final_lm_res, ".metrics")</code> an die gleichen Informationen.</p>
-<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-27_171237e92088bcc8a16be83136b0539c">
+<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-29_22e05afeb601402af67c578a5f4e1c83">
 <div class="cell-output-display">
 
 <div id="kjhmeyfkkh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
@@ -1071,14 +1121,14 @@ Hinweis
 <tr class="odd">
 <td class="gt_row gt_left" headers=".metric">rmse</td>
 <td class="gt_row gt_left" headers=".estimator">standard</td>
-<td class="gt_row gt_right" headers=".estimate">1.60 × 10<sup>−1</sup>
+<td class="gt_row gt_right" headers=".estimate">1.62 × 10<sup>−1</sup>
 </td>
 <td class="gt_row gt_left" headers=".config">Preprocessor1_Model1</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers=".metric">rsq</td>
 <td class="gt_row gt_left" headers=".estimator">standard</td>
-<td class="gt_row gt_right" headers=".estimate">1.67 × 10<sup>−1</sup>
+<td class="gt_row gt_right" headers=".estimate">1.44 × 10<sup>−1</sup>
 </td>
 <td class="gt_row gt_left" headers=".config">Preprocessor1_Model1</td>
 </tr>
@@ -1088,7 +1138,7 @@ Hinweis
 </div>
 </div>
 <p>Man kann auch angeben, welche Metriken der Modellgüte man bekommen möchte:</p>
-<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-28_9a8c93b2b2f36f652c19577681fbc00c">
+<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-30_404c2aaeb3cd68beab4b3fc22568899d">
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ames_metrics</span> <span class="op">&lt;-</span> <span class="fu">metric_set</span><span class="op">(</span><span class="va">rmse</span>, <span class="va">rsq</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">ames_metrics</span><span class="op">(</span>data <span class="op">=</span> <span class="va">lm_preds</span>, </span>
@@ -1098,7 +1148,7 @@ Hinweis
 </section><section id="vorhersage-von-hand" class="level3" data-number="6.6.5"><h3 data-number="6.6.5" class="anchored" data-anchor-id="vorhersage-von-hand">
 <span class="header-section-number">6.6.5</span> Vorhersage von Hand</h3>
 <p>Man kann sich die Metriken auch von Hand ausgeben lassen, wenn man direktere Kontrolle haben möchte als mit <code>last_fit</code> und <code>collect_metrics</code>.</p>
-<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-29_36cf52f4a413cb8b2ab77e12cfb809e9">
+<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-31_441e4282a4d5d5fb974d7e70956e4f84">
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ames_test_small</span> <span class="op">&lt;-</span> <span class="va">ames_test</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">lm_form_fit</span>, new_data <span class="op">=</span> <span class="va">ames_test_small</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -1111,7 +1161,7 @@ Hinweis
 </div>
 </div>
 <p>Jetzt binden wir die Spalten zusammen, also die “Wahrheit” (<span class="math inline">\(y\)</span>, die beobachteten, tatsächlichen Y-Werte) und die Vorhersagen (<span class="math inline">\(\hat{y}\)</span>):</p>
-<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-30_62d7126069f3b84d8780e3ad5b920785">
+<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-32_79235cc00037d025e7953ccfc878d116">
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ames_test_small2</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="va">ames_test_small</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">Sale_Price</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
@@ -1119,7 +1169,7 @@ Hinweis
 <span>  <span class="co"># Add 95% prediction intervals to the results:</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_cols.html">bind_cols</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">lm_form_fit</span>, <span class="va">ames_test_small</span>, type <span class="op">=</span> <span class="st">"pred_int"</span><span class="op">)</span><span class="op">)</span> </span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-31_d6d4c0dbfb3fca56ef96552d7e48c1c6">
+<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-33_247f6bb0ce73f7ed185da6df22437496">
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">rsq</span><span class="op">(</span><span class="va">ames_test_small2</span>, </span>
 <span>   truth <span class="op">=</span> <span class="va">Sale_Price</span>,</span>
 <span>   estimate <span class="op">=</span> <span class="va">.pred</span></span>
@@ -1133,14 +1183,14 @@ Hinweis
 </div>
 </div>
 </div>
-<p>Andere Koeffizienten der Modellgüte können mit <code>rmse</code> oder <code>mae</code> abgerufen werden.</p>
+<p>Andere Koeffizienten der Modellgüte können mit <code>rmse</code> oder <code>mae</code><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> abgerufen werden.</p>
 </section></section><section id="rezepte-zur-vorverarbeitung" class="level2" data-number="6.7"><h2 data-number="6.7" class="anchored" data-anchor-id="rezepte-zur-vorverarbeitung">
 <span class="header-section-number">6.7</span> Rezepte zur Vorverarbeitung</h2>
 <p>Dieser Abschnitt bezieht sich auf <a href="https://www.tmwr.org/recipes.html">Kapitel 8</a> in <span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span>.</p>
 <section id="was-ist-rezept-und-wozu-ist-es-gut" class="level3" data-number="6.7.1"><h3 data-number="6.7.1" class="anchored" data-anchor-id="was-ist-rezept-und-wozu-ist-es-gut">
 <span class="header-section-number">6.7.1</span> Was ist Rezept und wozu ist es gut?</h3>
 <p>So könnte ein typischer Aufruf von <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> aussehen:</p>
-<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-32_d91778c9faafaca2377131bd0ab39595">
+<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-34_38dd5680b9be7f30c5df42a7f67531d6">
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">Sale_Price</span> <span class="op">~</span> <span class="va">Neighborhood</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span><span class="op">(</span><span class="va">Gr_Liv_Area</span><span class="op">)</span> <span class="op">+</span> <span class="va">Year_Built</span> <span class="op">+</span> <span class="va">Bldg_Type</span>, </span>
 <span>   data <span class="op">=</span> <span class="va">ames</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1157,7 +1207,7 @@ Hinweis
 <li>Die Schritte sind ineinander vermengt, so dass man nicht einfach und übersichtlich die einzelnen Schritte bearbeiten kann.</li>
 </ol>
 <p>Praktischer wäre also, die Schritte der Vorverarbeitung zu ent-flechten. Das geht mit einem “Rezept” aus Tidymodels:</p>
-<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-33_8e5fe29a4d146d16807f040d2c8a6e7f">
+<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-35_ce584763586a67db49c631edd5cca25c">
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">simple_ames</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="fu">recipe</span><span class="op">(</span><span class="va">Sale_Price</span> <span class="op">~</span> <span class="va">Neighborhood</span> <span class="op">+</span> <span class="va">Gr_Liv_Area</span> <span class="op">+</span> <span class="va">Year_Built</span> <span class="op">+</span> <span class="va">Bldg_Type</span>,</span>
 <span>         data <span class="op">=</span> <span class="va">ames_train</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -1193,7 +1243,7 @@ Hinweis
 </section><section id="workflows-mit-rezepten" class="level3" data-number="6.7.2"><h3 data-number="6.7.2" class="anchored" data-anchor-id="workflows-mit-rezepten">
 <span class="header-section-number">6.7.2</span> Workflows mit Rezepten</h3>
 <p>Jetzt definieren wir den Workflow nicht nur mit einer Modellformel, sondern mit einem Rezept:</p>
-<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-34_d44d8d6384b98d59d2fa051bf56396a7">
+<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-36_e5364e4c078befd4c2303d9da5c9cc5b">
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">lm_workflow</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu">workflow</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">add_model</span><span class="op">(</span><span class="va">lm_model</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
@@ -1201,7 +1251,7 @@ Hinweis
 </div>
 <p>Sonst hat sich nichts geändert.</p>
 <p>Wie vorher, können wir jetzt das Modell berechnen und uns im Test-Set die Vorhersagen berechnen lassen:</p>
-<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-35_643f0e98e6711a721bf741f1fd930c40">
+<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-37_b37ceae6e57e2ed7d55d2049f20911c3">
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">final_lm_res</span> <span class="op">&lt;-</span> <span class="fu">last_fit</span><span class="op">(</span><span class="va">lm_workflow</span>, <span class="va">ames_split</span><span class="op">)</span></span>
 <span><span class="va">final_lm_res</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -1214,14 +1264,14 @@ Hinweis
 </div>
 </div>
 <p>Hier ist die Modellgüte:</p>
-<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-36_5fe61c09c70416ea04318ef75a6b3475">
+<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-38_a452a1432f971f227cdfe5e4f90ea6a0">
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">lm_metrics</span> <span class="op">&lt;-</span> <span class="fu">collect_metrics</span><span class="op">(</span><span class="va">final_lm_res</span><span class="op">)</span></span>
 <span><span class="va">lm_metrics</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":[".metric"],"name":[1],"type":["chr"],"align":["left"]},{"label":[".estimator"],"name":[2],"type":["chr"],"align":["left"]},{"label":[".estimate"],"name":[3],"type":["dbl"],"align":["right"]},{"label":[".config"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"rmse","2":"standard","3":"0.07959752","4":"Preprocessor1_Model1"},{"1":"rsq","2":"standard","3":"0.79592863","4":"Preprocessor1_Model1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":[".metric"],"name":[1],"type":["chr"],"align":["left"]},{"label":[".estimator"],"name":[2],"type":["chr"],"align":["left"]},{"label":[".estimate"],"name":[3],"type":["dbl"],"align":["right"]},{"label":[".config"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"rmse","2":"standard","3":"0.0788150","4":"Preprocessor1_Model1"},{"1":"rsq","2":"standard","3":"0.7978266","4":"Preprocessor1_Model1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -1229,7 +1279,7 @@ Hinweis
 </section><section id="spaltenrollen" class="level3" data-number="6.7.3"><h3 data-number="6.7.3" class="anchored" data-anchor-id="spaltenrollen">
 <span class="header-section-number">6.7.3</span> Spaltenrollen</h3>
 <p>Eine praktische Funktion ist es, bestimmte Spalten nicht als Prädiktor, sondern als ID-Variable zu nutzen. Das kann man in Tidymodels komfortabel wie folgt angeben:</p>
-<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-37_5c8692f79dd7ee5ccd4d02c24a634926">
+<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-39_a89c0b81826c8a9ef26fb1b16584046a">
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ames_recipe</span> <span class="op">&lt;-</span></span>
 <span>  <span class="va">simple_ames</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">update_role</span><span class="op">(</span><span class="va">Neighborhood</span>, new_role <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span></span>
@@ -1272,6 +1322,7 @@ Silge, Julia, und Max Kuhn. 2022. <em>Tidy <span>Modeling</span> with <span>R</s
 </section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
 <ol>
 <li id="fn1"><p>im Gegensatz zum <code><a href="https://rdrr.io/r/stats/predict.html">predict()</a></code> von <code>lm</code> mit Unterstrich bei <code>new_data</code>, also <em>nicht</em> <code>newdata</code>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Achtung: Die Funktion <code>mae</code> gibt es sowohl in tidymodels auch in easystats, hier kann es zu Konflikten kommen.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -1510,8 +1561,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./references.html" class="pagination-link">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./070-knn.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">kNN</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -120,7 +120,7 @@ Der Test-Datensatz wird nur *einmal* verwendet, und zwar zur Überprüfung der M
 Eine Faustregel ist es, 70-80% der Daten in das Train-Sample
 und die übrigen 20-30% in das Test-Sample zu stecken, s. @fig-train-pie
 
-```{train-test-pie}
+```{mermaid}
 %%| label: fig-train-pie
 %%| fig-cap: 8"0-20-Aufteilung der Daten in Train- bzw. Test-Sample"
 pie title Pets adopted by volunteers

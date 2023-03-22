@@ -55,8 +55,8 @@ cancer3_plot <-
   geom_segment(aes(
     x = new_point[1],
     y = new_point[2],
-    xend = pull(neighbors[1, attrs[1]]),
-    yend = pull(neighbors[1, attrs[2]])
+    xend = dplyr::pull(neighbors[1, attrs[1]]),
+    yend = dplyr::pull(neighbors[1, attrs[2]])
   ), color = "black", size = 0.5)
 
 print(cancer3_plot)

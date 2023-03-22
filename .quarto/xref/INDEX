@@ -19,5 +19,14 @@
   },
   "060-tidymodels.qmd": {
     "060-tidymodels.html": "f6662b70"
+  },
+  "070-knn.qmd": {
+    "070-knn.html": "05f2a99a"
+  },
+  "080-Resampling-Tuning.qmd": {
+    "080-Resampling-Tuning.html": "b8b64203"
+  },
+  "090-glm.qmd": {
+    "090-glm.html": "f2025007"
   }
 }

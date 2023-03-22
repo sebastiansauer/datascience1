@@ -16,6 +16,9 @@ book:
     - 040-Statistisches-Lernen.qmd
     - 050-R-Vertiefung.qmd
     - 060-tidymodels.qmd
+    - 070-knn.qmd
+    - 080-Resampling-Tuning.qmd
+    - 090-glm.qmd
     - references.qmd
     # - test.qmd
 
