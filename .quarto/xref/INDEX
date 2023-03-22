@@ -16,5 +16,8 @@
   },
   "050-R-Vertiefung.qmd": {
     "050-R-Vertiefung.html": "54378601"
+  },
+  "060-tidymodels.qmd": {
+    "060-tidymodels.html": "f6662b70"
   }
 }

@@ -15,7 +15,7 @@ book:
     - 030-Pruefung.qmd
     - 040-Statistisches-Lernen.qmd
     - 050-R-Vertiefung.qmd
-
+    - 060-tidymodels.qmd
     - references.qmd
     # - test.qmd
 

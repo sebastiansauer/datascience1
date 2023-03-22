@@ -1,0 +1,698 @@
+# tidymodels
+
+
+<!-- ```{r global-knitr-options, include=FALSE} -->
+<!--   knitr::opts_chunk$set( -->
+<!--   fig.pos = 'H', -->
+<!--   fig.asp = 0.618, -->
+<!--   fig.align='center', -->
+<!--   fig.width = 5, -->
+<!--   out.width = "100%", -->
+<!--   fig.cap = "",  -->
+<!--   fig.path = "chunk-img/tidymodels", -->
+<!--   dpi = 300, -->
+<!--   # tidy = TRUE, -->
+<!--   echo = TRUE, -->
+<!--   message = FALSE, -->
+<!--   warning = FALSE, -->
+<!--   cache = FALSE, -->
+<!--   fig.show = "hold") -->
+<!-- ``` -->
+
+
+
+
+```{r echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+
+
+
+```{r include = FALSE}
+library(nomnoml)
+```
+
+
+## Lernsteuerung
+
+### Lernziele
+
+- Sie sind in der Lage, Regressionsmodelle mit dem tidymodels-Ansatz zu spezifizieren.
+- Sie können Begriffe des statistischen Lernens in das Vokabular von tidymodels übersetzen.
+
+
+
+##  Vorbereitung
+
+- Lesen Sie [TMWR, Kapitel 1](https://www.tmwr.org/software-modeling.html)
+- Lesen Sie übrige Literatur zu diesem Thema: TMWR, Kap. 1, 5, 6, 7, 8, 9
+
+
+### Benötigte R-Pakete
+
+```{r}
+library(tidyverse)
+library(tidymodels)
+```
+
+`{tidymodels}` ist ein *Metapaket*: Ein (R-)Paket,
+das mehrere andere Paket startet und uns damit das Leben einfacher macht.
+Eine Liste der R-Pakete, die durch `tidymodels` gestartet werden,
+findet sich [hier](https://www.tidymodels.org/packages/).
+Probieren Sie auch mal `?tidymodels`. 
+
+Eine Liste aller Pakete, die
+in Tidymodels benutzt werden, die `dependencies`,
+kann man sich so ausgeben lassen:
+
+```{r eval = FALSE}
+pkg_deps(x = "tidymodels", recursive = FALSE)
+```
+
+
+## Daten
+
+Dieser Abschnitt bezieht sich auf [Kapitel 4](https://www.tmwr.org/ames.html) in @silge_tidy_2022.
+
+
+
+
+Wir benutzen den Datensatz zu Immobilienpreise aus dem [Ames County](https://en.wikipedia.org/wiki/Ames,_Iowa) in Iowa, USA,
+gelegen im Zentrum des Landes.
+
+```{r load-ames-data}
+data(ames)  # Daten wurden über tidymodels mit geladen
+ames <- 
+  ames %>% 
+  mutate(Sale_Price = log10(Sale_Price))
+```
+
+
+Hier wurde die AV log-transformiert.
+Das hat zwei (wichtige) Effekte:
+
+1. Die Verteilung ist symmetrischer, näher an der Normalverteilung. Damit gibt es mehr Daten im Hauptbereich des Ranges von `Sale_Price`, was die Vorhersagen stabiler machen dürfte.
+2. Logarithmiert man die Y-Variable, so kommt dies [einem multiplikativen Modell gleich](https://sebastiansauer.github.io/2021-sose/QuantMeth1/Vertiefung/Log-Log-Regression.html#19), s. auch [hier](https://data-se.netlify.app/2021/06/17/ein-beispiel-zum-nutzen-einer-log-transformation/).
+
+
+
+
+
+## Train- vs Test-Datensatz aufteilen
+
+
+Dieser Abschnitt bezieht sich auf [Kapitel 5](https://www.tmwr.org/splitting.html) in @silge_tidy_2022.
+
+
+:::: {.callout-note}
+Das Aufteilen in Train- und Test-Datensatz ist einer der wesentlichen Grundsätze im maschinellen Lernen. Das Ziel ist, Overfitting abzuwenden.
+Im Train-Datensatz werden alle Modelle berechnet.
+Der Test-Datensatz wird nur *einmal* verwendet, und zwar zur Überprüfung der Modellgüte.
+:::
+
+<!-- [![](https://mermaid.ink/img/pako:eNo9jDEOwjAMRa9ieW4RYkKZ4QTt6MVqDERK0ip1KqGqd8e0Ak_fz-97xWH0gg6nIKBBo0BfOOQWlvkEvczadpymKJTBhnC_EoKD6_nPTNvRxRBlbDBJSRy8_V2_EqG-JAmhs-jlwTVagfJmap08q9x90LGg01KlQa46du88_PbDuQV-Fk4H3D5jVDy8)](https://mermaid.live/edit#pako:eNo9jDEOwjAMRa9ieW4RYkKZ4QTt6MVqDERK0ip1KqGqd8e0Ak_fz-97xWH0gg6nIKBBo0BfOOQWlvkEvczadpymKJTBhnC_EoKD6_nPTNvRxRBlbDBJSRy8_V2_EqG-JAmhs-jlwTVagfJmap08q9x90LGg01KlQa46du88_PbDuQV-Fk4H3D5jVDy8) -->
+
+<!-- [Quelle](https://gist.github.com/sebastiansauer/be53bfc193fd3c144a430b7d3b922310) -->
+
+Eine Faustregel ist es, 70-80% der Daten in das Train-Sample
+und die übrigen 20-30% in das Test-Sample zu stecken, s. @fig-train-pie
+
+```{train-test-pie}
+%%| label: fig-train-pie
+%%| fig-cap: 8"0-20-Aufteilung der Daten in Train- bzw. Test-Sample"
+pie title Pets adopted by volunteers
+    "Train" : 80
+    "Test" : 19
+    "For the unkown God": 1
+```
+
+
+
+Praktisch funktioniert das in @silge_tidy_2022 wie folgt.
+
+Wir laden die Daten und erstellen einen Index,
+der jeder Beobachtung die Zuteilung zu Train- bzw. zum Test-Datensatz zuweist.
+
+Das kann, mit `tidymodels` so aussehen:
+
+```{r}
+ames_split <- initial_split(ames, prop = 0.80, strata = Sale_Price)
+```
+
+`initial_split()` speichert für spätere komfortable Verwendung auch die Daten.
+Aber eben auch der Index, der bestimmt, welche Beobachtung im Train-Set landet:
+
+```{r}
+ames_split$in_id %>% head(n = 10)
+length(ames_split$in_id)
+```
+
+Praktisch ist auch,
+dass die AV-Verteilung in beiden Datensätzen ähnlich gehalten wird (Stratifizierung),
+das besorgt das Argument `strata`.
+
+
+Die eigentlich Aufteilung in die zwei Datensätze geht dann so:
+
+```{r train-test-ames}
+ames_train <- training(ames_split)
+ames_test  <-  testing(ames_split)
+```
+
+
+
+## Grundlagen der Modellierung mit tidymodels
+
+Dieser Abschnitt bezieht sich auf [Kapitel 6](https://www.tmwr.org/models.html) in @silge_tidy_2022.
+
+
+
+
+`tidymodels` ist eine Sammlung mehrerer, zusammengehöriger Pakete,
+eben zum Thema statistische Modellieren.
+
+Das kann man analog zur Sammlung `tidyverse` verstehen,
+zu der z.B. das R-Paket `dplyr` gehört.
+
+
+Das R-Paket innerhalb von `tidymodels`, das zum "Fitten" von Modellen zuständig ist, heißt [parsnip](https://parsnip.tidymodels.org/).
+
+Eine Liste der verfügbaren Modelltypen, Modellimplementierungen und Modellparameter, die in Parsnip aktuell unterstützt werden, findet sich [hier](https://www.tidymodels.org/find/parsnip/).
+
+
+
+### Modelle spezifizieren
+
+
+
+
+
+Ein (statistisches) Modell wird in Tidymodels mit drei Elementen spezifiziert, vgl. @fig-tidymodels-def.
+
+
+```{mermaid}
+%%| fig-cap: Definition eines Models in tidymodels
+%%| label: fig-tidymodels-def
+flowchart LR
+   
+  subgraph Algorithmus
+  R[Regression]
+  NN[Neuronale Netze]
+  div[...]
+  end 
+
+  subgraph Modus
+  r2[egresssion]
+  classification
+  end
+  
+  subgraph Implementierung
+  lm
+  stan_glm
+  div2[...]
+  end
+  
+
+```
+
+
+
+
+Die Definition eines Modells in tidymodels folgt diesen Ideen:
+
+
+1. Das Modell sollte unabhängig von den Daten spezifiziert sein
+2. Das Modell sollte unabhängig von den Variablen (AV, UVs) spezifiziert sein
+3. Das Modell sollte unabhängig von etwaiger Vorverarbeitung (z.B. z-Transformation) spezifiziert sein
+
+
+Da bei einer linearen Regression nur der Modus "Regression" möglich ist,
+muss der Modus in diesem Fall nicht angegeben werden.
+Tidymodels erkennt das automatisch.
+
+```{r}
+lm_model <-   
+  linear_reg() %>%   # Algorithmus, Modelltyp
+  set_engine("lm")  # Implementierung
+  # Modus hier nicht nötig, da lineare Modelle immer numerisch klassifizieren
+```
+
+
+### Modelle berechnen
+
+
+Nach @rhys ist ein Modell sogar erst ein Modell,
+wenn die Koeffizienten berechnet sind.
+Tidymodels kennt diese Unterscheidung nicht.
+Stattdessen spricht man in Tidymodels von einem "gefitteten" Modell,
+sobald es berechnet ist.
+Ähnlich fancy könnte man von einem "instantiierten" Modell sprechen.
+
+Für das Beispiel der einfachen linearen Regression heißt das,
+das Modell ist gefittet, 
+sobald die Steigung und der Achsenabschnitt (sowie die Residualstreuung) 
+berechnet sind.
+
+
+```{r}
+lm_form_fit <- 
+  lm_model %>% 
+  fit(Sale_Price ~ Longitude + Latitude, data = ames_train)
+```
+
+
+### Vorhersagen
+
+Im maschinellen Lernen ist man primär an den Vorhersagen interessiert,
+häufig nur an Punktschätzungen.
+Schauen wir uns also zunächst diese an.
+
+
+Vorhersagen bekommt man recht einfach mit der `predict()` Methode von tidymodels^[im Gegensatz zum `predict()` von `lm` mit Unterstrich bei `new_data`, also *nicht* `newdata`.]:
+
+```{r}
+predict(lm_form_fit, new_data = ames_test) %>% 
+  head()
+```
+
+
+Die Syntax zum Vorhersagen lautet also: `predict(modell, daten_zum_vorhersagen)`.
+
+
+
+### Vorhersagen im Train-Datensatz
+
+Vorhersagen im Train-Datensatz machen kaum Sinn,
+da sie nicht gegen Overfitting geschützt sind und daher deutlich zu optimistisch sein können.
+
+Bei einer linearen Regression ist diese Gefahr nicht so hoch,
+aber bei anderen, flexibleren Modellen, ist diese Gefahr absurd groß.
+
+
+### Modellkoeffizienten im Train-Datensatz
+
+
+Gibt man den Namen des Modellobjekts ein,
+so wird ein Überblick an relevanten Modellergebnissen am Bildschirm gedruckt:
+
+
+```{r}
+lm_form_fit
+```
+
+Innerhalb des Ergebnisobjekts findet sich eine Liste namens `fit`,
+in der die Koeffizienten (der "Fit") abgelegt sind:
+
+```{r}
+lm_form_fit %>% pluck("fit")
+```
+
+Zum Herausholen dieser Infos kann man auch alternativ die Funktion `extract_fit_engine()` verwenden:
+
+
+```{r}
+lm_fit <-
+  lm_form_fit %>% 
+  extract_fit_engine()
+
+lm_fit
+```
+
+:::{.callout-note}
+Möchten Sie wissen, was sich in `lm_form_fit` alles verbirgt,
+bietet sich die Funktion `str` an. 
+Alternativ können Sie in RStudio unter `Environment` das Objekt "aufklappen".
+:::
+
+
+Das extrahierte Objekt ist, in diesem Fall, 
+das typische `lm()` Objekt.
+Entsprechend kann man daruaf `coef()` oder `summary()` anwenden.
+
+
+```{r}
+coef(lm_fit)
+summary(lm_fit)
+```
+
+Schicker sind die Pendant-Befehle aus `broom`,
+die jeweils einen Tibble zuückliefern:
+
+
+```{r}
+library(broom)
+tidy(lm_fit) # Koeffizienten
+glance(lm_fit) # Modellgüte
+```
+
+
+```{r}
+library(easystats)
+parameters(lm_form_fit)
+r2(lm_form_fit)
+mae(lm_form_fit)
+```
+
+
+### Parsnip RStudio add-in
+
+Mit dem Add-in von Parsnip kann man sich eine Modellspezifikation per Klick ausgeben lassen. 
+Nett!
+
+```{r eval = FALSE}
+parsnip_addin()
+```
+
+
+
+## Workflows
+
+Dieser Abschnitt bezieht sich auf [Kapitel 7](https://www.tmwr.org/workflows.html) in @silge_tidy_2022.
+
+
+### Konzept des Workflows in Tidymodels
+
+```{r tidymodels-workflow, echo = FALSE, fig.cap = "Definition eines Models in tidymodels", out.width="100%"}
+d <- 
+"
+[Workflow|
+  [preprocessing|
+   Vorverarbeitung;
+   Imputation;
+   Transformation;
+   Prädiktorwahl
+   AV-Wahl
+   ...
+  
+  ]
+  [fitting |
+    Modell berechnen
+    ...
+  ]
+  [postprocessing|
+    Grenzwerte für Klass. festlegen
+    ...
+  ]
+]
+"
+nomnoml(d, height = 500)
+```
+
+
+### Einfaches Beispiel
+
+Wir initialisieren einen Workflow,
+verzichten auf Vorverarbeitung und fügen ein Modell hinzu:
+
+
+```{r}
+lm_workflow <- 
+  workflow() %>%  # init
+  add_model(lm_model) %>%   # Modell hinzufügen
+  add_formula(Sale_Price ~ Longitude + Latitude)  # Modellformel hinzufügen
+```
+
+
+
+
+Werfen wir einen Blick in das Workflow-Objekt:
+
+```{r}
+lm_workflow
+```
+
+Wie man sieht,
+gehört die *Modellformel* (`y ~ x`) zur Vorverarbeitung 
+aus Sicht von Tidymodels.
+
+
+Was war nochmal im Objekt `lm_model` enthalten?
+
+```{r}
+lm_model
+```
+
+
+Jetzt können wir das Modell berechnen (fitten):
+
+
+```{r}
+lm_fit <- 
+  lm_workflow %>%
+  fit(ames_train)
+```
+
+Natürlich kann man synonym auch schreiben:
+
+```{r eval = FALSE}
+lm_fit <- fit(lm_wflow, ames_train)
+```
+
+
+Schauen wir uns das Ergebnis an:
+
+```{r}
+lm_fit
+```
+
+
+### Vorhersage mit einem Workflow
+
+Die Vorhersage mit einem Tidymodels-Workflow ist einerseits komfortabel,
+da man einfach sagen kann:
+
+"Nimm die richtigen Koeffizienten des Modells aus dem Train-Set
+und wende sie auf das Test-Sample an. Berechne mir
+die Vorhersagen und die Modellgüte."
+
+So sieht das aus:
+
+```{r}
+final_lm_res <- last_fit(lm_workflow, ames_split)
+final_lm_res
+```
+
+Also, `last_fit` kümmert sich um Folgendes:
+
+1. Berechne Modell im (kompletten) Train-Sample
+2. Sage Daten im Test-Sample vorher
+3. Berechne Modellgüte im Test-Sample
+
+
+Es wird  ein recht komplexes Objekt zurückgeliefert,
+das man erst mal durchschauen muss.
+
+Wie man sieht, gibt es mehrere Listenspalten in `final_lm_res`.
+Besonders interessant erscheinen natürlich die Listenspalten `.metrics` und `.predictions`.
+
+Schauen wir uns die Vorhersagen an.
+Diese finden sich im resultierenden Objekt von `last_fit`,
+zusammen mit anderen Informationen wie MOdellgüte.
+Die `.predictions` sind selber ein Tibble, wo in der ersten Spalte die 
+Vorhersagen stehen.
+
+```{r}
+lm_preds <- final_lm_res %>% pluck(".predictions", 1)
+```
+
+Es gibt auch eine Funktion, die obige Zeile vereinfacht (also synonym ist):
+
+```{r}
+lm_preds <- collect_predictions(final_lm_res)
+lm_preds %>% slice_head(n = 5)
+```
+
+
+### Modellgüte
+
+
+Dieser Abschnitt bezieht sich auf [Kapitel 9](https://www.tmwr.org/performance.html) in @silge_tidy_2022.
+
+
+
+Die Vorhersagen bilden die Basis für die Modellgüte ("Metriken"),
+die schon fertig berechnet im Objekt `final_lm_res` liegen und mit
+`collect_metrics` herausgenommen werden können:
+
+```{r}
+lm_metrics <- collect_metrics(final_lm_res)
+```
+
+Alternativ kommt man mit `pluck(final_lm_res, ".metrics")` an die gleichen Informationen.
+
+
+```{r echo = FALSE}
+lm_metrics %>%
+  gt::gt() %>% 
+  gt::fmt_scientific(3)
+```
+
+
+Man kann auch angeben, 
+welche Metriken der Modellgüte man bekommen möchte:
+
+```{r eval=FALSE}
+ames_metrics <- metric_set(rmse, rsq)
+
+ames_metrics(data = lm_preds, 
+             truth = Sale_Price, 
+             estimate = .pred)
+```
+
+
+
+### Vorhersage von Hand
+
+
+Man kann sich die Metriken auch von Hand ausgeben lassen,
+wenn man direktere Kontrolle haben möchte als mit `last_fit` und `collect_metrics`.
+
+```{r}
+ames_test_small <- ames_test %>% slice(1:5)
+predict(lm_form_fit, new_data = ames_test_small)
+```
+
+Jetzt binden wir die Spalten zusammen, also die "Wahrheit" ($y$, die beobachteten, tatsächlichen Y-Werte) und die Vorhersagen ($\hat{y}$):
+
+
+```{r}
+ames_test_small2 <- 
+  ames_test_small %>% 
+  select(Sale_Price) %>% 
+  bind_cols(predict(lm_form_fit, ames_test_small)) %>% 
+  # Add 95% prediction intervals to the results:
+  bind_cols(predict(lm_form_fit, ames_test_small, type = "pred_int")) 
+
+```
+
+
+
+```{r}
+rsq(ames_test_small2, 
+   truth = Sale_Price,
+   estimate = .pred
+   )
+```
+
+Andere Koeffizienten der Modellgüte können mit `rmse` oder `mae`^[Achtung: Die Funktion `mae` gibt es sowohl in tidymodels auch in easystats, hier kann es zu Konflikten kommen.] abgerufen werden.
+
+
+## Rezepte zur Vorverarbeitung
+
+
+Dieser Abschnitt bezieht sich auf [Kapitel 8](https://www.tmwr.org/recipes.html) in @silge_tidy_2022.
+
+### Was ist Rezept und wozu ist es gut?
+
+So könnte ein typischer Aufruf von `lm()` aussehen:
+
+```{r eval = FALSE}
+lm(Sale_Price ~ Neighborhood + log10(Gr_Liv_Area) + Year_Built + Bldg_Type, 
+   data = ames)
+```
+
+Neben dem Fitten des Modells besorgt die Formel-Schreibweise noch einige zusätzliche nützliche Vorarbeitung:
+
+
+1. Definition von AV und AV
+2. Log-Transformation von `Gr_Liv_Area`
+3. Transformation der nominalen Variablen in Dummy-Variablen
+
+
+Das ist schön und nützlich, hat aber auch Nachteile:
+
+
+1. Das Modell wird nicht nur spezifiziert, sondern auch gleich berechnet. Das ist unpraktisch, weil man die Modellformel vielleicht in anderen Modell wiederverwenden möchte. Außerdem kann das Berechnen lange dauern.
+2. Die Schritte sind ineinander vermengt, so dass man nicht einfach und übersichtlich die einzelnen Schritte bearbeiten kann.
+
+
+Praktischer wäre also, die Schritte der Vorverarbeitung zu ent-flechten.
+Das geht mit einem "Rezept" aus Tidymodels:
+
+```{r}
+simple_ames <- 
+  recipe(Sale_Price ~ Neighborhood + Gr_Liv_Area + Year_Built + Bldg_Type,
+         data = ames_train) %>%
+  step_log(Gr_Liv_Area, base = 10) %>% 
+  step_dummy(all_nominal_predictors())
+simple_ames
+```
+
+
+:::: {.callout-note}
+Ein Rezept berechnet kein Modell. Es macht nichts außer die Vorverarbeitung des Modells zu spezifizieren (inklusive der Modellformel).
+:::
+
+
+
+### Workflows mit Rezepten
+
+Jetzt definieren wir den Workflow nicht nur mit einer Modellformel,
+sondern mit einem Rezept:
+
+```{r}
+lm_workflow <-
+  workflow() %>% 
+  add_model(lm_model) %>% 
+  add_recipe(simple_ames)
+```
+
+
+Sonst hat sich nichts geändert.
+
+
+
+Wie vorher, können wir jetzt das Modell berechnen und uns im Test-Set die Vorhersagen berechnen lassen:
+
+
+```{r}
+final_lm_res <- last_fit(lm_workflow, ames_split)
+final_lm_res
+```
+
+Hier ist die Modellgüte:
+
+```{r}
+lm_metrics <- collect_metrics(final_lm_res)
+lm_metrics
+```
+
+
+### Spaltenrollen
+
+Eine praktische Funktion ist es, 
+bestimmte Spalten nicht als Prädiktor,
+sondern als ID-Variable zu nutzen.
+Das kann man in Tidymodels komfortabel wie folgt angeben:
+
+
+```{r}
+ames_recipe <-
+  simple_ames %>% 
+  update_role(Neighborhood, new_role = "id")
+
+ames_recipe
+```
+
+### Fazit
+
+Mehr zu Rezepten findet sich [hier](https://recipes.tidymodels.org/).
+Ein Überblick zu allen Schritten der Vorverarbeitung findet sich [hier](https://recipes.tidymodels.org/articles/recipes.html).
+
+
+
+
+## Aufgaben
+
+
+
+- [Fallstudie Seegurken](https://www.tidymodels.org/start/models/)
+- [Sehr einfache Fallstudie zur Modellierung einer Regression mit tidymodels](https://juliasilge.com/blog/student-debt/)
+- [Fallstudie zur linearen Regression mit Tidymodels](https://www.gmudatamining.com/lesson-10-r-tutorial.html)
+
+
+
+
