@@ -293,6 +293,7 @@ $$\displaystyle \lim _{n\to \infty }\sum _{i=1}^{n}{\frac {X_{i}}{n}}={\overline
 David Salazar visualisiert das folgendermaßen in [diesem Post](https://david-salazar.github.io/2020/04/17/fat-vs-thin-does-lln-work/) seines lesenswerten [Blogs](https://david-salazar.github.io/), s. @fig-lln).
 
 ```{r  lln, echo = TRUE, fig.cap = "Gesetz der großen Zahl", fig.width=7}
+#| label: fig-lln
 # source: https://david-salazar.github.io/2020/04/17/fat-vs-thin-does-lln-work/
 samples <- 1000
 
@@ -373,9 +374,10 @@ p0 +
 ```
 
 
-```{r overfitting-4-plots, echo = FALSE, fig.cap = "Welches Modell (Teile C-E) passt am besten zu den Daten (Teil B)? Die 'wahre Funktion', der datengenerierende Prozess ist im Teil A dargestellt", out.width = "100%"}
+```{r echo = FALSE, fig.cap = "Welches Modell (Teile C-E) passt am besten zu den Daten (Teil B)? Die 'wahre Funktion', der datengenerierende Prozess ist im Teil A dargestellt", out.width = "100%"}
+#| label: fig-overfitting-4-plots 
+
 library(patchwork)
-#| label: fig-overfitting-4-plots
 p1 + p2 + p3 + p4 + p5 + plot_layout(ncol = 5, widths = c(1,1,1,1,1))
 ```
 

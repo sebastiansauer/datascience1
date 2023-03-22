@@ -274,7 +274,7 @@ der mit Pythagoras berechnet werden kann, s.  @fig-pyth1 aus @modar.
 
 
 ```{r pyth1, echo = FALSE, fig.cap = "Euklidischer Abstand wird mit der Regel von Pythagoras berechnet"}
-#| label: fig-pyht1
+#| label: fig-pyth1
 knitr::include_graphics("img/distanz_crop.png")
 ```
 
@@ -298,15 +298,17 @@ Allerdings kann man den guten alten Pythagoras auch auf Dreiecke mit mehr als zw
 
 
 
+:::{#fig-pyth2 layout-ncol=2}
+
+![Pythagoras mit mehr als zwei Dimensionen](img/pythagoras-crop.png){#fig-pyth2a}
+
+![Pythagoras mit mehr als zwei Dimensionen](img/pythagoras2-crop.png){#fig-pyth2b}
+
+Pythagoras in der Ebene (links) und in 3D (rechts)"
+
+:::
 
 
-```{r pyth2, echo = FALSE, fig.cap = "Pythagoras in der Ebene (links) und in 3D (rechts)", out.width = "45%"}
-#| label: fig-pyth2
-imgs <- c("img/pythagoras-crop.png",
-          "img/pythagoras2-crop.png")
-
-knitr::include_graphics(imgs)
-```
 
 Bleiben wir beim Beispiel von Anna und Berta und nehmen wir eine dritte Variable 
 hinzu (Statistikliebe). 

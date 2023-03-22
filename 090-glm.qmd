@@ -454,10 +454,11 @@ m83_fit %>%
 Die Koeffizienten werden in Logits angegeben.
 
 
-In @fig-m83-plot) ist das Modell und die Daten visualisiert.
+In @fig-m83-plot ist das Modell und die Daten visualisiert.
 
 
-```{r m83-plot, echo = FALSE, fig.cap = "m83 und die Titanic-Daten"}
+```{r m83-plot, echo = FALSE, fig.cap = "Modell m83 und die Titanic-Daten"}
+#| label: fig-m83-plot
 d2 %>% 
   ggplot(aes(x = iv, y = Survived)) +
   geom_hline(yintercept = 0.5, color = "white", size = 2) +
@@ -867,6 +868,9 @@ p_logist1 + p_logist2
 ### Logits vs. Wahrscheinlichkeiten 
 
 ```{r logit-konvert, echo = TRUE}
+#| echo: false
+#| label: tbl-logit-konvert
+#| tbl-cvap: "Tabelle zur Umrechnung von Logit zu Wahrscheinlichkeit (p)"
 konvert_logits <-
   tibble(
     logit = c( -10, -3, 
@@ -878,6 +882,8 @@ konvert_logits <-
   )  %>% 
   gt() %>% 
   fmt_number(everything(), decimals = 2)
+
+konvert_logits
 ```
 
 

@@ -19,6 +19,7 @@ book:
     - 070-knn.qmd
     - 080-Resampling-Tuning.qmd
     - 090-glm.qmd
+    - 100-baeume.qmd
     - references.qmd
     # - test.qmd
 
