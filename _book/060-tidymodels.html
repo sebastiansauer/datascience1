@@ -295,6 +295,7 @@ div.csl-indent {
   </ul>
 </li>
   <li><a href="#aufgaben" id="toc-aufgaben" class="nav-link" data-scroll-target="#aufgaben"><span class="header-section-number">6.8</span> Aufgaben</a></li>
+  <li><a href="#fallstudien" id="toc-fallstudien" class="nav-link" data-scroll-target="#fallstudien"><span class="header-section-number">6.9</span> Fallstudien</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -314,7 +315,7 @@ div.csl-indent {
   </div>
   
 
-</header><!-- ```{r global-knitr-options, include=FALSE} --><!--   knitr::opts_chunk$set( --><!--   fig.pos = 'H', --><!--   fig.asp = 0.618, --><!--   fig.align='center', --><!--   fig.width = 5, --><!--   out.width = "100%", --><!--   fig.cap = "",  --><!--   fig.path = "chunk-img/tidymodels", --><!--   dpi = 300, --><!--   # tidy = TRUE, --><!--   echo = TRUE, --><!--   message = FALSE, --><!--   warning = FALSE, --><!--   cache = FALSE, --><!--   fig.show = "hold") --><!-- ``` --><section id="lernsteuerung" class="level2" data-number="6.1"><h2 data-number="6.1" class="anchored" data-anchor-id="lernsteuerung">
+</header><section id="lernsteuerung" class="level2" data-number="6.1"><h2 data-number="6.1" class="anchored" data-anchor-id="lernsteuerung">
 <span class="header-section-number">6.1</span> Lernsteuerung</h2>
 <section id="lernziele" class="level3" data-number="6.1.1"><h3 data-number="6.1.1" class="anchored" data-anchor-id="lernziele">
 <span class="header-section-number">6.1.1</span> Lernziele</h3>
@@ -334,7 +335,7 @@ div.csl-indent {
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><a href="https://tidymodels.tidymodels.org">tidymodels</a> ist ein <em>Metapaket</em>: Ein (R-)Paket, das mehrere andere Paket startet und uns damit das Leben einfacher macht. Eine Liste der R-Pakete, die durch <code>tidymodels</code> gestartet werden, findet sich <a href="https://www.tidymodels.org/packages/">hier</a>. Probieren Sie auch mal <code><a href="https://tidymodels.tidymodels.org/reference/tidymodels-package.html">?tidymodels</a></code>.</p>
+<p><a href="https://tidymodels.tidymodels.org">tidymodels</a> ist ein <em>Metapaket</em>: Ein (R-)Paket, das mehrere andere Paket startet und uns damit das Leben einfacher macht, analog zu <code>tidyverse</code>. Eine Liste der R-Pakete, die durch <code>tidymodels</code> gestartet werden, findet sich <a href="https://www.tidymodels.org/packages/">hier</a>. Probieren Sie auch mal <code><a href="https://tidymodels.tidymodels.org/reference/tidymodels-package.html">?tidymodels</a></code>.</p>
 <p>Eine Liste aller Pakete, die in Tidymodels benutzt werden, die <code>dependencies</code>, kann man sich so ausgeben lassen:</p>
 <div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-4_8428365fa56dd9c0b32636bc62f86675">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://tidymodels.tidymodels.org/reference/pkg_deps.html">pkg_deps</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"tidymodels"</span>, recursive <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1346,9 +1347,17 @@ Hinweis
 </div>
 </section><section id="fazit" class="level3" data-number="6.7.4"><h3 data-number="6.7.4" class="anchored" data-anchor-id="fazit">
 <span class="header-section-number">6.7.4</span> Fazit</h3>
-<p>Mehr zu Rezepten findet sich <a href="https://recipes.tidymodels.org/">hier</a>. Ein Überblick zu allen Schritten der Vorverarbeitung findet sich <a href="https://recipes.tidymodels.org/articles/recipes.html">hier</a>.</p>
+<p>Mehr zu Rezepten findet sich <a href="https://recipes.tidymodels.org/">hier</a>. Ein Überblick zu allen Schritten der Vorverarbeitung findet sich <a href="https://www.tidymodels.org/find/recipes/">hier</a>.</p>
 </section></section><section id="aufgaben" class="level2" data-number="6.8"><h2 data-number="6.8" class="anchored" data-anchor-id="aufgaben">
 <span class="header-section-number">6.8</span> Aufgaben</h2>
+<ol type="1">
+<li><a href="https://datenwerk.netlify.app/posts/tidymodels-ames-01/tidymodels-ames-01.html">tidymodels-ames-01</a></li>
+<li><a href="https://datenwerk.netlify.app/posts/tidymodels-ames-02/tidymodels-ames-02.html">tidymodels-ames-02</a></li>
+<li><a href="https://datenwerk.netlify.app/posts/tidymodels-ames-03/tidymodels-ames-03.html">tidymodels-ames-03</a></li>
+<li><a href="https://datenwerk.netlify.app/posts/tidymodels-ames-04/tidymodels-ames-04.html">tidymodels-ames-04</a></li>
+<li><a href="https://datenwerk.netlify.app/posts/bike01/bike01.html">bike01</a></li>
+</ol></section><section id="fallstudien" class="level2" data-number="6.9"><h2 data-number="6.9" class="anchored" data-anchor-id="fallstudien">
+<span class="header-section-number">6.9</span> Fallstudien</h2>
 <ul>
 <li><a href="https://www.tidymodels.org/start/models/">Fallstudie Seegurken</a></li>
 <li><a href="https://juliasilge.com/blog/student-debt/">Sehr einfache Fallstudie zur Modellierung einer Regression mit tidymodels</a></li>

@@ -1,25 +1,6 @@
 # tidymodels
 
 
-<!-- ```{r global-knitr-options, include=FALSE} -->
-<!--   knitr::opts_chunk$set( -->
-<!--   fig.pos = 'H', -->
-<!--   fig.asp = 0.618, -->
-<!--   fig.align='center', -->
-<!--   fig.width = 5, -->
-<!--   out.width = "100%", -->
-<!--   fig.cap = "",  -->
-<!--   fig.path = "chunk-img/tidymodels", -->
-<!--   dpi = 300, -->
-<!--   # tidy = TRUE, -->
-<!--   echo = TRUE, -->
-<!--   message = FALSE, -->
-<!--   warning = FALSE, -->
-<!--   cache = FALSE, -->
-<!--   fig.show = "hold") -->
-<!-- ``` -->
-
-
 
 
 ```{r echo=FALSE}
@@ -684,12 +665,20 @@ ames_recipe
 ### Fazit
 
 Mehr zu Rezepten findet sich [hier](https://recipes.tidymodels.org/).
-Ein Überblick zu allen Schritten der Vorverarbeitung findet sich [hier](https://recipes.tidymodels.org/articles/recipes.html).
-
-
+Ein Überblick zu allen Schritten der Vorverarbeitung findet sich [hier](https://www.tidymodels.org/find/recipes/).
 
 
 ## Aufgaben
+
+1. [tidymodels-ames-01](https://datenwerk.netlify.app/posts/tidymodels-ames-01/tidymodels-ames-01.html)
+2. [tidymodels-ames-02](https://datenwerk.netlify.app/posts/tidymodels-ames-02/tidymodels-ames-02.html)
+2. [tidymodels-ames-03](https://datenwerk.netlify.app/posts/tidymodels-ames-03/tidymodels-ames-03.html)
+2. [tidymodels-ames-04](https://datenwerk.netlify.app/posts/tidymodels-ames-04/tidymodels-ames-04.html)
+5. [bike01](https://datenwerk.netlify.app/posts/bike01/bike01.html)
+
+
+
+## Fallstudien 
 
 
 

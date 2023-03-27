@@ -326,7 +326,7 @@
     "href": "060-tidymodels.html#vorbereitung",
     "title": "\n6  tidymodels\n",
     "section": "\n6.2 Vorbereitung",
-    "text": "6.2 Vorbereitung\n\nLesen Sie TMWR, Kapitel 1\n\nLesen Sie übrige Literatur zu diesem Thema: TMWR, Kap. 1, 5, 6, 7, 8, 9\n\n\n6.2.1 Benötigte R-Pakete\n\nlibrary(tidyverse)\nlibrary(tidymodels)\n\ntidymodels ist ein Metapaket: Ein (R-)Paket, das mehrere andere Paket startet und uns damit das Leben einfacher macht. Eine Liste der R-Pakete, die durch tidymodels gestartet werden, findet sich hier. Probieren Sie auch mal ?tidymodels.\nEine Liste aller Pakete, die in Tidymodels benutzt werden, die dependencies, kann man sich so ausgeben lassen:\n\npkg_deps(x = \"tidymodels\", recursive = FALSE)"
+    "text": "6.2 Vorbereitung\n\nLesen Sie TMWR, Kapitel 1\n\nLesen Sie übrige Literatur zu diesem Thema: TMWR, Kap. 1, 5, 6, 7, 8, 9\n\n\n6.2.1 Benötigte R-Pakete\n\nlibrary(tidyverse)\nlibrary(tidymodels)\n\ntidymodels ist ein Metapaket: Ein (R-)Paket, das mehrere andere Paket startet und uns damit das Leben einfacher macht, analog zu tidyverse. Eine Liste der R-Pakete, die durch tidymodels gestartet werden, findet sich hier. Probieren Sie auch mal ?tidymodels.\nEine Liste aller Pakete, die in Tidymodels benutzt werden, die dependencies, kann man sich so ausgeben lassen:\n\npkg_deps(x = \"tidymodels\", recursive = FALSE)"
   },
   {
     "objectID": "060-tidymodels.html#daten",
@@ -368,7 +368,14 @@
     "href": "060-tidymodels.html#aufgaben",
     "title": "\n6  tidymodels\n",
     "section": "\n6.8 Aufgaben",
-    "text": "6.8 Aufgaben\n\nFallstudie Seegurken\nSehr einfache Fallstudie zur Modellierung einer Regression mit tidymodels\nFallstudie zur linearen Regression mit Tidymodels\n\n\n\n\n\nRhys, Hefin. 2020. Machine Learning with R, the tidyverse, and mlr. Shelter Island, NY: Manning publications.\n\n\nSilge, Julia, und Max Kuhn. 2022. Tidy Modeling with R. https://www.tmwr.org/."
+    "text": "6.8 Aufgaben\n\ntidymodels-ames-01\ntidymodels-ames-02\ntidymodels-ames-03\ntidymodels-ames-04\nbike01"
+  },
+  {
+    "objectID": "060-tidymodels.html#fallstudien",
+    "href": "060-tidymodels.html#fallstudien",
+    "title": "\n6  tidymodels\n",
+    "section": "\n6.9 Fallstudien",
+    "text": "6.9 Fallstudien\n\nFallstudie Seegurken\nSehr einfache Fallstudie zur Modellierung einer Regression mit tidymodels\nFallstudie zur linearen Regression mit Tidymodels\n\n\n\n\n\nRhys, Hefin. 2020. Machine Learning with R, the tidyverse, and mlr. Shelter Island, NY: Manning publications.\n\n\nSilge, Julia, und Max Kuhn. 2022. Tidy Modeling with R. https://www.tmwr.org/."
   },
   {
     "objectID": "060-tidymodels.html#footnotes",
