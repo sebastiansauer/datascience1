@@ -59,7 +59,7 @@ library(tidymodels)
 ```
 
 `{tidymodels}` ist ein *Metapaket*: Ein (R-)Paket,
-das mehrere andere Paket startet und uns damit das Leben einfacher macht.
+das mehrere andere Paket startet und uns damit das Leben einfacher macht, analog zu `tidyverse`.
 Eine Liste der R-Pakete, die durch `tidymodels` gestartet werden,
 findet sich [hier](https://www.tidymodels.org/packages/).
 Probieren Sie auch mal `?tidymodels`. 

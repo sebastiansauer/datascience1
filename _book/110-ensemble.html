@@ -326,17 +326,19 @@ div.csl-indent {
 <span class="header-section-number">11.1</span> Lernsteuerung</h2>
 <section id="lernziele" class="level3" data-number="11.1.1"><h3 data-number="11.1.1" class="anchored" data-anchor-id="lernziele">
 <span class="header-section-number">11.1.1</span> Lernziele</h3>
-<pre><code>- Sie können Algorithmen für Ensemble-Lernen erklären, d.i. Bagging, AdaBoost, XGBoost, Random Forest
-- Sie wissen, anhand welche Tuningparamter man Overfitting bei diesen Algorithmen begrenzen kann
-- Sie können diese Verfahren in R berechnen</code></pre>
-</section><section id="literatur" class="level3" data-number="11.1.2"><h3 data-number="11.1.2" class="anchored" data-anchor-id="literatur">
+<ul>
+<li>Sie können Algorithmen für Ensemble-Lernen erklären, d.i. Bagging, AdaBoost, XGBoost, Random Forest</li>
+<li>Sie wissen, anhand welche Tuningparamter man Overfitting bei diesen Algorithmen begrenzen kann</li>
+<li>Sie können diese Verfahren in R berechnen</li>
+</ul></section><section id="literatur" class="level3" data-number="11.1.2"><h3 data-number="11.1.2" class="anchored" data-anchor-id="literatur">
 <span class="header-section-number">11.1.2</span> Literatur</h3>
-<pre><code>- Rhys, Kap. 8</code></pre>
-</section></section><section id="vorbereitung" class="level2" data-number="11.2"><h2 data-number="11.2" class="anchored" data-anchor-id="vorbereitung">
+<ul>
+<li>Rhys, Kap. 8</li>
+</ul></section></section><section id="vorbereitung" class="level2" data-number="11.2"><h2 data-number="11.2" class="anchored" data-anchor-id="vorbereitung">
 <span class="header-section-number">11.2</span> Vorbereitung</h2>
 <p>In diesem Kapitel werden folgende R-Pakete benötigt:</p>
 <div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-1_5e381f8473bacf2420152707f21792a9">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jabiru/tictoc">tictoc</a></span><span class="op">)</span>  <span class="co"># Zeitmessung</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/koalaverse/vip/">vip</a></span><span class="op">)</span>  <span class="co"># Variable importance plot</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readr.tidyverse.org">readr</a></span><span class="op">)</span>  <span class="co"># read_rds</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -346,7 +348,7 @@ div.csl-indent {
 <p>Die folgenden Ausführungen basieren primär auf <span class="citation" data-cites="rhys">Rhys (<a href="references.html#ref-rhys" role="doc-biblioref">2020</a>)</span>, aber auch auf <span class="citation" data-cites="islr">James u.&nbsp;a. (<a href="references.html#ref-islr" role="doc-biblioref">2021</a>)</span> und (weniger) <span class="citation" data-cites="kuhn">Kuhn und Johnson (<a href="references.html#ref-kuhn" role="doc-biblioref">2013</a>)</span>.</p>
 </section><section id="wir-brauchen-einen-wald" class="level2" data-number="11.4"><h2 data-number="11.4" class="anchored" data-anchor-id="wir-brauchen-einen-wald">
 <span class="header-section-number">11.4</span> Wir brauchen einen Wald</h2>
-<p>Ein Pluspunkt von Entscheidungsbäumen ist ihre gute Interpretierbarkeit. Man könnte behaupten, dass Bäume eine typische Art des menschlichen Entscheidungsverhalten nachahmen: “Wenn A, dann tue B, ansonsten tue C” (etc.). Allerdings: Einzelne Entscheidungsbäume haben oft keine so gute Prognosegenauigkeit. Der oder zumindest ein Grund ist, dass sie (zwar wenig Bias aber) viel Varianz aufweisen. Das sieht man z.B. daran, dass die Vorhersagegenauigkeit stark schwankt, wählt man eine andere Aufteilung von Train- vs.&nbsp;Test-Sample. Anders gesagt: Bäume overfitten ziemlich schnell. Und obwohl das No-Free-Lunch-Theorem zu den Grundfesten des maschinellen Lernens (oder zu allem wissenschaftlichen Wissen) gehört, kann man festhalten, dass sog. <em>Ensemble-Lernen</em> fast immer besser sind als einzelne Baummodelle. Kurz gesagt: Wir brauchen einen Wald: 🌳🌳🌳<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>Ein Pluspunkt von Entscheidungsbäumen ist ihre gute Interpretierbarkeit. Man könnte behaupten, dass Bäume eine typische Art des menschlichen Entscheidungsverhalten nachahmen: “Wenn A, dann tue B, ansonsten tue C” (etc.). Allerdings: Einzelne Entscheidungsbäume haben oft keine so gute Prognosegenauigkeit. Der oder zumindest ein Grund ist, dass sie (zwar wenig Bias aber) viel Varianz aufweisen. Das sieht man z.B. daran, dass die Vorhersagegenauigkeit stark schwankt, wählt man eine andere Aufteilung von Train- vs.&nbsp;Test-Sample. Anders gesagt: Bäume overfitten ziemlich schnell. Und obwohl das No-Free-Lunch-Theorem zu den Grundfesten des maschinellen Lernens (oder zu allem wissenschaftlichen Wissen) gehört, kann man festhalten, dass sog. <em>Ensemble-Lernen</em> fast immer besser sind als einzelne Baummodelle. Kurz gesagt: Wir brauchen einen Wald: 🌳🌳🌳.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 </section><section id="was-ist-ein-ensemble-lerner" class="level2" data-number="11.5"><h2 data-number="11.5" class="anchored" data-anchor-id="was-ist-ein-ensemble-lerner">
 <span class="header-section-number">11.5</span> Was ist ein Ensemble-Lerner?</h2>
 <p>Ensemble-Lerner kombinieren mehrere schwache Lerner zu einem starken Lerner. Das Paradebeispiel sind baumbasierte Modelle; darauf wird sich die folgende Ausführung auch begrenzen. Aber theoretisch kann man jede Art von Lerner kombinieren. Bei numerischer Prädiktion wird bei Ensemble-Lerner zumeist der Mittelwert als Optmierungskriterium herangezogen; bei Klassifikation (nominaler Prädiktion) hingegen die modale Klasse (also die häufigste). Warum hilft es, mehrere Modelle (Lerner) zu einem zu aggregieren? Die Antwort lautet, dass die Streuung der Mittelwerte sinkt, wenn die Stichprobengröße steigt. Zieht man Stichproben der Größe 1, werden die Mittelwerte stark variieren, aber bei größeren Stichproben (z.B. Größe 100) deutlich weniger<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Die Streuung der Mittelwerte in den Stichproben nennt man bekanntlich <em>Standardefehler</em> (se). Den se des Mittelwerts (<span class="math inline">\(se_M\)</span>) für eine normalverteilte Variable <span class="math inline">\(X \sim \mathcal{N}(\mu, \sigma)\)</span> gilt: <span class="math inline">\(se_{M} = \sigma / \sqrt(n)\)</span>, wobei <span class="math inline">\(\sigma\)</span> die SD der Verteilung und <span class="math inline">\(\mu\)</span> den Erwartungswert (“Mittelwert”) meint, und <span class="math inline">\(n\)</span> ist die Stichprobengröße.</p>
@@ -524,15 +526,15 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 <span class="header-section-number">11.10.1</span> Datensatz Churn</h3>
 <p>Wir betrachten einen Datensatz zur Kundenabwanderung (Churn) aus <a href="https://www.gmudatamining.com/lesson-13-r-tutorial.html">dieser Quelle</a>.</p>
 <div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-4_c956cd57779be60172b195c8c5e86a44">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/knitr/man/opts_chunk.html">opts_chunk</a></span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>echo <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/knitr/man/opts_chunk.html">opts_chunk</a></span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>echo <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Die Daten habe ich von <a href="https://gmudatamining.com/data/churn_data.rds">dieser Quelle</a> heruntergeladen.</p>
 <div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-5_7c97831691c38a9c5c138f854ca7e3b1">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">churn_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">read_rds</a></span><span class="op">(</span><span class="st">'data/churn_data.rds'</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">churn_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">read_rds</a></span><span class="op">(</span><span class="st">'data/churn_data.rds'</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Ein Blick in die Daten, s. <a href="#tbl-churn">Tabelle&nbsp;<span>11.1</span></a></p>
 <div class="cell" data-hash="110-ensemble_cache/html/tbl-churn_4f7cdc824f309c13038619c612d048c7">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">churn_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">churn_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -1103,7 +1105,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 <span class="header-section-number">11.10.2</span> Data Splitting und CV</h3>
 <p>Das Kreuzvalidieren (CV) fassen wir auch unter diesen Punkt.</p>
 <div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-7_1721824da9911a9d577d175226df88ba">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">churn_split</span> <span class="op">&lt;-</span> <span class="fu">initial_split</span><span class="op">(</span><span class="va">churn_df</span>, prop <span class="op">=</span> <span class="fl">0.75</span>, </span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">churn_split</span> <span class="op">&lt;-</span> <span class="fu">initial_split</span><span class="op">(</span><span class="va">churn_df</span>, prop <span class="op">=</span> <span class="fl">0.75</span>, </span>
 <span>                             strata <span class="op">=</span> <span class="va">canceled_service</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">churn_training</span> <span class="op">&lt;-</span> <span class="va">churn_split</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu">training</span><span class="op">(</span><span class="op">)</span></span>
@@ -1116,7 +1118,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 <span class="header-section-number">11.10.3</span> Feature Engineering</h3>
 <p>Hier definieren wir zwei Rezepte. Gleichzeitig verändern wir die Prädiktoren (normalisieren, dummysieren, …). Das nennt man auch <em>Feature Engineering</em>.</p>
 <div class="cell" data-hash="110-ensemble_cache/html/recipes_90ce82f1c279fcec69f3417a7d4bdcec">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">churn_recipe1</span> <span class="op">&lt;-</span> <span class="fu">recipe</span><span class="op">(</span><span class="va">canceled_service</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">churn_training</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">churn_recipe1</span> <span class="op">&lt;-</span> <span class="fu">recipe</span><span class="op">(</span><span class="va">canceled_service</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">churn_training</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>                       <span class="fu">step_normalize</span><span class="op">(</span><span class="fu">all_numeric</span><span class="op">(</span><span class="op">)</span>, <span class="op">-</span><span class="fu">all_outcomes</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>                       <span class="fu">step_dummy</span><span class="op">(</span><span class="fu">all_nominal</span><span class="op">(</span><span class="op">)</span>, <span class="op">-</span><span class="fu">all_outcomes</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -1129,7 +1131,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 </section><section id="modelle" class="level3" data-number="11.10.4"><h3 data-number="11.10.4" class="anchored" data-anchor-id="modelle">
 <span class="header-section-number">11.10.4</span> Modelle</h3>
 <div class="cell" data-hash="110-ensemble_cache/html/def-models_1eac5d22acee3d03be49b3dc3be80b9b">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tree_model</span> <span class="op">&lt;-</span> <span class="fu">decision_tree</span><span class="op">(</span>cost_complexity <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="op">)</span>,</span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tree_model</span> <span class="op">&lt;-</span> <span class="fu">decision_tree</span><span class="op">(</span>cost_complexity <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="op">)</span>,</span>
 <span>                            tree_depth <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="op">)</span>,</span>
 <span>                            min_n <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>              <span class="fu">set_engine</span><span class="op">(</span><span class="st">'rpart'</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
@@ -1155,7 +1157,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 <span class="header-section-number">11.10.5</span> Workflows</h3>
 <p>Wir definieren ein Workflow-Set:</p>
 <div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-8_3cc2d2eee5fbde0932a1129804cb84ff">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">preproc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>rec1 <span class="op">=</span> <span class="va">churn_recipe1</span>, rec2 <span class="op">=</span> <span class="va">churn_recipe2</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">preproc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>rec1 <span class="op">=</span> <span class="va">churn_recipe1</span>, rec2 <span class="op">=</span> <span class="va">churn_recipe2</span><span class="op">)</span></span>
 <span><span class="va">models</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>tree1 <span class="op">=</span> <span class="va">tree_model</span>, rf1 <span class="op">=</span> <span class="va">rf_model</span>, boost1 <span class="op">=</span> <span class="va">boost_model</span>, glm1 <span class="op">=</span> <span class="va">glm_model</span><span class="op">)</span></span>
 <span> </span>
 <span> </span>
@@ -1169,7 +1171,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 <section id="baum" class="level4" data-number="11.10.6.1"><h4 data-number="11.10.6.1" class="anchored" data-anchor-id="baum">
 <span class="header-section-number">11.10.6.1</span> Baum</h4>
 <div class="cell" data-hash="110-ensemble_cache/html/tree-tune-grid_d759777a9426d397f272603d7f540f43">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tree_wf</span> <span class="op">&lt;-</span></span>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tree_wf</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu">workflow</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">add_model</span><span class="op">(</span><span class="va">tree_model</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">add_recipe</span><span class="op">(</span><span class="va">churn_recipe1</span><span class="op">)</span></span>
@@ -1187,7 +1189,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 </div>
 <p>Im Standard werden 10 Modellkandidaten getuned.</p>
 <div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-9_59e18ec338dce0eab7b87612fce2d0ab">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tree_fit</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tree_fit</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -1199,7 +1201,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 </div>
 <p>Schauen wir uns das Objekt etwas näher an:</p>
 <div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-10_f2c4ff3951fd0835ea48fab5c6dc924b">
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tree_fit</span><span class="op">$</span><span class="va">.metrics</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tree_fit</span><span class="op">$</span><span class="va">.metrics</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -1213,7 +1215,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 <p>Für jeden der 5 Faltungen haben wir also 10 Submodelle.</p>
 <p>Welches Modell ist das beste?</p>
 <div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-11_c3e89e0489e709e02f21c1a4b6780a0f">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">show_best</span><span class="op">(</span><span class="va">tree_fit</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">show_best</span><span class="op">(</span><span class="va">tree_fit</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -1225,7 +1227,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 </div>
 <p>Aha, das sind die fünf besten Modelle, bzw. ihre Tuningparameter, ihre mittlere Güte zusammen mit dem Standardfehler.</p>
 <div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-12_9497182c2e878a63386afbf08bed56b2">
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">autoplot</span><span class="op">(</span><span class="va">tree_fit</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">autoplot</span><span class="op">(</span><span class="va">tree_fit</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="110-ensemble_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -1234,7 +1236,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 <span class="header-section-number">11.10.6.2</span> RF</h4>
 <p>Was für Tuningparameter hat den der Algorithmus bzw. seine Implementierung?</p>
 <div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-13_1ac6ab4f263f8b80e47c9accb9938333">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">show_model_info</span><span class="op">(</span><span class="st">"rand_forest"</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">show_model_info</span><span class="op">(</span><span class="st">"rand_forest"</span><span class="op">)</span></span>
 <span><span class="co">## Information for `rand_forest`</span></span>
 <span><span class="co">##  modes: unknown, classification, regression, censored regression </span></span>
 <span><span class="co">## </span></span>
@@ -1278,7 +1280,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 </div>
 <p>Da die Berechnung einiges an Zeit braucht, kann man das (schon früher einmal berechnete) Ergebnisobjekt von der Festplatte lesen (sofern es existiert). Ansonsten berechnet man neu:</p>
 <div class="cell" data-hash="110-ensemble_cache/html/rf-tune-grid_13e9771060ebf7964195774fac84566d">
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/files.html">file.exists</a></span><span class="op">(</span><span class="st">"objects/rf_fit1.rds"</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/files.html">file.exists</a></span><span class="op">(</span><span class="st">"objects/rf_fit1.rds"</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="va">rf_fit1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">read_rds</a></span><span class="op">(</span><span class="st">"objects/rf_fit1.rds"</span><span class="op">)</span></span>
 <span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
 <span><span class="va">rf_wf1</span> <span class="op">&lt;-</span></span>
@@ -1299,10 +1301,10 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 </div>
 <p>So kann man das berechnete Objekt abspeichern auf Festplatte, um künftig Zeit zu sparen<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>:</p>
 <div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-14_8ff4957205a96c1bfb404b5d87178365">
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">write_rds</a></span><span class="op">(</span><span class="va">rf_fit1</span>, file <span class="op">=</span> <span class="st">"objects/rf_fit1.rds"</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">write_rds</a></span><span class="op">(</span><span class="va">rf_fit1</span>, file <span class="op">=</span> <span class="st">"objects/rf_fit1.rds"</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-15_f13a016045533c23ca2fe61aef9bccf6">
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">rf_fit1</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">rf_fit1</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -1313,7 +1315,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 </div>
 </div>
 <div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-16_cb18fb6cf7b05c777c22841246f51184">
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">show_best</span><span class="op">(</span><span class="va">rf_fit1</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">show_best</span><span class="op">(</span><span class="va">rf_fit1</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -1326,7 +1328,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 </section><section id="xgboost-1" class="level4" data-number="11.10.6.3"><h4 data-number="11.10.6.3" class="anchored" data-anchor-id="xgboost-1">
 <span class="header-section-number">11.10.6.3</span> XGBoost</h4>
 <div class="cell" data-hash="110-ensemble_cache/html/boost-tune-grid_cf2f2f0d2df7fc6ae4243670316aa75b">
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">boost_wf1</span> <span class="op">&lt;-</span></span>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">boost_wf1</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu">workflow</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">add_model</span><span class="op">(</span><span class="va">boost_model</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">add_recipe</span><span class="op">(</span><span class="va">churn_recipe1</span><span class="op">)</span></span>
@@ -1343,13 +1345,13 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 </div>
 <p>Wieder auf Festplatte speichern:</p>
 <div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-17_e15bce25ba53d962446d0d01a73c97ed">
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">write_rds</a></span><span class="op">(</span><span class="va">boost_fit1</span>, file <span class="op">=</span> <span class="st">"objects/boost_fit1.rds"</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">write_rds</a></span><span class="op">(</span><span class="va">boost_fit1</span>, file <span class="op">=</span> <span class="st">"objects/boost_fit1.rds"</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Und so weiter.</p>
 </section></section><section id="workflow-set-tunen" class="level3" data-number="11.10.7"><h3 data-number="11.10.7" class="anchored" data-anchor-id="workflow-set-tunen">
 <span class="header-section-number">11.10.7</span> Workflow-Set tunen</h3>
 <div class="cell" data-hash="110-ensemble_cache/html/tune-workflow-map_74646028c54feb20e6a07a1004d8a505">
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/files.html">file.exists</a></span><span class="op">(</span><span class="st">"objects/churn_model_set.rds"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/files.html">file.exists</a></span><span class="op">(</span><span class="st">"objects/churn_model_set.rds"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">churn_model_set</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">read_rds</a></span><span class="op">(</span><span class="st">"objects/churn_model_set.rds"</span><span class="op">)</span></span>
 <span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">tic</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -1366,18 +1368,18 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 </div>
 <p>Da die Berechnung schon etwas Zeit braucht, macht es Sinn, das Modell (bzw. das Ergebnisobjekt) auf Festplatte zu speichern:</p>
 <div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-18_fd2657c2146ae3eacf689ea6e760faad">
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">write_rds</a></span><span class="op">(</span><span class="va">churn_model_set</span>, file <span class="op">=</span> <span class="st">"objects/churn_model_set.rds"</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">write_rds</a></span><span class="op">(</span><span class="va">churn_model_set</span>, file <span class="op">=</span> <span class="st">"objects/churn_model_set.rds"</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><em>Achtung</em> Dieser Schritt ist <em>gefährlich</em>: Wenn Sie Ihr Rezept und Fit-Objekt ändenr, kriegt das Ihre Festplatte nicht unbedingt mit. Sie könnten also unbemerkt mit dem alten Objekt von Ihrer Festplatte weiterarbeiten, ohne durch eine Fehlermeldung gewarnt zu werden.</p>
 <p>Entsprechend kann man das Modellobjekt wieder importieren, wenn einmal abgespeichert:</p>
 <div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-19_bd9e2c13fb67315de4c4f60484e68b5b">
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">churn_model_set</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">read_rds</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"objects/churn_model_set.rds"</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">churn_model_set</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">read_rds</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"objects/churn_model_set.rds"</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="ergebnisse-im-train-sest" class="level3" data-number="11.10.8"><h3 data-number="11.10.8" class="anchored" data-anchor-id="ergebnisse-im-train-sest">
 <span class="header-section-number">11.10.8</span> Ergebnisse im Train-Sest</h3>
 <p>Hier ist die Rangfolge der Modelle, geordnet nach mittlerem ROC AUC:</p>
 <div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-20_96c9c7b45c8eef4ed86693413d7cbe76">
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">rank_results</span><span class="op">(</span><span class="va">churn_model_set</span>, rank_metric <span class="op">=</span> <span class="st">"roc_auc"</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">rank_results</span><span class="op">(</span><span class="va">churn_model_set</span>, rank_metric <span class="op">=</span> <span class="st">"roc_auc"</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -1388,7 +1390,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 </div>
 </div>
 <div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-21_546c2ca6e2749963b27eab9add4d2974">
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">autoplot</span><span class="op">(</span><span class="va">churn_model_set</span>, metric <span class="op">=</span> <span class="st">"roc_auc"</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">autoplot</span><span class="op">(</span><span class="va">churn_model_set</span>, metric <span class="op">=</span> <span class="st">"roc_auc"</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="110-ensemble_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -1397,7 +1399,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 <span class="header-section-number">11.10.9</span> Bestes Modell</h3>
 <p>Und hier nur der beste Kandidat pro Algorithmus:</p>
 <div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-22_4d4b62e7903f75b7332af046011a4e46">
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">autoplot</span><span class="op">(</span><span class="va">churn_model_set</span>, metric <span class="op">=</span> <span class="st">"roc_auc"</span>, select_best <span class="op">=</span> <span class="st">"TRUE"</span><span class="op">)</span> <span class="op">+</span></span>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">autoplot</span><span class="op">(</span><span class="va">churn_model_set</span>, metric <span class="op">=</span> <span class="st">"roc_auc"</span>, select_best <span class="op">=</span> <span class="st">"TRUE"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_text</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>y <span class="op">=</span> <span class="va">mean</span> <span class="op">-</span> <span class="fl">.01</span>, label <span class="op">=</span> <span class="va">wflow_id</span><span class="op">)</span>, angle <span class="op">=</span> <span class="fl">90</span>, hjust <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">theme</span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">lims</span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.85</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1408,13 +1410,13 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 <p>Boosting hat - knapp - am besten abgeschnitten. Allerdings sind Random Forest und die schlichte, einfache logistische Regression auch fast genau so gut. Das wäre ein Grund für das einfachste Modell, das GLM, zu votieren. Zumal die Interpretierbarkeit am besten ist. Alternativ könnte man sich für das Boosting-Modell aussprechen.</p>
 <p>Man kann sich das beste Submodell auch von Tidymodels bestimmen lassen. Das scheint aber (noch) nicht für ein Workflow-Set zu funktionieren, sondern nur für das Ergebnisobjekt von <code>tune_grid</code>.</p>
 <div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-23_a18932e99909fa7a1198f3c1e3d14263">
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">select_best</span><span class="op">(</span><span class="va">churn_model_set</span>, metric <span class="op">=</span> <span class="st">"roc_auc"</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">select_best</span><span class="op">(</span><span class="va">churn_model_set</span>, metric <span class="op">=</span> <span class="st">"roc_auc"</span><span class="op">)</span></span>
 <span><span class="co">## Error in `select_best()`:</span></span>
 <span><span class="co">## ! No `select_best()` exists for this type of object.</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>rf_fit1</code> haben wir mit <code>tune_grid()</code> berechnet; mit diesem Modell kann <code>select_best()</code> arbeiten:</p>
 <div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-24_c269b82b8032ee64f94d03209c4b0d4d">
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">select_best</span><span class="op">(</span><span class="va">rf_fit1</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">select_best</span><span class="op">(</span><span class="va">rf_fit1</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -1427,7 +1429,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 <p>Aber wir können uns händisch behelfen.</p>
 <p>Schauen wir uns mal die Metriken (Vorhersagegüte) an:</p>
 <div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-25_684c8ae3dc9e0f9803809bd7f3f6c9fa">
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">churn_model_set</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">churn_model_set</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">collect_metrics</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">arrange</span><span class="op">(</span><span class="op">-</span><span class="va">mean</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -1441,7 +1443,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 </div>
 <p><code>rec1_boost1</code> scheint das beste Modell zu sein.</p>
 <div class="cell" data-hash="110-ensemble_cache/html/best-model-params_659fa4e6595648d4f0a422f44af91696">
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">best_model_params</span> <span class="op">&lt;-</span></span>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">best_model_params</span> <span class="op">&lt;-</span></span>
 <span><span class="fu">extract_workflow_set_result</span><span class="op">(</span><span class="va">churn_model_set</span>, <span class="st">"rec1_boost1"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">select_best</span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
@@ -1463,7 +1465,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 <li>Schritt 2: Update (Finalisiere) ihn mit den besten Tuningparameter-Werten</li>
 </ul>
 <div class="cell" data-hash="110-ensemble_cache/html/best-wf_f496f996fdfc4de872626cda499768e5">
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Schritt 1:</span></span>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Schritt 1:</span></span>
 <span><span class="va">best_wf</span> <span class="op">&lt;-</span> </span>
 <span><span class="va">all_workflows</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">extract_workflow</span><span class="op">(</span><span class="st">"rec1_boost1"</span><span class="op">)</span></span>
@@ -1494,7 +1496,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 </div>
 <p>Jetzt finalisieren wir den Workflow, d.h. wir setzen die Parameterwerte des besten Submodells ein:</p>
 <div class="cell" data-hash="110-ensemble_cache/html/best-wf-finalized_01fadb1a1a6c817de2931e01b6143287">
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Schritt 2:</span></span>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Schritt 2:</span></span>
 <span><span class="va">best_wf_finalized</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="va">best_wf</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">finalize_workflow</span><span class="op">(</span><span class="va">best_model_params</span><span class="op">)</span></span>
@@ -1526,7 +1528,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 </section><section id="last-fit" class="level3" data-number="11.10.11"><h3 data-number="11.10.11" class="anchored" data-anchor-id="last-fit">
 <span class="header-section-number">11.10.11</span> Last Fit</h3>
 <div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-26_8351f69b0ce69658e05a052a2722a3ac">
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_final</span> <span class="op">&lt;-</span></span>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_final</span> <span class="op">&lt;-</span></span>
 <span>  <span class="va">best_wf_finalized</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">last_fit</span><span class="op">(</span><span class="va">churn_split</span><span class="op">)</span></span>
 <span></span>
@@ -1541,7 +1543,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 </div>
 </div>
 <div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-27_d020383816f24ff7507d8ca959d98715">
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">collect_metrics</span><span class="op">(</span><span class="va">fit_final</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">collect_metrics</span><span class="op">(</span><span class="va">fit_final</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -1555,7 +1557,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 <span class="header-section-number">11.10.12</span> Variablenrelevanz</h3>
 <p>Um die Variablenrelevanz zu plotten, müssen wir aus dem Tidymodels-Ergebnisobjekt das eigentliche Ergebnisobjekt herausziehen, von der R-Funktion, die die eigentliche Berechnung durchführt, das wäre <code><a href="https://rdrr.io/r/stats/glm.html">glm()</a></code> bei einer logistischen Regression oder <code><a href="https://rdrr.io/pkg/xgboost/man/xgb.train.html">xgboost::xgb.train()</a></code> bei XGBoost:</p>
 <div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-28_0eed7def5259bbf776a8b7c71bae77ed">
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_final</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_final</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">extract_fit_parsnip</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">## parsnip model object</span></span>
 <span><span class="co">## </span></span>
@@ -1586,7 +1588,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 </div>
 <p><em>Dieses</em> Objekt übergeben wir dann an <a href="https://github.com/koalaverse/vip/">vip</a>:</p>
 <div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-29_e2ef05ab46c8b0201fc8fd98dc578bc9">
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_final</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_final</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">extract_fit_parsnip</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/vip/man/vip.html">vip</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -1598,7 +1600,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 <p>Eine ROC-Kurve berechnet Sensitivität und Spezifität aus den Vorhersagen, bzw. aus dem Vergleich von Vorhersagen und wahrem Wert (d.h. der beobachtete Wert).</p>
 <p>Ziehen wir also zuerst die Vorhersagen heraus:</p>
 <div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-30_642a906b05e26437de01d6b7f31dd24c">
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_final</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_final</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">collect_predictions</span><span class="op">(</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
@@ -1612,7 +1614,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 <p>Praktischerweise werden die “wahren Werte” (also die beobachtaten Werte), <code>canceled_service</code>, ausch angegeben.</p>
 <p>Dann berechnen wir die <code>roc_curve</code> und <code>autoplot</code>ten sie, s. <a href="#fig-canceled-service">Abbildung&nbsp;<span>11.9</span></a>.</p>
 <div class="cell" data-hash="110-ensemble_cache/html/fig-canceled-service_6e9e8e7f12c79845aab5a4c1c210f52e">
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_final</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_final</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">collect_predictions</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">roc_curve</span><span class="op">(</span><span class="va">canceled_service</span>, <span class="va">.pred_yes</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">autoplot</span><span class="op">(</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1668,7 +1670,7 @@ Rhys, Hefin. 2020. <em>Machine Learning with R, the tidyverse, and mlr</em>. She
 </div>
 </section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
 <ol>
-<li id="fn1"><p>Übrigens gehört zu den weiteren Vorteilen von Bäumen, dass sie die Temperatur absenken; zu Zeiten von Hitzewellen könnte das praktisch sein. Ansonsten erzeugen sie aber nur Luft und haben auch sonst kaum erkennbaren Nutzen.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>Übrigens gehört zu den weiteren Vorteilen von Bäumen, dass sie die Temperatur absenken; zu Zeiten von Hitzewellen könnte das praktisch sein. Ansonsten erzeugen sie aber nur Luft und haben auch sonst kaum erkennbaren Nutzen. Bäume stellen zum Beispiel nie WLAN bereit.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>bei Fat-Tails-Variablen muss man diese Aussage einschränken<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3"><p>Wenn es einen No-Free-Lunch-Satz gibt, müsste es auch einen Too-Good-to-be-True-Satz geben, den wir hiermit postulieren.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn4"><p>Schlimmes Denglisch<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
