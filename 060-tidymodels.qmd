@@ -122,11 +122,11 @@ und die übrigen 20-30% in das Test-Sample zu stecken, s. @fig-train-pie
 
 ```{mermaid}
 %%| label: fig-train-pie
-%%| fig-cap: 8"0-20-Aufteilung der Daten in Train- bzw. Test-Sample"
-pie title Pets adopted by volunteers
+%%| fig-cap: "80-20-Aufteilung der Daten in Train- bzw. Test-Sample"
+pie title Train-Test-Aufteilung
     "Train" : 80
     "Test" : 19
-    "For the unkown God": 1
+    "The Unkown God": 1
 ```
 
 
@@ -198,14 +198,10 @@ Ein (statistisches) Modell wird in Tidymodels mit drei Elementen spezifiziert, v
 %%| label: fig-tidymodels-def
 flowchart LR
    
-  subgraph Algorithmus
-  R[Regression]
-  NN[Neuronale Netze]
-  div[...]
-  end 
+  
 
   subgraph Modus
-  r2[egresssion]
+  r2[regresssion]
   classification
   end
   
@@ -214,6 +210,12 @@ flowchart LR
   stan_glm
   div2[...]
   end
+  
+  subgraph Algorithmus
+  R[Regression]
+  NN[Neuronale Netze]
+  div[...]
+  end 
   
 
 ```
@@ -348,6 +350,8 @@ tidy(lm_fit) # Koeffizienten
 glance(lm_fit) # Modellgüte
 ```
 
+
+Eine weitere Alternative sind die Befehle zur Modell-Performance von `easystats´^[Paket `performance`]:
 
 ```{r}
 library(easystats)

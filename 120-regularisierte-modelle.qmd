@@ -128,7 +128,7 @@ Abb. @fig-ols visualisiert die Optimierung mit OLS [Quelle](https://www.crumplab
 An [gleicher Stelle](https://www.crumplab.com/rstatsforpsych/regression.html) findet sich
 eine gute Darstellung zu den (mathematischen) Grundlagen der OLS-Regression.
 
-![Visualisierung der Minimierung der RSS durch OLS](imgregression_squares (1).gif){#fig-ols}
+![Visualisierung der Minimierung der RSS durch OLS](img/regression_squares (1).gif){#fig-ols}
 
 
 

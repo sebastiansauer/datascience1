@@ -6,13 +6,13 @@
 ## Lernsteuerung
 
 ###  Lernziele
-    - Sie können Algorithmen für Ensemble-Lernen erklären, d.i. Bagging, AdaBoost, XGBoost, Random Forest
-    - Sie wissen, anhand welche Tuningparamter man Overfitting bei diesen Algorithmen begrenzen kann
-    - Sie können diese Verfahren in R berechnen
+- Sie können Algorithmen für Ensemble-Lernen erklären, d.i. Bagging, AdaBoost, XGBoost, Random Forest
+- Sie wissen, anhand welche Tuningparamter man Overfitting bei diesen Algorithmen begrenzen kann
+- Sie können diese Verfahren in R berechnen
   
   
 ###  Literatur
-    - Rhys, Kap. 8
+- Rhys, Kap. 8
 
 
 
@@ -50,7 +50,7 @@ Und obwohl das No-Free-Lunch-Theorem zu den Grundfesten des maschinellen Lernens
 (oder zu allem wissenschaftlichen Wissen) gehört,
 kann man festhalten, dass sog. *Ensemble-Lernen* fast immer besser sind 
 als einzelne Baummodelle.
-Kurz gesagt: Wir brauchen einen Wald: 🌳🌳🌳^[Übrigens gehört zu den weiteren Vorteilen von Bäumen, dass sie die Temperatur absenken; zu Zeiten von Hitzewellen könnte das praktisch sein. Ansonsten erzeugen sie aber nur Luft und haben auch sonst kaum erkennbaren Nutzen.]
+Kurz gesagt: Wir brauchen einen Wald: 🌳🌳🌳.^[Übrigens gehört zu den weiteren Vorteilen von Bäumen, dass sie die Temperatur absenken; zu Zeiten von Hitzewellen könnte das praktisch sein. Ansonsten erzeugen sie aber nur Luft und haben auch sonst kaum erkennbaren Nutzen. Bäume stellen zum Beispiel nie WLAN bereit.]
 
 
 
