@@ -12,15 +12,15 @@ In diesem Kapitel geht es um das Verfahren *KNN*, *K-Nächste-Nachbarn* ($k$ nea
 
 ###  Lernziele
 
-- "Sie sind in der Lage, einfache Klassifikationsmodelle zu spezifizieren mit tidymodels"
-- "Sie können den knn-Algorithmus erläutern"
-- "Sie können den knn-Algorithmus in tidymodels anwenden"
-- "Sie können die Gütemetriken von Klassifikationsmodellen einschätzen"
+- Sie sind in der Lage, einfache Klassifikationsmodelle zu spezifizieren mit tidymodels
+- Sie können den knn-Algorithmus erläutern
+- Sie können den knn-Algorithmus in tidymodels anwenden
+- Sie können die Gütemetriken von Klassifikationsmodellen einschätzen
 
 ###  Literatur
 
-- "Rhys, Kap. 3"
-- "[Timbers et al., Kap. 5](https://datasciencebook.ca/classification.html#classification)"
+- Rhys, Kap. 3
+- [Timbers et al., Kap. 5](https://datasciencebook.ca/classification.html#classification)
 
 
 ## Benötigte R-Pakete 
@@ -28,7 +28,7 @@ In diesem Kapitel geht es um das Verfahren *KNN*, *K-Nächste-Nachbarn* ($k$ nea
 
 ```{r}
 library(tidymodels)
-#library(tidyverse)
+library(tidyverse)
 ```
 
 ```{r echo = FALSE, message=FALSE}
@@ -384,18 +384,25 @@ das für uns besorgen.
 
 
 ```{r}
-knn_spec <- nearest_neighbor(weight_func = "rectangular", neighbors = 5) |>
-  set_engine("kknn") |>
+knn_spec <-
+  nearest_neighbor() |>
+  #set_engine("kknn") |>
   set_mode("classification")
 knn_spec
 ```
 
+In der Voreinstellung wird $k=5$ gewählt.
+
 ### Workflow definieren
 
 ```{r}
-knn_fit <- workflow() |>
+knn_wf <- workflow() |>
   add_recipe(uc_recipe) |>
-  add_model(knn_spec) |>
+  add_model(knn_spec) 
+
+
+knn_fit <- 
+  knn_wf |> 
   fit(data = unscaled_cancer)
 
 knn_fit
@@ -421,7 +428,7 @@ Da in diesem Kurs diese Aufteilung aber schon besprochen wurde,
 soll dies hier auch dargestellt werden.
 
 ```{r}
-cancer_split <- initial_split(cancer, prop = 0.75, strata = Class)
+cancer_split <- initial_split(cancer, strata = Class)
 cancer_train <- training(cancer_split)
 cancer_test <- testing(cancer_split) 
 ```
@@ -441,8 +448,8 @@ cancer_recipe <- recipe(Class ~ Smoothness + Concavity, data = cancer_train) |>
 
 
 ```{r}
-knn_spec <- nearest_neighbor(weight_func = "rectangular", neighbors = 3) |>
-  set_engine("kknn") |>
+knn_spec <- nearest_neighbor() |>
+  #set_engine("kknn") |>
   set_mode("classification")
 ```
 
@@ -452,12 +459,11 @@ knn_spec <- nearest_neighbor(weight_func = "rectangular", neighbors = 3) |>
 
 
 ```{r}
-knn_fit <- workflow() |>
-  add_recipe(cancer_recipe) |>
-  add_model(knn_spec) |>
-  fit(data = cancer_train)
+knn_wf <- workflow() %>%  
+  add_recipe(cancer_recipe) %>% 
+  add_model(knn_spec) 
 
-knn_fit
+knn_wf
 ```
 
 
@@ -469,7 +475,7 @@ da wir dies  bereits eingeführt haben und künftig darauf aufbauen werden.
 
 
 ```{r}
-cancer_test_fit <- last_fit(knn_fit, cancer_split)
+cancer_test_fit <- last_fit(knn_wf, cancer_split)
 
 cancer_test_fit
 ```
