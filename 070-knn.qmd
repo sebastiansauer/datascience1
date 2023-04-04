@@ -81,7 +81,7 @@ Solche vom Nutzi zu bestimmenden Größen nennt man auch *Tuningparameter*.
 
 
 
-## Krebsdiagnostik
+## Krebsdiagnostik 1
 
 Betrachten wir ein Beispiel von @timbers_data_2022,
 das [hier](https://datasciencebook.ca/classification.html#classification-with-k-nearest-neighbors) frei eingesehen werden kann.
@@ -332,6 +332,8 @@ $$
 ## kNN mit Tidymodels
 
 
+
+
 ### Analog zu Timbers et al.
 
 Eine Anwendung von kNN mit Tidymodels ist in @timbers_data_2022, Kap. 5.6, [hier](https://datasciencebook.ca/classification.html#k-nearest-neighbors-with-tidymodels) beschrieben.
@@ -359,6 +361,13 @@ unscaled_cancer <- read_csv(cancer_unscales_path) |>
 unscaled_cancer
 ```
 
+
+:::{#callout-important}
+Damit Tidymodels ein Modell als Klassifikation versteht,
+muss die AV als `factor` definiert sein.
+Man sollte diese Transformation *außerhalb* eines Rezepts druchführen.$\square$
+:::
+
 ### Rezept definieren
 
 ```{r}
@@ -377,16 +386,18 @@ uc_recipe <-
 ```
 
 
-Die Schritte `prep()` und `bake()` sparen wir uns, da `fit()` und `predict()` 
+Die Schritte `prep()` und `bake()` sparen wir uns, da `fit()` und `predict()` bzw. `last_fit()`
 das für uns besorgen.
 
 ### Modell definieren
+
+Tidymodels greift auf den Engine (das Paket) [`kknn`](https://www.rdocumentation.org/packages/kknn/versions/1.3.1/topics/kknn) zurück, das im Standard die Eukldische Distanz aus Distanzmaß berechnet.
+Daher muss die Engine nicht extra spezifiziert werden.
 
 
 ```{r}
 knn_spec <-
   nearest_neighbor() |>
-  #set_engine("kknn") |>
   set_mode("classification")
 knn_spec
 ```
@@ -420,7 +431,7 @@ prediction
 
 
 
-## Mit Train-Test-Aufteilung
+## Krebsdiagnostik 2
 
 Im Kapitel 5 greifen @timbers_data_2022 die Aufteilung in Train- vs. Test-Sample noch nicht auf (aber in Kapitel 6).
 
@@ -487,16 +498,16 @@ cancer_test_fit
 cancer_test_fit %>% collect_metrics()
 ```
 
-Die eigentlichen Predictions stecken in der Listenspalte `.predictions` im Fit-Objekt:
+Die eigentlichen Predictions stecken in der Listenspalte `.predictions` im Fit-Objekt.
 
 ```{r}
 names(cancer_test_fit)
 ```
 
 Genau genommen ist `.predictions` eine Spalte, in der in jeder Zeile (und damit Zelle) eine Tabelle (Tibble) steht. 
-Wir haben nur eine Zeile und wollen das erste Element dieser Spalte herausziehen, die Vorhersagen (Wahrscheinlichkeit) für begigne Struktur ($\hat{y}; die Spalte heißt übrigens `.pred_B`).
+Wir haben nur eine Zeile und wollen das erste Element dieser Spalte herausziehen, die Vorhersagen (Wahrscheinlichkeit) für begigne Struktur ($\hat{y}$; die Spalte heißt übrigens `.pred_B`).
 Außerdem brauchen wir die tatsächlichen Diagnosen, $y$, die "wohnen" in der Spalte mit Namen `Class`.
-Da hilft `pluck()`.
+Da hilft `pluck()`:
 
 ```{r}
 cancer_test_fit %>%  
@@ -504,10 +515,16 @@ cancer_test_fit %>%
 ```
 
 
+Natürlich kann man auch (einfacher) `collect_predictions` verwenden anstelle von `pluck`.
+
+Hat man die Vorhersagen (und die wahren Werte) zur Hand, kann man die richtigen und falschen Werte gegenüberstellen lassen.
+So eine Tabelle nennt man auch eine *Konfusionsmatrix*^[seltener "Wahrheitsmatrix"]:
+
+
 ```{r comp-conf}
 cancer_test_predictions <- 
 cancer_test_fit %>% 
-  pluck(".predictions", 1)
+  collect_predictions()  # alternativ: pluck(".predictions", 1)
 
 confusion <- cancer_test_predictions |>
              conf_mat(truth = Class, estimate = .pred_class)
@@ -516,11 +533,21 @@ confusion
 ```
 
 
+### Schwellenwerte
+
+Im Standard wird eine Beobachtung der Klasse mit der höchsten Wahrscheinlichkeit zugeordnet. Möchte man das ändern, hilft das [R-Paket `probably`](https://probably.tidymodels.org/articles/where-to-use.html).
+
+
 
 ### Visualisierung
 
+Verbildlichen wir die Konfusionsmatrix, so dass wir sehen welche `B` als `B` klassifiziert wurden und welche `M` als `M` klassifiziert wurden, s. @fig-conf-bm.
+
+
 
 ```{r}
+#| label: fig-conf-bm
+#| fig-cap: Konfusionsmatrix für die Krebsdiagnostik. Die Größe eines Rechtecks ist proportional zu der Anzahl der Fällen dieser Gruppe.
 autoplot(confusion, type = "mosaic")
 autoplot(confusion, type = "heatmap") +
   labs(x = "Beobachtung",
@@ -529,10 +556,13 @@ autoplot(confusion, type = "heatmap") +
 ```
 
 
-## Kennzahlen der Klassifikation
+## Klassifikationsgüte
 
 
-In @modar, Kap. 19.6, findet sich einige Erklärung zu Kennzahlen der Klassifikationsgüte.
+
+### Die vier möglichen Ergebnisse eines Tests
+
+
 
 Ein Test kann vier verschiedenen Ergebnisse haben:
 
@@ -544,28 +574,176 @@ gt::gt(df,
 ```
 
 
+Von den vier Ergebnissen sind zwei falsch. 
+Ein Test kann also zwei Arten von Fehlern machen, s. @fig-4arten.
+Dort kann man die Punkte im roten Hintergrund als *kranke* Menschen verstehen (links des schrägen Strichs); auf der anderen Seite sind man gesunde Menschen (grüner Hintergrund).
+Die Punkte in der Ellipse zeigen die Klassifikationsergebnisse bzw. -fehler.
+
+1. Fehler erster Art: Gesunde als krank klassifizieren ("Fehlalarm")
+2. Fehler zweiter Art: Kranke als gesund klassifizieren ("Übersehfehler")
+
+
+![Zwei Fehlerarten einer Klassifikation](img/Binary-classification-measures.svg (2).png){#fig-4arten width="50%"}
+
+[Quelle: Von Nichtich - Eigenes Werk, Gemeinfrei](https://commons.wikimedia.org/w/index.php?curid=3494986)
+
+
+Bei [Wikipedia](https://de.wikipedia.org/wiki/Beurteilung_eines_bin%C3%A4ren_Klassifikators) findet sich eine nützliche Erläuterung der Kennzahlen der Klassifikationsgüte, vgl. @fig-sens-fn und @fig-spec-fp.
+
+:::{#fig-sens-fn layout-ncol=2}
+
+![Sensitivität](img/sens-440px-Binary-classification-file_sensitivity.svg.png){#fig-sens}
+
+![FN-Rate](img/fn-rate-Binary-classification-file_false_negative_rate.svg.png){#fig-fn-rante}
+
+Sensitivität und Falsch-Negativrate addieren sich zu 1.
+:::
+
+
+:::{#fig-spec-fp layout-ncol=2}
+
+![Spezifität](img/spec-Binary-classification-file_specifity.svg.png){#fig-spec}
+
+![FP-Rate](img/fp-rate-Binary-classification-file_fallout.svg.png){#fig-fp-rate}
+
+Spezifität und FP-Rate addieren sich zu 1.
+:::
+
+
+:::{.callout-note}
+Es ist einfach, in nur einem der beiden Fehlerarten gut abzuschneiden.
+So könnte ein Test, alle Personen als *krank* klassifizieren. 
+Damit hätte er auomatisch keine Übersehfehler. Leider wären aber potenziell viele Fehlalarme dabei.
+Die Höhe des Übersehfehler und die Höhe der Fehlalarme müssen daher nicht gleich sein.
+Man muss daher beide Fehlerarten berücksichtigen, um die Güte eines Tests einzuschätzen.
+Welcher Fehler schwerer wiegt, der Fehlalarm oder der Übersehfehler,
+hängt vom Sachgegenstand ab und ist keine Frage der Statistik.$\square$
+:::
+
+
+
+
+
+### Kennzahlen der Klassfikation
+
+
 Es gibt eine verwirrende Vielfalt von Kennzahlen,
 um die Güte einer Klassifikation einzuschätzen.
-Hier sind einige davon:
+In @tbl-diag-stats sind einige davon aufgeführt.
 
 
 ```{r diag-stats, echo = FALSE}
-
+#| label: tbl-diag-stats
+#| tbl-cap: "Geläufige Kennwerte der Klassifikation. F: Falsch. R: Richtig. P: Positiv. N: Negativ"
 df <- readr::read_csv("children/diag_stats.csv")
 
-gt::gt(df) %>% 
-  tab_header(title = "Geläufige Kennwerte der Klassifikation.",
-    subtitle = "F: Falsch. R: Richtig. P: Positiv. N: Negativ")
+knitr::kable(df)
 ```
 
 
 
-## Krebstest-Beispiel
 
-Betrachten wir Daten eines fiktiven Krebstest, aber realistischen
-Daten.
+In @modar, Kap. 19.6, findet sich einige Erklärung zu Kennzahlen der Klassifikationsgüte.
+
+Auf der [Seite des R-Pakets `yardstick`](https://yardstick.tidymodels.org/reference/index.html) finden Sie eine Übersicht an unterstützter Kennzahlen.
+
+
+### Schwellenwerte der Klassifiktion
+
+Im Standard wird ein Fall der Klasse zugeordnet, die die höchste Wahrscheinlichkeit hat.
+Mit dem R-Paket [`probably`](https://probably.tidymodels.org/articles/where-to-use.html) kann man (als Teil eines Post-Processing des Modellierens) diese Schwellenwerte^[engl. thresholds, cutoffs] ändern.
+
+:::{#exm-thresholds}
+Da eine Ärztin auf keinen Fall einen Krebsfall übersehen möchte - den Übersehfehler als deutlich schlimmer einschätzt als den Fehlalarm - setzt sie die Schwelle für "Gesund" auf 95%.$\square$
+:::
+
+
+### ROC-Kurve
+
+
+
+Eine ROC-Kurve^[Receiver Operating Characteristic Curve] ist ein Graph, der die Modellgüte eines Klassfikationsmodells *zu allen Schwellenwerten* aufzeigt.
+Eine ROC-Kurve ist eine nützliche und gebräuchliche Methode zur Bestimmung der Klassifikationsgüte eines Modells.
+
+Die Kurve hat zwei Parameter:
+
+- TP-Rate (Y-Achse)
+- FP-Rate (X-Achse)
+
+
+Praktisch würde man für die vorhergesagten Wahrscheinlichkeiten eines Klassifikationsmodells viele Schwellenwerte anlegen, z.B. von 0%, 1%, ..., 100%.
+Für jeden Schwellenwert berechnet man die vorhergesagte Klasse.
+In `tidymodels` besorgt [`roc_curve`](https://yardstick.tidymodels.org/reference/roc_curve.html) diesen Job:
+
+
+
+```{r}
+cancer_roc <- 
+cancer_test_predictions %>% 
+  roc_curve(truth = Class, .pred_B)
+cancer_roc
+```
+
+Mit `autoplot` kann man dann die ROC-Kurve zeichnen, s. @fig-roc1.
+
+```{r}
+#| label: fig-roc1
+#| fig-cap: ROC-Kurve für das Fallbeispiel der Krebsdiagnostik
+cancer_test_predictions %>% 
+  roc_curve(truth = Class, .pred_B) %>% 
+  autoplot()
+```
+
+
+Die *Fläche unter der Kurve* (area under curve) ist ein Maß für die Güte des Tests. @fig-example-rocs aus @modar stellt drei Beispiele von Klassifikationsgüten dar: sehr gute (A), gute (B) und schlechte (C). 
+Ein hohe Klassifikationsgüte zeigt sich daran, dass eine hohe Richtig-Positiv-Rate mit einer geringen Fehlalarmquote einhergeht: Wir finden alle Kranken, aber nur die Kranken. Die AUC-Kurve "hängt oben links an der Decke". 
+Ein schlechter Klassifikator trifft so gut wie ein Münzwurf: Ist das Ereignis selten, hat er eine hohe Falsch-Positiv-Rate und eine geringe Falsch-Negativ-Rate. 
+Ist das Ereignis hingegen häufig, liegen die Fehlerhöhen genau umgekehrt: Eine hohe Richtig-Positiv-Rate geht dann mit einer hohen Falsch-Positiv-Rate einher.
+
+
+
+```{r example-rocs, echo = FALSE,  out.width = "100%", fig.asp = .3}
+#| echo: false
+#| label: fig-example-rocs
+#| fig-cap: "Beispiel für eine sehr gute (A), gute (B) und schlechte (C) Klassifikation"
+library(plotROC)
+library(gridExtra)
+D.ex <- rbinom(200, size = 1, prob = .5)
+M1 <- rnorm(200, mean = D.ex, sd = .3)
+M2 <- rnorm(200, mean = D.ex, sd = 1.5)
+M3 <- rnorm(200, mean = D.ex, sd = 10)
+
+
+test <- data.frame(D = D.ex, D.str = c("Healthy", "Ill")[D.ex + 1],
+                   M1 = M1, M2 = M2, stringsAsFactors = FALSE)
+
+
+p1 <- ggplot(test, aes(d = D, m = M1)) + geom_roc(labels = FALSE) + style_roc() + ggtitle("A")
+p2 <- ggplot(test, aes(d = D, m = M2)) + geom_roc(labels = FALSE) + style_roc() + ggtitle("B")
+p3 <- ggplot(test, aes(d = D, m = M3)) + geom_roc(labels = FALSE) + style_roc() + ggtitle("C")
+
+grid.arrange(p1, p2, p3, nrow = 1)
+
+```
+
+
+
+
+
+
+
+
+
+
+
+### Krebstest-Beispiel
+
+Betrachten wir [diese Daten](https://raw.githubusercontent.com/sebastiansauer/datascience1/main/data/Krebstest.csv) eines fiktiven Krebstest, aber mit realistischen Werte, s. @fig-krebstest.
+
 
 ```{r echo = FALSE, message=FALSE}
+
+
 krebstest <- read_csv("data/krebstest.csv")
 
 library(vtree)
@@ -574,11 +752,18 @@ library(magick)
 # vtree_png <- grVizToPNG(krebstest_vtree, width = 500,
 #                         folder = "img")
 krebstest_img <- image_read(paste0("img/krebstest_vtree.png"))
+```
+
+
+```{r}
+#| echo: false
+#| label: fig-krebstest
+#| fig-cap: Kennwerte zu tatsächlichem und laut Test Krebs-Status
 print(krebstest_img)
 ```
 
 Wie gut ist dieser Test?
-Berechnen wir einige Kennzahlen.
+Berechnen wir einige Kennzahlen.^[aus dem Paket `{yardstick}`, das Teil von Tidymodels ist. [Hier](https://yardstick.tidymodels.org/) ist die Hilfeseite zum Paket.]
 
 Da die Funktionen zur Klassifikation stets einen Faktor wollen,
 wandeln wir die relevanten Spalten zuerst in einen Faktor um (aktuell sind es numerische Spalten).
@@ -591,12 +776,36 @@ krebstest <-
          Test = factor(Test))
 ```
 
+
+Konfusionsmatrix:
+
+```{r}
+cm_krebs <- conf_mat(krebstest, truth = Krebs, estimate = Test)
+cm_krebs
+```
+
+
+```{r}
+autoplot(cm_krebs)
+```
+
+
 Gesamtgenauigkeit:
 
 
 ```{r}
 accuracy(krebstest, truth = Krebs, estimate = Test)
 ```
+
+
+:::{#callout-important}
+Die Kennzahl der Gesamtgenauigkeit zählt nur den Anteil richtiger Klassifikation.
+Sind z.B. 95% der Menschen gesund, und wir klassifizieren alle Menschen als gesund,
+erreichen wir auf einfachem Weg eine Gesamtgenauigkeit von 95%.
+Trotz dieses scheinbar hohen Werts haben wir alle kranken Menschen fehlklassifiziert.
+In dem Fall, wie die Klassen (krank vs. gesund) ungleich groß sind, sinkt die Nützlichkeit dieser Kennzahl.
+Aber sie kann als Referenzwert herhalten, an dem sich andere Modelle messen lassen müssen.$\square$
+:::
 
 
 
@@ -612,11 +821,18 @@ Spezifität:
 yardstick::spec(krebstest, truth = Krebs, estimate = Test)
 ```
 
-Kappa:
+[Cohens Kappa](https://de.wikipedia.org/wiki/Cohens_Kappa):
 
 ```{r}
 yardstick::kap(krebstest, truth = Krebs, estimate = Test)
 ```
+
+Ein Wert von 0 zeigt eine Klassifikation an, die von einer Zufallzuordnung nicht zu unterscheiden ist.
+Ein Wert von 1 zeigt eine perfekte Klassifikation an.
+Damit ist Kappa eine Kennzahl der Gesamtgenauigkeit einer Klassifikation,
+die das Problem ungleicher Klassengrößen, worunter die Kennzahl Gesamtgenauigkeit leider,
+umgeht.
+
 
 Positiver Vorhersagewert:
 
@@ -638,6 +854,23 @@ Wahrscheinlichkeit, in Wahrheit krank zu sein gering, zum Glück!
 
 
 
+Mit `metrics` kann man sich eine Auswahl von Metriken (der Modellgüte) anzeigen lassen:
+
+```{r}
+metrics(krebstest, truth = Krebs, estimate = Test)
+```
+
+Man kann sich auch eine "eigene" Funktion `metrics` erstellen, bzw. `metrics` ändern:
+
+```{r}
+my_metrics <- metric_set(accuracy, ppv, sensitivity)
+```
+
+Diese Funktion ruft man dann genauso auf wie `metrics`:
+
+```{r}
+my_metrics(krebstest, truth = Krebs, estimate = Test)
+```
 
 
 
@@ -648,6 +881,15 @@ Wahrscheinlichkeit, in Wahrheit krank zu sein gering, zum Glück!
 - [Fallstudie zur Modellierung einer logististischen Regression mit tidymodels](https://onezero.blog/modelling-binary-logistic-regression-using-tidymodels-library-in-r-part-1/)
 - [Fallstudie zu Vulkanausbrüchen](https://juliasilge.com/blog/multinomial-volcano-eruptions/)
 - [Fallstudie Himalaya](https://juliasilge.com/blog/himalayan-climbing/)
+- [Fallstudie Immobilienpreise von Jan Kirzenz](https://www.kirenz.com/post/2021-02-17-r-classification-tidymodels/); diese Fallstudie beinhaltet mehrere Lernalgorithmen, die Sie vielleicht noch nicht kennen. 
+
+Falls Sie in einer Fallstudie auf Inhalte treffen, die Sie noch nicht kennen: Im Zweifel einfach ignorieren.
+
+
+## Fazit
+
+*Keep kalm and proceed* 😎
+
 
 
 

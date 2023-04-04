@@ -6,3 +6,4 @@ RN-Rate,RN/N,"Spezifität, 1-Alphafehler"
 Pos. Vorhersagewert,RP/P*,"Präzision, Relevanz"
 Neg. Vorhersagewert,RN/N*,Segreganz
 Richtigkeit,(RP+RN)/(N+P),"Korrektklassifikationsrate, Gesamtgenauigkeit"
+Youden-Index, RN-Rate+RP-Rate-1, "Durchschnitt von Sensitivität und Spezifität"
