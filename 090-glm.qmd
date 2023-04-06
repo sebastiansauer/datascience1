@@ -152,7 +152,7 @@ d %>%
 ```
 
 
-$Pr(\text{am}=1|m91,\text{mpg_z}=0) = 0.46$: 
+$Pr(\text{am}=1|m91,\text{mpgz}=0) = 0.46$: 
 Die Wahrscheinlichkeit einer manuelle Schaltung, 
 gegeben einem durchschnittlichen Verbrauch (und dem Modell `m81`) liegt bei knapp 50%.
 

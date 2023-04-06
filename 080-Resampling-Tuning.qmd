@@ -62,7 +62,7 @@ Zur Klarheit der Begrifflichkeiten nennt man die resultierenden Teile in dem Fal
 Kap. 10.2 in @silge_tidy_2022 ([Quelle](https://www.tmwr.org/resampling.html)).
 
 
-![Die Aufteilung der Daten im Falle mehrerer Modellkandidaten](img/resampling.svg){#fig-fig-analys-assess-test}
+![Die Aufteilung der Daten im Falle mehrerer Modellkandidaten](img/resampling.svg){#ig-analys-assess-test width="50%"}
 
 
 ### Standardablauf
@@ -305,13 +305,9 @@ $${\displaystyle {\sigma }_{\bar {x}}\ ={\frac {\sigma }{\sqrt {n}}}}$$
 Wichtig zu beachten ist, dass
 die Resampling nur im Train-Sample stattfindet.
 Das Test-Sample bleibt unangerührt.
-Dieser Sachverhalt ist in @fig-initialsplit, aus @silge_tidy_2022, illustriert.
+Dieser Sachverhalt ist in @fig-analys-assess-test, aus @silge_tidy_2022, illustriert.
 
 
-```{r initialsplit, echo = FALSE, fig.cap = "Resampling im Train-, nicht im Test-Sample"}
-#| label: fig-initialsplit
-knitr::include_graphics("https://www.tmwr.org/premade/resampling.svg")
-```
 
 
 
@@ -413,13 +409,13 @@ Möchte man die Defaults vpn `vfold_cv` wissen, schaut man in der Hilfe nach: `?
 `vfold_cv(data, v = 10, repeats = 1, strata = NULL, breaks = 4, pool = 0.1, ...)` 
 
 
-Probieren wir $v=5$ und $r=2$:
+Probieren wir $v=10$ und $r=10$:
 
 ```{r}
 ames_folds_rep <- vfold_cv(ames_train, 
                            strata = "Sale_Price", 
                            v = 10,
-                           repeats = 5)
+                           repeats = 10)
 ames_folds_rep
 ```
 
@@ -547,20 +543,21 @@ mse_resamples_rep %>%
 
 
 
-Wie man sieht, streuen die $v=10$ Faltungen in ihrere Modellgüte, s. @fig-cv-rmse.
+Wie man sieht, streuen die $v=10$ Faltungen in ihre Modellgüte, s. @fig-cv-rmse.
 Durch das Wiederholen *sinkt*, nach dem Gesetz der großen Zahl, die Streuung.
 Mit geringerer Streuung schätzen wir den wahren Fehler präziser.
 
 
 ```{r}
-#| label: fig-cvrmse
-#| fig-cap: "Streuung der Modellgüte (RMSE) bei nicht wiederholter und wiederholter CV"
+#| label: fig-cv-rmse
+# fig-cap: "Streuung der Modellgüte (RMSE) bei nicht wiederholter und wiederholter CV"
 #| layout-ncol: 2
+#| fig-subcap: 
+#|   - "Streuung der Modellgüte (RMSE) mit v=10 r=1 CV"
+#|   - "Streuung der Modellgüte (RMSE) mit v=10 r=5 CV"
 #| echo: false
-#
-#| fig-subcap:
-#|   - "Streuung mit v=10, r=1 CV"
-#|   - "Streuung mit v=10, r=5 CV"
+
+
 
 p_rmse_cv1r
 p_rmse_cv5r
@@ -581,12 +578,12 @@ findet auch Grumpy Cat, s. @fig-grumpy1.
 
 :::{#def-tuning}
 
->   👨‍🏫 Hey ChatGPT: Definiere Tuning mit maschinellen Lernen am Beispiel von knn und dem Parameter k
+>   👨‍🏫 Hey ChatGPT: Definiere Tuning mit maschinellen Lernen am Beispiel von knn und dem Parameter k.
 
 >   🤖 KNN (K-nearest neighbors) ist ein Machine-Learning-Algorithmus, bei dem die Vorhersage eines neuen Datenpunkts auf der Basis der k nächsten Nachbarn im Trainingsdatensatz getroffen wird. Der Parameter k gibt an, wie viele Nachbarn zur Vorhersage verwendet werden sollen. Eine wichtige Aufgabe beim Tuning von KNN besteht darin, den optimalen Wert für den Parameter k zu finden.
 Wenn k zu klein gewählt wird, kann dies zu einer Überanpassung an den Trainingsdatensatz führen, während bei zu groß gewähltem k das Modell unteranpassung aufweisen kann. Durch Tuning kann ein optimales k gefunden werden, das zu einer besseren Leistung des Modells auf einem Validierungsdatensatz führt.
 Es gibt verschiedene Methoden zum Tuning des k-Parameters. Eine Möglichkeit besteht darin, ein Rastersuchverfahren durchzuführen, bei dem eine vordefinierte Menge von k-Werten getestet wird, um dasjenige zu finden, das die beste Leistung auf einem Validierungsdatensatz aufweist. Eine andere Möglichkeit besteht darin, eine zufällige Suche durchzuführen, indem man zufällig verschiedene k-Werte auswählt und deren Leistung bewertet.
-Das Ziel des Tunings ist es, den besten Wert für den Parameter k zu finden, um das KNN-Modell zu verbessern und die Vorhersagegenauigkeit auf einem Testdatensatz zu maximieren. Das Tuning sollte jedoch immer mit einem unabhängigen Testdatensatz durchgeführt werden, um sicherzustellen, dass das Modell nicht überangepasst wird und auf neuen Daten gut funktioniert.^[https://chat.openai.com/chat, 2023-04-06]$\square
+Das Ziel des Tunings ist es, den besten Wert für den Parameter k zu finden, um das KNN-Modell zu verbessern und die Vorhersagegenauigkeit auf einem Testdatensatz zu maximieren. Das Tuning sollte jedoch immer mit einem unabhängigen Testdatensatz durchgeführt werden, um sicherzustellen, dass das Modell nicht überangepasst wird und auf neuen Daten gut funktioniert.^[https://chat.openai.com/chat, 2023-04-06]$\square$
 :::
 
 
@@ -645,7 +642,7 @@ Parameter dieser Art (die von den Nutzi zu bestimmen sind, nicht vom Algorithmus
 nennt man *Tuningparameter*.
 
 
-Abbildung @fig-nnoverfit aus [diesem Kapitel von](https://www.tmwr.org/tuning.html#overfitting-bad) @silge_tidy_2022 stellt exemplarisch dar,
+Abbildung @fig-nnoverfit aus [diesem Kapitel von](https://www.tmwr.org/tuning.html#overfitting-bad) @silge_tidy_2022 stellt exemplarisch an den Vorhersagen eines neuronalen Netzes dar,
 welchen großen Einfluss die Wahl des Werts eines Tuningparameters auf die 
 Vorhersagen eines Modells haben.
 

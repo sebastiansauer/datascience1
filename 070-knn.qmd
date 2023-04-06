@@ -551,8 +551,8 @@ Verbildlichen wir die Konfusionsmatrix, so dass wir sehen welche `B` als `B` kla
 
 ```{r}
 #| label: fig-conf-bm
-#| fig-cap: Konfusionsmatrix für die Krebsdiagnostik. Die Größe eines Rechtecks ist proportional zu der Anzahl der Fällen dieser Gruppe.
-autoplot(confusion, type = "mosaic")
+#| fig-cap: "Konfusionsmatrix für die Krebsdiagnostik. Die Größe eines Rechtecks ist proportional zu der Anzahl der Fällen dieser Gruppe."
+#autoplot(confusion, type = "mosaic")
 autoplot(confusion, type = "heatmap") +
   labs(x = "Beobachtung",
        y = "Vorhersage",

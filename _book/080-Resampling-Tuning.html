@@ -364,14 +364,14 @@ div.csl-indent {
 <span class="header-section-number">8.2.1</span> Train- und Test-Sample vervielfacht</h3>
 <p>In <a href="040-Statistisches-Lernen.html#sec-overfit"><span>Kapitel&nbsp;4.7</span></a> haben wir gelernt, dass ein Modell in einem zweiten Datensatz auf seine Modellgüte hin überprüft werden und sollte und nicht in dem (ersten) Datensatz, in dem die Modellparameter berechnet wurden.</p>
 <p>In diesem Kapitel werden wir wir von einem Modell <em>mehrere Varianten</em> berechnen, daher benötigen wir für jeden dieser Varianten oder “Modellkandidaten” eine eigene Train-Test-Aufteilung. Zur Klarheit der Begrifflichkeiten nennt man die resultierenden Teile in dem Fall <em>Analyse- und Assessment-Sample</em>, s. <span class="quarto-unresolved-ref">?fig-analys-assess-test</span> dargestellt aus Kap. 10.2 in <span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span> (<a href="https://www.tmwr.org/resampling.html">Quelle</a>).</p>
-<div id="fig-fig-analys-assess-test" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="img/resampling.svg" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;8.1: Die Aufteilung der Daten im Falle mehrerer Modellkandidaten</figcaption><p></p>
+<div id="ig-analys-assess-test" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="img/resampling.svg" class="img-fluid figure-img" style="width:50.0%"></p>
+<p></p><figcaption class="figure-caption">Die Aufteilung der Daten im Falle mehrerer Modellkandidaten</figcaption><p></p>
 </figure>
 </div>
 </section><section id="standardablauf" class="level3" data-number="8.2.2"><h3 data-number="8.2.2" class="anchored" data-anchor-id="standardablauf">
 <span class="header-section-number">8.2.2</span> Standardablauf</h3>
-<p>Ein Standardablauf des maschinellen Lernens ist in <a href="#fig-process1">Abbildung&nbsp;<span>8.2</span></a> dargestellt.</p>
+<p>Ein Standardablauf des maschinellen Lernens ist in <a href="#fig-process1">Abbildung&nbsp;<span>8.1</span></a> dargestellt.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-process1" class="quarto-figure quarto-figure-center anchored">
@@ -390,7 +390,7 @@ Best --&gt; lastFit[Fitte ihn im ganzen Train-S]
 lastFit --&gt; test[Teste im Test-S]
 </pre>
 </div>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;8.2: Standardablauf des maschinellen Lernens mit Tuning und Resampling (S: Sample bzw. Stichprobe)</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;8.1: Standardablauf des maschinellen Lernens mit Tuning und Resampling (S: Sample bzw. Stichprobe)</figcaption><p></p>
 </figure>
 </div>
 </div>
@@ -414,6 +414,7 @@ lastFit --&gt; test[Teste im Test-S]
 <span>  <span class="va">ames</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Sale_Price <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">Sale_Price</span>, base <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p><a href="https://www.tmwr.org/recipes.html#skip-equals-true">Hier</a> finden Sie eine Antwort, warum tidymodels sich weigert, Informationen über die AV vom Train- in das Test-Sample zu transferieren.</p>
 </section><section id="datensatz-aufteilen" class="level2" data-number="9.1"><h2 data-number="9.1" class="anchored" data-anchor-id="datensatz-aufteilen">
 <span class="header-section-number">9.1</span> Datensatz aufteilen</h2>
 <div class="cell" data-hash="080-Resampling-Tuning_cache/html/ames-split_51de8c4e0f645e00c3740a1eee431fa4">
@@ -534,17 +535,8 @@ Hinweis
 <p><span class="math display">\[{\displaystyle {\sigma }_{\bar {x}}\ ={\frac {\sigma }{\sqrt {n}}}}\]</span></p>
 </section><section id="resampling-passiert-im-train-sample" class="level3" data-number="9.3.3"><h3 data-number="9.3.3" class="anchored" data-anchor-id="resampling-passiert-im-train-sample">
 <span class="header-section-number">9.3.3</span> Resampling passiert im Train-Sample</h3>
-<p>Wichtig zu beachten ist, dass die Resampling nur im Train-Sample stattfindet. Das Test-Sample bleibt unangerührt. Dieser Sachverhalt ist in <a href="#fig-initialsplit">Abbildung&nbsp;<span>9.5</span></a>, aus <span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span>, illustriert.</p>
-<div class="cell" data-hash="080-Resampling-Tuning_cache/html/fig-initialsplit_d96efecaf6968b46dcb18c5445ede02d">
-<div class="cell-output-display">
-<div id="fig-initialsplit" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="https://www.tmwr.org/premade/resampling.svg" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;9.5: Resampling im Train-, nicht im Test-Sample</figcaption><p></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Wie in <a href="#fig-initialsplit">Abbildung&nbsp;<span>9.5</span></a> dargestellt, wird das Modell im <em>Analyse-Sample</em> berechnet (gefittet), und im <em>Assessment-Sample</em> auf Modellgüte hin überprüft.</p>
+<p>Wichtig zu beachten ist, dass die Resampling nur im Train-Sample stattfindet. Das Test-Sample bleibt unangerührt. Dieser Sachverhalt ist in <span class="quarto-unresolved-ref">?fig-analys-assess-test</span>, aus <span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span>, illustriert.</p>
+<p>Wie in <span class="quarto-unresolved-ref">?fig-initialsplit</span> dargestellt, wird das Modell im <em>Analyse-Sample</em> berechnet (gefittet), und im <em>Assessment-Sample</em> auf Modellgüte hin überprüft.</p>
 <p>Die letztliche Modellgüte ist dann die Zusammenfassung (Mittelwert) der einzelnen Resamples.</p>
 </section><section id="andere-illustrationen" class="level3" data-number="9.3.4"><h3 data-number="9.3.4" class="anchored" data-anchor-id="andere-illustrationen">
 <span class="header-section-number">9.3.4</span> Andere Illustrationen</h3>
@@ -559,12 +551,12 @@ Hinweis
 <span class="header-section-number">9.4</span> Gesetz der großen Zahl</h2>
 <p>Nach dem <em>Gesetz der großen Zahl</em> (Law of Large Numbers) sollte sich der Mittelwert einer großen Stichprobe dem theoretischen Mittelwert der zugrundeliegenden Verteilung (Population, datengeneriender Prozess) sehr nahe kommen.</p>
 <p><span class="math display">\[\displaystyle \lim _{n\to \infty }\sum _{i=1}^{n}{\frac {X_{i}}{n}}={\overline {X}}\]</span></p>
-<p>David Salazar visualisiert das folgendermaßen in <a href="https://david-salazar.github.io/2020/04/17/fat-vs-thin-does-lln-work/">diesem Post</a> seines lesenswerten <a href="https://david-salazar.github.io/">Blogs</a>, s. <a href="#fig-lln">Abbildung&nbsp;<span>9.6</span></a>).</p>
+<p>David Salazar visualisiert das folgendermaßen in <a href="https://david-salazar.github.io/2020/04/17/fat-vs-thin-does-lln-work/">diesem Post</a> seines lesenswerten <a href="https://david-salazar.github.io/">Blogs</a>, s. <a href="#fig-lln">Abbildung&nbsp;<span>9.5</span></a>).</p>
 <div class="cell" data-hash="080-Resampling-Tuning_cache/html/fig-lln_fcbedab8d82ada9437c4e56b3c3a121d">
 <div class="cell-output-display">
 <div id="fig-lln" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="080-Resampling-Tuning_files/figure-html/fig-lln-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;9.6: Gesetz der großen Zahl</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;9.5: Gesetz der großen Zahl</figcaption><p></p>
 </figure>
 </div>
 </div>
@@ -597,18 +589,18 @@ Hinweis
 </div>
 <p>Möchte man die Defaults vpn <code>vfold_cv</code> wissen, schaut man in der Hilfe nach: <code>?vfold_cv</code>:</p>
 <p><code>vfold_cv(data, v = 10, repeats = 1, strata = NULL, breaks = 4, pool = 0.1, ...)</code></p>
-<p>Probieren wir <span class="math inline">\(v=5\)</span> und <span class="math inline">\(r=2\)</span>:</p>
-<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-8_46823b0de0c83095f22bf0a2154eb5af">
+<p>Probieren wir <span class="math inline">\(v=10\)</span> und <span class="math inline">\(r=10\)</span>:</p>
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-8_d77b0cd71e5c6a0578cd15debf62504b">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ames_folds_rep</span> <span class="op">&lt;-</span> <span class="fu">vfold_cv</span><span class="op">(</span><span class="va">ames_train</span>, </span>
 <span>                           strata <span class="op">=</span> <span class="st">"Sale_Price"</span>, </span>
 <span>                           v <span class="op">=</span> <span class="fl">10</span>,</span>
-<span>                           repeats <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
+<span>                           repeats <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
 <span><span class="va">ames_folds_rep</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["splits"],"name":[1],"type":["list"],"align":["right"]},{"label":["id"],"name":[2],"type":["chr"],"align":["left"]},{"label":["id2"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"<S3: vfold_split>","2":"Repeat1","3":"Fold01"},{"1":"<S3: vfold_split>","2":"Repeat1","3":"Fold02"},{"1":"<S3: vfold_split>","2":"Repeat1","3":"Fold03"},{"1":"<S3: vfold_split>","2":"Repeat1","3":"Fold04"},{"1":"<S3: vfold_split>","2":"Repeat1","3":"Fold05"},{"1":"<S3: vfold_split>","2":"Repeat1","3":"Fold06"},{"1":"<S3: vfold_split>","2":"Repeat1","3":"Fold07"},{"1":"<S3: vfold_split>","2":"Repeat1","3":"Fold08"},{"1":"<S3: vfold_split>","2":"Repeat1","3":"Fold09"},{"1":"<S3: vfold_split>","2":"Repeat1","3":"Fold10"},{"1":"<S3: vfold_split>","2":"Repeat2","3":"Fold01"},{"1":"<S3: vfold_split>","2":"Repeat2","3":"Fold02"},{"1":"<S3: vfold_split>","2":"Repeat2","3":"Fold03"},{"1":"<S3: vfold_split>","2":"Repeat2","3":"Fold04"},{"1":"<S3: vfold_split>","2":"Repeat2","3":"Fold05"},{"1":"<S3: vfold_split>","2":"Repeat2","3":"Fold06"},{"1":"<S3: vfold_split>","2":"Repeat2","3":"Fold07"},{"1":"<S3: vfold_split>","2":"Repeat2","3":"Fold08"},{"1":"<S3: vfold_split>","2":"Repeat2","3":"Fold09"},{"1":"<S3: vfold_split>","2":"Repeat2","3":"Fold10"},{"1":"<S3: vfold_split>","2":"Repeat3","3":"Fold01"},{"1":"<S3: vfold_split>","2":"Repeat3","3":"Fold02"},{"1":"<S3: vfold_split>","2":"Repeat3","3":"Fold03"},{"1":"<S3: vfold_split>","2":"Repeat3","3":"Fold04"},{"1":"<S3: vfold_split>","2":"Repeat3","3":"Fold05"},{"1":"<S3: vfold_split>","2":"Repeat3","3":"Fold06"},{"1":"<S3: vfold_split>","2":"Repeat3","3":"Fold07"},{"1":"<S3: vfold_split>","2":"Repeat3","3":"Fold08"},{"1":"<S3: vfold_split>","2":"Repeat3","3":"Fold09"},{"1":"<S3: vfold_split>","2":"Repeat3","3":"Fold10"},{"1":"<S3: vfold_split>","2":"Repeat4","3":"Fold01"},{"1":"<S3: vfold_split>","2":"Repeat4","3":"Fold02"},{"1":"<S3: vfold_split>","2":"Repeat4","3":"Fold03"},{"1":"<S3: vfold_split>","2":"Repeat4","3":"Fold04"},{"1":"<S3: vfold_split>","2":"Repeat4","3":"Fold05"},{"1":"<S3: vfold_split>","2":"Repeat4","3":"Fold06"},{"1":"<S3: vfold_split>","2":"Repeat4","3":"Fold07"},{"1":"<S3: vfold_split>","2":"Repeat4","3":"Fold08"},{"1":"<S3: vfold_split>","2":"Repeat4","3":"Fold09"},{"1":"<S3: vfold_split>","2":"Repeat4","3":"Fold10"},{"1":"<S3: vfold_split>","2":"Repeat5","3":"Fold01"},{"1":"<S3: vfold_split>","2":"Repeat5","3":"Fold02"},{"1":"<S3: vfold_split>","2":"Repeat5","3":"Fold03"},{"1":"<S3: vfold_split>","2":"Repeat5","3":"Fold04"},{"1":"<S3: vfold_split>","2":"Repeat5","3":"Fold05"},{"1":"<S3: vfold_split>","2":"Repeat5","3":"Fold06"},{"1":"<S3: vfold_split>","2":"Repeat5","3":"Fold07"},{"1":"<S3: vfold_split>","2":"Repeat5","3":"Fold08"},{"1":"<S3: vfold_split>","2":"Repeat5","3":"Fold09"},{"1":"<S3: vfold_split>","2":"Repeat5","3":"Fold10"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["splits"],"name":[1],"type":["list"],"align":["right"]},{"label":["id"],"name":[2],"type":["chr"],"align":["left"]},{"label":["id2"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"<S3: vfold_split>","2":"Repeat01","3":"Fold01"},{"1":"<S3: vfold_split>","2":"Repeat01","3":"Fold02"},{"1":"<S3: vfold_split>","2":"Repeat01","3":"Fold03"},{"1":"<S3: vfold_split>","2":"Repeat01","3":"Fold04"},{"1":"<S3: vfold_split>","2":"Repeat01","3":"Fold05"},{"1":"<S3: vfold_split>","2":"Repeat01","3":"Fold06"},{"1":"<S3: vfold_split>","2":"Repeat01","3":"Fold07"},{"1":"<S3: vfold_split>","2":"Repeat01","3":"Fold08"},{"1":"<S3: vfold_split>","2":"Repeat01","3":"Fold09"},{"1":"<S3: vfold_split>","2":"Repeat01","3":"Fold10"},{"1":"<S3: vfold_split>","2":"Repeat02","3":"Fold01"},{"1":"<S3: vfold_split>","2":"Repeat02","3":"Fold02"},{"1":"<S3: vfold_split>","2":"Repeat02","3":"Fold03"},{"1":"<S3: vfold_split>","2":"Repeat02","3":"Fold04"},{"1":"<S3: vfold_split>","2":"Repeat02","3":"Fold05"},{"1":"<S3: vfold_split>","2":"Repeat02","3":"Fold06"},{"1":"<S3: vfold_split>","2":"Repeat02","3":"Fold07"},{"1":"<S3: vfold_split>","2":"Repeat02","3":"Fold08"},{"1":"<S3: vfold_split>","2":"Repeat02","3":"Fold09"},{"1":"<S3: vfold_split>","2":"Repeat02","3":"Fold10"},{"1":"<S3: vfold_split>","2":"Repeat03","3":"Fold01"},{"1":"<S3: vfold_split>","2":"Repeat03","3":"Fold02"},{"1":"<S3: vfold_split>","2":"Repeat03","3":"Fold03"},{"1":"<S3: vfold_split>","2":"Repeat03","3":"Fold04"},{"1":"<S3: vfold_split>","2":"Repeat03","3":"Fold05"},{"1":"<S3: vfold_split>","2":"Repeat03","3":"Fold06"},{"1":"<S3: vfold_split>","2":"Repeat03","3":"Fold07"},{"1":"<S3: vfold_split>","2":"Repeat03","3":"Fold08"},{"1":"<S3: vfold_split>","2":"Repeat03","3":"Fold09"},{"1":"<S3: vfold_split>","2":"Repeat03","3":"Fold10"},{"1":"<S3: vfold_split>","2":"Repeat04","3":"Fold01"},{"1":"<S3: vfold_split>","2":"Repeat04","3":"Fold02"},{"1":"<S3: vfold_split>","2":"Repeat04","3":"Fold03"},{"1":"<S3: vfold_split>","2":"Repeat04","3":"Fold04"},{"1":"<S3: vfold_split>","2":"Repeat04","3":"Fold05"},{"1":"<S3: vfold_split>","2":"Repeat04","3":"Fold06"},{"1":"<S3: vfold_split>","2":"Repeat04","3":"Fold07"},{"1":"<S3: vfold_split>","2":"Repeat04","3":"Fold08"},{"1":"<S3: vfold_split>","2":"Repeat04","3":"Fold09"},{"1":"<S3: vfold_split>","2":"Repeat04","3":"Fold10"},{"1":"<S3: vfold_split>","2":"Repeat05","3":"Fold01"},{"1":"<S3: vfold_split>","2":"Repeat05","3":"Fold02"},{"1":"<S3: vfold_split>","2":"Repeat05","3":"Fold03"},{"1":"<S3: vfold_split>","2":"Repeat05","3":"Fold04"},{"1":"<S3: vfold_split>","2":"Repeat05","3":"Fold05"},{"1":"<S3: vfold_split>","2":"Repeat05","3":"Fold06"},{"1":"<S3: vfold_split>","2":"Repeat05","3":"Fold07"},{"1":"<S3: vfold_split>","2":"Repeat05","3":"Fold08"},{"1":"<S3: vfold_split>","2":"Repeat05","3":"Fold09"},{"1":"<S3: vfold_split>","2":"Repeat05","3":"Fold10"},{"1":"<S3: vfold_split>","2":"Repeat06","3":"Fold01"},{"1":"<S3: vfold_split>","2":"Repeat06","3":"Fold02"},{"1":"<S3: vfold_split>","2":"Repeat06","3":"Fold03"},{"1":"<S3: vfold_split>","2":"Repeat06","3":"Fold04"},{"1":"<S3: vfold_split>","2":"Repeat06","3":"Fold05"},{"1":"<S3: vfold_split>","2":"Repeat06","3":"Fold06"},{"1":"<S3: vfold_split>","2":"Repeat06","3":"Fold07"},{"1":"<S3: vfold_split>","2":"Repeat06","3":"Fold08"},{"1":"<S3: vfold_split>","2":"Repeat06","3":"Fold09"},{"1":"<S3: vfold_split>","2":"Repeat06","3":"Fold10"},{"1":"<S3: vfold_split>","2":"Repeat07","3":"Fold01"},{"1":"<S3: vfold_split>","2":"Repeat07","3":"Fold02"},{"1":"<S3: vfold_split>","2":"Repeat07","3":"Fold03"},{"1":"<S3: vfold_split>","2":"Repeat07","3":"Fold04"},{"1":"<S3: vfold_split>","2":"Repeat07","3":"Fold05"},{"1":"<S3: vfold_split>","2":"Repeat07","3":"Fold06"},{"1":"<S3: vfold_split>","2":"Repeat07","3":"Fold07"},{"1":"<S3: vfold_split>","2":"Repeat07","3":"Fold08"},{"1":"<S3: vfold_split>","2":"Repeat07","3":"Fold09"},{"1":"<S3: vfold_split>","2":"Repeat07","3":"Fold10"},{"1":"<S3: vfold_split>","2":"Repeat08","3":"Fold01"},{"1":"<S3: vfold_split>","2":"Repeat08","3":"Fold02"},{"1":"<S3: vfold_split>","2":"Repeat08","3":"Fold03"},{"1":"<S3: vfold_split>","2":"Repeat08","3":"Fold04"},{"1":"<S3: vfold_split>","2":"Repeat08","3":"Fold05"},{"1":"<S3: vfold_split>","2":"Repeat08","3":"Fold06"},{"1":"<S3: vfold_split>","2":"Repeat08","3":"Fold07"},{"1":"<S3: vfold_split>","2":"Repeat08","3":"Fold08"},{"1":"<S3: vfold_split>","2":"Repeat08","3":"Fold09"},{"1":"<S3: vfold_split>","2":"Repeat08","3":"Fold10"},{"1":"<S3: vfold_split>","2":"Repeat09","3":"Fold01"},{"1":"<S3: vfold_split>","2":"Repeat09","3":"Fold02"},{"1":"<S3: vfold_split>","2":"Repeat09","3":"Fold03"},{"1":"<S3: vfold_split>","2":"Repeat09","3":"Fold04"},{"1":"<S3: vfold_split>","2":"Repeat09","3":"Fold05"},{"1":"<S3: vfold_split>","2":"Repeat09","3":"Fold06"},{"1":"<S3: vfold_split>","2":"Repeat09","3":"Fold07"},{"1":"<S3: vfold_split>","2":"Repeat09","3":"Fold08"},{"1":"<S3: vfold_split>","2":"Repeat09","3":"Fold09"},{"1":"<S3: vfold_split>","2":"Repeat09","3":"Fold10"},{"1":"<S3: vfold_split>","2":"Repeat10","3":"Fold01"},{"1":"<S3: vfold_split>","2":"Repeat10","3":"Fold02"},{"1":"<S3: vfold_split>","2":"Repeat10","3":"Fold03"},{"1":"<S3: vfold_split>","2":"Repeat10","3":"Fold04"},{"1":"<S3: vfold_split>","2":"Repeat10","3":"Fold05"},{"1":"<S3: vfold_split>","2":"Repeat10","3":"Fold06"},{"1":"<S3: vfold_split>","2":"Repeat10","3":"Fold07"},{"1":"<S3: vfold_split>","2":"Repeat10","3":"Fold08"},{"1":"<S3: vfold_split>","2":"Repeat10","3":"Fold09"},{"1":"<S3: vfold_split>","2":"Repeat10","3":"Fold10"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -719,29 +711,38 @@ Hinweis
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>caption <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"SD: "</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">mse_resamples_rep</span><span class="op">$</span><span class="va">.estimate</span><span class="op">)</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>       y <span class="op">=</span> <span class="st">"Modellgüte: RMSE"</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Wie man sieht, streuen die <span class="math inline">\(v=10\)</span> Faltungen in ihrere Modellgüte, s. <span class="quarto-unresolved-ref">?fig-cv-rmse</span>. Durch das Wiederholen <em>sinkt</em>, nach dem Gesetz der großen Zahl, die Streuung. Mit geringerer Streuung schätzen wir den wahren Fehler präziser.</p>
-<div class="cell quarto-layout-panel" data-hash="080-Resampling-Tuning_cache/html/fig-cvrmse_4c8b992d0ea4f7543cebc2b32ddc26c2">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-cvrmse-1" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="080-Resampling-Tuning_files/figure-html/fig-cvrmse-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;9.7: Streuung der Modellgüte (RMSE) bei nicht wiederholter und wiederholter CV</figcaption><p></p>
+<p>Wie man sieht, streuen die <span class="math inline">\(v=10\)</span> Faltungen in ihre Modellgüte, s. <span class="quarto-unresolved-ref">?fig-cv-rmse</span>. Durch das Wiederholen <em>sinkt</em>, nach dem Gesetz der großen Zahl, die Streuung. Mit geringerer Streuung schätzen wir den wahren Fehler präziser.</p>
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/fig-cv-rmse_d7997db83b20d2d072daf576a1728768">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># fig-cap: "Streuung der Modellgüte (RMSE) bei nicht wiederholter und wiederholter CV"</span></span>
+<span><span class="co">#| layout-ncol: 2</span></span>
+<span><span class="co">#| fig-subcap: </span></span>
+<span><span class="co">#|   - "Streuung der Modellgüte (RMSE) mit v=10 r=1 CV"</span></span>
+<span><span class="co">#|   - "Streuung der Modellgüte (RMSE) mit v=10 r=5 CV"</span></span>
+<span><span class="co">#| echo: false</span></span>
+<span></span>
+<span></span>
+<span></span>
+<span><span class="va">p_rmse_cv1r</span></span>
+<span><span class="va">p_rmse_cv5r</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-cv-rmse-1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="080-Resampling-Tuning_files/figure-html/fig-cv-rmse-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;9.6: <strong>?(caption)</strong></figcaption><p></p>
 </figure>
 </div>
 </div>
-<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-cvrmse-2" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="080-Resampling-Tuning_files/figure-html/fig-cvrmse-2.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;9.8: Streuung der Modellgüte (RMSE) bei nicht wiederholter und wiederholter CV</figcaption><p></p>
+<div class="cell-output-display">
+<div id="fig-cv-rmse-2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="080-Resampling-Tuning_files/figure-html/fig-cv-rmse-2.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;9.7: <strong>?(caption)</strong></figcaption><p></p>
 </figure>
 </div>
 </div>
 </div>
-</div>
-<p>Puh, das war recht theoretisch. Ja, das Leben des Data-Scientisten ist nicht immer einfach, findet auch Grumpy Cat, s. <a href="#fig-grumpy1">Abbildung&nbsp;<span>9.9</span></a>.</p>
+<p>Puh, das war recht theoretisch. Ja, das Leben des Data-Scientisten ist nicht immer einfach, findet auch Grumpy Cat, s. <a href="#fig-grumpy1">Abbildung&nbsp;<span>9.8</span></a>.</p>
 <div id="fig-grumpy1" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="img/7h9qvw.jpg" class="img-fluid figure-img" style="width:50.0%"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;9.9: Grumpy Cat und die Schwierigkeiten im Leben des Data-Scientisten</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;9.8: Grumpy Cat und die Schwierigkeiten im Leben des Data-Scientisten</figcaption><p></p>
 </figure>
 </div>
 <p><a href="https://imgflip.com/i/7h9qvw">Quelle: imgflip</a></p>
@@ -750,17 +751,17 @@ Hinweis
 <div id="def-tuning" class="theorem definition">
 <p><span class="theorem-title"><strong>Definition 9.1 </strong></span>&nbsp;</p>
 <blockquote class="blockquote">
-<p>👨‍🏫 Hey ChatGPT: Definiere Tuning mit maschinellen Lernen am Beispiel von knn und dem Parameter k</p>
+<p>👨‍🏫 Hey ChatGPT: Definiere Tuning mit maschinellen Lernen am Beispiel von knn und dem Parameter k.</p>
 </blockquote>
 <blockquote class="blockquote">
-<p>🤖 KNN (K-nearest neighbors) ist ein Machine-Learning-Algorithmus, bei dem die Vorhersage eines neuen Datenpunkts auf der Basis der k nächsten Nachbarn im Trainingsdatensatz getroffen wird. Der Parameter k gibt an, wie viele Nachbarn zur Vorhersage verwendet werden sollen. Eine wichtige Aufgabe beim Tuning von KNN besteht darin, den optimalen Wert für den Parameter k zu finden. Wenn k zu klein gewählt wird, kann dies zu einer Überanpassung an den Trainingsdatensatz führen, während bei zu groß gewähltem k das Modell unteranpassung aufweisen kann. Durch Tuning kann ein optimales k gefunden werden, das zu einer besseren Leistung des Modells auf einem Validierungsdatensatz führt. Es gibt verschiedene Methoden zum Tuning des k-Parameters. Eine Möglichkeit besteht darin, ein Rastersuchverfahren durchzuführen, bei dem eine vordefinierte Menge von k-Werten getestet wird, um dasjenige zu finden, das die beste Leistung auf einem Validierungsdatensatz aufweist. Eine andere Möglichkeit besteht darin, eine zufällige Suche durchzuführen, indem man zufällig verschiedene k-Werte auswählt und deren Leistung bewertet. Das Ziel des Tunings ist es, den besten Wert für den Parameter k zu finden, um das KNN-Modell zu verbessern und die Vorhersagegenauigkeit auf einem Testdatensatz zu maximieren. Das Tuning sollte jedoch immer mit einem unabhängigen Testdatensatz durchgeführt werden, um sicherzustellen, dass das Modell nicht überangepasst wird und auf neuen Daten gut funktioniert.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>$</p>
+<p>🤖 KNN (K-nearest neighbors) ist ein Machine-Learning-Algorithmus, bei dem die Vorhersage eines neuen Datenpunkts auf der Basis der k nächsten Nachbarn im Trainingsdatensatz getroffen wird. Der Parameter k gibt an, wie viele Nachbarn zur Vorhersage verwendet werden sollen. Eine wichtige Aufgabe beim Tuning von KNN besteht darin, den optimalen Wert für den Parameter k zu finden. Wenn k zu klein gewählt wird, kann dies zu einer Überanpassung an den Trainingsdatensatz führen, während bei zu groß gewähltem k das Modell unteranpassung aufweisen kann. Durch Tuning kann ein optimales k gefunden werden, das zu einer besseren Leistung des Modells auf einem Validierungsdatensatz führt. Es gibt verschiedene Methoden zum Tuning des k-Parameters. Eine Möglichkeit besteht darin, ein Rastersuchverfahren durchzuführen, bei dem eine vordefinierte Menge von k-Werten getestet wird, um dasjenige zu finden, das die beste Leistung auf einem Validierungsdatensatz aufweist. Eine andere Möglichkeit besteht darin, eine zufällige Suche durchzuführen, indem man zufällig verschiedene k-Werte auswählt und deren Leistung bewertet. Das Ziel des Tunings ist es, den besten Wert für den Parameter k zu finden, um das KNN-Modell zu verbessern und die Vorhersagegenauigkeit auf einem Testdatensatz zu maximieren. Das Tuning sollte jedoch immer mit einem unabhängigen Testdatensatz durchgeführt werden, um sicherzustellen, dass das Modell nicht überangepasst wird und auf neuen Daten gut funktioniert.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a><span class="math inline">\(\square\)</span></p>
 </blockquote>
 </div>
 <section id="tuning-auszeichnen" class="level3" data-number="9.6.1"><h3 data-number="9.6.1" class="anchored" data-anchor-id="tuning-auszeichnen">
 <span class="header-section-number">9.6.1</span> Tuning auszeichnen</h3>
 <p>In der Modellspezifikation des Modells können wir mit <code>tune()</code> <em>auszeichnen</em>, welche Parameter wir tunen möchten.</p>
 <div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-19_b3d54662f8dd2fbc7a34f29a2bec7504">
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">knn_model2</span> <span class="op">&lt;-</span></span>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">knn_model2</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu">nearest_neighbor</span><span class="op">(</span></span>
 <span>    mode <span class="op">=</span> <span class="st">"regression"</span>,</span>
 <span>    neighbors <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="op">)</span>  <span class="co"># Wir tunen den Parameter "neighbors"</span></span>
@@ -768,7 +769,7 @@ Hinweis
 </div>
 <p>Wir können dem Tuningparameter auch einen Namen (ID/Label) geben, z.B. “K”:</p>
 <div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-20_4a5681bb4bcc95a266451b9af7c40ba7">
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">knn_model2a</span> <span class="op">&lt;-</span></span>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">knn_model2a</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu">nearest_neighbor</span><span class="op">(</span></span>
 <span>    mode <span class="op">=</span> <span class="st">"regression"</span>,</span>
 <span>    neighbors <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="st">"K"</span><span class="op">)</span></span>
@@ -793,12 +794,12 @@ Hinweis
 <p>Im K-Nächste-Nachbarn-Modell (Klassifikation) ist der vorhergesagt Wert, <span class="math inline">\(\hat{y}\)</span> für eine neue Beobachtung <span class="math inline">\(x_0\)</span> der Modus der <span class="math inline">\(K\)</span> nächsten Nachbarn.</p>
 <p>Die Wahl von <span class="math inline">\(K\)</span> hat einen zentralen Einfluss auf die Vorhersagen und damit auf die Vorhersagegüte. Allerdings wird <span class="math inline">\(K\)</span> nicht vom Modell geschätzt. Es liegt an den Nutzi, diesen Wert zu wählen.</p>
 <p>Parameter dieser Art (die von den Nutzi zu bestimmen sind, nicht vom Algorithmus), nennt man <em>Tuningparameter</em>.</p>
-<p>Abbildung <a href="#fig-nnoverfit">Abbildung&nbsp;<span>9.10</span></a> aus <span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span> stellt exemplarisch dar, welchen großen Einfluss die Wahl des Werts eines Tuningparameters auf die Vorhersagen eines Modells haben.</p>
+<p>Abbildung <a href="#fig-nnoverfit">Abbildung&nbsp;<span>9.9</span></a> aus <a href="https://www.tmwr.org/tuning.html#overfitting-bad">diesem Kapitel von</a> <span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span> stellt exemplarisch an den Vorhersagen eines neuronalen Netzes dar, welchen großen Einfluss die Wahl des Werts eines Tuningparameters auf die Vorhersagen eines Modells haben.</p>
 <div class="cell" data-hash="080-Resampling-Tuning_cache/html/fig-nnoverfit_183c3e636ebe31bad469328b9aa8f9b7">
 <div class="cell-output-display">
 <div id="fig-nnoverfit" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="https://www.tmwr.org/figures/two-class-boundaries-1.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;9.10: Overfitting als Funktion der Modellparameter und insofern als Problem de Wahl der Tuningparameter</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;9.9: Overfitting als Funktion der Modellparameter und insofern als Problem de Wahl der Tuningparameter</figcaption><p></p>
 </figure>
 </div>
 </div>
@@ -808,12 +809,12 @@ Hinweis
 <li><p><em>Grid Search:</em> Probiere viele Werte aus und schaue, welcher der beste ist. Dabei musst du hoffen, dass du die Werte erwischt, die nicht nur im Train-, sondern auch im Test-Sample gut funktionieren werden.</p></li>
 <li><p><em>Iterative Search:</em> Wenn du einen Wert eines Tuningparameters hast, nutze diesen, um intelligenter einen neuen Wert eines Tuningparameters zu finden.</p></li>
 </ol>
-<p>Der Unterschied beider Ansätze ist in <span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span> wie in <a href="#fig-tuning1">Abbildung&nbsp;<span>9.11</span></a> dargestellt.</p>
+<p>Der Unterschied beider Ansätze ist in <span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span> wie in <a href="#fig-tuning1">Abbildung&nbsp;<span>9.10</span></a> dargestellt.</p>
 <div class="cell" data-hash="080-Resampling-Tuning_cache/html/fig-tuning1_f8dc718950a2926ec7554abf9ab3d59b">
 <div class="cell-output-display">
 <div id="fig-tuning1" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="https://www.tmwr.org/figures/tuning-strategies-1.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;9.11: Links: Grid Search. Rechts: Iterative Search2</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;9.10: Links: Grid Search. Rechts: Iterative Search2</figcaption><p></p>
 </figure>
 </div>
 </div>
@@ -821,7 +822,7 @@ Hinweis
 <p>In <code>tidymodels</code> kann man mit <code>tune()</code> angeben, dass man einen bestimmten Parameter tunen möchte. <code>tidymodels</code> führt das dann ohne weiteres Federlesens für uns durch.</p>
 <p>Möchte man wissen, welche und wie viele Tuningparameter tidymodels in einem Modell berücksichtigt, kann man so aufrufen<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>:</p>
 <div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-21_718a6317cbde80c764f8adc4b24c5599">
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">knn_model2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">knn_model2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">extract_parameter_dials</span><span class="op">(</span><span class="st">"neighbors"</span><span class="op">)</span></span>
 <span><span class="co">## # Nearest Neighbors (quantitative)</span></span>
 <span><span class="co">## Range: [1, 15]</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -842,7 +843,7 @@ Hinweis
 </div>
 <p>Aktualisieren wir unseren Workflow entsprechend:</p>
 <div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-22_93449c5b573608f7c9fffb78eb7de7b3">
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ames_wflow2</span> <span class="op">&lt;-</span></span>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ames_wflow2</span> <span class="op">&lt;-</span></span>
 <span>  <span class="va">ames_wflow1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">update_model</span><span class="op">(</span><span class="va">knn_model2</span><span class="op">)</span></span>
 <span></span>
@@ -868,7 +869,7 @@ Hinweis
 </div>
 <p>Wir können auch Einfluss nehmen und angeben, dass die Grenzen des Wertebereichs zwischen 1 und 50 liegen soll (für den Tuningparameter <code>neighbors</code>):</p>
 <div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-23_4c94ed641e4b606afe1937ebc4d68d3f">
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">knn_model3</span> <span class="op">&lt;-</span></span>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">knn_model3</span> <span class="op">&lt;-</span></span>
 <span><span class="fu">nearest_neighbor</span><span class="op">(</span></span>
 <span>  mode <span class="op">=</span> <span class="st">"classification"</span>,</span>
 <span>  neighbors <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span>id <span class="op">=</span> <span class="st">"K"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu">set_range</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">50</span><span class="op">)</span><span class="op">)</span></span>
@@ -908,7 +909,7 @@ Hinweis
 <span class="header-section-number">9.6.3</span> Modelle mit Tuning berechnen</h3>
 <p>Nachdem wir die Tuningwerte bestimmt haben, können wir jetzt das Modell berechnen: Für jeden Wert des Tuningparameters wird ein Modell berechnet:</p>
 <div class="cell" data-hash="080-Resampling-Tuning_cache/html/ames-tune-grid_6fb144a38224af0da4a8a02617d57393">
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ames_folds</span> <span class="op">&lt;-</span> <span class="fu">vfold_cv</span><span class="op">(</span><span class="va">ames_train</span>, strata <span class="op">=</span> <span class="st">"Sale_Price"</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ames_folds</span> <span class="op">&lt;-</span> <span class="fu">vfold_cv</span><span class="op">(</span><span class="va">ames_train</span>, strata <span class="op">=</span> <span class="st">"Sale_Price"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">ames_grid_search</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu">tune_grid</span><span class="op">(</span></span>
@@ -931,7 +932,7 @@ Hinweis
 <p>Mit <code>control_grid</code> kann man beim Tuning einige Schalter umlegen, hier haben wir den Workflow an das Ergebnisobjekt angehängt.</p>
 <p>Die Spalte <code>.metrics</code> beinhaltet die Modellgüte für jedes Kandidatenmodell.</p>
 <div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-24_e9c3de77aff9b7981f5f82c74ad3282c">
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ames_grid_search</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ames_grid_search</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">collect_metrics</span><span class="op">(</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
@@ -944,7 +945,7 @@ Hinweis
 </div>
 <p>Die Modellgüte in Abhängigkeit der Tuningwerte können wir uns einfach visualisieren lassen:</p>
 <div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-25_87297b6112299ae01e29adc1b03ebbce">
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot</a></span><span class="op">(</span><span class="va">ames_grid_search</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot</a></span><span class="op">(</span><span class="va">ames_grid_search</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="080-Resampling-Tuning_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -952,7 +953,7 @@ Hinweis
 <p>Auf Basis dieser Ergebnisse könnte es Sinn machen, noch größere Werte für <span class="math inline">\(K\)</span> zu überprüfen.</p>
 <p>Tidymodels bietet verschiedene Optionen, um ein “Gitter” (<code>grid</code>) an Werten von einem oder (in vielen Modellen) mehreren Tuningparametern zu durchsuchen. Eine Möglichkeit ist, ein Gitter mit <em>regelmäßigen</em> Abständen der Werte zu erstellen, z.B. mit 5 Ausprägungen pro Tuningparameter:</p>
 <div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-26_b7ed82447feeed2e66561457d2f4f2d2">
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">grid1</span> <span class="op">&lt;-</span> </span>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">grid1</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="fu">grid_regular</span><span class="op">(</span></span>
 <span>    <span class="fu">neighbors</span><span class="op">(</span>range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5L</span>, <span class="fl">30L</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>    levels <span class="op">=</span> <span class="fl">5</span></span>
@@ -968,7 +969,7 @@ Hinweis
 </div>
 </div>
 <div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-27_1af1489603c7d7e83dd1cd55663d6054">
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ames_grid_search2</span> <span class="op">&lt;-</span></span>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ames_grid_search2</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu">tune_grid</span><span class="op">(</span></span>
 <span>    object <span class="op">=</span> <span class="va">ames_wflow2</span>,</span>
 <span>    resamples <span class="op">=</span> <span class="va">ames_folds</span>,  </span>
@@ -989,7 +990,7 @@ Hinweis
 <span class="header-section-number">9.6.4</span> Vorhersage im Test-Sample</h3>
 <p>Welches Modellkandidat war jetzt am besten?</p>
 <div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-28_0b3d181ccb6a6d2e156d0977aebe5492">
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">show_best</span><span class="op">(</span><span class="va">ames_grid_search2</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">show_best</span><span class="op">(</span><span class="va">ames_grid_search2</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -1001,7 +1002,7 @@ Hinweis
 </div>
 <p>Wählen wir jetzt mal den besten Modellkandidaten aus (im Sinne des Optimierungskriteriusms, RMSE) und fitten damit das <em>gesamte</em> Train-Sample:</p>
 <div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-29_a664b44581f528a42bd9afeb7b4334c3">
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_best_train</span> <span class="op">&lt;-</span> <span class="fu">fit_best</span><span class="op">(</span><span class="va">ames_grid_search2</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_best_train</span> <span class="op">&lt;-</span> <span class="fu">fit_best</span><span class="op">(</span><span class="va">ames_grid_search2</span><span class="op">)</span></span>
 <span><span class="va">fit_best_train</span></span>
 <span><span class="co">## ══ Workflow [trained] ══════════════════════════════════════════════════════════</span></span>
 <span><span class="co">## Preprocessor: Recipe</span></span>
@@ -1027,7 +1028,7 @@ Hinweis
 </div>
 <p>Und mit den dann resultierenden Modellkoeffizienten sagen wir das TestSample vorher:</p>
 <div class="cell" data-hash="080-Resampling-Tuning_cache/html/ames-last-fit_68217eaaa31d047ab6b9359489a8d0fc">
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_best_train</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_best_train</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span>new_data <span class="op">=</span> <span class="va">ames_test</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -1040,7 +1041,7 @@ Hinweis
 </div>
 </div>
 <div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-30_fcfce345d2c718908a9d291bdf49f7fa">
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_best_train</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_best_train</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span>new_data <span class="op">=</span> <span class="va">ames_test</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -1054,12 +1055,12 @@ Hinweis
 </div>
 <p>Mit <code>augment</code> kann man die Vorhersagen eines Modells zum Test-Datensatz hinzufügen:</p>
 <div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-31_b7f2f01255b1aff212f0b2618d5d92ea">
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ames_test</span> <span class="op">&lt;-</span> </span>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ames_test</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="fu">augment</span><span class="op">(</span><span class="va">fit_best_train</span>, new_data <span class="op">=</span> <span class="va">ames_test</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Holen wir uns die Modellgüte:</p>
 <div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-32_9a2da9596e44ce194263a83f886d4b09">
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">rsq</span><span class="op">(</span>data <span class="op">=</span> <span class="va">ames_test</span>,</span>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">rsq</span><span class="op">(</span>data <span class="op">=</span> <span class="va">ames_test</span>,</span>
 <span>    truth <span class="op">=</span> <span class="va">Sale_Price</span>,</span>
 <span>    estimate <span class="op">=</span> <span class="va">.pred</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -1081,6 +1082,7 @@ Hinweis
 <li><a href="https://datenwerk.netlify.app/posts/tidymodels-penguins05/tidymodels-penguins05.html">tidymodels-penguins05</a></li>
 </ol></section><section id="fallstudien" class="level2" data-number="9.8"><h2 data-number="9.8" class="anchored" data-anchor-id="fallstudien">
 <span class="header-section-number">9.8</span> Fallstudien</h2>
+<p>In <a href="150-fallstudien.html"><span>Kapitel&nbsp;15</span></a> finden Sie eine ausführliche Liste an Fallstudien.</p>
 <ul>
 <li>Arbeiten Sie sich so gut als möglich durch <a href="https://github.com/sebastiansauer/covid-icu">diese Analyse zum Verlauf von Covid-Fällen</a>
 </li>
