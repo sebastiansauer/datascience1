@@ -284,9 +284,12 @@ div.csl-indent {
 </li>
   <li><a href="#ziele-des-ml" id="toc-ziele-des-ml" class="nav-link" data-scroll-target="#ziele-des-ml"><span class="header-section-number">4.6</span> Ziele des ML</a></li>
   <li>
-<a href="#%C3%BCber--vs.-unteranpassung" id="toc-über--vs.-unteranpassung" class="nav-link" data-scroll-target="#%C3%BCber--vs.-unteranpassung"><span class="header-section-number">4.7</span> Über- vs.&nbsp;Unteranpassung</a>
+<a href="#sec-overfit" id="toc-sec-overfit" class="nav-link" data-scroll-target="#sec-overfit"><span class="header-section-number">4.7</span> Über- vs.&nbsp;Unteranpassung</a>
   <ul class="collapse">
-<li><a href="#do-it-yourself-under-overfitting" id="toc-do-it-yourself-under-overfitting" class="nav-link" data-scroll-target="#do-it-yourself-under-overfitting"><span class="header-section-number">4.7.1</span> Do-it-yourself Under-/Overfitting</a></li>
+<li><a href="#beispiel-1" id="toc-beispiel-1" class="nav-link" data-scroll-target="#beispiel-1"><span class="header-section-number">4.7.1</span> Beispiel 1</a></li>
+  <li><a href="#beispiel-2" id="toc-beispiel-2" class="nav-link" data-scroll-target="#beispiel-2"><span class="header-section-number">4.7.2</span> Beispiel 2</a></li>
+  <li><a href="#mittlere-modellkomplexit%C3%A4t-ist-optimal" id="toc-mittlere-modellkomplexität-ist-optimal" class="nav-link" data-scroll-target="#mittlere-modellkomplexit%C3%A4t-ist-optimal"><span class="header-section-number">4.7.3</span> Mittlere Modellkomplexität ist optimal</a></li>
+  <li><a href="#do-it-yourself-under-overfitting" id="toc-do-it-yourself-under-overfitting" class="nav-link" data-scroll-target="#do-it-yourself-under-overfitting"><span class="header-section-number">4.7.4</span> Do-it-yourself Under-/Overfitting</a></li>
   </ul>
 </li>
   <li><a href="#no-free-lunch" id="toc-no-free-lunch" class="nav-link" data-scroll-target="#no-free-lunch"><span class="header-section-number">4.8</span> No free lunch</a></li>
@@ -679,7 +682,7 @@ Hinweis
 </figure>
 </div>
 <p>Die Modellgüte eines Modells ist v.a. relevant für <em>neue Beobachtungen</em>, an denen das Modell <em>nicht</em> trainiert wurde.</p>
-</section><section id="über--vs.-unteranpassung" class="level2" data-number="4.7"><h2 data-number="4.7" class="anchored" data-anchor-id="über--vs.-unteranpassung">
+</section><section id="sec-overfit" class="level2" data-number="4.7"><h2 data-number="4.7" class="anchored" data-anchor-id="sec-overfit">
 <span class="header-section-number">4.7</span> Über- vs.&nbsp;Unteranpassung</h2>
 <div id="def-overfit" class="theorem definition">
 <p><span class="theorem-title"><strong>Definition 4.3 (Overfitting) </strong></span>Ein Modell sagt die Trainingsdaten zu genau vorher - es nimmt Rauschen als “bare Münze”, also fälschlich als Signal. Solche Modelle haben zu viel <em>Varianz</em> in ihren Vorhersagen.<span class="math inline">\(\square\)</span></p>
@@ -687,6 +690,8 @@ Hinweis
 <div id="def-underfit" class="theorem definition">
 <p><span class="theorem-title"><strong>Definition 4.4 (Underfitting) </strong></span>Ein Modell ist zu simpel (ungenau, grobkörnig) - es unterschlägt Nuancen des tatsächlichen Musters. Solche Modelle haben zu viel <em>Verzerrung</em> (Bias) in ihren Vorhersagen.<span class="math inline">\(\square\)</span></p>
 </div>
+<section id="beispiel-1" class="level3" data-number="4.7.1"><h3 data-number="4.7.1" class="anchored" data-anchor-id="beispiel-1">
+<span class="header-section-number">4.7.1</span> Beispiel 1</h3>
 <p>Welches der folgenden Modelle (B,C,D) passt am besten zu den Daten (A), s. <a href="#fig-overunder">Abbildung&nbsp;<span>4.14</span></a>), vgl. <span class="citation" data-cites="modar">(<a href="references.html#ref-modar" role="doc-biblioref">Sauer 2019</a>)</span>, Kap. 15?</p>
 <div class="cell" data-hash="040-Statistisches-Lernen_cache/html/fig-overunder_0c5c922df1ee9058bbf91e163e7538b9">
 <div class="cell-output-display">
@@ -700,15 +705,27 @@ Hinweis
 <p>Welches Modell wird wohl neue Daten am besten vorhersagen? Was meinen Sie?</p>
 <p>Modell D zeigt sehr gute Beschreibung (“Retrodiktion”) der Werte, anhand derer das Modell trainiert wurde (“Trainingsstichprobe”). Wird es aber “ehrlich” getestet, d.h. anhand neuer Daten (“Test-Stichprobe”), wird es vermutlich <em>nicht</em> so gut abschneiden.</p>
 <p>Es gilt, ein Modell mit “mittlerer” Komplexität zu finden, um Über- und Unteranpassung in Grenzen zu halten. Leider ist es nicht möglich, vorab zu sagen, was der richtige, “mittlere” Wert an Komplexität eines Modells ist, vgl. <a href="#fig-overfitting">Abbildung&nbsp;<span>4.15</span></a> aus <span class="citation" data-cites="modar">(<a href="references.html#ref-modar" role="doc-biblioref">Sauer 2019</a>)</span>.</p>
+</section><section id="beispiel-2" class="level3" data-number="4.7.2"><h3 data-number="4.7.2" class="anchored" data-anchor-id="beispiel-2">
+<span class="header-section-number">4.7.2</span> Beispiel 2</h3>
+<p><span class="quarto-unresolved-ref">?fig-overfitting-4-plots</span> zeigt Über- und Unteranpassung an einem Beispiel.</p>
+<ul>
+<li>Teil <em>A</em>: Die ‘wahre Funktion’, <span class="math inline">\(f\)</span>, die die Daten erzeugt. Man spricht auch von der “datengenerierenden Funktion”. Wir gehen gemeinhin davon aus, dass es eine wahre Funktion gibt. Das heißt nicht, dass die wahre Funktion die Daten perfekt erklärt, schließlich kann die Funktion zwar wahr, aber unvollständig sein oder unsere Messinstrumente sind nicht perfekt präzise.</li>
+<li>Teil <em>B:</em> Die Daten, erzeugt aus A plus etwas zufälliges Fehler (Rauschen).</li>
+<li>Teil <em>C</em>: Ein zu einfaches Modell: Unteranpassung. Vorhersagen in einer neuen Stichprobe (basierend auf dem datengenerierenden Prozess aus A) werden nicht so gut sein.</li>
+<li>Teil <em>D</em>: Ein zu komplexes Modell: Überanpassung. Vorhersagen in einer neuen Stichprobe (basierend auf dem datengenerierenden Prozess aus A) werden nicht so gut sein.</li>
+<li>Teil <em>E</em>: Ein Modell mittlerer Komplexität. Keine Überanpassung, keine Unteranpassung. Vorhersagen in einer neuen Stichprobe (basierend auf dem datengenerierenden Prozess aus A) werden gut sein.</li>
+</ul></section><section id="mittlere-modellkomplexität-ist-optimal" class="level3" data-number="4.7.3"><h3 data-number="4.7.3" class="anchored" data-anchor-id="mittlere-modellkomplexität-ist-optimal">
+<span class="header-section-number">4.7.3</span> Mittlere Modellkomplexität ist optimal</h3>
+<p>Wie <a href="#fig-overfitting">Abbildung&nbsp;<span>4.15</span></a> zeigt, ist eine “mittlere” Modellkomplexität (oft) optimal. Fragt sich nur, was bzw. wo “mittel” genau liegt. 🤷‍♀️</p>
 <div id="fig-overfitting" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="img/overfitting-crop.png" class="img-fluid figure-img" style="width:50.0%"></p>
 <p></p><figcaption class="figure-caption">Abbildung&nbsp;4.15: Mittlere Modellkomplexität führt zur besten Vorhersagegüte: Gute Balance von Bias und Präzision</figcaption><p></p>
 </figure>
 </div>
-<section id="do-it-yourself-under-overfitting" class="level3" data-number="4.7.1"><h3 data-number="4.7.1" class="anchored" data-anchor-id="do-it-yourself-under-overfitting">
-<span class="header-section-number">4.7.1</span> Do-it-yourself Under-/Overfitting</h3>
+</section><section id="do-it-yourself-under-overfitting" class="level3" data-number="4.7.4"><h3 data-number="4.7.4" class="anchored" data-anchor-id="do-it-yourself-under-overfitting">
+<span class="header-section-number">4.7.4</span> Do-it-yourself Under-/Overfitting</h3>
 <p>Erkunden wir die Effekte von Under- und Overfitting an einem einfachen, simulierten Datenbeispiel:</p>
-<div class="cell" data-hash="040-Statistisches-Lernen_cache/html/unnamed-chunk-13_a217c0bd79a1bf68aca0aecf77789228">
+<div class="cell" data-hash="040-Statistisches-Lernen_cache/html/unnamed-chunk-14_26a706efe975934f449eacfee2e0bc24">
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
 <span>  x <span class="op">=</span> <span class="op">-</span><span class="fl">2</span><span class="op">:</span><span class="fl">2</span>,</span>
 <span>  y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="op">-</span><span class="fl">.5</span>, <span class="fl">0</span>, <span class="fl">0.1</span>, <span class="fl">2</span><span class="op">)</span></span>
@@ -782,7 +799,7 @@ Hinweis
 </div>
 <p>Wie man sieht, wird der Modellfehler immer kleiner, der “Fit” zunehmens besser.</p>
 <p>Das kann man sich natürlich auch präziser berechnen lassen.</p>
-<div class="cell" data-hash="040-Statistisches-Lernen_cache/html/unnamed-chunk-15_2274593bdfb1b305c384351bb8bd5aaa">
+<div class="cell" data-hash="040-Statistisches-Lernen_cache/html/unnamed-chunk-16_e936000c0f55f395bd634e095e25ff6c">
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">lm1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/poly.html">poly</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">1</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">d</span><span class="op">)</span></span>
 <span><span class="va">lm2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/poly.html">poly</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">2</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">d</span><span class="op">)</span></span>
 <span><span class="va">lm3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/stats/poly.html">poly</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">3</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">d</span><span class="op">)</span></span>
@@ -822,7 +839,7 @@ Hinweis
 <p><span class="math inline">\(y \sim x + \epsilon\)</span></p>
 <p>Sagen wir, das Rauschen ist normalverteilt mit Streuung 0.5.</p>
 <p>Simulieren wir uns jetzt ein paar neue Daten, die aus dieser Funktion resultieren.</p>
-<div class="cell" data-hash="040-Statistisches-Lernen_cache/html/unnamed-chunk-16_17a3f1f2f9dca0b23a15fc59fea46014">
+<div class="cell" data-hash="040-Statistisches-Lernen_cache/html/unnamed-chunk-17_8f3b35eddaddfeb62e61cb9169a02ed0">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">d1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
 <span>  x <span class="op">=</span> <span class="op">-</span><span class="fl">2</span><span class="op">:</span><span class="fl">2</span>,</span>
 <span>  e <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span>, </span>
@@ -835,7 +852,7 @@ Hinweis
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["x"],"name":[1],"type":["int"],"align":["right"]},{"label":["e"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["y"],"name":[3],"type":["int"],"align":["right"]},{"label":["y_hat"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"-2","2":"0.03914869","3":"-2","4":"-1.9608513"},{"1":"-1","2":"0.03967611","3":"-1","4":"-0.9603239"},{"1":"0","2":"0.59895226","3":"0","4":"0.5989523"},{"1":"1","2":"-0.26804676","3":"1","4":"0.7319532"},{"1":"2","2":"0.20705056","3":"2","4":"2.2070506"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["x"],"name":[1],"type":["int"],"align":["right"]},{"label":["e"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["y"],"name":[3],"type":["int"],"align":["right"]},{"label":["y_hat"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"-2","2":"-0.4028050","3":"-2","4":"-2.4028050"},{"1":"-1","2":"-0.4714080","3":"-1","4":"-1.4714080"},{"1":"0","2":"-0.7585373","3":"0","4":"-0.7585373"},{"1":"1","2":"0.9261601","3":"1","4":"1.9261601"},{"1":"2","2":"-1.5714355","3":"2","4":"0.4285645"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -844,7 +861,7 @@ Hinweis
 <p><span class="theorem-title"><strong>Definition 4.5 (Train- und Test-Datensatz) </strong></span>Den Datensatz, in dem man ein Modell berechnet (“fittet”), nennt man auch <em>Train-Datensatz</em>. Einen anderen Datensatz, den man nutzt, um die Güte des Modells zu überprüfen, nennt man <em>Test-Datensatz</em></p>
 </div>
 <p>Damit wir eine stabilere Datenbasis haben, simulieren wir aber pro X-Wert (-2, -1, 0, 1, 2) nicht nur einen Wert, sondern, sagen wir, 10:</p>
-<div class="cell" data-hash="040-Statistisches-Lernen_cache/html/unnamed-chunk-17_8142e8ce587fea17f72e2854cc94a2f7">
+<div class="cell" data-hash="040-Statistisches-Lernen_cache/html/unnamed-chunk-18_4ea6406f872c4e47f85f2d473f779b43">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">d2</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
 <span>    x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2</span><span class="op">:</span><span class="fl">2</span>, times <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>,</span>
@@ -858,7 +875,7 @@ Hinweis
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["x"],"name":[1],"type":["int"],"align":["right"]},{"label":["e"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["y_hat"],"name":[3],"type":["int"],"align":["right"]},{"label":["y"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"-2","2":"-0.03597477","3":"-2","4":"-2.03597477"},{"1":"-1","2":"0.64201121","3":"-1","4":"-0.35798879"},{"1":"0","2":"1.06242469","3":"0","4":"1.06242469"},{"1":"1","2":"0.94308244","3":"1","4":"1.94308244"},{"1":"2","2":"-0.72163956","3":"2","4":"1.27836044"},{"1":"-2","2":"0.32994662","3":"-2","4":"-1.67005338"},{"1":"-1","2":"1.12447288","3":"-1","4":"0.12447288"},{"1":"0","2":"-0.23674796","3":"0","4":"-0.23674796"},{"1":"1","2":"-0.01276137","3":"1","4":"0.98723863"},{"1":"2","2":"0.18243037","3":"2","4":"2.18243037"},{"1":"-2","2":"0.42705570","3":"-2","4":"-1.57294430"},{"1":"-1","2":"0.36564161","3":"-1","4":"-0.63435839"},{"1":"0","2":"-0.28865691","3":"0","4":"-0.28865691"},{"1":"1","2":"0.99167732","3":"1","4":"1.99167732"},{"1":"2","2":"0.12548835","3":"2","4":"2.12548835"},{"1":"-2","2":"-0.16610048","3":"-2","4":"-2.16610048"},{"1":"-1","2":"0.57811976","3":"-1","4":"-0.42188024"},{"1":"0","2":"0.26707899","3":"0","4":"0.26707899"},{"1":"1","2":"-1.06418261","3":"1","4":"-0.06418261"},{"1":"2","2":"-0.43045644","3":"2","4":"1.56954356"},{"1":"-2","2":"0.01019720","3":"-2","4":"-1.98980280"},{"1":"-1","2":"-0.04854415","3":"-1","4":"-1.04854415"},{"1":"0","2":"-0.32044413","3":"0","4":"-0.32044413"},{"1":"1","2":"-0.49259774","3":"1","4":"0.50740226"},{"1":"2","2":"-0.07434747","3":"2","4":"1.92565253"},{"1":"-2","2":"0.31993727","3":"-2","4":"-1.68006273"},{"1":"-1","2":"0.46875243","3":"-1","4":"-0.53124757"},{"1":"0","2":"0.48498427","3":"0","4":"0.48498427"},{"1":"1","2":"0.26422578","3":"1","4":"1.26422578"},{"1":"2","2":"-0.30671988","3":"2","4":"1.69328012"},{"1":"-2","2":"0.11178846","3":"-2","4":"-1.88821154"},{"1":"-1","2":"-0.27583953","3":"-1","4":"-1.27583953"},{"1":"0","2":"-0.38251721","3":"0","4":"-0.38251721"},{"1":"1","2":"0.44003301","3":"1","4":"1.44003301"},{"1":"2","2":"0.88905997","3":"2","4":"2.88905997"},{"1":"-2","2":"-0.08187534","3":"-2","4":"-2.08187534"},{"1":"-1","2":"-0.57914721","3":"-1","4":"-1.57914721"},{"1":"0","2":"-0.21093029","3":"0","4":"-0.21093029"},{"1":"1","2":"0.22540240","3":"1","4":"1.22540240"},{"1":"2","2":"-0.83282462","3":"2","4":"1.16717538"},{"1":"-2","2":"-0.08299243","3":"-2","4":"-2.08299243"},{"1":"-1","2":"-0.17778007","3":"-1","4":"-1.17778007"},{"1":"0","2":"-0.55298832","3":"0","4":"-0.55298832"},{"1":"1","2":"-0.14347728","3":"1","4":"0.85652272"},{"1":"2","2":"-0.17599729","3":"2","4":"1.82400271"},{"1":"-2","2":"-1.11603534","3":"-2","4":"-3.11603534"},{"1":"-1","2":"0.45502021","3":"-1","4":"-0.54497979"},{"1":"0","2":"-0.39859817","3":"0","4":"-0.39859817"},{"1":"1","2":"0.10422841","3":"1","4":"1.10422841"},{"1":"2","2":"-0.60279445","3":"2","4":"1.39720555"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["x"],"name":[1],"type":["int"],"align":["right"]},{"label":["e"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["y_hat"],"name":[3],"type":["int"],"align":["right"]},{"label":["y"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"-2","2":"-0.977194240","3":"-2","4":"-2.97719424"},{"1":"-1","2":"-0.048994715","3":"-1","4":"-1.04899472"},{"1":"0","2":"0.053811070","3":"0","4":"0.05381107"},{"1":"1","2":"0.001139958","3":"1","4":"1.00113996"},{"1":"2","2":"0.410066120","3":"2","4":"2.41006612"},{"1":"-2","2":"0.430749210","3":"-2","4":"-1.56925079"},{"1":"-1","2":"0.439262703","3":"-1","4":"-0.56073730"},{"1":"0","2":"0.733344459","3":"0","4":"0.73334446"},{"1":"1","2":"0.234004252","3":"1","4":"1.23400425"},{"1":"2","2":"-0.508835762","3":"2","4":"1.49116424"},{"1":"-2","2":"-0.028419029","3":"-2","4":"-2.02841903"},{"1":"-1","2":"-0.620066726","3":"-1","4":"-1.62006673"},{"1":"0","2":"-0.024476266","3":"0","4":"-0.02447627"},{"1":"1","2":"0.253377468","3":"1","4":"1.25337747"},{"1":"2","2":"-0.465556428","3":"2","4":"1.53444357"},{"1":"-2","2":"-0.358957836","3":"-2","4":"-2.35895784"},{"1":"-1","2":"-0.346773706","3":"-1","4":"-1.34677371"},{"1":"0","2":"0.121081604","3":"0","4":"0.12108160"},{"1":"1","2":"0.050939847","3":"1","4":"1.05093985"},{"1":"2","2":"-0.217995656","3":"2","4":"1.78200434"},{"1":"-2","2":"-0.605799955","3":"-2","4":"-2.60579996"},{"1":"-1","2":"-0.448655249","3":"-1","4":"-1.44865525"},{"1":"0","2":"-0.054598582","3":"0","4":"-0.05459858"},{"1":"1","2":"0.174501000","3":"1","4":"1.17450100"},{"1":"2","2":"0.281773653","3":"2","4":"2.28177365"},{"1":"-2","2":"-0.300265537","3":"-2","4":"-2.30026554"},{"1":"-1","2":"-0.934239434","3":"-1","4":"-1.93423943"},{"1":"0","2":"0.040337674","3":"0","4":"0.04033767"},{"1":"1","2":"-0.418894187","3":"1","4":"0.58110581"},{"1":"2","2":"-0.144917415","3":"2","4":"1.85508258"},{"1":"-2","2":"-0.435713671","3":"-2","4":"-2.43571367"},{"1":"-1","2":"0.234661754","3":"-1","4":"-0.76533825"},{"1":"0","2":"0.059742889","3":"0","4":"0.05974289"},{"1":"1","2":"-0.738143335","3":"1","4":"0.26185666"},{"1":"2","2":"0.793748884","3":"2","4":"2.79374888"},{"1":"-2","2":"-0.301493385","3":"-2","4":"-2.30149339"},{"1":"-1","2":"-0.299690728","3":"-1","4":"-1.29969073"},{"1":"0","2":"0.809602588","3":"0","4":"0.80960259"},{"1":"1","2":"-0.278634478","3":"1","4":"0.72136552"},{"1":"2","2":"0.718404201","3":"2","4":"2.71840420"},{"1":"-2","2":"0.218507186","3":"-2","4":"-1.78149281"},{"1":"-1","2":"0.012257550","3":"-1","4":"-0.98774245"},{"1":"0","2":"-0.688885019","3":"0","4":"-0.68888502"},{"1":"1","2":"0.003081538","3":"1","4":"1.00308154"},{"1":"2","2":"-0.206078688","3":"2","4":"1.79392131"},{"1":"-2","2":"-0.763762402","3":"-2","4":"-2.76376240"},{"1":"-1","2":"-0.536746312","3":"-1","4":"-1.53674631"},{"1":"0","2":"0.779829748","3":"0","4":"0.77982975"},{"1":"1","2":"0.397344427","3":"1","4":"1.39734443"},{"1":"2","2":"-0.358514446","3":"2","4":"1.64148555"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -878,13 +895,13 @@ Hinweis
 </div>
 </div>
 <p>Jetzt sieht das R-Quadrat schon nicht mehr so gut aus, s. <a href="#fig-polytest">Abbildung&nbsp;<span>4.17</span></a>. Berechnen wir mal das R-Quadrat:</p>
-<div class="cell" data-hash="040-Statistisches-Lernen_cache/html/unnamed-chunk-19_ce4e4d638eb6508960e22859e44e3bbe">
+<div class="cell" data-hash="040-Statistisches-Lernen_cache/html/unnamed-chunk-20_22efc601fa13140bc4f006a8e8686b25">
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">rsq</span><span class="op">(</span>data <span class="op">=</span> <span class="va">d2</span>, truth <span class="op">=</span> <span class="va">y</span>, estimate <span class="op">=</span> <span class="va">y_hat</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":[".metric"],"name":[1],"type":["chr"],"align":["left"]},{"label":[".estimator"],"name":[2],"type":["chr"],"align":["left"]},{"label":[".estimate"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"rsq","2":"standard","3":"0.8738076"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":[".metric"],"name":[1],"type":["chr"],"align":["left"]},{"label":[".estimator"],"name":[2],"type":["chr"],"align":["left"]},{"label":[".estimate"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"rsq","2":"standard","3":"0.9279096"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>

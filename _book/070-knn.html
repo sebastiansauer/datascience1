@@ -292,8 +292,9 @@ div.csl-indent {
   <li><a href="#krebstest-beispiel" id="toc-krebstest-beispiel" class="nav-link" data-scroll-target="#krebstest-beispiel"><span class="header-section-number">7.8.5</span> Krebstest-Beispiel</a></li>
   </ul>
 </li>
-  <li><a href="#aufgaben" id="toc-aufgaben" class="nav-link" data-scroll-target="#aufgaben"><span class="header-section-number">7.9</span> Aufgaben</a></li>
-  <li><a href="#fazit" id="toc-fazit" class="nav-link" data-scroll-target="#fazit"><span class="header-section-number">7.10</span> Fazit</a></li>
+  <li><a href="#knn-als-regression" id="toc-knn-als-regression" class="nav-link" data-scroll-target="#knn-als-regression"><span class="header-section-number">7.9</span> kNN als Regression</a></li>
+  <li><a href="#aufgaben" id="toc-aufgaben" class="nav-link" data-scroll-target="#aufgaben"><span class="header-section-number">7.10</span> Aufgaben</a></li>
+  <li><a href="#fazit" id="toc-fazit" class="nav-link" data-scroll-target="#fazit"><span class="header-section-number">7.11</span> Fazit</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -529,6 +530,7 @@ e &amp;= \sqrt{29} \approx 5.4
 <span><span class="co">## Computational engine: kknn</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In der Voreinstellung wird <span class="math inline">\(k=5\)</span> gewählt.</p>
+<p>Informationen zum Modell, z.B. <code>nearest_neighbor</code> bekommt man mit <code>show_model_info("nearest_neighbor")</code>.</p>
 </section><section id="workflow-definieren" class="level3" data-number="7.6.4"><h3 data-number="7.6.4" class="anchored" data-anchor-id="workflow-definieren">
 <span class="header-section-number">7.6.4</span> Workflow definieren</h3>
 <div class="cell" data-hash="070-knn_cache/html/unnamed-chunk-10_1f630b22e616d45688f92278bc8ab008">
@@ -1493,8 +1495,12 @@ Hinweis
 </div>
 </div>
 </div>
-</section></section><section id="aufgaben" class="level2" data-number="7.9"><h2 data-number="7.9" class="anchored" data-anchor-id="aufgaben">
-<span class="header-section-number">7.9</span> Aufgaben</h2>
+</section></section><section id="knn-als-regression" class="level2" data-number="7.9"><h2 data-number="7.9" class="anchored" data-anchor-id="knn-als-regression">
+<span class="header-section-number">7.9</span> kNN als Regression</h2>
+<p>Der kNN-Algorithmus kann nicht nur zur Klassifikation, sondern auch zur Regression (numerische Vorhersage) verwendet werden.</p>
+<p>Die Vorhersage ist dann nicht der <em>Modus</em> der Nachbarn, sondern der <em>Mittelwert</em> der Nachbarn.</p>
+</section><section id="aufgaben" class="level2" data-number="7.10"><h2 data-number="7.10" class="anchored" data-anchor-id="aufgaben">
+<span class="header-section-number">7.10</span> Aufgaben</h2>
 <ul>
 <li>Arbeiten Sie sich so gut als möglich durch <a href="https://github.com/sebastiansauer/covid-icu">diese Analyse zum Verlauf von Covid-Fällen</a>
 </li>
@@ -1505,8 +1511,8 @@ Hinweis
 <a href="https://www.kirenz.com/post/2021-02-17-r-classification-tidymodels/">Fallstudie Immobilienpreise von Jan Kirzenz</a>; diese Fallstudie beinhaltet mehrere Lernalgorithmen, die Sie vielleicht noch nicht kennen.</li>
 </ul>
 <p>Falls Sie in einer Fallstudie auf Inhalte treffen, die Sie noch nicht kennen: Im Zweifel einfach ignorieren.</p>
-</section><section id="fazit" class="level2" data-number="7.10"><h2 data-number="7.10" class="anchored" data-anchor-id="fazit">
-<span class="header-section-number">7.10</span> Fazit</h2>
+</section><section id="fazit" class="level2" data-number="7.11"><h2 data-number="7.11" class="anchored" data-anchor-id="fazit">
+<span class="header-section-number">7.11</span> Fazit</h2>
 <p><em>Keep kalm and proceed</em> 😎</p>
 
 

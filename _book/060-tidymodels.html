@@ -291,7 +291,8 @@ div.csl-indent {
 <li><a href="#was-ist-rezept-und-wozu-ist-es-gut" id="toc-was-ist-rezept-und-wozu-ist-es-gut" class="nav-link" data-scroll-target="#was-ist-rezept-und-wozu-ist-es-gut"><span class="header-section-number">6.7.1</span> Was ist Rezept und wozu ist es gut?</a></li>
   <li><a href="#workflows-mit-rezepten" id="toc-workflows-mit-rezepten" class="nav-link" data-scroll-target="#workflows-mit-rezepten"><span class="header-section-number">6.7.2</span> Workflows mit Rezepten</a></li>
   <li><a href="#spaltenrollen" id="toc-spaltenrollen" class="nav-link" data-scroll-target="#spaltenrollen"><span class="header-section-number">6.7.3</span> Spaltenrollen</a></li>
-  <li><a href="#fazit" id="toc-fazit" class="nav-link" data-scroll-target="#fazit"><span class="header-section-number">6.7.4</span> Fazit</a></li>
+  <li><a href="#preppen-und-backen" id="toc-preppen-und-backen" class="nav-link" data-scroll-target="#preppen-und-backen"><span class="header-section-number">6.7.4</span> Preppen und Backen</a></li>
+  <li><a href="#fazit" id="toc-fazit" class="nav-link" data-scroll-target="#fazit"><span class="header-section-number">6.7.5</span> Fazit</a></li>
   </ul>
 </li>
   <li><a href="#aufgaben" id="toc-aufgaben" class="nav-link" data-scroll-target="#aufgaben"><span class="header-section-number">6.8</span> Aufgaben</a></li>
@@ -1345,8 +1346,47 @@ Hinweis
 <span><span class="co">## Log transformation on Gr_Liv_Area</span></span>
 <span><span class="co">## Dummy variables from all_nominal_predictors()</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="fazit" class="level3" data-number="6.7.4"><h3 data-number="6.7.4" class="anchored" data-anchor-id="fazit">
-<span class="header-section-number">6.7.4</span> Fazit</h3>
+</section><section id="preppen-und-backen" class="level3" data-number="6.7.4"><h3 data-number="6.7.4" class="anchored" data-anchor-id="preppen-und-backen">
+<span class="header-section-number">6.7.4</span> Preppen und Backen</h3>
+<p>Ein Rezept ist erstmal nur, ja, ein Rezept: Eine Beschreibung von Schritten und Zutaten. Es ist noch nichts gebacken. Um aus einen Rezept einen “Kuchen” - den transformierten Datensatz - zu bekommen, sind zwei Schritte nötig:</p>
+<ol type="1">
+<li>
+<em>Vorbereiten</em> (to prep): Die Parameter des Rezeptschritte berechnen. So muss der Schritt <code>step_center(var)</code> den Mittelwert von <code>var</code> wissen, sonst kann der Schritt nicht durchgeführt werden.</li>
+<li>
+<em>Backen</em> ist das Rezept vorbereitet, kann der Datensatz damit gebacken werden.</li>
+</ol>
+<p>Praktischerweise erledigt Tidymodels das alles automatisch für uns, wir haben da nichts zu tun.</p>
+<p>Allerdings ist es manchmal praktisch, den durch das Rezept “gebackenen” (transformierten) Datensatz zu sehen, daher sollte man wissen, wie man das “preppen” und “backen” von Hand erledigt.</p>
+<ol type="1">
+<li>Preppen:</li>
+</ol>
+<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-40_d67b9fd91fc977dd88787691c0555760">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ames_recipe_prepped</span> <span class="op">&lt;-</span></span>
+<span>  <span class="va">ames_recipe</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">prep</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">ames_recipe_prepped</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="2" type="1">
+<li>Backen:</li>
+</ol>
+<div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-41_319b7490c517785ed695e5dd92763bac">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ames_train_baked</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="va">ames_recipe_prepped</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu">bake</span><span class="op">(</span>new_data <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> </span>
+<span></span>
+<span><span class="va">ames_train_baked</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["Neighborhood"],"name":[1],"type":["fct"],"align":["left"]},{"label":["Gr_Liv_Area"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Year_Built"],"name":[3],"type":["int"],"align":["right"]},{"label":["Sale_Price"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Bldg_Type_TwoFmCon"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Bldg_Type_Duplex"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["Bldg_Type_Twnhs"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["Bldg_Type_TwnhsE"],"name":[8],"type":["dbl"],"align":["right"]}],"data":[{"1":"North_Ames","2":"2.952308","3":"1961","4":"5.021189","5":"0","6":"0","7":"0","8":"0"},{"1":"North_Ames","2":"2.936514","3":"1971","4":"5.060698","5":"0","6":"0","7":"0","8":"0"},{"1":"Briardale","2":"2.994317","3":"1971","4":"4.982271","5":"0","6":"0","7":"1","8":"0"},{"1":"Briardale","2":"3.038223","3":"1971","4":"5.023252","5":"0","6":"0","7":"1","8":"0"},{"1":"Briardale","2":"3.038223","3":"1971","4":"4.944483","5":"0","6":"0","7":"1","8":"0"},{"1":"Northpark_Villa","2":"3.028978","3":"1977","4":"5.105510","5":"0","6":"0","7":"0","8":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+</section><section id="fazit" class="level3" data-number="6.7.5"><h3 data-number="6.7.5" class="anchored" data-anchor-id="fazit">
+<span class="header-section-number">6.7.5</span> Fazit</h3>
 <p>Mehr zu Rezepten findet sich <a href="https://recipes.tidymodels.org/">hier</a>. Ein Überblick zu allen Schritten der Vorverarbeitung findet sich <a href="https://www.tidymodels.org/find/recipes/">hier</a>.</p>
 </section></section><section id="aufgaben" class="level2" data-number="6.8"><h2 data-number="6.8" class="anchored" data-anchor-id="aufgaben">
 <span class="header-section-number">6.8</span> Aufgaben</h2>

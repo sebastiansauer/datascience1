@@ -404,6 +404,10 @@ knn_spec
 
 In der Voreinstellung wird $k=5$ gewählt.
 
+Informationen zum Modell, z.B. `nearest_neighbor` bekommt man mit `show_model_info("nearest_neighbor")`.
+
+
+
 ### Workflow definieren
 
 ```{r}
@@ -871,6 +875,15 @@ Diese Funktion ruft man dann genauso auf wie `metrics`:
 ```{r}
 my_metrics(krebstest, truth = Krebs, estimate = Test)
 ```
+
+
+
+## kNN als Regression
+
+
+Der kNN-Algorithmus kann nicht nur zur Klassifikation, sondern auch zur Regression (numerische Vorhersage) verwendet werden.
+
+Die Vorhersage ist dann nicht der *Modus* der Nachbarn, sondern der *Mittelwert* der Nachbarn.
 
 
 
