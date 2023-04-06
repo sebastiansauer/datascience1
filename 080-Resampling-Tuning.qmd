@@ -122,6 +122,11 @@ ames <-
 ```
 
 
+[Hier](https://www.tmwr.org/recipes.html#skip-equals-true) finden Sie eine Antwort,
+warum tidymodels sich weigert, Informationen über die AV vom Train- in das Test-Sample zu transferieren.
+
+
+
 
 ## Datensatz aufteilen
 
@@ -640,7 +645,7 @@ Parameter dieser Art (die von den Nutzi zu bestimmen sind, nicht vom Algorithmus
 nennt man *Tuningparameter*.
 
 
-Abbildung @fig-nnoverfit aus @silge_tidy_2022 stellt exemplarisch dar,
+Abbildung @fig-nnoverfit aus [diesem Kapitel von](https://www.tmwr.org/tuning.html#overfitting-bad) @silge_tidy_2022 stellt exemplarisch dar,
 welchen großen Einfluss die Wahl des Werts eines Tuningparameters auf die 
 Vorhersagen eines Modells haben.
 
