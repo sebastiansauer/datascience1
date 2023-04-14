@@ -31,13 +31,6 @@ knitr::opts_chunk$set(echo = TRUE)
 - TMWR, Kap. 10, 12
 
 
-### Daten
-
-
-```{r}
-data(ames)
-```
-
 
 
 ### Benötigte R-Pakete
@@ -46,6 +39,16 @@ data(ames)
 library(tidyverse)
 library(tidymodels)
 library(tictoc)  # Rechenzeit messen, optional
+```
+
+
+
+
+### Daten
+
+
+```{r}
+data(ames)
 ```
 
 
@@ -62,7 +65,7 @@ Zur Klarheit der Begrifflichkeiten nennt man die resultierenden Teile in dem Fal
 Kap. 10.2 in @silge_tidy_2022 ([Quelle](https://www.tmwr.org/resampling.html)).
 
 
-![Die Aufteilung der Daten im Falle mehrerer Modellkandidaten](img/resampling.svg){#ig-analys-assess-test width="50%"}
+![Die Aufteilung der Daten im Falle mehrerer Modellkandidaten](img/resampling.svg){#fig-analys-assess-test width="50%"}
 
 
 ### Standardablauf
@@ -91,22 +94,96 @@ lastFit --> test[Teste im Test-S]
 
 
 
+### Datensatz aufteilen
+
+Bisher haben wir den Gesamt-Datensatz stets in ein Train- und ein Test-Sample aufgeteilt.
 
 
 
-## tidymodels
+
+Aber es könnte ja sein, dass die Aufteilung just die "schwer zu  vorherzusagenden" Fälle in das Test-Sample befördert.
+Dann würde sich unser Modell über die Maßen schwer tun und zu schlecht abschneiden.
+Umgekehrt könnte es ja passieren, dass die "einfach zu vorherzusagenden" Fälle ins Test-Sample wandern, einfach durch die Zufälligkeit der Aufteilung von Train- und Test-Sample.
+
+Eine Lösung, die sich anbietet, lautet, die Train-Test-Aufteilung ein paar Mal durchzuführen, und sich dann mit dem Mittelwert der Modellgüte  zu begnügen.
+Voilà: Resampling!
+
+:::{.def-resampling}
+### Resampling
+Resampling ist eine Verallgemeinerung des einfachen Aufteilens in Train- und Test-Sample.
+Im Kern wird aus dem Datensatz mehrere Stichproben durch wiederholtes Ziehen gezogen.
+Durch Resampling kann die Modellgüte besser bestimmt werden als durch einfaches Train-Test-Aufteilen.$\square$
+:::
+
+:::{.callout-note}
+Verschiedene (zufällige) Aufteilung eines Datensatzes in Train- und Test-Sample können zu verschiedenen Modellgüten führen. So könnten im Train-Sample durch eine bestimmte Zufallsaufteilung relativ viele (oder wenige) schwer zu klassifizierende Fälle zusammen kommen.$\square$
+:::
+
+
+### Resampling-Varianten
+
+
+Vergleichen Sie die drei Fälle, die sich in der Nutzung von Train- und Test-Sample unterscheiden:
+
+1. Wir fitten ein Klassifikationsmodell in einer Stichprobe, sagen die Y-Werte dieser Stichprobe "vorher". Wir finden eine Gesamtgenauigkeit von 80%.
+2. Wir fitten ein Klassifikationsmodell in einem Teil der ursprünglichen Stichprobe (Train-Sample) und sagen Y-die Werte im verbleibenden Teil der ursprünglichen Stichprobe vorher (Test-Sample). Wir finden eine Gesamtgenauigkeit von 70%.
+3. Wir wiederholen Fall 2 noch drei Mal mit jeweils anderer Zuweisung der Fälle zum Train- bzw. zum Test-Sample. Wir finden insgesamt folgende Werte an Gesamtgenauigkeit: 70%, 70%, 65%, 75%.
+
+
+Welchen der drei Fälle finden Sie am sinnvollsten? Warum?
+Fall Nummer 3 bezeichnet man als *Kreuzvalidierung*.
+
+
+
+
+
+
+
+
+
+
+### Illustration des Resampling
+
+*Resampling* stellt einen Oberbegriff dar; *Kreuzvalidierung* ist ein Unterbegriff dazu.
+Es gibt noch andere Arten des Resampling, etwa *Bootstrapping* oder *Leave-One-Out-Cross-Validation* (LOOCV).
+
+Im Folgenden ist nur die Kreuzvalidierung dargestellt,
+da es eines der wichtigsten und vielleicht das am häufigsten verwendete Verfahren des Resampling ist.
+In vielen Quellen finden sich Erläuterungen anderer Verfahren dargestellt,
+etwa in @silge_tidy_2022, @islr oder @rhys.
+
+
+
+
+
+
+
+## Umsetzung in tidymodels
 
 Betrachten wir dieses Konzept an einem konkreten Beispiel mit Tidymodels.
 
-#
+
+
+### Keine Train-Test-Aufteilung
+
+Wir teilen beim Resampling nicht einmal in Train- und Test-Sample, sondern mehrfach.
+Daher können wir uns die einfache Train-Test-Aufteilung sparen.
+
+
+:::{.callout-caution}
+Wenn man ein Model auch tuned, also Tuning verwendet, dann werden wir wiederum die Train-Test-Aufteilung verwenden. Dazu später mehr.$\square$
+:::
 
 
 ### Abhängige Variable transformieren
 
+Wir beginnen mit etwas Datenvorverarbeitung. 
+Hier transformieren wir die abhängige Variable, und zwar mit einer Log-Transformation.
+
 :::{callout-note}
 Möchte man eine abhängige Variable transformieren, 
 so sollte das *außerhalb* des Rezepts passieren,
-da das "Backen" nicht auf die `outcome`-Variable ausgeführt wird.$\square$
+da Tidymodels das "Backen" nicht auf die `outcome`-Variable ausführt.$\square$
 :::
 
 
@@ -128,16 +205,6 @@ warum tidymodels sich weigert, Informationen über die AV vom Train- in das Test
 
 
 
-## Datensatz aufteilen
-
-
-```{r ames-split, echo = TRUE}
-set.seed(4595)
-data_split <- initial_split(ames, strata = "Sale_Price")
-
-ames_train <- training(data_split)
-ames_test <- testing(data_split)
-```
 
 
 ### Rezept, Modell und Workflow definieren
@@ -148,7 +215,7 @@ mit einem kNN-Modell.
 ```{r ames-wf, echo = TRUE}
 ames_rec <-
   recipe(Sale_Price ~ Lot_Area + Fireplaces + Longitude + Latitude,
-         data = ames_train) %>%
+         data = ames) %>%
   step_zv(all_predictors()) %>% 
   step_normalize(all_predictors()) %>% 
   step_impute_median(all_predictors())
@@ -164,42 +231,11 @@ ames_wflow1 <-
   add_model(knn_model)
 ```
 
-Mit dem Rezept kNN-Modell ist noch *nicht* *berechnet,
+Zur Erinnerung: Mit dem Rezept kNN-Modell ist noch *nicht* *berechnet,
 es ist nur ein "Rezept" erstellt.
 
 
 
-
-
-## Resampling
-
-
-Vergleichen Sie die drei Fälle, die sich in der Nutzung von Train- und Test-Sample unterscheiden:
-
-1. Wir fitten ein Klassifikationsmodell in einer Stichprobe, sagen die Y-Werte dieser Stichprobe "vorher". Wir finden eine Gesamtgenauigkeit von 80%.
-2. Wir fitten ein Klassifikationsmodell in einem Teil der ursprünglichen Stichprobe (Train-Sample) und sagen Y-die Werte im verbleibenden Teil der ursprünglichen Stichprobe vorher (Test-Sample). Wir finden eine Gesamtgenauigkeit von 70%.
-3. Wir wiederholen Fall 2 noch drei Mal mit jeweils anderer Zuweisung der Fälle zum Train- bzw. zum Test-Sample. Wir finden insgesamt folgende Werte an Gesamtgenauigkeit: 70%, 70%, 65%, 75%.
-
-
-Welchen der drei Fälle finden Sie am sinnvollsten? Warum?
-
-
-:::{.callout-note}
-Verschiedene (zufällige) Aufteilung eines Datensatzes in Train- und Test-Sample können zu verschiedenen Modellgüten führen. So könnten im Train-Sample durch eine bestimmte Zufallsaufteilung relativ viele (oder wenige) schwer zu klassifizierende Fälle zusammen kommen.$\square$
-:::
-
-Fall Nummer 3 bezeichnet man als *Kruezvalidierung*.
-
-
-## Illustration des Resampling
-
-*Resampling* stellt einen Oberbegriff dar; *Kreuzvalidierung* ist ein Unterbegriff dazu.
-Es gibt noch andere Arten des Resampling, etwa *Bootstrapping* oder *Leave-One-Out-Cross-Validation* (LOOCV).
-
-Im Folgenden ist nur die Kreuzvalidierung dargestellt,
-da es eines der wichtigsten und vielleicht das am häufigsten verwendete Verfahren des Resampling ist.
-In vielen Quellen finden sich Erläuterungen anderer Verfahren dargestellt,
-etwa in @silge_tidy_2022, @islr oder @rhys.
 
 
 
@@ -273,14 +309,14 @@ knitr::include_graphics("img/crossval_repeated.png")
 
 Die wiederholte Kreuzvalidierung reduziert den Standardfehler der Vorhersagen.
 
-@silge_tidy_2022 zeigen die Verringerung des Schätzfehlers als Funktion der $r$ Wiederholungen dar,
-s. @fig-repcvred.
+<!-- @silge_tidy_2022 zeigen die Verringerung des Schätzfehlers als Funktion der $r$ Wiederholungen dar, -->
+<!-- s. @fig-repcvred. -->
 
 
-```{r repcvred, echo = FALSE, fig.cap = "Reduktion des Schätzfehlers als Funktion der r Wiederhoulugen der Kreuzvalidierung"}
-#| label: fig-repcvred
-knitr::include_graphics("https://www.tmwr.org/figures/variance-reduction-1.png")
-```
+<!-- ```{r repcvred, echo = FALSE, fig.cap = "Reduktion des Schätzfehlers als Funktion der r Wiederhoulugen der Kreuzvalidierung"} -->
+<!-- #| label: fig-repcvred -->
+<!-- knitr::include_graphics("https://www.tmwr.org/figures/variance-reduction-1.png") -->
+<!-- ``` -->
 
 
 Warum ist die Wiederholung der Kreuzvalidierung nützlich?
@@ -299,29 +335,12 @@ einfach schätzen:
 
 $${\displaystyle {\sigma }_{\bar {x}}\ ={\frac {\sigma }{\sqrt {n}}}}$$
 
-
-### Resampling passiert im Train-Sample
-
-Wichtig zu beachten ist, dass
-die Resampling nur im Train-Sample stattfindet.
-Das Test-Sample bleibt unangerührt.
-Dieser Sachverhalt ist in @fig-analys-assess-test, aus @silge_tidy_2022, illustriert.
-
-
-
-
-
-Wie in @fig-initialsplit dargestellt,
-wird das Modell im *Analyse-Sample* berechnet (gefittet),
-und im *Assessment-Sample* auf Modellgüte hin überprüft.
-
-Die letztliche Modellgüte ist dann die Zusammenfassung (Mittelwert) der einzelnen Resamples.
-
+## Vertiefung
 
 ### Andere Illustrationen
 
 
-Es gibt eine Reihe vergleichbarer Illustrationen in anderen Büchern:
+Es gibt eine Reihe nützlicher, vergleichbarer Illustrationen in anderen Büchern zum Resampling:
 
 - [Timbers, Campbell & Lee, 2022, Kap. 6](https://datasciencebook.ca/img/cv.png)
 - [Silge & Kuhn, 2022, 10.1](https://datasciencebook.ca/img/cv.png)
@@ -331,7 +350,7 @@ Es gibt eine Reihe vergleichbarer Illustrationen in anderen Büchern:
 
 
 
-## Gesetz der großen Zahl
+### Gesetz der großen Zahl
 
 Nach dem *Gesetz der großen Zahl* (Law of Large Numbers) sollte sich der Mittelwert einer großen Stichprobe 
 dem theoretischen Mittelwert der zugrundeliegenden Verteilung (Population, datengeneriender Prozess) 
@@ -384,15 +403,15 @@ Achtung: Bei randlastigen Verteilungen darf man dieses schöne, wohlerzogene Ver
 
 
 
-## CV in tidymodels
+## Kreuzvalidierung in tidymodels
 
-### CV definieren
+### Kreuzvalidierung definieren
 
-So kann man eine *einfache* v-fache Kreuzvalidierung in Tidymodels auszeichnen^[$v=10$ in der Voreinstellung]:
+So kann man eine *einfache* v-fache Kreuzvalidierung (cross-validation, CV) in Tidymodels auszeichnen^[$v=10$ in der Voreinstellung]:
 
 ```{r}
 set.seed(2453)
-ames_folds <- vfold_cv(ames_train, strata = "Sale_Price")
+ames_folds <- vfold_cv(ames, strata = "Sale_Price")
 ames_folds
 ```
 
@@ -403,7 +422,7 @@ ames_folds %>% pluck(1, 1)
 ```
 
 
-Möchte man die Defaults vpn `vfold_cv` wissen, schaut man in der Hilfe nach: `?vfold_cv`:
+Möchte man die Defaults von `vfold_cv` wissen, schaut man in der Hilfe nach: `?vfold_cv`:
 
 
 `vfold_cv(data, v = 10, repeats = 1, strata = NULL, breaks = 4, pool = 0.1, ...)` 
@@ -412,7 +431,7 @@ Möchte man die Defaults vpn `vfold_cv` wissen, schaut man in der Hilfe nach: `?
 Probieren wir $v=10$ und $r=10$:
 
 ```{r}
-ames_folds_rep <- vfold_cv(ames_train, 
+ames_folds_rep <- vfold_cv(ames, 
                            strata = "Sale_Price", 
                            v = 10,
                            repeats = 10)
@@ -431,7 +450,7 @@ mycores <- parallel::detectCores(logical = FALSE)
 mycores
 ```
 
-Auf Unix/MacOC-Systemen kann man dann die Anzahl der parallen Kerne so einstellen^[In Windows gibt es andere Wege.]:
+Auf Unix/MacOC-Systemen kann man dann die Anzahl der parallelen Kerne so einstellen^[In Windows gibt es andere Wege.]:
 
 ```{r}
 library(doMC)
@@ -459,19 +478,6 @@ toc()
 
 
 
-Natürlich interessiert uns primär die Modellgüte im *Test*-Sample:
-
-
-```{r}
-final_ames1 <-
-  last_fit(ames_wflow1, data_split)
-```
-
-```{r}
-final_ames1 %>% 
-  collect_metrics()
-```
-
 
 
 ### Streuung in der Modellgüte zwischen den Resamples
@@ -480,11 +486,17 @@ Betrachten wir die Streuungen der Modellgüte (RSMSE) in der 10-fachen, nicht wi
 
 
 ```{r}
+#| echo: false
 rmse_resamples <-
   ames_resamples_fit %>% 
   unnest(.metrics) %>% 
   filter(.metric == "rmse") %>% 
   select(id, .metric, .estimate) 
+
+mse_resamples_summ_grand <-
+  rmse_resamples %>% 
+  summarise(.estimate_rep_mean_grand = mean(.estimate),
+            .estimate_rep_sd = sd(.estimate))
 
 p_rmse_cv1r <- 
   rmse_resamples %>% 
@@ -492,7 +504,12 @@ p_rmse_cv1r <-
   geom_point() +
   geom_hline(yintercept = mean(rmse_resamples$.estimate), linetype = "dashed") +
   labs(caption = paste0("SD: ", round(sd(rmse_resamples$.estimate), 4)),
-       y = "Modellgüte: RMSE")
+       y = "Modellgüte: RMSE") +
+    annotate("errorbar", x = 0, 
+           ymin = mse_resamples_summ_grand$.estimate_rep_mean_grand - mse_resamples_summ_grand$.estimate_rep_sd,
+           ymax = mse_resamples_summ_grand$.estimate_rep_mean_grand + mse_resamples_summ_grand$.estimate_rep_sd,
+           color = "red") +
+  scale_y_continuous(limits = c(0.08, +0.12))
 ```
 
 
@@ -511,10 +528,21 @@ ames_resamples_fit_rep <-
 toc()
 ```
 
-
-Dann analysieren wir die Ergebnisse:
+Und hier sind die Gütekennzahlen der wiederholten Kreuzvalidierung.
 
 ```{r}
+ames_resamples_fit_rep %>% 
+  collect_metrics()
+```
+
+Wie man sieht, ist der Standardfehler (`std_err`),
+also die Streuung der Modellgüten *deutlich kleiner* in der wiederholten Kreuzvalidierung (verglichen mit der einfachen, r=1, Kreuzvalidierung).
+
+
+
+
+```{r}
+#| echo: false
 mse_resamples_rep <-
   ames_resamples_fit_rep %>% 
   unnest(.metrics) %>% 
@@ -529,6 +557,11 @@ mse_resamples_rep_summ <-
     .estimate_rep_sd = sd(.estimate),
     .estimate = .estimate_rep_mean) 
 
+mse_resamples_rep_summ_grand <- 
+mse_resamples_rep_summ %>% 
+  summarise(.estimate_rep_mean_grand = mean(.estimate_rep_mean),
+            .estimate_rep_sd = sd(.estimate_rep_mean))
+
 p_rmse_cv5r <- 
 mse_resamples_rep %>% 
   ggplot(aes(x = id)) +
@@ -537,27 +570,40 @@ mse_resamples_rep %>%
                 aes(ymin = .estimate - .estimate_rep_sd,
                     ymax = .estimate + .estimate_rep_sd)) +
   geom_hline(yintercept = mean(mse_resamples_rep$.estimate), linetype = "dashed") +
-  labs(caption = paste0("SD: ", round(sd(mse_resamples_rep$.estimate), 4)),
-       y = "Modellgüte: RMSE")
+  labs(caption = paste0("SD: ", round(mse_resamples_rep_summ_grand$.estimate_rep_sd, 4)),
+       y = "Modellgüte: RMSE") +
+  annotate("errorbar", x = 0, 
+           ymin = mse_resamples_rep_summ_grand$.estimate_rep_mean_grand - mse_resamples_rep_summ_grand$.estimate_rep_sd,
+           ymax = mse_resamples_rep_summ_grand$.estimate_rep_mean_grand + mse_resamples_rep_summ_grand$.estimate_rep_sd,
+           color = "red") +
+  scale_y_continuous(limits = c(0.08, +0.12))
 ```
 
 
 
-Wie man sieht, streuen die $v=10$ Faltungen in ihre Modellgüte, s. @fig-cv-rmse.
-Durch das Wiederholen *sinkt*, nach dem Gesetz der großen Zahl, die Streuung.
-Mit geringerer Streuung schätzen wir den wahren Fehler präziser.
+Auf dieser Basis visualisieren wir die Ergebnisse: Wie man sieht, streuen die $v=10$ Faltungen in ihre Modellgüte, s. @fig-cv-rmse, links.
+
+:::{.callout-note}
+Hätten wir nur ein Mal, nicht 10 Mal, in Train- und Test-Sample aufgeteilt, hättten wir einen Wert der Modellgüte (z.B. den ersten) beobachtet. 
+Wir hätten (vielleicht) nicht geahnt, dass unser Wert nicht der einzig mögliche ist.
+Jetzt sehen wir aber, dass ein einzelner Wert nicht zuverlässig ist.
+Erst mehrere Wiederholungen (Resamples) ermöglichen eine zuverlässige(re) Schätzung der Modellgüte.$\square$
+::::
+
+
+@fig-cv-rmse, rechts, zeigt ein zweites Phänomen. 
+Durch das Wiederholen ($r=5$) *sinkt*, nach dem Gesetz der großen Zahl, die Streuung.
+Geringere Streuung bedeutet eine genauere Schätzung des wahren Gütewerts. 
 
 
 ```{r}
 #| label: fig-cv-rmse
-# fig-cap: "Streuung der Modellgüte (RMSE) bei nicht wiederholter und wiederholter CV"
+#| fig-cap: "Streuung der Modellgüte (RMSE) bei nicht wiederholter und wiederholter CV"
 #| layout-ncol: 2
 #| fig-subcap: 
 #|   - "Streuung der Modellgüte (RMSE) mit v=10 r=1 CV"
 #|   - "Streuung der Modellgüte (RMSE) mit v=10 r=5 CV"
 #| echo: false
-
-
 
 p_rmse_cv1r
 p_rmse_cv5r
@@ -576,7 +622,8 @@ findet auch Grumpy Cat, s. @fig-grumpy1.
 ## Tuning
 
 
-:::{#def-tuning}
+:::{.def-tuning}
+### Tuning
 
 >   👨‍🏫 Hey ChatGPT: Definiere Tuning mit maschinellen Lernen am Beispiel von knn und dem Parameter k.
 
@@ -588,9 +635,33 @@ Das Ziel des Tunings ist es, den besten Wert für den Parameter k zu finden, um 
 
 
 
+### Tuning am Beispiel von knn
 
 
-### Tuning auszeichnen
+
+Im K-Nächste-Nachbarn-Modell (Klassifikation) ist der vorhergesagt Wert, $\hat{y}$ für eine neue Beobachtung $x_0$ der *Modus* der $K$ nächsten Nachbarn.
+
+
+Die Wahl von $K$ hat einen zentralen Einfluss auf die Vorhersagen und damit auf die Vorhersagegüte.
+Allerdings wird $K$ *nicht* vom Modell geschätzt.
+Es liegt an uns,
+diesen Wert zu wählen.
+
+
+:::{.def-tuningparameter}
+### Tuningparmaeter
+Parameter eines Lernmodells, die vom Nutzer zu bestimmen sind, also nicht vom Lernmodell geschätzt werden,
+nennt man *Tuningparameter*.$\square$
+:::
+
+
+>    🧑‍🎓 Hab ich nicht genau verstanden!
+
+>    👨‍🏫 Lies es hier oder anderer Stelle noch einmal nach. Oder frag mal einen Bot wie ChatGPT!
+
+
+
+### Tuning in Tidymodels
 
 In der Modellspezifikation des Modells können wir mit `tune()` *auszeichnen*,
 welche Parameter wir tunen möchten. 
@@ -622,52 +693,10 @@ knn_model2a <-
 Tidymodels trennt generell das Spezifizieren vom Evaluieren:
 Erst definieren wir ein Rezept und ein Modell, dann fitten wir es.
 Das gilt auch für das Tunen: Erst weisen wir Parameter zum Tunen aus,
-dann wählen wir Tuningparameter und tunen.$\square
+dann wählen wir Tuningparameter und tunen.$\square$
 :::
 
-### Tuning durchführen
 
-Wir betrachten zwei zentrale Arten von Tuning: Grid Search vs. Iterative Search.
-
-
-Im K-Nächste-Nachbarn-Modell (Klassifikation) ist der vorhergesagt Wert, $\hat{y}$ für eine neue Beobachtung $x_0$ der Modus der $K$ nächsten Nachbarn.
-
-
-Die Wahl von $K$ hat einen zentralen Einfluss auf die Vorhersagen und damit auf die Vorhersagegüte.
-Allerdings wird $K$ nicht vom Modell geschätzt.
-Es liegt an den Nutzi,
-diesen Wert zu wählen.
-
-Parameter dieser Art (die von den Nutzi zu bestimmen sind, nicht vom Algorithmus),
-nennt man *Tuningparameter*.
-
-
-Abbildung @fig-nnoverfit aus [diesem Kapitel von](https://www.tmwr.org/tuning.html#overfitting-bad) @silge_tidy_2022 stellt exemplarisch an den Vorhersagen eines neuronalen Netzes dar,
-welchen großen Einfluss die Wahl des Werts eines Tuningparameters auf die 
-Vorhersagen eines Modells haben.
-
-
-```{r nnoverfit, echo = FALSE, fig.cap = "Overfitting als Funktion der Modellparameter und insofern als Problem de Wahl der Tuningparameter"}
-#| label: fig-nnoverfit
-knitr::include_graphics("https://www.tmwr.org/figures/two-class-boundaries-1.png")
-```
-
-
-Aber wie wählt man "gute" Werte der Tuningparater?
-Zwei Ansätze, grob gesprochen, bieten sich an.
-
-1. *Grid Search:* Probiere viele Werte aus und schaue, welcher der beste ist. Dabei musst du hoffen, dass du die Werte erwischt, die nicht nur im Train-, sondern auch im Test-Sample gut funktionieren werden.
-
-2. *Iterative Search:* Wenn du einen Wert eines Tuningparameters hast, nutze diesen, um intelligenter einen neuen Wert eines Tuningparameters zu finden.
-
-
-Der Unterschied beider Ansätze ist in @silge_tidy_2022 wie in @fig-tuning1 dargestellt.
-
-
-```{r tuning1, echo=FALSE, fig.cap = "Links: Grid Search. Rechts: Iterative Search2"}
-#| label: fig-tuning1 
-knitr::include_graphics("https://www.tmwr.org/figures/tuning-strategies-1.png")
-```
 
 
 In `tidymodels` kann man mit `tune()` angeben, dass man einen bestimmten Parameter tunen möchte. 
@@ -677,15 +706,15 @@ In `tidymodels` kann man mit `tune()` angeben, dass man einen bestimmten Paramet
 
 
 
-Möchte man wissen, 
-welche und wie viele Tuningparameter tidymodels in einem Modell berücksichtigt,
-kann man so aufrufen^[Alle Tuningparameter eines Modells sieht man so: `knn_model2 %>% 
-  extract_parameter_set_dials()`]:
+<!-- Möchte man wissen,  -->
+<!-- welche und wie viele Tuningparameter tidymodels in einem Modell berücksichtigt, -->
+<!-- kann man so aufrufen^[Alle Tuningparameter eines Modells sieht man so: `knn_model2 %>%  -->
+<!--   extract_parameter_set_dials()`]: -->
 
-```{r}
-knn_model2 %>% 
-  extract_parameter_dials("neighbors")
-```
+<!-- ```{r} -->
+<!-- knn_model2 %>%  -->
+<!--   extract_parameter_dials("neighbors") -->
+<!-- ``` -->
 
 
 
@@ -704,33 +733,39 @@ Es gibt uns einen Bereich plausibler Tuningwerte vor.$\square$
 :::
 
 
-
-Aktualisieren wir  unseren Workflow entsprechend:
+Jetzt aktualisieren wir unseren Workflow mit dem neuen `knn_model2`,
+in dem jetzt ein Modellparameter ($k$) zum Tunen ausgezeichnet ist:
 
 ```{r}
 ames_wflow2 <-
   ames_wflow1 %>% 
   update_model(knn_model2)
-
-ames_wflow2
 ```
 
 
-
-Wir können auch Einfluss nehmen und angeben,
-dass die Grenzen des Wertebereichs zwischen 1 und 50 liegen soll 
-(für den Tuningparameter `neighbors`):
-
-
+Natürlich hätten wir auch von Anfang an den Workflow mit Tuning auszeichnen können:
 ```{r}
-knn_model3 <-
-nearest_neighbor(
-  mode = "classification",
-  neighbors = tune(id = "K") %>% set_range(c(1, 50))
-)
+ames_wflow2 <- 
+  workflow() %>% 
+  add_model(knn_model2) %>% 
+  add_recipe(ames_rec)
 ```
 
-Den Wertebereich eines Prädiktors kann man aber auch mit `search_grid` bestimmen.
+
+<!-- Wir können auch Einfluss nehmen und angeben, -->
+<!-- dass die Grenzen des Wertebereichs zwischen 1 und 50 liegen soll  -->
+<!-- (für den Tuningparameter `neighbors`): -->
+
+
+<!-- ```{r} -->
+<!-- knn_model3 <- -->
+<!-- nearest_neighbor( -->
+<!--   mode = "classification", -->
+<!--   neighbors = tune(id = "K") %>% set_range(c(1, 50)) -->
+<!-- ) -->
+<!-- ``` -->
+
+<!-- Den Wertebereich eines Prädiktors kann man aber auch mit `search_grid` bestimmen. -->
 
 
 <!-- ```{r ames-update} -->
@@ -777,6 +812,27 @@ Den Wertebereich eines Prädiktors kann man aber auch mit `search_grid` bestimme
 <!-- ``` -->
 
 
+### Doch wieder Train- und Test-Sample
+
+Wenn man Tuning betreibt, benötigt man *doch* wieder die Aufteilung von Train- und Test-Sample.
+Um Overfitting zu vermeiden, sollte man das Test-Sample nur *einmal* verwenden.
+Würde man viele Modelle am Test-Sample überprüfen, wäre es nur eine Frage der Zeit,
+bis man - allein durch Rauschen - eine (scheinbar) hohe Modellgüte findet.
+Daher führt man Tuning und Resampling nur im Train-Sample durch.
+Den besten, "finalen" Wert des Tuningparameters nutzt man dann um das ganze Train-Sample auf dieser Basis zu fitten. 
+Schließlich sagt man dann das Test-Sample vorher.
+
+
+```{r ames-split, echo = TRUE}
+set.seed(4595)
+data_split <- initial_split(ames, strata = "Sale_Price")
+
+ames_train <- training(data_split)
+ames_test <- testing(data_split)
+```
+
+
+
 ### Modelle mit Tuning berechnen
 
 Nachdem wir die Tuningwerte bestimmt haben, 
@@ -784,22 +840,19 @@ können wir jetzt das Modell berechnen:
 Für jeden Wert des Tuningparameters wird ein Modell berechnet:
 
 ```{r ames-tune-grid}
-ames_folds <- vfold_cv(ames_train, strata = "Sale_Price")
-
 ames_grid_search <-
   tune_grid(
     object = ames_wflow2,
     resamples = ames_folds,
-    grid = 5,  # 5 Tuningwerte insgesamt
-    tuning_control = control_grid(save_workflow = TRUE)
+    grid = 5  # 5 Tuningwerte insgesamt
   )
 ames_grid_search
 ```
 
-Im Default berechnet `tiymodels` 10 Kandidatenmodelle.
+Im Default berechnet `tiymodels` 10 verschiedene Tuningparamweterwerte ("Kandidatenmodelle").
+Hier haben wir mit `grid = 5` uns mit 5 verschiedenen Werten zufrieden gegeben.
+Tidymodels sucht uns nach einigen (recht vernünftigen) Daumenregeln ein paar Werte aus.
 
-Mit `control_grid` kann man beim Tuning einige Schalter umlegen,
-hier haben wir den Workflow an das Ergebnisobjekt angehängt.
 
 Die Spalte `.metrics` beinhaltet die Modellgüte für jedes Kandidatenmodell.
 
@@ -807,6 +860,8 @@ Die Spalte `.metrics` beinhaltet die Modellgüte für jedes Kandidatenmodell.
 ames_grid_search %>% 
   collect_metrics()
 ```
+
+Im Standard wird bei Regression (numerischer Vorhersage) der RMSE und R-Quadrat ausgegeben.
 
 Die Modellgüte in Abhängigkeit der Tuningwerte können wir uns einfach visualisieren lassen:
 
@@ -820,15 +875,34 @@ noch größere Werte für $K$ zu überprüfen.
 
 Tidymodels bietet verschiedene Optionen, 
 um ein "Gitter" (`grid`) an Werten von einem oder (in vielen Modellen) mehreren Tuningparametern zu durchsuchen.
-Eine Möglichkeit ist, ein Gitter mit *regelmäßigen* Abständen der Werte zu erstellen, z.B. mit 5 Ausprägungen pro Tuningparameter:
+
+Am einfachsten ist es, wenn wir ein Gitter an Werten als Tabelle (Tibble) vorgeben:
 
 ```{r}
 grid1 <- 
+  tibble(neighbors = 1:10)
+```
+
+
+Dabei müssen die Spalten so heißen, wie Tidymodels die Tuningparameter benennt.
+
+:::{.callout-tip}
+Die Namen der Tuningparameter erfährt man auf der Hilfeseite des Modells, z.B. `nearest_neighbor`. Oder mit `show_model_info("nearest_neighbor")`.
+Am komfortabelsten geht es mit `extract_parameter_set_dials(ames_wflow2)`.$\square$
+:::
+
+
+
+
+Eine andere Möglichkeit ist, ein Gitter mit *regelmäßigen* Abständen der Werte zu erstellen, z.B. mit 5 Ausprägungen pro Tuningparameter:
+
+```{r}
+grid2 <- 
   grid_regular(
     neighbors(range = c(5L, 30L)),
     levels = 5
     )
-grid1
+grid2
 ```
 
 
@@ -837,69 +911,43 @@ ames_grid_search2 <-
   tune_grid(
     object = ames_wflow2,
     resamples = ames_folds,  
-    grid = grid1,
-    control = control_grid(save_workflow = TRUE)
+    grid = grid2
   )
 ames_grid_search2
 ```
 
 
-### Vorhersage im Test-Sample
-
-Welches Modellkandidat war jetzt am besten?
-
-```{r}
-show_best(ames_grid_search2)
-```
+### Workflow finalisieren
 
 
-
-Wählen wir jetzt mal den besten Modellkandidaten aus (im Sinne des Optimierungskriteriusms, RMSE) und fitten damit das *gesamte* Train-Sample:
+Welcher Modellkandidat war jetzt am besten?
 
 ```{r}
-fit_best_train <- fit_best(ames_grid_search2)
-fit_best_train
+bester_modellkandidat <- select_best(ames_grid_search2)
+bester_modellkandidat
 ```
 
-
-Und mit den dann resultierenden Modellkoeffizienten sagen
-wir das TestSample vorher:
-
-
-
-
-```{r ames-last-fit}
-fit_best_train %>% 
-  predict(new_data = ames_test) %>% 
-  head()
-```
-
-```{r}
-fit_best_train %>% 
-  predict(new_data = ames_test) %>% 
-  head()
-```
-
-
-Mit `augment` kann man die Vorhersagen eines Modells zum Test-Datensatz hinzufügen:
+Aha! Mit diesem Wert updaten bzw. "finalisieren" wir jetzt unseren Workflow.
+Dann fitten wir zum letzten Mal mit diesem finalisierten Workflow das ganze Train-Sample,
+um dann, endlich, das Test-Sample vorherzusagen.
 
 
 ```{r}
-ames_test <- 
-  augment(fit_best_train, new_data = ames_test)
+ames_wflow2_final <- finalize_workflow(ames_wflow2, bester_modellkandidat)
+ames_wflow2_final
 ```
 
-
-
-
-Holen wir uns die Modellgüte:
 
 ```{r}
-rsq(data = ames_test,
-    truth = Sale_Price,
-    estimate = .pred)
+ames_last_fit <- last_fit(ames_wflow2_final, data_split)
 ```
 
+
+Modellgüte im Test-Sample:
+
+```{r}
+collect_metrics(ames_last_fit)
+```
 
 
 
@@ -913,7 +961,9 @@ rsq(data = ames_test,
 1. [tidymodels-penguins03](https://datenwerk.netlify.app/posts/tidymodels-penguins03/tidymodels-penguins03.html)
 1. [tidymodels-penguins04](https://datenwerk.netlify.app/posts/tidymodels-penguins04/tidymodels-penguins04.html)
 1. [tidymodels-penguins05](https://datenwerk.netlify.app/posts/tidymodels-penguins05/tidymodels-penguins05.html)
-
+1. [tidymodels-poly01](https://datenwerk.netlify.app/posts/tidymodels-poly01/tidymodels-poly01.html)
+1. [tidymodels-poly02](https://datenwerk.netlify.app/posts/tidymodels-poly02/tidymodels-poly02.html)
+1. [knn-ames01](https://datenwerk.netlify.app/posts/knn-ames01/knn-ames01.html)
 
 ## Fallstudien
 
