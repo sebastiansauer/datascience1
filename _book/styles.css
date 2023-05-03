@@ -1,0 +1,19 @@
+.justify {
+  text-align: justify !important
+}
+
+.centered {
+  text-align-last: center;
+}
+
+.xlarge {
+  font-size: 300%;
+}
+
+.xsmall {
+  font-size: 50%;
+}
+
+quotes: "„" "“" "‚" "‘";
+
+

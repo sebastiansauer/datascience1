@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.247">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Grundlagen der Prognosemodellierung 🔮🧰 - 5&nbsp; R, zweiter Blick</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./060-tidymodels.html" rel="next">
+<link href="./040-Statistisches-Lernen.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Keine Treffer",
+    "search-matching-documents-text": "Treffer",
+    "search-copy-link-title": "Link in die Suche kopieren",
+    "search-hide-matches-text": "Zusätzliche Treffer verbergen",
+    "search-more-match-text": "weitere Treffer in diesem Dokument",
+    "search-more-matches-text": "weitere Treffer in diesem Dokument",
+    "search-clear-button-title": "Zurücksetzen",
+    "search-detached-cancel-button-title": "Abbrechen",
+    "search-submit-button-title": "Abschicken"
+  }
+}</script><link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><link rel="stylesheet" href="styles.css">
+</head>
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./050-R-Vertiefung.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">R, zweiter Blick</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Grundlagen der Prognosemodellierung 🔮🧰</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Suchen"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Zu diesem Buch</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./010-Hinweise.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Hinweise</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./030-Pruefung.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Prüfung</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./040-Statistisches-Lernen.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Statistisches Lernen</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./050-R-Vertiefung.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">R, zweiter Blick</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./060-tidymodels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">tidymodels</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./070-knn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">kNN</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./080-Resampling-Tuning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Resampling und Tuning</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./090-glm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Logistische Regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./100-baeume.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Entscheidungsbäume</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./110-ensemble.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Ensemble Lerner</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./120-regularisierte-modelle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Regularisierte Modelle</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./130-kaggle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Kaggle</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./140-faden.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Der rote Faden</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./150-fallstudien.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Fallstudien</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./160-e.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Staunen mit e</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul>
+<li>
+<a href="#lernsteuerung" id="toc-lernsteuerung" class="nav-link active" data-scroll-target="#lernsteuerung"><span class="header-section-number">5.1</span> Lernsteuerung</a>
+  <ul class="collapse">
+<li><a href="#literatur" id="toc-literatur" class="nav-link" data-scroll-target="#literatur"><span class="header-section-number">5.1.1</span> Literatur</a></li>
+  <li><a href="#lernziele" id="toc-lernziele" class="nav-link" data-scroll-target="#lernziele"><span class="header-section-number">5.1.2</span> Lernziele</a></li>
+  <li><a href="#vorbereitung" id="toc-vorbereitung" class="nav-link" data-scroll-target="#vorbereitung"><span class="header-section-number">5.1.3</span> Vorbereitung</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#objekttypen-in-r" id="toc-objekttypen-in-r" class="nav-link" data-scroll-target="#objekttypen-in-r"><span class="header-section-number">5.2</span> Objekttypen in R</a>
+  <ul class="collapse">
+<li><a href="#%C3%BCberblick" id="toc-überblick" class="nav-link" data-scroll-target="#%C3%BCberblick"><span class="header-section-number">5.2.1</span> Überblick</a></li>
+  <li><a href="#taxonomie" id="toc-taxonomie" class="nav-link" data-scroll-target="#taxonomie"><span class="header-section-number">5.2.2</span> Taxonomie</a></li>
+  <li><a href="#indizieren" id="toc-indizieren" class="nav-link" data-scroll-target="#indizieren"><span class="header-section-number">5.2.3</span> Indizieren</a></li>
+  <li><a href="#weiterf%C3%BChrende-hinweise" id="toc-weiterführende-hinweise" class="nav-link" data-scroll-target="#weiterf%C3%BChrende-hinweise"><span class="header-section-number">5.2.4</span> Weiterführende Hinweise</a></li>
+  <li><a href="#indizieren-mit-dem-tidyverse" id="toc-indizieren-mit-dem-tidyverse" class="nav-link" data-scroll-target="#indizieren-mit-dem-tidyverse"><span class="header-section-number">5.2.5</span> Indizieren mit dem Tidyverse</a></li>
+  </ul>
+</li>
+  <li><a href="#datens%C3%A4tze-von-lang-nach-breit-umformatieren" id="toc-datensätze-von-lang-nach-breit-umformatieren" class="nav-link" data-scroll-target="#datens%C3%A4tze-von-lang-nach-breit-umformatieren"><span class="header-section-number">5.3</span> Datensätze von lang nach breit umformatieren</a></li>
+  <li><a href="#funktionen" id="toc-funktionen" class="nav-link" data-scroll-target="#funktionen"><span class="header-section-number">5.4</span> Funktionen</a></li>
+  <li>
+<a href="#wiederholungen-programmieren" id="toc-wiederholungen-programmieren" class="nav-link" data-scroll-target="#wiederholungen-programmieren"><span class="header-section-number">5.5</span> Wiederholungen programmieren</a>
+  <ul class="collapse">
+<li><a href="#across" id="toc-across" class="nav-link" data-scroll-target="#across"><span class="header-section-number">5.5.1</span> <code>across()</code></a></li>
+  <li><a href="#map" id="toc-map" class="nav-link" data-scroll-target="#map"><span class="header-section-number">5.5.2</span> <code>map()</code></a></li>
+  <li><a href="#weiterf%C3%BChrende-hinweise-1" id="toc-weiterführende-hinweise-1" class="nav-link" data-scroll-target="#weiterf%C3%BChrende-hinweise-1"><span class="header-section-number">5.5.3</span> Weiterführende Hinweise</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#listenspalten" id="toc-listenspalten" class="nav-link" data-scroll-target="#listenspalten"><span class="header-section-number">5.6</span> Listenspalten</a>
+  <ul class="collapse">
+<li><a href="#wozu-listenspalten" id="toc-wozu-listenspalten" class="nav-link" data-scroll-target="#wozu-listenspalten"><span class="header-section-number">5.6.1</span> Wozu Listenspalten?</a></li>
+  <li><a href="#beispiele-f%C3%BCr-listenspalten" id="toc-beispiele-für-listenspalten" class="nav-link" data-scroll-target="#beispiele-f%C3%BCr-listenspalten"><span class="header-section-number">5.6.2</span> Beispiele für Listenspalten</a></li>
+  <li><a href="#programmieren-mit-dem-tidyverse" id="toc-programmieren-mit-dem-tidyverse" class="nav-link" data-scroll-target="#programmieren-mit-dem-tidyverse"><span class="header-section-number">5.6.3</span> Programmieren mit dem Tidyverse</a></li>
+  </ul>
+</li>
+  <li><a href="#r-ist-schwierig" id="toc-r-ist-schwierig" class="nav-link" data-scroll-target="#r-ist-schwierig"><span class="header-section-number">5.7</span> R ist schwierig</a></li>
+  <li><a href="#aufgaben" id="toc-aufgaben" class="nav-link" data-scroll-target="#aufgaben"><span class="header-section-number">5.8</span> Aufgaben</a></li>
+  <li><a href="#vertiefung" id="toc-vertiefung" class="nav-link" data-scroll-target="#vertiefung"><span class="header-section-number">5.9</span> Vertiefung</a></li>
+  </ul></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">
+<span class="chapter-number">5</span>&nbsp; <span class="chapter-title">R, zweiter Blick</span>
+</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header><p>Benötigte R-Pakete für dieses Kapitel:</p>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-1_d00f1c647e6a21f3359336bc45750fed">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="lernsteuerung" class="level2" data-number="5.1"><h2 data-number="5.1" class="anchored" data-anchor-id="lernsteuerung">
+<span class="header-section-number">5.1</span> Lernsteuerung</h2>
+<section id="literatur" class="level3" data-number="5.1.1"><h3 data-number="5.1.1" class="anchored" data-anchor-id="literatur">
+<span class="header-section-number">5.1.1</span> Literatur</h3>
+<ul>
+<li>Rhys, Kap. 2</li>
+<li>MODAR, Kap. 5</li>
+</ul></section><section id="lernziele" class="level3" data-number="5.1.2"><h3 data-number="5.1.2" class="anchored" data-anchor-id="lernziele">
+<span class="header-section-number">5.1.2</span> Lernziele</h3>
+<ul>
+<li>Sie können Funktionen, in R schreiben.</li>
+<li>Sie können Datensätze vom Lang- und Breit-Format wechseln.</li>
+<li>Sie können Wiederholungsstrukturen wie Mapping-Funktionen anwenden.</li>
+<li>Sie können eine dplyr-Funktion auf mehrere Spalten gleichzeitig anwenden.</li>
+</ul></section><section id="vorbereitung" class="level3" data-number="5.1.3"><h3 data-number="5.1.3" class="anchored" data-anchor-id="vorbereitung">
+<span class="header-section-number">5.1.3</span> Vorbereitung</h3>
+<ul>
+<li>Lesen Sie die Literatur.</li>
+</ul></section></section><section id="objekttypen-in-r" class="level2" data-number="5.2"><h2 data-number="5.2" class="anchored" data-anchor-id="objekttypen-in-r">
+<span class="header-section-number">5.2</span> Objekttypen in R</h2>
+<p>Näheres zu Objekttypen findet sich in <span class="citation" data-cites="modar">Sauer (<a href="#ref-modar" role="doc-biblioref">2019</a>)</span>, Kap. 5.2.</p>
+<section id="überblick" class="level3" data-number="5.2.1"><h3 data-number="5.2.1" class="anchored" data-anchor-id="überblick">
+<span class="header-section-number">5.2.1</span> Überblick</h3>
+<p>In R ist praktisch alles ein Objekt.</p>
+<div id="def-obj" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 5.1 (Objekt (Informatik)) </strong></span>Ein Objekt meint ein im Computerspeicher repräsentiertes Ding, etwa eine Tabelle.<span class="math inline">\(\square\)</span></p>
+</div>
+<div id="exm-obs" class="theorem example">
+<p><span class="theorem-title"><strong>Beispiel 5.1 (Beispiele für Objekte) </strong></span>Vektoren und Dataframes (Tibbles) sind die vielleicht gängigsten Objektarten in R (vgl. <a href="#fig-obs">Abbildung&nbsp;<span class="quarto-unresolved-ref">fig-obs</span></a>), aus <span class="citation" data-cites="modar">Sauer (<a href="#ref-modar" role="doc-biblioref">2019</a>)</span>).<span class="math inline">\(\square\)</span></p>
+</div>
+<div id="fig-obs" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="img/zentrale_objektarten.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;5.1: Zentrale Objektarten in R</figcaption><p></p>
+</figure>
+</div>
+<p>Es gibt in R keine (Objekte für) Skalare (einzelne Zahlen). Stattdessen nutzt R Vektoren der Länge 1.</p>
+<p>Ein nützliches Schema stammt aus <span class="citation" data-cites="r4ds">Wickham und Grolemund (<a href="#ref-r4ds" role="doc-biblioref">2016</a>)</span>, s. <a href="#fig-objtypes">Abbildung&nbsp;<span class="quarto-unresolved-ref">fig-objtypes</span></a>).</p>
+<div id="fig-objtypes" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="img/data-structures-overview.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;5.2: Objektarten hierarchisch gegliedert</figcaption><p></p>
+</figure>
+</div>
+</section><section id="taxonomie" class="level3" data-number="5.2.2"><h3 data-number="5.2.2" class="anchored" data-anchor-id="taxonomie">
+<span class="header-section-number">5.2.2</span> Taxonomie</h3>
+<p>Unter <em>homogenen</em> Objektiven verstehen wir Datenstrukturen, die nur eine Art von Daten (wie Text oder Ganze Zahlen) fassen. Sonstige Objekte nennen wir <em>heterogen</em>.</p>
+<ul>
+<li>Homogene Objekte
+<ul>
+<li>Vektoren</li>
+<li>Matrizen</li>
+</ul>
+</li>
+<li>Heterogen
+<ul>
+<li>Liste</li>
+<li>Dataframes (Tibbles)</li>
+</ul>
+</li>
+</ul>
+<section id="vektoren" class="level4" data-number="5.2.2.1"><h4 data-number="5.2.2.1" class="anchored" data-anchor-id="vektoren">
+<span class="header-section-number">5.2.2.1</span> Vektoren</h4>
+<p><em>Vektoren</em> sind insofern zentral in R, als dass die übrigen Datenstrukturen auf ihnen aufbauen, vgl. <a href="#fig-vektorenimzentrum">Abbildung&nbsp;<span class="quarto-unresolved-ref">fig-vektorenimzentrum</span></a> aus <span class="citation" data-cites="modar">Sauer (<a href="#ref-modar" role="doc-biblioref">2019</a>)</span>.</p>
+<p>Reine (atomare) Vektoren in R sind eine geordnete Liste von Daten eines Typs.</p>
+<div id="fig-vektorenimzentrum" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="img/Datenstrukturen.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;5.3: Vektoren stehen im Zentrum der Datenstrukturen in R</figcaption><p></p>
+</figure>
+</div>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-2_1918beaa2efc5e113406a3a78b2bbab9">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ein_vektor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="va">noch_ein_vektor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span><span class="op">)</span></span>
+<span><span class="va">logischer_vektor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Mit <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> kann man sich die <code>Str</code>uktur eines Objektsausgeben lassen:</p>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-3_da3846b1820f2417dff064a6c80a330d">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">ein_vektor</span><span class="op">)</span></span>
+<span><span class="co">##  num [1:3] 1 2 3</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">noch_ein_vektor</span><span class="op">)</span></span>
+<span><span class="co">##  chr [1:3] "A" "B" "C"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">logischer_vektor</span><span class="op">)</span></span>
+<span><span class="co">##  logi [1:3] TRUE FALSE TRUE</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Vektoren können von folgenden Typen sein:</p>
+<ul>
+<li>Kommazahlen ( <code>double</code>) genannt</li>
+<li>Ganzzahlig (<code>integer</code>, auch mit <code>L</code> für <em>Long</em> abgekürzt)</li>
+<li>Text (´character`, String)</li>
+<li>logische Ausdrücke (<code>logical</code> oder <code>lgl</code>) mit <code>TRUE</code> oder <code>FALSE</code>
+</li>
+</ul>
+<p>Kommazahlen und Ganze Zahlen zusammen bilden den Typ <code>numeric</code> (numerisch) in R.</p>
+<p>Den Typ eines Vektors kann man mit <code><a href="https://rdrr.io/r/base/typeof.html">typeof()</a></code> ausgeben lassen:</p>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-4_0640a7597d0b589af61218625acb006b">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="va">ein_vektor</span><span class="op">)</span></span>
+<span><span class="co">## [1] "double"</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="faktoren" class="level4" data-number="5.2.2.2"><h4 data-number="5.2.2.2" class="anchored" data-anchor-id="faktoren">
+<span class="header-section-number">5.2.2.2</span> Faktoren</h4>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-5_56a24b034d7b3933c71e565bf9ff0ba5">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sex</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Mann"</span>, <span class="st">"Frau"</span>, <span class="st">"Frau"</span><span class="op">)</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Interessant:</p>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-6_0526a96ef3a51742a67395d50426f37e">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span></span>
+<span><span class="co">##  Factor w/ 2 levels "Frau","Mann": 2 1 1</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Vertiefende Informationen findet sich in <span class="citation" data-cites="r4ds">Wickham und Grolemund (<a href="#ref-r4ds" role="doc-biblioref">2016</a>)</span>.</p>
+</section><section id="listen" class="level4" data-number="5.2.2.3"><h4 data-number="5.2.2.3" class="anchored" data-anchor-id="listen">
+<span class="header-section-number">5.2.2.3</span> Listen</h4>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-7_18f5ef03c3872ee1a3e72334d10cddf9">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">eine_liste</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>titel <span class="op">=</span> <span class="st">"Einführung"</span>,</span>
+<span>                   woche <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>                   datum <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"2022-03-14"</span>, <span class="st">"2202-03-21"</span><span class="op">)</span>,</span>
+<span>                   lernziele <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"dies"</span>, <span class="st">"jenes"</span>, <span class="st">"und noch mehr"</span><span class="op">)</span>,</span>
+<span>                   lehre <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>                   <span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">eine_liste</span><span class="op">)</span></span>
+<span><span class="co">## List of 5</span></span>
+<span><span class="co">##  $ titel    : chr "Einführung"</span></span>
+<span><span class="co">##  $ woche    : num 1</span></span>
+<span><span class="co">##  $ datum    : chr [1:2] "2022-03-14" "2202-03-21"</span></span>
+<span><span class="co">##  $ lernziele: chr [1:3] "dies" "jenes" "und noch mehr"</span></span>
+<span><span class="co">##  $ lehre    : logi [1:3] TRUE TRUE TRUE</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="tibbles" class="level4" data-number="5.2.2.4"><h4 data-number="5.2.2.4" class="anchored" data-anchor-id="tibbles">
+<span class="header-section-number">5.2.2.4</span> Tibbles</h4>
+<p>Für <code><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble()</a></code> brauchen wir <code>tidyverse</code>:</p>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-8_075249b7c0b9dfca0548fd50b2565031">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/tibble-ex_1c40d071760613beaf4731ca45a84ba3">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span></span>
+<span><span class="va">studentis</span> <span class="op">&lt;-</span></span>
+<span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>    name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Anna"</span>, <span class="st">"Berta"</span><span class="op">)</span>,</span>
+<span>    motivation <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">20</span><span class="op">)</span>,</span>
+<span>    noten <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1.3</span>, <span class="fl">1.7</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">studentis</span><span class="op">)</span></span>
+<span><span class="co">## tibble [2 × 3] (S3: tbl_df/tbl/data.frame)</span></span>
+<span><span class="co">##  $ name      : chr [1:2] "Anna" "Berta"</span></span>
+<span><span class="co">##  $ motivation: num [1:2] 10 20</span></span>
+<span><span class="co">##  $ noten     : num [1:2] 1.3 1.7</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section><section id="indizieren" class="level3" data-number="5.2.3"><h3 data-number="5.2.3" class="anchored" data-anchor-id="indizieren">
+<span class="header-section-number">5.2.3</span> Indizieren</h3>
+<p>Einen Teil eines Objekts auszulesen, bezeichnen wir als <em>Indizieren</em>.</p>
+<section id="reine-vektoren" class="level4" data-number="5.2.3.1"><h4 data-number="5.2.3.1" class="anchored" data-anchor-id="reine-vektoren">
+<span class="header-section-number">5.2.3.1</span> Reine Vektoren</h4>
+<p>Zur Erinnerung:</p>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-9_9cfb625a7935e0c0eff09fda87acbd2e">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">ein_vektor</span><span class="op">)</span></span>
+<span><span class="co">##  num [1:3] 1 2 3</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-10_e96ba8acf327ad1309227d989eb433fb">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ein_vektor</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
+<span><span class="co">## [1] 1</span></span>
+<span><span class="va">ein_vektor</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="co">## [1] 1 2</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Aber <em>nicht</em> so:</p>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-11_99de1c14641016cc296766213b32d360">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ein_vektor</span><span class="op">[</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">]</span></span>
+<span><span class="co">## Error in ein_vektor[1, 2]: incorrect number of dimensions</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Man darf Vektoren auch wie Listen ansprechen, also eine doppelte Eckklammer zum Indizieren verwenden</p>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-12_3a48f5077e503e67cc203f05a4d1a51a">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ein_vektor</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span></span>
+<span><span class="co">## [1] 2</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Der Grund ist, dass Listen auch Vektoren sind, nur eben ein besonderer Fall eines Vektors:</p>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-13_51ab115ae6a47cae0ba74675be3f2903">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/vector.html">is.vector</a></span><span class="op">(</span><span class="va">eine_liste</span><span class="op">)</span></span>
+<span><span class="co">## [1] TRUE</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Was passiert, wenn man bei einem Vektor der Länge 3 das 4. Element indiziert?</p>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-14_77ad9aecc9581599b266d698493afcca">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ein_vektor</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span></span>
+<span><span class="co">## [1] NA</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Ein schnödes <code>NA</code> ist die Antwort. Das ist interessant: Wir bekommen keine Fehlermeldung, sondern den Hinweis, das angesprochene Element sei leer bzw. nicht verfügbar.</p>
+<p>In <span class="citation" data-cites="modar">Sauer (<a href="#ref-modar" role="doc-biblioref">2019</a>)</span>, Kap. 5.3.1 findet man weitere Indizierungsmöglichkeiten für reine Vektoren.</p>
+</section><section id="listen-1" class="level4" data-number="5.2.3.2"><h4 data-number="5.2.3.2" class="anchored" data-anchor-id="listen-1">
+<span class="header-section-number">5.2.3.2</span> Listen</h4>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-15_0ba57ce6bf18259b5e084c928c795399">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">eine_liste</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">## List of 5</span></span>
+<span><span class="co">##  $ titel    : chr "Einführung"</span></span>
+<span><span class="co">##  $ woche    : num 1</span></span>
+<span><span class="co">##  $ datum    : chr [1:2] "2022-03-14" "2202-03-21"</span></span>
+<span><span class="co">##  $ lernziele: chr [1:3] "dies" "jenes" "und noch mehr"</span></span>
+<span><span class="co">##  $ lehre    : logi [1:3] TRUE TRUE TRUE</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Listen können wie Vektoren, also mit <code>[</code> ausgelesen werden. Dann wird eine Liste zurückgegeben.</p>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-16_d805ee40a614b1c36a7d65b12fa58a3c">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">eine_liste</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
+<span><span class="co">## $titel</span></span>
+<span><span class="co">## [1] "Einführung"</span></span>
+<span><span class="va">eine_liste</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></span>
+<span><span class="co">## $woche</span></span>
+<span><span class="co">## [1] 1</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Das hat den technischen Hintergrund, dass Listen als eine bestimmte Art von Vektoren implementiert sind.</p>
+<p>Mann kann auch die “doppelte Eckklammer”, <code>[[</code> zum Auslesen verwenden; dann wird anstelle einer Liste die einfachere Struktur eines Vektors zurückgegeben:</p>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-17_76dd26750aed7b0a17bd3285a010b8c4">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">eine_liste</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
+<span><span class="co">## [1] "Einführung"</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Man könnte sagen, die “äußere Schicht” des Objekts, die Liste, wird abgeschält, und man bekommnt die “innere” Schicht, den Vektor.</p>
+<p>Mann die Elemente der Liste entweder mit ihrer Positionsnummer (1, 2, …) oder, sofern vorhanden, ihren Namen ansprechen:</p>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-18_91caffbdbe01cc92ff1d196bf03dee1f">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">eine_liste</span><span class="op">[[</span><span class="st">"titel"</span><span class="op">]</span><span class="op">]</span></span>
+<span><span class="co">## [1] "Einführung"</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Dann gibt es noch den Dollar-Operator, mit dem Mann benannte Elemente von Listen ansprechen kann:</p>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-19_a5a354cdbaaad3a205e84c87bcdb3525">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">eine_liste</span><span class="op">$</span><span class="va">titel</span></span>
+<span><span class="co">## [1] "Einführung"</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Man kann auch tiefer in eine Liste hinein indizieren. Sagen wir, uns interessiert das 4. Element der Liste <code>eine_liste</code> - und davon das erste Element.</p>
+<p>Das geht dann so:</p>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-20_47981ba7bc2930bb02e650f107bc5328">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">eine_liste</span><span class="op">[[</span><span class="fl">4</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span> </span>
+<span><span class="co">## [1] "dies"</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Eine einfachere Art des Indizierens von Listen bietet die Funktion <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck()</a></code>, aus dem Paket <code>purrr</code>, das Hilfen für den Umgang mit Listen bietet.</p>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-21_c2bd14437aa91dc24941b17ef0a7030e">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span><span class="op">(</span><span class="va">eine_liste</span>, <span class="fl">4</span><span class="op">)</span></span>
+<span><span class="co">## [1] "dies"          "jenes"         "und noch mehr"</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Und jetzt aus dem 4. Element das 1. Element:</p>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-22_994f5cb6a09f1f3efe41f9f27747051c">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span><span class="op">(</span><span class="va">eine_liste</span>, <span class="fl">4</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="co">## [1] "dies"</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Probieren Sie mal, aus einer Liste der Länge 5 das 6. Element auszulesen:</p>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-23_9decbd993f612099166419af17fd1f2a">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">eine_liste</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">## [1] 5</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-24_4b8d681b5583419995e058423b629241">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">eine_liste</span><span class="op">[[</span><span class="fl">6</span><span class="op">]</span><span class="op">]</span></span>
+<span><span class="co">## Error in eine_liste[[6]]: subscript out of bounds</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Unser Versuch wird mit einer Fehlermeldung quittiert.</p>
+<p>Sprechen wir die Liste wie einen (atomaren) Vektor an, bekommen wir hingegen ein <code>NA</code> bzw. ein <code>NULL</code>:</p>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-25_8c3cc60a908ff973b66e65cd84e230a8">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">eine_liste</span><span class="op">[</span><span class="fl">6</span><span class="op">]</span></span>
+<span><span class="co">## $&lt;NA&gt;</span></span>
+<span><span class="co">## NULL</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="tibbles-1" class="level4" data-number="5.2.3.3"><h4 data-number="5.2.3.3" class="anchored" data-anchor-id="tibbles-1">
+<span class="header-section-number">5.2.3.3</span> Tibbles</h4>
+<p>Tibbles lassen sich sowohl wie ein Vektor als auch wie eine Liste indizieren.</p>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-26_96f6372d4586561216f455c528a0db92">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">studentis</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"Anna"},{"1":"Berta"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Die Indizierung eines Tibbles mit der einfachen Eckklammer liefert einen Tibble zurück.</p>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-27_443723cf4471c556266c7c7984ccf322">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">studentis</span><span class="op">[</span><span class="st">"name"</span><span class="op">]</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"Anna"},{"1":"Berta"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Mit doppelter Eckklammer bekommt man, analog zur Liste, einen Vektor zurück:</p>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-28_1c49e39a2227bb1ffbe544024a75c291">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">studentis</span><span class="op">[[</span><span class="st">"name"</span><span class="op">]</span><span class="op">]</span></span>
+<span><span class="co">## [1] "Anna"  "Berta"</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Beim Dollar-Operator kommt auch eine Liste zurück:</p>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-29_4e9aaeb442e0ac99b7c9a9c790644a7c">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">studentis</span><span class="op">$</span><span class="va">name</span></span>
+<span><span class="co">## [1] "Anna"  "Berta"</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section><section id="weiterführende-hinweise" class="level3" data-number="5.2.4"><h3 data-number="5.2.4" class="anchored" data-anchor-id="weiterführende-hinweise">
+<span class="header-section-number">5.2.4</span> Weiterführende Hinweise</h3>
+<ul>
+<li>
+<a href="https://jennybc.github.io/purrr-tutorial/bk00_vectors-and-lists.html">Tutorial</a> zum Themen Indizieren von Listen von Jenny BC.</li>
+</ul></section><section id="indizieren-mit-dem-tidyverse" class="level3" data-number="5.2.5"><h3 data-number="5.2.5" class="anchored" data-anchor-id="indizieren-mit-dem-tidyverse">
+<span class="header-section-number">5.2.5</span> Indizieren mit dem Tidyverse</h3>
+<p>Natürlich kann man auch die Tidyverse-Verben zum Indizieren verwenden. Das bietet sich an, wenn zwei Bedingungen erfüllt sind:</p>
+<ol type="1">
+<li>Wenn man einen Tibble als Input und als Output hat</li>
+<li>Wenn man nicht programmieren möchte</li>
+</ol></section></section><section id="datensätze-von-lang-nach-breit-umformatieren" class="level2" data-number="5.3"><h2 data-number="5.3" class="anchored" data-anchor-id="datensätze-von-lang-nach-breit-umformatieren">
+<span class="header-section-number">5.3</span> Datensätze von lang nach breit umformatieren</h2>
+<p>Manchmal findet man Datensätze im sog. <em>langen</em> Format vor, manchmal im <em>breiten</em>.</p>
+<p>In der Regel müssen die Daten “tidy” sein, was meist dem langen Format entspricht, vgl. <a href="#fig-langbreit">Abbildung&nbsp;<span class="quarto-unresolved-ref">fig-langbreit</span></a> aus <span class="citation" data-cites="modar">Sauer (<a href="#ref-modar" role="doc-biblioref">2019</a>)</span>.</p>
+<div id="fig-langbreit" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="img/gather_spread.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;5.4: Von lang nach breit und zurück</figcaption><p></p>
+</figure>
+</div>
+<p>In einer neueren Version des Tidyverse werden diese beiden Befehle umbenannt bzw. erweitert, s. <a href="#fig-pivot-anim">Abbildung&nbsp;<span class="quarto-unresolved-ref">fig-pivot-anim</span></a>.</p>
+<ul>
+<li>
+<code><a href="https://tidyr.tidyverse.org/reference/gather.html">gather()</a></code> -&gt; <code><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer()</a></code>
+</li>
+<li>
+<code><a href="https://tidyr.tidyverse.org/reference/spread.html">spread()</a></code> -&gt; <code><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider()</a></code>
+</li>
+</ul>
+<div id="fig-pivot-anim" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="img/tidyr-pivoting.gif" class="img-fluid figure-img" style="width:50.0%"></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;5.5: Von “weit” zu “breit” und zurück, eine Animation</figcaption><p></p>
+</figure>
+</div>
+<p>Weitere Informationen findet sich in <span class="citation" data-cites="r4ds">Wickham und Grolemund (<a href="#ref-r4ds" role="doc-biblioref">2016</a>)</span>, in <a href="https://r4ds.had.co.nz/tidy-data.html?q=pivot_#pivoting">diesem Abschnitt, 12.3</a>.</p>
+</section><section id="funktionen" class="level2" data-number="5.4"><h2 data-number="5.4" class="anchored" data-anchor-id="funktionen">
+<span class="header-section-number">5.4</span> Funktionen</h2>
+<p>Eine Funktion kann man sich als analog zu einer Variable vorstellen. Es ist ein Objekt, das nicht Daten, sondern Syntax beinhaltet, vgl. <a href="#fig-funs">Abbildung&nbsp;<span class="quarto-unresolved-ref">fig-funs</span></a> aus <span class="citation" data-cites="modar">Sauer (<a href="#ref-modar" role="doc-biblioref">2019</a>)</span>.</p>
+<div id="fig-funs" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="img/Funs_def.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;5.6: Sinnbild einer Funktion</figcaption><p></p>
+</figure>
+</div>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-30_d227cae0e83484da6cfac406cb099dc4">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mittelwert</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span></span>
+<span>  </span>
+<span>  <span class="va">summe</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>  <span class="va">mw</span> <span class="op">&lt;-</span> <span class="va">summe</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">mw</span><span class="op">)</span></span>
+<span>  </span>
+<span><span class="op">}</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-31_392636810bcae3f8784e799daba02a65">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">mittelwert</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">## [1] 2</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Weitere Informationen finden sich in <a href="https://r4ds.had.co.nz/functions.html">Kapitel 19</a> in <span class="citation" data-cites="r4ds">Wickham und Grolemund (<a href="#ref-r4ds" role="doc-biblioref">2016</a>)</span>. Alternativ findet sich ein Abschnitt dazu (28.1) in <span class="citation" data-cites="modar">Sauer (<a href="#ref-modar" role="doc-biblioref">2019</a>)</span>.</p>
+</section><section id="wiederholungen-programmieren" class="level2" data-number="5.5"><h2 data-number="5.5" class="anchored" data-anchor-id="wiederholungen-programmieren">
+<span class="header-section-number">5.5</span> Wiederholungen programmieren</h2>
+<p>Häufig möchte man eine Operation mehrfach ausführen. Ein Beispiel wäre die Anzahl der fehlenden Werte pro Spalte auslesen. Natürlich kann man die Abfrage einfach häufig tippen, nervt aber irgendwann. Daher braucht’s Strukturen, die <em>Wiederholungen</em> beschreiben.</p>
+<p>Dafür gibt es verschiedene Ansätze.</p>
+<section id="across" class="level3" data-number="5.5.1"><h3 data-number="5.5.1" class="anchored" data-anchor-id="across">
+<span class="header-section-number">5.5.1</span> <code>across()</code>
+</h3>
+<p>Handelt es sich um Spalten von Tibbles, dann bietet sich die Funktion <code>across(.col, .fns)</code> an. <code>across</code> wendet eine oder mehrere Funktionen (mit <code>.fns</code> bezeichnet) auf die Spalten <code>.col</code> an.</p>
+<p>Das erklärt sich am besten mit einem Beispiel:</p>
+<p>Natürlich hätte man in diesem Fall auch anders vorgehen können:</p>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-32_42803154d95be0158f862ef870938fe0">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span>.cols <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>                   .fns <span class="op">=</span> <span class="va">mean</span><span class="op">)</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["mpg"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["cyl"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["disp"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["hp"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["drat"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["wt"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["qsec"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["vs"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["am"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["gear"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["carb"],"name":[11],"type":["dbl"],"align":["right"]}],"data":[{"1":"20.09062","2":"6.1875","3":"230.7219","4":"146.6875","5":"3.596563","6":"3.21725","7":"17.84875","8":"0.4375","9":"0.40625","10":"3.6875","11":"2.8125"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Möchte man der Funktion <code>.fns</code> Parameter übergeben, so nutzt man diese Syntax (“Purrr-Lambda”):</p>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-33_14234e71521174afbb122e730fde8190">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span>.cols <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>                   .fns <span class="op">=</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">.</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["mpg"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["cyl"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["disp"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["hp"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["drat"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["wt"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["qsec"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["vs"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["am"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["gear"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["carb"],"name":[11],"type":["dbl"],"align":["right"]}],"data":[{"1":"20.09062","2":"6.1875","3":"230.7219","4":"146.6875","5":"3.596563","6":"3.21725","7":"17.84875","8":"0.4375","9":"0.40625","10":"3.6875","11":"2.8125"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p><a href="https://www.rebeccabarter.com/blog/2020-07-09-across/">Hier</a> findet sich ein guter Überblick zu <code><a href="https://dplyr.tidyverse.org/reference/across.html">across()</a></code>.</p>
+</section><section id="map" class="level3" data-number="5.5.2"><h3 data-number="5.5.2" class="anchored" data-anchor-id="map">
+<span class="header-section-number">5.5.2</span> <code>map()</code>
+</h3>
+<p><code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code> ist eine Funktion aus dem R-Paket <code>purrr</code> und Teil des Tidyverse.</p>
+<p><code>map(x, f)</code> wenden die Funktion <code>f</code> auf jedes Element von <code>x</code> an. Ist <code>x</code> ein Tibble, so wird <code>f</code> demnach auf jede Spalte von <code>x</code> angewendet (“zugeordnet”, daher <code>map</code>), vgl. <a href="#fig-map1">Abbildung&nbsp;<span class="quarto-unresolved-ref">fig-map1</span></a> aus <span class="citation" data-cites="modar">Sauer (<a href="#ref-modar" role="doc-biblioref">2019</a>)</span>.</p>
+<div id="fig-map1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="img/wdh.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;5.7: Sinnbild für map aus purrr</figcaption><p></p>
+</figure>
+</div>
+<p>Hier ein Beispiel-Code:</p>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-34_3d84a2519bb0776e0685d976c871200e">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">mtcars</span> <span class="op">&lt;-</span> <span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span>  <span class="co"># nur die ersten 3 Spalten</span></span>
+<span></span>
+<span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">mean</span><span class="op">)</span></span>
+<span><span class="co">## $mpg</span></span>
+<span><span class="co">## [1] 20.09062</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## $cyl</span></span>
+<span><span class="co">## [1] 6.1875</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## $disp</span></span>
+<span><span class="co">## [1] 230.7219</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Möchte man der gemappten Funktion Parameter übergeben, nutzt man wieder die “Kringel-Schreibweise”:</p>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-35_c1886aabf8b884950fdc794047f322d4">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">.</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">## $mpg</span></span>
+<span><span class="co">## [1] 20.09062</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## $cyl</span></span>
+<span><span class="co">## [1] 6.1875</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## $disp</span></span>
+<span><span class="co">## [1] 230.7219</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="weiterführende-hinweise-1" class="level3" data-number="5.5.3"><h3 data-number="5.5.3" class="anchored" data-anchor-id="weiterführende-hinweise-1">
+<span class="header-section-number">5.5.3</span> Weiterführende Hinweise</h3>
+<p>Weiteres zu <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code> findet sich z.B. in <span class="citation" data-cites="r4ds">Wickham und Grolemund (<a href="#ref-r4ds" role="doc-biblioref">2016</a>)</span>, <a href="https://r4ds.had.co.nz/iteration.html#the-map-functions">Kapitel 21.5</a> oder in <span class="citation" data-cites="modar">Sauer (<a href="#ref-modar" role="doc-biblioref">2019</a>)</span>, Kap. 28.2.</p>
+<p><a href="https://jennybc.github.io/purrr-tutorial/ls01_map-name-position-shortcuts.html">Tutorial</a> zu <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code> von Jenny BC.</p>
+</section></section><section id="listenspalten" class="level2" data-number="5.6"><h2 data-number="5.6" class="anchored" data-anchor-id="listenspalten">
+<span class="header-section-number">5.6</span> Listenspalten</h2>
+<section id="wozu-listenspalten" class="level3" data-number="5.6.1"><h3 data-number="5.6.1" class="anchored" data-anchor-id="wozu-listenspalten">
+<span class="header-section-number">5.6.1</span> Wozu Listenspalten?</h3>
+<p>Listenspalten sind immer dann sinnvoll, wenn eine einfache Tabelle nicht komplex genug für unsere Daten ist.</p>
+<p>Zwei Fälle stechen dabei ins Auge:</p>
+<ol type="1">
+<li>Unsere Datenstruktur ist nicht rechteckig</li>
+<li>In einer Zelle der Tabelle soll mehr als ein einzelner Wert stehen: vielleicht ein Vektor, eine Liste oder eine Tabelle</li>
+</ol>
+<p>Der erstere Fall (nicht reckeckig) ließe sich noch einfach lösen, in dem man mit <code>NA</code> auffüllt.</p>
+<p>Der zweite Fall verlangt schlichtweg nach komplexeren Datenstrukturen.</p>
+<p><a href="https://r4ds.had.co.nz/many-models.html?q=list#creating-list-columns">Kap. 25.3</a> aus <span class="citation" data-cites="r4ds">Wickham und Grolemund (<a href="#ref-r4ds" role="doc-biblioref">2016</a>)</span> bietet einen guten Einstieg in das Konzept von Listenspalten (list-columns) in R.</p>
+</section><section id="beispiele-für-listenspalten" class="level3" data-number="5.6.2"><h3 data-number="5.6.2" class="anchored" data-anchor-id="beispiele-für-listenspalten">
+<span class="header-section-number">5.6.2</span> Beispiele für Listenspalten</h3>
+<section id="tidymodel" class="level4" data-number="5.6.2.1"><h4 data-number="5.6.2.1" class="anchored" data-anchor-id="tidymodel">
+<span class="header-section-number">5.6.2.1</span> tidymodel</h4>
+<p>Wenn wir mit <code>tidymodels</code> arbeiten, werden wir mit Listenspalten zu tun haben. Daher ist es praktisch, sich schon mal damit zu beschäftigen.</p>
+<p>Hier ein Beispiel für eine <span class="math inline">\(v=3\)</span>-fache Kreuzvalidierung:</p>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-36_fe6f11f02f27012f4b93db3b6c7b4846">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span></span>
+<span><span class="va">mtcars_cv</span> <span class="op">&lt;-</span></span>
+<span>  <span class="fu">vfold_cv</span><span class="op">(</span><span class="va">mtcars</span>, v <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">mtcars_cv</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["splits"],"name":[1],"type":["list"],"align":["right"]},{"label":["id"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"<S3: vfold_split>","2":"Fold1"},{"1":"<S3: vfold_split>","2":"Fold2"},{"1":"<S3: vfold_split>","2":"Fold3"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Betrachten wir das Objekt <code>mtcars_cv</code> näher. Die Musik spielt in der 1. Spalte.</p>
+<p>Lesen wir den Inhalt der 1. Spalte, 1 Zeile aus (nennen wir das mal “Position 1,1”):</p>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-37_6fbb69500e2f9a541984bdd83daf18bc">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pos11</span> <span class="op">&lt;-</span> <span class="va">mtcars_cv</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
+<span><span class="va">pos11</span></span>
+<span><span class="co">## &lt;Analysis/Assess/Total&gt;</span></span>
+<span><span class="co">## &lt;21/11/32&gt;</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In dieser Zelle findet sich eine Aufteilung des Komplettdatensatzes in den Analyseteil (Analysis sample) und den Assessmentteil (Assessment Sample).</p>
+<p>Schauen wir jetzt in dieses Objekt näher an. Das können wir mit <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> tun. <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> zeigt uns die Strktur eines Objekts.</p>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-38_3ea2e3611275c9c331b7b58220f7f00b">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">pos11</span><span class="op">)</span></span>
+<span><span class="co">## List of 4</span></span>
+<span><span class="co">##  $ data  :'data.frame':  32 obs. of  3 variables:</span></span>
+<span><span class="co">##   ..$ mpg : num [1:32] 21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 ...</span></span>
+<span><span class="co">##   ..$ cyl : num [1:32] 6 6 4 6 8 6 8 4 4 6 ...</span></span>
+<span><span class="co">##   ..$ disp: num [1:32] 160 160 108 258 360 ...</span></span>
+<span><span class="co">##  $ in_id : int [1:21] 1 2 3 4 6 7 9 10 12 14 ...</span></span>
+<span><span class="co">##  $ out_id: logi NA</span></span>
+<span><span class="co">##  $ id    : tibble [1 × 1] (S3: tbl_df/tbl/data.frame)</span></span>
+<span><span class="co">##   ..$ id: chr "Fold1"</span></span>
+<span><span class="co">##  - attr(*, "class")= chr [1:2] "vfold_split" "rsplit"</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Oh! <code>pos11</code> ist eine Liste, und zwar eine durchaus komplexe. Wir müssen erkennen, dass in einer einzelnen Zelle dieses Dataframes viel mehr steht, als ein Skalar bzw. ein einzelnes, atomares Element.</p>
+<p>Damit handelt es sich bei Spalte 1 dieses Dataframes (<code>mtcars_cv</code>) also um eine Listenspalte.</p>
+<p>Üben wir uns noch etwas im Indizieren.</p>
+<p>Sprechen wir in <code>pos11</code> das erste Element an (<code>data</code>) und davon das erste Element:</p>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-39_8b2d70787faccdbbf0cdc4f7e9c5133e">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pos11</span><span class="op">[[</span><span class="st">"data"</span><span class="op">]</span><span class="op">]</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
+<span><span class="co">##  [1] 21.0 21.0 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 17.8 16.4 17.3 15.2 10.4</span></span>
+<span><span class="co">## [16] 10.4 14.7 32.4 30.4 33.9 21.5 15.5 15.2 13.3 19.2 27.3 26.0 30.4 15.8 19.7</span></span>
+<span><span class="co">## [31] 15.0 21.4</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Wir haben hier die doppelten Eckklammern benutzt, um den “eigentlichen” oder “inneren” Vektor zu bekommen, nicht die “außen” herumgewickelte Liste. Zur Erinnerung: Ein Dataframe ist ein Spezialfall einer Liste, also auch eine Liste, nur eine mit bestimmten Eigenschaften.</p>
+<p>Zum Vergleich indizieren wir mal mit einer einfachen Eckklammer:</p>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-40_1878b18ce57bd105c456d7faad20d776">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">pos11</span><span class="op">[[</span><span class="st">"data"</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["mpg"],"name":[1],"type":["dbl"],"align":["right"]}],"data":[{"1":"21.0","_rn_":"Mazda RX4"},{"1":"21.0","_rn_":"Mazda RX4 Wag"},{"1":"22.8","_rn_":"Datsun 710"},{"1":"21.4","_rn_":"Hornet 4 Drive"},{"1":"18.7","_rn_":"Hornet Sportabout"},{"1":"18.1","_rn_":"Valiant"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Mit <code><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck()</a></code> bekommen wir das gleiche Ergebnis, nur etwas komfortabler, da wir keine Eckklammern tippen müssen:</p>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-41_a4051529b59e88b028b428244d5526e5">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span><span class="op">(</span><span class="va">pos11</span>, <span class="st">"data"</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="co">## [1] 21</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Wie man sieht, können wir beliebig tief in das Objekt hineinindizieren.</p>
+</section></section><section id="programmieren-mit-dem-tidyverse" class="level3" data-number="5.6.3"><h3 data-number="5.6.3" class="anchored" data-anchor-id="programmieren-mit-dem-tidyverse">
+<span class="header-section-number">5.6.3</span> Programmieren mit dem Tidyverse</h3>
+<p>Das Programmieren mit dem Tidyvers ist nicht ganz einfach und hier nicht näher ausgeführt. Eine Einführung findet sich z.B.</p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=nERXS3ssntw">Tidyeval in fünf Minuten (Video)</a></li>
+<li>In <a href="https://adv-r.hadley.nz/">Kapiteln 17-21 in Advanced R, 2nd Ed</a>
+</li>
+<li>Ein Überblicksdiagramm findet sich <a href="https://twitter.com/lapply/status/1493908215796535296/photo/1">hier</a> <a href="https://twitter.com/lapply/status/1493908215796535296?t=P0SbLJAd0Yd97hYPzNMxMg&amp;s=09">Quelle</a>.</li>
+</ul></section></section><section id="r-ist-schwierig" class="level2" data-number="5.7"><h2 data-number="5.7" class="anchored" data-anchor-id="r-ist-schwierig">
+<span class="header-section-number">5.7</span> R ist schwierig</h2>
+<p>Manche behaupten, R <a href="https://www.burns-stat.com/pages/Tutor/R_inferno.pdf">sei ein Inferno</a>.</p>
+<p>Zum Glück gibt es auch aufmunternde Stimmen:</p>
+<div class="cell" data-hash="050-R-Vertiefung_cache/html/unnamed-chunk-42_e4e9c6b9f35ceee20f180eece742736d">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">praise</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/praise/man/praise.html">praise</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">## [1] "You are astonishing!"</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Hat jemand einen guten Rat für uns? Vielleicht ist der häufigste Rat, dass man die <a href="https://en.wikipedia.org/wiki/RTFM">Dokumentation lesen solle</a>.</p>
+</section><section id="aufgaben" class="level2" data-number="5.8"><h2 data-number="5.8" class="anchored" data-anchor-id="aufgaben">
+<span class="header-section-number">5.8</span> Aufgaben</h2>
+<ul>
+<li><a href="https://data-se.netlify.app/2021/03/10/fallstudie-modellierung-von-flugversp%C3%A4tungen/">Fallstudie Flugverspätungen</a></li>
+<li><a href="https://juliasilge.com/blog/crop-yields/">Fallstudie Getreideernte</a></li>
+</ul>
+<!-- # Vertiefung --></section><section id="vertiefung" class="level2" data-number="5.9"><h2 data-number="5.9" class="anchored" data-anchor-id="vertiefung">
+<span class="header-section-number">5.9</span> Vertiefung</h2>
+<ul>
+<li><a href="https://albert-rapp.de/post/2021-09-16-similar-data-and-list-like-columns/">Funktionale Programmierung mit R</a></li>
+<li><a href="https://data-se.netlify.app/2021/02/06/plotting-multiple-plots-using-purrr-map-and-ggplot/">Lernen Sie Wiederholungsstrukturen mit ggplot</a></li>
+</ul>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-modar" class="csl-entry" role="listitem">
+Sauer, Sebastian. 2019. <em>Moderne Datenanalyse mit R: Daten einlesen, aufbereiten, visualisieren und modellieren</em>. 1. Auflage 2019. <span>FOM</span>-Edition. Wiesbaden: Springer. <a href="https://www.springer.com/de/book/9783658215866">https://www.springer.com/de/book/9783658215866</a>.
+</div>
+<div id="ref-r4ds" class="csl-entry" role="listitem">
+Wickham, Hadley, und Garrett Grolemund. 2016. <em>R for Data Science: Visualize, Model, Transform, Tidy, and Import Data</em>. O’Reilly Media. <a href="https://r4ds.had.co.nz/index.html">https://r4ds.had.co.nz/index.html</a>.
+</div>
+</div>
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Kopiert");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Kopiert");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./040-Statistisches-Lernen.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Statistisches Lernen</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./060-tidymodels.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">tidymodels</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
