@@ -7,7 +7,7 @@
 
 
 
-![](img/689g8g.jpg)
+![Der Rat von Chuck Norris](img/689g8g.jpg)
 
 [Quelle: ImageFlip](https://i.imgflip.com/689g8g.jpg)
 
@@ -55,9 +55,10 @@ Nutzen Sie diese DOI, um dieses Buch zu zitieren: [![DOI](https://zenodo.org/bad
 
 - Dieses Buch wurde in [RStudio](http://www.rstudio.com/ide/) mit Hilfe von [bookdown](http://bookdown.org/) geschrieben. 
 
-- Diese Version des Buches wurde mit der R-Version `r R.version.string` und den folgenden Paketen erstellt:
+- Diese Version des Buches wurde mit der R-Version `r R.version.string` und den folgenden technischen Spezifikationen erstellt:
 
 ```{r, echo = FALSE, results="asis"}
+#| eval: false
 deps <- desc::desc_get_deps()
 pkgs <- sort(deps$package[deps$type == "Imports"])
 pkgs <- sessioninfo::package_info(pkgs, dependencies = FALSE)
@@ -69,6 +70,10 @@ df <- tibble::tibble(
 knitr::kable(df, format = "markdown")
 ```
 
+```{r}
+#| echo: false
+sessioninfo::session_info()
+```
 
 
 

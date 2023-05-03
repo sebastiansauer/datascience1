@@ -443,7 +443,7 @@ an denen das Modell *nicht* trainiert wurde.
 
 
 
-## Über- vs. Unteranpassung
+## Über- vs. Unteranpassung {#sec-overfit}
 
 
 :::{#def-overfit}
@@ -458,6 +458,8 @@ Ein Modell sagt die Trainingsdaten zu genau vorher - es nimmt Rauschen als "bare
 Ein Modell ist zu simpel (ungenau, grobkörnig) - es unterschlägt Nuancen des tatsächlichen Musters. Solche Modelle haben zu viel *Verzerrung* (Bias) in ihren Vorhersagen.$\square$
 :::
 
+
+### Beispiel 1
 
 Welches der folgenden Modelle (B,C,D) passt am besten zu den Daten (A), s. @fig-overunder), vgl. [@modar], Kap. 15?
 
@@ -480,7 +482,77 @@ Es gilt, ein Modell mit "mittlerer" Komplexität zu finden, um Über- und Untera
 Leider ist es nicht möglich, vorab zu sagen, was der richtige, "mittlere" Wert an Komplexität eines Modells ist, vgl. @fig-overfitting aus [@modar].
 
 
+
+
+### Beispiel 2
+
+
+@fig-overfitting-4-plots zeigt Über- und Unteranpassung an einem Beispiel.
+
+```{r}
+#| echo: false
+#| include: false
+#| fig-cap: "Welches Modell (Teile C-E) passt am besten zu den Daten (Teil B)? Die 'wahre Funktion', der datengenerierende Prozess ist im Teil A dargestellt"
+#| label: fig-overfitting-4-plots
+#| layount-ncol: 5
+
+x <- seq(from = 1, to = 10, by = 1)
+y <- sin(x) + rnorm(n = length(x), mean = 0, sd = .3)
+
+daten <- tibble(x, y)
+
+p0 <- 
+  ggplot(daten) +
+  aes(x = x, y = y) +
+  coord_fixed(ratio = 5/1) +
+  scale_x_continuous(name = NULL, breaks = NULL) +
+  scale_y_continuous(name = NULL, breaks = NULL)
+
+p0 +
+  stat_function(n = 99, fun = sin) +
+  labs(title = "A") 
+
+p0 + 
+  geom_point() +
+  ggtitle("B") 
+
+p0 + 
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE, color = "grey80") +
+  ggtitle("C") 
+
+p0 + 
+  geom_point() +
+  geom_smooth(method = "lm", formula = y~poly(x, 9), color = "blue") +
+  ggtitle("D") 
+
+p0 +
+  geom_point() +
+  stat_function(n = 99, fun = sin, color = "grey50") +
+  ggtitle("E") 
+```
+
+
+
+
+- Teil *A*: Die 'wahre Funktion', $f$, die die Daten  erzeugt. Man spricht auch von der "datengenerierenden Funktion". Wir gehen gemeinhin davon aus, dass es eine wahre Funktion gibt. Das heißt nicht, dass die wahre Funktion die Daten perfekt erklärt, schließlich kann die Funktion zwar wahr, aber unvollständig sein oder unsere Messinstrumente sind nicht perfekt präzise.
+- Teil *B:* Die Daten, erzeugt aus A plus etwas zufälliges Fehler (Rauschen).
+- Teil *C*: Ein zu einfaches Modell: Unteranpassung. Vorhersagen in einer neuen Stichprobe (basierend auf dem datengenerierenden Prozess aus A) werden nicht so gut sein.
+- Teil *D*: Ein zu komplexes Modell: Überanpassung.  Vorhersagen in einer neuen Stichprobe (basierend auf dem datengenerierenden Prozess aus A) werden nicht so gut sein.
+- Teil *E*: Ein Modell mittlerer Komplexität. Keine Überanpassung, keine Unteranpassung. Vorhersagen in einer neuen Stichprobe (basierend auf dem datengenerierenden Prozess aus A) werden gut sein.
+
+
+### Mittlere Modellkomplexität ist optimal
+
+Wie @fig-overfitting zeigt, ist eine "mittlere" Modellkomplexität (oft) optimal.
+Fragt sich nur, was bzw. wo "mittel" genau liegt. 🤷‍♀️
+
+
 ![Mittlere Modellkomplexität führt zur besten Vorhersagegüte: Gute Balance von Bias und Präzision](img/overfitting-crop.png){#fig-overfitting width="50%"}
+
+
+
+
 
 ### Do-it-yourself Under-/Overfitting
 

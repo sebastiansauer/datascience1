@@ -662,6 +662,46 @@ ames_recipe <-
 ames_recipe
 ```
 
+
+
+### Preppen und Backen
+
+Ein Rezept ist erstmal nur, ja, ein Rezept: Eine Beschreibung von Schritten und Zutaten.
+Es ist noch nichts gebacken.
+Um aus einen Rezept einen "Kuchen" - den transformierten Datensatz - zu bekommen,
+sind zwei Schritte nötig:
+
+1. *Vorbereiten* (to prep): Die Parameter des Rezeptschritte berechnen. So muss der Schritt `step_center(var)` den Mittelwert von `var` wissen, sonst kann der Schritt nicht durchgeführt werden. 
+2. *Backen*  ist das Rezept vorbereitet, kann der Datensatz damit gebacken werden.
+
+Praktischerweise erledigt Tidymodels das alles automatisch für uns, wir haben da nichts zu tun.
+
+Allerdings ist es manchmal praktisch, den durch das Rezept "gebackenen" (transformierten) Datensatz zu sehen, daher sollte man wissen, wie man das "preppen" und "backen" von Hand erledigt.
+
+1. Preppen:
+
+
+```{r}
+ames_recipe_prepped <-
+  ames_recipe %>% 
+  prep()
+
+ames_recipe_prepped
+```
+
+2. Backen:
+
+```{r}
+ames_train_baked <- 
+  ames_recipe_prepped %>% bake(new_data = NULL) 
+
+ames_train_baked %>% 
+  head()
+```
+
+
+
+
 ### Fazit
 
 Mehr zu Rezepten findet sich [hier](https://recipes.tidymodels.org/).

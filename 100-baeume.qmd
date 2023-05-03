@@ -9,11 +9,14 @@
 ### Lernziele
 
 
-- "Sie können den rpart-Algorithmus erklären"
-- "Sie wissen, wie man Overfitting bei Entscheidungsbäume begrenzen kann"
-- "Sie können Entscheidungsbäume in R berechnen"
-   Literatur:
-- "Rhys, Kap. 7"
+- Sie können den rpart-Algorithmus erklären
+- Sie wissen, wie man Overfitting bei Entscheidungsbäume begrenzen kann
+- Sie können Entscheidungsbäume in R berechnen
+   
+   
+### Literatur
+
+- Rhys, Kap. 7
 
 
 
@@ -70,9 +73,9 @@ man erkennt $R=3$ *Regionen* bzw. Blätter [@islr].
 
 :::{#fig-rec-part2 layout-ncol=2}
 
-![Ein einfacher Baum]("img/8.1.png"){#fig-rec-2a}
+![Ein einfacher Baum](img/8.1.png){#fig-rec-2a}
 
-![Die rekursiven, rechteckigen Partionierungen eines Baumes]("img/8.2.png"){#fig-rec-2b}
+![Die rekursiven, rechteckigen Partionierungen eines Baumes](img/8.2.png){#fig-rec-2b}
 
 Einfaches Beispiel für einen Baum sowie der zugehörigen rekursiven Partionierung
 :::
@@ -105,14 +108,16 @@ sonst p = 50%
 In diesem Fall, zwei Prädiktoren, ist der Prädiktorenraum in *drei Regionen* unterteilt:
 Der Baum hat drei Blätter.
 
-Für  @fig-tree1 ergibt sich eine komplexere Aufteilung, s. auch  @fig-recursive-part.
+Für  @fig-tree1 ergibt sich eine komplexere Aufteilung, s. auch  @fig-recursive-part.^[mit `library(rpart.plot)`]
 
 
 
 
-```{r tree1, fig.cap = "Beispiel für einen Entscheidungsbaum", echo = FALSE}
-library(rpart.plot)
+```{r fig.cap = "Beispiel für einen Entscheidungsbaum", echo = FALSE}
 #| label: fig-tree1
+
+library(rpart.plot)
+
 #knitr::include_graphics("img/tree-titanic.png")
 
 rpart.plot(ti_tree[["fit"]], 
@@ -345,6 +350,7 @@ Abbildung @fig-tree-metr stellt dieses Vorgehen schematisch dar [@rhys].
 
 ```{r tree-metr, fig.cap = "Aufteilungswert bei metrischen Prädiktoren"}
 #| label: fig-tree-metr
+#| echo: false
 knitr::include_graphics("img/fig7-5_alt.jpeg")
 ```
 
@@ -410,11 +416,12 @@ knitr::include_graphics("img/8.7.png")
 Jetzt kann sich fragen: Welches Vorgehen ist besser - das rechteckige oder das lineare Partionierungen.
 Da gibt es eine klare Antwort: Es kommt drauf an.
 Wie  @fig-rechteck gibt es Datenlagen, in denen das eine Vorgehen zu homogenerer Klassifikation führt
-und Situationen, in denen das andere Vorgehen besser ist, vgl.  @fig-lunch.
+und Situationen, in denen das andere Vorgehen besser ist.
 
 
 ```{r lunch, fig.cap = "Free Lunch?", out.width="30%", echo = FALSE}
 #| label: fig-lunch
+#| eval: false
 knitr::include_graphics("http://hephaestus-associates.com/wp-content/uploads/2016/07/What-if-I-told-You-There-is-no-Such-Thing-as-a-Free-Lunch-300x300.jpg")
 ```
 
