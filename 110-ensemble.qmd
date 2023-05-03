@@ -561,7 +561,7 @@ glm_model <- logistic_reg()
 
 
 
-### Workflows
+### Workflow-Sets
 
 
 Wir definieren ein Workflow-Set:
@@ -989,15 +989,24 @@ fit_final %>%
 
 ## Fallstudien
 
-- "[Fallstudie Vulkanausbrüche](https://juliasilge.com/blog/multinomial-volcano-eruptions/)"
-- "[Fallstudie Brettspiele mit XGBoost](https://juliasilge.com/blog/board-games/)"
-- "[Einfache Durchführung eines Modellierung mit XGBoost](https://data-se.netlify.app/2020/12/14/titanic-tidymodels-boost/)"
-- "[Fallstudie Oregon Schools](https://bcullen.rbind.io/post/2020-06-02-tidymodels-decision-tree-learning-in-r/)"
-- "[Fallstudie Churn](https://www.gmudatamining.com/lesson-13-r-tutorial.html)"
-- "[Fallstudie Ikea](https://juliasilge.com/blog/ikea-prices/)" 
-- "[Fallstudie Wasserquellen in Sierra Leone](https://juliasilge.com/blog/water-sources/)" 
-- "[Fallstudie Bäume in San Francisco](https://dev.to/juliasilge/tuning-random-forest-hyperparameters-in-r-with-tidytuesday-trees-data-4ilh)"
-- "[Fallstudie Vulkanausbrüche](https://juliasilge.com/blog/multinomial-volcano-eruptions/)"
-- "[Fallstudie Brettspiele mit XGBoost](https://juliasilge.com/blog/board-games/)"
+### Fallstudien mit Workflow-Sets
+
+- [Modeling human/computer interactions on Star Trek from #TidyTuesday with workflowsets](https://juliasilge.com/blog/star-trek/)
+- [Predict #TidyTuesday giant pumpkin weights with workflowsets](https://juliasilge.com/blog/giant-pumpkins/)
+- [Tuning and comparing models](https://workflowsets.tidymodels.org/articles/tuning-and-comparing-models.html)
+
+
+### Weitere Fallstudien mit Tidymodels-Bezug
+
+- [Fallstudie Vulkanausbrüche](https://juliasilge.com/blog/multinomial-volcano-eruptions/)
+- [Fallstudie Brettspiele mit XGBoost](https://juliasilge.com/blog/board-games/)
+- [Einfache Durchführung eines Modellierung mit XGBoost](https://data-se.netlify.app/2020/12/14/titanic-tidymodels-boost/)
+- [Fallstudie Oregon Schools](https://bcullen.rbind.io/post/2020-06-02-tidymodels-decision-tree-learning-in-r/)
+- [Fallstudie Churn](https://www.gmudatamining.com/lesson-13-r-tutorial.html)
+- [Fallstudie Ikea](https://juliasilge.com/blog/ikea-prices/) 
+- [Fallstudie Wasserquellen in Sierra Leone](https://juliasilge.com/blog/water-sources/) 
+- [Fallstudie Bäume in San Francisco](https://dev.to/juliasilge/tuning-random-forest-hyperparameters-in-r-with-tidytuesday-trees-data-4ilh)
+- [Fallstudie Vulkanausbrüche](https://juliasilge.com/blog/multinomial-volcano-eruptions/)
+- [Fallstudie Brettspiele mit XGBoost](https://juliasilge.com/blog/board-games/)
  
 

@@ -308,9 +308,10 @@ div.csl-indent {
   <li><a href="#workflow-finalisieren" id="toc-workflow-finalisieren" class="nav-link" data-scroll-target="#workflow-finalisieren"><span class="header-section-number">8.6.7</span> Workflow finalisieren</a></li>
   </ul>
 </li>
-  <li><a href="#aufgaben" id="toc-aufgaben" class="nav-link" data-scroll-target="#aufgaben"><span class="header-section-number">8.7</span> Aufgaben</a></li>
-  <li><a href="#fallstudien" id="toc-fallstudien" class="nav-link" data-scroll-target="#fallstudien"><span class="header-section-number">8.8</span> Fallstudien</a></li>
-  <li><a href="#vertiefung-1" id="toc-vertiefung-1" class="nav-link" data-scroll-target="#vertiefung-1"><span class="header-section-number">8.9</span> Vertiefung</a></li>
+  <li><a href="#mini-projekt" id="toc-mini-projekt" class="nav-link" data-scroll-target="#mini-projekt"><span class="header-section-number">8.7</span> Mini-Projekt</a></li>
+  <li><a href="#aufgaben" id="toc-aufgaben" class="nav-link" data-scroll-target="#aufgaben"><span class="header-section-number">8.8</span> Aufgaben</a></li>
+  <li><a href="#fallstudien" id="toc-fallstudien" class="nav-link" data-scroll-target="#fallstudien"><span class="header-section-number">8.9</span> Fallstudien</a></li>
+  <li><a href="#vertiefung-1" id="toc-vertiefung-1" class="nav-link" data-scroll-target="#vertiefung-1"><span class="header-section-number">8.10</span> Vertiefung</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -918,28 +919,28 @@ Tipp
 </div>
 </div>
 <p>Eine andere Möglichkeit ist, ein Gitter mit <em>regelmäßigen</em> Abständen der Werte zu erstellen, z.B. mit 5 Ausprägungen pro Tuningparameter:</p>
-<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-25_fec914af8e69c8a61aa065c79379382c">
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-25_e78e50231981c761a0dfe5126376b669">
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">grid2</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="fu">grid_regular</span><span class="op">(</span></span>
 <span>    <span class="fu">neighbors</span><span class="op">(</span>range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5L</span>, <span class="fl">30L</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>    levels <span class="op">=</span> <span class="fl">5</span></span>
 <span>    <span class="op">)</span></span>
-<span><span class="va">grid1</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">grid2</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["neighbors"],"name":[1],"type":["int"],"align":["right"]}],"data":[{"1":"1"},{"1":"2"},{"1":"3"},{"1":"4"},{"1":"5"},{"1":"6"},{"1":"7"},{"1":"8"},{"1":"9"},{"1":"10"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["neighbors"],"name":[1],"type":["int"],"align":["right"]}],"data":[{"1":"5"},{"1":"11"},{"1":"17"},{"1":"23"},{"1":"30"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
 </div>
-<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-26_663f81d5266ee30b00522b09f3c69408">
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-26_73f3cb0fad2c1dcae61d35e331986766">
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ames_grid_search2</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu">tune_grid</span><span class="op">(</span></span>
 <span>    object <span class="op">=</span> <span class="va">ames_wflow2</span>,</span>
 <span>    resamples <span class="op">=</span> <span class="va">ames_folds</span>,  </span>
-<span>    grid <span class="op">=</span> <span class="va">grid1</span></span>
+<span>    grid <span class="op">=</span> <span class="va">grid2</span></span>
 <span>  <span class="op">)</span></span>
 <span><span class="va">ames_grid_search2</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -1004,8 +1005,14 @@ Tipp
 </div>
 </div>
 </div>
-</section></section><section id="aufgaben" class="level2" data-number="8.7"><h2 data-number="8.7" class="anchored" data-anchor-id="aufgaben">
-<span class="header-section-number">8.7</span> Aufgaben</h2>
+</section></section><section id="mini-projekt" class="level2" data-number="8.7"><h2 data-number="8.7" class="anchored" data-anchor-id="mini-projekt">
+<span class="header-section-number">8.7</span> Mini-Projekt</h2>
+<p>Man lernt eine Sache erst richtig, wenn man sie anwendet. Zuhören reicht nicht. Daher sollten Sie nicht nur den Stoff hören/lesen/sehen, sondern vor allen Dingen selber anwenden.</p>
+<div id="exr-miniprojekt1" class="theorem exercise">
+<p><span class="theorem-title"><strong>Übungsaufgabe 8.1 (Erstellen Sie eine prädiktive Modellierung) </strong></span>Erstellen Sie eine prädiktive Modellierung umgesetzt mit R/tidymodels entsprechend der hier vermittelten Methoden. Stellen Sie Code und Ergebnis bereit, am besten in Form eines Quarto-Dokuments auf einem geeigneten Github-Repositorium. Von (hohem) Nutzen ist, wenn Ihre Analyse reproduzierbar ist, also von Dritten nachprüfbar ist. Kurz gesagt heißt das: Stellen Sie Code und Daten bereit. Den zu analyisierenden Datensatz können Sie selber bestimmen. Bereiten Sie sich darauf vor, Ihre Analyse (ca. 5 Min.) zu präsentieren bzw. im Gespräch Ihre Analyse zu diskutieren.<span class="math inline">\(\square\)</span></p>
+</div>
+</section><section id="aufgaben" class="level2" data-number="8.8"><h2 data-number="8.8" class="anchored" data-anchor-id="aufgaben">
+<span class="header-section-number">8.8</span> Aufgaben</h2>
 <ol type="1">
 <li><a href="https://datenwerk.netlify.app/posts/tidymodels-penguins1/tidymodels-penguins01.html">tidymodels-penguins01</a></li>
 <li><a href="https://datenwerk.netlify.app/posts/tidymodels-penguins02/tidymodels-penguins02.html">tidymodels-penguins02</a></li>
@@ -1015,8 +1022,8 @@ Tipp
 <li><a href="https://datenwerk.netlify.app/posts/tidymodels-poly01/tidymodels-poly01.html">tidymodels-poly01</a></li>
 <li><a href="https://datenwerk.netlify.app/posts/tidymodels-poly02/tidymodels-poly02.html">tidymodels-poly02</a></li>
 <li><a href="https://datenwerk.netlify.app/posts/knn-ames01/knn-ames01.html">knn-ames01</a></li>
-</ol></section><section id="fallstudien" class="level2" data-number="8.8"><h2 data-number="8.8" class="anchored" data-anchor-id="fallstudien">
-<span class="header-section-number">8.8</span> Fallstudien</h2>
+</ol></section><section id="fallstudien" class="level2" data-number="8.9"><h2 data-number="8.9" class="anchored" data-anchor-id="fallstudien">
+<span class="header-section-number">8.9</span> Fallstudien</h2>
 <p>In <a href="150-fallstudien.html"><span>Kapitel&nbsp;15</span></a> finden Sie eine ausführliche Liste an Fallstudien.</p>
 <ul>
 <li>Arbeiten Sie sich so gut als möglich durch <a href="https://github.com/sebastiansauer/covid-icu">diese Analyse zum Verlauf von Covid-Fällen</a>
@@ -1026,8 +1033,8 @@ Tipp
 <li><a href="https://juliasilge.com/blog/himalayan-climbing/">Fallstudie Himalaya (Resampling and kein Tuning)</a></li>
 <li><a href="https://juliasilge.com/blog/lasso-the-office/">Fallstudie Serie The Office: Lasso tunen</a></li>
 <li><a href="https://dev.to/juliasilge/tuning-random-forest-hyperparameters-in-r-with-tidytuesday-trees-data-4ilh">Fallstudie Bäume in San Francisco: Random Forest tunen</a></li>
-</ul></section><section id="vertiefung-1" class="level2" data-number="8.9"><h2 data-number="8.9" class="anchored" data-anchor-id="vertiefung-1">
-<span class="header-section-number">8.9</span> Vertiefung</h2>
+</ul></section><section id="vertiefung-1" class="level2" data-number="8.10"><h2 data-number="8.10" class="anchored" data-anchor-id="vertiefung-1">
+<span class="header-section-number">8.10</span> Vertiefung</h2>
 <p><a href="https://xkcd.com/435/">Fields arranged by purity, xkcd 435</a></p>
 
 

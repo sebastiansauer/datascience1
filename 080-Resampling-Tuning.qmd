@@ -951,6 +951,24 @@ collect_metrics(ames_last_fit)
 
 
 
+## Mini-Projekt
+
+
+Man lernt eine Sache erst richtig, wenn man sie anwendet. Zuhören reicht nicht.
+Daher sollten Sie nicht nur den Stoff hören/lesen/sehen,
+sondern vor allen Dingen selber anwenden.
+
+:::{#exr-miniprojekt1}
+### Erstellen Sie eine prädiktive Modellierung
+
+Erstellen Sie eine prädiktive Modellierung umgesetzt mit R/tidymodels entsprechend der hier vermittelten Methoden. Stellen Sie Code und Ergebnis bereit, am besten in Form eines Quarto-Dokuments auf einem geeigneten Github-Repositorium. 
+Von (hohem) Nutzen ist, wenn Ihre Analyse reproduzierbar ist, also von Dritten nachprüfbar ist.
+Kurz gesagt heißt das: Stellen Sie Code und Daten bereit.
+Den zu analyisierenden Datensatz können Sie selber bestimmen.
+Bereiten Sie sich darauf vor, Ihre Analyse (ca. 5 Min.) zu präsentieren bzw. im Gespräch Ihre Analyse zu diskutieren.$\square$
+:::
+
+
 
 
 
