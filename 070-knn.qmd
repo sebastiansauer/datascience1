@@ -404,6 +404,7 @@ knn_spec
 
 In der Voreinstellung wird $k=5$ gewählt.
 
+
 :::{.callout-note}
 ### $k$ ist ein Tuningparameter
 Der Parameter $k$ im knn-Algorithmus wird nicht über die Daten bestimmt,
@@ -418,6 +419,7 @@ Das Paket `dials` (Teil von Tidymodels) schlägt Werte für $k$ vor, das ist pra
 ### Workflow definieren und fitten
 
 Unser Workflow ist die "Summe" von Rezept und Modell: 
+
 
 ```{r}
 knn_wf <- workflow() |>
@@ -587,10 +589,6 @@ Verbildlichen wir die Konfusionsmatrix, so dass wir sehen welche `B` als `B` kla
 #| label: fig-conf-bm
 #| fig-cap: "Konfusionsmatrix für die Krebsdiagnostik. Die Größe eines Rechtecks ist proportional zu der Anzahl der Fällen dieser Gruppe."
 # autoplot(confusion, type = "mosaic")
-autoplot(confusion, type = "heatmap") +
-  labs(x = "Beobachtung",
-       y = "Vorhersage",
-       title = "Konfusionsmatrix")
 ```
 
 
@@ -914,6 +912,15 @@ Diese Funktion ruft man dann genauso auf wie `metrics`:
 ```{r}
 my_metrics(krebstest, truth = Krebs, estimate = Test)
 ```
+
+
+
+## kNN als Regression
+
+
+Der kNN-Algorithmus kann nicht nur zur Klassifikation, sondern auch zur Regression (numerische Vorhersage) verwendet werden.
+
+Die Vorhersage ist dann nicht der *Modus* der Nachbarn, sondern der *Mittelwert* der Nachbarn.
 
 
 
