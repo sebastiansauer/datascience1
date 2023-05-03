@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.247">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Grundlagen der Prognosemodellierung 🔮🧰 - 8&nbsp; Resampling und Tuning</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./090-glm.html" rel="next">
+<link href="./070-knn.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Keine Treffer",
+    "search-matching-documents-text": "Treffer",
+    "search-copy-link-title": "Link in die Suche kopieren",
+    "search-hide-matches-text": "Zusätzliche Treffer verbergen",
+    "search-more-match-text": "weitere Treffer in diesem Dokument",
+    "search-more-matches-text": "weitere Treffer in diesem Dokument",
+    "search-clear-button-title": "Zurücksetzen",
+    "search-detached-cancel-button-title": "Abbrechen",
+    "search-submit-button-title": "Abschicken"
+  }
+}</script><meta name="mermaid-theme" content="neutral">
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script><script src="site_libs/quarto-diagram/mermaid-init.js"></script><link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><link rel="stylesheet" href="styles.css">
+</head>
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./080-Resampling-Tuning.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Resampling und Tuning</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Grundlagen der Prognosemodellierung 🔮🧰</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Suchen"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Zu diesem Buch</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./010-Hinweise.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Hinweise</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./030-Pruefung.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Prüfung</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./040-Statistisches-Lernen.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Statistisches Lernen</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./050-R-Vertiefung.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">R, zweiter Blick</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./060-tidymodels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">tidymodels</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./070-knn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">kNN</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./080-Resampling-Tuning.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Resampling und Tuning</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./090-glm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Logistische Regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./100-baeume.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Entscheidungsbäume</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./110-ensemble.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Ensemble Lerner</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./120-regularisierte-modelle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Regularisierte Modelle</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./130-kaggle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Kaggle</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./140-faden.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Der rote Faden</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./150-fallstudien.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Fallstudien</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./160-e.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Staunen mit e</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul>
+<li>
+<a href="#lernsteuerung" id="toc-lernsteuerung" class="nav-link active" data-scroll-target="#lernsteuerung"><span class="header-section-number">8.1</span> Lernsteuerung</a>
+  <ul class="collapse">
+<li><a href="#lernziele" id="toc-lernziele" class="nav-link" data-scroll-target="#lernziele"><span class="header-section-number">8.1.1</span> Lernziele</a></li>
+  <li><a href="#vorbereitung" id="toc-vorbereitung" class="nav-link" data-scroll-target="#vorbereitung"><span class="header-section-number">8.1.2</span> Vorbereitung</a></li>
+  <li><a href="#literatur" id="toc-literatur" class="nav-link" data-scroll-target="#literatur"><span class="header-section-number">8.1.3</span> Literatur</a></li>
+  <li><a href="#ben%C3%B6tigte-r-pakete" id="toc-benötigte-r-pakete" class="nav-link" data-scroll-target="#ben%C3%B6tigte-r-pakete"><span class="header-section-number">8.1.4</span> Benötigte R-Pakete</a></li>
+  <li><a href="#daten" id="toc-daten" class="nav-link" data-scroll-target="#daten"><span class="header-section-number">8.1.5</span> Daten</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#%C3%BCberblick" id="toc-überblick" class="nav-link" data-scroll-target="#%C3%BCberblick"><span class="header-section-number">8.2</span> Überblick</a>
+  <ul class="collapse">
+<li><a href="#train--und-test-sample-vervielfacht" id="toc-train--und-test-sample-vervielfacht" class="nav-link" data-scroll-target="#train--und-test-sample-vervielfacht"><span class="header-section-number">8.2.1</span> Train- und Test-Sample vervielfacht</a></li>
+  <li><a href="#standardablauf" id="toc-standardablauf" class="nav-link" data-scroll-target="#standardablauf"><span class="header-section-number">8.2.2</span> Standardablauf</a></li>
+  <li><a href="#datensatz-aufteilen" id="toc-datensatz-aufteilen" class="nav-link" data-scroll-target="#datensatz-aufteilen"><span class="header-section-number">8.2.3</span> Datensatz aufteilen</a></li>
+  <li><a href="#resampling" id="toc-resampling" class="nav-link" data-scroll-target="#resampling"><span class="header-section-number">8.2.4</span> Resampling</a></li>
+  <li><a href="#resampling-varianten" id="toc-resampling-varianten" class="nav-link" data-scroll-target="#resampling-varianten"><span class="header-section-number">8.2.5</span> Resampling-Varianten</a></li>
+  <li><a href="#illustration-des-resampling" id="toc-illustration-des-resampling" class="nav-link" data-scroll-target="#illustration-des-resampling"><span class="header-section-number">8.2.6</span> Illustration des Resampling</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#umsetzung-in-tidymodels" id="toc-umsetzung-in-tidymodels" class="nav-link" data-scroll-target="#umsetzung-in-tidymodels"><span class="header-section-number">8.3</span> Umsetzung in tidymodels</a>
+  <ul class="collapse">
+<li><a href="#keine-train-test-aufteilung" id="toc-keine-train-test-aufteilung" class="nav-link" data-scroll-target="#keine-train-test-aufteilung"><span class="header-section-number">8.3.1</span> Keine Train-Test-Aufteilung</a></li>
+  <li><a href="#abh%C3%A4ngige-variable-transformieren" id="toc-abhängige-variable-transformieren" class="nav-link" data-scroll-target="#abh%C3%A4ngige-variable-transformieren"><span class="header-section-number">8.3.2</span> Abhängige Variable transformieren</a></li>
+  <li><a href="#rezept-modell-und-workflow-definieren" id="toc-rezept-modell-und-workflow-definieren" class="nav-link" data-scroll-target="#rezept-modell-und-workflow-definieren"><span class="header-section-number">8.3.3</span> Rezept, Modell und Workflow definieren</a></li>
+  <li><a href="#einfache-v-fache-kreuzvalidierung" id="toc-einfache-v-fache-kreuzvalidierung" class="nav-link" data-scroll-target="#einfache-v-fache-kreuzvalidierung"><span class="header-section-number">8.3.4</span> Einfache v-fache Kreuzvalidierung</a></li>
+  <li><a href="#wiederholte-kreuzvalidierung" id="toc-wiederholte-kreuzvalidierung" class="nav-link" data-scroll-target="#wiederholte-kreuzvalidierung"><span class="header-section-number">8.3.5</span> Wiederholte Kreuzvalidierung</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#vertiefung" id="toc-vertiefung" class="nav-link" data-scroll-target="#vertiefung"><span class="header-section-number">8.4</span> Vertiefung</a>
+  <ul class="collapse">
+<li><a href="#andere-illustrationen" id="toc-andere-illustrationen" class="nav-link" data-scroll-target="#andere-illustrationen"><span class="header-section-number">8.4.1</span> Andere Illustrationen</a></li>
+  <li><a href="#gesetz-der-gro%C3%9Fen-zahl" id="toc-gesetz-der-großen-zahl" class="nav-link" data-scroll-target="#gesetz-der-gro%C3%9Fen-zahl"><span class="header-section-number">8.4.2</span> Gesetz der großen Zahl</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#kreuzvalidierung-in-tidymodels" id="toc-kreuzvalidierung-in-tidymodels" class="nav-link" data-scroll-target="#kreuzvalidierung-in-tidymodels"><span class="header-section-number">8.5</span> Kreuzvalidierung in tidymodels</a>
+  <ul class="collapse">
+<li><a href="#kreuzvalidierung-definieren" id="toc-kreuzvalidierung-definieren" class="nav-link" data-scroll-target="#kreuzvalidierung-definieren"><span class="header-section-number">8.5.1</span> Kreuzvalidierung definieren</a></li>
+  <li><a href="#resamples-fitten" id="toc-resamples-fitten" class="nav-link" data-scroll-target="#resamples-fitten"><span class="header-section-number">8.5.2</span> Resamples fitten</a></li>
+  <li><a href="#streuung-in-der-modellg%C3%BCte-zwischen-den-resamples" id="toc-streuung-in-der-modellgüte-zwischen-den-resamples" class="nav-link" data-scroll-target="#streuung-in-der-modellg%C3%BCte-zwischen-den-resamples"><span class="header-section-number">8.5.3</span> Streuung in der Modellgüte zwischen den Resamples</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#tuning" id="toc-tuning" class="nav-link" data-scroll-target="#tuning"><span class="header-section-number">8.6</span> Tuning</a>
+  <ul class="collapse">
+<li><a href="#tuning-1" id="toc-tuning-1" class="nav-link" data-scroll-target="#tuning-1"><span class="header-section-number">8.6.1</span> Tuning</a></li>
+  <li><a href="#tuning-am-beispiel-von-knn" id="toc-tuning-am-beispiel-von-knn" class="nav-link" data-scroll-target="#tuning-am-beispiel-von-knn"><span class="header-section-number">8.6.2</span> Tuning am Beispiel von knn</a></li>
+  <li><a href="#tuningparmaeter" id="toc-tuningparmaeter" class="nav-link" data-scroll-target="#tuningparmaeter"><span class="header-section-number">8.6.3</span> Tuningparmaeter</a></li>
+  <li><a href="#tuning-in-tidymodels" id="toc-tuning-in-tidymodels" class="nav-link" data-scroll-target="#tuning-in-tidymodels"><span class="header-section-number">8.6.4</span> Tuning in Tidymodels</a></li>
+  <li><a href="#doch-wieder-train--und-test-sample" id="toc-doch-wieder-train--und-test-sample" class="nav-link" data-scroll-target="#doch-wieder-train--und-test-sample"><span class="header-section-number">8.6.5</span> Doch wieder Train- und Test-Sample</a></li>
+  <li><a href="#modelle-mit-tuning-berechnen" id="toc-modelle-mit-tuning-berechnen" class="nav-link" data-scroll-target="#modelle-mit-tuning-berechnen"><span class="header-section-number">8.6.6</span> Modelle mit Tuning berechnen</a></li>
+  <li><a href="#workflow-finalisieren" id="toc-workflow-finalisieren" class="nav-link" data-scroll-target="#workflow-finalisieren"><span class="header-section-number">8.6.7</span> Workflow finalisieren</a></li>
+  </ul>
+</li>
+  <li><a href="#mini-projekt" id="toc-mini-projekt" class="nav-link" data-scroll-target="#mini-projekt"><span class="header-section-number">8.7</span> Mini-Projekt</a></li>
+  <li><a href="#aufgaben" id="toc-aufgaben" class="nav-link" data-scroll-target="#aufgaben"><span class="header-section-number">8.8</span> Aufgaben</a></li>
+  <li><a href="#fallstudien" id="toc-fallstudien" class="nav-link" data-scroll-target="#fallstudien"><span class="header-section-number">8.9</span> Fallstudien</a></li>
+  <li><a href="#vertiefung-1" id="toc-vertiefung-1" class="nav-link" data-scroll-target="#vertiefung-1"><span class="header-section-number">8.10</span> Vertiefung</a></li>
+  </ul></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title"><span id="sec-res-tune" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Resampling und Tuning</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header><section id="lernsteuerung" class="level2" data-number="8.1"><h2 data-number="8.1" class="anchored" data-anchor-id="lernsteuerung">
+<span class="header-section-number">8.1</span> Lernsteuerung</h2>
+<section id="lernziele" class="level3" data-number="8.1.1"><h3 data-number="8.1.1" class="anchored" data-anchor-id="lernziele">
+<span class="header-section-number">8.1.1</span> Lernziele</h3>
+<ul>
+<li>Sie verstehen den Nutzen von Resampling und Tuning im maschinellen Nutzen.</li>
+<li>Sie können Methoden des Resampling und Tunings mit Hilfe von Tidymodels anwenden.</li>
+</ul></section><section id="vorbereitung" class="level3" data-number="8.1.2"><h3 data-number="8.1.2" class="anchored" data-anchor-id="vorbereitung">
+<span class="header-section-number">8.1.2</span> Vorbereitung</h3>
+<ul>
+<li>Lesen Sie die Literatur.</li>
+</ul></section><section id="literatur" class="level3" data-number="8.1.3"><h3 data-number="8.1.3" class="anchored" data-anchor-id="literatur">
+<span class="header-section-number">8.1.3</span> Literatur</h3>
+<ul>
+<li>Rhys, Kap. 3</li>
+<li>TMWR, Kap. 10, 12</li>
+</ul></section><section id="benötigte-r-pakete" class="level3" data-number="8.1.4"><h3 data-number="8.1.4" class="anchored" data-anchor-id="benötigte-r-pakete">
+<span class="header-section-number">8.1.4</span> Benötigte R-Pakete</h3>
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/libs-resampling-tuning_c26dfe43e95416089da75866ee91b5ea">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jabiru/tictoc">tictoc</a></span><span class="op">)</span>  <span class="co"># Rechenzeit messen, optional</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="daten" class="level3" data-number="8.1.5"><h3 data-number="8.1.5" class="anchored" data-anchor-id="daten">
+<span class="header-section-number">8.1.5</span> Daten</h3>
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-2_823a54fda0e1fe85062eb3dca585e670">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">ames</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section><section id="überblick" class="level2" data-number="8.2"><h2 data-number="8.2" class="anchored" data-anchor-id="überblick">
+<span class="header-section-number">8.2</span> Überblick</h2>
+<section id="train--und-test-sample-vervielfacht" class="level3" data-number="8.2.1"><h3 data-number="8.2.1" class="anchored" data-anchor-id="train--und-test-sample-vervielfacht">
+<span class="header-section-number">8.2.1</span> Train- und Test-Sample vervielfacht</h3>
+<p>In <a href="040-Statistisches-Lernen.html#sec-overfit"><span>Kapitel&nbsp;4.7</span></a> haben wir gelernt, dass ein Modell in einem zweiten Datensatz auf seine Modellgüte hin überprüft werden und sollte und nicht in dem (ersten) Datensatz, in dem die Modellparameter berechnet wurden.</p>
+<p>In diesem Kapitel werden wir wir von einem Modell <em>mehrere Varianten</em> berechnen, daher benötigen wir für jeden dieser Varianten oder “Modellkandidaten” eine eigene Train-Test-Aufteilung. Zur Klarheit der Begrifflichkeiten nennt man die resultierenden Teile in dem Fall <em>Analyse- und Assessment-Sample</em>, s. <a href="#fig-analys-assess-test">Abbildung&nbsp;<span>8.1</span></a> dargestellt aus Kap. 10.2 in <span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span> (<a href="https://www.tmwr.org/resampling.html">Quelle</a>).</p>
+<div id="fig-analys-assess-test" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="img/resampling.svg" class="img-fluid figure-img" style="width:50.0%"></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;8.1: Die Aufteilung der Daten im Falle mehrerer Modellkandidaten</figcaption><p></p>
+</figure>
+</div>
+</section><section id="standardablauf" class="level3" data-number="8.2.2"><h3 data-number="8.2.2" class="anchored" data-anchor-id="standardablauf">
+<span class="header-section-number">8.2.2</span> Standardablauf</h3>
+<p>Ein Standardablauf des maschinellen Lernens ist in <a href="#fig-process1">Abbildung&nbsp;<span>8.2</span></a> dargestellt.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-process1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><div>
+<pre class="mermaid mermaid-js" data-label="fig-process1">flowchart TD
+   
+Gesamtdatensatz --&gt; Split[In Train- und Test aufteilen]
+subgraph Fit[Für jeden Modellkandidaten i]
+  subgraph Kand[Modellkandidat i]
+  F[Fitte im Train-S] --&gt; T[Teste im Assessment-S]
+  end
+end
+Split --&gt; Fit
+Fit --&gt; Best[Bestimmte besten Kandidaten]
+Best --&gt; lastFit[Fitte ihn im ganzen Train-S]
+lastFit --&gt; test[Teste im Test-S]
+</pre>
+</div>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;8.2: Standardablauf des maschinellen Lernens mit Tuning und Resampling (S: Sample bzw. Stichprobe)</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="datensatz-aufteilen" class="level3" data-number="8.2.3"><h3 data-number="8.2.3" class="anchored" data-anchor-id="datensatz-aufteilen">
+<span class="header-section-number">8.2.3</span> Datensatz aufteilen</h3>
+<p>Bisher haben wir den Gesamt-Datensatz stets in ein Train- und ein Test-Sample aufgeteilt.</p>
+<p>Aber es könnte ja sein, dass die Aufteilung just die “schwer zu vorherzusagenden” Fälle in das Test-Sample befördert. Dann würde sich unser Modell über die Maßen schwer tun und zu schlecht abschneiden. Umgekehrt könnte es ja passieren, dass die “einfach zu vorherzusagenden” Fälle ins Test-Sample wandern, einfach durch die Zufälligkeit der Aufteilung von Train- und Test-Sample.</p>
+<p>Eine Lösung, die sich anbietet, lautet, die Train-Test-Aufteilung ein paar Mal durchzuführen, und sich dann mit dem Mittelwert der Modellgüte zu begnügen. Voilà: Resampling!</p>
+</section><section id="resampling" class="level3 def-resampling" data-number="8.2.4"><h3 data-number="8.2.4" class="anchored" data-anchor-id="resampling">
+<span class="header-section-number">8.2.4</span> Resampling</h3>
+<p>Resampling ist eine Verallgemeinerung des einfachen Aufteilens in Train- und Test-Sample. Im Kern wird aus dem Datensatz mehrere Stichproben durch wiederholtes Ziehen gezogen. Durch Resampling kann die Modellgüte besser bestimmt werden als durch einfaches Train-Test-Aufteilen.<span class="math inline">\(\square\)</span></p>
+</section><div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hinweis
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Verschiedene (zufällige) Aufteilung eines Datensatzes in Train- und Test-Sample können zu verschiedenen Modellgüten führen. So könnten im Train-Sample durch eine bestimmte Zufallsaufteilung relativ viele (oder wenige) schwer zu klassifizierende Fälle zusammen kommen.<span class="math inline">\(\square\)</span></p>
+</div>
+</div>
+<section id="resampling-varianten" class="level3" data-number="8.2.5"><h3 data-number="8.2.5" class="anchored" data-anchor-id="resampling-varianten">
+<span class="header-section-number">8.2.5</span> Resampling-Varianten</h3>
+<p>Vergleichen Sie die drei Fälle, die sich in der Nutzung von Train- und Test-Sample unterscheiden:</p>
+<ol type="1">
+<li>Wir fitten ein Klassifikationsmodell in einer Stichprobe, sagen die Y-Werte dieser Stichprobe “vorher”. Wir finden eine Gesamtgenauigkeit von 80%.</li>
+<li>Wir fitten ein Klassifikationsmodell in einem Teil der ursprünglichen Stichprobe (Train-Sample) und sagen Y-die Werte im verbleibenden Teil der ursprünglichen Stichprobe vorher (Test-Sample). Wir finden eine Gesamtgenauigkeit von 70%.</li>
+<li>Wir wiederholen Fall 2 noch drei Mal mit jeweils anderer Zuweisung der Fälle zum Train- bzw. zum Test-Sample. Wir finden insgesamt folgende Werte an Gesamtgenauigkeit: 70%, 70%, 65%, 75%.</li>
+</ol>
+<p>Welchen der drei Fälle finden Sie am sinnvollsten? Warum? Fall Nummer 3 bezeichnet man als <em>Kreuzvalidierung</em>.</p>
+</section><section id="illustration-des-resampling" class="level3" data-number="8.2.6"><h3 data-number="8.2.6" class="anchored" data-anchor-id="illustration-des-resampling">
+<span class="header-section-number">8.2.6</span> Illustration des Resampling</h3>
+<p><em>Resampling</em> stellt einen Oberbegriff dar; <em>Kreuzvalidierung</em> ist ein Unterbegriff dazu. Es gibt noch andere Arten des Resampling, etwa <em>Bootstrapping</em> oder <em>Leave-One-Out-Cross-Validation</em> (LOOCV).</p>
+<p>Im Folgenden ist nur die Kreuzvalidierung dargestellt, da es eines der wichtigsten und vielleicht das am häufigsten verwendete Verfahren des Resampling ist. In vielen Quellen finden sich Erläuterungen anderer Verfahren dargestellt, etwa in <span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span>, <span class="citation" data-cites="islr">James u.&nbsp;a. (<a href="references.html#ref-islr" role="doc-biblioref">2021</a>)</span> oder <span class="citation" data-cites="rhys">Rhys (<a href="references.html#ref-rhys" role="doc-biblioref">2020</a>)</span>.</p>
+</section></section><section id="umsetzung-in-tidymodels" class="level2" data-number="8.3"><h2 data-number="8.3" class="anchored" data-anchor-id="umsetzung-in-tidymodels">
+<span class="header-section-number">8.3</span> Umsetzung in tidymodels</h2>
+<p>Betrachten wir dieses Konzept an einem konkreten Beispiel mit Tidymodels.</p>
+<section id="keine-train-test-aufteilung" class="level3" data-number="8.3.1"><h3 data-number="8.3.1" class="anchored" data-anchor-id="keine-train-test-aufteilung">
+<span class="header-section-number">8.3.1</span> Keine Train-Test-Aufteilung</h3>
+<p>Wir teilen beim Resampling nicht einmal in Train- und Test-Sample, sondern mehrfach. Daher können wir uns die einfache Train-Test-Aufteilung sparen.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Vorsicht
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Wenn man ein Model auch tuned, also Tuning verwendet, dann werden wir wiederum die Train-Test-Aufteilung verwenden. Dazu später mehr.<span class="math inline">\(\square\)</span></p>
+</div>
+</div>
+</section><section id="abhängige-variable-transformieren" class="level3" data-number="8.3.2"><h3 data-number="8.3.2" class="anchored" data-anchor-id="abhängige-variable-transformieren">
+<span class="header-section-number">8.3.2</span> Abhängige Variable transformieren</h3>
+<p>Wir beginnen mit etwas Datenvorverarbeitung. Hier transformieren wir die abhängige Variable, und zwar mit einer Log-Transformation.</p>
+<div class="{callout-note}">
+<p>Möchte man eine abhängige Variable transformieren, so sollte das <em>außerhalb</em> des Rezepts passieren, da Tidymodels das “Backen” nicht auf die <code>outcome</code>-Variable ausführt.<span class="math inline">\(\square\)</span></p>
+</div>
+<p>Aus der <a href="https://recipes.tidymodels.org/reference/step_scale.html">Dokumentation von <code>step_scale</code></a>:</p>
+<blockquote class="blockquote">
+<p>skip - A logical. Should the step be skipped when the recipe is baked by bake()? While all operations are baked when prep() is run, some operations may not be able to be conducted on new data (e.g.&nbsp;processing the outcome variable(s)). Care should be taken when using skip = TRUE as it may affect the computations for subsequent operations.</p>
+</blockquote>
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-4_c6d7e529a88c2695cfe7e1133cc82830">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ames</span> <span class="op">&lt;-</span></span>
+<span>  <span class="va">ames</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Sale_Price <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">Sale_Price</span>, base <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><a href="https://www.tmwr.org/recipes.html#skip-equals-true">Hier</a> finden Sie eine Antwort, warum tidymodels sich weigert, Informationen über die AV vom Train- in das Test-Sample zu transferieren.</p>
+</section><section id="rezept-modell-und-workflow-definieren" class="level3" data-number="8.3.3"><h3 data-number="8.3.3" class="anchored" data-anchor-id="rezept-modell-und-workflow-definieren">
+<span class="header-section-number">8.3.3</span> Rezept, Modell und Workflow definieren</h3>
+<p>In gewohnter Weise definieren wir zunächst den Workflow mit einem kNN-Modell.</p>
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/ames-wf_052328b91ba4b7e7948b7de79b77c51e">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ames_rec</span> <span class="op">&lt;-</span></span>
+<span>  <span class="fu">recipe</span><span class="op">(</span><span class="va">Sale_Price</span> <span class="op">~</span> <span class="va">Lot_Area</span> <span class="op">+</span> <span class="va">Fireplaces</span> <span class="op">+</span> <span class="va">Longitude</span> <span class="op">+</span> <span class="va">Latitude</span>,</span>
+<span>         data <span class="op">=</span> <span class="va">ames</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">step_zv</span><span class="op">(</span><span class="fu">all_predictors</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">step_normalize</span><span class="op">(</span><span class="fu">all_predictors</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">step_impute_median</span><span class="op">(</span><span class="fu">all_predictors</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">knn_model</span> <span class="op">&lt;-</span></span>
+<span>  <span class="fu">nearest_neighbor</span><span class="op">(</span></span>
+<span>    mode <span class="op">=</span> <span class="st">"regression"</span></span>
+<span>  <span class="op">)</span> </span>
+<span></span>
+<span><span class="va">ames_wflow1</span> <span class="op">&lt;-</span></span>
+<span>  <span class="fu">workflow</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">add_recipe</span><span class="op">(</span><span class="va">ames_rec</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">add_model</span><span class="op">(</span><span class="va">knn_model</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Zur Erinnerung: Mit dem Rezept kNN-Modell ist noch <em>nicht</em> *berechnet, es ist nur ein “Rezept” erstellt.</p>
+</section><section id="einfache-v-fache-kreuzvalidierung" class="level3" data-number="8.3.4"><h3 data-number="8.3.4" class="anchored" data-anchor-id="einfache-v-fache-kreuzvalidierung">
+<span class="header-section-number">8.3.4</span> Einfache v-fache Kreuzvalidierung</h3>
+<p><a href="#fig-resampling">Abbildung&nbsp;<span>8.3</span></a> illustriert die zufällige Aufteilung von <span class="math inline">\(n=10\)</span> Fällen der Originalstrichprobe auf eine Train- bzw. Test-Stichpobe. Man spricht von <em>Kreuzvalidierung</em> (cross validation, CV).</p>
+<p>In diesem Fall wurden 70% der (<span class="math inline">\(n=10\)</span>) Fälle der Train-Stichprobe zugewiesen (der Rest der Test-Stichprobe); ein willkürlicher, aber nicht unüblicher Anteil. Diese Aufteilung wurde <span class="math inline">\(v=3\)</span> Mal vorgenommen, es resultieren drei “Resampling-Stichproben”, die manchmal auch als “Faltungen” bezeichnet werden.</p>
+<div class="cell" data-messagen="false" data-hash="080-Resampling-Tuning_cache/html/fig-resampling_1b39eb81b6c542698cd170d9cfb81257">
+<div class="cell-output-display">
+<div id="fig-resampling" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="080-Resampling-Tuning_files/figure-html/fig-resampling-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;8.3: Resampling: Eine Stichprobe wird mehrfach (hier 3 Mal) zu 70% in ein Train- und zu 30% in die Test-Stichprobe aufgeteilt</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p><span class="citation" data-cites="modar">Sauer (<a href="references.html#ref-modar" role="doc-biblioref">2019</a>)</span> stellt das Resampling so dar (S. 259), s. <a href="#fig-cvmodar">Abbildung&nbsp;<span>8.4</span></a>.</p>
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/fig-cvmodar_d53146a97b478773a81f015de9ef1f19">
+<div class="cell-output-display">
+<div id="fig-cvmodar" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="img/crossval.png" class="img-fluid figure-img" width="861"></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;8.4: Kreuzvalidierung, Aufteilung in Train- vs.&nbsp;Testsample</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Der Gesamtfehler der Vorhersage (die Modellgüte) wird als <em>Mittelwert der Vorhersagefehler</em> in den einzelnen Faltungen berechnet.</p>
+<p>Warum ist die Vorhersage besser, wenn man mehrere Faltungen, mehrere Schätzungen für <span class="math inline">\(y\)</span> also, vornimmt?</p>
+<p>Der Grund ist das Gesetz der großen Zahl, nachdem sich eine Schätzung in Mittelwert und Variabilität stabilisiert mit steigendem Stichprobenumfang, dem wahren Mittelwert also präziser schätzt.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Mit mehr Faltungen nähern wir uns also einem “wahren” Mittelwert der Modellgüte (und sonstiger Kennzahlen) näher an.</p>
+<p>Häufig werden <span class="math inline">\(v=10\)</span> Faltungen verwendet, was sich empirisch als guter Kompromiss von Rechenaufwand und Fehlerreduktion herausgestellt hat.</p>
+<p>Die Nachteile der Kreuzvalidierung sind:</p>
+<ol type="1">
+<li>Die Rechenzeit steigt (in der Regel) etwa proportional zur Anzahl der <span class="math inline">\(v\)</span> Faltungen.</li>
+<li>Da die Train-Stichprobe kleiner ist (als bei der einfachen Train-Test-Aufteilung), wird die Schätzung der Modellkoeffizienten ungenauer sein und damit die Modellgüte geringer.</li>
+</ol>
+<p>Insgesamt überwiegen zumeist die Vorteiler eines Resamplings (wie eine Kreuzvalidierung) im Vergleich zu einfachen Train-Test-Aufteilung.</p>
+</section><section id="wiederholte-kreuzvalidierung" class="level3" data-number="8.3.5"><h3 data-number="8.3.5" class="anchored" data-anchor-id="wiederholte-kreuzvalidierung">
+<span class="header-section-number">8.3.5</span> Wiederholte Kreuzvalidierung</h3>
+<p>Die <span class="math inline">\(r\)</span>-fach wiederholte Kreuzvalidierung wiederholte die einfache Kreuzvalidierung mehrfach (nämlich <span class="math inline">\(r=4\)</span> mal), <span class="citation" data-cites="modar">Sauer (<a href="references.html#ref-modar" role="doc-biblioref">2019</a>)</span> stellt das Resampling so dar (S. 259), s. <a href="#fig-cvrep">Abbildung&nbsp;<span>8.5</span></a>.</p>
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/fig-cvrep_c9fae0c3bbdfc82690b35729aae4bf33">
+<div class="cell-output-display">
+<div id="fig-cvrep" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="img/crossval_repeated.png" class="img-fluid figure-img" width="916"></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;8.5: Wiederholte Kreuzvalidierung</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Die wiederholte Kreuzvalidierung reduziert den Standardfehler der Vorhersagen.</p>
+<!-- @silge_tidy_2022 zeigen die Verringerung des Schätzfehlers als Funktion der $r$ Wiederholungen dar, -->
+<!-- s. @fig-repcvred. -->
+<!-- ```{r repcvred, echo = FALSE, fig.cap = "Reduktion des Schätzfehlers als Funktion der r Wiederhoulugen der Kreuzvalidierung"} -->
+<!-- #| label: fig-repcvred -->
+<!-- knitr::include_graphics("https://www.tmwr.org/figures/variance-reduction-1.png") -->
+<!-- ``` -->
+<p>Warum ist die Wiederholung der Kreuzvalidierung nützlich?</p>
+<p>Die Kreuvalidierung liefert einen Schätzwert der Modellparameter, die wahren Modellparameter werden also anhand einer Stichprobe von <span class="math inline">\(n=1\)</span> geschätzt. Mit höherem Stichprobenumfang kann diese Schätzung natürlich präzisiert werden.</p>
+<p>Da jede Stichprobenverteilung bei <span class="math inline">\(n \rightarrow \infty\)</span> normalverteilt ist - ein zentrales Theorem der Statistik, der <em>Zentrale Grenzwertsatz</em> (Central Limit Theorem) - kann man hoffen, dass sich eine bestimmte Stichprobenverteilung bei kleinerem <span class="math inline">\(n\)</span> ebenfalls annähernd normalverteilt<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Dann sind die Quantile bekannt und man kann die Streuung der Schätzers, <span class="math inline">\({\sigma }_{\bar {x}}\)</span>, z.B. für den Mittelwert, einfach schätzen:</p>
+<p><span class="math display">\[{\displaystyle {\sigma }_{\bar {x}}\ ={\frac {\sigma }{\sqrt {n}}}}\]</span></p>
+</section></section><section id="vertiefung" class="level2" data-number="8.4"><h2 data-number="8.4" class="anchored" data-anchor-id="vertiefung">
+<span class="header-section-number">8.4</span> Vertiefung</h2>
+<section id="andere-illustrationen" class="level3" data-number="8.4.1"><h3 data-number="8.4.1" class="anchored" data-anchor-id="andere-illustrationen">
+<span class="header-section-number">8.4.1</span> Andere Illustrationen</h3>
+<p>Es gibt eine Reihe nützlicher, vergleichbarer Illustrationen in anderen Büchern zum Resampling:</p>
+<ul>
+<li><a href="https://datasciencebook.ca/img/cv.png">Timbers, Campbell &amp; Lee, 2022, Kap. 6</a></li>
+<li><a href="https://datasciencebook.ca/img/cv.png">Silge &amp; Kuhn, 2022, 10.1</a></li>
+<li><a href="https://www.tmwr.org/premade/three-CV.svg">Silge &amp; Kuhn, 2022, 10.2</a></li>
+<li><a href="https://www.tmwr.org/premade/three-CV-iter.svg">Silge &amp; Kuhn, 2022, 10.3</a></li>
+<li>James, Witten, hastie &amp; Tishirani, 2021, 5.3</li>
+</ul></section><section id="gesetz-der-großen-zahl" class="level3" data-number="8.4.2"><h3 data-number="8.4.2" class="anchored" data-anchor-id="gesetz-der-großen-zahl">
+<span class="header-section-number">8.4.2</span> Gesetz der großen Zahl</h3>
+<p>Nach dem <em>Gesetz der großen Zahl</em> (Law of Large Numbers) sollte sich der Mittelwert einer großen Stichprobe dem theoretischen Mittelwert der zugrundeliegenden Verteilung (Population, datengeneriender Prozess) sehr nahe kommen.</p>
+<p><span class="math display">\[\displaystyle \lim _{n\to \infty }\sum _{i=1}^{n}{\frac {X_{i}}{n}}={\overline {X}}\]</span></p>
+<p>David Salazar visualisiert das folgendermaßen in <a href="https://david-salazar.github.io/2020/04/17/fat-vs-thin-does-lln-work/">diesem Post</a> seines lesenswerten <a href="https://david-salazar.github.io/">Blogs</a>, s. <a href="#fig-lln">Abbildung&nbsp;<span>8.6</span></a>).</p>
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/fig-lln_fcbedab8d82ada9437c4e56b3c3a121d">
+<div class="cell-output-display">
+<div id="fig-lln" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="080-Resampling-Tuning_files/figure-html/fig-lln-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;8.6: Gesetz der großen Zahl</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Wie man sieht, nähert sich der empirische Mittelwert (also in der Stichprobe) immer mehr dem theoretischen Mittelwert, 0, an.</p>
+<p>Achtung: Bei randlastigen Verteilungen darf man dieses schöne, wohlerzogene Verhalten nicht erwarten <span class="citation" data-cites="fattails">(<a href="references.html#ref-fattails" role="doc-biblioref">Taleb 2019</a>)</span>.</p>
+</section></section><section id="kreuzvalidierung-in-tidymodels" class="level2" data-number="8.5"><h2 data-number="8.5" class="anchored" data-anchor-id="kreuzvalidierung-in-tidymodels">
+<span class="header-section-number">8.5</span> Kreuzvalidierung in tidymodels</h2>
+<section id="kreuzvalidierung-definieren" class="level3" data-number="8.5.1"><h3 data-number="8.5.1" class="anchored" data-anchor-id="kreuzvalidierung-definieren">
+<span class="header-section-number">8.5.1</span> Kreuzvalidierung definieren</h3>
+<p>So kann man eine <em>einfache</em> v-fache Kreuzvalidierung (cross-validation, CV) in Tidymodels auszeichnen<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>:</p>
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-6_f6fffaabf7d78e029b42e32dd81b74c2">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">2453</span><span class="op">)</span></span>
+<span><span class="va">ames_folds</span> <span class="op">&lt;-</span> <span class="fu">vfold_cv</span><span class="op">(</span><span class="va">ames</span>, strata <span class="op">=</span> <span class="st">"Sale_Price"</span><span class="op">)</span></span>
+<span><span class="va">ames_folds</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["splits"],"name":[1],"type":["list"],"align":["right"]},{"label":["id"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"<S3: vfold_split>","2":"Fold01"},{"1":"<S3: vfold_split>","2":"Fold02"},{"1":"<S3: vfold_split>","2":"Fold03"},{"1":"<S3: vfold_split>","2":"Fold04"},{"1":"<S3: vfold_split>","2":"Fold05"},{"1":"<S3: vfold_split>","2":"Fold06"},{"1":"<S3: vfold_split>","2":"Fold07"},{"1":"<S3: vfold_split>","2":"Fold08"},{"1":"<S3: vfold_split>","2":"Fold09"},{"1":"<S3: vfold_split>","2":"Fold10"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Werfen wir einen Blick in die Spalte <code>splits</code>, erste Zeile:</p>
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-7_7f6ddac93ec56c563e7394630600bc59">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ames_folds</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="co">## &lt;Analysis/Assess/Total&gt;</span></span>
+<span><span class="co">## &lt;2635/295/2930&gt;</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Möchte man die Defaults von <code>vfold_cv</code> wissen, schaut man in der Hilfe nach: <code>?vfold_cv</code>:</p>
+<p><code>vfold_cv(data, v = 10, repeats = 1, strata = NULL, breaks = 4, pool = 0.1, ...)</code></p>
+<p>Probieren wir <span class="math inline">\(v=10\)</span> und <span class="math inline">\(r=10\)</span>:</p>
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-8_2e805abb2da9b8d1089a380c1d516db0">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ames_folds_rep</span> <span class="op">&lt;-</span> <span class="fu">vfold_cv</span><span class="op">(</span><span class="va">ames</span>, </span>
+<span>                           strata <span class="op">=</span> <span class="st">"Sale_Price"</span>, </span>
+<span>                           v <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>                           repeats <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
+<span><span class="va">ames_folds_rep</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["splits"],"name":[1],"type":["list"],"align":["right"]},{"label":["id"],"name":[2],"type":["chr"],"align":["left"]},{"label":["id2"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"<S3: vfold_split>","2":"Repeat01","3":"Fold01"},{"1":"<S3: vfold_split>","2":"Repeat01","3":"Fold02"},{"1":"<S3: vfold_split>","2":"Repeat01","3":"Fold03"},{"1":"<S3: vfold_split>","2":"Repeat01","3":"Fold04"},{"1":"<S3: vfold_split>","2":"Repeat01","3":"Fold05"},{"1":"<S3: vfold_split>","2":"Repeat01","3":"Fold06"},{"1":"<S3: vfold_split>","2":"Repeat01","3":"Fold07"},{"1":"<S3: vfold_split>","2":"Repeat01","3":"Fold08"},{"1":"<S3: vfold_split>","2":"Repeat01","3":"Fold09"},{"1":"<S3: vfold_split>","2":"Repeat01","3":"Fold10"},{"1":"<S3: vfold_split>","2":"Repeat02","3":"Fold01"},{"1":"<S3: vfold_split>","2":"Repeat02","3":"Fold02"},{"1":"<S3: vfold_split>","2":"Repeat02","3":"Fold03"},{"1":"<S3: vfold_split>","2":"Repeat02","3":"Fold04"},{"1":"<S3: vfold_split>","2":"Repeat02","3":"Fold05"},{"1":"<S3: vfold_split>","2":"Repeat02","3":"Fold06"},{"1":"<S3: vfold_split>","2":"Repeat02","3":"Fold07"},{"1":"<S3: vfold_split>","2":"Repeat02","3":"Fold08"},{"1":"<S3: vfold_split>","2":"Repeat02","3":"Fold09"},{"1":"<S3: vfold_split>","2":"Repeat02","3":"Fold10"},{"1":"<S3: vfold_split>","2":"Repeat03","3":"Fold01"},{"1":"<S3: vfold_split>","2":"Repeat03","3":"Fold02"},{"1":"<S3: vfold_split>","2":"Repeat03","3":"Fold03"},{"1":"<S3: vfold_split>","2":"Repeat03","3":"Fold04"},{"1":"<S3: vfold_split>","2":"Repeat03","3":"Fold05"},{"1":"<S3: vfold_split>","2":"Repeat03","3":"Fold06"},{"1":"<S3: vfold_split>","2":"Repeat03","3":"Fold07"},{"1":"<S3: vfold_split>","2":"Repeat03","3":"Fold08"},{"1":"<S3: vfold_split>","2":"Repeat03","3":"Fold09"},{"1":"<S3: vfold_split>","2":"Repeat03","3":"Fold10"},{"1":"<S3: vfold_split>","2":"Repeat04","3":"Fold01"},{"1":"<S3: vfold_split>","2":"Repeat04","3":"Fold02"},{"1":"<S3: vfold_split>","2":"Repeat04","3":"Fold03"},{"1":"<S3: vfold_split>","2":"Repeat04","3":"Fold04"},{"1":"<S3: vfold_split>","2":"Repeat04","3":"Fold05"},{"1":"<S3: vfold_split>","2":"Repeat04","3":"Fold06"},{"1":"<S3: vfold_split>","2":"Repeat04","3":"Fold07"},{"1":"<S3: vfold_split>","2":"Repeat04","3":"Fold08"},{"1":"<S3: vfold_split>","2":"Repeat04","3":"Fold09"},{"1":"<S3: vfold_split>","2":"Repeat04","3":"Fold10"},{"1":"<S3: vfold_split>","2":"Repeat05","3":"Fold01"},{"1":"<S3: vfold_split>","2":"Repeat05","3":"Fold02"},{"1":"<S3: vfold_split>","2":"Repeat05","3":"Fold03"},{"1":"<S3: vfold_split>","2":"Repeat05","3":"Fold04"},{"1":"<S3: vfold_split>","2":"Repeat05","3":"Fold05"},{"1":"<S3: vfold_split>","2":"Repeat05","3":"Fold06"},{"1":"<S3: vfold_split>","2":"Repeat05","3":"Fold07"},{"1":"<S3: vfold_split>","2":"Repeat05","3":"Fold08"},{"1":"<S3: vfold_split>","2":"Repeat05","3":"Fold09"},{"1":"<S3: vfold_split>","2":"Repeat05","3":"Fold10"},{"1":"<S3: vfold_split>","2":"Repeat06","3":"Fold01"},{"1":"<S3: vfold_split>","2":"Repeat06","3":"Fold02"},{"1":"<S3: vfold_split>","2":"Repeat06","3":"Fold03"},{"1":"<S3: vfold_split>","2":"Repeat06","3":"Fold04"},{"1":"<S3: vfold_split>","2":"Repeat06","3":"Fold05"},{"1":"<S3: vfold_split>","2":"Repeat06","3":"Fold06"},{"1":"<S3: vfold_split>","2":"Repeat06","3":"Fold07"},{"1":"<S3: vfold_split>","2":"Repeat06","3":"Fold08"},{"1":"<S3: vfold_split>","2":"Repeat06","3":"Fold09"},{"1":"<S3: vfold_split>","2":"Repeat06","3":"Fold10"},{"1":"<S3: vfold_split>","2":"Repeat07","3":"Fold01"},{"1":"<S3: vfold_split>","2":"Repeat07","3":"Fold02"},{"1":"<S3: vfold_split>","2":"Repeat07","3":"Fold03"},{"1":"<S3: vfold_split>","2":"Repeat07","3":"Fold04"},{"1":"<S3: vfold_split>","2":"Repeat07","3":"Fold05"},{"1":"<S3: vfold_split>","2":"Repeat07","3":"Fold06"},{"1":"<S3: vfold_split>","2":"Repeat07","3":"Fold07"},{"1":"<S3: vfold_split>","2":"Repeat07","3":"Fold08"},{"1":"<S3: vfold_split>","2":"Repeat07","3":"Fold09"},{"1":"<S3: vfold_split>","2":"Repeat07","3":"Fold10"},{"1":"<S3: vfold_split>","2":"Repeat08","3":"Fold01"},{"1":"<S3: vfold_split>","2":"Repeat08","3":"Fold02"},{"1":"<S3: vfold_split>","2":"Repeat08","3":"Fold03"},{"1":"<S3: vfold_split>","2":"Repeat08","3":"Fold04"},{"1":"<S3: vfold_split>","2":"Repeat08","3":"Fold05"},{"1":"<S3: vfold_split>","2":"Repeat08","3":"Fold06"},{"1":"<S3: vfold_split>","2":"Repeat08","3":"Fold07"},{"1":"<S3: vfold_split>","2":"Repeat08","3":"Fold08"},{"1":"<S3: vfold_split>","2":"Repeat08","3":"Fold09"},{"1":"<S3: vfold_split>","2":"Repeat08","3":"Fold10"},{"1":"<S3: vfold_split>","2":"Repeat09","3":"Fold01"},{"1":"<S3: vfold_split>","2":"Repeat09","3":"Fold02"},{"1":"<S3: vfold_split>","2":"Repeat09","3":"Fold03"},{"1":"<S3: vfold_split>","2":"Repeat09","3":"Fold04"},{"1":"<S3: vfold_split>","2":"Repeat09","3":"Fold05"},{"1":"<S3: vfold_split>","2":"Repeat09","3":"Fold06"},{"1":"<S3: vfold_split>","2":"Repeat09","3":"Fold07"},{"1":"<S3: vfold_split>","2":"Repeat09","3":"Fold08"},{"1":"<S3: vfold_split>","2":"Repeat09","3":"Fold09"},{"1":"<S3: vfold_split>","2":"Repeat09","3":"Fold10"},{"1":"<S3: vfold_split>","2":"Repeat10","3":"Fold01"},{"1":"<S3: vfold_split>","2":"Repeat10","3":"Fold02"},{"1":"<S3: vfold_split>","2":"Repeat10","3":"Fold03"},{"1":"<S3: vfold_split>","2":"Repeat10","3":"Fold04"},{"1":"<S3: vfold_split>","2":"Repeat10","3":"Fold05"},{"1":"<S3: vfold_split>","2":"Repeat10","3":"Fold06"},{"1":"<S3: vfold_split>","2":"Repeat10","3":"Fold07"},{"1":"<S3: vfold_split>","2":"Repeat10","3":"Fold08"},{"1":"<S3: vfold_split>","2":"Repeat10","3":"Fold09"},{"1":"<S3: vfold_split>","2":"Repeat10","3":"Fold10"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+</section><section id="resamples-fitten" class="level3" data-number="8.5.2"><h3 data-number="8.5.2" class="anchored" data-anchor-id="resamples-fitten">
+<span class="header-section-number">8.5.2</span> Resamples fitten</h3>
+<p>Hat unser Computer mehrere Rechenkerne, dann können wir diese nutzen und die Berechnungen beschleunigen. Im Standard wird sonst nur ein Kern verwendet.</p>
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-9_1cf6ba188b363ec1d342c38ceb927016">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mycores</span> <span class="op">&lt;-</span> <span class="fu">parallel</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/parallel/detectCores.html">detectCores</a></span><span class="op">(</span>logical <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">mycores</span></span>
+<span><span class="co">## [1] 4</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Auf Unix/MacOC-Systemen kann man dann die Anzahl der parallelen Kerne so einstellen<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>:</p>
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-10_71ce5f7f59ef06f235e357da034b0fbd">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">doMC</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/doMC/man/registerDoMC.html">registerDoMC</a></span><span class="op">(</span>cores <span class="op">=</span> <span class="va">mycores</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>So, und jetzt fitten wir die Resamples und betrachten die Modellgüte in den Resamples:</p>
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-11_210d576713f442f8c16e755b2283f262">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">tic</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">ames_resamples_fit</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="va">ames_wflow1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">fit_resamples</span><span class="op">(</span><span class="va">ames_folds</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">toc</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">## 1.564 sec elapsed</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-12_fe29c3993fd5c225ea22a82bbbf6b9ab">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span> <span class="va">ames_resamples_fit</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu">collect_metrics</span><span class="op">(</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":[".metric"],"name":[1],"type":["chr"],"align":["left"]},{"label":[".estimator"],"name":[2],"type":["chr"],"align":["left"]},{"label":["mean"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["n"],"name":[4],"type":["int"],"align":["right"]},{"label":["std_err"],"name":[5],"type":["dbl"],"align":["right"]},{"label":[".config"],"name":[6],"type":["chr"],"align":["left"]}],"data":[{"1":"rmse","2":"standard","3":"0.09819232","4":"10","5":"0.002151453","6":"Preprocessor1_Model1"},{"1":"rsq","2":"standard","3":"0.69654336","4":"10","5":"0.010852310","6":"Preprocessor1_Model1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+</section><section id="streuung-in-der-modellgüte-zwischen-den-resamples" class="level3" data-number="8.5.3"><h3 data-number="8.5.3" class="anchored" data-anchor-id="streuung-in-der-modellgüte-zwischen-den-resamples">
+<span class="header-section-number">8.5.3</span> Streuung in der Modellgüte zwischen den Resamples</h3>
+<p>Betrachten wir die Streuungen der Modellgüte (RSMSE) in der 10-fachen, nicht wiederholten Kreuzvalidierung, s. <a href="#fig-cv-rmse">Abbildung&nbsp;<span>8.7</span></a>.</p>
+<p>Jetzt wiederholen wir die Kreuzvalidierung <span class="math inline">\(r=5\)</span> mal und betrachten wieder die Streuung der Modellgüte. Da wir <span class="math inline">\(r\)</span> mal so viele Modelle berechnen, benötigen wir - wenn nur ein einzelnen Rechenkern benutzt wird - <span class="math inline">\(r\)</span> mal so viel Rechenzeit<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>.</p>
+<p>Zuerst berechnen wir die wiederholte Kreuzvalidierung, das kann etwas dauern:</p>
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-14_799c600ab550b9e7ecad30c9c5a43e00">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">tic</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">ames_resamples_fit_rep</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="va">ames_wflow1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">fit_resamples</span><span class="op">(</span><span class="va">ames_folds_rep</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">toc</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">## 7.843 sec elapsed</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Und hier sind die Gütekennzahlen der wiederholten Kreuzvalidierung.</p>
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-15_ba7955fd80637255da7dd6e04beb2d4d">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ames_resamples_fit_rep</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">collect_metrics</span><span class="op">(</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":[".metric"],"name":[1],"type":["chr"],"align":["left"]},{"label":[".estimator"],"name":[2],"type":["chr"],"align":["left"]},{"label":["mean"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["n"],"name":[4],"type":["int"],"align":["right"]},{"label":["std_err"],"name":[5],"type":["dbl"],"align":["right"]},{"label":[".config"],"name":[6],"type":["chr"],"align":["left"]}],"data":[{"1":"rmse","2":"standard","3":"0.09830861","4":"100","5":"0.0008507707","6":"Preprocessor1_Model1"},{"1":"rsq","2":"standard","3":"0.69627852","4":"100","5":"0.0036773155","6":"Preprocessor1_Model1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Wie man sieht, ist der Standardfehler (<code>std_err</code>), also die Streuung der Modellgüten <em>deutlich kleiner</em> in der wiederholten Kreuzvalidierung (verglichen mit der einfachen, r=1, Kreuzvalidierung).</p>
+<p>Auf dieser Basis visualisieren wir die Ergebnisse: Wie man sieht, streuen die <span class="math inline">\(v=10\)</span> Faltungen in ihre Modellgüte, s. <a href="#fig-cv-rmse">Abbildung&nbsp;<span>8.7</span></a>, links.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hinweis
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Hätten wir nur ein Mal, nicht 10 Mal, in Train- und Test-Sample aufgeteilt, hättten wir einen Wert der Modellgüte (z.B. den ersten) beobachtet. Wir hätten (vielleicht) nicht geahnt, dass unser Wert nicht der einzig mögliche ist. Jetzt sehen wir aber, dass ein einzelner Wert nicht zuverlässig ist. Erst mehrere Wiederholungen (Resamples) ermöglichen eine zuverlässige(re) Schätzung der Modellgüte.<span class="math inline">\(\square\)</span></p>
+</div>
+</div>
+<p><a href="#fig-cv-rmse">Abbildung&nbsp;<span>8.7</span></a>, rechts, zeigt ein zweites Phänomen. Durch das Wiederholen (<span class="math inline">\(r=5\)</span>) <em>sinkt</em>, nach dem Gesetz der großen Zahl, die Streuung. Geringere Streuung bedeutet eine genauere Schätzung des wahren Gütewerts.</p>
+<div id="fig-cv-rmse" class="cell quarto-layout-panel" data-hash="080-Resampling-Tuning_cache/html/fig-cv-rmse_33eb78cbccc4f108df1cb3f6d4a7d883">
+<figure class="figure"><div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-cv-rmse-1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="080-Resampling-Tuning_files/figure-html/fig-cv-rmse-1.png" class="img-fluid figure-img" data-ref-parent="fig-cv-rmse" width="672"></p>
+<p></p><figcaption class="figure-caption">(a) Streuung der Modellgüte (RMSE) mit v=10 r=1 CV</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-cv-rmse-2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="080-Resampling-Tuning_files/figure-html/fig-cv-rmse-2.png" class="img-fluid figure-img" data-ref-parent="fig-cv-rmse" width="672"></p>
+<p></p><figcaption class="figure-caption">(b) Streuung der Modellgüte (RMSE) mit v=10 r=5 CV</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;8.7: Streuung der Modellgüte (RMSE) bei nicht wiederholter und wiederholter CV</figcaption><p></p>
+</figure>
+</div>
+<p>Puh, das war recht theoretisch. Ja, das Leben des Data-Scientisten ist nicht immer einfach, findet auch Grumpy Cat, s. <a href="#fig-grumpy1">Abbildung&nbsp;<span>8.8</span></a>.</p>
+<div id="fig-grumpy1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="img/7h9qvw.jpg" class="img-fluid figure-img" style="width:50.0%"></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;8.8: Grumpy Cat und die Schwierigkeiten im Leben des Data-Scientisten</figcaption><p></p>
+</figure>
+</div>
+<p><a href="https://imgflip.com/i/7h9qvw">Quelle: imgflip</a></p>
+</section></section><section id="tuning" class="level2" data-number="8.6"><h2 data-number="8.6" class="anchored" data-anchor-id="tuning">
+<span class="header-section-number">8.6</span> Tuning</h2>
+<section id="tuning-1" class="level3 def-tuning" data-number="8.6.1"><h3 data-number="8.6.1" class="anchored" data-anchor-id="tuning-1">
+<span class="header-section-number">8.6.1</span> Tuning</h3>
+<blockquote class="blockquote">
+<p>👨‍🏫 Hey ChatGPT: Definiere Tuning mit maschinellen Lernen am Beispiel von knn und dem Parameter k.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>🤖 KNN (K-nearest neighbors) ist ein Machine-Learning-Algorithmus, bei dem die Vorhersage eines neuen Datenpunkts auf der Basis der k nächsten Nachbarn im Trainingsdatensatz getroffen wird. Der Parameter k gibt an, wie viele Nachbarn zur Vorhersage verwendet werden sollen. Eine wichtige Aufgabe beim Tuning von KNN besteht darin, den optimalen Wert für den Parameter k zu finden. Wenn k zu klein gewählt wird, kann dies zu einer Überanpassung an den Trainingsdatensatz führen, während bei zu groß gewähltem k das Modell unteranpassung aufweisen kann. Durch Tuning kann ein optimales k gefunden werden, das zu einer besseren Leistung des Modells auf einem Validierungsdatensatz führt. Es gibt verschiedene Methoden zum Tuning des k-Parameters. Eine Möglichkeit besteht darin, ein Rastersuchverfahren durchzuführen, bei dem eine vordefinierte Menge von k-Werten getestet wird, um dasjenige zu finden, das die beste Leistung auf einem Validierungsdatensatz aufweist. Eine andere Möglichkeit besteht darin, eine zufällige Suche durchzuführen, indem man zufällig verschiedene k-Werte auswählt und deren Leistung bewertet. Das Ziel des Tunings ist es, den besten Wert für den Parameter k zu finden, um das KNN-Modell zu verbessern und die Vorhersagegenauigkeit auf einem Testdatensatz zu maximieren. Das Tuning sollte jedoch immer mit einem unabhängigen Testdatensatz durchgeführt werden, um sicherzustellen, dass das Modell nicht überangepasst wird und auf neuen Daten gut funktioniert.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a><span class="math inline">\(\square\)</span></p>
+</blockquote>
+</section><section id="tuning-am-beispiel-von-knn" class="level3" data-number="8.6.2"><h3 data-number="8.6.2" class="anchored" data-anchor-id="tuning-am-beispiel-von-knn">
+<span class="header-section-number">8.6.2</span> Tuning am Beispiel von knn</h3>
+<p>Im K-Nächste-Nachbarn-Modell (Klassifikation) ist der vorhergesagt Wert, <span class="math inline">\(\hat{y}\)</span> für eine neue Beobachtung <span class="math inline">\(x_0\)</span> der <em>Modus</em> der <span class="math inline">\(K\)</span> nächsten Nachbarn.</p>
+<p>Die Wahl von <span class="math inline">\(K\)</span> hat einen zentralen Einfluss auf die Vorhersagen und damit auf die Vorhersagegüte. Allerdings wird <span class="math inline">\(K\)</span> <em>nicht</em> vom Modell geschätzt. Es liegt an uns, diesen Wert zu wählen.</p>
+</section><section id="tuningparmaeter" class="level3 def-tuningparameter" data-number="8.6.3"><h3 data-number="8.6.3" class="anchored" data-anchor-id="tuningparmaeter">
+<span class="header-section-number">8.6.3</span> Tuningparmaeter</h3>
+<p>Parameter eines Lernmodells, die vom Nutzer zu bestimmen sind, also nicht vom Lernmodell geschätzt werden, nennt man <em>Tuningparameter</em>.<span class="math inline">\(\square\)</span></p>
+</section><blockquote class="blockquote">
+<p>🧑‍🎓 Hab ich nicht genau verstanden!</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>👨‍🏫 Lies es hier oder anderer Stelle noch einmal nach. Oder frag mal einen Bot wie ChatGPT!</p>
+</blockquote>
+<section id="tuning-in-tidymodels" class="level3" data-number="8.6.4"><h3 data-number="8.6.4" class="anchored" data-anchor-id="tuning-in-tidymodels">
+<span class="header-section-number">8.6.4</span> Tuning in Tidymodels</h3>
+<p>In der Modellspezifikation des Modells können wir mit <code>tune()</code> <em>auszeichnen</em>, welche Parameter wir tunen möchten.</p>
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-18_1a0f600932e498427feca6aa8860e23e">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">knn_model2</span> <span class="op">&lt;-</span></span>
+<span>  <span class="fu">nearest_neighbor</span><span class="op">(</span></span>
+<span>    mode <span class="op">=</span> <span class="st">"regression"</span>,</span>
+<span>    neighbors <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="op">)</span>  <span class="co"># Wir tunen den Parameter "neighbors"</span></span>
+<span>  <span class="op">)</span> </span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Wir können dem Tuningparameter auch einen Namen (ID/Label) geben, z.B. “K”:</p>
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-19_ab556b94a7c0833aae28355910cb027b">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">knn_model2a</span> <span class="op">&lt;-</span></span>
+<span>  <span class="fu">nearest_neighbor</span><span class="op">(</span></span>
+<span>    mode <span class="op">=</span> <span class="st">"regression"</span>,</span>
+<span>    neighbors <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="st">"K"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> </span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hinweis
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Tidymodels trennt generell das Spezifizieren vom Evaluieren: Erst definieren wir ein Rezept und ein Modell, dann fitten wir es. Das gilt auch für das Tunen: Erst weisen wir Parameter zum Tunen aus, dann wählen wir Tuningparameter und tunen.<span class="math inline">\(\square\)</span></p>
+</div>
+</div>
+<p>In <code>tidymodels</code> kann man mit <code>tune()</code> angeben, dass man einen bestimmten Parameter tunen möchte. <code>tidymodels</code> führt das dann ohne weiteres Federlesens für uns durch.</p>
+<!-- Möchte man wissen,  -->
+<!-- welche und wie viele Tuningparameter tidymodels in einem Modell berücksichtigt, -->
+<!-- kann man so aufrufen^[Alle Tuningparameter eines Modells sieht man so: `knn_model2 %>%  -->
+<!--   extract_parameter_set_dials()`]: -->
+<!-- ```{r} -->
+<!-- knn_model2 %>%  -->
+<!--   extract_parameter_dials("neighbors") -->
+<!-- ``` -->
+<p>Die Ausgabe informiert uns, dass es nur einen Tuningparameter gibt in diesem Modell und dass der Name (Label, ID) des Tuningparameters “K” ist. Außerdem erfahren wir, dass der Tuningparmaeter die Anzahl der zu berücksichtigen Nachbarn bezeichent. Der Tuningparameter ist numerisch; das sieht man an <code>nparam[+]</code>. Tidymodels wählt einen Range von 1 bis 15 Nachbarn.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hinweis
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Praktisch! Oft ist es nicht leicht zu wissen, was ein gutes Spektrum an Werten eines Tuningparameters ist. <code>tidymodels</code> bzw. <code>dials</code> macht es einfach: Es gibt uns einen Bereich plausibler Tuningwerte vor.<span class="math inline">\(\square\)</span></p>
+</div>
+</div>
+<p>Jetzt aktualisieren wir unseren Workflow mit dem neuen <code>knn_model2</code>, in dem jetzt ein Modellparameter (<span class="math inline">\(k\)</span>) zum Tunen ausgezeichnet ist:</p>
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-20_f782533177ebcd91e04c821c2ddb2f32">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ames_wflow2</span> <span class="op">&lt;-</span></span>
+<span>  <span class="va">ames_wflow1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">update_model</span><span class="op">(</span><span class="va">knn_model2</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Natürlich hätten wir auch von Anfang an den Workflow mit Tuning auszeichnen können:</p>
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-21_b0825883c961beaf8d71c940ab5b253d">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ames_wflow2</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu">workflow</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">add_model</span><span class="op">(</span><span class="va">knn_model2</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">add_recipe</span><span class="op">(</span><span class="va">ames_rec</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<!-- Wir können auch Einfluss nehmen und angeben, -->
+<!-- dass die Grenzen des Wertebereichs zwischen 1 und 50 liegen soll  -->
+<!-- (für den Tuningparameter `neighbors`): -->
+<!-- ```{r} -->
+<!-- knn_model3 <- -->
+<!-- nearest_neighbor( -->
+<!--   mode = "classification", -->
+<!--   neighbors = tune(id = "K") %>% set_range(c(1, 50)) -->
+<!-- ) -->
+<!-- ``` -->
+<!-- Den Wertebereich eines Prädiktors kann man aber auch mit `search_grid` bestimmen. -->
+<!-- ```{r ames-update} -->
+<!-- ames_set <- -->
+<!--   extract_parameter_set_dials(ames_wflow) %>% -->
+<!--   update(K = neighbors(c(1, 50))) -->
+<!-- ames_set -->
+<!-- ``` -->
+<!-- ### Datenabhängige Tuningparameter -->
+<!-- Manche Tuningparameter kann man nur bestimmen, -->
+<!-- wenn man den Datensatz kennt. -->
+<!-- So ist die Anzahl der Prädiktoren, `mtry` in einem Random-Forest-Modell  -->
+<!-- sinnvollerweise als Funktion der Prädiktorenzahl zu wählen. -->
+<!-- Der Workflow kennt aber den Datensatz nicht. -->
+<!-- Daher muss der Workflow noch "finalisiert" oder "aktualisiert" werden, -->
+<!-- um den Wertebereich (Unter- und Obergrenze) eines Tuningparameters zu bestimmen. -->
+<!-- Wenn wir im Rezept aber z.B. die Anzahl der Prädiktoren verändert haben, -->
+<!-- möchten wir die Grenzen des Wertebereichs für `mtry` (oder andere Tuningparameter) vielleicht nicht händisch, "hartverdrahtet" selber bestimmen, -->
+<!-- sondern lieber den Computer anweisen, und sinngemäß sagen: -->
+<!-- "Warte mal mit der Bestimmung der Werte der Tuningparameter, -->
+<!-- bis du den Datensatz bzw. dessen Dimensionen kennst. Merk dir,  -->
+<!-- dass du, wenn du den Datensatz kennst, die Werte des Tuningparameter noch ändern musst. Und tu das dann auch." Dazu später mehr. -->
+<!-- ```{r ames-finalize} -->
+<!-- ames_set <- -->
+<!--   workflow() %>%  -->
+<!--   add_model(knn_model2) %>%  -->
+<!--   add_recipe(ames_rec) %>%  -->
+<!--   extract_parameter_set_dials() %>%  -->
+<!--   finalize(ames_train) -->
+<!-- ames_set -->
+<!-- ``` -->
+</section><section id="doch-wieder-train--und-test-sample" class="level3" data-number="8.6.5"><h3 data-number="8.6.5" class="anchored" data-anchor-id="doch-wieder-train--und-test-sample">
+<span class="header-section-number">8.6.5</span> Doch wieder Train- und Test-Sample</h3>
+<p>Wenn man Tuning betreibt, benötigt man <em>doch</em> wieder die Aufteilung von Train- und Test-Sample. Um Overfitting zu vermeiden, sollte man das Test-Sample nur <em>einmal</em> verwenden. Würde man viele Modelle am Test-Sample überprüfen, wäre es nur eine Frage der Zeit, bis man - allein durch Rauschen - eine (scheinbar) hohe Modellgüte findet. Daher führt man Tuning und Resampling nur im Train-Sample durch. Den besten, “finalen” Wert des Tuningparameters nutzt man dann um das ganze Train-Sample auf dieser Basis zu fitten. Schließlich sagt man dann das Test-Sample vorher.</p>
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/ames-split_51de8c4e0f645e00c3740a1eee431fa4">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">4595</span><span class="op">)</span></span>
+<span><span class="va">data_split</span> <span class="op">&lt;-</span> <span class="fu">initial_split</span><span class="op">(</span><span class="va">ames</span>, strata <span class="op">=</span> <span class="st">"Sale_Price"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">ames_train</span> <span class="op">&lt;-</span> <span class="fu">training</span><span class="op">(</span><span class="va">data_split</span><span class="op">)</span></span>
+<span><span class="va">ames_test</span> <span class="op">&lt;-</span> <span class="fu">testing</span><span class="op">(</span><span class="va">data_split</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="modelle-mit-tuning-berechnen" class="level3" data-number="8.6.6"><h3 data-number="8.6.6" class="anchored" data-anchor-id="modelle-mit-tuning-berechnen">
+<span class="header-section-number">8.6.6</span> Modelle mit Tuning berechnen</h3>
+<p>Nachdem wir die Tuningwerte bestimmt haben, können wir jetzt das Modell berechnen: Für jeden Wert des Tuningparameters wird ein Modell berechnet:</p>
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/ames-tune-grid_0df91c4ef6b19b882d64fde0c91f0e17">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ames_grid_search</span> <span class="op">&lt;-</span></span>
+<span>  <span class="fu">tune_grid</span><span class="op">(</span></span>
+<span>    object <span class="op">=</span> <span class="va">ames_wflow2</span>,</span>
+<span>    resamples <span class="op">=</span> <span class="va">ames_folds</span>,</span>
+<span>    grid <span class="op">=</span> <span class="fl">5</span>  <span class="co"># 5 Tuningwerte insgesamt</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="va">ames_grid_search</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["splits"],"name":[1],"type":["list"],"align":["right"]},{"label":["id"],"name":[2],"type":["chr"],"align":["left"]},{"label":[".metrics"],"name":[3],"type":["list"],"align":["right"]},{"label":[".notes"],"name":[4],"type":["list"],"align":["right"]}],"data":[{"1":"<S3: vfold_split>","2":"Fold01","3":"<tibble[,5]>","4":"<tibble[,3]>"},{"1":"<S3: vfold_split>","2":"Fold02","3":"<tibble[,5]>","4":"<tibble[,3]>"},{"1":"<S3: vfold_split>","2":"Fold03","3":"<tibble[,5]>","4":"<tibble[,3]>"},{"1":"<S3: vfold_split>","2":"Fold04","3":"<tibble[,5]>","4":"<tibble[,3]>"},{"1":"<S3: vfold_split>","2":"Fold05","3":"<tibble[,5]>","4":"<tibble[,3]>"},{"1":"<S3: vfold_split>","2":"Fold06","3":"<tibble[,5]>","4":"<tibble[,3]>"},{"1":"<S3: vfold_split>","2":"Fold07","3":"<tibble[,5]>","4":"<tibble[,3]>"},{"1":"<S3: vfold_split>","2":"Fold08","3":"<tibble[,5]>","4":"<tibble[,3]>"},{"1":"<S3: vfold_split>","2":"Fold09","3":"<tibble[,5]>","4":"<tibble[,3]>"},{"1":"<S3: vfold_split>","2":"Fold10","3":"<tibble[,5]>","4":"<tibble[,3]>"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Im Default berechnet <code>tiymodels</code> 10 verschiedene Tuningparamweterwerte (“Kandidatenmodelle”). Hier haben wir mit <code>grid = 5</code> uns mit 5 verschiedenen Werten zufrieden gegeben. Tidymodels sucht uns nach einigen (recht vernünftigen) Daumenregeln ein paar Werte aus.</p>
+<p>Die Spalte <code>.metrics</code> beinhaltet die Modellgüte für jedes Kandidatenmodell.</p>
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-22_efbda543d35b317efca7dfeb0795ff16">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ames_grid_search</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">collect_metrics</span><span class="op">(</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["neighbors"],"name":[1],"type":["int"],"align":["right"]},{"label":[".metric"],"name":[2],"type":["chr"],"align":["left"]},{"label":[".estimator"],"name":[3],"type":["chr"],"align":["left"]},{"label":["mean"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["n"],"name":[5],"type":["int"],"align":["right"]},{"label":["std_err"],"name":[6],"type":["dbl"],"align":["right"]},{"label":[".config"],"name":[7],"type":["chr"],"align":["left"]}],"data":[{"1":"2","2":"rmse","3":"standard","4":"0.10883232","5":"10","6":"0.002266551","7":"Preprocessor1_Model1"},{"1":"2","2":"rsq","3":"standard","4":"0.64383503","5":"10","6":"0.013328780","7":"Preprocessor1_Model1"},{"1":"6","2":"rmse","3":"standard","4":"0.09714204","5":"10","6":"0.002191705","7":"Preprocessor1_Model2"},{"1":"6","2":"rsq","3":"standard","4":"0.70181334","5":"10","6":"0.010745119","7":"Preprocessor1_Model2"},{"1":"8","2":"rmse","3":"standard","4":"0.09592597","5":"10","6":"0.002333779","7":"Preprocessor1_Model3"},{"1":"8","2":"rsq","3":"standard","4":"0.70790226","5":"10","6":"0.011108349","7":"Preprocessor1_Model3"},{"1":"11","2":"rmse","3":"standard","4":"0.09523430","5":"10","6":"0.002563218","7":"Preprocessor1_Model4"},{"1":"11","2":"rsq","3":"standard","4":"0.71121114","5":"10","6":"0.012012210","7":"Preprocessor1_Model4"},{"1":"14","2":"rmse","3":"standard","4":"0.09517949","5":"10","6":"0.002674685","7":"Preprocessor1_Model5"},{"1":"14","2":"rsq","3":"standard","4":"0.71116732","5":"10","6":"0.012545013","7":"Preprocessor1_Model5"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Im Standard wird bei Regression (numerischer Vorhersage) der RMSE und R-Quadrat ausgegeben.</p>
+<p>Die Modellgüte in Abhängigkeit der Tuningwerte können wir uns einfach visualisieren lassen:</p>
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-23_ef4e637ad5fc09d6738a8e3dd38232e9">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot</a></span><span class="op">(</span><span class="va">ames_grid_search</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="080-Resampling-Tuning_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Auf Basis dieser Ergebnisse könnte es Sinn machen, noch größere Werte für <span class="math inline">\(K\)</span> zu überprüfen.</p>
+<p>Tidymodels bietet verschiedene Optionen, um ein “Gitter” (<code>grid</code>) an Werten von einem oder (in vielen Modellen) mehreren Tuningparametern zu durchsuchen.</p>
+<p>Am einfachsten ist es, wenn wir ein Gitter an Werten als Tabelle (Tibble) vorgeben:</p>
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-24_9b2c8e1e557fadea71cbdce1645fd6fa">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">grid1</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>neighbors <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Dabei müssen die Spalten so heißen, wie Tidymodels die Tuningparameter benennt.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tipp
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Die Namen der Tuningparameter erfährt man auf der Hilfeseite des Modells, z.B. <code>nearest_neighbor</code>. Oder mit <code>show_model_info("nearest_neighbor")</code>. Am komfortabelsten geht es mit <code>extract_parameter_set_dials(ames_wflow2)</code>.<span class="math inline">\(\square\)</span></p>
+</div>
+</div>
+<p>Eine andere Möglichkeit ist, ein Gitter mit <em>regelmäßigen</em> Abständen der Werte zu erstellen, z.B. mit 5 Ausprägungen pro Tuningparameter:</p>
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-25_e78e50231981c761a0dfe5126376b669">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">grid2</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu">grid_regular</span><span class="op">(</span></span>
+<span>    <span class="fu">neighbors</span><span class="op">(</span>range <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5L</span>, <span class="fl">30L</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    levels <span class="op">=</span> <span class="fl">5</span></span>
+<span>    <span class="op">)</span></span>
+<span><span class="va">grid2</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["neighbors"],"name":[1],"type":["int"],"align":["right"]}],"data":[{"1":"5"},{"1":"11"},{"1":"17"},{"1":"23"},{"1":"30"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-26_73f3cb0fad2c1dcae61d35e331986766">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ames_grid_search2</span> <span class="op">&lt;-</span></span>
+<span>  <span class="fu">tune_grid</span><span class="op">(</span></span>
+<span>    object <span class="op">=</span> <span class="va">ames_wflow2</span>,</span>
+<span>    resamples <span class="op">=</span> <span class="va">ames_folds</span>,  </span>
+<span>    grid <span class="op">=</span> <span class="va">grid2</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="va">ames_grid_search2</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["splits"],"name":[1],"type":["list"],"align":["right"]},{"label":["id"],"name":[2],"type":["chr"],"align":["left"]},{"label":[".metrics"],"name":[3],"type":["list"],"align":["right"]},{"label":[".notes"],"name":[4],"type":["list"],"align":["right"]}],"data":[{"1":"<S3: vfold_split>","2":"Fold01","3":"<tibble[,5]>","4":"<tibble[,3]>"},{"1":"<S3: vfold_split>","2":"Fold02","3":"<tibble[,5]>","4":"<tibble[,3]>"},{"1":"<S3: vfold_split>","2":"Fold03","3":"<tibble[,5]>","4":"<tibble[,3]>"},{"1":"<S3: vfold_split>","2":"Fold04","3":"<tibble[,5]>","4":"<tibble[,3]>"},{"1":"<S3: vfold_split>","2":"Fold05","3":"<tibble[,5]>","4":"<tibble[,3]>"},{"1":"<S3: vfold_split>","2":"Fold06","3":"<tibble[,5]>","4":"<tibble[,3]>"},{"1":"<S3: vfold_split>","2":"Fold07","3":"<tibble[,5]>","4":"<tibble[,3]>"},{"1":"<S3: vfold_split>","2":"Fold08","3":"<tibble[,5]>","4":"<tibble[,3]>"},{"1":"<S3: vfold_split>","2":"Fold09","3":"<tibble[,5]>","4":"<tibble[,3]>"},{"1":"<S3: vfold_split>","2":"Fold10","3":"<tibble[,5]>","4":"<tibble[,3]>"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+</section><section id="workflow-finalisieren" class="level3" data-number="8.6.7"><h3 data-number="8.6.7" class="anchored" data-anchor-id="workflow-finalisieren">
+<span class="header-section-number">8.6.7</span> Workflow finalisieren</h3>
+<p>Welcher Modellkandidat war jetzt am besten?</p>
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-27_6f51157f9377cf2ff87b22dfa1a81b25">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">bester_modellkandidat</span> <span class="op">&lt;-</span> <span class="fu">select_best</span><span class="op">(</span><span class="va">ames_grid_search2</span><span class="op">)</span></span>
+<span><span class="va">bester_modellkandidat</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["neighbors"],"name":[1],"type":["int"],"align":["right"]},{"label":[".config"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"11","2":"Preprocessor1_Model2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Aha! Mit diesem Wert updaten bzw. “finalisieren” wir jetzt unseren Workflow. Dann fitten wir zum letzten Mal mit diesem finalisierten Workflow das ganze Train-Sample, um dann, endlich, das Test-Sample vorherzusagen.</p>
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-28_795ff0f461d31de896030bdfcb57dc05">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ames_wflow2_final</span> <span class="op">&lt;-</span> <span class="fu">finalize_workflow</span><span class="op">(</span><span class="va">ames_wflow2</span>, <span class="va">bester_modellkandidat</span><span class="op">)</span></span>
+<span><span class="va">ames_wflow2_final</span></span>
+<span><span class="co">## ══ Workflow ════════════════════════════════════════════════════════════════════</span></span>
+<span><span class="co">## Preprocessor: Recipe</span></span>
+<span><span class="co">## Model: nearest_neighbor()</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## ── Preprocessor ────────────────────────────────────────────────────────────────</span></span>
+<span><span class="co">## 3 Recipe Steps</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## • step_zv()</span></span>
+<span><span class="co">## • step_normalize()</span></span>
+<span><span class="co">## • step_impute_median()</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## ── Model ───────────────────────────────────────────────────────────────────────</span></span>
+<span><span class="co">## K-Nearest Neighbor Model Specification (regression)</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Main Arguments:</span></span>
+<span><span class="co">##   neighbors = 11</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Computational engine: kknn</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-29_8103d61b4808a90711afbf761b896343">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ames_last_fit</span> <span class="op">&lt;-</span> <span class="fu">last_fit</span><span class="op">(</span><span class="va">ames_wflow2_final</span>, <span class="va">data_split</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Modellgüte im Test-Sample:</p>
+<div class="cell" data-hash="080-Resampling-Tuning_cache/html/unnamed-chunk-30_06eafe6ddf306a7bdb3b16daf78ec369">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">collect_metrics</span><span class="op">(</span><span class="va">ames_last_fit</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":[".metric"],"name":[1],"type":["chr"],"align":["left"]},{"label":[".estimator"],"name":[2],"type":["chr"],"align":["left"]},{"label":[".estimate"],"name":[3],"type":["dbl"],"align":["right"]},{"label":[".config"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"rmse","2":"standard","3":"0.1015789","4":"Preprocessor1_Model1"},{"1":"rsq","2":"standard","3":"0.6871914","4":"Preprocessor1_Model1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+</section></section><section id="mini-projekt" class="level2" data-number="8.7"><h2 data-number="8.7" class="anchored" data-anchor-id="mini-projekt">
+<span class="header-section-number">8.7</span> Mini-Projekt</h2>
+<p>Man lernt eine Sache erst richtig, wenn man sie anwendet. Zuhören reicht nicht. Daher sollten Sie nicht nur den Stoff hören/lesen/sehen, sondern vor allen Dingen selber anwenden.</p>
+<div id="exr-miniprojekt1" class="theorem exercise">
+<p><span class="theorem-title"><strong>Übungsaufgabe 8.1 (Erstellen Sie eine prädiktive Modellierung) </strong></span>Erstellen Sie eine prädiktive Modellierung umgesetzt mit R/tidymodels entsprechend der hier vermittelten Methoden. Stellen Sie Code und Ergebnis bereit, am besten in Form eines Quarto-Dokuments auf einem geeigneten Github-Repositorium. Von (hohem) Nutzen ist, wenn Ihre Analyse reproduzierbar ist, also von Dritten nachprüfbar ist. Kurz gesagt heißt das: Stellen Sie Code und Daten bereit. Den zu analyisierenden Datensatz können Sie selber bestimmen. Bereiten Sie sich darauf vor, Ihre Analyse (ca. 5 Min.) zu präsentieren bzw. im Gespräch Ihre Analyse zu diskutieren.<span class="math inline">\(\square\)</span></p>
+</div>
+</section><section id="aufgaben" class="level2" data-number="8.8"><h2 data-number="8.8" class="anchored" data-anchor-id="aufgaben">
+<span class="header-section-number">8.8</span> Aufgaben</h2>
+<ol type="1">
+<li><a href="https://datenwerk.netlify.app/posts/tidymodels-penguins1/tidymodels-penguins01.html">tidymodels-penguins01</a></li>
+<li><a href="https://datenwerk.netlify.app/posts/tidymodels-penguins02/tidymodels-penguins02.html">tidymodels-penguins02</a></li>
+<li><a href="https://datenwerk.netlify.app/posts/tidymodels-penguins03/tidymodels-penguins03.html">tidymodels-penguins03</a></li>
+<li><a href="https://datenwerk.netlify.app/posts/tidymodels-penguins04/tidymodels-penguins04.html">tidymodels-penguins04</a></li>
+<li><a href="https://datenwerk.netlify.app/posts/tidymodels-penguins05/tidymodels-penguins05.html">tidymodels-penguins05</a></li>
+<li><a href="https://datenwerk.netlify.app/posts/tidymodels-poly01/tidymodels-poly01.html">tidymodels-poly01</a></li>
+<li><a href="https://datenwerk.netlify.app/posts/tidymodels-poly02/tidymodels-poly02.html">tidymodels-poly02</a></li>
+<li><a href="https://datenwerk.netlify.app/posts/knn-ames01/knn-ames01.html">knn-ames01</a></li>
+</ol></section><section id="fallstudien" class="level2" data-number="8.9"><h2 data-number="8.9" class="anchored" data-anchor-id="fallstudien">
+<span class="header-section-number">8.9</span> Fallstudien</h2>
+<p>In <a href="150-fallstudien.html"><span>Kapitel&nbsp;15</span></a> finden Sie eine ausführliche Liste an Fallstudien.</p>
+<ul>
+<li>Arbeiten Sie sich so gut als möglich durch <a href="https://github.com/sebastiansauer/covid-icu">diese Analyse zum Verlauf von Covid-Fällen</a>
+</li>
+<li><a href="https://onezero.blog/modelling-binary-logistic-regression-using-tidymodels-library-in-r-part-1/">Fallstudie zur Modellierung einer logististischen Regression mit tidymodels</a></li>
+<li><a href="https://juliasilge.com/blog/multinomial-volcano-eruptions/">Fallstudie zu Vulkanausbrüchen (Resampling and kein Tuning)</a></li>
+<li><a href="https://juliasilge.com/blog/himalayan-climbing/">Fallstudie Himalaya (Resampling and kein Tuning)</a></li>
+<li><a href="https://juliasilge.com/blog/lasso-the-office/">Fallstudie Serie The Office: Lasso tunen</a></li>
+<li><a href="https://dev.to/juliasilge/tuning-random-forest-hyperparameters-in-r-with-tidytuesday-trees-data-4ilh">Fallstudie Bäume in San Francisco: Random Forest tunen</a></li>
+</ul></section><section id="vertiefung-1" class="level2" data-number="8.10"><h2 data-number="8.10" class="anchored" data-anchor-id="vertiefung-1">
+<span class="header-section-number">8.10</span> Vertiefung</h2>
+<p><a href="https://xkcd.com/435/">Fields arranged by purity, xkcd 435</a></p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-islr" class="csl-entry" role="listitem">
+James, Gareth, Daniela Witten, Trevor Hastie, und Robert Tibshirani. 2021. <em>An introduction to statistical learning: with applications in R</em>. Second edition. Springer texts in statistics. New York: Springer. <a href="https://link.springer.com/book/10.1007/978-1-0716-1418-1">https://link.springer.com/book/10.1007/978-1-0716-1418-1</a>.
+</div>
+<div id="ref-rhys" class="csl-entry" role="listitem">
+Rhys, Hefin. 2020. <em>Machine Learning with R, the tidyverse, and mlr</em>. Shelter Island, <span>NY</span>: Manning publications.
+</div>
+<div id="ref-modar" class="csl-entry" role="listitem">
+Sauer, Sebastian. 2019. <em>Moderne Datenanalyse mit R: Daten einlesen, aufbereiten, visualisieren und modellieren</em>. 1. Auflage 2019. <span>FOM</span>-Edition. Wiesbaden: Springer. <a href="https://www.springer.com/de/book/9783658215866">https://www.springer.com/de/book/9783658215866</a>.
+</div>
+<div id="ref-silge_tidy_2022" class="csl-entry" role="listitem">
+Silge, Julia, und Max Kuhn. 2022. <em>Tidy <span>Modeling</span> with <span>R</span></em>. <a href="https://www.tmwr.org/">https://www.tmwr.org/</a>.
+</div>
+<div id="ref-fattails" class="csl-entry" role="listitem">
+Taleb, Nassim Nicholas. 2019. <em>The statistical consequences of fat tails, papers and commentaries</em>. Monograph. <a href="https://nassimtaleb.org/2020/01/final-version-fat-tails/">https://nassimtaleb.org/2020/01/final-version-fat-tails/</a>.
+</div>
+</div>
+</section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+<ol>
+<li id="fn1"><p>Bei Normalverteilungen klappt das gut bei randlastigen Verteilungen leider nicht mehr <span class="citation" data-cites="fattails">(<a href="references.html#ref-fattails" role="doc-biblioref">Taleb 2019</a>)</span>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Das klappt bei randlastigen Verteilungen nicht<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><span class="math inline">\(v=10\)</span> in der Voreinstellung<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>In Windows gibt es andere Wege.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>theoretisch<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>https://chat.openai.com/chat, 2023-04-06<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Kopiert");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Kopiert");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./070-knn.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">kNN</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./090-glm.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Logistische Regression</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
