@@ -343,7 +343,7 @@ div.csl-indent {
 </div>
 </section></section><section id="daten" class="level2" data-number="6.3"><h2 data-number="6.3" class="anchored" data-anchor-id="daten">
 <span class="header-section-number">6.3</span> Daten</h2>
-<p>Dieser Abschnitt bezieht sich auf <a href="https://www.tmwr.org/ames.html">Kapitel 4</a> in <span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span>.</p>
+<p>Dieser Abschnitt bezieht sich auf <a href="https://www.tmwr.org/ames.html">Kapitel 4</a> in <span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span>.</p>
 <p>Wir benutzen den Datensatz zu Immobilienpreise aus dem <a href="https://en.wikipedia.org/wiki/Ames,_Iowa">Ames County</a> in Iowa, USA, gelegen im Zentrum des Landes.</p>
 <div class="cell" data-hash="060-tidymodels_cache/html/load-ames-data_96b418b131c6ad8b4811adbdc0a1b818">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">ames</span><span class="op">)</span>  <span class="co"># Daten wurden über tidymodels mit geladen</span></span>
@@ -357,7 +357,7 @@ div.csl-indent {
 <li>Logarithmiert man die Y-Variable, so kommt dies <a href="https://sebastiansauer.github.io/2021-sose/QuantMeth1/Vertiefung/Log-Log-Regression.html#19">einem multiplikativen Modell gleich</a>, s. auch <a href="https://data-se.netlify.app/2021/06/17/ein-beispiel-zum-nutzen-einer-log-transformation/">hier</a>.</li>
 </ol></section><section id="train--vs-test-datensatz-aufteilen" class="level2" data-number="6.4"><h2 data-number="6.4" class="anchored" data-anchor-id="train--vs-test-datensatz-aufteilen">
 <span class="header-section-number">6.4</span> Train- vs Test-Datensatz aufteilen</h2>
-<p>Dieser Abschnitt bezieht sich auf <a href="https://www.tmwr.org/splitting.html">Kapitel 5</a> in <span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span>.</p>
+<p>Dieser Abschnitt bezieht sich auf <a href="https://www.tmwr.org/splitting.html">Kapitel 5</a> in <span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span>.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -373,7 +373,7 @@ Hinweis
 </div>
 <!-- [![](https://mermaid.ink/img/pako:eNo9jDEOwjAMRa9ieW4RYkKZ4QTt6MVqDERK0ip1KqGqd8e0Ak_fz-97xWH0gg6nIKBBo0BfOOQWlvkEvczadpymKJTBhnC_EoKD6_nPTNvRxRBlbDBJSRy8_V2_EqG-JAmhs-jlwTVagfJmap08q9x90LGg01KlQa46du88_PbDuQV-Fk4H3D5jVDy8)](https://mermaid.live/edit#pako:eNo9jDEOwjAMRa9ieW4RYkKZ4QTt6MVqDERK0ip1KqGqd8e0Ak_fz-97xWH0gg6nIKBBo0BfOOQWlvkEvczadpymKJTBhnC_EoKD6_nPTNvRxRBlbDBJSRy8_V2_EqG-JAmhs-jlwTVagfJmap08q9x90LGg01KlQa46du88_PbDuQV-Fk4H3D5jVDy8) -->
 <!-- [Quelle](https://gist.github.com/sebastiansauer/be53bfc193fd3c144a430b7d3b922310) -->
-<p>Eine Faustregel ist es, 70-80% der Daten in das Train-Sample und die übrigen 20-30% in das Test-Sample zu stecken, s. <a href="#fig-train-pie">Abbildung&nbsp;<span class="quarto-unresolved-ref">fig-train-pie</span></a></p>
+<p>Eine Faustregel ist es, 70-80% der Daten in das Train-Sample und die übrigen 20-30% in das Test-Sample zu stecken, s. <a href="#fig-train-pie">Abbildung&nbsp;<span>6.1</span></a></p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-train-pie" class="quarto-figure quarto-figure-center anchored">
@@ -389,7 +389,7 @@ Hinweis
 </div>
 </div>
 </div>
-<p>Praktisch funktioniert das in <span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span> wie folgt.</p>
+<p>Praktisch funktioniert das in <span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span> wie folgt.</p>
 <p>Wir laden die Daten und erstellen einen Index, der jeder Beobachtung die Zuteilung zu Train- bzw. zum Test-Datensatz zuweist.</p>
 <p>Das kann, mit <code>tidymodels</code> so aussehen:</p>
 <div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-6_d511f42b7571deb7867862e6cfb2f3f0">
@@ -398,7 +398,7 @@ Hinweis
 <p><code>initial_split()</code> speichert für spätere komfortable Verwendung auch die Daten. Aber eben auch der Index, der bestimmt, welche Beobachtung im Train-Set landet:</p>
 <div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-7_3271a8b8d0ad97a7aac5a848b6d5bd70">
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ames_split</span><span class="op">$</span><span class="va">in_id</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
-<span><span class="co">##  [1] 28 30 31 32 33 35 78 84 87 89</span></span>
+<span><span class="co">##  [1] 28 30 31 32 33 35 79 83 84 87</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">ames_split</span><span class="op">$</span><span class="va">in_id</span><span class="op">)</span></span>
 <span><span class="co">## [1] 2342</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -410,14 +410,14 @@ Hinweis
 </div>
 </section><section id="grundlagen-der-modellierung-mit-tidymodels" class="level2" data-number="6.5"><h2 data-number="6.5" class="anchored" data-anchor-id="grundlagen-der-modellierung-mit-tidymodels">
 <span class="header-section-number">6.5</span> Grundlagen der Modellierung mit tidymodels</h2>
-<p>Dieser Abschnitt bezieht sich auf <a href="https://www.tmwr.org/models.html">Kapitel 6</a> in <span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span>.</p>
+<p>Dieser Abschnitt bezieht sich auf <a href="https://www.tmwr.org/models.html">Kapitel 6</a> in <span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span>.</p>
 <p><code>tidymodels</code> ist eine Sammlung mehrerer, zusammengehöriger Pakete, eben zum Thema statistische Modellieren.</p>
 <p>Das kann man analog zur Sammlung <code>tidyverse</code> verstehen, zu der z.B. das R-Paket <code>dplyr</code> gehört.</p>
 <p>Das R-Paket innerhalb von <code>tidymodels</code>, das zum “Fitten” von Modellen zuständig ist, heißt <a href="https://parsnip.tidymodels.org/">parsnip</a>.</p>
 <p>Eine Liste der verfügbaren Modelltypen, Modellimplementierungen und Modellparameter, die in Parsnip aktuell unterstützt werden, findet sich <a href="https://www.tidymodels.org/find/parsnip/">hier</a>.</p>
 <section id="modelle-spezifizieren" class="level3" data-number="6.5.1"><h3 data-number="6.5.1" class="anchored" data-anchor-id="modelle-spezifizieren">
 <span class="header-section-number">6.5.1</span> Modelle spezifizieren</h3>
-<p>Ein (statistisches) Modell wird in Tidymodels mit drei Elementen spezifiziert, vgl. <a href="#fig-tidymodels-def">Abbildung&nbsp;<span class="quarto-unresolved-ref">fig-tidymodels-def</span></a>.</p>
+<p>Ein (statistisches) Modell wird in Tidymodels mit drei Elementen spezifiziert, vgl. <a href="#fig-tidymodels-def">Abbildung&nbsp;<span>6.2</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-tidymodels-def" class="quarto-figure quarto-figure-center anchored">
@@ -466,7 +466,7 @@ Hinweis
 </div>
 </section><section id="modelle-berechnen" class="level3" data-number="6.5.2"><h3 data-number="6.5.2" class="anchored" data-anchor-id="modelle-berechnen">
 <span class="header-section-number">6.5.2</span> Modelle berechnen</h3>
-<p>Nach <span class="citation" data-cites="rhys">Rhys (<a href="#ref-rhys" role="doc-biblioref">2020</a>)</span> ist ein Modell sogar erst ein Modell, wenn die Koeffizienten berechnet sind. Tidymodels kennt diese Unterscheidung nicht. Stattdessen spricht man in Tidymodels von einem “gefitteten” Modell, sobald es berechnet ist. Ähnlich fancy könnte man von einem “instantiierten” Modell sprechen.</p>
+<p>Nach <span class="citation" data-cites="rhys">Rhys (<a href="references.html#ref-rhys" role="doc-biblioref">2020</a>)</span> ist ein Modell sogar erst ein Modell, wenn die Koeffizienten berechnet sind. Tidymodels kennt diese Unterscheidung nicht. Stattdessen spricht man in Tidymodels von einem “gefitteten” Modell, sobald es berechnet ist. Ähnlich fancy könnte man von einem “instantiierten” Modell sprechen.</p>
 <p>Für das Beispiel der einfachen linearen Regression heißt das, das Modell ist gefittet, sobald die Steigung und der Achsenabschnitt (sowie die Residualstreuung) berechnet sind.</p>
 <div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-10_bb9d4a82f55a35e82777a852b3833f45">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">lm_form_fit</span> <span class="op">&lt;-</span> </span>
@@ -484,7 +484,7 @@ Hinweis
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":[".pred"],"name":[1],"type":["dbl"],"align":["right"]}],"data":[{"1":"5.225610"},{"1":"5.222874"},{"1":"5.283487"},{"1":"5.283149"},{"1":"5.278493"},{"1":"5.258928"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":[".pred"],"name":[1],"type":["dbl"],"align":["right"]}],"data":[{"1":"5.223329"},{"1":"5.267239"},{"1":"5.269027"},{"1":"5.259346"},{"1":"5.243253"},{"1":"5.240116"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -507,7 +507,7 @@ Hinweis
 <span><span class="co">## </span></span>
 <span><span class="co">## Coefficients:</span></span>
 <span><span class="co">## (Intercept)    Longitude     Latitude  </span></span>
-<span><span class="co">##    -300.241       -2.057        2.684</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">##    -314.955       -2.134        2.863</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Innerhalb des Ergebnisobjekts findet sich eine Liste namens <code>fit</code>, in der die Koeffizienten (der “Fit”) abgelegt sind:</p>
 <div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-13_12789ff6276a473791cc3b890e021dfd">
@@ -518,7 +518,7 @@ Hinweis
 <span><span class="co">## </span></span>
 <span><span class="co">## Coefficients:</span></span>
 <span><span class="co">## (Intercept)    Longitude     Latitude  </span></span>
-<span><span class="co">##    -300.241       -2.057        2.684</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">##    -314.955       -2.134        2.863</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Zum Herausholen dieser Infos kann man auch alternativ die Funktion <code>extract_fit_engine()</code> verwenden:</p>
 <div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-14_134e1e0738b53405f6c8451bfdce2657">
@@ -533,7 +533,7 @@ Hinweis
 <span><span class="co">## </span></span>
 <span><span class="co">## Coefficients:</span></span>
 <span><span class="co">## (Intercept)    Longitude     Latitude  </span></span>
-<span><span class="co">##    -300.241       -2.057        2.684</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">##    -314.955       -2.134        2.863</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -552,7 +552,7 @@ Hinweis
 <div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-15_bafec50348595fe24d76ffc968262db3">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">lm_fit</span><span class="op">)</span></span>
 <span><span class="co">## (Intercept)   Longitude    Latitude </span></span>
-<span><span class="co">## -300.240599   -2.057057    2.684286</span></span>
+<span><span class="co">## -314.954598   -2.133832    2.863270</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">lm_fit</span><span class="op">)</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Call:</span></span>
@@ -560,19 +560,19 @@ Hinweis
 <span><span class="co">## </span></span>
 <span><span class="co">## Residuals:</span></span>
 <span><span class="co">##      Min       1Q   Median       3Q      Max </span></span>
-<span><span class="co">## -1.02863 -0.09952 -0.01573  0.09605  0.58068 </span></span>
+<span><span class="co">## -1.02404 -0.09525 -0.01574  0.09584  0.54193 </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Coefficients:</span></span>
 <span><span class="co">##              Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span><span class="co">## (Intercept) -300.2406    14.4769  -20.74   &lt;2e-16 ***</span></span>
-<span><span class="co">## Longitude     -2.0571     0.1293  -15.91   &lt;2e-16 ***</span></span>
-<span><span class="co">## Latitude       2.6843     0.1810   14.83   &lt;2e-16 ***</span></span>
+<span><span class="co">## (Intercept) -314.9546    14.3978  -21.88   &lt;2e-16 ***</span></span>
+<span><span class="co">## Longitude     -2.1338     0.1274  -16.75   &lt;2e-16 ***</span></span>
+<span><span class="co">## Latitude       2.8633     0.1804   15.87   &lt;2e-16 ***</span></span>
 <span><span class="co">## ---</span></span>
 <span><span class="co">## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
 <span><span class="co">## </span></span>
-<span><span class="co">## Residual standard error: 0.1612 on 2339 degrees of freedom</span></span>
-<span><span class="co">## Multiple R-squared:  0.1644, Adjusted R-squared:  0.1637 </span></span>
-<span><span class="co">## F-statistic: 230.2 on 2 and 2339 DF,  p-value: &lt; 2.2e-16</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">## Residual standard error: 0.1588 on 2339 degrees of freedom</span></span>
+<span><span class="co">## Multiple R-squared:  0.1794, Adjusted R-squared:  0.1787 </span></span>
+<span><span class="co">## F-statistic: 255.6 on 2 and 2339 DF,  p-value: &lt; 2.2e-16</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Schicker sind die Pendant-Befehle aus <code>broom</code>, die jeweils einen Tibble zuückliefern:</p>
 <div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-16_11b2714d22ee76ed1cc99f3ffd3e9ac1">
@@ -582,7 +582,7 @@ Hinweis
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"(Intercept)","2":"-300.240599","3":"14.4769298","4":"-20.73925","5":"7.648367e-88"},{"1":"Longitude","2":"-2.057057","3":"0.1292697","4":"-15.91290","5":"3.252909e-54"},{"1":"Latitude","2":"2.684286","3":"0.1809929","4":"14.83089","5":"1.258418e-47"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["estimate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["std.error"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"(Intercept)","2":"-314.954598","3":"14.3978344","4":"-21.87514","5":"1.154907e-96"},{"1":"Longitude","2":"-2.133832","3":"0.1273526","4":"-16.75530","5":"1.344922e-59"},{"1":"Latitude","2":"2.863270","3":"0.1804094","4":"15.87096","5":"5.951199e-54"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -591,7 +591,7 @@ Hinweis
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["r.squared"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["adj.r.squared"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sigma"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["df"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["logLik"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["AIC"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["BIC"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["deviance"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["df.residual"],"name":[11],"type":["int"],"align":["right"]},{"label":["nobs"],"name":[12],"type":["int"],"align":["right"]}],"data":[{"1":"0.164434","2":"0.1637196","3":"0.1611611","4":"230.1501","5":"5.707919e-92","6":"2","7":"953.3179","8":"-1898.636","9":"-1875.601","10":"60.75064","11":"2339","12":"2342"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["r.squared"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["adj.r.squared"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sigma"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["statistic"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p.value"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["df"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["logLik"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["AIC"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["BIC"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["deviance"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["df.residual"],"name":[11],"type":["int"],"align":["right"]},{"label":["nobs"],"name":[12],"type":["int"],"align":["right"]}],"data":[{"1":"0.179376","2":"0.1786743","3":"0.1588285","4":"255.6351","5":"3.905206e-101","6":"2","7":"987.4633","8":"-1966.927","9":"-1943.892","10":"59.00478","11":"2339","12":"2342"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -604,16 +604,16 @@ Hinweis
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["Parameter"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Coefficient"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["SE"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["CI"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["CI_low"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["CI_high"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["t"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["df_error"],"name":[8],"type":["int"],"align":["right"]},{"label":["p"],"name":[9],"type":["dbl"],"align":["right"]}],"data":[{"1":"(Intercept)","2":"-300.240599","3":"14.4769298","4":"0.95","5":"-328.629550","6":"-271.851648","7":"-20.73925","8":"2339","9":"1.533117e-95"},{"1":"Longitude","2":"-2.057057","3":"0.1292697","4":"0.95","5":"-2.310552","6":"-1.803562","7":"-15.91290","8":"2339","9":"5.156475e-57"},{"1":"Latitude","2":"2.684286","3":"0.1809929","4":"0.95","5":"2.329363","6":"3.039209","7":"14.83089","8":"2339","9":"9.250201e-50"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["Parameter"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Coefficient"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["SE"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["CI"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["CI_low"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["CI_high"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["t"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["df_error"],"name":[8],"type":["int"],"align":["right"]},{"label":["p"],"name":[9],"type":["dbl"],"align":["right"]}],"data":[{"1":"(Intercept)","2":"-314.954598","3":"14.3978344","4":"0.95","5":"-343.188445","6":"-286.720751","7":"-21.87514","8":"2339","9":"4.481650e-106"},{"1":"Longitude","2":"-2.133832","3":"0.1273526","4":"0.95","5":"-2.383568","6":"-1.884096","7":"-16.75530","8":"2339","9":"5.179886e-63"},{"1":"Latitude","2":"2.863270","3":"0.1804094","4":"0.95","5":"2.509491","6":"3.217049","7":"15.87096","8":"2339","9":"1.006959e-56"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">r2</span><span class="op">(</span><span class="va">lm_form_fit</span><span class="op">)</span></span>
 <span><span class="co">## # R2 for Linear Regression</span></span>
-<span><span class="co">##        R2: 0.164</span></span>
-<span><span class="co">##   adj. R2: 0.164</span></span>
+<span><span class="co">##        R2: 0.179</span></span>
+<span><span class="co">##   adj. R2: 0.179</span></span>
 <span><span class="fu">mae</span><span class="op">(</span><span class="va">lm_form_fit</span><span class="op">)</span></span>
-<span><span class="co">## [1] 0.1231115</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">## [1] 0.1211582</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="parsnip-rstudio-add-in" class="level3" data-number="6.5.6"><h3 data-number="6.5.6" class="anchored" data-anchor-id="parsnip-rstudio-add-in">
 <span class="header-section-number">6.5.6</span> Parsnip RStudio add-in</h3>
@@ -623,13 +623,13 @@ Hinweis
 </div>
 </section></section><section id="workflows" class="level2" data-number="6.6"><h2 data-number="6.6" class="anchored" data-anchor-id="workflows">
 <span class="header-section-number">6.6</span> Workflows</h2>
-<p>Dieser Abschnitt bezieht sich auf <a href="https://www.tmwr.org/workflows.html">Kapitel 7</a> in <span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span>.</p>
+<p>Dieser Abschnitt bezieht sich auf <a href="https://www.tmwr.org/workflows.html">Kapitel 7</a> in <span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span>.</p>
 <section id="konzept-des-workflows-in-tidymodels" class="level3" data-number="6.6.1"><h3 data-number="6.6.1" class="anchored" data-anchor-id="konzept-des-workflows-in-tidymodels">
 <span class="header-section-number">6.6.1</span> Konzept des Workflows in Tidymodels</h3>
 <div class="cell" data-hash="060-tidymodels_cache/html/tidymodels-workflow_f6043036379ae454ee4f3f7d227a247c">
 <div class="cell-output-display">
-<div id="htmlwidget-8df712e78789252b5e64" style="width:100%;height:500px;" class="nomnoml html-widget "></div>
-<script type="application/json" data-for="htmlwidget-8df712e78789252b5e64">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n[Workflow|\n  [preprocessing|\n   Vorverarbeitung;\n   Imputation;\n   Transformation;\n   Prädiktorwahl\n   AV-Wahl\n   ...\n  \n  ]\n  [fitting |\n    Modell berechnen\n    ...\n  ]\n  [postprocessing|\n    Grenzwerte für Klass. festlegen\n    ...\n  ]\n]\n","svg":false,"png":null},"evals":[],"jsHooks":[]}</script><p>Definition eines Models in tidymodels</p>
+<div id="htmlwidget-f40327fcf1d8b6eb40c9" style="width:100%;height:500px;" class="nomnoml html-widget "></div>
+<script type="application/json" data-for="htmlwidget-f40327fcf1d8b6eb40c9">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n[Workflow|\n  [preprocessing|\n   Vorverarbeitung;\n   Imputation;\n   Transformation;\n   Prädiktorwahl\n   AV-Wahl\n   ...\n  \n  ]\n  [fitting |\n    Modell berechnen\n    ...\n  ]\n  [postprocessing|\n    Grenzwerte für Klass. festlegen\n    ...\n  ]\n]\n","svg":false,"png":null},"evals":[],"jsHooks":[]}</script><p>Definition eines Models in tidymodels</p>
 </div>
 </div>
 </section><section id="einfaches-beispiel" class="level3" data-number="6.6.2"><h3 data-number="6.6.2" class="anchored" data-anchor-id="einfaches-beispiel">
@@ -691,7 +691,7 @@ Hinweis
 <span><span class="co">## </span></span>
 <span><span class="co">## Coefficients:</span></span>
 <span><span class="co">## (Intercept)    Longitude     Latitude  </span></span>
-<span><span class="co">##    -300.241       -2.057        2.684</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="co">##    -314.955       -2.134        2.863</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="vorhersage-mit-einem-workflow" class="level3" data-number="6.6.3"><h3 data-number="6.6.3" class="anchored" data-anchor-id="vorhersage-mit-einem-workflow">
 <span class="header-section-number">6.6.3</span> Vorhersage mit einem Workflow</h3>
@@ -730,14 +730,14 @@ Hinweis
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["id"],"name":[1],"type":["chr"],"align":["left"]},{"label":[".pred"],"name":[2],"type":["dbl"],"align":["right"]},{"label":[".row"],"name":[3],"type":["int"],"align":["right"]},{"label":["Sale_Price"],"name":[4],"type":["dbl"],"align":["right"]},{"label":[".config"],"name":[5],"type":["chr"],"align":["left"]}],"data":[{"1":"train/test split","2":"5.225610","3":"1","4":"5.332438","5":"Preprocessor1_Model1"},{"1":"train/test split","2":"5.222874","3":"2","4":"5.021189","5":"Preprocessor1_Model1"},{"1":"train/test split","2":"5.283487","3":"5","4":"5.278525","5":"Preprocessor1_Model1"},{"1":"train/test split","2":"5.283149","3":"6","4":"5.291147","5":"Preprocessor1_Model1"},{"1":"train/test split","2":"5.278493","3":"7","4":"5.329398","5":"Preprocessor1_Model1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["id"],"name":[1],"type":["chr"],"align":["left"]},{"label":[".pred"],"name":[2],"type":["dbl"],"align":["right"]},{"label":[".row"],"name":[3],"type":["int"],"align":["right"]},{"label":["Sale_Price"],"name":[4],"type":["dbl"],"align":["right"]},{"label":[".config"],"name":[5],"type":["chr"],"align":["left"]}],"data":[{"1":"train/test split","2":"5.223329","3":"2","4":"5.021189","5":"Preprocessor1_Model1"},{"1":"train/test split","2":"5.267239","3":"14","4":"5.234264","5":"Preprocessor1_Model1"},{"1":"train/test split","2":"5.269027","3":"15","4":"5.326336","5":"Preprocessor1_Model1"},{"1":"train/test split","2":"5.259346","3":"18","4":"5.595972","5":"Preprocessor1_Model1"},{"1":"train/test split","2":"5.243253","3":"24","4":"5.173186","5":"Preprocessor1_Model1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
 </div>
 </section><section id="modellgüte" class="level3" data-number="6.6.4"><h3 data-number="6.6.4" class="anchored" data-anchor-id="modellgüte">
 <span class="header-section-number">6.6.4</span> Modellgüte</h3>
-<p>Dieser Abschnitt bezieht sich auf <a href="https://www.tmwr.org/performance.html">Kapitel 9</a> in <span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span>.</p>
+<p>Dieser Abschnitt bezieht sich auf <a href="https://www.tmwr.org/performance.html">Kapitel 9</a> in <span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span>.</p>
 <p>Die Vorhersagen bilden die Basis für die Modellgüte (“Metriken”), die schon fertig berechnet im Objekt <code>final_lm_res</code> liegen und mit <code>collect_metrics</code> herausgenommen werden können:</p>
 <div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-28_718b1db45ac7267dc5e57239c7e4d194">
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">lm_metrics</span> <span class="op">&lt;-</span> <span class="fu">collect_metrics</span><span class="op">(</span><span class="va">final_lm_res</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -746,23 +746,23 @@ Hinweis
 <div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-29_22e05afeb601402af67c578a5f4e1c83">
 <div class="cell-output-display">
 
-<div id="nxshhjflel" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#nxshhjflel table {
+<div id="udhrywlajh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#udhrywlajh table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#nxshhjflel thead, #nxshhjflel tbody, #nxshhjflel tfoot, #nxshhjflel tr, #nxshhjflel td, #nxshhjflel th {
+#udhrywlajh thead, #udhrywlajh tbody, #udhrywlajh tfoot, #udhrywlajh tr, #udhrywlajh td, #udhrywlajh th {
   border-style: none;
 }
 
-#nxshhjflel p {
+#udhrywlajh p {
   margin: 0;
   padding: 0;
 }
 
-#nxshhjflel .gt_table {
+#udhrywlajh .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -788,12 +788,12 @@ Hinweis
   border-left-color: #D3D3D3;
 }
 
-#nxshhjflel .gt_caption {
+#udhrywlajh .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#nxshhjflel .gt_title {
+#udhrywlajh .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -805,7 +805,7 @@ Hinweis
   border-bottom-width: 0;
 }
 
-#nxshhjflel .gt_subtitle {
+#udhrywlajh .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -817,7 +817,7 @@ Hinweis
   border-top-width: 0;
 }
 
-#nxshhjflel .gt_heading {
+#udhrywlajh .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -829,13 +829,13 @@ Hinweis
   border-right-color: #D3D3D3;
 }
 
-#nxshhjflel .gt_bottom_border {
+#udhrywlajh .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#nxshhjflel .gt_col_headings {
+#udhrywlajh .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -850,7 +850,7 @@ Hinweis
   border-right-color: #D3D3D3;
 }
 
-#nxshhjflel .gt_col_heading {
+#udhrywlajh .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -870,7 +870,7 @@ Hinweis
   overflow-x: hidden;
 }
 
-#nxshhjflel .gt_column_spanner_outer {
+#udhrywlajh .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -882,15 +882,15 @@ Hinweis
   padding-right: 4px;
 }
 
-#nxshhjflel .gt_column_spanner_outer:first-child {
+#udhrywlajh .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#nxshhjflel .gt_column_spanner_outer:last-child {
+#udhrywlajh .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#nxshhjflel .gt_column_spanner {
+#udhrywlajh .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -902,11 +902,11 @@ Hinweis
   width: 100%;
 }
 
-#nxshhjflel .gt_spanner_row {
+#udhrywlajh .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#nxshhjflel .gt_group_heading {
+#udhrywlajh .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -932,7 +932,7 @@ Hinweis
   text-align: left;
 }
 
-#nxshhjflel .gt_empty_group_heading {
+#udhrywlajh .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -947,15 +947,15 @@ Hinweis
   vertical-align: middle;
 }
 
-#nxshhjflel .gt_from_md > :first-child {
+#udhrywlajh .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#nxshhjflel .gt_from_md > :last-child {
+#udhrywlajh .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#nxshhjflel .gt_row {
+#udhrywlajh .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -974,7 +974,7 @@ Hinweis
   overflow-x: hidden;
 }
 
-#nxshhjflel .gt_stub {
+#udhrywlajh .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -987,7 +987,7 @@ Hinweis
   padding-right: 5px;
 }
 
-#nxshhjflel .gt_stub_row_group {
+#udhrywlajh .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1001,15 +1001,15 @@ Hinweis
   vertical-align: top;
 }
 
-#nxshhjflel .gt_row_group_first td {
+#udhrywlajh .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#nxshhjflel .gt_row_group_first th {
+#udhrywlajh .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#nxshhjflel .gt_summary_row {
+#udhrywlajh .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1019,16 +1019,16 @@ Hinweis
   padding-right: 5px;
 }
 
-#nxshhjflel .gt_first_summary_row {
+#udhrywlajh .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#nxshhjflel .gt_first_summary_row.thick {
+#udhrywlajh .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#nxshhjflel .gt_last_summary_row {
+#udhrywlajh .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1038,7 +1038,7 @@ Hinweis
   border-bottom-color: #D3D3D3;
 }
 
-#nxshhjflel .gt_grand_summary_row {
+#udhrywlajh .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1048,7 +1048,7 @@ Hinweis
   padding-right: 5px;
 }
 
-#nxshhjflel .gt_first_grand_summary_row {
+#udhrywlajh .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1058,7 +1058,7 @@ Hinweis
   border-top-color: #D3D3D3;
 }
 
-#nxshhjflel .gt_last_grand_summary_row_top {
+#udhrywlajh .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1068,11 +1068,11 @@ Hinweis
   border-bottom-color: #D3D3D3;
 }
 
-#nxshhjflel .gt_striped {
+#udhrywlajh .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#nxshhjflel .gt_table_body {
+#udhrywlajh .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1081,7 +1081,7 @@ Hinweis
   border-bottom-color: #D3D3D3;
 }
 
-#nxshhjflel .gt_footnotes {
+#udhrywlajh .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1095,7 +1095,7 @@ Hinweis
   border-right-color: #D3D3D3;
 }
 
-#nxshhjflel .gt_footnote {
+#udhrywlajh .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1104,7 +1104,7 @@ Hinweis
   padding-right: 5px;
 }
 
-#nxshhjflel .gt_sourcenotes {
+#udhrywlajh .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1118,7 +1118,7 @@ Hinweis
   border-right-color: #D3D3D3;
 }
 
-#nxshhjflel .gt_sourcenote {
+#udhrywlajh .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1126,63 +1126,63 @@ Hinweis
   padding-right: 5px;
 }
 
-#nxshhjflel .gt_left {
+#udhrywlajh .gt_left {
   text-align: left;
 }
 
-#nxshhjflel .gt_center {
+#udhrywlajh .gt_center {
   text-align: center;
 }
 
-#nxshhjflel .gt_right {
+#udhrywlajh .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#nxshhjflel .gt_font_normal {
+#udhrywlajh .gt_font_normal {
   font-weight: normal;
 }
 
-#nxshhjflel .gt_font_bold {
+#udhrywlajh .gt_font_bold {
   font-weight: bold;
 }
 
-#nxshhjflel .gt_font_italic {
+#udhrywlajh .gt_font_italic {
   font-style: italic;
 }
 
-#nxshhjflel .gt_super {
+#udhrywlajh .gt_super {
   font-size: 65%;
 }
 
-#nxshhjflel .gt_footnote_marks {
+#udhrywlajh .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#nxshhjflel .gt_asterisk {
+#udhrywlajh .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#nxshhjflel .gt_indent_1 {
+#udhrywlajh .gt_indent_1 {
   text-indent: 5px;
 }
 
-#nxshhjflel .gt_indent_2 {
+#udhrywlajh .gt_indent_2 {
   text-indent: 10px;
 }
 
-#nxshhjflel .gt_indent_3 {
+#udhrywlajh .gt_indent_3 {
   text-indent: 15px;
 }
 
-#nxshhjflel .gt_indent_4 {
+#udhrywlajh .gt_indent_4 {
   text-indent: 20px;
 }
 
-#nxshhjflel .gt_indent_5 {
+#udhrywlajh .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1197,14 +1197,14 @@ Hinweis
 <tr>
 <td headers=".metric" class="gt_row gt_left">rmse</td>
 <td headers=".estimator" class="gt_row gt_left">standard</td>
-<td headers=".estimate" class="gt_row gt_right">1.61 × 10<sup style="font-size: 65%;">−1</sup>
+<td headers=".estimate" class="gt_row gt_right">1.70 × 10<sup style="font-size: 65%;">−1</sup>
 </td>
 <td headers=".config" class="gt_row gt_left">Preprocessor1_Model1</td>
 </tr>
 <tr>
 <td headers=".metric" class="gt_row gt_left">rsq</td>
 <td headers=".estimator" class="gt_row gt_left">standard</td>
-<td headers=".estimate" class="gt_row gt_right">2.05 × 10<sup style="font-size: 65%;">−1</sup>
+<td headers=".estimate" class="gt_row gt_right">1.48 × 10<sup style="font-size: 65%;">−1</sup>
 </td>
 <td headers=".config" class="gt_row gt_left">Preprocessor1_Model1</td>
 </tr>
@@ -1231,7 +1231,7 @@ Hinweis
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":[".pred"],"name":[1],"type":["dbl"],"align":["right"]}],"data":[{"1":"5.225610"},{"1":"5.222874"},{"1":"5.283487"},{"1":"5.283149"},{"1":"5.278493"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":[".pred"],"name":[1],"type":["dbl"],"align":["right"]}],"data":[{"1":"5.223329"},{"1":"5.267239"},{"1":"5.269027"},{"1":"5.259346"},{"1":"5.243253"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -1254,7 +1254,7 @@ Hinweis
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":[".metric"],"name":[1],"type":["chr"],"align":["left"]},{"label":[".estimator"],"name":[2],"type":["chr"],"align":["left"]},{"label":[".estimate"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"rsq","2":"standard","3":"0.2831563"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":[".metric"],"name":[1],"type":["chr"],"align":["left"]},{"label":[".estimator"],"name":[2],"type":["chr"],"align":["left"]},{"label":[".estimate"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"rsq","2":"standard","3":"0.4340432"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -1262,7 +1262,7 @@ Hinweis
 <p>Andere Koeffizienten der Modellgüte können mit <code>rmse</code> oder <code>mae</code><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> abgerufen werden.</p>
 </section></section><section id="rezepte-zur-vorverarbeitung" class="level2" data-number="6.7"><h2 data-number="6.7" class="anchored" data-anchor-id="rezepte-zur-vorverarbeitung">
 <span class="header-section-number">6.7</span> Rezepte zur Vorverarbeitung</h2>
-<p>Dieser Abschnitt bezieht sich auf <a href="https://www.tmwr.org/recipes.html">Kapitel 8</a> in <span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span>.</p>
+<p>Dieser Abschnitt bezieht sich auf <a href="https://www.tmwr.org/recipes.html">Kapitel 8</a> in <span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span>.</p>
 <section id="was-ist-rezept-und-wozu-ist-es-gut" class="level3" data-number="6.7.1"><h3 data-number="6.7.1" class="anchored" data-anchor-id="was-ist-rezept-und-wozu-ist-es-gut">
 <span class="header-section-number">6.7.1</span> Was ist Rezept und wozu ist es gut?</h3>
 <p>So könnte ein typischer Aufruf von <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> aussehen:</p>
@@ -1335,7 +1335,7 @@ Hinweis
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":[".metric"],"name":[1],"type":["chr"],"align":["left"]},{"label":[".estimator"],"name":[2],"type":["chr"],"align":["left"]},{"label":[".estimate"],"name":[3],"type":["dbl"],"align":["right"]},{"label":[".config"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"rmse","2":"standard","3":"0.08114892","4":"Preprocessor1_Model1"},{"1":"rsq","2":"standard","3":"0.79752823","4":"Preprocessor1_Model1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":[".metric"],"name":[1],"type":["chr"],"align":["left"]},{"label":[".estimator"],"name":[2],"type":["chr"],"align":["left"]},{"label":[".estimate"],"name":[3],"type":["dbl"],"align":["right"]},{"label":[".config"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"rmse","2":"standard","3":"0.0824877","4":"Preprocessor1_Model1"},{"1":"rsq","2":"standard","3":"0.7995790","4":"Preprocessor1_Model1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -1409,7 +1409,7 @@ Hinweis
 </ul>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
 <div id="ref-rhys" class="csl-entry" role="listitem">
 Rhys, Hefin. 2020. <em>Machine Learning with R, the tidyverse, and mlr</em>. Shelter Island, <span>NY</span>: Manning publications.
 </div>

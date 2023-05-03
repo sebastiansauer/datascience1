@@ -29,11 +29,12 @@
 In diesem Kapitel werden folgende R-Pakete benötigt:
 
 ```{r echo = TRUE}
-library(titanic)  # Datensatzt Titanic
+library(titanic)  # Datensatz Titanic
 #library(rpart)  # Berechnung von Entscheidungsbäumen
 library(tidymodels)
 library(tictoc)  # Zeitmessung
 library(readr)  # rds
+library(rpart.plot)  # Visualisierung der Bäume
 ```
 
 
@@ -147,9 +148,6 @@ Man nennt (eine Implementierung) dieses Algorithmus auch *rpart*.
 Das Regelwerk zum Baum aus  @fig-tree1 sieht so aus:
 
 ```{r message=FALSE, echo = TRUE, echo = FALSE}
-#| label: fig-tree1
-#| fig-cap: "Baum basierte Algorithmen erzeugen 'rechteckige' Vorhersagebereiche"
-
 titanic_train$Survived = as.factor(titanic_train$Survived)
 
 ti_tree <-
@@ -727,23 +725,10 @@ wir "finalisieren" das Modell mit den besten Modellparametern:
 
 ```{r echo = TRUE}
 tree_final <-
-  finalize_model(tree_model, parameters = select_best(trees_tuned))
+  finalize_workflow(tree_wf, parameters = select_best(trees_tuned))
 
 tree_final
 ```
-
-Hier ist, unser finaler Baum 🌳.
-
-
-Schließlich updaten wir mit dem finalen Baum noch den Workflow:
-
-
-```{r echo = TRUE}
-final_wf <-
-  tree_wf %>% 
-  update_model(tree_final)
-```
-
 
 ### Final Fit
 
@@ -753,11 +738,16 @@ Jetzt fitten wir dieses Modell auf das *ganze* Train-Sample und predicten auf da
 
 ```{r echo = TRUE}
 tree_fit_final <-
-  final_wf %>% 
+  tree_final %>% 
   last_fit(d_split)
 
 tree_fit_final
 ```
+
+
+Hier ist, unser finaler Baum 🌳.
+
+
 
 
 ```{r echo = TRUE}
@@ -773,6 +763,25 @@ In der Regel ist übrigens RMSE interessanter als R-Quadrat,
 da R-Quadrat die Güte eines Korrelationsmusters vorhersagt,
 aber RMSE die Präzision der Vorhersage,
 also sozusagen die Kürze der Fehlerbalken.
+
+
+### Baum ansehen
+
+Das Ergebnisobjekt von `rpart`, dem zugrundeliegenden Paket` kann man mit `extract_fit_engine` bekommen.
+Ruft man dieses Objekt auf, so sieht man die Wenn-Dann-Regeln des Baumes:
+
+```{r}
+tree_fit_rpart <- extract_fit_engine(tree_fit_final)
+tree_fit_rpart
+```
+
+
+Mit der Funktion `rpart.plot` (aus {rpart.plot}) kann man sich einen ansehnlichen Baum anzeigen lassen:
+
+```{r}
+library(rpart.plot)
+rpart.plot(tree_fit_rpart)
+```
 
 
 ### Nur zum Spaß: Vergleich mit linearem Modell
@@ -836,7 +845,7 @@ collect_metrics(lm_fit_final)
 Das lineare Modell schneidet etwas (deutlich?) schlechter ab als das einfache Baummodell.
 
 
-Man beachte, dass die Modellgüte im Train-Samle höher ist als im Test-Sample (Overfitting).
+Man beachte, dass die Modellgüte im Train-Sample höher ist als im Test-Sample (Overfitting).
 
 
 
@@ -852,9 +861,16 @@ Man beachte, dass die Modellgüte im Train-Samle höher ist als im Test-Sample (
 - [Visualisierung des ML-Ablaufs am Beispiel des Entscheidungsbaums, Teil 2](http://www.r2d3.us/visual-intro-to-machine-learning-part-2/)
 
 
-##   Aufgaben
+## Aufgaben
+
+Schauen Sie sich mal die Kategorie [tree](https://datenwerk.netlify.app/#category=trees) auf [Datenwerk](https://datenwerk.netlify.app/) an.
+
+Alternativ bietet die Kategorie [tidymodels](https://datenwerk.netlify.app/#category=tidymodels) eine Sammlung von Aufgaben rund um das R-Paket Tidymodels; dort können Sie sich Aufgaben anpassen.
+
+
+##   Fallstudien
 
 - [Fallstudie Oregon Schools](https://bcullen.rbind.io/post/2020-06-02-tidymodels-decision-tree-learning-in-r/)
 - [Fallstudie Windturbinen](https://juliasilge.com/blog/wind-turbine/)
 - [Fallstudie Churn](https://www.gmudatamining.com/lesson-13-r-tutorial.html)
-   
+- [Fitting Regression Trees aus "ISLR tidymodels labs"](https://emilhvitfeldt.github.io/ISLR-tidymodels-labs/08-tree-based-methods.html#fitting-regression-trees)   
