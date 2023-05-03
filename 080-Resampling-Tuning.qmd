@@ -1,4 +1,4 @@
-# Resampling und Tuning
+# Resampling und Tuning {#sec-res-tune}
 
 
 

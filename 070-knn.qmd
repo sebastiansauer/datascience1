@@ -290,7 +290,7 @@ Damit gilt: $c = \sqrt{c^2} = \sqrt{5^2}=5$.
 
 
 Im 2D-Raum ist das so einfach, dass man das (fast) mit bloßem Augenschein entscheiden kann.
-In mehr als 2 Dimensionen wird es aber schwierig für das Auge, wie ein [Beispiel](https://datasciencebook.ca/classification.html#more-than-two-explanatory-variables) aus @timbers_data_2022 zeigt.
+In mehr als 2 Dimensionen wird es aber schwierig für das Auge, wie ein [Beispiel](https://datasciencebook.ca/classification1.html#more-than-two-explanatory-variables) aus @timbers_data_2022 zeigt.
 
 
 Allerdings kann man den guten alten Pythagoras auch auf Dreiecke mit mehr als zwei Dimensionen anwenden, s.  @fig-pyth2 aus @modar, Kap. 21.1.2.
@@ -304,7 +304,7 @@ Allerdings kann man den guten alten Pythagoras auch auf Dreiecke mit mehr als zw
 
 ![Pythagoras mit mehr als zwei Dimensionen](img/pythagoras2-crop.png){#fig-pyth2b}
 
-Pythagoras in der Ebene (links) und in 3D (rechts)"
+Pythagoras in der Ebene (links) und in 3D (rechts)
 
 :::
 
@@ -391,7 +391,7 @@ das für uns besorgen.
 
 ### Modell definieren
 
-Tidymodels greift auf den Engine (das Paket) [`kknn`](https://www.rdocumentation.org/packages/kknn/versions/1.3.1/topics/kknn) zurück, das im Standard die Eukldische Distanz aus Distanzmaß berechnet.
+Tidymodels greift auf den Engine (das Paket) [`kknn`](https://www.rdocumentation.org/packages/kknn/versions/1.3.1/topics/kknn) zurück, das im Standard die Euklidische Distanz aus Distanzmaß berechnet.
 Daher muss die Engine nicht extra spezifiziert werden.
 
 
@@ -404,14 +404,42 @@ knn_spec
 
 In der Voreinstellung wird $k=5$ gewählt.
 
-### Workflow definieren
+:::{.callout-note}
+### $k$ ist ein Tuningparameter
+Der Parameter $k$ im knn-Algorithmus wird nicht über die Daten bestimmt,
+sondern muss durch dis Nutzi ausgewählt werden.
+Solche Parameter nennt man *Tuningparameter* (synonym: Hyperparameter),
+s. @sec-res-tune.$\square$
+:::
+
+Das Paket `dials` (Teil von Tidymodels) schlägt Werte für $k$ vor, das ist praktisch. Mehr dazu in @sec-res-tune.
+
+
+### Workflow definieren und fitten
+
+Unser Workflow ist die "Summe" von Rezept und Modell: 
 
 ```{r}
 knn_wf <- workflow() |>
   add_recipe(uc_recipe) |>
   add_model(knn_spec) 
+```
 
 
+Welche Variablen waren noch mal Teil des Rezepts?
+Mit `str(uc_recipe)` bekommt man eine Einblick in die `str`uktur eines Objekts.
+Dann ziehen wir uns das Objekt, das die Infos zu den Variablen im Rezept beheimatet:
+
+```{r}
+uc_recipe %>% 
+  pluck("var_info")
+```
+Natürlich kann man auch einfach seinen Code anschauen. 😁
+
+
+Den Workflow fitten wir dann:
+
+```{r}
 knn_fit <- 
   knn_wf |> 
   fit(data = unscaled_cancer)
@@ -419,11 +447,19 @@ knn_fit <-
 knn_fit
 ```
 
+
+
+
 ### Vorhersagen
 
 
 ```{r}
-new_observation <- tibble(Area = c(500, 1500), Smoothness = c(0.075, 0.1))
+new_observation <- 
+  tibble(
+    Area = c(500, 1500), 
+    Smoothness = c(0.075, 0.1)
+  )
+
 prediction <- predict(knn_fit, new_observation)
 
 prediction
@@ -449,7 +485,8 @@ cancer_test <- testing(cancer_split)
 ### Rezept definieren
 
 ```{r}
-cancer_recipe <- recipe(Class ~ Smoothness + Concavity, data = cancer_train) |>
+cancer_recipe <- recipe(
+  Class ~ Smoothness + Concavity, data = cancer_train) |>
   step_scale(all_predictors()) |>
   step_center(all_predictors())
 ```
@@ -504,10 +541,11 @@ Die eigentlichen Predictions stecken in der Listenspalte `.predictions` im Fit-O
 names(cancer_test_fit)
 ```
 
-Genau genommen ist `.predictions` eine Spalte, in der in jeder Zeile (und damit Zelle) eine Tabelle (Tibble) steht. 
-Wir haben nur eine Zeile und wollen das erste Element dieser Spalte herausziehen, die Vorhersagen (Wahrscheinlichkeit) für begigne Struktur ($\hat{y}$; die Spalte heißt übrigens `.pred_B`).
+Genau genommen ist `.predictions` eine Listenspalte, in der in jeder Zeile (und damit Zelle) eine Tabelle (Tibble) steht. 
+Wir haben nur eine Zeile und wollen das erste Element dieser Spalte herausziehen, die Vorhersagen (Wahrscheinlichkeit) für benigne Struktur ($\hat{y}$; die Spalte heißt übrigens `.pred_B`).
 Außerdem brauchen wir die tatsächlichen Diagnosen, $y$, die "wohnen" in der Spalte mit Namen `Class`.
-Da hilft `pluck()`:
+Das Element `.predictions` ist eine Liste(nspalte), die aus Tibbles besteht. 
+Ziehen wir uns den ersten Tibble heraus mit `pluck()`:
 
 ```{r}
 cancer_test_fit %>%  
@@ -541,14 +579,14 @@ Im Standard wird eine Beobachtung der Klasse mit der höchsten Wahrscheinlichkei
 
 ### Visualisierung
 
-Verbildlichen wir die Konfusionsmatrix, so dass wir sehen welche `B` als `B` klassifiziert wurden und welche `M` als `M` klassifiziert wurden, s. @fig-conf-bm.
+Verbildlichen wir die Konfusionsmatrix, so dass wir sehen welche `B` als `B` klassifiziert wurden und welche `M` als `M` klassifiziert wurden (bzw. welche nicht), s. @fig-conf-bm.
 
 
 
 ```{r}
 #| label: fig-conf-bm
-#| fig-cap: Konfusionsmatrix für die Krebsdiagnostik. Die Größe eines Rechtecks ist proportional zu der Anzahl der Fällen dieser Gruppe.
-autoplot(confusion, type = "mosaic")
+#| fig-cap: "Konfusionsmatrix für die Krebsdiagnostik. Die Größe eines Rechtecks ist proportional zu der Anzahl der Fällen dieser Gruppe."
+# autoplot(confusion, type = "mosaic")
 autoplot(confusion, type = "heatmap") +
   labs(x = "Beobachtung",
        y = "Vorhersage",
@@ -574,7 +612,7 @@ gt::gt(df,
 ```
 
 
-Von den vier Ergebnissen sind zwei falsch. 
+Von den vier möglichen Ergebnissen sind zwei falsch (und zwei richtig). 
 Ein Test kann also zwei Arten von Fehlern machen, s. @fig-4arten.
 Dort kann man die Punkte im roten Hintergrund als *kranke* Menschen verstehen (links des schrägen Strichs); auf der anderen Seite sind man gesunde Menschen (grüner Hintergrund).
 Die Punkte in der Ellipse zeigen die Klassifikationsergebnisse bzw. -fehler.
@@ -612,7 +650,7 @@ Spezifität und FP-Rate addieren sich zu 1.
 
 :::{.callout-note}
 Es ist einfach, in nur einem der beiden Fehlerarten gut abzuschneiden.
-So könnte ein Test, alle Personen als *krank* klassifizieren. 
+So könnte ein Test alle Personen als *krank* klassifizieren. 
 Damit hätte er auomatisch keine Übersehfehler. Leider wären aber potenziell viele Fehlalarme dabei.
 Die Höhe des Übersehfehler und die Höhe der Fehlalarme müssen daher nicht gleich sein.
 Man muss daher beide Fehlerarten berücksichtigen, um die Güte eines Tests einzuschätzen.
@@ -627,7 +665,7 @@ hängt vom Sachgegenstand ab und ist keine Frage der Statistik.$\square$
 ### Kennzahlen der Klassfikation
 
 
-Es gibt eine verwirrende Vielfalt von Kennzahlen,
+Es gibt eine (verwirrende) Vielfalt von Kennzahlen,
 um die Güte einer Klassifikation einzuschätzen.
 In @tbl-diag-stats sind einige davon aufgeführt.
 
@@ -654,7 +692,7 @@ Im Standard wird ein Fall der Klasse zugeordnet, die die höchste Wahrscheinlich
 Mit dem R-Paket [`probably`](https://probably.tidymodels.org/articles/where-to-use.html) kann man (als Teil eines Post-Processing des Modellierens) diese Schwellenwerte^[engl. thresholds, cutoffs] ändern.
 
 :::{#exm-thresholds}
-Da eine Ärztin auf keinen Fall einen Krebsfall übersehen möchte - den Übersehfehler als deutlich schlimmer einschätzt als den Fehlalarm - setzt sie die Schwelle für "Gesund" auf 95%.$\square$
+Da eine Ärztin auf keinen Fall einen Krebsfall übersehen möchte - da Sie den Übersehfehler als deutlich schlimmer einschätzt als den Fehlalarm - setzt sie die Schwelle für die Klasse "Gesund" auf 95%.$\square$
 :::
 
 
@@ -663,7 +701,7 @@ Da eine Ärztin auf keinen Fall einen Krebsfall übersehen möchte - den Überse
 
 
 Eine ROC-Kurve^[Receiver Operating Characteristic Curve] ist ein Graph, der die Modellgüte eines Klassfikationsmodells *zu allen Schwellenwerten* aufzeigt.
-Eine ROC-Kurve ist eine nützliche und gebräuchliche Methode zur Bestimmung der Klassifikationsgüte eines Modells.
+Eine ROC-Kurve ist eine nützliche und gebräuchliche Methode zur Bestimmung der insgesamten Klassifikationsgüte eines Modells.
 
 Die Kurve hat zwei Parameter:
 
@@ -695,8 +733,8 @@ cancer_test_predictions %>%
 ```
 
 
-Die *Fläche unter der Kurve* (area under curve) ist ein Maß für die Güte des Tests. @fig-example-rocs aus @modar stellt drei Beispiele von Klassifikationsgüten dar: sehr gute (A), gute (B) und schlechte (C). 
-Ein hohe Klassifikationsgüte zeigt sich daran, dass eine hohe Richtig-Positiv-Rate mit einer geringen Fehlalarmquote einhergeht: Wir finden alle Kranken, aber nur die Kranken. Die AUC-Kurve "hängt oben links an der Decke". 
+Die *Fläche unter der Kurve* (area under curve, AUC), bezogen auf die ROC-Kurve, ist ein Maß für die Güte der Klassifikation. @fig-example-rocs aus @modar stellt drei Beispiele von Klassifikationsgüten dar: sehr gute (A), gute (B) und schlechte (C). 
+Ein hohe Klassifikationsgüte zeigt sich daran, dass eine hohe Richtig-Positiv-Rate mit einer geringen Fehlalarmquote einhergeht: Wir finden alle Kranken, aber nur die Kranken. Die ROC-Kurve "hängt oben links an der Decke"; der AUC-Wert geht gegen 1.
 Ein schlechter Klassifikator trifft so gut wie ein Münzwurf: Ist das Ereignis selten, hat er eine hohe Falsch-Positiv-Rate und eine geringe Falsch-Negativ-Rate. 
 Ist das Ereignis hingegen häufig, liegen die Fehlerhöhen genau umgekehrt: Eine hohe Richtig-Positiv-Rate geht dann mit einer hohen Falsch-Positiv-Rate einher.
 
@@ -740,12 +778,12 @@ grid.arrange(p1, p2, p3, nrow = 1)
 
 Betrachten wir [diese Daten](https://raw.githubusercontent.com/sebastiansauer/datascience1/main/data/Krebstest.csv) eines fiktiven Krebstest, aber mit realistischen Werte, s. @fig-krebstest.
 
+```{r}
+krebstest <- read_csv("data/krebstest.csv")
+```
+
 
 ```{r echo = FALSE, message=FALSE}
-
-
-krebstest <- read_csv("data/krebstest.csv")
-
 library(vtree)
 library(magick)
 # krebstest_vtree <- vtree(krebstest, "Krebs Test")
@@ -777,7 +815,7 @@ krebstest <-
 ```
 
 
-Konfusionsmatrix:
+Die Konfusionsmatrix ist in @fig-krebs-cm gezeigt.
 
 ```{r}
 cm_krebs <- conf_mat(krebstest, truth = Krebs, estimate = Test)
@@ -786,6 +824,9 @@ cm_krebs
 
 
 ```{r}
+#| label: fig-krebs-cm
+#| echo: false
+#| fig-cap: "Konfusionsmatrix für das Krebs-Beispiel"
 autoplot(cm_krebs)
 ```
 
@@ -798,13 +839,15 @@ accuracy(krebstest, truth = Krebs, estimate = Test)
 ```
 
 
-:::{#callout-important}
+:::{.callout-important}
 Die Kennzahl der Gesamtgenauigkeit zählt nur den Anteil richtiger Klassifikation.
 Sind z.B. 95% der Menschen gesund, und wir klassifizieren alle Menschen als gesund,
 erreichen wir auf einfachem Weg eine Gesamtgenauigkeit von 95%.
 Trotz dieses scheinbar hohen Werts haben wir alle kranken Menschen fehlklassifiziert.
 In dem Fall, wie die Klassen (krank vs. gesund) ungleich groß sind, sinkt die Nützlichkeit dieser Kennzahl.
-Aber sie kann als Referenzwert herhalten, an dem sich andere Modelle messen lassen müssen.$\square$
+Aber sie kann als Referenzwert herhalten, an dem sich andere Modelle messen lassen müssen.
+Nützliche Alternativen sind dann z.B. Cohens Kappa oder ROC-AUC. Oder man schaut sich mehrere Kennwerte an, was meist der richtige Weg ist.
+$\square$
 :::
 
 

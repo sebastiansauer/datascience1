@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.247">
+<meta name="generator" content="quarto-1.3.269">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Grundlagen der Prognosemodellierung 🔮🧰 - 6&nbsp; tidymodels</title>
 <style>
@@ -110,7 +110,7 @@ div.csl-indent {
 }</script><meta name="mermaid-theme" content="neutral">
 <script src="site_libs/quarto-diagram/mermaid.min.js"></script><script src="site_libs/quarto-diagram/mermaid-init.js"></script><link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 <script src="site_libs/htmlwidgets-1.6.1/htmlwidgets.js"></script><script src="site_libs/es6shim-0.35.6/es6shim.js"></script><script src="site_libs/es7shim-6.0.0/es7shim.js"></script><script src="site_libs/graphre-0.1.3/graphre.js"></script><script src="site_libs/nomnoml-1.5.3/nomnoml.js"></script><script src="site_libs/nomnoml-binding-0.2.6/nomnoml.js"></script><link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
-<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><link rel="stylesheet" href="styles.css">
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><link rel="stylesheet" href="styles.css">
 </head>
 <body class="nav-sidebar floating">
 
@@ -342,7 +342,7 @@ div.csl-indent {
 </div>
 </section></section><section id="daten" class="level2" data-number="6.3"><h2 data-number="6.3" class="anchored" data-anchor-id="daten">
 <span class="header-section-number">6.3</span> Daten</h2>
-<p>Dieser Abschnitt bezieht sich auf <a href="https://www.tmwr.org/ames.html">Kapitel 4</a> in <span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span>.</p>
+<p>Dieser Abschnitt bezieht sich auf <a href="https://www.tmwr.org/ames.html">Kapitel 4</a> in <span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span>.</p>
 <p>Wir benutzen den Datensatz zu Immobilienpreise aus dem <a href="https://en.wikipedia.org/wiki/Ames,_Iowa">Ames County</a> in Iowa, USA, gelegen im Zentrum des Landes.</p>
 <div class="cell" data-hash="060-tidymodels_cache/html/load-ames-data_96b418b131c6ad8b4811adbdc0a1b818">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">ames</span><span class="op">)</span>  <span class="co"># Daten wurden über tidymodels mit geladen</span></span>
@@ -356,7 +356,7 @@ div.csl-indent {
 <li>Logarithmiert man die Y-Variable, so kommt dies <a href="https://sebastiansauer.github.io/2021-sose/QuantMeth1/Vertiefung/Log-Log-Regression.html#19">einem multiplikativen Modell gleich</a>, s. auch <a href="https://data-se.netlify.app/2021/06/17/ein-beispiel-zum-nutzen-einer-log-transformation/">hier</a>.</li>
 </ol></section><section id="train--vs-test-datensatz-aufteilen" class="level2" data-number="6.4"><h2 data-number="6.4" class="anchored" data-anchor-id="train--vs-test-datensatz-aufteilen">
 <span class="header-section-number">6.4</span> Train- vs Test-Datensatz aufteilen</h2>
-<p>Dieser Abschnitt bezieht sich auf <a href="https://www.tmwr.org/splitting.html">Kapitel 5</a> in <span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span>.</p>
+<p>Dieser Abschnitt bezieht sich auf <a href="https://www.tmwr.org/splitting.html">Kapitel 5</a> in <span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span>.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -372,7 +372,7 @@ Hinweis
 </div>
 <!-- [![](https://mermaid.ink/img/pako:eNo9jDEOwjAMRa9ieW4RYkKZ4QTt6MVqDERK0ip1KqGqd8e0Ak_fz-97xWH0gg6nIKBBo0BfOOQWlvkEvczadpymKJTBhnC_EoKD6_nPTNvRxRBlbDBJSRy8_V2_EqG-JAmhs-jlwTVagfJmap08q9x90LGg01KlQa46du88_PbDuQV-Fk4H3D5jVDy8)](https://mermaid.live/edit#pako:eNo9jDEOwjAMRa9ieW4RYkKZ4QTt6MVqDERK0ip1KqGqd8e0Ak_fz-97xWH0gg6nIKBBo0BfOOQWlvkEvczadpymKJTBhnC_EoKD6_nPTNvRxRBlbDBJSRy8_V2_EqG-JAmhs-jlwTVagfJmap08q9x90LGg01KlQa46du88_PbDuQV-Fk4H3D5jVDy8) -->
 <!-- [Quelle](https://gist.github.com/sebastiansauer/be53bfc193fd3c144a430b7d3b922310) -->
-<p>Eine Faustregel ist es, 70-80% der Daten in das Train-Sample und die übrigen 20-30% in das Test-Sample zu stecken, s. <a href="#fig-train-pie">Abbildung&nbsp;<span>6.1</span></a></p>
+<p>Eine Faustregel ist es, 70-80% der Daten in das Train-Sample und die übrigen 20-30% in das Test-Sample zu stecken, s. <a href="#fig-train-pie">Abbildung&nbsp;<span class="quarto-unresolved-ref">fig-train-pie</span></a></p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-train-pie" class="quarto-figure quarto-figure-center anchored">
@@ -388,7 +388,7 @@ Hinweis
 </div>
 </div>
 </div>
-<p>Praktisch funktioniert das in <span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span> wie folgt.</p>
+<p>Praktisch funktioniert das in <span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span> wie folgt.</p>
 <p>Wir laden die Daten und erstellen einen Index, der jeder Beobachtung die Zuteilung zu Train- bzw. zum Test-Datensatz zuweist.</p>
 <p>Das kann, mit <code>tidymodels</code> so aussehen:</p>
 <div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-6_d511f42b7571deb7867862e6cfb2f3f0">
@@ -409,14 +409,14 @@ Hinweis
 </div>
 </section><section id="grundlagen-der-modellierung-mit-tidymodels" class="level2" data-number="6.5"><h2 data-number="6.5" class="anchored" data-anchor-id="grundlagen-der-modellierung-mit-tidymodels">
 <span class="header-section-number">6.5</span> Grundlagen der Modellierung mit tidymodels</h2>
-<p>Dieser Abschnitt bezieht sich auf <a href="https://www.tmwr.org/models.html">Kapitel 6</a> in <span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span>.</p>
+<p>Dieser Abschnitt bezieht sich auf <a href="https://www.tmwr.org/models.html">Kapitel 6</a> in <span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span>.</p>
 <p><code>tidymodels</code> ist eine Sammlung mehrerer, zusammengehöriger Pakete, eben zum Thema statistische Modellieren.</p>
 <p>Das kann man analog zur Sammlung <code>tidyverse</code> verstehen, zu der z.B. das R-Paket <code>dplyr</code> gehört.</p>
 <p>Das R-Paket innerhalb von <code>tidymodels</code>, das zum “Fitten” von Modellen zuständig ist, heißt <a href="https://parsnip.tidymodels.org/">parsnip</a>.</p>
 <p>Eine Liste der verfügbaren Modelltypen, Modellimplementierungen und Modellparameter, die in Parsnip aktuell unterstützt werden, findet sich <a href="https://www.tidymodels.org/find/parsnip/">hier</a>.</p>
 <section id="modelle-spezifizieren" class="level3" data-number="6.5.1"><h3 data-number="6.5.1" class="anchored" data-anchor-id="modelle-spezifizieren">
 <span class="header-section-number">6.5.1</span> Modelle spezifizieren</h3>
-<p>Ein (statistisches) Modell wird in Tidymodels mit drei Elementen spezifiziert, vgl. <a href="#fig-tidymodels-def">Abbildung&nbsp;<span>6.2</span></a>.</p>
+<p>Ein (statistisches) Modell wird in Tidymodels mit drei Elementen spezifiziert, vgl. <a href="#fig-tidymodels-def">Abbildung&nbsp;<span class="quarto-unresolved-ref">fig-tidymodels-def</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-tidymodels-def" class="quarto-figure quarto-figure-center anchored">
@@ -465,7 +465,7 @@ Hinweis
 </div>
 </section><section id="modelle-berechnen" class="level3" data-number="6.5.2"><h3 data-number="6.5.2" class="anchored" data-anchor-id="modelle-berechnen">
 <span class="header-section-number">6.5.2</span> Modelle berechnen</h3>
-<p>Nach <span class="citation" data-cites="rhys">Rhys (<a href="references.html#ref-rhys" role="doc-biblioref">2020</a>)</span> ist ein Modell sogar erst ein Modell, wenn die Koeffizienten berechnet sind. Tidymodels kennt diese Unterscheidung nicht. Stattdessen spricht man in Tidymodels von einem “gefitteten” Modell, sobald es berechnet ist. Ähnlich fancy könnte man von einem “instantiierten” Modell sprechen.</p>
+<p>Nach <span class="citation" data-cites="rhys">Rhys (<a href="#ref-rhys" role="doc-biblioref">2020</a>)</span> ist ein Modell sogar erst ein Modell, wenn die Koeffizienten berechnet sind. Tidymodels kennt diese Unterscheidung nicht. Stattdessen spricht man in Tidymodels von einem “gefitteten” Modell, sobald es berechnet ist. Ähnlich fancy könnte man von einem “instantiierten” Modell sprechen.</p>
 <p>Für das Beispiel der einfachen linearen Regression heißt das, das Modell ist gefittet, sobald die Steigung und der Achsenabschnitt (sowie die Residualstreuung) berechnet sind.</p>
 <div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-10_bb9d4a82f55a35e82777a852b3833f45">
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">lm_form_fit</span> <span class="op">&lt;-</span> </span>
@@ -622,7 +622,7 @@ Hinweis
 </div>
 </section></section><section id="workflows" class="level2" data-number="6.6"><h2 data-number="6.6" class="anchored" data-anchor-id="workflows">
 <span class="header-section-number">6.6</span> Workflows</h2>
-<p>Dieser Abschnitt bezieht sich auf <a href="https://www.tmwr.org/workflows.html">Kapitel 7</a> in <span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span>.</p>
+<p>Dieser Abschnitt bezieht sich auf <a href="https://www.tmwr.org/workflows.html">Kapitel 7</a> in <span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span>.</p>
 <section id="konzept-des-workflows-in-tidymodels" class="level3" data-number="6.6.1"><h3 data-number="6.6.1" class="anchored" data-anchor-id="konzept-des-workflows-in-tidymodels">
 <span class="header-section-number">6.6.1</span> Konzept des Workflows in Tidymodels</h3>
 <div class="cell" data-hash="060-tidymodels_cache/html/tidymodels-workflow_f6043036379ae454ee4f3f7d227a247c">
@@ -736,7 +736,7 @@ Hinweis
 </div>
 </section><section id="modellgüte" class="level3" data-number="6.6.4"><h3 data-number="6.6.4" class="anchored" data-anchor-id="modellgüte">
 <span class="header-section-number">6.6.4</span> Modellgüte</h3>
-<p>Dieser Abschnitt bezieht sich auf <a href="https://www.tmwr.org/performance.html">Kapitel 9</a> in <span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span>.</p>
+<p>Dieser Abschnitt bezieht sich auf <a href="https://www.tmwr.org/performance.html">Kapitel 9</a> in <span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span>.</p>
 <p>Die Vorhersagen bilden die Basis für die Modellgüte (“Metriken”), die schon fertig berechnet im Objekt <code>final_lm_res</code> liegen und mit <code>collect_metrics</code> herausgenommen werden können:</p>
 <div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-28_718b1db45ac7267dc5e57239c7e4d194">
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">lm_metrics</span> <span class="op">&lt;-</span> <span class="fu">collect_metrics</span><span class="op">(</span><span class="va">final_lm_res</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1156,7 +1156,7 @@ Hinweis
   text-indent: 25px;
 }
 </style>
-<table class="gt_table table table-sm table-striped" data-quarto-postprocess="true">
+<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true">
 <thead class="gt_col_headings"><tr class="header">
 <th id=".metric" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">.metric</th>
 <th id=".estimator" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">.estimator</th>
@@ -1211,9 +1211,9 @@ Hinweis
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ames_test_small2</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="va">ames_test_small</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">Sale_Price</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_cols.html">bind_cols</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">lm_form_fit</span>, <span class="va">ames_test_small</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_cols</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">lm_form_fit</span>, <span class="va">ames_test_small</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="co"># Add 95% prediction intervals to the results:</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_cols.html">bind_cols</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">lm_form_fit</span>, <span class="va">ames_test_small</span>, type <span class="op">=</span> <span class="st">"pred_int"</span><span class="op">)</span><span class="op">)</span> </span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_cols</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">lm_form_fit</span>, <span class="va">ames_test_small</span>, type <span class="op">=</span> <span class="st">"pred_int"</span><span class="op">)</span><span class="op">)</span> </span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-hash="060-tidymodels_cache/html/unnamed-chunk-33_247f6bb0ce73f7ed185da6df22437496">
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">rsq</span><span class="op">(</span><span class="va">ames_test_small2</span>, </span>
@@ -1232,7 +1232,7 @@ Hinweis
 <p>Andere Koeffizienten der Modellgüte können mit <code>rmse</code> oder <code>mae</code><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> abgerufen werden.</p>
 </section></section><section id="rezepte-zur-vorverarbeitung" class="level2" data-number="6.7"><h2 data-number="6.7" class="anchored" data-anchor-id="rezepte-zur-vorverarbeitung">
 <span class="header-section-number">6.7</span> Rezepte zur Vorverarbeitung</h2>
-<p>Dieser Abschnitt bezieht sich auf <a href="https://www.tmwr.org/recipes.html">Kapitel 8</a> in <span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span>.</p>
+<p>Dieser Abschnitt bezieht sich auf <a href="https://www.tmwr.org/recipes.html">Kapitel 8</a> in <span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span>.</p>
 <section id="was-ist-rezept-und-wozu-ist-es-gut" class="level3" data-number="6.7.1"><h3 data-number="6.7.1" class="anchored" data-anchor-id="was-ist-rezept-und-wozu-ist-es-gut">
 <span class="header-section-number">6.7.1</span> Was ist Rezept und wozu ist es gut?</h3>
 <p>So könnte ein typischer Aufruf von <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> aussehen:</p>
@@ -1365,7 +1365,7 @@ Hinweis
 </ul>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-rhys" class="csl-entry" role="listitem">
 Rhys, Hefin. 2020. <em>Machine Learning with R, the tidyverse, and mlr</em>. Shelter Island, <span>NY</span>: Manning publications.
 </div>
