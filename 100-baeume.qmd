@@ -23,7 +23,7 @@
 
 
 
-### Vorbereitung
+### R-Pakete und Daten
 
 
 In diesem Kapitel werden folgende R-Pakete benötigt:
@@ -35,6 +35,14 @@ library(tidymodels)
 library(tictoc)  # Zeitmessung
 library(readr)  # rds
 library(rpart.plot)  # Visualisierung der Bäume
+```
+
+
+In diesem Kapitel werden folgende Daten benötigt:
+
+```{r}
+data(titanic_train)
+data(titannic_test)
 ```
 
 
@@ -389,7 +397,7 @@ Dazu belegen wir die RSS eines Teilbaums (subtree) mit einem Strafterm $s = \alp
 wobei $|T|$ die Anzahl der Blätter des Baums entspricht. $\alpha$ ist ein Tuningparameter,
 also ein Wert, der nicht vom Modell berechnet wird, sondern von uns gesetzt werden muss -
 zumeist durch schlichtes Ausprobieren.
-$\alpha$ wägt ab zwischen Komplexität und Fit (geringe RSS).
+$\alpha$ wägt ab zwischen Komplexität (viele Blätter) und Fit (geringe RSS).
 Wenn $\alpha=0$ haben wir eine normalen, unbeschnittenen Baum $T_0$.
 Je größer $\alpha$ wird, desto höher wird der "Preis" für viele Blätter, also für Komplexität
 und der Baum wird kleiner.
@@ -632,7 +640,7 @@ dass sich am Modell nichts geändert hat.
 
 
 
-```{r eval = FALSE, message=FALSE, warning=FALSE, echo = TRUE, results = "hide"}
+```{r eval = TRUE, message=FALSE, warning=FALSE, echo = TRUE, results = "hide"}
 doParallel::registerDoParallel()  # mehrere Kerne parallel nutzen
 
 set.seed(42)
@@ -646,6 +654,7 @@ trees_tuned <-
 toc()  # Stoppuhr aus
 ```
 
+Fügt man den Parameter `control = control_grid(verbose = TRUE)` zu `tune _grid` hinzu, dann bekommt man man ausführlicheren Output.
 
 
 
@@ -657,14 +666,15 @@ write_rds(trees_tuned, "objects/trees1.rds")
 
 Bzw. so wieder aus der RDS-Datei zu importieren:
 
-```{r echo = TRUE}
+```{r echo = TRUE, eval=FALSE}
 trees_tuned <- read_rds("objects/trees1.rds")
 ```
 
 
 :::{.callout-note}
 Das Zwischenspeichern von Modellobjekten ist praktisch, weil es Rechenzeit spart.
-Allerdings hat es auch Nachteile: Wenn Sie Ihre Modellspezifikation ändern,
+Allerdings hat es auch Nachteile: Es ist *gefährlich*.
+Wenn Sie Ihre Modellspezifikation ändern,
 müssen Sie auch Ihr gespeichertes Modell aktualisieren. Das vergisst man leicht.
 Dann hat man falsche Ergebnisse und man wird nicht durch eine Fehlermeldung gewarnt.
 :::
@@ -863,7 +873,22 @@ Man beachte, dass die Modellgüte im Train-Sample höher ist als im Test-Sample 
 
 ## Aufgaben
 
-Schauen Sie sich mal die Kategorie [tree](https://datenwerk.netlify.app/#category=trees) auf [Datenwerk](https://datenwerk.netlify.app/) an.
+Diese Aufgaben bei Datenwerk behandeln den Stoff dieses Kapitels:
+
+- regr-tree01
+- regr-tree02
+- regr-tree03
+- Flex-vs-nichtflex-Methode
+- Flex-vs-nichtflex-Methode2    
+- Flex-vs-nichtflex-Methode3 
+- tidymodels-penguins07
+- Tengku-Hanis01
+- bike01
+- bike02
+- bike03
+- bike04
+
+Schauen Sie sich mal die Kategorie [trees](https://datenwerk.netlify.app/#category=trees) auf [Datenwerk](https://datenwerk.netlify.app/) an.
 
 Alternativ bietet die Kategorie [tidymodels](https://datenwerk.netlify.app/#category=tidymodels) eine Sammlung von Aufgaben rund um das R-Paket Tidymodels; dort können Sie sich Aufgaben anpassen.
 

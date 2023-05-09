@@ -17,6 +17,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -52,10 +86,12 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -97,6 +133,9 @@ div.csl-indent {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Grundlagen der Prognosemodellierung 🔮🧰</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Dunkelmodus umschalten"><i class="bi"></i></a>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -222,6 +261,7 @@ div.csl-indent {
 <li><a href="#%C3%BCberblick" id="toc-überblick" class="nav-link" data-scroll-target="#%C3%BCberblick"><span class="header-section-number">14.1.1</span> Überblick</a></li>
   <li><a href="#lernziele" id="toc-lernziele" class="nav-link" data-scroll-target="#lernziele"><span class="header-section-number">14.1.2</span> Lernziele</a></li>
   <li><a href="#literatur" id="toc-literatur" class="nav-link" data-scroll-target="#literatur"><span class="header-section-number">14.1.3</span> Literatur</a></li>
+  <li><a href="#r-pakete-und-daten" id="toc-r-pakete-und-daten" class="nav-link" data-scroll-target="#r-pakete-und-daten"><span class="header-section-number">14.1.4</span> R-Pakete und Daten</a></li>
   </ul>
 </li>
   <li><a href="#aussichtspunkt-1-blick-vom-hohen-berg" id="toc-aussichtspunkt-1-blick-vom-hohen-berg" class="nav-link" data-scroll-target="#aussichtspunkt-1-blick-vom-hohen-berg"><span class="header-section-number">14.2</span> Aussichtspunkt 1: Blick vom hohen Berg</a></li>
@@ -236,7 +276,15 @@ div.csl-indent {
   <li><a href="#aussichtspunkt-4-der-exerzitien-park" id="toc-aussichtspunkt-4-der-exerzitien-park" class="nav-link" data-scroll-target="#aussichtspunkt-4-der-exerzitien-park"><span class="header-section-number">14.5</span> Aussichtspunkt 4: Der Exerzitien-Park</a></li>
   <li><a href="#aussichtspunkt-5-in-der-bibliothek" id="toc-aussichtspunkt-5-in-der-bibliothek" class="nav-link" data-scroll-target="#aussichtspunkt-5-in-der-bibliothek"><span class="header-section-number">14.6</span> Aussichtspunkt 5: In der Bibliothek</a></li>
   <li><a href="#krafttraining" id="toc-krafttraining" class="nav-link" data-scroll-target="#krafttraining"><span class="header-section-number">14.7</span> Krafttraining</a></li>
-  <li><a href="#aufgaben" id="toc-aufgaben" class="nav-link" data-scroll-target="#aufgaben"><span class="header-section-number">14.8</span> Aufgaben</a></li>
+  <li>
+<a href="#ressourcen" id="toc-ressourcen" class="nav-link" data-scroll-target="#ressourcen"><span class="header-section-number">14.8</span> Ressourcen</a>
+  <ul class="collapse">
+<li><a href="#aufgaben" id="toc-aufgaben" class="nav-link" data-scroll-target="#aufgaben"><span class="header-section-number">14.8.1</span> Aufgaben</a></li>
+  <li><a href="#kaggle-fallstudien" id="toc-kaggle-fallstudien" class="nav-link" data-scroll-target="#kaggle-fallstudien"><span class="header-section-number">14.8.2</span> Kaggle-Fallstudien</a></li>
+  <li><a href="#blaupausen-template-via-usemodel" id="toc-blaupausen-template-via-usemodel" class="nav-link" data-scroll-target="#blaupausen-template-via-usemodel"><span class="header-section-number">14.8.3</span> Blaupausen (Template) via <code>usemodel</code></a></li>
+  <li><a href="#blaupause-code-schnipsel-f%C3%BCr-tidymodels" id="toc-blaupause-code-schnipsel-für-tidymodels" class="nav-link" data-scroll-target="#blaupause-code-schnipsel-f%C3%BCr-tidymodels"><span class="header-section-number">14.8.4</span> Blaupause: Code-Schnipsel für <code>tidymodels</code></a></li>
+  </ul>
+</li>
   <li><a href="#vertiefung" id="toc-vertiefung" class="nav-link" data-scroll-target="#vertiefung"><span class="header-section-number">14.9</span> Vertiefung</a></li>
   </ul></nav>
     </div>
@@ -272,7 +320,14 @@ div.csl-indent {
 <span class="header-section-number">14.1.3</span> Literatur</h3>
 <ul>
 <li>Rhys im Überblick</li>
-</ul></section></section><section id="aussichtspunkt-1-blick-vom-hohen-berg" class="level2" data-number="14.2"><h2 data-number="14.2" class="anchored" data-anchor-id="aussichtspunkt-1-blick-vom-hohen-berg">
+</ul></section><section id="r-pakete-und-daten" class="level3" data-number="14.1.4"><h3 data-number="14.1.4" class="anchored" data-anchor-id="r-pakete-und-daten">
+<span class="header-section-number">14.1.4</span> R-Pakete und Daten</h3>
+<p>In diesem Kapitel werden folgende R-Pakete benötigt:</p>
+<div class="cell" data-hash="140-faden_cache/html/unnamed-chunk-1_443c286ed68ce33bfed5eb54308e7b8c">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jabiru/tictoc">tictoc</a></span><span class="op">)</span>  <span class="co"># Zeitmessung</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section><section id="aussichtspunkt-1-blick-vom-hohen-berg" class="level2" data-number="14.2"><h2 data-number="14.2" class="anchored" data-anchor-id="aussichtspunkt-1-blick-vom-hohen-berg">
 <span class="header-section-number">14.2</span> Aussichtspunkt 1: Blick vom hohen Berg</h2>
 <p>Und so zeigt sich ein “Flussbild”<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> (<a href="#fig-fluss">Abbildung&nbsp;<span>14.1</span></a>).</p>
 <div class="cell">
@@ -439,18 +494,121 @@ Loading…
 <li>
 <em>Youtube</em>: Zwar wettern Dozentis gerne über die mangelnde Verarbeitungstiefe beim Fern schauen. Außerdem sind Lehrvideos didaktisch echt asbachuralt. Aber okay, manchmal und in überschaubarer Dosis ist ein Lehrvideo eine nützliche Ergänzung zu den übrigen Maßnahmen.</li>
 </ol>
-<!-- ## Aufgaben und Vertiefung --></section><section id="aufgaben" class="level2" data-number="14.8"><h2 data-number="14.8" class="anchored" data-anchor-id="aufgaben">
-<span class="header-section-number">14.8</span> Aufgaben</h2>
+<!-- ## Aufgaben und Vertiefung --></section><section id="ressourcen" class="level2" data-number="14.8"><h2 data-number="14.8" class="anchored" data-anchor-id="ressourcen">
+<span class="header-section-number">14.8</span> Ressourcen</h2>
+<section id="aufgaben" class="level3" data-number="14.8.1"><h3 data-number="14.8.1" class="anchored" data-anchor-id="aufgaben">
+<span class="header-section-number">14.8.1</span> Aufgaben</h3>
+<p>Im <a href="https://datenwerk.netlify.app/">Datenwerk</a> unter dem Tag <a href="https://datenwerk.netlify.app/#category=stat-learning">stat-learning</a> und <a href="https://datenwerk.netlify.app/#category=tidymodels">tidymodels</a> finden Sie einen Fundus an Aufgaben zur prädiktiven Modellierung.</p>
+</section><section id="kaggle-fallstudien" class="level3" data-number="14.8.2"><h3 data-number="14.8.2" class="anchored" data-anchor-id="kaggle-fallstudien">
+<span class="header-section-number">14.8.2</span> Kaggle-Fallstudien</h3>
+<p>In <a href="150-fallstudien.html#sec-yacsdas-tidymodels"><span>Kapitel&nbsp;15.4</span></a> finden Sie eine Fallstudien-Sammlung.</p>
 <ul>
 <li><a href="https://www.kaggle.com/code/ssauer/simple-rf-tuned">Einfache Random-Forest-Modellierung bei Kaggle (TMDB)</a></li>
 <li><a href="https://www.kaggle.com/code/ssauer/tmdb-xgboost-tidymodels">Einfache Workflow-Set-Modellierung bei Kaggle (TMDB)</a></li>
 <li>Bearbeiten Sie so viele Fallstudien der Fallstudiensammlung wie nötig, um den Stoff flüssig zu beherrschen</li>
-</ul></section><section id="vertiefung" class="level2" data-number="14.9"><h2 data-number="14.9" class="anchored" data-anchor-id="vertiefung">
+</ul></section><section id="blaupausen-template-via-usemodel" class="level3" data-number="14.8.3"><h3 data-number="14.8.3" class="anchored" data-anchor-id="blaupausen-template-via-usemodel">
+<span class="header-section-number">14.8.3</span> Blaupausen (Template) via <code>usemodel</code>
+</h3>
+<p>Eine Möglichkeit, sich die Syntax für eine typische Tidymodels-Analyse ausgeben zu lassen, bietet das Paket <a href="https://usemodels.tidymodels.org/">usemodels</a>.</p>
+<p>Lassen wir uns einen Code-Schnipsel ausgeben für ein Random-Forest-Modell mit dem Engine <code>ranger</code>:</p>
+<div class="cell" data-hash="140-faden_cache/html/unnamed-chunk-3_14009acee8556cead0241c69bf510430">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://usemodels.tidymodels.org/">usemodels</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://usemodels.tidymodels.org/reference/templates.html">use_ranger</a></span><span class="op">(</span><span class="va">am</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
+<span><span class="co">## ranger_recipe &lt;- </span></span>
+<span><span class="co">##   recipe(formula = am ~ ., data = mtcars) </span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## ranger_spec &lt;- </span></span>
+<span><span class="co">##   rand_forest(mtry = tune(), min_n = tune(), trees = 1000) %&gt;% </span></span>
+<span><span class="co">##   set_mode("classification") %&gt;% </span></span>
+<span><span class="co">##   set_engine("ranger") </span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## ranger_workflow &lt;- </span></span>
+<span><span class="co">##   workflow() %&gt;% </span></span>
+<span><span class="co">##   add_recipe(ranger_recipe) %&gt;% </span></span>
+<span><span class="co">##   add_model(ranger_spec) </span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## set.seed(4113)</span></span>
+<span><span class="co">## ranger_tune &lt;-</span></span>
+<span><span class="co">##   tune_grid(ranger_workflow, resamples = stop("add your rsample object"), grid = stop("add number of candidate points"))</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="blaupause-code-schnipsel-für-tidymodels" class="level3" data-number="14.8.4"><h3 data-number="14.8.4" class="anchored" data-anchor-id="blaupause-code-schnipsel-für-tidymodels">
+<span class="header-section-number">14.8.4</span> Blaupause: Code-Schnipsel für <code>tidymodels</code>
+</h3>
+<div class="cell" data-hash="140-faden_cache/html/unnamed-chunk-4_e061213bc20cfa59451152e383d17b3a">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup:</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tictoc)  <span class="co"># Zeitmessung</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="sc">&lt;</span>other_package_you_might_need_for_modelling<span class="sc">&gt;</span>)  <span class="co"># tidymodels uses existing packages for modelling so you need to make them available</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Data:</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>d_path <span class="ot">&lt;-</span> <span class="st">"Enter data path here"</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(d_path)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>d_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(d)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>d_train <span class="ot">&lt;-</span> <span class="fu">training</span>(d_split)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>d_test <span class="ot">&lt;-</span> <span class="fu">testing</span>(d_split)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co"># model:</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>mod1 <span class="ot">&lt;-</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="er">&lt;</span>enter_parsnip_model_name_here<span class="sc">&gt;</span>(<span class="at">mode =</span> <span class="st">"&lt;choose_regression_or_classification&gt;"</span>,</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>           <span class="at">cost_complexity =</span> <span class="fu">tune</span>())</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="co"># cv:</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>rsmpl <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(d_train)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="co"># recipe:</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>rec1 <span class="ot">&lt;-</span> <span class="fu">recipe</span>(<span class="sc">&lt;</span>enter_output_variable<span class="sc">&gt;</span> <span class="er">~</span>  ., <span class="at">data =</span> d_train)</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="co"># workflow:</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>wf1 <span class="ot">&lt;-</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">workflow</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(mod1) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(rec1)</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="co"># tuning:</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="fu">tic</span>()</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>wf1_fit <span class="ot">&lt;-</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>  wf1 <span class="sc">%&gt;%</span> </span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tune_grid</span>(</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">resamples =</span> rsmpl)</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="fu">toc</span>()</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="co"># best candidate:</span></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a><span class="fu">show_best</span>(wf1_fit)</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a><span class="co"># finalize wf:</span></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>wf1_final <span class="ot">&lt;-</span></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>  wf1 <span class="sc">%&gt;%</span> </span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">finalize_workflow</span>(<span class="fu">select_best</span>(wf1_fit))</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>wf1_fit_final <span class="ot">&lt;-</span></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>  wf1_final <span class="sc">%&gt;%</span> </span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>  <span class="fu">last_fit</span>(d_split)</span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a><span class="co"># Modellgüte im Test-Set:</span></span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a><span class="fu">collect_metrics</span>(wf1_fit_final)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Tipp: Copy-Paste me 😄</p>
+<p>Auch <a href="https://datenwerk.netlify.app/posts/tidymodels-vorlage/tidymodels-vorlage.html">hier auf dem Datenwerk</a> finden Sie ähnliche Vorlagen.</p>
+</section></section><section id="vertiefung" class="level2" data-number="14.9"><h2 data-number="14.9" class="anchored" data-anchor-id="vertiefung">
 <span class="header-section-number">14.9</span> Vertiefung</h2>
 <ul>
 <li><a href="https://deisenroth.cc/publication/deisenroth-2020/">Mathematische Grundlagen können Sie z.B. hier vertiefen</a></li>
 <li><a href="https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques">Gute Fallstudie bei Kaggle für Regressionsprobleme: House Prices</a></li>
 <li><a href="https://gist.github.com/">Sie möchten schnell ein Code-Schnipsel (öffentlich sichtbar) teilen? Probieren Sie Github Gists aus</a></li>
+<li>If in doubt, scream and shout … and ask <a href="https://chat.openai.com/auth/login">ChatGPT</a>: ChatGPT kann Ihnen Code-Schnipsel erstellen, wenn Sie ihn nach einer bestimmten Aufgabenstellung fragen.</li>
 </ul>
 
 
@@ -491,6 +649,121 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {

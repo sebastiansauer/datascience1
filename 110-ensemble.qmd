@@ -150,7 +150,7 @@ mit dem internationalen Preis für Statistik [ausgezeichnet](https://www.amstat.
 >   “While statistics offers no magic pill for quantitative scientific investigations, the bootstrap is the best statistical pain reliever ever produced,” says Xiao-Li Meng, Whipple V. N. Jones Professor of Statistics at Harvard University.“
 
 
-## Bagging-Algorithmus
+### Bagging-Algorithmus
 
 Bagging, die Kurzform für *B*ootstrap-*Agg*regation ist wenig mehr als die Umsetzung des Boostrappings.
 
@@ -249,10 +249,12 @@ Lässt man pro Split $m=p$ Prädiktoren zu,
 so gleicht Bagging dem Random Forest.
 Die Anzahl $m$ der erlaubten Prädiktoren werden als Zufallstichprobe aus den $p$
 Prädiktoren des Datensatzes gezogen (ohne Zurücklegen).
-$m$ ist ein Tuningparameter; $m=\sqrt(p)$ ist ein beliebter Startwert.
+$m$ ist ein Tuningparameter; $m=\sqrt{p}$ ist ein beliebter Startwert.
 In den meisten Implementationen wird $m$ mit `mtry` bezeichnet (so auch in Tidymodels).
 
-Der Random-Forest-Algorithmus ist in  @fig-rf1 illustriert.
+Der Random-Forest-Algorithmus ist in  @fig-rf1 illustriert:
+Mit jedem Quadrat ist ein Baummodell symbolisiert.
+In jedem Baum wird an jedem Split (ohne Zurücklegen) eine Auswahl an zu berücksichtigenden Prädiktoren gezogen.
 
 
 
@@ -306,6 +308,7 @@ knitr::include_graphics("img/8.8.png")
 
 Den Effekt von $m$ (Anzahl der Prädiktoren pro Split) ist in  @fig-mtry dargestellt [@islr].
 Man erkennt, dass der Zusatznutzen an zusätzlichen Bäumen, $B$, sich abschwächt.
+Daher ist die Anzahl $B$ an Bäumen nicht wirklich ein Tuningparameter. Mit ein paar Hundert oder wenigen Tausend Bäumen ist man auf der sicheren Seite.^[Wer sich die Rechenressourcen leisten kann 💸].
 $m=\sqrt{p}$ schneidet wie erwartet am besten ab.
 
 ```{r mtry, fig.cap = "Test-Sample-Vorhersagegüte von Bagging- und Random-Forest-Algorithmen", echo = FALSE}
@@ -466,24 +469,31 @@ knitr::include_graphics("img/8.10.png")
 
 ### Datensatz Churn
 
-Wir betrachten einen Datensatz zur Kundenabwanderung (Churn) aus [dieser Quelle](https://www.gmudatamining.com/lesson-13-r-tutorial.html).
+Wir betrachten einen Datensatz zur Kundenabwanderung (Churn) aus [dieser Quelle](https://www.gmudatamining.com/lesson-13-r-tutorial.html); [Datendatei](https://gmudatamining.com/data/churn_data.rds).
+
+Allerdings liegen die Daten jetzt auch [auf diesem Repo](), da sich mein Browser jüngst über Datenschutzprobleme bei Quellwebseite beschwert hat.
+
+
 
 
 ```{r}
+#| echo: false
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Die Daten habe ich von [dieser Quelle](https://gmudatamining.com/data/churn_data.rds) heruntergeladen.
+
 
 ```{r}
 churn_df <- read_rds('data/churn_data.rds')
 ```
 
-Ein Blick in die Daten, s. @tbl-churn
+Werfen wir einen Blick in die Daten, s. @tbl-churn,
+um einen ersten Eindruck zu bekommen.
 
 ```{r}
 #| label: tbl-churn
 #| tbl-cap: Churn-Datensatz
+#| echo: false
 churn_df %>% 
   head() %>% 
   gt::gt()
@@ -491,9 +501,6 @@ churn_df %>%
 
 
 ### Data Splitting und CV
-
-Das Kreuzvalidieren (CV) fassen wir auch unter diesen Punkt.
-
 
 
 ```{r}
@@ -560,25 +567,6 @@ glm_model <- logistic_reg()
 ```
 
 
-
-### Workflow-Sets
-
-
-Wir definieren ein Workflow-Set:
-
-
-```{r}
-preproc <- list(rec1 = churn_recipe1, rec2 = churn_recipe2)
-models <- list(tree1 = tree_model, rf1 = rf_model, boost1 = boost_model, glm1 = glm_model)
- 
- 
-all_workflows <- workflow_set(preproc, models)
-```
-
-Infos zu `workflow_set` bekommt man wie gewohnt mit `?workflow_set`.
-
-Im Standard werden alle Rezepte und Modelle miteinander kombiniert (`cross = TRUE`),
-also `preproc * models` Modelle gefittet.
 
 
 
@@ -729,6 +717,44 @@ write_rds(boost_fit1, file = "objects/boost_fit1.rds")
 
 Und so weiter.
 
+
+### Workflow-Sets
+
+
+#### Workflow-Set definieren
+
+Ein Workflow-Set besteht aus 
+
+- einem oder mehreren Rezepten
+- einem oder mehreren Modellen
+
+die beliebig kombiniert sein können.
+Im Standard werden alle Rezepte mit allen Modellen kombiniert.
+
+
+:::{#exm-wfset}
+In einem Workflow-Set sind 3 Rezepte und 4 Modelle definiert.
+Daher werden im Standard 12 Workflows gefittet.$\square$
+:::
+
+
+```{r}
+preproc <- list(rec1 = churn_recipe1, rec2 = churn_recipe2)
+models <- list(tree1 = tree_model, 
+               rf1 = rf_model, 
+               boost1 = boost_model, 
+               glm1 = glm_model)
+ 
+all_workflows <- workflow_set(preproc, models)
+```
+
+Infos zu `workflow_set` bekommt man wie gewohnt mit `?workflow_set`.
+
+Im Standard werden alle Rezepte und Modelle miteinander kombiniert (`cross = TRUE`),
+also `preproc * models` Modelle gefittet.
+
+
+
 ### Workflow-Set tunen
 
 ```{r tune-workflow-map}
@@ -751,21 +777,23 @@ if (file.exists("objects/churn_model_set.rds")) {
 
 
 Da die Berechnung schon etwas Zeit braucht,
-macht es Sinn, das Modell (bzw. das Ergebnisobjekt) auf Festplatte zu speichern:
+kann es *vielleicht* Sinn machen, das Modell (bzw. das Ergebnisobjekt) auf Festplatte zu speichern:
 
 ```{r eval = FALSE}
 write_rds(churn_model_set, file = "objects/churn_model_set.rds")
 ```
 
 
+:::{.callout-caution}
 *Achtung* Dieser Schritt ist *gefährlich*:
-Wenn Sie Ihr Rezept und Fit-Objekt ändenr, kriegt das Ihre Festplatte nicht unbedingt
+Wenn Sie Ihr Rezept und Fit-Objekt ändern, kriegt das Ihre Festplatte nicht unbedingt
 mit. Sie könnten also unbemerkt mit dem alten Objekt von Ihrer Festplatte weiterarbeiten,
 ohne durch eine Fehlermeldung gewarnt zu werden.
+Ein viel besserer Ansatz wird durch das [R-Paket targets](https://books.ropensci.org/targets/) bereitgestellt.
+:::
 
 
-
-Entsprechend kann man das Modellobjekt wieder importieren, wenn einmal abgespeichert:
+Entsprechend kann man ein auf der Festplatte geparktes Modellobjekt wieder importieren:
 
 ```{r eval = FALSE}
 churn_model_set <- read_rds(file = "objects/churn_model_set.rds")
@@ -775,15 +803,18 @@ churn_model_set <- read_rds(file = "objects/churn_model_set.rds")
 ### Ergebnisse im Train-Sest
 
 
-Hier ist die Rangfolge der Modelle, geordnet nach mittlerem ROC AUC:
+Hier ist die Rangfolge der Modelle unseres Workflow-Sets, geordnet nach mittlerem ROC-AUC:
 
 ```{r}
 rank_results(churn_model_set, rank_metric = "roc_auc")
 ```
 
 
+Die Rangfolge der Modellgüte (in den Validierungs-Samples) kann man sich mit `autoplot` komformtabel ausgeben lassen, s. @fig-autoplot-wf1.
 
 ```{r}
+#| label: fig-autoplot-wf1
+#| fig-cap: "Autoplot zur Modellgüte aller Workflows eines Workflow-Sets"
 autoplot(churn_model_set, metric = "roc_auc")
 ```
 
@@ -803,7 +834,8 @@ autoplot(churn_model_set, metric = "roc_auc", select_best = "TRUE") +
 
 
 Boosting hat  - knapp - am besten abgeschnitten. 
-Allerdings sind Random Forest und die schlichte, einfache logistische Regression auch fast genau so gut.
+Allerdings sind Random Forest und die schlichte, 
+einfache logistische Regression auch fast genau so gut.
 Das wäre ein Grund für das einfachste Modell, das GLM, zu votieren.
 Zumal die Interpretierbarkeit am besten ist.
 Alternativ könnte man sich für das Boosting-Modell aussprechen.
@@ -979,12 +1011,13 @@ fit_final %>%
 
 
 
-- [Aufgaben zu Tidymodels, PDF](https://github.com/sebastiansauer/datascience1/blob/main/Aufgaben/Thema11-Loesungen1.pdf)
-- [Aufgaben zu Tidymodels, HTML](https://github.com/sebastiansauer/datascience1/blob/main/Aufgaben/Thema11-Loesungen1.html)
 
-## Vertiefung
+Schauen Sie sich mal die Kategorie [trees](https://datenwerk.netlify.app/#category=trees) auf [Datenwerk](https://datenwerk.netlify.app/) an.
 
-[Nutzen Sie StackOverflow als Forum für Ihre Fragen - Hier ein Beispiel zu einer Fehlermeldung, die mir Kopfzerbrechen bereitete](https://stackoverflow.com/questions/72333419/error-on-running-predict-in-tidymodels-error-in-dplyrselect-cant-su/72341769#72341769)
+Alternativ bietet die Kategorie [tidymodels](https://datenwerk.netlify.app/#category=tidymodels) eine Sammlung von Aufgaben rund um das R-Paket Tidymodels; dort können Sie sich Aufgaben anpassen.
+
+
+
 
 
 ## Fallstudien
@@ -1008,5 +1041,10 @@ fit_final %>%
 - [Fallstudie Bäume in San Francisco](https://dev.to/juliasilge/tuning-random-forest-hyperparameters-in-r-with-tidytuesday-trees-data-4ilh)
 - [Fallstudie Vulkanausbrüche](https://juliasilge.com/blog/multinomial-volcano-eruptions/)
 - [Fallstudie Brettspiele mit XGBoost](https://juliasilge.com/blog/board-games/)
+
+
  
+## Vertiefung
+
+[Nutzen Sie StackOverflow als Forum für Ihre Fragen - Hier ein Beispiel zu einer Fehlermeldung, die mir Kopfzerbrechen bereitete](https://stackoverflow.com/questions/72333419/error-on-running-predict-in-tidymodels-error-in-dplyrselect-cant-su/72341769#72341769)
 

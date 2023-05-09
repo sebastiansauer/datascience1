@@ -460,8 +460,15 @@ Diese Submission erzielte einen Score von **4.79227** (RMSLE).
 
 
 
+## Aufgaben
 
-##  Aufgaben
+Schauen Sie sich mal die Kategorie [tmdb](https://datenwerk.netlify.app/#category=tmdb) auf [Datenwerk](https://datenwerk.netlify.app/) an.
+
+Alternativ bietet die Kategorie [tidymodels](https://datenwerk.netlify.app/#category=tidymodels) eine Sammlung von Aufgaben rund um das R-Paket Tidymodels; dort können Sie sich Aufgaben anpassen.
+
+
+
+## Kaggle-Fallstudien 
 
 - [Fallstudie Einfache lineare Regression mit Tidymodels, Kaggle-Competition TMDB](https://www.kaggle.com/ssauer/simple-linear-model-tidymodels)
 - [Fallstudie Einfaches Random-Forest-Modell mit Tidymodels, Kaggle-Competition TMDB](https://www.kaggle.com/code/ssauer/simple-rf-tuned)

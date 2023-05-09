@@ -86,10 +86,12 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -131,6 +133,9 @@ div.csl-indent {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Grundlagen der Prognosemodellierung 🔮🧰</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Dunkelmodus umschalten"><i class="bi"></i></a>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -265,50 +270,46 @@ div.csl-indent {
 <a href="#bagging" id="toc-bagging" class="nav-link" data-scroll-target="#bagging"><span class="header-section-number">11.6</span> Bagging</a>
   <ul class="collapse">
 <li><a href="#bootstrapping" id="toc-bootstrapping" class="nav-link" data-scroll-target="#bootstrapping"><span class="header-section-number">11.6.1</span> Bootstrapping</a></li>
+  <li><a href="#bagging-algorithmus" id="toc-bagging-algorithmus" class="nav-link" data-scroll-target="#bagging-algorithmus"><span class="header-section-number">11.6.2</span> Bagging-Algorithmus</a></li>
+  <li><a href="#variablenrelevanz" id="toc-variablenrelevanz" class="nav-link" data-scroll-target="#variablenrelevanz"><span class="header-section-number">11.6.3</span> Variablenrelevanz</a></li>
+  <li><a href="#out-of-bag-vorhersagen" id="toc-out-of-bag-vorhersagen" class="nav-link" data-scroll-target="#out-of-bag-vorhersagen"><span class="header-section-number">11.6.4</span> Out-of-Bag-Vorhersagen</a></li>
+  </ul>
+</li>
+  <li><a href="#random-forests" id="toc-random-forests" class="nav-link" data-scroll-target="#random-forests"><span class="header-section-number">11.7</span> Random Forests</a></li>
+  <li>
+<a href="#boosting" id="toc-boosting" class="nav-link" data-scroll-target="#boosting"><span class="header-section-number">11.8</span> Boosting</a>
+  <ul class="collapse">
+<li><a href="#adaboost" id="toc-adaboost" class="nav-link" data-scroll-target="#adaboost"><span class="header-section-number">11.8.1</span> AdaBoost</a></li>
+  <li><a href="#xgboost" id="toc-xgboost" class="nav-link" data-scroll-target="#xgboost"><span class="header-section-number">11.8.2</span> XGBoost</a></li>
   </ul>
 </li>
   <li>
-<a href="#bagging-algorithmus" id="toc-bagging-algorithmus" class="nav-link" data-scroll-target="#bagging-algorithmus"><span class="header-section-number">11.7</span> Bagging-Algorithmus</a>
+<a href="#tidymodels" id="toc-tidymodels" class="nav-link" data-scroll-target="#tidymodels"><span class="header-section-number">11.9</span> Tidymodels</a>
   <ul class="collapse">
-<li><a href="#variablenrelevanz" id="toc-variablenrelevanz" class="nav-link" data-scroll-target="#variablenrelevanz"><span class="header-section-number">11.7.1</span> Variablenrelevanz</a></li>
-  <li><a href="#out-of-bag-vorhersagen" id="toc-out-of-bag-vorhersagen" class="nav-link" data-scroll-target="#out-of-bag-vorhersagen"><span class="header-section-number">11.7.2</span> Out-of-Bag-Vorhersagen</a></li>
+<li><a href="#datensatz-churn" id="toc-datensatz-churn" class="nav-link" data-scroll-target="#datensatz-churn"><span class="header-section-number">11.9.1</span> Datensatz Churn</a></li>
+  <li><a href="#data-splitting-und-cv" id="toc-data-splitting-und-cv" class="nav-link" data-scroll-target="#data-splitting-und-cv"><span class="header-section-number">11.9.2</span> Data Splitting und CV</a></li>
+  <li><a href="#feature-engineering" id="toc-feature-engineering" class="nav-link" data-scroll-target="#feature-engineering"><span class="header-section-number">11.9.3</span> Feature Engineering</a></li>
+  <li><a href="#modelle" id="toc-modelle" class="nav-link" data-scroll-target="#modelle"><span class="header-section-number">11.9.4</span> Modelle</a></li>
+  <li><a href="#modelle-berechnen-mit-tuning-einzeln" id="toc-modelle-berechnen-mit-tuning-einzeln" class="nav-link" data-scroll-target="#modelle-berechnen-mit-tuning-einzeln"><span class="header-section-number">11.9.5</span> Modelle berechnen mit Tuning, einzeln</a></li>
+  <li><a href="#workflow-sets" id="toc-workflow-sets" class="nav-link" data-scroll-target="#workflow-sets"><span class="header-section-number">11.9.6</span> Workflow-Sets</a></li>
+  <li><a href="#workflow-set-tunen" id="toc-workflow-set-tunen" class="nav-link" data-scroll-target="#workflow-set-tunen"><span class="header-section-number">11.9.7</span> Workflow-Set tunen</a></li>
+  <li><a href="#ergebnisse-im-train-sest" id="toc-ergebnisse-im-train-sest" class="nav-link" data-scroll-target="#ergebnisse-im-train-sest"><span class="header-section-number">11.9.8</span> Ergebnisse im Train-Sest</a></li>
+  <li><a href="#bestes-modell" id="toc-bestes-modell" class="nav-link" data-scroll-target="#bestes-modell"><span class="header-section-number">11.9.9</span> Bestes Modell</a></li>
+  <li><a href="#finalisisieren" id="toc-finalisisieren" class="nav-link" data-scroll-target="#finalisisieren"><span class="header-section-number">11.9.10</span> Finalisisieren</a></li>
+  <li><a href="#last-fit" id="toc-last-fit" class="nav-link" data-scroll-target="#last-fit"><span class="header-section-number">11.9.11</span> Last Fit</a></li>
+  <li><a href="#variablenrelevanz-1" id="toc-variablenrelevanz-1" class="nav-link" data-scroll-target="#variablenrelevanz-1"><span class="header-section-number">11.9.12</span> Variablenrelevanz</a></li>
+  <li><a href="#roc-curve" id="toc-roc-curve" class="nav-link" data-scroll-target="#roc-curve"><span class="header-section-number">11.9.13</span> ROC-Curve</a></li>
   </ul>
 </li>
-  <li><a href="#random-forests" id="toc-random-forests" class="nav-link" data-scroll-target="#random-forests"><span class="header-section-number">11.8</span> Random Forests</a></li>
+  <li><a href="#aufgaben" id="toc-aufgaben" class="nav-link" data-scroll-target="#aufgaben"><span class="header-section-number">11.10</span> Aufgaben</a></li>
   <li>
-<a href="#boosting" id="toc-boosting" class="nav-link" data-scroll-target="#boosting"><span class="header-section-number">11.9</span> Boosting</a>
+<a href="#fallstudien" id="toc-fallstudien" class="nav-link" data-scroll-target="#fallstudien"><span class="header-section-number">11.11</span> Fallstudien</a>
   <ul class="collapse">
-<li><a href="#adaboost" id="toc-adaboost" class="nav-link" data-scroll-target="#adaboost"><span class="header-section-number">11.9.1</span> AdaBoost</a></li>
-  <li><a href="#xgboost" id="toc-xgboost" class="nav-link" data-scroll-target="#xgboost"><span class="header-section-number">11.9.2</span> XGBoost</a></li>
+<li><a href="#fallstudien-mit-workflow-sets" id="toc-fallstudien-mit-workflow-sets" class="nav-link" data-scroll-target="#fallstudien-mit-workflow-sets"><span class="header-section-number">11.11.1</span> Fallstudien mit Workflow-Sets</a></li>
+  <li><a href="#weitere-fallstudien-mit-tidymodels-bezug" id="toc-weitere-fallstudien-mit-tidymodels-bezug" class="nav-link" data-scroll-target="#weitere-fallstudien-mit-tidymodels-bezug"><span class="header-section-number">11.11.2</span> Weitere Fallstudien mit Tidymodels-Bezug</a></li>
   </ul>
 </li>
-  <li>
-<a href="#tidymodels" id="toc-tidymodels" class="nav-link" data-scroll-target="#tidymodels"><span class="header-section-number">11.10</span> Tidymodels</a>
-  <ul class="collapse">
-<li><a href="#datensatz-churn" id="toc-datensatz-churn" class="nav-link" data-scroll-target="#datensatz-churn"><span class="header-section-number">11.10.1</span> Datensatz Churn</a></li>
-  <li><a href="#data-splitting-und-cv" id="toc-data-splitting-und-cv" class="nav-link" data-scroll-target="#data-splitting-und-cv"><span class="header-section-number">11.10.2</span> Data Splitting und CV</a></li>
-  <li><a href="#feature-engineering" id="toc-feature-engineering" class="nav-link" data-scroll-target="#feature-engineering"><span class="header-section-number">11.10.3</span> Feature Engineering</a></li>
-  <li><a href="#modelle" id="toc-modelle" class="nav-link" data-scroll-target="#modelle"><span class="header-section-number">11.10.4</span> Modelle</a></li>
-  <li><a href="#workflow-sets" id="toc-workflow-sets" class="nav-link" data-scroll-target="#workflow-sets"><span class="header-section-number">11.10.5</span> Workflow-Sets</a></li>
-  <li><a href="#modelle-berechnen-mit-tuning-einzeln" id="toc-modelle-berechnen-mit-tuning-einzeln" class="nav-link" data-scroll-target="#modelle-berechnen-mit-tuning-einzeln"><span class="header-section-number">11.10.6</span> Modelle berechnen mit Tuning, einzeln</a></li>
-  <li><a href="#workflow-set-tunen" id="toc-workflow-set-tunen" class="nav-link" data-scroll-target="#workflow-set-tunen"><span class="header-section-number">11.10.7</span> Workflow-Set tunen</a></li>
-  <li><a href="#ergebnisse-im-train-sest" id="toc-ergebnisse-im-train-sest" class="nav-link" data-scroll-target="#ergebnisse-im-train-sest"><span class="header-section-number">11.10.8</span> Ergebnisse im Train-Sest</a></li>
-  <li><a href="#bestes-modell" id="toc-bestes-modell" class="nav-link" data-scroll-target="#bestes-modell"><span class="header-section-number">11.10.9</span> Bestes Modell</a></li>
-  <li><a href="#finalisisieren" id="toc-finalisisieren" class="nav-link" data-scroll-target="#finalisisieren"><span class="header-section-number">11.10.10</span> Finalisisieren</a></li>
-  <li><a href="#last-fit" id="toc-last-fit" class="nav-link" data-scroll-target="#last-fit"><span class="header-section-number">11.10.11</span> Last Fit</a></li>
-  <li><a href="#variablenrelevanz-1" id="toc-variablenrelevanz-1" class="nav-link" data-scroll-target="#variablenrelevanz-1"><span class="header-section-number">11.10.12</span> Variablenrelevanz</a></li>
-  <li><a href="#roc-curve" id="toc-roc-curve" class="nav-link" data-scroll-target="#roc-curve"><span class="header-section-number">11.10.13</span> ROC-Curve</a></li>
-  </ul>
-</li>
-  <li><a href="#aufgaben" id="toc-aufgaben" class="nav-link" data-scroll-target="#aufgaben"><span class="header-section-number">11.11</span> Aufgaben</a></li>
   <li><a href="#vertiefung" id="toc-vertiefung" class="nav-link" data-scroll-target="#vertiefung"><span class="header-section-number">11.12</span> Vertiefung</a></li>
-  <li>
-<a href="#fallstudien" id="toc-fallstudien" class="nav-link" data-scroll-target="#fallstudien"><span class="header-section-number">11.13</span> Fallstudien</a>
-  <ul class="collapse">
-<li><a href="#fallstudien-mit-workflow-sets" id="toc-fallstudien-mit-workflow-sets" class="nav-link" data-scroll-target="#fallstudien-mit-workflow-sets"><span class="header-section-number">11.13.1</span> Fallstudien mit Workflow-Sets</a></li>
-  <li><a href="#weitere-fallstudien-mit-tidymodels-bezug" id="toc-weitere-fallstudien-mit-tidymodels-bezug" class="nav-link" data-scroll-target="#weitere-fallstudien-mit-tidymodels-bezug"><span class="header-section-number">11.13.2</span> Weitere Fallstudien mit Tidymodels-Bezug</a></li>
-  </ul>
-</li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -402,8 +403,8 @@ Hinweis
 <blockquote class="blockquote">
 <p>“While statistics offers no magic pill for quantitative scientific investigations, the bootstrap is the best statistical pain reliever ever produced,” says Xiao-Li Meng, Whipple V. N. Jones Professor of Statistics at Harvard University.“</p>
 </blockquote>
-</section></section><section id="bagging-algorithmus" class="level2" data-number="11.7"><h2 data-number="11.7" class="anchored" data-anchor-id="bagging-algorithmus">
-<span class="header-section-number">11.7</span> Bagging-Algorithmus</h2>
+</section><section id="bagging-algorithmus" class="level3" data-number="11.6.2"><h3 data-number="11.6.2" class="anchored" data-anchor-id="bagging-algorithmus">
+<span class="header-section-number">11.6.2</span> Bagging-Algorithmus</h3>
 <p>Bagging, die Kurzform für <em>B</em>ootstrap-<em>Agg</em>regation ist wenig mehr als die Umsetzung des Boostrappings.</p>
 <p>Der Algorithmus von Bagging kann so beschrieben werden:</p>
 <ol type="1">
@@ -434,17 +435,17 @@ Hinweis
 </div>
 </div>
 <p>Die Anzahl der Bäume (allgemeiner: Submodelle) <span class="math inline">\(B\)</span> ist häufig im oberen drei- oder niedrigem vierstelligen Bereich, z.B. <span class="math inline">\(B=1000\)</span>. Eine gute Nachricht ist, dass Bagging nicht überanpasst, wenn <span class="math inline">\(B\)</span> groß wird.</p>
-<section id="variablenrelevanz" class="level3" data-number="11.7.1"><h3 data-number="11.7.1" class="anchored" data-anchor-id="variablenrelevanz">
-<span class="header-section-number">11.7.1</span> Variablenrelevanz</h3>
+</section><section id="variablenrelevanz" class="level3" data-number="11.6.3"><h3 data-number="11.6.3" class="anchored" data-anchor-id="variablenrelevanz">
+<span class="header-section-number">11.6.3</span> Variablenrelevanz</h3>
 <p>Man kann die Relevanz der Prädiktoren in einem Bagging-Modell auf mehrere Arten schätzen. Ein Weg (bei numerischer Prädiktion) ist, dass man die RSS-Verringerung, die durch Aufteilung anhand eines Prädiktors erzeugt wird, mittelt über alle beteiligten Bäume (Modelle). Bei Klassifikation kann man die analog die Reduktion des Gini-Wertes über alle Bäume mitteln und als Schätzwert für die Relevanz des Prädiktors heranziehen.</p>
-</section><section id="out-of-bag-vorhersagen" class="level3" data-number="11.7.2"><h3 data-number="11.7.2" class="anchored" data-anchor-id="out-of-bag-vorhersagen">
-<span class="header-section-number">11.7.2</span> Out-of-Bag-Vorhersagen</h3>
+</section><section id="out-of-bag-vorhersagen" class="level3" data-number="11.6.4"><h3 data-number="11.6.4" class="anchored" data-anchor-id="out-of-bag-vorhersagen">
+<span class="header-section-number">11.6.4</span> Out-of-Bag-Vorhersagen</h3>
 <p>Da nicht alle Fälle der Stichprobe in das Modell einfließen (sondern nur ca. 2/3), kann der Rest der Fälle zur Vorhersage genutzt werden. Bagging erzeugt sozusagen innerhalb der Stichprobe selbständig ein Train- und ein Test-Sample. Man spricht von <em>Out-of-Bag-Schätzung</em> (OOB-Schätzung). Der OOB-Fehler (z.B. MSE bei numerischen Modellen und Genauigkeit bei nominalen) ist eine valide Schätzung des typischen Test-Sample-Fehlers.</p>
 <p>Hat man aber Tuningparameter, so wird man dennoch auf die typische Train-Test-Aufteilung zurückgreifen, um Overfitting durch das Ausprobieren der Tuning-Kandidaten zu vermeiden (was sonst zu Zufallstreffern führen würde bei genügend vielen Modellkandidaten).</p>
-</section></section><section id="random-forests" class="level2" data-number="11.8"><h2 data-number="11.8" class="anchored" data-anchor-id="random-forests">
-<span class="header-section-number">11.8</span> Random Forests</h2>
-<p>Random Forests (“Zufallswälder”) sind eine Weiterentwicklung von Bagging-Modellen. Sie <em>sind</em> Bagging-Modelle, aber haben noch ein Ass im Ärmel: Und zwar wird an jedem Slit (Astgabel, Aufteilung) <em>nur eine Zufallsauswahl an <span class="math inline">\(m\)</span> Prädiktoren berücksichtigt</em>. Das hört sich verrückt an: “Wie, mit weniger Prädiktoren soll eine bessere Vorhersage erreicht werden?!” Ja, genau so ist es! Nehmen Sie an, es gibt im Datensatz einen sehr starken und ein paar mittelstarke Prädiktoren; der Rest der Prädiktoren ist wenig relevant. Wenn Sie jetzt viele “gebootstrapte”<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> ziehen, werden diese Bäume sehr ähnlich sein: Der stärkste Prädiktor steht vermutlich immer ob an der Wurzel, dann kommen die mittelstarken Prädiktoren. Jeder zusätzliche Baum trägt dann wenig neue Information bei. Anders gesagt: Die Vorhersagen der Bäume sind dann sehr ähnlich bzw. hoch korreliert. Bildet man den Mittelwert von hoch korrelierten Variablen, verringert sich leider die Varianzu nur <em>wenig</em> im Vergleich zu nicht oder gering korrelierten Variablen <span class="citation" data-cites="islr">(<a href="references.html#ref-islr" role="doc-biblioref">James u.&nbsp;a. 2021</a>)</span>. Dadurch dass Random Forests nur <span class="math inline">\(m\)</span> der <span class="math inline">\(p\)</span> Prädiktoren pro Split zulassen, werden die Bäume unterschiedlicher. Wir “dekorrelieren” die Bäume. Bildet man den Mittelwert von gering(er) korrelierten Variablen, so ist die Varianzreduktion höher - und die Vohersage genauer. Lässt man pro Split <span class="math inline">\(m=p\)</span> Prädiktoren zu, so gleicht Bagging dem Random Forest. Die Anzahl <span class="math inline">\(m\)</span> der erlaubten Prädiktoren werden als Zufallstichprobe aus den <span class="math inline">\(p\)</span> Prädiktoren des Datensatzes gezogen (ohne Zurücklegen). <span class="math inline">\(m\)</span> ist ein Tuningparameter; <span class="math inline">\(m=\sqrt(p)\)</span> ist ein beliebter Startwert. In den meisten Implementationen wird <span class="math inline">\(m\)</span> mit <code>mtry</code> bezeichnet (so auch in Tidymodels).</p>
-<p>Der Random-Forest-Algorithmus ist in <a href="#fig-rf1">Abbildung&nbsp;<span>11.3</span></a> illustriert.</p>
+</section></section><section id="random-forests" class="level2" data-number="11.7"><h2 data-number="11.7" class="anchored" data-anchor-id="random-forests">
+<span class="header-section-number">11.7</span> Random Forests</h2>
+<p>Random Forests (“Zufallswälder”) sind eine Weiterentwicklung von Bagging-Modellen. Sie <em>sind</em> Bagging-Modelle, aber haben noch ein Ass im Ärmel: Und zwar wird an jedem Slit (Astgabel, Aufteilung) <em>nur eine Zufallsauswahl an <span class="math inline">\(m\)</span> Prädiktoren berücksichtigt</em>. Das hört sich verrückt an: “Wie, mit weniger Prädiktoren soll eine bessere Vorhersage erreicht werden?!” Ja, genau so ist es! Nehmen Sie an, es gibt im Datensatz einen sehr starken und ein paar mittelstarke Prädiktoren; der Rest der Prädiktoren ist wenig relevant. Wenn Sie jetzt viele “gebootstrapte”<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> ziehen, werden diese Bäume sehr ähnlich sein: Der stärkste Prädiktor steht vermutlich immer ob an der Wurzel, dann kommen die mittelstarken Prädiktoren. Jeder zusätzliche Baum trägt dann wenig neue Information bei. Anders gesagt: Die Vorhersagen der Bäume sind dann sehr ähnlich bzw. hoch korreliert. Bildet man den Mittelwert von hoch korrelierten Variablen, verringert sich leider die Varianzu nur <em>wenig</em> im Vergleich zu nicht oder gering korrelierten Variablen <span class="citation" data-cites="islr">(<a href="references.html#ref-islr" role="doc-biblioref">James u.&nbsp;a. 2021</a>)</span>. Dadurch dass Random Forests nur <span class="math inline">\(m\)</span> der <span class="math inline">\(p\)</span> Prädiktoren pro Split zulassen, werden die Bäume unterschiedlicher. Wir “dekorrelieren” die Bäume. Bildet man den Mittelwert von gering(er) korrelierten Variablen, so ist die Varianzreduktion höher - und die Vohersage genauer. Lässt man pro Split <span class="math inline">\(m=p\)</span> Prädiktoren zu, so gleicht Bagging dem Random Forest. Die Anzahl <span class="math inline">\(m\)</span> der erlaubten Prädiktoren werden als Zufallstichprobe aus den <span class="math inline">\(p\)</span> Prädiktoren des Datensatzes gezogen (ohne Zurücklegen). <span class="math inline">\(m\)</span> ist ein Tuningparameter; <span class="math inline">\(m=\sqrt{p}\)</span> ist ein beliebter Startwert. In den meisten Implementationen wird <span class="math inline">\(m\)</span> mit <code>mtry</code> bezeichnet (so auch in Tidymodels).</p>
+<p>Der Random-Forest-Algorithmus ist in <a href="#fig-rf1">Abbildung&nbsp;<span>11.3</span></a> illustriert: Mit jedem Quadrat ist ein Baummodell symbolisiert. In jedem Baum wird an jedem Split (ohne Zurücklegen) eine Auswahl an zu berücksichtigenden Prädiktoren gezogen.</p>
 <div class="cell" data-hash="110-ensemble_cache/html/fig-rf1_9d86f2f5a5fc63c2754862d3c45d2e4f">
 <div id="fig-rf1" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><div id="htmlwidget-f4a269f9f3606cb61d08" style="width:100%;height:700px;" class="nomnoml html-widget "></div>
@@ -462,7 +463,7 @@ Hinweis
 </div>
 </div>
 </div>
-<p>Den Effekt von <span class="math inline">\(m\)</span> (Anzahl der Prädiktoren pro Split) ist in <a href="#fig-mtry">Abbildung&nbsp;<span>11.5</span></a> dargestellt <span class="citation" data-cites="islr">(<a href="references.html#ref-islr" role="doc-biblioref">James u.&nbsp;a. 2021</a>)</span>. Man erkennt, dass der Zusatznutzen an zusätzlichen Bäumen, <span class="math inline">\(B\)</span>, sich abschwächt. <span class="math inline">\(m=\sqrt{p}\)</span> schneidet wie erwartet am besten ab.</p>
+<p>Den Effekt von <span class="math inline">\(m\)</span> (Anzahl der Prädiktoren pro Split) ist in <a href="#fig-mtry">Abbildung&nbsp;<span>11.5</span></a> dargestellt <span class="citation" data-cites="islr">(<a href="references.html#ref-islr" role="doc-biblioref">James u.&nbsp;a. 2021</a>)</span>. Man erkennt, dass der Zusatznutzen an zusätzlichen Bäumen, <span class="math inline">\(B\)</span>, sich abschwächt. Daher ist die Anzahl <span class="math inline">\(B\)</span> an Bäumen nicht wirklich ein Tuningparameter. Mit ein paar Hundert oder wenigen Tausend Bäumen ist man auf der sicheren Seite.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>. <span class="math inline">\(m=\sqrt{p}\)</span> schneidet wie erwartet am besten ab.</p>
 <div class="cell" data-hash="110-ensemble_cache/html/fig-mtry_643f5c577db23266081db57974f5826e">
 <div class="cell-output-display">
 <div id="fig-mtry" class="quarto-figure quarto-figure-center anchored">
@@ -472,13 +473,13 @@ Hinweis
 </div>
 </div>
 </div>
-</section><section id="boosting" class="level2" data-number="11.9"><h2 data-number="11.9" class="anchored" data-anchor-id="boosting">
-<span class="header-section-number">11.9</span> Boosting</h2>
+</section><section id="boosting" class="level2" data-number="11.8"><h2 data-number="11.8" class="anchored" data-anchor-id="boosting">
+<span class="header-section-number">11.8</span> Boosting</h2>
 <p>Im Unterschied zu Bagging und Random-Forest-Modellen wird beim Boosting der “Wald” <em>sequenziell</em> entwickelt, nicht gleichzeitig wie bei den anderen vorgestellten “Wald-Modellen”. Die zwei bekanntesten Implementierungen bzw. Algorithmus-Varianten sind <em>AdaBoost</em> und <em>XGBoost</em>. Gerade XGBoost hat den Ruf, hervorragende Vorhersagen zu leisten. Auf <a href="https://en.wikipedia.org/wiki/Kaggle">Kaggle</a> gewinnt nach <a href="https://www.kaggle.com/code/msjgriffiths/r-what-algorithms-are-most-successful-on-kaggle/report">einigen Berichten oft XGBoost</a>. Nur neuronale Netze schneiden besser ab. Random-Forest-Modelle kommen nach diesem Bereich auf Platz 3. Allerdings benötigen neuronale Netzen oft riesige Stichprobengrößen und bei spielen ihre Nuanciertheit vor allem bei komplexen Daten wie Bildern oder Sprache aus. Für “rechteckige” Daten (also aus einfachen, normalen Tabellen) wird ein baumbasiertes Modell oft besser abschneiden.</p>
 <p>Die Idee des Boosting ist es, anschaulich gesprochen, aus Fehlern zu lernen: Fitte einen Baum, schau welche Fälle er schlecht vorhergesagt hat, konzentriere dich beim nächsten Baum auf diese Fälle und so weiter.</p>
 <p>Wie andere Ensemble-Methoden auch kann Boosting theoretisch für beliebige Algorithmen eingesetzt werden. Es macht aber Sinn, Boosting bei “schwachen Lernern” einzusetzen. Typisches Beispiel ist ein einfacher Baum; “einfach” soll heißen, der Baum hat nur wenig Gabeln oder vielleicht sogar nur eine einzige. Dann spricht man von einem <em>Stumpf</em>, was intuitiv gut passt.</p>
-<section id="adaboost" class="level3" data-number="11.9.1"><h3 data-number="11.9.1" class="anchored" data-anchor-id="adaboost">
-<span class="header-section-number">11.9.1</span> AdaBoost</h3>
+<section id="adaboost" class="level3" data-number="11.8.1"><h3 data-number="11.8.1" class="anchored" data-anchor-id="adaboost">
+<span class="header-section-number">11.8.1</span> AdaBoost</h3>
 <p>Der AdaBoost-Algorithmus funktioniert, einfach dargestellt, wie folgt. Zuerst hat jeder Fall <span class="math inline">\(i\)</span> im Datensatz des gleiche Gewicht. Die erste (und alle weiteren) Stichprobe werden per Bootstrapping aus dem Datensatz gezogen. Dabei ist die Wahrscheinlichkeit, gezogen zu werden, proportional zum Gewicht des Falles, <span class="math inline">\(w_i\)</span>. Da im ersten Durchgang die Gewichte identisch sind, haben zunächst alle Fälle die gleiche Wahrscheinlichkeit, in das Bootstrap-Sample gezogen zu werden. Die Bäume bei AdaBoost sind eigentlich nur “Stümpfe”: Sie bestehen aus einem einzelnen Split, s. <a href="#fig-stump">Abbildung&nbsp;<span>11.6</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -513,8 +514,8 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 </figure>
 </div>
 </div>
-</section><section id="xgboost" class="level3" data-number="11.9.2"><h3 data-number="11.9.2" class="anchored" data-anchor-id="xgboost">
-<span class="header-section-number">11.9.2</span> XGBoost</h3>
+</section><section id="xgboost" class="level3" data-number="11.8.2"><h3 data-number="11.8.2" class="anchored" data-anchor-id="xgboost">
+<span class="header-section-number">11.8.2</span> XGBoost</h3>
 <p>XGBoost ist ein Gradientenverfahren, eine Methode also, die die Richtung des parziellen Ableitungskoeffizienten als Optimierungskriterium heranzieht. XGBoost ist ähnlich zu AdaBoost, nur dass <em>Residuen</em> modelliert werden, nicht <span class="math inline">\(y\)</span>. Die Vorhersagefehler von <span class="math inline">\(\hat{f}^b\)</span> werden die Zielvariable von <span class="math inline">\(\hat{f}^{b+1}\)</span>. Ein Residuum ist der Vorhersagefehler, bei metrischen Modellen etwa RMSE, oder schlicht <span class="math inline">\(r_i = y_i - \hat{y}_i\)</span>. Details finden sich z.B. <a href="https://arxiv.org/pdf/1603.02754.pdf">hier</a>, dem Original XGBoost-Paper <span class="citation" data-cites="chen_xgboost_2016">(<a href="references.html#ref-chen_xgboost_2016" role="doc-biblioref">Chen und Guestrin 2016</a>)</span>.</p>
 <p>Die hohe Vorhersagegüte von Boosting-Modellen ist exemplarisch in <a href="#fig-boost">Abbildung&nbsp;<span>11.8</span></a> dargestellt <span class="citation" data-cites="islr">(<a href="references.html#ref-islr" role="doc-biblioref">James u.&nbsp;a. 2021, 358ff</a>)</span>. Allerdings verwenden die Autoren Friedmans <span class="citation" data-cites="friedman_greedy_2001">(<a href="references.html#ref-friedman_greedy_2001" role="doc-biblioref">2001</a>)</span> <em>Gradient Boosting Machine</em>, eine weitere Variante des Boosting .</p>
 <div class="cell" data-hash="110-ensemble_cache/html/fig-boost_ecfbce99d0032b3bd4301897ca1293ac">
@@ -526,43 +527,37 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 </div>
 </div>
 </div>
-</section></section><section id="tidymodels" class="level2" data-number="11.10"><h2 data-number="11.10" class="anchored" data-anchor-id="tidymodels">
-<span class="header-section-number">11.10</span> Tidymodels</h2>
-<section id="datensatz-churn" class="level3" data-number="11.10.1"><h3 data-number="11.10.1" class="anchored" data-anchor-id="datensatz-churn">
-<span class="header-section-number">11.10.1</span> Datensatz Churn</h3>
-<p>Wir betrachten einen Datensatz zur Kundenabwanderung (Churn) aus <a href="https://www.gmudatamining.com/lesson-13-r-tutorial.html">dieser Quelle</a>.</p>
-<div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-4_c956cd57779be60172b195c8c5e86a44">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/knitr/man/opts_chunk.html">opts_chunk</a></span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>echo <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Die Daten habe ich von <a href="https://gmudatamining.com/data/churn_data.rds">dieser Quelle</a> heruntergeladen.</p>
+</section></section><section id="tidymodels" class="level2" data-number="11.9"><h2 data-number="11.9" class="anchored" data-anchor-id="tidymodels">
+<span class="header-section-number">11.9</span> Tidymodels</h2>
+<section id="datensatz-churn" class="level3" data-number="11.9.1"><h3 data-number="11.9.1" class="anchored" data-anchor-id="datensatz-churn">
+<span class="header-section-number">11.9.1</span> Datensatz Churn</h3>
+<p>Wir betrachten einen Datensatz zur Kundenabwanderung (Churn) aus <a href="https://www.gmudatamining.com/lesson-13-r-tutorial.html">dieser Quelle</a>; <a href="https://gmudatamining.com/data/churn_data.rds">Datendatei</a>.</p>
+<p>Allerdings liegen die Daten jetzt auch <a href="">auf diesem Repo</a>, da sich mein Browser jüngst über Datenschutzprobleme bei Quellwebseite beschwert hat.</p>
 <div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-5_7c97831691c38a9c5c138f854ca7e3b1">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">churn_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">read_rds</a></span><span class="op">(</span><span class="st">'data/churn_data.rds'</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">churn_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">read_rds</a></span><span class="op">(</span><span class="st">'data/churn_data.rds'</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Ein Blick in die Daten, s. <a href="#tbl-churn">Tabelle&nbsp;<span>11.1</span></a></p>
-<div class="cell" data-hash="110-ensemble_cache/html/tbl-churn_4f7cdc824f309c13038619c612d048c7">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">churn_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/gt.html">gt</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Werfen wir einen Blick in die Daten, s. <a href="#tbl-churn">Tabelle&nbsp;<span>11.1</span></a>, um einen ersten Eindruck zu bekommen.</p>
+<div class="cell" data-hash="110-ensemble_cache/html/tbl-churn_bd06efad056d03af1bbe4c4a64dc2bf5">
 <div class="cell-output-display">
 <div id="tbl-churn" class="anchored">
 
-<div id="slcluhccbu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#slcluhccbu table {
+<div id="hcjxlajkhy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#hcjxlajkhy table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#slcluhccbu thead, #slcluhccbu tbody, #slcluhccbu tfoot, #slcluhccbu tr, #slcluhccbu td, #slcluhccbu th {
+#hcjxlajkhy thead, #hcjxlajkhy tbody, #hcjxlajkhy tfoot, #hcjxlajkhy tr, #hcjxlajkhy td, #hcjxlajkhy th {
   border-style: none;
 }
 
-#slcluhccbu p {
+#hcjxlajkhy p {
   margin: 0;
   padding: 0;
 }
 
-#slcluhccbu .gt_table {
+#hcjxlajkhy .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -588,12 +583,12 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
   border-left-color: #D3D3D3;
 }
 
-#slcluhccbu .gt_caption {
+#hcjxlajkhy .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#slcluhccbu .gt_title {
+#hcjxlajkhy .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -605,7 +600,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
   border-bottom-width: 0;
 }
 
-#slcluhccbu .gt_subtitle {
+#hcjxlajkhy .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -617,7 +612,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
   border-top-width: 0;
 }
 
-#slcluhccbu .gt_heading {
+#hcjxlajkhy .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -629,13 +624,13 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
   border-right-color: #D3D3D3;
 }
 
-#slcluhccbu .gt_bottom_border {
+#hcjxlajkhy .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#slcluhccbu .gt_col_headings {
+#hcjxlajkhy .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -650,7 +645,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
   border-right-color: #D3D3D3;
 }
 
-#slcluhccbu .gt_col_heading {
+#hcjxlajkhy .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -670,7 +665,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
   overflow-x: hidden;
 }
 
-#slcluhccbu .gt_column_spanner_outer {
+#hcjxlajkhy .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -682,15 +677,15 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
   padding-right: 4px;
 }
 
-#slcluhccbu .gt_column_spanner_outer:first-child {
+#hcjxlajkhy .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#slcluhccbu .gt_column_spanner_outer:last-child {
+#hcjxlajkhy .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#slcluhccbu .gt_column_spanner {
+#hcjxlajkhy .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -702,11 +697,11 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
   width: 100%;
 }
 
-#slcluhccbu .gt_spanner_row {
+#hcjxlajkhy .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#slcluhccbu .gt_group_heading {
+#hcjxlajkhy .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -732,7 +727,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
   text-align: left;
 }
 
-#slcluhccbu .gt_empty_group_heading {
+#hcjxlajkhy .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -747,15 +742,15 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
   vertical-align: middle;
 }
 
-#slcluhccbu .gt_from_md > :first-child {
+#hcjxlajkhy .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#slcluhccbu .gt_from_md > :last-child {
+#hcjxlajkhy .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#slcluhccbu .gt_row {
+#hcjxlajkhy .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -774,7 +769,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
   overflow-x: hidden;
 }
 
-#slcluhccbu .gt_stub {
+#hcjxlajkhy .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -787,7 +782,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
   padding-right: 5px;
 }
 
-#slcluhccbu .gt_stub_row_group {
+#hcjxlajkhy .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -801,15 +796,15 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
   vertical-align: top;
 }
 
-#slcluhccbu .gt_row_group_first td {
+#hcjxlajkhy .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#slcluhccbu .gt_row_group_first th {
+#hcjxlajkhy .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#slcluhccbu .gt_summary_row {
+#hcjxlajkhy .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -819,16 +814,16 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
   padding-right: 5px;
 }
 
-#slcluhccbu .gt_first_summary_row {
+#hcjxlajkhy .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#slcluhccbu .gt_first_summary_row.thick {
+#hcjxlajkhy .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#slcluhccbu .gt_last_summary_row {
+#hcjxlajkhy .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -838,7 +833,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
   border-bottom-color: #D3D3D3;
 }
 
-#slcluhccbu .gt_grand_summary_row {
+#hcjxlajkhy .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -848,7 +843,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
   padding-right: 5px;
 }
 
-#slcluhccbu .gt_first_grand_summary_row {
+#hcjxlajkhy .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -858,7 +853,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
   border-top-color: #D3D3D3;
 }
 
-#slcluhccbu .gt_last_grand_summary_row_top {
+#hcjxlajkhy .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -868,11 +863,11 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
   border-bottom-color: #D3D3D3;
 }
 
-#slcluhccbu .gt_striped {
+#hcjxlajkhy .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#slcluhccbu .gt_table_body {
+#hcjxlajkhy .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -881,7 +876,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
   border-bottom-color: #D3D3D3;
 }
 
-#slcluhccbu .gt_footnotes {
+#hcjxlajkhy .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -895,7 +890,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
   border-right-color: #D3D3D3;
 }
 
-#slcluhccbu .gt_footnote {
+#hcjxlajkhy .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -904,7 +899,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
   padding-right: 5px;
 }
 
-#slcluhccbu .gt_sourcenotes {
+#hcjxlajkhy .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -918,7 +913,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
   border-right-color: #D3D3D3;
 }
 
-#slcluhccbu .gt_sourcenote {
+#hcjxlajkhy .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -926,63 +921,63 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
   padding-right: 5px;
 }
 
-#slcluhccbu .gt_left {
+#hcjxlajkhy .gt_left {
   text-align: left;
 }
 
-#slcluhccbu .gt_center {
+#hcjxlajkhy .gt_center {
   text-align: center;
 }
 
-#slcluhccbu .gt_right {
+#hcjxlajkhy .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#slcluhccbu .gt_font_normal {
+#hcjxlajkhy .gt_font_normal {
   font-weight: normal;
 }
 
-#slcluhccbu .gt_font_bold {
+#hcjxlajkhy .gt_font_bold {
   font-weight: bold;
 }
 
-#slcluhccbu .gt_font_italic {
+#hcjxlajkhy .gt_font_italic {
   font-style: italic;
 }
 
-#slcluhccbu .gt_super {
+#hcjxlajkhy .gt_super {
   font-size: 65%;
 }
 
-#slcluhccbu .gt_footnote_marks {
+#hcjxlajkhy .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#slcluhccbu .gt_asterisk {
+#hcjxlajkhy .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#slcluhccbu .gt_indent_1 {
+#hcjxlajkhy .gt_indent_1 {
   text-indent: 5px;
 }
 
-#slcluhccbu .gt_indent_2 {
+#hcjxlajkhy .gt_indent_2 {
   text-indent: 10px;
 }
 
-#slcluhccbu .gt_indent_3 {
+#hcjxlajkhy .gt_indent_3 {
   text-indent: 15px;
 }
 
-#slcluhccbu .gt_indent_4 {
+#hcjxlajkhy .gt_indent_4 {
   text-indent: 20px;
 }
 
-#slcluhccbu .gt_indent_5 {
+#hcjxlajkhy .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1135,11 +1130,10 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 </div>
 </div>
 </div>
-</section><section id="data-splitting-und-cv" class="level3" data-number="11.10.2"><h3 data-number="11.10.2" class="anchored" data-anchor-id="data-splitting-und-cv">
-<span class="header-section-number">11.10.2</span> Data Splitting und CV</h3>
-<p>Das Kreuzvalidieren (CV) fassen wir auch unter diesen Punkt.</p>
+</section><section id="data-splitting-und-cv" class="level3" data-number="11.9.2"><h3 data-number="11.9.2" class="anchored" data-anchor-id="data-splitting-und-cv">
+<span class="header-section-number">11.9.2</span> Data Splitting und CV</h3>
 <div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-7_1721824da9911a9d577d175226df88ba">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">churn_split</span> <span class="op">&lt;-</span> <span class="fu">initial_split</span><span class="op">(</span><span class="va">churn_df</span>, prop <span class="op">=</span> <span class="fl">0.75</span>, </span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">churn_split</span> <span class="op">&lt;-</span> <span class="fu">initial_split</span><span class="op">(</span><span class="va">churn_df</span>, prop <span class="op">=</span> <span class="fl">0.75</span>, </span>
 <span>                             strata <span class="op">=</span> <span class="va">canceled_service</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">churn_training</span> <span class="op">&lt;-</span> <span class="va">churn_split</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu">training</span><span class="op">(</span><span class="op">)</span></span>
@@ -1148,11 +1142,11 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 <span></span>
 <span><span class="va">churn_folds</span> <span class="op">&lt;-</span> <span class="fu">vfold_cv</span><span class="op">(</span><span class="va">churn_training</span>, v <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="feature-engineering" class="level3" data-number="11.10.3"><h3 data-number="11.10.3" class="anchored" data-anchor-id="feature-engineering">
-<span class="header-section-number">11.10.3</span> Feature Engineering</h3>
+</section><section id="feature-engineering" class="level3" data-number="11.9.3"><h3 data-number="11.9.3" class="anchored" data-anchor-id="feature-engineering">
+<span class="header-section-number">11.9.3</span> Feature Engineering</h3>
 <p>Hier definieren wir zwei Rezepte. Gleichzeitig verändern wir die Prädiktoren (normalisieren, dummysieren, …). Das nennt man auch <em>Feature Engineering</em>.</p>
 <div class="cell" data-hash="110-ensemble_cache/html/recipes_90ce82f1c279fcec69f3417a7d4bdcec">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">churn_recipe1</span> <span class="op">&lt;-</span> <span class="fu">recipe</span><span class="op">(</span><span class="va">canceled_service</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">churn_training</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">churn_recipe1</span> <span class="op">&lt;-</span> <span class="fu">recipe</span><span class="op">(</span><span class="va">canceled_service</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">churn_training</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>                       <span class="fu">step_normalize</span><span class="op">(</span><span class="fu">all_numeric</span><span class="op">(</span><span class="op">)</span>, <span class="op">-</span><span class="fu">all_outcomes</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>                       <span class="fu">step_dummy</span><span class="op">(</span><span class="fu">all_nominal</span><span class="op">(</span><span class="op">)</span>, <span class="op">-</span><span class="fu">all_outcomes</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -1162,10 +1156,10 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 <span>                       <span class="fu">step_dummy</span><span class="op">(</span><span class="fu">all_nominal</span><span class="op">(</span><span class="op">)</span>, <span class="op">-</span><span class="fu">all_outcomes</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>step_YeoJohnson()</code> reduziert Schiefe in der Verteilung.</p>
-</section><section id="modelle" class="level3" data-number="11.10.4"><h3 data-number="11.10.4" class="anchored" data-anchor-id="modelle">
-<span class="header-section-number">11.10.4</span> Modelle</h3>
+</section><section id="modelle" class="level3" data-number="11.9.4"><h3 data-number="11.9.4" class="anchored" data-anchor-id="modelle">
+<span class="header-section-number">11.9.4</span> Modelle</h3>
 <div class="cell" data-hash="110-ensemble_cache/html/def-models_1eac5d22acee3d03be49b3dc3be80b9b">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tree_model</span> <span class="op">&lt;-</span> <span class="fu">decision_tree</span><span class="op">(</span>cost_complexity <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="op">)</span>,</span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tree_model</span> <span class="op">&lt;-</span> <span class="fu">decision_tree</span><span class="op">(</span>cost_complexity <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="op">)</span>,</span>
 <span>                            tree_depth <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="op">)</span>,</span>
 <span>                            min_n <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>              <span class="fu">set_engine</span><span class="op">(</span><span class="st">'rpart'</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
@@ -1187,25 +1181,13 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 <span></span>
 <span><span class="va">glm_model</span> <span class="op">&lt;-</span> <span class="fu">logistic_reg</span><span class="op">(</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="workflow-sets" class="level3" data-number="11.10.5"><h3 data-number="11.10.5" class="anchored" data-anchor-id="workflow-sets">
-<span class="header-section-number">11.10.5</span> Workflow-Sets</h3>
-<p>Wir definieren ein Workflow-Set:</p>
-<div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-8_3cc2d2eee5fbde0932a1129804cb84ff">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">preproc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>rec1 <span class="op">=</span> <span class="va">churn_recipe1</span>, rec2 <span class="op">=</span> <span class="va">churn_recipe2</span><span class="op">)</span></span>
-<span><span class="va">models</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>tree1 <span class="op">=</span> <span class="va">tree_model</span>, rf1 <span class="op">=</span> <span class="va">rf_model</span>, boost1 <span class="op">=</span> <span class="va">boost_model</span>, glm1 <span class="op">=</span> <span class="va">glm_model</span><span class="op">)</span></span>
-<span> </span>
-<span> </span>
-<span><span class="va">all_workflows</span> <span class="op">&lt;-</span> <span class="fu">workflow_set</span><span class="op">(</span><span class="va">preproc</span>, <span class="va">models</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Infos zu <code>workflow_set</code> bekommt man wie gewohnt mit <code>?workflow_set</code>.</p>
-<p>Im Standard werden alle Rezepte und Modelle miteinander kombiniert (<code>cross = TRUE</code>), also <code>preproc * models</code> Modelle gefittet.</p>
-</section><section id="modelle-berechnen-mit-tuning-einzeln" class="level3" data-number="11.10.6"><h3 data-number="11.10.6" class="anchored" data-anchor-id="modelle-berechnen-mit-tuning-einzeln">
-<span class="header-section-number">11.10.6</span> Modelle berechnen mit Tuning, einzeln</h3>
+</section><section id="modelle-berechnen-mit-tuning-einzeln" class="level3" data-number="11.9.5"><h3 data-number="11.9.5" class="anchored" data-anchor-id="modelle-berechnen-mit-tuning-einzeln">
+<span class="header-section-number">11.9.5</span> Modelle berechnen mit Tuning, einzeln</h3>
 <p>Wir könnten jetzt jedes Modell einzeln tunen, wenn wir wollen.</p>
-<section id="baum" class="level4" data-number="11.10.6.1"><h4 data-number="11.10.6.1" class="anchored" data-anchor-id="baum">
-<span class="header-section-number">11.10.6.1</span> Baum</h4>
+<section id="baum" class="level4" data-number="11.9.5.1"><h4 data-number="11.9.5.1" class="anchored" data-anchor-id="baum">
+<span class="header-section-number">11.9.5.1</span> Baum</h4>
 <div class="cell" data-hash="110-ensemble_cache/html/tree-tune-grid_d759777a9426d397f272603d7f540f43">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tree_wf</span> <span class="op">&lt;-</span></span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tree_wf</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu">workflow</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">add_model</span><span class="op">(</span><span class="va">tree_model</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">add_recipe</span><span class="op">(</span><span class="va">churn_recipe1</span><span class="op">)</span></span>
@@ -1222,8 +1204,8 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 <span><span class="co">## 9.933 sec elapsed</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Im Standard werden 10 Modellkandidaten getuned.</p>
-<div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-9_59e18ec338dce0eab7b87612fce2d0ab">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tree_fit</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-8_3fb97ca8aa64603d51c78946d917dedd">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tree_fit</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -1234,8 +1216,8 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 </div>
 </div>
 <p>Schauen wir uns das Objekt etwas näher an:</p>
-<div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-10_f2c4ff3951fd0835ea48fab5c6dc924b">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tree_fit</span><span class="op">$</span><span class="va">.metrics</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-9_7b02804694114a575701dade7c98f17b">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tree_fit</span><span class="op">$</span><span class="va">.metrics</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -1248,8 +1230,8 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 <p>30 Zeilen: 3 Gütemetriken (Sens, Spec, ROC AUC) mit je 10 Werten (Submodellen), gibt 30 Koeffizienten.</p>
 <p>Für jeden der 5 Faltungen haben wir also 10 Submodelle.</p>
 <p>Welches Modell ist das beste?</p>
-<div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-11_c3e89e0489e709e02f21c1a4b6780a0f">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">show_best</span><span class="op">(</span><span class="va">tree_fit</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-10_3522867e1b8264a1bd4ec8cc96d4feb9">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">show_best</span><span class="op">(</span><span class="va">tree_fit</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -1260,17 +1242,17 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 </div>
 </div>
 <p>Aha, das sind die fünf besten Modelle, bzw. ihre Tuningparameter, ihre mittlere Güte zusammen mit dem Standardfehler.</p>
-<div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-12_9497182c2e878a63386afbf08bed56b2">
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">autoplot</span><span class="op">(</span><span class="va">tree_fit</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-11_6e7ddf06b48da40dd4c3412b2ca01d2c">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">autoplot</span><span class="op">(</span><span class="va">tree_fit</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="110-ensemble_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+<p><img src="110-ensemble_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-</section><section id="rf" class="level4" data-number="11.10.6.2"><h4 data-number="11.10.6.2" class="anchored" data-anchor-id="rf">
-<span class="header-section-number">11.10.6.2</span> RF</h4>
+</section><section id="rf" class="level4" data-number="11.9.5.2"><h4 data-number="11.9.5.2" class="anchored" data-anchor-id="rf">
+<span class="header-section-number">11.9.5.2</span> RF</h4>
 <p>Was für Tuningparameter hat den der Algorithmus bzw. seine Implementierung?</p>
-<div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-13_1ac6ab4f263f8b80e47c9accb9938333">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">show_model_info</span><span class="op">(</span><span class="st">"rand_forest"</span><span class="op">)</span></span>
+<div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-12_d236821bf5deeeb7e2bdee163a2d2d41">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">show_model_info</span><span class="op">(</span><span class="st">"rand_forest"</span><span class="op">)</span></span>
 <span><span class="co">## Information for `rand_forest`</span></span>
 <span><span class="co">##  modes: unknown, classification, regression, censored regression </span></span>
 <span><span class="co">## </span></span>
@@ -1314,7 +1296,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 </div>
 <p>Da die Berechnung einiges an Zeit braucht, kann man das (schon früher einmal berechnete) Ergebnisobjekt von der Festplatte lesen (sofern es existiert). Ansonsten berechnet man neu:</p>
 <div class="cell" data-hash="110-ensemble_cache/html/rf-tune-grid_13e9771060ebf7964195774fac84566d">
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/files.html">file.exists</a></span><span class="op">(</span><span class="st">"objects/rf_fit1.rds"</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/files.html">file.exists</a></span><span class="op">(</span><span class="st">"objects/rf_fit1.rds"</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="va">rf_fit1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">read_rds</a></span><span class="op">(</span><span class="st">"objects/rf_fit1.rds"</span><span class="op">)</span></span>
 <span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
 <span><span class="va">rf_wf1</span> <span class="op">&lt;-</span></span>
@@ -1333,12 +1315,12 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 <span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">toc</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>So kann man das berechnete Objekt abspeichern auf Festplatte, um künftig Zeit zu sparen<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>:</p>
-<div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-14_8ff4957205a96c1bfb404b5d87178365">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">write_rds</a></span><span class="op">(</span><span class="va">rf_fit1</span>, file <span class="op">=</span> <span class="st">"objects/rf_fit1.rds"</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>So kann man das berechnete Objekt abspeichern auf Festplatte, um künftig Zeit zu sparen<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>:</p>
+<div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-13_b68aa5b79ba05e41fe549da725f13b32">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">write_rds</a></span><span class="op">(</span><span class="va">rf_fit1</span>, file <span class="op">=</span> <span class="st">"objects/rf_fit1.rds"</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-15_f13a016045533c23ca2fe61aef9bccf6">
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">rf_fit1</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-14_9da95a96bc1a003de93f258fcd9dd255">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">rf_fit1</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -1348,8 +1330,8 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 </div>
 </div>
 </div>
-<div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-16_cb18fb6cf7b05c777c22841246f51184">
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">show_best</span><span class="op">(</span><span class="va">rf_fit1</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-15_afb49096bdf5bffb884ce00e09536ded">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">show_best</span><span class="op">(</span><span class="va">rf_fit1</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -1359,10 +1341,10 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 </div>
 </div>
 </div>
-</section><section id="xgboost-1" class="level4" data-number="11.10.6.3"><h4 data-number="11.10.6.3" class="anchored" data-anchor-id="xgboost-1">
-<span class="header-section-number">11.10.6.3</span> XGBoost</h4>
+</section><section id="xgboost-1" class="level4" data-number="11.9.5.3"><h4 data-number="11.9.5.3" class="anchored" data-anchor-id="xgboost-1">
+<span class="header-section-number">11.9.5.3</span> XGBoost</h4>
 <div class="cell" data-hash="110-ensemble_cache/html/boost-tune-grid_cf2f2f0d2df7fc6ae4243670316aa75b">
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">boost_wf1</span> <span class="op">&lt;-</span></span>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">boost_wf1</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu">workflow</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">add_model</span><span class="op">(</span><span class="va">boost_model</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">add_recipe</span><span class="op">(</span><span class="va">churn_recipe1</span><span class="op">)</span></span>
@@ -1378,14 +1360,38 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 <span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">toc</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Wieder auf Festplatte speichern:</p>
-<div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-17_e15bce25ba53d962446d0d01a73c97ed">
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">write_rds</a></span><span class="op">(</span><span class="va">boost_fit1</span>, file <span class="op">=</span> <span class="st">"objects/boost_fit1.rds"</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-16_b91eb1244ccf738e90471629beb2e8da">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">write_rds</a></span><span class="op">(</span><span class="va">boost_fit1</span>, file <span class="op">=</span> <span class="st">"objects/boost_fit1.rds"</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Und so weiter.</p>
-</section></section><section id="workflow-set-tunen" class="level3" data-number="11.10.7"><h3 data-number="11.10.7" class="anchored" data-anchor-id="workflow-set-tunen">
-<span class="header-section-number">11.10.7</span> Workflow-Set tunen</h3>
+</section></section><section id="workflow-sets" class="level3" data-number="11.9.6"><h3 data-number="11.9.6" class="anchored" data-anchor-id="workflow-sets">
+<span class="header-section-number">11.9.6</span> Workflow-Sets</h3>
+<section id="workflow-set-definieren" class="level4" data-number="11.9.6.1"><h4 data-number="11.9.6.1" class="anchored" data-anchor-id="workflow-set-definieren">
+<span class="header-section-number">11.9.6.1</span> Workflow-Set definieren</h4>
+<p>Ein Workflow-Set besteht aus</p>
+<ul>
+<li>einem oder mehreren Rezepten</li>
+<li>einem oder mehreren Modellen</li>
+</ul>
+<p>die beliebig kombiniert sein können. Im Standard werden alle Rezepte mit allen Modellen kombiniert.</p>
+<div id="exm-wfset" class="theorem example">
+<p><span class="theorem-title"><strong>Beispiel 11.1 </strong></span>In einem Workflow-Set sind 3 Rezepte und 4 Modelle definiert. Daher werden im Standard 12 Workflows gefittet.<span class="math inline">\(\square\)</span></p>
+</div>
+<div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-17_295c23a6e5c8d7e56362d2fa1fd25449">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">preproc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>rec1 <span class="op">=</span> <span class="va">churn_recipe1</span>, rec2 <span class="op">=</span> <span class="va">churn_recipe2</span><span class="op">)</span></span>
+<span><span class="va">models</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>tree1 <span class="op">=</span> <span class="va">tree_model</span>, </span>
+<span>               rf1 <span class="op">=</span> <span class="va">rf_model</span>, </span>
+<span>               boost1 <span class="op">=</span> <span class="va">boost_model</span>, </span>
+<span>               glm1 <span class="op">=</span> <span class="va">glm_model</span><span class="op">)</span></span>
+<span> </span>
+<span><span class="va">all_workflows</span> <span class="op">&lt;-</span> <span class="fu">workflow_set</span><span class="op">(</span><span class="va">preproc</span>, <span class="va">models</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Infos zu <code>workflow_set</code> bekommt man wie gewohnt mit <code>?workflow_set</code>.</p>
+<p>Im Standard werden alle Rezepte und Modelle miteinander kombiniert (<code>cross = TRUE</code>), also <code>preproc * models</code> Modelle gefittet.</p>
+</section></section><section id="workflow-set-tunen" class="level3" data-number="11.9.7"><h3 data-number="11.9.7" class="anchored" data-anchor-id="workflow-set-tunen">
+<span class="header-section-number">11.9.7</span> Workflow-Set tunen</h3>
 <div class="cell" data-hash="110-ensemble_cache/html/tune-workflow-map_74646028c54feb20e6a07a1004d8a505">
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/files.html">file.exists</a></span><span class="op">(</span><span class="st">"objects/churn_model_set.rds"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/files.html">file.exists</a></span><span class="op">(</span><span class="st">"objects/churn_model_set.rds"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">churn_model_set</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">read_rds</a></span><span class="op">(</span><span class="st">"objects/churn_model_set.rds"</span><span class="op">)</span></span>
 <span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">tic</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -1400,20 +1406,32 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">toc</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Da die Berechnung schon etwas Zeit braucht, macht es Sinn, das Modell (bzw. das Ergebnisobjekt) auf Festplatte zu speichern:</p>
+<p>Da die Berechnung schon etwas Zeit braucht, kann es <em>vielleicht</em> Sinn machen, das Modell (bzw. das Ergebnisobjekt) auf Festplatte zu speichern:</p>
 <div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-18_fd2657c2146ae3eacf689ea6e760faad">
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">write_rds</a></span><span class="op">(</span><span class="va">churn_model_set</span>, file <span class="op">=</span> <span class="st">"objects/churn_model_set.rds"</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">write_rds</a></span><span class="op">(</span><span class="va">churn_model_set</span>, file <span class="op">=</span> <span class="st">"objects/churn_model_set.rds"</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><em>Achtung</em> Dieser Schritt ist <em>gefährlich</em>: Wenn Sie Ihr Rezept und Fit-Objekt ändenr, kriegt das Ihre Festplatte nicht unbedingt mit. Sie könnten also unbemerkt mit dem alten Objekt von Ihrer Festplatte weiterarbeiten, ohne durch eine Fehlermeldung gewarnt zu werden.</p>
-<p>Entsprechend kann man das Modellobjekt wieder importieren, wenn einmal abgespeichert:</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Vorsicht
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><em>Achtung</em> Dieser Schritt ist <em>gefährlich</em>: Wenn Sie Ihr Rezept und Fit-Objekt ändern, kriegt das Ihre Festplatte nicht unbedingt mit. Sie könnten also unbemerkt mit dem alten Objekt von Ihrer Festplatte weiterarbeiten, ohne durch eine Fehlermeldung gewarnt zu werden. Ein viel besserer Ansatz wird durch das <a href="https://books.ropensci.org/targets/">R-Paket targets</a> bereitgestellt.</p>
+</div>
+</div>
+<p>Entsprechend kann man ein auf der Festplatte geparktes Modellobjekt wieder importieren:</p>
 <div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-19_bd9e2c13fb67315de4c4f60484e68b5b">
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">churn_model_set</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">read_rds</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"objects/churn_model_set.rds"</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">churn_model_set</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">read_rds</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"objects/churn_model_set.rds"</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="ergebnisse-im-train-sest" class="level3" data-number="11.10.8"><h3 data-number="11.10.8" class="anchored" data-anchor-id="ergebnisse-im-train-sest">
-<span class="header-section-number">11.10.8</span> Ergebnisse im Train-Sest</h3>
-<p>Hier ist die Rangfolge der Modelle, geordnet nach mittlerem ROC AUC:</p>
+</section><section id="ergebnisse-im-train-sest" class="level3" data-number="11.9.8"><h3 data-number="11.9.8" class="anchored" data-anchor-id="ergebnisse-im-train-sest">
+<span class="header-section-number">11.9.8</span> Ergebnisse im Train-Sest</h3>
+<p>Hier ist die Rangfolge der Modelle unseres Workflow-Sets, geordnet nach mittlerem ROC-AUC:</p>
 <div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-20_96c9c7b45c8eef4ed86693413d7cbe76">
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">rank_results</span><span class="op">(</span><span class="va">churn_model_set</span>, rank_metric <span class="op">=</span> <span class="st">"roc_auc"</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">rank_results</span><span class="op">(</span><span class="va">churn_model_set</span>, rank_metric <span class="op">=</span> <span class="st">"roc_auc"</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -1423,17 +1441,22 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 </div>
 </div>
 </div>
-<div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-21_546c2ca6e2749963b27eab9add4d2974">
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">autoplot</span><span class="op">(</span><span class="va">churn_model_set</span>, metric <span class="op">=</span> <span class="st">"roc_auc"</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Die Rangfolge der Modellgüte (in den Validierungs-Samples) kann man sich mit <code>autoplot</code> komformtabel ausgeben lassen, s. <a href="#fig-autoplot-wf1">Abbildung&nbsp;<span>11.9</span></a>.</p>
+<div class="cell" data-hash="110-ensemble_cache/html/fig-autoplot-wf1_4096e8162fd05c7be20b16316e87c606">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">autoplot</span><span class="op">(</span><span class="va">churn_model_set</span>, metric <span class="op">=</span> <span class="st">"roc_auc"</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="110-ensemble_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
+<div id="fig-autoplot-wf1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="110-ensemble_files/figure-html/fig-autoplot-wf1-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;11.9: Autoplot zur Modellgüte aller Workflows eines Workflow-Sets</figcaption><p></p>
+</figure>
 </div>
 </div>
-</section><section id="bestes-modell" class="level3" data-number="11.10.9"><h3 data-number="11.10.9" class="anchored" data-anchor-id="bestes-modell">
-<span class="header-section-number">11.10.9</span> Bestes Modell</h3>
+</div>
+</section><section id="bestes-modell" class="level3" data-number="11.9.9"><h3 data-number="11.9.9" class="anchored" data-anchor-id="bestes-modell">
+<span class="header-section-number">11.9.9</span> Bestes Modell</h3>
 <p>Und hier nur der beste Kandidat pro Algorithmus:</p>
 <div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-22_4d4b62e7903f75b7332af046011a4e46">
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">autoplot</span><span class="op">(</span><span class="va">churn_model_set</span>, metric <span class="op">=</span> <span class="st">"roc_auc"</span>, select_best <span class="op">=</span> <span class="st">"TRUE"</span><span class="op">)</span> <span class="op">+</span></span>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">autoplot</span><span class="op">(</span><span class="va">churn_model_set</span>, metric <span class="op">=</span> <span class="st">"roc_auc"</span>, select_best <span class="op">=</span> <span class="st">"TRUE"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_text</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>y <span class="op">=</span> <span class="va">mean</span> <span class="op">-</span> <span class="fl">.01</span>, label <span class="op">=</span> <span class="va">wflow_id</span><span class="op">)</span>, angle <span class="op">=</span> <span class="fl">90</span>, hjust <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">theme</span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">lims</span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.85</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1444,13 +1467,13 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 <p>Boosting hat - knapp - am besten abgeschnitten. Allerdings sind Random Forest und die schlichte, einfache logistische Regression auch fast genau so gut. Das wäre ein Grund für das einfachste Modell, das GLM, zu votieren. Zumal die Interpretierbarkeit am besten ist. Alternativ könnte man sich für das Boosting-Modell aussprechen.</p>
 <p>Man kann sich das beste Submodell auch von Tidymodels bestimmen lassen. Das scheint aber (noch) nicht für ein Workflow-Set zu funktionieren, sondern nur für das Ergebnisobjekt von <code>tune_grid</code>.</p>
 <div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-23_a18932e99909fa7a1198f3c1e3d14263">
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">select_best</span><span class="op">(</span><span class="va">churn_model_set</span>, metric <span class="op">=</span> <span class="st">"roc_auc"</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">select_best</span><span class="op">(</span><span class="va">churn_model_set</span>, metric <span class="op">=</span> <span class="st">"roc_auc"</span><span class="op">)</span></span>
 <span><span class="co">## Error in `select_best()`:</span></span>
 <span><span class="co">## ! No `select_best()` exists for this type of object.</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>rf_fit1</code> haben wir mit <code>tune_grid()</code> berechnet; mit diesem Modell kann <code>select_best()</code> arbeiten:</p>
 <div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-24_c269b82b8032ee64f94d03209c4b0d4d">
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">select_best</span><span class="op">(</span><span class="va">rf_fit1</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">select_best</span><span class="op">(</span><span class="va">rf_fit1</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -1463,7 +1486,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 <p>Aber wir können uns händisch behelfen.</p>
 <p>Schauen wir uns mal die Metriken (Vorhersagegüte) an:</p>
 <div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-25_684c8ae3dc9e0f9803809bd7f3f6c9fa">
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">churn_model_set</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">churn_model_set</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">collect_metrics</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">arrange</span><span class="op">(</span><span class="op">-</span><span class="va">mean</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -1477,7 +1500,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 </div>
 <p><code>rec1_boost1</code> scheint das beste Modell zu sein.</p>
 <div class="cell" data-hash="110-ensemble_cache/html/best-model-params_659fa4e6595648d4f0a422f44af91696">
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">best_model_params</span> <span class="op">&lt;-</span></span>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">best_model_params</span> <span class="op">&lt;-</span></span>
 <span><span class="fu">extract_workflow_set_result</span><span class="op">(</span><span class="va">churn_model_set</span>, <span class="st">"rec1_boost1"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">select_best</span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
@@ -1491,15 +1514,15 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 </div>
 </div>
 </div>
-</section><section id="finalisisieren" class="level3" data-number="11.10.10"><h3 data-number="11.10.10" class="anchored" data-anchor-id="finalisisieren">
-<span class="header-section-number">11.10.10</span> Finalisisieren</h3>
+</section><section id="finalisisieren" class="level3" data-number="11.9.10"><h3 data-number="11.9.10" class="anchored" data-anchor-id="finalisisieren">
+<span class="header-section-number">11.9.10</span> Finalisisieren</h3>
 <p>Wir entscheiden uns mal für das Boosting-Modell, <code>rec1_boost1</code>. Diesen Workflow, in finalisierter Form, brauchen wir für den “final Fit”. Finalisierte Form heißt:</p>
 <ul>
 <li>Schritt 1: Nimm den passenden Workflow, hier <code>rec1</code> und <code>boost1</code>; das hatte uns oben <code>rank_results()</code> verraten.</li>
 <li>Schritt 2: Update (Finalisiere) ihn mit den besten Tuningparameter-Werten</li>
 </ul>
 <div class="cell" data-hash="110-ensemble_cache/html/best-wf_f496f996fdfc4de872626cda499768e5">
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Schritt 1:</span></span>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Schritt 1:</span></span>
 <span><span class="va">best_wf</span> <span class="op">&lt;-</span> </span>
 <span><span class="va">all_workflows</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">extract_workflow</span><span class="op">(</span><span class="st">"rec1_boost1"</span><span class="op">)</span></span>
@@ -1530,7 +1553,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 </div>
 <p>Jetzt finalisieren wir den Workflow, d.h. wir setzen die Parameterwerte des besten Submodells ein:</p>
 <div class="cell" data-hash="110-ensemble_cache/html/best-wf-finalized_01fadb1a1a6c817de2931e01b6143287">
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Schritt 2:</span></span>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Schritt 2:</span></span>
 <span><span class="va">best_wf_finalized</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="va">best_wf</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">finalize_workflow</span><span class="op">(</span><span class="va">best_model_params</span><span class="op">)</span></span>
@@ -1559,10 +1582,10 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 <span><span class="co">## </span></span>
 <span><span class="co">## Computational engine: xgboost</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="last-fit" class="level3" data-number="11.10.11"><h3 data-number="11.10.11" class="anchored" data-anchor-id="last-fit">
-<span class="header-section-number">11.10.11</span> Last Fit</h3>
+</section><section id="last-fit" class="level3" data-number="11.9.11"><h3 data-number="11.9.11" class="anchored" data-anchor-id="last-fit">
+<span class="header-section-number">11.9.11</span> Last Fit</h3>
 <div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-26_8351f69b0ce69658e05a052a2722a3ac">
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_final</span> <span class="op">&lt;-</span></span>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_final</span> <span class="op">&lt;-</span></span>
 <span>  <span class="va">best_wf_finalized</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">last_fit</span><span class="op">(</span><span class="va">churn_split</span><span class="op">)</span></span>
 <span></span>
@@ -1577,7 +1600,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 </div>
 </div>
 <div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-27_d020383816f24ff7507d8ca959d98715">
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">collect_metrics</span><span class="op">(</span><span class="va">fit_final</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">collect_metrics</span><span class="op">(</span><span class="va">fit_final</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
@@ -1587,11 +1610,11 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 </div>
 </div>
 </div>
-</section><section id="variablenrelevanz-1" class="level3" data-number="11.10.12"><h3 data-number="11.10.12" class="anchored" data-anchor-id="variablenrelevanz-1">
-<span class="header-section-number">11.10.12</span> Variablenrelevanz</h3>
+</section><section id="variablenrelevanz-1" class="level3" data-number="11.9.12"><h3 data-number="11.9.12" class="anchored" data-anchor-id="variablenrelevanz-1">
+<span class="header-section-number">11.9.12</span> Variablenrelevanz</h3>
 <p>Um die Variablenrelevanz zu plotten, müssen wir aus dem Tidymodels-Ergebnisobjekt das eigentliche Ergebnisobjekt herausziehen, von der R-Funktion, die die eigentliche Berechnung durchführt, das wäre <code><a href="https://rdrr.io/r/stats/glm.html">glm()</a></code> bei einer logistischen Regression oder <code><a href="https://rdrr.io/pkg/xgboost/man/xgb.train.html">xgboost::xgb.train()</a></code> bei XGBoost:</p>
 <div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-28_0eed7def5259bbf776a8b7c71bae77ed">
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_final</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_final</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">extract_fit_parsnip</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">## parsnip model object</span></span>
 <span><span class="co">## </span></span>
@@ -1622,19 +1645,19 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 </div>
 <p><em>Dieses</em> Objekt übergeben wir dann an <a href="https://github.com/koalaverse/vip/">vip</a>:</p>
 <div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-29_e2ef05ab46c8b0201fc8fd98dc578bc9">
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_final</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_final</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">extract_fit_parsnip</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/vip/man/vip.html">vip</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="110-ensemble_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-</section><section id="roc-curve" class="level3" data-number="11.10.13"><h3 data-number="11.10.13" class="anchored" data-anchor-id="roc-curve">
-<span class="header-section-number">11.10.13</span> ROC-Curve</h3>
+</section><section id="roc-curve" class="level3" data-number="11.9.13"><h3 data-number="11.9.13" class="anchored" data-anchor-id="roc-curve">
+<span class="header-section-number">11.9.13</span> ROC-Curve</h3>
 <p>Eine ROC-Kurve berechnet Sensitivität und Spezifität aus den Vorhersagen, bzw. aus dem Vergleich von Vorhersagen und wahrem Wert (d.h. der beobachtete Wert).</p>
 <p>Ziehen wir also zuerst die Vorhersagen heraus:</p>
 <div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-30_642a906b05e26437de01d6b7f31dd24c">
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_final</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_final</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">collect_predictions</span><span class="op">(</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
@@ -1646,39 +1669,35 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 </div>
 </div>
 <p>Praktischerweise werden die “wahren Werte” (also die beobachtaten Werte), <code>canceled_service</code>, ausch angegeben.</p>
-<p>Dann berechnen wir die <code>roc_curve</code> und <code>autoplot</code>ten sie, s. <a href="#fig-canceled-service">Abbildung&nbsp;<span>11.9</span></a>.</p>
+<p>Dann berechnen wir die <code>roc_curve</code> und <code>autoplot</code>ten sie, s. <a href="#fig-canceled-service">Abbildung&nbsp;<span>11.10</span></a>.</p>
 <div class="cell" data-hash="110-ensemble_cache/html/fig-canceled-service_6e9e8e7f12c79845aab5a4c1c210f52e">
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_final</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fit_final</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">collect_predictions</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">roc_curve</span><span class="op">(</span><span class="va">canceled_service</span>, <span class="va">.pred_yes</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">autoplot</span><span class="op">(</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-canceled-service" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="110-ensemble_files/figure-html/fig-canceled-service-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;11.9: Die ROC-Kurve für unser Model</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;11.10: Die ROC-Kurve für unser Model</figcaption><p></p>
 </figure>
 </div>
 </div>
 </div>
 <!-- ## Aufgaben und Vertiefung -->
-</section></section><section id="aufgaben" class="level2" data-number="11.11"><h2 data-number="11.11" class="anchored" data-anchor-id="aufgaben">
-<span class="header-section-number">11.11</span> Aufgaben</h2>
-<ul>
-<li><a href="https://github.com/sebastiansauer/datascience1/blob/main/Aufgaben/Thema11-Loesungen1.pdf">Aufgaben zu Tidymodels, PDF</a></li>
-<li><a href="https://github.com/sebastiansauer/datascience1/blob/main/Aufgaben/Thema11-Loesungen1.html">Aufgaben zu Tidymodels, HTML</a></li>
-</ul></section><section id="vertiefung" class="level2" data-number="11.12"><h2 data-number="11.12" class="anchored" data-anchor-id="vertiefung">
-<span class="header-section-number">11.12</span> Vertiefung</h2>
-<p><a href="https://stackoverflow.com/questions/72333419/error-on-running-predict-in-tidymodels-error-in-dplyrselect-cant-su/72341769#72341769">Nutzen Sie StackOverflow als Forum für Ihre Fragen - Hier ein Beispiel zu einer Fehlermeldung, die mir Kopfzerbrechen bereitete</a></p>
-</section><section id="fallstudien" class="level2" data-number="11.13"><h2 data-number="11.13" class="anchored" data-anchor-id="fallstudien">
-<span class="header-section-number">11.13</span> Fallstudien</h2>
-<section id="fallstudien-mit-workflow-sets" class="level3" data-number="11.13.1"><h3 data-number="11.13.1" class="anchored" data-anchor-id="fallstudien-mit-workflow-sets">
-<span class="header-section-number">11.13.1</span> Fallstudien mit Workflow-Sets</h3>
+</section></section><section id="aufgaben" class="level2" data-number="11.10"><h2 data-number="11.10" class="anchored" data-anchor-id="aufgaben">
+<span class="header-section-number">11.10</span> Aufgaben</h2>
+<p>Schauen Sie sich mal die Kategorie <a href="https://datenwerk.netlify.app/#category=trees">trees</a> auf <a href="https://datenwerk.netlify.app/">Datenwerk</a> an.</p>
+<p>Alternativ bietet die Kategorie <a href="https://datenwerk.netlify.app/#category=tidymodels">tidymodels</a> eine Sammlung von Aufgaben rund um das R-Paket Tidymodels; dort können Sie sich Aufgaben anpassen.</p>
+</section><section id="fallstudien" class="level2" data-number="11.11"><h2 data-number="11.11" class="anchored" data-anchor-id="fallstudien">
+<span class="header-section-number">11.11</span> Fallstudien</h2>
+<section id="fallstudien-mit-workflow-sets" class="level3" data-number="11.11.1"><h3 data-number="11.11.1" class="anchored" data-anchor-id="fallstudien-mit-workflow-sets">
+<span class="header-section-number">11.11.1</span> Fallstudien mit Workflow-Sets</h3>
 <ul>
 <li><a href="https://juliasilge.com/blog/star-trek/">Modeling human/computer interactions on Star Trek from #TidyTuesday with workflowsets</a></li>
 <li><a href="https://juliasilge.com/blog/giant-pumpkins/">Predict #TidyTuesday giant pumpkin weights with workflowsets</a></li>
 <li><a href="https://workflowsets.tidymodels.org/articles/tuning-and-comparing-models.html">Tuning and comparing models</a></li>
-</ul></section><section id="weitere-fallstudien-mit-tidymodels-bezug" class="level3" data-number="11.13.2"><h3 data-number="11.13.2" class="anchored" data-anchor-id="weitere-fallstudien-mit-tidymodels-bezug">
-<span class="header-section-number">11.13.2</span> Weitere Fallstudien mit Tidymodels-Bezug</h3>
+</ul></section><section id="weitere-fallstudien-mit-tidymodels-bezug" class="level3" data-number="11.11.2"><h3 data-number="11.11.2" class="anchored" data-anchor-id="weitere-fallstudien-mit-tidymodels-bezug">
+<span class="header-section-number">11.11.2</span> Weitere Fallstudien mit Tidymodels-Bezug</h3>
 <ul>
 <li><a href="https://juliasilge.com/blog/multinomial-volcano-eruptions/">Fallstudie Vulkanausbrüche</a></li>
 <li><a href="https://juliasilge.com/blog/board-games/">Fallstudie Brettspiele mit XGBoost</a></li>
@@ -1690,7 +1709,9 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 <li><a href="https://dev.to/juliasilge/tuning-random-forest-hyperparameters-in-r-with-tidytuesday-trees-data-4ilh">Fallstudie Bäume in San Francisco</a></li>
 <li><a href="https://juliasilge.com/blog/multinomial-volcano-eruptions/">Fallstudie Vulkanausbrüche</a></li>
 <li><a href="https://juliasilge.com/blog/board-games/">Fallstudie Brettspiele mit XGBoost</a></li>
-</ul>
+</ul></section></section><section id="vertiefung" class="level2" data-number="11.12"><h2 data-number="11.12" class="anchored" data-anchor-id="vertiefung">
+<span class="header-section-number">11.12</span> Vertiefung</h2>
+<p><a href="https://stackoverflow.com/questions/72333419/error-on-running-predict-in-tidymodels-error-in-dplyrselect-cant-su/72341769#72341769">Nutzen Sie StackOverflow als Forum für Ihre Fragen - Hier ein Beispiel zu einer Fehlermeldung, die mir Kopfzerbrechen bereitete</a></p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
@@ -1710,13 +1731,14 @@ Kuhn, Max, und Kjell Johnson. 2013. <em>Applied predictive modeling</em>. Bd. 26
 Rhys, Hefin. 2020. <em>Machine Learning with R, the tidyverse, and mlr</em>. Shelter Island, <span>NY</span>: Manning publications.
 </div>
 </div>
-</section></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+</section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
 <ol>
 <li id="fn1"><p>Übrigens gehört zu den weiteren Vorteilen von Bäumen, dass sie die Temperatur absenken; zu Zeiten von Hitzewellen könnte das praktisch sein. Ansonsten erzeugen sie aber nur Luft und haben auch sonst kaum erkennbaren Nutzen. Bäume stellen zum Beispiel nie WLAN bereit.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>bei Fat-Tails-Variablen muss man diese Aussage einschränken<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3"><p>Wenn es einen No-Free-Lunch-Satz gibt, müsste es auch einen Too-Good-to-be-True-Satz geben, den wir hiermit postulieren.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn4"><p>Schlimmes Denglisch<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5"><p>Aber Vorsicht, dass man nicht vergisst, diese Objekte zu aktualisieren.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Wer sich die Rechenressourcen leisten kann 💸<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>Aber Vorsicht, dass man nicht vergisst, diese Objekte zu aktualisieren.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -1737,6 +1759,121 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {

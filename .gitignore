@@ -30,6 +30,9 @@ vignettes/*.pdf
 # knitr and R markdown default cache directories
 *_cache/
 /cache/
+/.quarto/
+
+
 
 # Temporary files created by R markdown
 *.utf8.md
@@ -39,10 +42,6 @@ vignettes/*.pdf
 .Renviron
 
 
-# R objecdts
-*.rds
-/**/*.rds
-
 
 # Trials
 test*.*
@@ -50,4 +49,4 @@ test/
 test/**
 test*
 
-/.quarto/
+

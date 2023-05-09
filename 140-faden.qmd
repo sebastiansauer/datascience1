@@ -2,6 +2,8 @@
 # Der rote Faden
 
 
+
+
 ## Lernsteuerung
 
 ### Überblick
@@ -21,9 +23,21 @@ die uns einen Überblick über das Gelände versprechen.
 
 
 ### Literatur
- - Rhys im Überblick
+
+- Rhys im Überblick
 
 
+
+
+### R-Pakete und Daten
+
+
+In diesem Kapitel werden folgende R-Pakete benötigt:
+
+```{r echo = TRUE}
+library(tidymodels)
+library(tictoc)  # Zeitmessung
+```
 
 
 
@@ -190,19 +204,127 @@ Hier ist eine Liste von Übungen, die Ihre Datenkraft stählen soll:
 
 <!-- ## Aufgaben und Vertiefung -->
 
+## Ressourcen
 
-## Aufgaben
+### Aufgaben
 
+Im [Datenwerk](https://datenwerk.netlify.app/) unter dem Tag [stat-learning](https://datenwerk.netlify.app/#category=stat-learning) und [tidymodels](https://datenwerk.netlify.app/#category=tidymodels) finden Sie einen Fundus an Aufgaben zur prädiktiven Modellierung.
+
+
+### Kaggle-Fallstudien 
+
+In @sec-yacsdas-tidymodels finden Sie eine Fallstudien-Sammlung.
 
  
 - [Einfache Random-Forest-Modellierung bei Kaggle (TMDB)](https://www.kaggle.com/code/ssauer/simple-rf-tuned)
 - [Einfache Workflow-Set-Modellierung bei Kaggle (TMDB)](https://www.kaggle.com/code/ssauer/tmdb-xgboost-tidymodels)
 - Bearbeiten Sie so viele Fallstudien der Fallstudiensammlung wie nötig, um den Stoff flüssig zu beherrschen
 
+
+
+### Blaupausen (Template) via `usemodel`
+
+Eine Möglichkeit, sich die Syntax für eine typische Tidymodels-Analyse ausgeben zu lassen, bietet das Paket `{usemodels}`.
+
+Lassen wir uns einen Code-Schnipsel ausgeben für ein Random-Forest-Modell mit dem Engine `ranger`:
+
+
+```{r}
+library(usemodels)
+use_ranger(am ~ ., data = mtcars)
+```
+
+
+
+
+### Blaupause: Code-Schnipsel für `tidymodels`
+
+
+
+
+```{r eval = FALSE}
+# Setup:
+library(tidymodels)
+library(tidyverse)
+library(tictoc)  # Zeitmessung
+library(<other_package_you_might_need_for_modelling>)  # tidymodels uses existing packages for modelling so you need to make them available
+
+
+# Data:
+d_path <- "Enter data path here"
+d <- read_csv(d_path)
+
+set.seed(42)
+d_split <- initial_split(d)
+d_train <- training(d_split)
+d_test <- testing(d_split)
+
+
+# model:
+mod1 <-
+  <enter_parsnip_model_name_here>(mode = "<choose_regression_or_classification>",
+           cost_complexity = tune())
+
+
+# cv:
+set.seed(42)
+rsmpl <- vfold_cv(d_train)
+
+
+# recipe:
+rec1 <- recipe(<enter_output_variable> ~  ., data = d_train)
+
+
+# workflow:
+wf1 <-
+  workflow() %>% 
+  add_model(mod1) %>% 
+  add_recipe(rec1)
+
+
+# tuning:
+tic()
+wf1_fit <-
+  wf1 %>% 
+  tune_grid(
+    resamples = rsmpl)
+toc()
+
+# best candidate:
+show_best(wf1_fit)
+
+
+# finalize wf:
+wf1_final <-
+  wf1 %>% 
+  finalize_workflow(select_best(wf1_fit))
+
+
+wf1_fit_final <-
+  wf1_final %>% 
+  last_fit(d_split)
+
+
+# Modellgüte im Test-Set:
+collect_metrics(wf1_fit_final)
+```
+
+
+
+Tipp: Copy-Paste me 😄
+
+
+Auch [hier auf dem Datenwerk](https://datenwerk.netlify.app/posts/tidymodels-vorlage/tidymodels-vorlage.html) finden Sie ähnliche Vorlagen.
+
+
+
+
 ##  Vertiefung
+
 - [Mathematische Grundlagen können Sie z.B. hier vertiefen](https://deisenroth.cc/publication/deisenroth-2020/)
 - [Gute Fallstudie bei Kaggle für Regressionsprobleme: House Prices](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques)
 - [Sie möchten schnell ein Code-Schnipsel (öffentlich sichtbar) teilen? Probieren Sie Github Gists aus](https://gist.github.com/)
+- If in doubt, scream and shout ... and ask [ChatGPT](https://chat.openai.com/auth/login): ChatGPT kann Ihnen Code-Schnipsel erstellen, wenn Sie ihn nach einer bestimmten Aufgabenstellung fragen.   
 
 
 

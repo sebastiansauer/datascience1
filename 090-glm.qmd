@@ -867,10 +867,14 @@ p_logist1 + p_logist2
 
 ### Logits vs. Wahrscheinlichkeiten 
 
+@tbl-logit-konvert zeigt Beispiele zur Umrechnung von Logits über Odds in Wahrscheinlichkeiten (und retour).
+
+
+
 ```{r logit-konvert, echo = TRUE}
 #| echo: false
 #| label: tbl-logit-konvert
-#| tbl-cvap: "Tabelle zur Umrechnung von Logit zu Wahrscheinlichkeit (p)"
+#| tbl-cap: "Tabelle zur Umrechnung von Logit zu Wahrscheinlichkeit (p)"
 konvert_logits <-
   tibble(
     logit = c( -10, -3, 
@@ -878,7 +882,8 @@ konvert_logits <-
               0, 
               .25, .5, 1, 2, 
               3, 10),
-    p = rstanarm::invlogit(logit)
+    p = round(rstanarm::invlogit(logit), 2),
+    odds = round(exp(logit), 2)
   )  %>% 
   gt() %>% 
   fmt_number(everything(), decimals = 2)
