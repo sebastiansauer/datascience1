@@ -9,18 +9,18 @@
 
 
 ###  Lernziele
-- "Sie können Algorithmen für regularisierte lineare Modell erklären, d.h. Lasso- und Ridge-Regression"
-- "Sie wissen, anhand welche Tuningparamter man Overfitting bei diesen Algorithmen begrenzen kann"
-- "Sie können diese Verfahren in R berechnen"
+- Sie können Algorithmen für regularisierte lineare Modell erklären, d.h. Lasso- und Ridge-Regression
+- Sie wissen, anhand welche Tuningparamter man Overfitting bei diesen Algorithmen begrenzen kann
+- Sie können diese Verfahren in R berechnen
   
 ###  Literatur
-- "Rhys, Kap. 11"
+- Rhys, Kap. 11
 
 
 ### Hinweise
 
 
-"Rhys und ISLR sind eine gute Quelle zum Einstieg in das Thema.
+Rhys und ISLR sind eine gute Quelle zum Einstieg in das Thema.
 
 
 
@@ -40,8 +40,8 @@ library(tictoc)  # Zeitmessung
 ### Was ist Regularisierung?
 
 
-Regularisieren verweist auf "regulär"; 
-laut [Duden]() bedeutet das Wort so viel wie "den Regeln, Bestimmungen, 
+Regularisieren (oder regulieren) verweist auf "regulär"; 
+laut [Duden](https://www.duden.de/rechtschreibung/regulaer) bedeutet das Wort so viel wie "den Regeln, Bestimmungen, 
 Vorschriften entsprechend; vorschriftsmäßig, ordnungsgemäß, richtig" oder "üblich".
 
 Im Englischen spricht man auch von "penalized models", "bestrafte Modell" und von "shrinkage",
@@ -57,7 +57,8 @@ in dem die Komplexität eines Modells reduziert wird.
 Der Effekt von Regularisierung ist, 
 dass die Varianz der Modelle verringert wird und damit das Overfitting.
 Der Preis ist, dass der Bias erhöht wird,
-aber oft geht die Rechnung auf, dass der Gewinn größer ist als der Verlust.
+aber oft (?) geht die Rechnung auf, dass der Gewinn größer ist als der Verlust,
+zumindest ist das die Hoffnung.
 
 Im Kontext von linearen Modellen bedeutet das,
 dass die Koeffizienten ($\beta$s) im Betrag verringert werden durch Regularisierung,
@@ -124,7 +125,7 @@ $$\beta = \underset {\beta}{\operatorname {arg\,min(RSS)}}$$
 Es handelt sich hier um Schätzwerte, die meist mit dem Hütchen $\hat{\beta}$ ausgedrückt werden,
 hier aber zur einfacheren Notation weggelassen sind.
 
-Abb. @fig-ols visualisiert die Optimierung mit OLS [Quelle](https://www.crumplab.com/rstatsforpsych/regression.html).
+Abb. @fig-ols visualisiert die Optimierung mit OLS ([Quelle](https://www.crumplab.com/rstatsforpsych/regression.html)).
 An [gleicher Stelle](https://www.crumplab.com/rstatsforpsych/regression.html) findet sich
 eine gute Darstellung zu den (mathematischen) Grundlagen der OLS-Regression.
 
@@ -174,7 +175,7 @@ da der gesamte zu minimierende Term, $L_{L2}$ entsprechend durch lambda vergrö�
 
 Der Begriff "L2" beschreibt dass es sich um eine quadrierte Normierung handelt.
 
-Der Begriff "Norm" stammt aus der Vektoralgebra. Die L2-Norm eines Vektors $||v||$ mit $k$ Elementen ist so definiert [Quelle](https://towardsdatascience.com/intuitions-on-l1-and-l2-regularisation-235f2db4c261):
+Der Begriff "Norm" stammt aus der Vektoralgebra. Die L2-Norm eines Vektors $||v||$ mit $k$ Elementen ist so definiert ([Quelle](https://towardsdatascience.com/intuitions-on-l1-and-l2-regularisation-235f2db4c261)):
 
 $$||v|| = \left(|{v_1}|^2+ |{v_2}|^2+ |{v_i}|^2+ \ldots + |{v_k}|^2 \right)^{1/2} $$
 wobei $|{v_i}|$ den Absolutwert (Betrag) meint de Elements $v_i$ meint.
@@ -269,7 +270,7 @@ Betrachten wir zunächst das rechte Teilbild für die L2-Norm aus Abb.  @fig-l1l
 das in Abb. @fig-l2-penalty in den Fokus gerückt wird [@rhys].
 
 
-![Verlauf des Strafterms bei der L1-Norm (links) und der L2-Norm (rechts)](img/l2-penalty.png){#fig-l2-penalty}
+![Verlauf des Strafterms bei der L2-Norm](img/l2-penalty.png){#fig-l2-penalty}
 
 
 Wenn lambda gleich Null ist, entspricht $L_{L2}$ genau der OLS-Lösung.
@@ -289,7 +290,7 @@ Die Antwort ist, dass die Lösungen für $\beta_1^2 + \beta_2^2=1$ (mit $\lambda
 
 Anders ist die Situation bei der L1-Norm, dem Lasso, vgl. Abb. @fig-l1-penalty [@rhys].
 
-![Verlauf des Strafterms bei der L1-Norm](img/l1-penalty.png){#fig-l1-penalty}
+![Verlauf des Strafterms bei der L1-Norm, Bildquelle: Rhys, 2020](img/l1-penalty.png){#fig-l1-penalty}
 
 
 
@@ -311,9 +312,9 @@ die L2-Norm aber nicht.
 
 Man kann nicht sagen, dass die L1- oder die L2-Norm strikt besser sei.
 Es kommt auf den Datensatz an.
-Wenn man einen Datensatz hat, in dem es eingie wenige starke Prädiktoren gibt
+Wenn man einen Datensatz hat, in dem es einige wenige starke Prädiktoren gibt
 und viele sehr schwache (oder exakt irrelevante) Prädiktoren gibt,
-dann wird L1 tendenziell zu besseren Ergebnissen führen[@islr, S. 246].
+dann wird L1 tendenziell zu besseren Ergebnissen führen [@islr, S. 246].
 Das Lasso hat noch den Vorteil der Einfachheit, da
 weniger Prädiktoren im Modell verbleiben.
 
@@ -339,10 +340,16 @@ Spezialfälle:
 - Wenn $\alpha=1$ resultiert die Lasso-Regression (L2-Strafterm wird Null)
 
 
-
-
 ## Aufgaben
 
+Schauen Sie sich die Aufgaben auf dem [Datenwerk](https://datenwerk.netlify.app/) an, die das Tag [stat-learning](https://datenwerk.netlify.app/#category=stat-learning) oder [tidymodels](https://datenwerk.netlify.app/#category=tidymodels) haben.
+Auch wenn eine Aufgabe nicht explizit regulierte lineare Modelle verwendet,
+macht das eigentlich nichts, denn außer dem Tuningparameter ändert sich nichts am typischen Tidymodels-Ablauf.
 
-- "[Fallstudie Serie The Office](https://juliasilge.com/blog/lasso-the-office/)"
-- "[Fallstudie NBER Papers](https://juliasilge.com/blog/nber-papers/)"
+
+
+## Fallsutdien
+
+
+- [Fallstudie Serie The Office](https://juliasilge.com/blog/lasso-the-office/)
+- [Fallstudie NBER Papers](https://juliasilge.com/blog/nber-papers/)

@@ -25,6 +25,33 @@ ex_dir <- "/Users/sebastiansaueruser/github-repos/rexams-exercises/exercises"
 path_datenwerk <- "/Users/sebastiansaueruser/github-repos/datenwerk/posts"
 
 
+
+# div ---------------------------------------------------------------------
+
+
+ex_div <-
+  c(
+    "filter-na1.Rmd",
+    "filter-na2.Rmd",    
+    "filter-na3.Rmd",    
+    "filter-na4.Rmd",    
+    "filter-na5.Rmd"
+)
+
+
+# Datenwerk:
+teachertools::render_exs("lm-mario3.Rmd",
+                         my_edir = ex_dir,
+                         output_path = path_datenwerk,
+                         render_html = FALSE,
+                         render_moodle = FALSE,
+                         render_pdf_print = FALSE,
+                         render_markdown = FALSE,
+                         render_yamlrmd = TRUE,
+                         thema_nr = "1")
+
+
+
 # stat-learning -----------------------------------------------------------
 
 ex_stat_learning <-
@@ -144,6 +171,29 @@ exs_tmdb <-
 # Datenwerk:
 teachertools::render_exs(
   exs_tmdb,
+  my_edir = ex_dir,
+  output_path = path_datenwerk,
+  render_html = FALSE,
+  render_moodle = FALSE,
+  render_pdf_print = FALSE,
+  render_markdown = FALSE,
+  render_yamlrmd = TRUE,
+  thema_nr = "1")
+
+
+
+
+# Glmnet ------------------------------------------------------------------
+
+
+
+ex_glmnet <-
+  c("tidymodels-lasso.Rmd")
+
+
+# Datenwerk:
+teachertools::render_exs(
+  ex_glmnet,
   my_edir = ex_dir,
   output_path = path_datenwerk,
   render_html = FALSE,
