@@ -263,14 +263,14 @@ Abb. @fig-l1l2 verdeutlicht den Unterschied zwischen L1- und L2-Norm.
 Es ist eine Regression mit zwei Prädiktoren, also den zwei Koeffizienten $\beta1, \beta_2$ dargestellt.
 
 
-![Verlauf des Strafterms bei der L1-Norm (links) und der L2-Norm (rechts)](img/6.6.png){#fig-l1l2}
+![Verlauf des Strafterms bei der L1-Norm (links) und der L2-Norm (rechts); pink: Test-MSE, schwarz: Bias, grün: Varianz](img/6.8.png){#fig-l1l2}
 
 
 Betrachten wir zunächst das rechte Teilbild für die L2-Norm aus Abb.  @fig-l1l2,
 das in Abb. @fig-l2-penalty in den Fokus gerückt wird [@rhys].
 
 
-![Verlauf des Strafterms bei der L2-Norm](img/l2-penalty.png){#fig-l2-penalty}
+![OLS-Fehlerkontur (blaues Oval) und Kontur des L2-Strafterms, Bildquelle: Rhys, 2020](img/l2-penalty.png){#fig-l2-penalty}
 
 
 Wenn lambda gleich Null ist, entspricht $L_{L2}$ genau der OLS-Lösung.
@@ -290,7 +290,7 @@ Die Antwort ist, dass die Lösungen für $\beta_1^2 + \beta_2^2=1$ (mit $\lambda
 
 Anders ist die Situation bei der L1-Norm, dem Lasso, vgl. Abb. @fig-l1-penalty [@rhys].
 
-![Verlauf des Strafterms bei der L1-Norm, Bildquelle: Rhys, 2020](img/l1-penalty.png){#fig-l1-penalty}
+![OLS-Fehlerkontur (blaues Oval) und Kontur des L1-Strafterms, Bildquelle: Rhys, 2020](img/l1-penalty.png){#fig-l1-penalty}
 
 
 
@@ -348,7 +348,7 @@ macht das eigentlich nichts, denn außer dem Tuningparameter ändert sich nichts
 
 
 
-## Fallsutdien
+## Fallstudien
 
 
 - [Fallstudie Serie The Office](https://juliasilge.com/blog/lasso-the-office/)

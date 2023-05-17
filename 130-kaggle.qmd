@@ -11,7 +11,7 @@
 
 ###  Lernziele
 
-- Sie wissen, wie man einen Datensatz für einen Prognosewettbwerb bei Kaggle einreicht
+- Sie wissen, wie man einen Datensatz (eine "Submission") für einen Prognosewettbwerb bei Kaggle einreicht
 - Sie kennen einige Beispiele von Notebooks auf Kaggle (für die Sprache R)
 - Sie wissen, wie man ein Workflow-Set in Tidymodels berechnet
 - Sie wissen, dass Tidymodels im Rezept keine Transformationen im Test-Sample berücksichtigt und wie man damit umgeht
@@ -457,6 +457,17 @@ Diese CSV-Datei reichen wir dann bei Kagglei ein.
 ### Kaggle Score
 
 Diese Submission erzielte einen Score von **4.79227** (RMSLE).
+
+
+## Miniprojekt
+
+
+Reichen Sie Ihre Vorhersagen für die [TMDB-Competition]() bei Kaggle ein!
+
+Stellen Sie auch (im Rahmen dieses Wettbewerbs) Ihre Syntax offen. 
+
+Bereiten Sie sich vor, Ihre Analyse zu präsentieren.
+
 
 
 

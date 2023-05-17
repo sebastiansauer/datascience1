@@ -292,6 +292,7 @@ div.csl-indent {
   </ul>
 </li>
   <li><a href="#aufgaben" id="toc-aufgaben" class="nav-link" data-scroll-target="#aufgaben"><span class="header-section-number">12.6</span> Aufgaben</a></li>
+  <li><a href="#fallstudien" id="toc-fallstudien" class="nav-link" data-scroll-target="#fallstudien"><span class="header-section-number">12.7</span> Fallstudien</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -316,16 +317,16 @@ div.csl-indent {
 <section id="lernziele" class="level3" data-number="12.1.1"><h3 data-number="12.1.1" class="anchored" data-anchor-id="lernziele">
 <span class="header-section-number">12.1.1</span> Lernziele</h3>
 <ul>
-<li>“Sie können Algorithmen für regularisierte lineare Modell erklären, d.h. Lasso- und Ridge-Regression”</li>
-<li>“Sie wissen, anhand welche Tuningparamter man Overfitting bei diesen Algorithmen begrenzen kann”</li>
-<li>“Sie können diese Verfahren in R berechnen”</li>
+<li>Sie können Algorithmen für regularisierte lineare Modell erklären, d.h. Lasso- und Ridge-Regression</li>
+<li>Sie wissen, anhand welche Tuningparamter man Overfitting bei diesen Algorithmen begrenzen kann</li>
+<li>Sie können diese Verfahren in R berechnen</li>
 </ul></section><section id="literatur" class="level3" data-number="12.1.2"><h3 data-number="12.1.2" class="anchored" data-anchor-id="literatur">
 <span class="header-section-number">12.1.2</span> Literatur</h3>
 <ul>
-<li>“Rhys, Kap. 11”</li>
+<li>Rhys, Kap. 11</li>
 </ul></section><section id="hinweise" class="level3" data-number="12.1.3"><h3 data-number="12.1.3" class="anchored" data-anchor-id="hinweise">
 <span class="header-section-number">12.1.3</span> Hinweise</h3>
-<p>“Rhys und ISLR sind eine gute Quelle zum Einstieg in das Thema.</p>
+<p>Rhys und ISLR sind eine gute Quelle zum Einstieg in das Thema.</p>
 </section><section id="r-pakete" class="level3" data-number="12.1.4"><h3 data-number="12.1.4" class="anchored" data-anchor-id="r-pakete">
 <span class="header-section-number">12.1.4</span> R-Pakete</h3>
 <p>In diesem Kapitel werden folgende R-Pakete benötigt:</p>
@@ -337,10 +338,10 @@ div.csl-indent {
 <span class="header-section-number">12.2</span> Regularisierung</h2>
 <section id="was-ist-regularisierung" class="level3" data-number="12.2.1"><h3 data-number="12.2.1" class="anchored" data-anchor-id="was-ist-regularisierung">
 <span class="header-section-number">12.2.1</span> Was ist Regularisierung?</h3>
-<p>Regularisieren verweist auf “regulär”; laut <a href="">Duden</a> bedeutet das Wort so viel wie “den Regeln, Bestimmungen, Vorschriften entsprechend; vorschriftsmäßig, ordnungsgemäß, richtig” oder “üblich”.</p>
+<p>Regularisieren (oder regulieren) verweist auf “regulär”; laut <a href="https://www.duden.de/rechtschreibung/regulaer">Duden</a> bedeutet das Wort so viel wie “den Regeln, Bestimmungen, Vorschriften entsprechend; vorschriftsmäßig, ordnungsgemäß, richtig” oder “üblich”.</p>
 <p>Im Englischen spricht man auch von “penalized models”, “bestrafte Modell” und von “shrinkage”, von “Schrumpfung” im Zusammenhang mit dieer Art von Modellen.</p>
 <p>Regularisierung ist ein Meta-Algorithmus, also ein Verfahren, was als zweiter Schritt “auf” verschiedene Modelle angewendet werden kann - zumeist aber auf lineare Modelle, worauf wir uns im Folgenden konzentrieren.</p>
-<p>Das Ziel von Regularisierung ist es, Overfitting zu vermeiden, in dem die Komplexität eines Modells reduziert wird. Der Effekt von Regularisierung ist, dass die Varianz der Modelle verringert wird und damit das Overfitting. Der Preis ist, dass der Bias erhöht wird, aber oft geht die Rechnung auf, dass der Gewinn größer ist als der Verlust.</p>
+<p>Das Ziel von Regularisierung ist es, Overfitting zu vermeiden, in dem die Komplexität eines Modells reduziert wird. Der Effekt von Regularisierung ist, dass die Varianz der Modelle verringert wird und damit das Overfitting. Der Preis ist, dass der Bias erhöht wird, aber oft (?) geht die Rechnung auf, dass der Gewinn größer ist als der Verlust, zumindest ist das die Hoffnung.</p>
 <p>Im Kontext von linearen Modellen bedeutet das, dass die Koeffizienten (<span class="math inline">\(\beta\)</span>s) im Betrag verringert werden durch Regularisierung, also in Richtung Null “geschrumpft” werden.</p>
 <p>Dem liegt die Idee zugrunde, dass extreme Werte in den Koeffizienten vermutlich nicht “echt”, sondern durch Rauschen fälschlich vorgegaukelt werden.</p>
 <p>Die bekanntesten Vertreter dieser Modellart sind <em>Ridge Regression</em>, <span class="math inline">\(L2\)</span>, das <em>Lasso</em>, <span class="math inline">\(L1\)</span>, sowie <em>Elastic Net</em>.</p>
@@ -358,7 +359,7 @@ div.csl-indent {
 <p>Man sucht also diejenigen Koeffizientenwerte <span class="math inline">\(\beta\)</span> (Argumente der Loss-Funktion RSS), die RSS minimieren:</p>
 <p><span class="math display">\[\beta = \underset {\beta}{\operatorname {arg\,min(RSS)}}\]</span></p>
 <p>Es handelt sich hier um Schätzwerte, die meist mit dem Hütchen <span class="math inline">\(\hat{\beta}\)</span> ausgedrückt werden, hier aber zur einfacheren Notation weggelassen sind.</p>
-<p>Abb. <a href="#fig-ols">Abbildung&nbsp;<span>12.1</span></a> visualisiert die Optimierung mit OLS <a href="https://www.crumplab.com/rstatsforpsych/regression.html">Quelle</a>. An <a href="https://www.crumplab.com/rstatsforpsych/regression.html">gleicher Stelle</a> findet sich eine gute Darstellung zu den (mathematischen) Grundlagen der OLS-Regression.</p>
+<p>Abb. <a href="#fig-ols">Abbildung&nbsp;<span>12.1</span></a> visualisiert die Optimierung mit OLS (<a href="https://www.crumplab.com/rstatsforpsych/regression.html">Quelle</a>). An <a href="https://www.crumplab.com/rstatsforpsych/regression.html">gleicher Stelle</a> findet sich eine gute Darstellung zu den (mathematischen) Grundlagen der OLS-Regression.</p>
 <div id="fig-ols" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="img/regression_squares (1).gif" class="img-fluid figure-img"></p>
 <p></p><figcaption class="figure-caption">Abbildung&nbsp;12.1: Visualisierung der Minimierung der RSS durch OLS</figcaption><p></p>
@@ -378,7 +379,7 @@ div.csl-indent {
 <p>Man nennt den L2-Strafterm auch L2-Norm<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
 <p>Dabei ist <span class="math inline">\(\lambda\)</span> (lambda) ein Tuningparameter, der bestimmt, wie stark die Bestrafung ausfällt. Den Wert von <span class="math inline">\(\lambda\)</span> lassen wir durch Tuning bestimmen, wobei <span class="math inline">\(\lambda \in \mathbb{R}^+\setminus\{0\}\)</span>. Es gilt: Je größer lambda, desto stärker die Schrumpfung der Koeffizienten gegen Null, da der gesamte zu minimierende Term, <span class="math inline">\(L_{L2}\)</span> entsprechend durch lambda vergrößert wird.</p>
 <p>Der Begriff “L2” beschreibt dass es sich um eine quadrierte Normierung handelt.</p>
-<p>Der Begriff “Norm” stammt aus der Vektoralgebra. Die L2-Norm eines Vektors <span class="math inline">\(||v||\)</span> mit <span class="math inline">\(k\)</span> Elementen ist so definiert <a href="https://towardsdatascience.com/intuitions-on-l1-and-l2-regularisation-235f2db4c261">Quelle</a>:</p>
+<p>Der Begriff “Norm” stammt aus der Vektoralgebra. Die L2-Norm eines Vektors <span class="math inline">\(||v||\)</span> mit <span class="math inline">\(k\)</span> Elementen ist so definiert (<a href="https://towardsdatascience.com/intuitions-on-l1-and-l2-regularisation-235f2db4c261">Quelle</a>):</p>
 <p><span class="math display">\[||v|| = \left(|{v_1}|^2+ |{v_2}|^2+ |{v_i}|^2+ \ldots + |{v_k}|^2 \right)^{1/2} \]</span> wobei <span class="math inline">\(|{v_i}|\)</span> den Absolutwert (Betrag) meint de Elements <span class="math inline">\(v_i\)</span> meint. Im Falle von reellen Zahlen und Quadrierung braucht es hier die Absolutfunktion nicht.</p>
 <p>Im Falle von zwei Elementen vereinfacht sich obiger Ausdruck zu:</p>
 <p><span class="math display">\[||v|| = \sqrt{\left({v_1}^2+ {v_2}^2\right)} \]</span></p>
@@ -413,14 +414,14 @@ div.csl-indent {
 </div>
 <p>Warum erlaubt die L1-Norm Variablenselektion, die L2-Norm aber nicht? Abb. <a href="#fig-l1l2">Abbildung&nbsp;<span>12.4</span></a> verdeutlicht den Unterschied zwischen L1- und L2-Norm. Es ist eine Regression mit zwei Prädiktoren, also den zwei Koeffizienten <span class="math inline">\(\beta1, \beta_2\)</span> dargestellt.</p>
 <div id="fig-l1l2" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="img/6.6.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;12.4: Verlauf des Strafterms bei der L1-Norm (links) und der L2-Norm (rechts)</figcaption><p></p>
+<figure class="figure"><p><img src="img/6.8.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;12.4: Verlauf des Strafterms bei der L1-Norm (links) und der L2-Norm (rechts); pink: Test-MSE, schwarz: Bias, grün: Varianz</figcaption><p></p>
 </figure>
 </div>
 <p>Betrachten wir zunächst das rechte Teilbild für die L2-Norm aus Abb. <a href="#fig-l1l2">Abbildung&nbsp;<span>12.4</span></a>, das in Abb. <a href="#fig-l2-penalty">Abbildung&nbsp;<span>12.5</span></a> in den Fokus gerückt wird <span class="citation" data-cites="rhys">(<a href="references.html#ref-rhys" role="doc-biblioref">Rhys 2020</a>)</span>.</p>
 <div id="fig-l2-penalty" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="img/l2-penalty.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;12.5: Verlauf des Strafterms bei der L1-Norm (links) und der L2-Norm (rechts)</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;12.5: OLS-Fehlerkontur (blaues Oval) und Kontur des L2-Strafterms, Bildquelle: Rhys, 2020</figcaption><p></p>
 </figure>
 </div>
 <p>Wenn lambda gleich Null ist, entspricht <span class="math inline">\(L_{L2}\)</span> genau der OLS-Lösung. Vergrößert man lambda, so liegt <span class="math inline">\(L_{L2}\)</span> dem Schnittpunkt des OLS-Kreises mit dem zugehörigen lambda-Kreis. Wie man sieht, führt eine Erhöhung von lambda zu einer Reduktion der Absolutwerte von <span class="math inline">\(\beta_1\)</span> und <span class="math inline">\(\beta_2\)</span>. Allerdings werden, wie man im Diagramm sieht, auch bei hohen lambda-Werten die Regressionskoeffizienten nicht exakt Null sein.</p>
@@ -428,7 +429,7 @@ div.csl-indent {
 <p>Anders ist die Situation bei der L1-Norm, dem Lasso, vgl. Abb. <a href="#fig-l1-penalty">Abbildung&nbsp;<span>12.6</span></a>.</p>
 <div id="fig-l1-penalty" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="img/l1-penalty.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;12.6: Verlauf des Strafterms bei der L1-Norm</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;12.6: OLS-Fehlerkontur (blaues Oval) und Kontur des L1-Strafterms, Bildquelle: Rhys, 2020</figcaption><p></p>
 </figure>
 </div>
 <p>Eine Erhöhung von $ führt aufgrund der charakteristischen Kontourlinie zu einem Schnittpunkt (von OLS-Lösung und lambda-Wert), der - wenn lambda groß genug ist, stets auf einer der beiden Achsen liegt, also zu einer Nullsetzung des Parameters führt.</p>
@@ -437,7 +438,7 @@ div.csl-indent {
 <span class="header-section-number">12.5</span> L1 vs.&nbsp;L2</h2>
 <section id="wer-ist-stärker" class="level3" data-number="12.5.1"><h3 data-number="12.5.1" class="anchored" data-anchor-id="wer-ist-stärker">
 <span class="header-section-number">12.5.1</span> Wer ist stärker?</h3>
-<p>Man kann nicht sagen, dass die L1- oder die L2-Norm strikt besser sei. Es kommt auf den Datensatz an. Wenn man einen Datensatz hat, in dem es eingie wenige starke Prädiktoren gibt und viele sehr schwache (oder exakt irrelevante) Prädiktoren gibt, dann wird L1 tendenziell zu besseren Ergebnissen führen<span class="citation" data-cites="islr">(<a href="references.html#ref-islr" role="doc-biblioref">James u.&nbsp;a. 2021, 246</a>)</span>. Das Lasso hat noch den Vorteil der Einfachheit, da weniger Prädiktoren im Modell verbleiben.</p>
+<p>Man kann nicht sagen, dass die L1- oder die L2-Norm strikt besser sei. Es kommt auf den Datensatz an. Wenn man einen Datensatz hat, in dem es einige wenige starke Prädiktoren gibt und viele sehr schwache (oder exakt irrelevante) Prädiktoren gibt, dann wird L1 tendenziell zu besseren Ergebnissen führen <span class="citation" data-cites="islr">(<a href="references.html#ref-islr" role="doc-biblioref">James u.&nbsp;a. 2021, 246</a>)</span>. Das Lasso hat noch den Vorteil der Einfachheit, da weniger Prädiktoren im Modell verbleiben.</p>
 <p>Ridge-Regression wird dann besser abschneiden (tendenziell), wenn die Prädiktoren etwa alle gleich stark sind.</p>
 </section><section id="elastic-net-als-kompromiss" class="level3" data-number="12.5.2"><h3 data-number="12.5.2" class="anchored" data-anchor-id="elastic-net-als-kompromiss">
 <span class="header-section-number">12.5.2</span> Elastic Net als Kompromiss</h3>
@@ -450,9 +451,12 @@ div.csl-indent {
 <li>Wenn <span class="math inline">\(\alpha=1\)</span> resultiert die Lasso-Regression (L2-Strafterm wird Null)</li>
 </ul></section></section><section id="aufgaben" class="level2" data-number="12.6"><h2 data-number="12.6" class="anchored" data-anchor-id="aufgaben">
 <span class="header-section-number">12.6</span> Aufgaben</h2>
+<p>Schauen Sie sich die Aufgaben auf dem <a href="https://datenwerk.netlify.app/">Datenwerk</a> an, die das Tag <a href="https://datenwerk.netlify.app/#category=stat-learning">stat-learning</a> oder <a href="https://datenwerk.netlify.app/#category=tidymodels">tidymodels</a> haben. Auch wenn eine Aufgabe nicht explizit regulierte lineare Modelle verwendet, macht das eigentlich nichts, denn außer dem Tuningparameter ändert sich nichts am typischen Tidymodels-Ablauf.</p>
+</section><section id="fallstudien" class="level2" data-number="12.7"><h2 data-number="12.7" class="anchored" data-anchor-id="fallstudien">
+<span class="header-section-number">12.7</span> Fallstudien</h2>
 <ul>
-<li>“<a href="https://juliasilge.com/blog/lasso-the-office/">Fallstudie Serie The Office</a>”</li>
-<li>“<a href="https://juliasilge.com/blog/nber-papers/">Fallstudie NBER Papers</a>”</li>
+<li><a href="https://juliasilge.com/blog/lasso-the-office/">Fallstudie Serie The Office</a></li>
+<li><a href="https://juliasilge.com/blog/nber-papers/">Fallstudie NBER Papers</a></li>
 </ul>
 
 
