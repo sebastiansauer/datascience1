@@ -1,0 +1,114 @@
+## Feature Engineering
+
+
+
+
+
+
+## Lernsteuerung
+
+
+###  Lernziele
+
+- Sie wissen, dass "Feature Engineering" letztlich das Gleiche ist wie "Datenaufbereitung".
+- Sie können gängige Methoden des Feature Engineeering in Gründzügen erläutern.
+- Sie können gängige Methoden des Feature Engineeering in R für das Modellieren anwenden.
+
+
+
+### Hinweise
+
+Dieses Kapitel basiert auf @kuhn_feature_2020.
+
+
+
+### R-Pakete
+
+
+In diesem Kapitel werden folgende R-Pakete benötigt:
+
+```{r echo = TRUE}
+library(tidyverse)
+library(tidymodels)
+library(tictoc)  # Rechenzeit messen
+```
+
+
+
+
+## Transformation nominaler Variablen
+
+
+Viele Lernalgorithmen verkraften keine nominalen Variablen.
+Beispiele sind lineare Modelle. 
+Wichtige Ausnahmen sind aber Entscheidungsbäume und Naive-Bayes-Modelle;
+diese Lernalgorithmen können mit mit nominalskalierten Werten umgehen.
+
+Bei vielen Lernalgorithmen ist es (oft) nötig, nominale Variablen zu dummysieren.
+In Tidymodels ist dies mit `step_dummy` möglich.
+
+Bevor man dummysiert, kann es sinnvoll sein, Faktorstufen, die nur im Test-Sample aber nicht im Train-Sample vorkomme,
+abzufangen.
+In Tidymodels gibt es dazu `step_novel`.
+
+Liegt eine große Zahl an seltenen Faktorstufen vor, kann es Sinn machen mittels `step_other` diese Faktorstufen zusammenzufassen zu einer "Other-Kategorie" (auch dieser Schritt ist vor dem Dummysieren durchzuführen).
+Ähnliches gilt für den Fall von Variablen (fast) ohne Varianz. 
+
+Alternativ kann man eine Methode verwenden, die man als Effekt- oder Likelihood-Enkodierung bezeichnet.
+Hier wird für jede Faktorstufe ihr Betagewicht als neuer Prädiktorwert kodiert.
+
+
+
+## Transformation numerischer Variablen
+
+
+Eine häufige Malaise mit numerischen Variablen ist Schiefe.
+Schiefe Variablen lassen sich häufig schlecht vorhersagen oder zum Vorhersagen nutzen.
+Der Grund ist, dass bei schiefen Variablen (per Definition) nur wenig Fälle einen großen Wertebereichs des Prädiktors bevölkern.
+Daher tut sich ein Modell schwer.
+Transformationen zu mehr Symmetrie (oder Normalverteilung) hin können daher nützlich sein.
+Ein klassisches Beispiel einer solchen Transformation ist die Log-Transformation.
+Allerdings können bei der Log-Transformation nur Werte größer Null verarbeitet werden.
+Eine Verallgemeinerung der Log-Transformation ist die Box-Cox-Transformation.
+Eine Alternative zur Box-Cox-Transformation ist die Yeo-Johson-Transformation,
+die den Vorteil hat, auch Werte die Null sind oder kleiner verarbeiten zu können.
+
+Ein anderes Problem können hoch korrelierte (kollineare) Variablen darstellen.
+Abhilfe kann schaffen, eine von zwei hoch korrelierten Variablen zu entfernen.
+In Tidymodels hilft hier `step_corr`.
+
+
+## Umgang mit fehlenden Werten
+
+Viele bekannte Lernalgorithmen verkraften keine fehlenden Werte, z.B.
+glmnet, neuronale Netze oder SVM.
+Manche können aber damit umgehen, etwa CART-Modelle (eine Implementierung von Entscheidungsbäumen, die in Tidymodels implementiert ist^[https://parsnip.tidymodels.org/reference/details_decision_tree_rpart.html]).
+
+
+Wie so oft gibt es hier kein einfaches Standardrezept.
+Insbesondere hängt das zu wählende Vorgehen davon ab,
+warum die Werte fehlen:
+Ist es rein zufällig (MCAR) oder nicht (MAR, NMAR)?
+
+Ein einfaches Vorgehen wäre, alle Fälle mit einem oder mehr fehlenden Werten zu löschen.
+Natürlich kann das schnell teuer mit Blick auf die Größe des Train-Samples werden.
+Auch das Löschen von Prädiktoren mit fehlenden Werten kann leicht unangenehm werden.
+
+Alternativ kann man fehlende Werte ersetzen (imputieren).
+Möchte man mit kNN imputieren, so kann man `step_impute_knn` imputieren,
+dabei ist aber Gowers Metrik zu bevorzugen.
+
+
+
+## Feature Selection
+
+Einige Modelle haben intrinsiche Feature-Selection-Fähigkeiten,
+etwa LASSO.
+Ein sehr einfaches Ansatz zur Auswahl von Prädiktoren ist es, 
+einfache Korrelationen der Prädiktoren (ggf. dummyisiert) mit der Zielvariablen zu berechnen.
+
+
+
+
+
+

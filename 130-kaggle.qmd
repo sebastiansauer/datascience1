@@ -462,11 +462,14 @@ Diese Submission erzielte einen Score von **4.79227** (RMSLE).
 ## Miniprojekt
 
 
-Reichen Sie Ihre Vorhersagen für die [TMDB-Competition]() bei Kaggle ein!
+Reichen Sie Ihre Vorhersagen für die [TMDB-Competition](https://www.kaggle.com/competitions/tmdb-box-office-prediction) bei Kaggle ein!
 
 Stellen Sie auch (im Rahmen dieses Wettbewerbs) Ihre Syntax offen. 
 
 Bereiten Sie sich vor, Ihre Analyse zu präsentieren.
+
+
+
 
 
 

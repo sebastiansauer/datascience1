@@ -318,6 +318,23 @@ Auch [hier auf dem Datenwerk](https://datenwerk.netlify.app/posts/tidymodels-vor
 
 
 
+## Rollenspiel: Ace your Case
+
+
+Die Lernziele dieses Moduls sind kompetenzorientiert; Theorie spielt nur die zweite Geige.
+Aber im praktischem Leben genügt es (oft) nicht, bestimmte Kompetenzen zu besitzen.
+Man muss auch Menschen überzeugen, dass man diese Kompetenzen besitzt.
+Daher sollten Sie sich darin üben, andere von Ihrer Kompetenz zu überzeugen.
+
+Dazu simulieren wir im Rahmen eines Rollenspiels eine Bewerbungsinterview,
+in dem Sie Fachfragen oder eine Fallstudie ("Case") durchsprechen und hier brillieren wollen ("Ace your Case").
+
+- Studenti A 🧑‍🎓 - Bewerber
+- Studenti B 👩‍🎓  - Interviewer
+
+
+
+
 
 ##  Vertiefung
 
