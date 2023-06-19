@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.3.247">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Grundlagen der Prognosemodellierung 🔮🧰 - 14&nbsp; Der rote Faden</title>
+<title>Grundlagen der Prognosemodellierung 🔮🧰 - 15&nbsp; Der rote Faden</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -121,7 +121,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./140-faden.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Der rote Faden</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./140-faden.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Der rote Faden</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
@@ -219,26 +219,32 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./125-feature-engineeering.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Feature Engineering</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./130-kaggle.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Kaggle</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Kaggle</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./140-faden.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Der rote Faden</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Der rote Faden</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./150-fallstudien.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Fallstudien</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Fallstudien</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./160-e.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Staunen mit e</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Staunen mit e</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -256,42 +262,44 @@ div.csl-indent {
    
   <ul>
 <li>
-<a href="#lernsteuerung" id="toc-lernsteuerung" class="nav-link active" data-scroll-target="#lernsteuerung"><span class="header-section-number">14.1</span> Lernsteuerung</a>
+<a href="#lernsteuerung" id="toc-lernsteuerung" class="nav-link active" data-scroll-target="#lernsteuerung"><span class="header-section-number">15.1</span> Lernsteuerung</a>
   <ul class="collapse">
-<li><a href="#%C3%BCberblick" id="toc-überblick" class="nav-link" data-scroll-target="#%C3%BCberblick"><span class="header-section-number">14.1.1</span> Überblick</a></li>
-  <li><a href="#lernziele" id="toc-lernziele" class="nav-link" data-scroll-target="#lernziele"><span class="header-section-number">14.1.2</span> Lernziele</a></li>
-  <li><a href="#literatur" id="toc-literatur" class="nav-link" data-scroll-target="#literatur"><span class="header-section-number">14.1.3</span> Literatur</a></li>
-  <li><a href="#r-pakete-und-daten" id="toc-r-pakete-und-daten" class="nav-link" data-scroll-target="#r-pakete-und-daten"><span class="header-section-number">14.1.4</span> R-Pakete und Daten</a></li>
+<li><a href="#%C3%BCberblick" id="toc-überblick" class="nav-link" data-scroll-target="#%C3%BCberblick"><span class="header-section-number">15.1.1</span> Überblick</a></li>
+  <li><a href="#lernziele" id="toc-lernziele" class="nav-link" data-scroll-target="#lernziele"><span class="header-section-number">15.1.2</span> Lernziele</a></li>
+  <li><a href="#literatur" id="toc-literatur" class="nav-link" data-scroll-target="#literatur"><span class="header-section-number">15.1.3</span> Literatur</a></li>
+  <li><a href="#r-pakete-und-daten" id="toc-r-pakete-und-daten" class="nav-link" data-scroll-target="#r-pakete-und-daten"><span class="header-section-number">15.1.4</span> R-Pakete und Daten</a></li>
   </ul>
 </li>
-  <li><a href="#aussichtspunkt-1-blick-vom-hohen-berg" id="toc-aussichtspunkt-1-blick-vom-hohen-berg" class="nav-link" data-scroll-target="#aussichtspunkt-1-blick-vom-hohen-berg"><span class="header-section-number">14.2</span> Aussichtspunkt 1: Blick vom hohen Berg</a></li>
+  <li><a href="#aussichtspunkt-1-blick-vom-hohen-berg" id="toc-aussichtspunkt-1-blick-vom-hohen-berg" class="nav-link" data-scroll-target="#aussichtspunkt-1-blick-vom-hohen-berg"><span class="header-section-number">15.2</span> Aussichtspunkt 1: Blick vom hohen Berg</a></li>
   <li>
-<a href="#aussichtspunkt-2-blick-in-den-hof-der-handwerker" id="toc-aussichtspunkt-2-blick-in-den-hof-der-handwerker" class="nav-link" data-scroll-target="#aussichtspunkt-2-blick-in-den-hof-der-handwerker"><span class="header-section-number">14.3</span> Aussichtspunkt 2: Blick in den Hof der Handwerker</a>
+<a href="#aussichtspunkt-2-blick-in-den-hof-der-handwerker" id="toc-aussichtspunkt-2-blick-in-den-hof-der-handwerker" class="nav-link" data-scroll-target="#aussichtspunkt-2-blick-in-den-hof-der-handwerker"><span class="header-section-number">15.3</span> Aussichtspunkt 2: Blick in den Hof der Handwerker</a>
   <ul class="collapse">
-<li><a href="#ein-maximale-einfaches-werkst%C3%BCck-mit-tidymodels" id="toc-ein-maximale-einfaches-werkstück-mit-tidymodels" class="nav-link" data-scroll-target="#ein-maximale-einfaches-werkst%C3%BCck-mit-tidymodels"><span class="header-section-number">14.3.1</span> Ein maximale einfaches Werkstück mit Tidymodels</a></li>
-  <li><a href="#ein-immer-noch-recht-einfaches-werkst%C3%BCck-mit-tidymodels" id="toc-ein-immer-noch-recht-einfaches-werkstück-mit-tidymodels" class="nav-link" data-scroll-target="#ein-immer-noch-recht-einfaches-werkst%C3%BCck-mit-tidymodels"><span class="header-section-number">14.3.2</span> Ein immer noch recht einfaches Werkstück mit Tidymodels</a></li>
+<li><a href="#ein-maximale-einfaches-werkst%C3%BCck-mit-tidymodels" id="toc-ein-maximale-einfaches-werkstück-mit-tidymodels" class="nav-link" data-scroll-target="#ein-maximale-einfaches-werkst%C3%BCck-mit-tidymodels"><span class="header-section-number">15.3.1</span> Ein maximale einfaches Werkstück mit Tidymodels</a></li>
+  <li><a href="#ein-immer-noch-recht-einfaches-werkst%C3%BCck-mit-tidymodels" id="toc-ein-immer-noch-recht-einfaches-werkstück-mit-tidymodels" class="nav-link" data-scroll-target="#ein-immer-noch-recht-einfaches-werkst%C3%BCck-mit-tidymodels"><span class="header-section-number">15.3.2</span> Ein immer noch recht einfaches Werkstück mit Tidymodels</a></li>
   </ul>
 </li>
-  <li><a href="#aussichtspunkt-3-der-nebelberg-quiz" id="toc-aussichtspunkt-3-der-nebelberg-quiz" class="nav-link" data-scroll-target="#aussichtspunkt-3-der-nebelberg-quiz"><span class="header-section-number">14.4</span> Aussichtspunkt 3: Der Nebelberg (Quiz)</a></li>
-  <li><a href="#aussichtspunkt-4-der-exerzitien-park" id="toc-aussichtspunkt-4-der-exerzitien-park" class="nav-link" data-scroll-target="#aussichtspunkt-4-der-exerzitien-park"><span class="header-section-number">14.5</span> Aussichtspunkt 4: Der Exerzitien-Park</a></li>
-  <li><a href="#aussichtspunkt-5-in-der-bibliothek" id="toc-aussichtspunkt-5-in-der-bibliothek" class="nav-link" data-scroll-target="#aussichtspunkt-5-in-der-bibliothek"><span class="header-section-number">14.6</span> Aussichtspunkt 5: In der Bibliothek</a></li>
-  <li><a href="#krafttraining" id="toc-krafttraining" class="nav-link" data-scroll-target="#krafttraining"><span class="header-section-number">14.7</span> Krafttraining</a></li>
+  <li><a href="#aussichtspunkt-3-der-nebelberg-quiz" id="toc-aussichtspunkt-3-der-nebelberg-quiz" class="nav-link" data-scroll-target="#aussichtspunkt-3-der-nebelberg-quiz"><span class="header-section-number">15.4</span> Aussichtspunkt 3: Der Nebelberg (Quiz)</a></li>
+  <li><a href="#aussichtspunkt-4-der-exerzitien-park" id="toc-aussichtspunkt-4-der-exerzitien-park" class="nav-link" data-scroll-target="#aussichtspunkt-4-der-exerzitien-park"><span class="header-section-number">15.5</span> Aussichtspunkt 4: Der Exerzitien-Park</a></li>
+  <li><a href="#aussichtspunkt-5-in-der-bibliothek" id="toc-aussichtspunkt-5-in-der-bibliothek" class="nav-link" data-scroll-target="#aussichtspunkt-5-in-der-bibliothek"><span class="header-section-number">15.6</span> Aussichtspunkt 5: In der Bibliothek</a></li>
+  <li><a href="#krafttraining" id="toc-krafttraining" class="nav-link" data-scroll-target="#krafttraining"><span class="header-section-number">15.7</span> Krafttraining</a></li>
   <li>
-<a href="#ressourcen" id="toc-ressourcen" class="nav-link" data-scroll-target="#ressourcen"><span class="header-section-number">14.8</span> Ressourcen</a>
+<a href="#ressourcen" id="toc-ressourcen" class="nav-link" data-scroll-target="#ressourcen"><span class="header-section-number">15.8</span> Ressourcen</a>
   <ul class="collapse">
-<li><a href="#aufgaben" id="toc-aufgaben" class="nav-link" data-scroll-target="#aufgaben"><span class="header-section-number">14.8.1</span> Aufgaben</a></li>
-  <li><a href="#kaggle-fallstudien" id="toc-kaggle-fallstudien" class="nav-link" data-scroll-target="#kaggle-fallstudien"><span class="header-section-number">14.8.2</span> Kaggle-Fallstudien</a></li>
-  <li><a href="#blaupausen-template-via-usemodel" id="toc-blaupausen-template-via-usemodel" class="nav-link" data-scroll-target="#blaupausen-template-via-usemodel"><span class="header-section-number">14.8.3</span> Blaupausen (Template) via <code>usemodel</code></a></li>
-  <li><a href="#blaupause-code-schnipsel-f%C3%BCr-tidymodels" id="toc-blaupause-code-schnipsel-für-tidymodels" class="nav-link" data-scroll-target="#blaupause-code-schnipsel-f%C3%BCr-tidymodels"><span class="header-section-number">14.8.4</span> Blaupause: Code-Schnipsel für <code>tidymodels</code></a></li>
+<li><a href="#aufgaben" id="toc-aufgaben" class="nav-link" data-scroll-target="#aufgaben"><span class="header-section-number">15.8.1</span> Aufgaben</a></li>
+  <li><a href="#kaggle-fallstudien" id="toc-kaggle-fallstudien" class="nav-link" data-scroll-target="#kaggle-fallstudien"><span class="header-section-number">15.8.2</span> Kaggle-Fallstudien</a></li>
+  <li><a href="#rollenspiel-ace-your-case" id="toc-rollenspiel-ace-your-case" class="nav-link" data-scroll-target="#rollenspiel-ace-your-case"><span class="header-section-number">15.8.3</span> Rollenspiel: Ace your Case</a></li>
+  <li><a href="#linkedin-skill-assessments" id="toc-linkedin-skill-assessments" class="nav-link" data-scroll-target="#linkedin-skill-assessments"><span class="header-section-number">15.8.4</span> LinkedIn Skill Assessments</a></li>
+  <li><a href="#blaupausen-template-via-usemodel" id="toc-blaupausen-template-via-usemodel" class="nav-link" data-scroll-target="#blaupausen-template-via-usemodel"><span class="header-section-number">15.8.5</span> Blaupausen (Template) via <code>usemodel</code></a></li>
+  <li><a href="#blaupause-code-schnipsel-f%C3%BCr-tidymodels" id="toc-blaupause-code-schnipsel-für-tidymodels" class="nav-link" data-scroll-target="#blaupause-code-schnipsel-f%C3%BCr-tidymodels"><span class="header-section-number">15.8.6</span> Blaupause: Code-Schnipsel für <code>tidymodels</code></a></li>
   </ul>
 </li>
-  <li><a href="#vertiefung" id="toc-vertiefung" class="nav-link" data-scroll-target="#vertiefung"><span class="header-section-number">14.9</span> Vertiefung</a></li>
+  <li><a href="#vertiefung" id="toc-vertiefung" class="nav-link" data-scroll-target="#vertiefung"><span class="header-section-number">15.9</span> Vertiefung</a></li>
   </ul></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title">
-<span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Der rote Faden</span>
+<span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Der rote Faden</span>
 </h1>
 </div>
 
@@ -305,31 +313,31 @@ div.csl-indent {
   </div>
   
 
-</header><section id="lernsteuerung" class="level2" data-number="14.1"><h2 data-number="14.1" class="anchored" data-anchor-id="lernsteuerung">
-<span class="header-section-number">14.1</span> Lernsteuerung</h2>
-<section id="überblick" class="level3" data-number="14.1.1"><h3 data-number="14.1.1" class="anchored" data-anchor-id="überblick">
-<span class="header-section-number">14.1.1</span> Überblick</h3>
+</header><section id="lernsteuerung" class="level2" data-number="15.1"><h2 data-number="15.1" class="anchored" data-anchor-id="lernsteuerung">
+<span class="header-section-number">15.1</span> Lernsteuerung</h2>
+<section id="überblick" class="level3" data-number="15.1.1"><h3 data-number="15.1.1" class="anchored" data-anchor-id="überblick">
+<span class="header-section-number">15.1.1</span> Überblick</h3>
 <p>Mittlerweile haben wir einiges zum Thema Data Science bzw. maschinelles Lernen behandelt (und sie hoffentlich viel gelernt).</p>
 <p>Da ist es an der Zeit, einen Schritt zurück zu treten, um sich einen Überblick über den gegangenen Weg zu verschaffen, den berühmten “roten Faden” zu sehen, den zurückgelegten Weg nachzuzeichnen in den groben Linien, um einen (klareren) Überblick über das Terrain zu bekommen.</p>
 <p>In diesem Kapitel werden wir verschiedene “Aussichtspfade” suchen, um im Bild zu bleiben, die uns einen Überblick über das Gelände versprechen.</p>
-</section><section id="lernziele" class="level3" data-number="14.1.2"><h3 data-number="14.1.2" class="anchored" data-anchor-id="lernziele">
-<span class="header-section-number">14.1.2</span> Lernziele</h3>
+</section><section id="lernziele" class="level3" data-number="15.1.2"><h3 data-number="15.1.2" class="anchored" data-anchor-id="lernziele">
+<span class="header-section-number">15.1.2</span> Lernziele</h3>
 <ul>
 <li>Sie erarbeiten sich einen Überblick über den bisher gelernten Stoff bzw. verfeinern Ihren bestehenden Überblick</li>
-</ul></section><section id="literatur" class="level3" data-number="14.1.3"><h3 data-number="14.1.3" class="anchored" data-anchor-id="literatur">
-<span class="header-section-number">14.1.3</span> Literatur</h3>
+</ul></section><section id="literatur" class="level3" data-number="15.1.3"><h3 data-number="15.1.3" class="anchored" data-anchor-id="literatur">
+<span class="header-section-number">15.1.3</span> Literatur</h3>
 <ul>
 <li>Rhys im Überblick</li>
-</ul></section><section id="r-pakete-und-daten" class="level3" data-number="14.1.4"><h3 data-number="14.1.4" class="anchored" data-anchor-id="r-pakete-und-daten">
-<span class="header-section-number">14.1.4</span> R-Pakete und Daten</h3>
+</ul></section><section id="r-pakete-und-daten" class="level3" data-number="15.1.4"><h3 data-number="15.1.4" class="anchored" data-anchor-id="r-pakete-und-daten">
+<span class="header-section-number">15.1.4</span> R-Pakete und Daten</h3>
 <p>In diesem Kapitel werden folgende R-Pakete benötigt:</p>
 <div class="cell" data-hash="140-faden_cache/html/unnamed-chunk-1_443c286ed68ce33bfed5eb54308e7b8c">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jabiru/tictoc">tictoc</a></span><span class="op">)</span>  <span class="co"># Zeitmessung</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section></section><section id="aussichtspunkt-1-blick-vom-hohen-berg" class="level2" data-number="14.2"><h2 data-number="14.2" class="anchored" data-anchor-id="aussichtspunkt-1-blick-vom-hohen-berg">
-<span class="header-section-number">14.2</span> Aussichtspunkt 1: Blick vom hohen Berg</h2>
-<p>Und so zeigt sich ein “Flussbild”<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> (<a href="#fig-fluss">Abbildung&nbsp;<span>14.1</span></a>).</p>
+</section></section><section id="aussichtspunkt-1-blick-vom-hohen-berg" class="level2" data-number="15.2"><h2 data-number="15.2" class="anchored" data-anchor-id="aussichtspunkt-1-blick-vom-hohen-berg">
+<span class="header-section-number">15.2</span> Aussichtspunkt 1: Blick vom hohen Berg</h2>
+<p>Und so zeigt sich ein “Flussbild”<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> (<a href="#fig-fluss">Abbildung&nbsp;<span>15.1</span></a>).</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-fluss" class="quarto-figure quarto-figure-center anchored">
@@ -359,7 +367,7 @@ end
 
 </pre>
 </div>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;14.1: Ein Flussbild des maschinellen Lernens</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;15.1: Ein Flussbild des maschinellen Lernens</figcaption><p></p>
 </figure>
 </div>
 </div>
@@ -368,29 +376,29 @@ end
 <div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/PO-UrF5hGtY" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/PO-UrF5hGtY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
 <p><a href="https://youtu.be/PO-UrF5hGtY">Video-Geschichte</a></p>
-</section><section id="aussichtspunkt-2-blick-in-den-hof-der-handwerker" class="level2" data-number="14.3"><h2 data-number="14.3" class="anchored" data-anchor-id="aussichtspunkt-2-blick-in-den-hof-der-handwerker">
-<span class="header-section-number">14.3</span> Aussichtspunkt 2: Blick in den Hof der Handwerker</h2>
+</section><section id="aussichtspunkt-2-blick-in-den-hof-der-handwerker" class="level2" data-number="15.3"><h2 data-number="15.3" class="anchored" data-anchor-id="aussichtspunkt-2-blick-in-den-hof-der-handwerker">
+<span class="header-section-number">15.3</span> Aussichtspunkt 2: Blick in den Hof der Handwerker</h2>
 <p>Wenn man auf einem hohen Berg gestanden ist, hat man zwar einen guten Überblick über das Land bekommen, aber das konkrete Tun bleibt auf solchen Höhen verborgen.</p>
 <p>Möchte man wissen, wie das geschäftige Leben abläuft, muss man also den tätigen Menschen über die Schulter schauen. Werfen wir also einen Blick in den “Hof der Handwerker”, wo grundlegende Werkstücke gefertigt werden, und wir jeden Handgriff aus der Nähe mitverfolgen können.</p>
-<section id="ein-maximale-einfaches-werkstück-mit-tidymodels" class="level3" data-number="14.3.1"><h3 data-number="14.3.1" class="anchored" data-anchor-id="ein-maximale-einfaches-werkstück-mit-tidymodels">
-<span class="header-section-number">14.3.1</span> Ein maximale einfaches Werkstück mit Tidymodels</h3>
+<section id="ein-maximale-einfaches-werkstück-mit-tidymodels" class="level3" data-number="15.3.1"><h3 data-number="15.3.1" class="anchored" data-anchor-id="ein-maximale-einfaches-werkstück-mit-tidymodels">
+<span class="header-section-number">15.3.1</span> Ein maximale einfaches Werkstück mit Tidymodels</h3>
 <p>Weniger blumig ausgedrückt: Schauen wir uns ein maximal einfaches Beispiel an, wie man mit Tidymodels Vorhersagen tätigt. Genauer gesagt bearbeiten wir <a href="https://www.kaggle.com/code/ssauer/simple-linear-model-tidymodels">einen sehr einfachen Ansatz</a> für einen Kaggle-Prognosewettbewerb.</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/QHbIONGgMrA" frameborder="0" allowfullscreen="">
 </iframe>
-</section><section id="ein-immer-noch-recht-einfaches-werkstück-mit-tidymodels" class="level3" data-number="14.3.2"><h3 data-number="14.3.2" class="anchored" data-anchor-id="ein-immer-noch-recht-einfaches-werkstück-mit-tidymodels">
-<span class="header-section-number">14.3.2</span> Ein immer noch recht einfaches Werkstück mit Tidymodels</h3>
+</section><section id="ein-immer-noch-recht-einfaches-werkstück-mit-tidymodels" class="level3" data-number="15.3.2"><h3 data-number="15.3.2" class="anchored" data-anchor-id="ein-immer-noch-recht-einfaches-werkstück-mit-tidymodels">
+<span class="header-section-number">15.3.2</span> Ein immer noch recht einfaches Werkstück mit Tidymodels</h3>
 <p>Dieses Beispiel ist nur wenig aufwändiger als das vorherige.</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/QS94JTMpnHc" frameborder="0" allowfullscreen="">
 </iframe>
-</section></section><section id="aussichtspunkt-3-der-nebelberg-quiz" class="level2" data-number="14.4"><h2 data-number="14.4" class="anchored" data-anchor-id="aussichtspunkt-3-der-nebelberg-quiz">
-<span class="header-section-number">14.4</span> Aussichtspunkt 3: Der Nebelberg (Quiz)</h2>
+</section></section><section id="aussichtspunkt-3-der-nebelberg-quiz" class="level2" data-number="15.4"><h2 data-number="15.4" class="anchored" data-anchor-id="aussichtspunkt-3-der-nebelberg-quiz">
+<span class="header-section-number">15.4</span> Aussichtspunkt 3: Der Nebelberg (Quiz)</h2>
 <p>Da der “Nebelberg” zumeist in Wolken verhüllt ist, muss man, wenn man ihn ersteigt und ins Land hinunterschaut, erraten, welche Teile zu sehen sind. Sozusagen eine Art Landschafts-Quiz.</p>
 <p>Voilà, hier ist es, das <em>Quiz</em> zum maschinellen Lernen:</p>
 <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdw9ngLAcs7VMaF5P-nRSS8zCBjLdJyPYXsGTzy1ERmD6oPcQ/viewform?embedded=true" width="640" height="930" frameborder="0" marginheight="0" marginwidth="0">
 Loading…
 </iframe>
-</section><section id="aussichtspunkt-4-der-exerzitien-park" class="level2" data-number="14.5"><h2 data-number="14.5" class="anchored" data-anchor-id="aussichtspunkt-4-der-exerzitien-park">
-<span class="header-section-number">14.5</span> Aussichtspunkt 4: Der Exerzitien-Park</h2>
+</section><section id="aussichtspunkt-4-der-exerzitien-park" class="level2" data-number="15.5"><h2 data-number="15.5" class="anchored" data-anchor-id="aussichtspunkt-4-der-exerzitien-park">
+<span class="header-section-number">15.5</span> Aussichtspunkt 4: Der Exerzitien-Park</h2>
 <p>Wir stehen vor dem Eingang zu einem Park, in dem sich viele Menschen an merkwürdigen Übungen, Exerzitien, befleißigen. Vielleicht wollen Sie sich auch an einigen Übungen abhärten? Bitte schön, lassen Sie sich nicht von mir aufhalten.</p>
 <div class="cell" data-hash="140-faden_cache/html/yacsdas_3c64ce8807289377953ffe77e39d8dd2">
 <p>YACSDA: Yet Another Case Study on Data Analysis</p>
@@ -462,8 +470,8 @@ Loading…
 <li><p><a href="https://www.kaggle.com/code/benthecoder/tidymodels-in-r-using-measles-data/notebook">Einfache Fallstudie mit Tidymodels bei Kaggle</a></p></li>
 </ul>
 </div>
-</section><section id="aussichtspunkt-5-in-der-bibliothek" class="level2" data-number="14.6"><h2 data-number="14.6" class="anchored" data-anchor-id="aussichtspunkt-5-in-der-bibliothek">
-<span class="header-section-number">14.6</span> Aussichtspunkt 5: In der Bibliothek</h2>
+</section><section id="aussichtspunkt-5-in-der-bibliothek" class="level2" data-number="15.6"><h2 data-number="15.6" class="anchored" data-anchor-id="aussichtspunkt-5-in-der-bibliothek">
+<span class="header-section-number">15.6</span> Aussichtspunkt 5: In der Bibliothek</h2>
 <p>Einen Überblick über eine Landschaft gewinnt man nicht nur von ausgesetzten Wegpunkten aus, sondern auch, manchmal, aus Schriftstücken. Hier ist eine Auswahl an Literatur, die Grundlagen zu unserem Landstrich erläutert.</p>
 <ul>
 <li><span class="citation" data-cites="rhys">Rhys (<a href="references.html#ref-rhys" role="doc-biblioref">2020</a>)</span></li>
@@ -473,8 +481,8 @@ Loading…
 <ul>
 <li><span class="citation" data-cites="islr">James u.&nbsp;a. (<a href="references.html#ref-islr" role="doc-biblioref">2021</a>)</span></li>
 <li><span class="citation" data-cites="kuhn">Kuhn und Johnson (<a href="references.html#ref-kuhn" role="doc-biblioref">2013</a>)</span></li>
-</ul></section><section id="krafttraining" class="level2" data-number="14.7"><h2 data-number="14.7" class="anchored" data-anchor-id="krafttraining">
-<span class="header-section-number">14.7</span> Krafttraining</h2>
+</ul></section><section id="krafttraining" class="level2" data-number="15.7"><h2 data-number="15.7" class="anchored" data-anchor-id="krafttraining">
+<span class="header-section-number">15.7</span> Krafttraining</h2>
 <p>Um die Aussicht genießen zu können, muss man manchmal ausgesetzte Plätze in <del>schwindelerregenden</del> <del>einigermaßen steilen</del> als Hügel erkennbaren Höhen erreichen…</p>
 <p>Sportliche Leistungen erreicht nur, wer trainiert ist. Das ist im Land des Data Science nicht anders.</p>
 <p>Hier ist eine Liste von Übungen, die Ihre Datenkraft stählen soll:</p>
@@ -494,20 +502,32 @@ Loading…
 <li>
 <em>Youtube</em>: Zwar wettern Dozentis gerne über die mangelnde Verarbeitungstiefe beim Fern schauen. Außerdem sind Lehrvideos didaktisch echt asbachuralt. Aber okay, manchmal und in überschaubarer Dosis ist ein Lehrvideo eine nützliche Ergänzung zu den übrigen Maßnahmen.</li>
 </ol>
-<!-- ## Aufgaben und Vertiefung --></section><section id="ressourcen" class="level2" data-number="14.8"><h2 data-number="14.8" class="anchored" data-anchor-id="ressourcen">
-<span class="header-section-number">14.8</span> Ressourcen</h2>
-<section id="aufgaben" class="level3" data-number="14.8.1"><h3 data-number="14.8.1" class="anchored" data-anchor-id="aufgaben">
-<span class="header-section-number">14.8.1</span> Aufgaben</h3>
+<!-- ## Aufgaben und Vertiefung --></section><section id="ressourcen" class="level2" data-number="15.8"><h2 data-number="15.8" class="anchored" data-anchor-id="ressourcen">
+<span class="header-section-number">15.8</span> Ressourcen</h2>
+<section id="aufgaben" class="level3" data-number="15.8.1"><h3 data-number="15.8.1" class="anchored" data-anchor-id="aufgaben">
+<span class="header-section-number">15.8.1</span> Aufgaben</h3>
 <p>Im <a href="https://datenwerk.netlify.app/">Datenwerk</a> unter dem Tag <a href="https://datenwerk.netlify.app/#category=stat-learning">stat-learning</a> und <a href="https://datenwerk.netlify.app/#category=tidymodels">tidymodels</a> finden Sie einen Fundus an Aufgaben zur prädiktiven Modellierung.</p>
-</section><section id="kaggle-fallstudien" class="level3" data-number="14.8.2"><h3 data-number="14.8.2" class="anchored" data-anchor-id="kaggle-fallstudien">
-<span class="header-section-number">14.8.2</span> Kaggle-Fallstudien</h3>
-<p>In <a href="150-fallstudien.html#sec-yacsdas-tidymodels"><span>Kapitel&nbsp;15.4</span></a> finden Sie eine Fallstudien-Sammlung.</p>
+</section><section id="kaggle-fallstudien" class="level3" data-number="15.8.2"><h3 data-number="15.8.2" class="anchored" data-anchor-id="kaggle-fallstudien">
+<span class="header-section-number">15.8.2</span> Kaggle-Fallstudien</h3>
+<p>In <a href="150-fallstudien.html#sec-yacsdas-tidymodels"><span>Kapitel&nbsp;16.4</span></a> finden Sie eine Fallstudien-Sammlung.</p>
 <ul>
 <li><a href="https://www.kaggle.com/code/ssauer/simple-rf-tuned">Einfache Random-Forest-Modellierung bei Kaggle (TMDB)</a></li>
 <li><a href="https://www.kaggle.com/code/ssauer/tmdb-xgboost-tidymodels">Einfache Workflow-Set-Modellierung bei Kaggle (TMDB)</a></li>
 <li>Bearbeiten Sie so viele Fallstudien der Fallstudiensammlung wie nötig, um den Stoff flüssig zu beherrschen</li>
-</ul></section><section id="blaupausen-template-via-usemodel" class="level3" data-number="14.8.3"><h3 data-number="14.8.3" class="anchored" data-anchor-id="blaupausen-template-via-usemodel">
-<span class="header-section-number">14.8.3</span> Blaupausen (Template) via <code>usemodel</code>
+</ul></section><section id="rollenspiel-ace-your-case" class="level3" data-number="15.8.3"><h3 data-number="15.8.3" class="anchored" data-anchor-id="rollenspiel-ace-your-case">
+<span class="header-section-number">15.8.3</span> Rollenspiel: Ace your Case</h3>
+<p>Die Lernziele dieses Moduls sind kompetenzorientiert; Theorie spielt nur die zweite Geige. Aber im praktischem Leben genügt es (oft) nicht, bestimmte Kompetenzen zu besitzen. Man muss auch Menschen überzeugen, dass man diese Kompetenzen besitzt. Daher sollten Sie sich darin üben, andere von Ihrer Kompetenz zu überzeugen.</p>
+<p>Dazu simulieren wir im Rahmen eines Rollenspiels eine Bewerbungsinterview, in dem Sie Fachfragen oder eine Fallstudie (“Case”) durchsprechen und hier brillieren wollen (“Ace your Case”).</p>
+<ul>
+<li>Studenti A 🧑‍🎓 - Bewerber</li>
+<li>Studenti B 👩‍🎓 - Interviewer</li>
+</ul></section><section id="linkedin-skill-assessments" class="level3" data-number="15.8.4"><h3 data-number="15.8.4" class="anchored" data-anchor-id="linkedin-skill-assessments">
+<span class="header-section-number">15.8.4</span> LinkedIn Skill Assessments</h3>
+<p>Die <a href="https://www.linkedin.com/help/linkedin/answer/a507734?trk=hc-articlePage-sidebar">LinkedIn Skill Assessments</a> sind eine Sammlung von Quizzen, die LinkedIn bereitstellt. Man kann diese Quizze antreten, und wenn man besteht, fügt LinkedIn ein entsprechendes Badge zum persönlichen Profil hinzu.</p>
+<p>Für Data Science sind z.B. die Quizze für <a href="https://www.linkedin.com/help/linkedin/answer/a514076">Machine Learning</a> und Programmiersprachen wie <a href="https://www.linkedin.com/help/linkedin/answer/a510481">R</a> interessant.</p>
+<p>Praktischerweise kann man sich anhand relevanter Fragen (und deren Lösungen) üben; <a href="https://github.com/Ebazhanov/linkedin-skill-assessments-quizzes/blob/main/machine-learning/machine-learning-quiz.md">hier</a> finden sich Fragen und Antworten zum Data Science Quiz. Für R findet sich <a href="https://github.com/Ebazhanov/linkedin-skill-assessments-quizzes/blob/main/r/r-quiz.md">in diesem R</a> eine Auswahl von Quizfragen sowie deren Lösungen.</p>
+</section><section id="blaupausen-template-via-usemodel" class="level3" data-number="15.8.5"><h3 data-number="15.8.5" class="anchored" data-anchor-id="blaupausen-template-via-usemodel">
+<span class="header-section-number">15.8.5</span> Blaupausen (Template) via <code>usemodel</code>
 </h3>
 <p>Eine Möglichkeit, sich die Syntax für eine typische Tidymodels-Analyse ausgeben zu lassen, bietet das Paket <a href="https://usemodels.tidymodels.org/">usemodels</a>.</p>
 <p>Lassen wir uns einen Code-Schnipsel ausgeben für ein Random-Forest-Modell mit dem Engine <code>ranger</code>:</p>
@@ -531,8 +551,8 @@ Loading…
 <span><span class="co">## ranger_tune &lt;-</span></span>
 <span><span class="co">##   tune_grid(ranger_workflow, resamples = stop("add your rsample object"), grid = stop("add number of candidate points"))</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="blaupause-code-schnipsel-für-tidymodels" class="level3" data-number="14.8.4"><h3 data-number="14.8.4" class="anchored" data-anchor-id="blaupause-code-schnipsel-für-tidymodels">
-<span class="header-section-number">14.8.4</span> Blaupause: Code-Schnipsel für <code>tidymodels</code>
+</section><section id="blaupause-code-schnipsel-für-tidymodels" class="level3" data-number="15.8.6"><h3 data-number="15.8.6" class="anchored" data-anchor-id="blaupause-code-schnipsel-für-tidymodels">
+<span class="header-section-number">15.8.6</span> Blaupause: Code-Schnipsel für <code>tidymodels</code>
 </h3>
 <div class="cell" data-hash="140-faden_cache/html/unnamed-chunk-4_e061213bc20cfa59451152e383d17b3a">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup:</span></span>
@@ -602,8 +622,8 @@ Loading…
 </div>
 <p>Tipp: Copy-Paste me 😄</p>
 <p>Auch <a href="https://datenwerk.netlify.app/posts/tidymodels-vorlage/tidymodels-vorlage.html">hier auf dem Datenwerk</a> finden Sie ähnliche Vorlagen.</p>
-</section></section><section id="vertiefung" class="level2" data-number="14.9"><h2 data-number="14.9" class="anchored" data-anchor-id="vertiefung">
-<span class="header-section-number">14.9</span> Vertiefung</h2>
+</section></section><section id="vertiefung" class="level2" data-number="15.9"><h2 data-number="15.9" class="anchored" data-anchor-id="vertiefung">
+<span class="header-section-number">15.9</span> Vertiefung</h2>
 <ul>
 <li><a href="https://deisenroth.cc/publication/deisenroth-2020/">Mathematische Grundlagen können Sie z.B. hier vertiefen</a></li>
 <li><a href="https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques">Gute Fallstudie bei Kaggle für Regressionsprobleme: House Prices</a></li>
@@ -978,12 +998,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./130-kaggle.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Kaggle</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Kaggle</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./150-fallstudien.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Fallstudien</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Fallstudien</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

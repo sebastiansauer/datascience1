@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.3.247">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Grundlagen der Prognosemodellierung 🔮🧰 - 15&nbsp; Fallstudien</title>
+<title>Grundlagen der Prognosemodellierung 🔮🧰 - 16&nbsp; Fallstudien</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -66,7 +66,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./150-fallstudien.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Fallstudien</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./150-fallstudien.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Fallstudien</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
@@ -164,26 +164,32 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./125-feature-engineeering.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Feature Engineering</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./130-kaggle.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Kaggle</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Kaggle</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./140-faden.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Der rote Faden</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Der rote Faden</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./150-fallstudien.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Fallstudien</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Fallstudien</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./160-e.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Staunen mit e</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Staunen mit e</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -201,22 +207,22 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
 <li>
-<a href="#lernsteuerung" id="toc-lernsteuerung" class="nav-link active" data-scroll-target="#lernsteuerung"><span class="header-section-number">15.1</span> Lernsteuerung</a>
+<a href="#lernsteuerung" id="toc-lernsteuerung" class="nav-link active" data-scroll-target="#lernsteuerung"><span class="header-section-number">16.1</span> Lernsteuerung</a>
   <ul class="collapse">
-<li><a href="#lernziele" id="toc-lernziele" class="nav-link" data-scroll-target="#lernziele"><span class="header-section-number">15.1.1</span> Lernziele</a></li>
-  <li><a href="#literatur" id="toc-literatur" class="nav-link" data-scroll-target="#literatur"><span class="header-section-number">15.1.2</span> Literatur</a></li>
+<li><a href="#lernziele" id="toc-lernziele" class="nav-link" data-scroll-target="#lernziele"><span class="header-section-number">16.1.1</span> Lernziele</a></li>
+  <li><a href="#literatur" id="toc-literatur" class="nav-link" data-scroll-target="#literatur"><span class="header-section-number">16.1.2</span> Literatur</a></li>
   </ul>
 </li>
-  <li><a href="#fallstudien-zur-explorativen-datenanalyse" id="toc-fallstudien-zur-explorativen-datenanalyse" class="nav-link" data-scroll-target="#fallstudien-zur-explorativen-datenanalyse"><span class="header-section-number">15.2</span> Fallstudien zur explorativen Datenanalyse</a></li>
-  <li><a href="#fallstudien-zu-linearen-modellen" id="toc-fallstudien-zu-linearen-modellen" class="nav-link" data-scroll-target="#fallstudien-zu-linearen-modellen"><span class="header-section-number">15.3</span> Fallstudien zu linearen Modellen</a></li>
-  <li><a href="#sec-yacsdas-tidymodels" id="toc-sec-yacsdas-tidymodels" class="nav-link" data-scroll-target="#sec-yacsdas-tidymodels"><span class="header-section-number">15.4</span> Fallstudien zum maschinellen Lernen mit Tidymodels</a></li>
-  <li><a href="#vertiefung" id="toc-vertiefung" class="nav-link" data-scroll-target="#vertiefung"><span class="header-section-number">15.5</span> Vertiefung</a></li>
-  <li><a href="#aufgaben" id="toc-aufgaben" class="nav-link" data-scroll-target="#aufgaben"><span class="header-section-number">15.6</span> Aufgaben</a></li>
+  <li><a href="#fallstudien-zur-explorativen-datenanalyse" id="toc-fallstudien-zur-explorativen-datenanalyse" class="nav-link" data-scroll-target="#fallstudien-zur-explorativen-datenanalyse"><span class="header-section-number">16.2</span> Fallstudien zur explorativen Datenanalyse</a></li>
+  <li><a href="#fallstudien-zu-linearen-modellen" id="toc-fallstudien-zu-linearen-modellen" class="nav-link" data-scroll-target="#fallstudien-zu-linearen-modellen"><span class="header-section-number">16.3</span> Fallstudien zu linearen Modellen</a></li>
+  <li><a href="#sec-yacsdas-tidymodels" id="toc-sec-yacsdas-tidymodels" class="nav-link" data-scroll-target="#sec-yacsdas-tidymodels"><span class="header-section-number">16.4</span> Fallstudien zum maschinellen Lernen mit Tidymodels</a></li>
+  <li><a href="#vertiefung" id="toc-vertiefung" class="nav-link" data-scroll-target="#vertiefung"><span class="header-section-number">16.5</span> Vertiefung</a></li>
+  <li><a href="#aufgaben" id="toc-aufgaben" class="nav-link" data-scroll-target="#aufgaben"><span class="header-section-number">16.6</span> Aufgaben</a></li>
   </ul></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title"><span id="sec-fallstudien" class="quarto-section-identifier"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Fallstudien</span></span></h1>
+<h1 class="title"><span id="sec-fallstudien" class="quarto-section-identifier"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Fallstudien</span></span></h1>
 </div>
 
 
@@ -229,18 +235,18 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
-</header><section id="lernsteuerung" class="level2" data-number="15.1"><h2 data-number="15.1" class="anchored" data-anchor-id="lernsteuerung">
-<span class="header-section-number">15.1</span> Lernsteuerung</h2>
-<section id="lernziele" class="level3" data-number="15.1.1"><h3 data-number="15.1.1" class="anchored" data-anchor-id="lernziele">
-<span class="header-section-number">15.1.1</span> Lernziele</h3>
+</header><section id="lernsteuerung" class="level2" data-number="16.1"><h2 data-number="16.1" class="anchored" data-anchor-id="lernsteuerung">
+<span class="header-section-number">16.1</span> Lernsteuerung</h2>
+<section id="lernziele" class="level3" data-number="16.1.1"><h3 data-number="16.1.1" class="anchored" data-anchor-id="lernziele">
+<span class="header-section-number">16.1.1</span> Lernziele</h3>
 <ul>
 <li>Sie können die Techniken des Maschinellen Lernens mit dem Tidymodels-Ansatz flüssig anbringen.</li>
-</ul></section><section id="literatur" class="level3" data-number="15.1.2"><h3 data-number="15.1.2" class="anchored" data-anchor-id="literatur">
-<span class="header-section-number">15.1.2</span> Literatur</h3>
+</ul></section><section id="literatur" class="level3" data-number="16.1.2"><h3 data-number="16.1.2" class="anchored" data-anchor-id="literatur">
+<span class="header-section-number">16.1.2</span> Literatur</h3>
 <ul>
 <li>Rhys, Kap. 12</li>
-</ul></section></section><section id="fallstudien-zur-explorativen-datenanalyse" class="level2" data-number="15.2"><h2 data-number="15.2" class="anchored" data-anchor-id="fallstudien-zur-explorativen-datenanalyse">
-<span class="header-section-number">15.2</span> Fallstudien zur explorativen Datenanalyse</h2>
+</ul></section></section><section id="fallstudien-zur-explorativen-datenanalyse" class="level2" data-number="16.2"><h2 data-number="16.2" class="anchored" data-anchor-id="fallstudien-zur-explorativen-datenanalyse">
+<span class="header-section-number">16.2</span> Fallstudien zur explorativen Datenanalyse</h2>
 <div class="cell" data-hash="150-fallstudien_cache/html/child1_aaee497cb1587f9bbfea278a63a7c34e">
 <p><strong>FALLSTUDIEN - NUR EXPLORATIVE DATENANALYSE</strong></p>
 <ul>
@@ -265,8 +271,8 @@ ul.task-list li input[type="checkbox"] {
 <li><p><a href="https://fallstudien.netlify.app/">ifes@FOM Fallstudienseite</a></p></li>
 </ul>
 </div>
-</section><section id="fallstudien-zu-linearen-modellen" class="level2" data-number="15.3"><h2 data-number="15.3" class="anchored" data-anchor-id="fallstudien-zu-linearen-modellen">
-<span class="header-section-number">15.3</span> Fallstudien zu linearen Modellen</h2>
+</section><section id="fallstudien-zu-linearen-modellen" class="level2" data-number="16.3"><h2 data-number="16.3" class="anchored" data-anchor-id="fallstudien-zu-linearen-modellen">
+<span class="header-section-number">16.3</span> Fallstudien zu linearen Modellen</h2>
 <div class="cell" data-hash="150-fallstudien_cache/html/child2_f816e8caa0b7ff27fabf765311f3924b">
 <p><strong>FALLSTUDIEN - NUR LINEARE MODELLE</strong></p>
 <ul>
@@ -285,8 +291,8 @@ ul.task-list li input[type="checkbox"] {
 <li><p><a href="https://data-se.netlify.app/2021/05/25/modellierung-diamantenpreis-2/">Modellierung Diamantenpreis 2</a></p></li>
 </ul>
 </div>
-</section><section id="sec-yacsdas-tidymodels" class="level2" data-number="15.4"><h2 data-number="15.4" class="anchored" data-anchor-id="sec-yacsdas-tidymodels">
-<span class="header-section-number">15.4</span> Fallstudien zum maschinellen Lernen mit Tidymodels</h2>
+</section><section id="sec-yacsdas-tidymodels" class="level2" data-number="16.4"><h2 data-number="16.4" class="anchored" data-anchor-id="sec-yacsdas-tidymodels">
+<span class="header-section-number">16.4</span> Fallstudien zum maschinellen Lernen mit Tidymodels</h2>
 <div class="cell" data-hash="150-fallstudien_cache/html/child3_25b60e1ef653961f267b8adb3d050e26">
 <p><strong>FALLSTUDIEN - MASCHINELLES LERNEN MIT TIDYMODELS</strong></p>
 <ul>
@@ -331,14 +337,14 @@ ul.task-list li input[type="checkbox"] {
 <li><p><a href="https://www.r-bloggers.com/2021/02/using-tidymodels-to-predict-health-insurance-cost/">Using tidymodels to Predict Health Insurance Cost: Resmapling</a></p></li>
 </ul>
 </div>
-</section><section id="vertiefung" class="level2" data-number="15.5"><h2 data-number="15.5" class="anchored" data-anchor-id="vertiefung">
-<span class="header-section-number">15.5</span> Vertiefung</h2>
+</section><section id="vertiefung" class="level2" data-number="16.5"><h2 data-number="16.5" class="anchored" data-anchor-id="vertiefung">
+<span class="header-section-number">16.5</span> Vertiefung</h2>
 <ul>
 <li><p><a href="https://books.ropensci.org/targets/">Projektmanagement mit Targets</a></p></li>
 <li><p><a href="https://medium.com/swlh/how-to-structure-a-python-based-data-science-project-a-short-tutorial-for-beginners-7e00bff14f56">Wie man eine Data-Science-Projekt strukturiert</a></p></li>
 <li><p><a href="https://albert-rapp.de/post/2022-01-12-janitor-showcase/">Hausmeisterarbeit mit {{janitor}}</a></p></li>
-</ul></section><section id="aufgaben" class="level2" data-number="15.6"><h2 data-number="15.6" class="anchored" data-anchor-id="aufgaben">
-<span class="header-section-number">15.6</span> Aufgaben</h2>
+</ul></section><section id="aufgaben" class="level2" data-number="16.6"><h2 data-number="16.6" class="anchored" data-anchor-id="aufgaben">
+<span class="header-section-number">16.6</span> Aufgaben</h2>
 <ul>
 <li><a href="https://sebastiansauer.github.io/Lehre/Material/yacsdas.html">Bearbeiten Sie eine Auswahl von Fallstudien Ihrer Wahl aus dieser Sammlung</a></li>
 </ul>
@@ -693,12 +699,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./140-faden.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Der rote Faden</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Der rote Faden</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./160-e.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Staunen mit e</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Staunen mit e</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

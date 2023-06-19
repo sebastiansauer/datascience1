@@ -222,6 +222,47 @@ In @sec-yacsdas-tidymodels finden Sie eine Fallstudien-Sammlung.
 
 
 
+### Rollenspiel: Ace your Case
+
+
+Die Lernziele dieses Moduls sind kompetenzorientiert; Theorie spielt nur die zweite Geige.
+Aber im praktischem Leben genügt es (oft) nicht, bestimmte Kompetenzen zu besitzen.
+Man muss auch Menschen überzeugen, dass man diese Kompetenzen besitzt.
+Daher sollten Sie sich darin üben, andere von Ihrer Kompetenz zu überzeugen.
+
+Dazu simulieren wir im Rahmen eines Rollenspiels eine Bewerbungsinterview,
+in dem Sie Fachfragen oder eine Fallstudie ("Case") durchsprechen und hier brillieren wollen ("Ace your Case").
+
+- Studenti A 🧑‍🎓 - Bewerber
+- Studenti B 👩‍🎓  - Interviewer
+
+
+
+
+
+### LinkedIn Skill Assessments
+
+Die [LinkedIn Skill Assessments](https://www.linkedin.com/help/linkedin/answer/a507734?trk=hc-articlePage-sidebar) sind eine Sammlung von Quizzen, die LinkedIn bereitstellt.
+Man kann diese Quizze antreten, und wenn man besteht, fügt LinkedIn ein entsprechendes Badge zum persönlichen Profil hinzu.
+
+Für Data Science sind z.B. die Quizze für [Machine Learning](https://www.linkedin.com/help/linkedin/answer/a514076) und Programmiersprachen wie  [R](https://www.linkedin.com/help/linkedin/answer/a510481) interessant.
+
+Praktischerweise kann man sich anhand relevanter Fragen (und deren Lösungen) üben;
+[hier](https://github.com/Ebazhanov/linkedin-skill-assessments-quizzes/blob/main/machine-learning/machine-learning-quiz.md) finden sich Fragen und Antworten zum Data Science Quiz.
+Für R findet sich [in diesem R](https://github.com/Ebazhanov/linkedin-skill-assessments-quizzes/blob/main/r/r-quiz.md) eine Auswahl von Quizfragen sowie deren Lösungen.
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### Blaupausen (Template) via `usemodel`
 
 Eine Möglichkeit, sich die Syntax für eine typische Tidymodels-Analyse ausgeben zu lassen, bietet das Paket `{usemodels}`.
@@ -315,22 +356,6 @@ Tipp: Copy-Paste me 😄
 
 
 Auch [hier auf dem Datenwerk](https://datenwerk.netlify.app/posts/tidymodels-vorlage/tidymodels-vorlage.html) finden Sie ähnliche Vorlagen.
-
-
-
-## Rollenspiel: Ace your Case
-
-
-Die Lernziele dieses Moduls sind kompetenzorientiert; Theorie spielt nur die zweite Geige.
-Aber im praktischem Leben genügt es (oft) nicht, bestimmte Kompetenzen zu besitzen.
-Man muss auch Menschen überzeugen, dass man diese Kompetenzen besitzt.
-Daher sollten Sie sich darin üben, andere von Ihrer Kompetenz zu überzeugen.
-
-Dazu simulieren wir im Rahmen eines Rollenspiels eine Bewerbungsinterview,
-in dem Sie Fachfragen oder eine Fallstudie ("Case") durchsprechen und hier brillieren wollen ("Ace your Case").
-
-- Studenti A 🧑‍🎓 - Bewerber
-- Studenti B 👩‍🎓  - Interviewer
 
 
 

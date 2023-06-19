@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.3.247">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Grundlagen der Prognosemodellierung 🔮🧰 - 16&nbsp; Staunen mit e</title>
+<title>Grundlagen der Prognosemodellierung 🔮🧰 - 17&nbsp; Staunen mit e</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -100,7 +100,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./160-e.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Staunen mit e</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./160-e.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Staunen mit e</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
@@ -198,26 +198,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./125-feature-engineeering.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Feature Engineering</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./130-kaggle.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Kaggle</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Kaggle</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./140-faden.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Der rote Faden</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Der rote Faden</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./150-fallstudien.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Fallstudien</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Fallstudien</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./160-e.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Staunen mit e</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Staunen mit e</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -235,29 +241,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
 <li>
-<a href="#lernsteuerung" id="toc-lernsteuerung" class="nav-link active" data-scroll-target="#lernsteuerung"><span class="header-section-number">16.1</span> Lernsteuerung</a>
+<a href="#lernsteuerung" id="toc-lernsteuerung" class="nav-link active" data-scroll-target="#lernsteuerung"><span class="header-section-number">17.1</span> Lernsteuerung</a>
   <ul class="collapse">
-<li><a href="#lernziele" id="toc-lernziele" class="nav-link" data-scroll-target="#lernziele"><span class="header-section-number">16.1.1</span> Lernziele</a></li>
-  <li><a href="#literatur" id="toc-literatur" class="nav-link" data-scroll-target="#literatur"><span class="header-section-number">16.1.2</span> Literatur</a></li>
+<li><a href="#lernziele" id="toc-lernziele" class="nav-link" data-scroll-target="#lernziele"><span class="header-section-number">17.1.1</span> Lernziele</a></li>
+  <li><a href="#literatur" id="toc-literatur" class="nav-link" data-scroll-target="#literatur"><span class="header-section-number">17.1.2</span> Literatur</a></li>
   </ul>
 </li>
-  <li><a href="#vorbereitung" id="toc-vorbereitung" class="nav-link" data-scroll-target="#vorbereitung"><span class="header-section-number">16.2</span> Vorbereitung</a></li>
-  <li><a href="#staunen" id="toc-staunen" class="nav-link" data-scroll-target="#staunen"><span class="header-section-number">16.3</span> Staunen</a></li>
-  <li><a href="#exponenzielles-wachstum" id="toc-exponenzielles-wachstum" class="nav-link" data-scroll-target="#exponenzielles-wachstum"><span class="header-section-number">16.4</span> Exponenzielles Wachstum</a></li>
-  <li><a href="#sofortiges-wachstum" id="toc-sofortiges-wachstum" class="nav-link" data-scroll-target="#sofortiges-wachstum"><span class="header-section-number">16.5</span> Sofortiges Wachstum</a></li>
-  <li><a href="#andere-wachstumsraten" id="toc-andere-wachstumsraten" class="nav-link" data-scroll-target="#andere-wachstumsraten"><span class="header-section-number">16.6</span> Andere Wachstumsraten</a></li>
-  <li><a href="#wachstum-mit-basis-e" id="toc-wachstum-mit-basis-e" class="nav-link" data-scroll-target="#wachstum-mit-basis-e"><span class="header-section-number">16.7</span> Wachstum mit Basis e</a></li>
-  <li><a href="#logarithmus" id="toc-logarithmus" class="nav-link" data-scroll-target="#logarithmus"><span class="header-section-number">16.8</span> Logarithmus</a></li>
-  <li><a href="#regel-der-72" id="toc-regel-der-72" class="nav-link" data-scroll-target="#regel-der-72"><span class="header-section-number">16.9</span> Regel der 72</a></li>
-  <li><a href="#fazit" id="toc-fazit" class="nav-link" data-scroll-target="#fazit"><span class="header-section-number">16.10</span> Fazit</a></li>
-  <li><a href="#vertiefung" id="toc-vertiefung" class="nav-link" data-scroll-target="#vertiefung"><span class="header-section-number">16.11</span> Vertiefung</a></li>
-  <li><a href="#aufgaben" id="toc-aufgaben" class="nav-link" data-scroll-target="#aufgaben"><span class="header-section-number">16.12</span> Aufgaben</a></li>
+  <li><a href="#vorbereitung" id="toc-vorbereitung" class="nav-link" data-scroll-target="#vorbereitung"><span class="header-section-number">17.2</span> Vorbereitung</a></li>
+  <li><a href="#staunen" id="toc-staunen" class="nav-link" data-scroll-target="#staunen"><span class="header-section-number">17.3</span> Staunen</a></li>
+  <li><a href="#exponenzielles-wachstum" id="toc-exponenzielles-wachstum" class="nav-link" data-scroll-target="#exponenzielles-wachstum"><span class="header-section-number">17.4</span> Exponenzielles Wachstum</a></li>
+  <li><a href="#sofortiges-wachstum" id="toc-sofortiges-wachstum" class="nav-link" data-scroll-target="#sofortiges-wachstum"><span class="header-section-number">17.5</span> Sofortiges Wachstum</a></li>
+  <li><a href="#andere-wachstumsraten" id="toc-andere-wachstumsraten" class="nav-link" data-scroll-target="#andere-wachstumsraten"><span class="header-section-number">17.6</span> Andere Wachstumsraten</a></li>
+  <li><a href="#wachstum-mit-basis-e" id="toc-wachstum-mit-basis-e" class="nav-link" data-scroll-target="#wachstum-mit-basis-e"><span class="header-section-number">17.7</span> Wachstum mit Basis e</a></li>
+  <li><a href="#logarithmus" id="toc-logarithmus" class="nav-link" data-scroll-target="#logarithmus"><span class="header-section-number">17.8</span> Logarithmus</a></li>
+  <li><a href="#regel-der-72" id="toc-regel-der-72" class="nav-link" data-scroll-target="#regel-der-72"><span class="header-section-number">17.9</span> Regel der 72</a></li>
+  <li><a href="#fazit" id="toc-fazit" class="nav-link" data-scroll-target="#fazit"><span class="header-section-number">17.10</span> Fazit</a></li>
+  <li><a href="#vertiefung" id="toc-vertiefung" class="nav-link" data-scroll-target="#vertiefung"><span class="header-section-number">17.11</span> Vertiefung</a></li>
+  <li><a href="#aufgaben" id="toc-aufgaben" class="nav-link" data-scroll-target="#aufgaben"><span class="header-section-number">17.12</span> Aufgaben</a></li>
   </ul></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title">
-<span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Staunen mit e</span>
+<span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Staunen mit e</span>
 </h1>
 </div>
 
@@ -271,31 +277,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
-</header><section id="lernsteuerung" class="level2" data-number="16.1"><h2 data-number="16.1" class="anchored" data-anchor-id="lernsteuerung">
-<span class="header-section-number">16.1</span> Lernsteuerung</h2>
-<section id="lernziele" class="level3" data-number="16.1.1"><h3 data-number="16.1.1" class="anchored" data-anchor-id="lernziele">
-<span class="header-section-number">16.1.1</span> Lernziele</h3>
+</header><section id="lernsteuerung" class="level2" data-number="17.1"><h2 data-number="17.1" class="anchored" data-anchor-id="lernsteuerung">
+<span class="header-section-number">17.1</span> Lernsteuerung</h2>
+<section id="lernziele" class="level3" data-number="17.1.1"><h3 data-number="17.1.1" class="anchored" data-anchor-id="lernziele">
+<span class="header-section-number">17.1.1</span> Lernziele</h3>
 <ul>
 <li>Sie wissen um die Bedeutung von e</li>
 <li>Sie können die Zahl e herleiten</li>
-</ul></section><section id="literatur" class="level3" data-number="16.1.2"><h3 data-number="16.1.2" class="anchored" data-anchor-id="literatur">
-<span class="header-section-number">16.1.2</span> Literatur</h3>
+</ul></section><section id="literatur" class="level3" data-number="17.1.2"><h3 data-number="17.1.2" class="anchored" data-anchor-id="literatur">
+<span class="header-section-number">17.1.2</span> Literatur</h3>
 <ul>
 <li><a href="https://kenbenoit.net/assets/courses/ME104/logmodels2.pdf">Ken Benoit: Lineare Regression mit logarithmischen Transformationen</a></li>
-</ul></section></section><section id="vorbereitung" class="level2" data-number="16.2"><h2 data-number="16.2" class="anchored" data-anchor-id="vorbereitung">
-<span class="header-section-number">16.2</span> Vorbereitung</h2>
+</ul></section></section><section id="vorbereitung" class="level2" data-number="17.2"><h2 data-number="17.2" class="anchored" data-anchor-id="vorbereitung">
+<span class="header-section-number">17.2</span> Vorbereitung</h2>
 <p>In diesem Kapitel werden folgende R-Pakete benötigt:</p>
 <div class="cell" data-hash="160-e_cache/html/unnamed-chunk-1_96f551ce315cf7dd6600dfb81e37c0b9">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="staunen" class="level2" data-number="16.3"><h2 data-number="16.3" class="anchored" data-anchor-id="staunen">
-<span class="header-section-number">16.3</span> Staunen</h2>
+</section><section id="staunen" class="level2" data-number="17.3"><h2 data-number="17.3" class="anchored" data-anchor-id="staunen">
+<span class="header-section-number">17.3</span> Staunen</h2>
 <p>Staunen ist der Ursprung der Philosophie und damit des Denkens und damit vielleicht der Wissenschaft, wie es vielleicht recht treffend in <a href="https://www.savagechickens.com/2014/03/pig-mysteries.html">diesem Cartoon von Doug Savage, 2014</a> dargestellt ist.</p>
 <p>Staunen rührt her vom Moment der Erkennens, dem Auftun von Verständnistiefe.</p>
 <p>Und Tiefe des Verständnis findet sich vielleicht <a href="https://xkcd.com/435/">am deutlichsten in der Mathematik, meint XKCD</a>.</p>
-</section><section id="exponenzielles-wachstum" class="level2" data-number="16.4"><h2 data-number="16.4" class="anchored" data-anchor-id="exponenzielles-wachstum">
-<span class="header-section-number">16.4</span> Exponenzielles Wachstum</h2>
+</section><section id="exponenzielles-wachstum" class="level2" data-number="17.4"><h2 data-number="17.4" class="anchored" data-anchor-id="exponenzielles-wachstum">
+<span class="header-section-number">17.4</span> Exponenzielles Wachstum</h2>
 <p><em>e</em> wie exponenzielles Wachstum: Wachstum mit konstantem Faktor.</p>
 <p>Verdoppeln ist eine wohl bekannte Art des exponenziellen Wachsens:</p>
 <ul>
@@ -303,7 +309,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Das Kapitel einer Anlage verdoppelt sich während des Zeitraums <span class="math inline">\(z\)</span>.</li>
 <li>Eine Population verdoppelt sich (während eines Zeitraums <span class="math inline">\(z\)</span>).</li>
 </ul>
-<p>Visualisieren wir uns einen exponenziellen Prozess, s. <a href="#fig-expo">Abbildung&nbsp;<span>16.1</span></a>.</p>
+<p>Visualisieren wir uns einen exponenziellen Prozess, s. <a href="#fig-expo">Abbildung&nbsp;<span>17.1</span></a>.</p>
 <div class="cell" data-hash="160-e_cache/html/fig-expo_760bb0524c860b34341f360940574c4c">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">d1</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>z <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,</span>
@@ -317,7 +323,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div id="fig-expo" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="160-e_files/figure-html/fig-expo-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;16.1: Ein exponenzieller Wachstumsprozess</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;17.1: Ein exponenzieller Wachstumsprozess</figcaption><p></p>
 </figure>
 </div>
 </div>
@@ -330,7 +336,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span class="math inline">\(2^x = (1+ 100\%)^x\)</span>,</p>
 <p>wobei <span class="math inline">\(x\)</span> die Anzahl der betrachteten Zeitperioden meint.</p>
 <p>Wir können auf der Y-Achse auch die Anzahl der Verdopplungen auftragen, denn wir wissen ja, dass pro Zeitperiode eine Verdopplung dazu kommt, nach zwei Zeitperioden also zwei Verdopplungen, nach drei Zeitperioden drei Verdopplungen, nach vier Zeitperioden vier Verdopplungen …</p>
-<p>Nur sieht das Diagramm dann dröge aus, s. <a href="#fig-expo2">Abbildung&nbsp;<span>16.2</span></a>. Diese Darstellung (Anzahl der Verdopplungsphasen) nennt man auch <em>logarithmische Darstellung</em>.</p>
+<p>Nur sieht das Diagramm dann dröge aus, s. <a href="#fig-expo2">Abbildung&nbsp;<span>17.2</span></a>. Diese Darstellung (Anzahl der Verdopplungsphasen) nennt man auch <em>logarithmische Darstellung</em>.</p>
 <div class="cell" data-hash="160-e_cache/html/fig-expo2_84b9abd159620af4e51fc53c1f40d26f">
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">d1a</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>z <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,</span>
@@ -344,15 +350,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div id="fig-expo2" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="160-e_files/figure-html/fig-expo2-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;16.2: Logarithmische Darstellung eines Wachstumsprozesses</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;17.2: Logarithmische Darstellung eines Wachstumsprozesses</figcaption><p></p>
 </figure>
 </div>
 </div>
 </div>
-</section><section id="sofortiges-wachstum" class="level2" data-number="16.5"><h2 data-number="16.5" class="anchored" data-anchor-id="sofortiges-wachstum">
-<span class="header-section-number">16.5</span> Sofortiges Wachstum</h2>
+</section><section id="sofortiges-wachstum" class="level2" data-number="17.5"><h2 data-number="17.5" class="anchored" data-anchor-id="sofortiges-wachstum">
+<span class="header-section-number">17.5</span> Sofortiges Wachstum</h2>
 <p>Sagen wir, wir bringen ein Kapitel (in Höhe von einer Geldeinheit) zur Bank. Die Bank bietet uns eine traumhafte Verzinsung (r wir Rate) von 100$ pro Jahr.</p>
-<p>Um den Zinzeszinseffekt auszunutzen, heben wir das Geld mehrfach unterjährig ab, um es sofort wieder anzulegen, s. <a href="#fig-e2">Abbildung&nbsp;<span>16.3</span></a>.</p>
+<p>Um den Zinzeszinseffekt auszunutzen, heben wir das Geld mehrfach unterjährig ab, um es sofort wieder anzulegen, s. <a href="#fig-e2">Abbildung&nbsp;<span>17.3</span></a>.</p>
 <div class="cell" data-hash="160-e_cache/html/unnamed-chunk-4_4ab7b718725fb1aa3511481cc240ac14">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">d2</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
@@ -370,12 +376,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div id="fig-e2" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="160-e_files/figure-html/fig-e2-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;16.3: Wachstum wenn wir das Geld mehrfach unterjährig abheben und neu einzahlen</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;17.3: Wachstum wenn wir das Geld mehrfach unterjährig abheben und neu einzahlen</figcaption><p></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Können wir mit dieser Methode unendlich viel Geld erzeugen? <a href="#tbl-e2">Tabelle&nbsp;<span>16.1</span></a> gibt eine Antwort.</p>
+<p>Können wir mit dieser Methode unendlich viel Geld erzeugen? <a href="#tbl-e2">Tabelle&nbsp;<span>17.1</span></a> gibt eine Antwort.</p>
 <div class="cell" data-hash="160-e_cache/html/tbl-e2_d3d3a62e8d6e7ade511878d2bb434c9a">
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">d2</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">10</span>,</span>
@@ -387,7 +393,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div id="tbl-e2" class="anchored">
 <table class="table table-sm table-striped">
-<caption>Tabelle&nbsp;16.1: Zinswachstum bei häufiger Aus- und Einzahlung pro Jahr</caption>
+<caption>Tabelle&nbsp;17.1: Zinswachstum bei häufiger Aus- und Einzahlung pro Jahr</caption>
 <thead><tr class="header">
 <th style="text-align: right;">x</th>
 <th style="text-align: right;">r</th>
@@ -457,8 +463,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Wenn <span class="math inline">\(r\)</span> gegen unendlich geht:</p>
 <p><span class="math display">\[w = e=\lim _{n\to \infty }\left(1+{\frac {1}{r}}\right)^{r}\]</span></p>
 <p><span class="math inline">\(e\)</span> ist das maximale Wachstum, dass man mit sofortiger, stetiger Verzinsung erreichen kann.</p>
-</section><section id="andere-wachstumsraten" class="level2" data-number="16.6"><h2 data-number="16.6" class="anchored" data-anchor-id="andere-wachstumsraten">
-<span class="header-section-number">16.6</span> Andere Wachstumsraten</h2>
+</section><section id="andere-wachstumsraten" class="level2" data-number="17.6"><h2 data-number="17.6" class="anchored" data-anchor-id="andere-wachstumsraten">
+<span class="header-section-number">17.6</span> Andere Wachstumsraten</h2>
 <p>50% Wachstum:</p>
 <p><span class="math display">\[\left(1+{\frac {.50}{50}}\right)^{50}=(1+0.01)^{50} \approx 1.64\]</span></p>
 <p>Etwas genauer:</p>
@@ -473,8 +479,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1.00</span><span class="op">/</span><span class="fl">100</span><span class="op">)</span><span class="op">)</span><span class="op">^</span><span class="fl">100</span></span>
 <span><span class="co">## [1] 2.704814</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="wachstum-mit-basis-e" class="level2" data-number="16.7"><h2 data-number="16.7" class="anchored" data-anchor-id="wachstum-mit-basis-e">
-<span class="header-section-number">16.7</span> Wachstum mit Basis e</h2>
+</section><section id="wachstum-mit-basis-e" class="level2" data-number="17.7"><h2 data-number="17.7" class="anchored" data-anchor-id="wachstum-mit-basis-e">
+<span class="header-section-number">17.7</span> Wachstum mit Basis e</h2>
 <p>Zwei Perioden Wachstum mit sofortiger, stetiger Verzinsung (100%) erhöht das Kapitel um den Faktor <span class="math inline">\(e^2\)</span>. Beginnt man mit dem Kapitel 1, so beträgt das Endkapitel (Wachstum):</p>
 <p><span class="math display">\[w = e \cdot e = e^2\]</span></p>
 <p>Wächst das Kapitel aber nur mit 50%, so gilt (für zwei Zeitperioden):</p>
@@ -482,8 +488,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Allgemeiner:</p>
 <p>Das Wachstum <span class="math inline">\(w\)</span> nach <span class="math inline">\(t\)</span> Perioden und Wachstumsfaktor <span class="math inline">\(r\)</span> beträgt e hoch dem Produkt von <span class="math inline">\(r\)</span> und <span class="math inline">\(z\)</span>:</p>
 <p><span class="math display">\[w=e^{r\cdot t}\]</span></p>
-</section><section id="logarithmus" class="level2" data-number="16.8"><h2 data-number="16.8" class="anchored" data-anchor-id="logarithmus">
-<span class="header-section-number">16.8</span> Logarithmus</h2>
+</section><section id="logarithmus" class="level2" data-number="17.8"><h2 data-number="17.8" class="anchored" data-anchor-id="logarithmus">
+<span class="header-section-number">17.8</span> Logarithmus</h2>
 <p>Wächst eine Größe stetig (mit 100%) für <span class="math inline">\(t\)</span> Zeiträume, so ist der resultierende Wachstumswert <span class="math inline">\(w = e^r\)</span>. Der Logarithmus (zur Basis <span class="math inline">\(e\)</span>) liefert den Exponenten, <span class="math inline">\(r\)</span> zurück.</p>
 <p>Wachstum für zwei Perioden:</p>
 <div class="cell" data-hash="160-e_cache/html/unnamed-chunk-9_a50fe67b568e5183286615c2b8e8b84a">
@@ -502,23 +508,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co">## [1] 0.6931472</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Es dauert ca. 0.7 Zeitperioden bis zur Verdopplung.</p>
-</section><section id="regel-der-72" class="level2" data-number="16.9"><h2 data-number="16.9" class="anchored" data-anchor-id="regel-der-72">
-<span class="header-section-number">16.9</span> Regel der 72</h2>
+</section><section id="regel-der-72" class="level2" data-number="17.9"><h2 data-number="17.9" class="anchored" data-anchor-id="regel-der-72">
+<span class="header-section-number">17.9</span> Regel der 72</h2>
 <p>Von dieser Zahl her rührt die “Regel der 72”.</p>
 <p>72 lässt sich angenehm teilen (2,3,4,6,12, …), besser als 69.31…</p>
-</section><section id="fazit" class="level2" data-number="16.10"><h2 data-number="16.10" class="anchored" data-anchor-id="fazit">
-<span class="header-section-number">16.10</span> Fazit</h2>
+</section><section id="fazit" class="level2" data-number="17.10"><h2 data-number="17.10" class="anchored" data-anchor-id="fazit">
+<span class="header-section-number">17.10</span> Fazit</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="img/wolfi-dreaming1.jpeg" class="img-fluid figure-img"></p>
 <p></p><figcaption class="figure-caption">Wolfi träumt</figcaption><p></p>
 </figure>
 </div>
-</section><section id="vertiefung" class="level2" data-number="16.11"><h2 data-number="16.11" class="anchored" data-anchor-id="vertiefung">
-<span class="header-section-number">16.11</span> Vertiefung</h2>
+</section><section id="vertiefung" class="level2" data-number="17.11"><h2 data-number="17.11" class="anchored" data-anchor-id="vertiefung">
+<span class="header-section-number">17.11</span> Vertiefung</h2>
 <ul>
 <li>“<a href="https://www.youtube.com/watch?v=yTfHn9Aj7UM">Intuitive Erklärung zu e</a>”</li>
-</ul></section><section id="aufgaben" class="level2" data-number="16.12"><h2 data-number="16.12" class="anchored" data-anchor-id="aufgaben">
-<span class="header-section-number">16.12</span> Aufgaben</h2>
+</ul></section><section id="aufgaben" class="level2" data-number="17.12"><h2 data-number="17.12" class="anchored" data-anchor-id="aufgaben">
+<span class="header-section-number">17.12</span> Aufgaben</h2>
 <ul>
 <li>“<a href="https://datenwerk.netlify.app/tags/tmdb/">Fallstudien-Sammlung TMDB</a>”</li>
 </ul>
@@ -873,7 +879,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./150-fallstudien.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Fallstudien</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Fallstudien</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
