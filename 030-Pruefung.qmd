@@ -1,26 +1,20 @@
 # Prüfung
 
 
-## Prüfungleistung
+## Überblick
 
-Die Prüfungsleistung besteht aus einer Projektarbeit in Form eines *Prognosewettbewerb*.
-
-Zusätzlich gibt es eine *Bonusleistung* in Form eines Fachgesprächs.
+Die Prüfungsleistung besteht aus einer Hauptleistung und einer Bonusleistung.
 
 
+### Bonusleistung
+
+{{< include children/Pruefung-Fachgespraech.qmd >}}
 
 
-### Bonusleistung - Fachggespräch
 
-Im Rahmen des Fachgesprächs stellen Sie Ihre Analyse vor und verteidigen sie Ihr Vorgehen.
+### Hauptleistung
 
-
-Sie führen das Auditorium durch den Quelltext Ihrer Analyse und erläutern dabei die Methodik Ihrer Analyse.
-Die Lehrkraft stellt Fragen, die die Stichhaltigkeit Ihres Vorgehens abfragt.
-
-Die Dauer dieser Prüfungsleistung beträgt ca. 10 Minuten.
-
-Die Bewertung erfolgt anhand der Einschätzung "bestanden" oder "nicht bestanden".
+Die Hauptleistung besteht aus einer Projektarbeit in Form eines Prognosewettbewerbs.
 
 
 

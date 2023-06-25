@@ -46,6 +46,11 @@ download.file(url = "https://raw.githubusercontent.com/sebastiansauer/Lehre/main
               quiet = FALSE)
 
 
+# Pruefung-Fachgespraech.qmd
+download.file(url = "https://raw.githubusercontent.com/sebastiansauer/Lehre/main/Hinweise/Pruefung-Fachgespraech.qmd",
+              destfile = "children/Pruefung-Fachgespraech.qmd",
+              quiet = FALSE)
+
 ```
 
 
