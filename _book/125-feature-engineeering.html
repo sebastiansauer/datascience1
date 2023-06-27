@@ -250,8 +250,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
   <li><a href="#transformation-nominaler-variablen" id="toc-transformation-nominaler-variablen" class="nav-link" data-scroll-target="#transformation-nominaler-variablen"><span class="header-section-number">13.2</span> Transformation nominaler Variablen</a></li>
   <li><a href="#transformation-numerischer-variablen" id="toc-transformation-numerischer-variablen" class="nav-link" data-scroll-target="#transformation-numerischer-variablen"><span class="header-section-number">13.3</span> Transformation numerischer Variablen</a></li>
-  <li><a href="#umgang-mit-fehlenden-werten" id="toc-umgang-mit-fehlenden-werten" class="nav-link" data-scroll-target="#umgang-mit-fehlenden-werten"><span class="header-section-number">13.4</span> Umgang mit fehlenden Werten</a></li>
-  <li><a href="#feature-selection" id="toc-feature-selection" class="nav-link" data-scroll-target="#feature-selection"><span class="header-section-number">13.5</span> Feature Selection</a></li>
+  <li>
+<a href="#umgang-mit-fehlenden-werten" id="toc-umgang-mit-fehlenden-werten" class="nav-link" data-scroll-target="#umgang-mit-fehlenden-werten"><span class="header-section-number">13.4</span> Umgang mit fehlenden Werten</a>
+  <ul class="collapse">
+<li><a href="#ausreisser-entfernen" id="toc-ausreisser-entfernen" class="nav-link" data-scroll-target="#ausreisser-entfernen"><span class="header-section-number">13.4.1</span> Ausreisser entfernen</a></li>
+  </ul>
+</li>
+  <li><a href="#feature-selection-pr%C3%A4diktorenwahl" id="toc-feature-selection-prädiktorenwahl" class="nav-link" data-scroll-target="#feature-selection-pr%C3%A4diktorenwahl"><span class="header-section-number">13.5</span> Feature Selection (Prädiktorenwahl)</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -307,14 +312,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Wie so oft gibt es hier kein einfaches Standardrezept. Insbesondere hängt das zu wählende Vorgehen davon ab, warum die Werte fehlen: Ist es rein zufällig (MCAR) oder nicht (MAR, NMAR)?</p>
 <p>Ein einfaches Vorgehen wäre, alle Fälle mit einem oder mehr fehlenden Werten zu löschen. Natürlich kann das schnell teuer mit Blick auf die Größe des Train-Samples werden. Auch das Löschen von Prädiktoren mit fehlenden Werten kann leicht unangenehm werden.</p>
 <p>Alternativ kann man fehlende Werte ersetzen (imputieren). Möchte man mit kNN imputieren, so kann man <code>step_impute_knn</code> imputieren, dabei ist aber Gowers Metrik zu bevorzugen.</p>
-</section><section id="feature-selection" class="level2" data-number="13.5"><h2 data-number="13.5" class="anchored" data-anchor-id="feature-selection">
-<span class="header-section-number">13.5</span> Feature Selection</h2>
-<p>Einige Modelle haben intrinsiche Feature-Selection-Fähigkeiten, etwa LASSO. Ein sehr einfaches Ansatz zur Auswahl von Prädiktoren ist es, einfache Korrelationen der Prädiktoren (ggf. dummyisiert) mit der Zielvariablen zu berechnen.</p>
+<section id="ausreisser-entfernen" class="level3" data-number="13.4.1"><h3 data-number="13.4.1" class="anchored" data-anchor-id="ausreisser-entfernen">
+<span class="header-section-number">13.4.1</span> Ausreisser entfernen</h3>
+<p>Es kann oft sinnvoll sein, Ausreisser zu entfernen, etwas wenn diese zuviel Einfluss haben auf die Parameter. Im Rahmen von Tidymodels gibt es ein spezialisiertes Paket <a href="https://brunocarlin.github.io/tidy.outliers/articles/integration_tidymodels.html">`tidy.outliers</a>, das das Entfernen von Extremwerten im Rahmens eines Rezept unterstützt.</p>
+</section></section><section id="feature-selection-prädiktorenwahl" class="level2" data-number="13.5"><h2 data-number="13.5" class="anchored" data-anchor-id="feature-selection-prädiktorenwahl">
+<span class="header-section-number">13.5</span> Feature Selection (Prädiktorenwahl)</h2>
+<p>Einige Modelle haben intrinsische Feature-Selection-Fähigkeiten, etwa LASSO. Ein sehr einfaches Ansatz zur Auswahl von Prädiktoren ist es, einfache Korrelationen der Prädiktoren (ggf. dummyisiert) mit der Zielvariablen zu berechnen.</p>
+<p>Wichtig für eine gute Auswahl von Prädiktoren ist, dass der Auswahlprozess im Resampling-Prozess integriert ist, um Overfitting zu vermeiden.</p>
+<p>Das Paket <a href="https://stevenpawley.github.io/recipeselectors/"><code>recipesselector</code></a> stellt dafür eine Infrastruktur (innerhalb des Tidymodels-Rahmen) bereit.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 
 
 </section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
 <ol>
 <li id="fn1"><p>https://parsnip.tidymodels.org/reference/details_decision_tree_rpart.html<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Hier ist ein Video dazu: <a href="https://www.youtube.com/watch?v=1AKug0tgux8" class="uri">https://www.youtube.com/watch?v=1AKug0tgux8</a>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

@@ -100,12 +100,28 @@ dabei ist aber Gowers Metrik zu bevorzugen.
 
 
 
-## Feature Selection
+### Ausreisser entfernen
 
-Einige Modelle haben intrinsiche Feature-Selection-Fähigkeiten,
+Es kann oft sinnvoll sein, Ausreisser zu entfernen,
+etwas wenn diese zuviel Einfluss haben auf die Parameter.
+Im Rahmen von Tidymodels gibt es ein spezialisiertes Paket [`tidy.outliers](https://brunocarlin.github.io/tidy.outliers/articles/integration_tidymodels.html),
+das das Entfernen von Extremwerten im Rahmens eines Rezept unterstützt.
+
+
+## Feature Selection (Prädiktorenwahl)
+
+Einige Modelle haben intrinsische Feature-Selection-Fähigkeiten,
 etwa LASSO.
 Ein sehr einfaches Ansatz zur Auswahl von Prädiktoren ist es, 
 einfache Korrelationen der Prädiktoren (ggf. dummyisiert) mit der Zielvariablen zu berechnen.
+
+Wichtig für eine gute Auswahl von Prädiktoren ist,
+dass der Auswahlprozess im Resampling-Prozess integriert ist,
+um Overfitting zu vermeiden.
+
+Das Paket [`recipesselector`](https://stevenpawley.github.io/recipeselectors/) stellt dafür eine Infrastruktur (innerhalb des Tidymodels-Rahmen) bereit.^[Hier ist ein Video dazu: <https://www.youtube.com/watch?v=1AKug0tgux8>.]
+
+
 
 
 

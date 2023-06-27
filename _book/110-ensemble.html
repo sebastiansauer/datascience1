@@ -479,6 +479,7 @@ Hinweis
 </div>
 </div>
 </div>
+<p>Das schöne an Random-Forest-Modellen ist, dass sie (oft) genau vorhersagen und dass sie einfach zu “warten” sind: Sie haben wenige Tuningparameter<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> und produzieren kaum nebulöse Fehlermeldungen.</p>
 </section><section id="boosting" class="level2" data-number="11.8"><h2 data-number="11.8" class="anchored" data-anchor-id="boosting">
 <span class="header-section-number">11.8</span> Boosting</h2>
 <p>Im Unterschied zu Bagging und Random-Forest-Modellen wird beim Boosting der “Wald” <em>sequenziell</em> entwickelt, nicht gleichzeitig wie bei den anderen vorgestellten “Wald-Modellen”. Die zwei bekanntesten Implementierungen bzw. Algorithmus-Varianten sind <em>AdaBoost</em> und <em>XGBoost</em>. Gerade XGBoost hat den Ruf, hervorragende Vorhersagen zu leisten. Auf <a href="https://en.wikipedia.org/wiki/Kaggle">Kaggle</a> gewinnt nach <a href="https://www.kaggle.com/code/msjgriffiths/r-what-algorithms-are-most-successful-on-kaggle/report">einigen Berichten oft XGBoost</a>. Nur neuronale Netze schneiden besser ab. Random-Forest-Modelle kommen nach diesem Bereich auf Platz 3. Allerdings benötigen neuronale Netzen oft riesige Stichprobengrößen und bei spielen ihre Nuanciertheit vor allem bei komplexen Daten wie Bildern oder Sprache aus. Für “rechteckige” Daten (also aus einfachen, normalen Tabellen) wird ein baumbasiertes Modell oft besser abschneiden.</p>
@@ -1321,7 +1322,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 <span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html">toc</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>So kann man das berechnete Objekt abspeichern auf Festplatte, um künftig Zeit zu sparen<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>:</p>
+<p>So kann man das berechnete Objekt abspeichern auf Festplatte, um künftig Zeit zu sparen<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>:</p>
 <div class="cell" data-hash="110-ensemble_cache/html/unnamed-chunk-13_b68aa5b79ba05e41fe549da725f13b32">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_rds.html">write_rds</a></span><span class="op">(</span><span class="va">rf_fit1</span>, file <span class="op">=</span> <span class="st">"objects/rf_fit1.rds"</span><span class="op">)</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1736,6 +1737,9 @@ Kuhn, Max, und Kjell Johnson. 2013. <em>Applied predictive modeling</em>. Bd. 26
 <div id="ref-rhys" class="csl-entry" role="listitem">
 Rhys, Hefin. 2020. <em>Machine Learning with R, the tidyverse, and mlr</em>. Shelter Island, <span>NY</span>: Manning publications.
 </div>
+<div id="ref-silge_tidy_2022" class="csl-entry" role="listitem">
+Silge, Julia, und Max Kuhn. 2022. <em>Tidy <span>Modeling</span> with <span>R</span></em>. <a href="https://www.tmwr.org/">https://www.tmwr.org/</a>.
+</div>
 </div>
 </section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
 <ol>
@@ -1744,7 +1748,8 @@ Rhys, Hefin. 2020. <em>Machine Learning with R, the tidyverse, and mlr</em>. She
 <li id="fn3"><p>Wenn es einen No-Free-Lunch-Satz gibt, müsste es auch einen Too-Good-to-be-True-Satz geben, den wir hiermit postulieren.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn4"><p>Schlimmes Denglisch<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn5"><p>Wer sich die Rechenressourcen leisten kann 💸<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn6"><p>Aber Vorsicht, dass man nicht vergisst, diese Objekte zu aktualisieren.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>Laut <span class="citation" data-cites="silge_tidy_2022">Silge und Kuhn (<a href="references.html#ref-silge_tidy_2022" role="doc-biblioref">2022</a>)</span> in <a href="silge_tidy_2022">dieser Fußnote</a> ist es oft nicht nötig, <code>mtry</code> zu tunen, da der Standardwert über gute Performanz verfügt.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>Aber Vorsicht, dass man nicht vergisst, diese Objekte zu aktualisieren.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

@@ -317,6 +317,10 @@ knitr::include_graphics("img/8.10.png")
 ```
 
 
+Das schöne an Random-Forest-Modellen ist, dass sie (oft) genau vorhersagen und dass sie einfach zu "warten" sind: Sie haben wenige Tuningparameter^[Laut @silge_tidy_2022 in [dieser Fußnote](silge_tidy_2022) ist es oft nicht nötig, `mtry` zu tunen, da der Standardwert über gute Performanz verfügt.] und produzieren kaum nebulöse Fehlermeldungen.
+
+
+
 
 ## Boosting
 
