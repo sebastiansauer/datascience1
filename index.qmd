@@ -75,14 +75,41 @@ Meister Yoda rät: Lesen Sie die Hinweise (@fig-yoda).
 
 
 
+## Selbständige Vorbereitung vor Kursbeginn
+
+Die folgenden Inhalte werden in diesem Buch/Kurs vorausgesetzt.
+Falls Ihnen der Stoff nicht geläufig ist, sollten Sie sich selbständig damit vertraut machen.
+
+1. Grundlagen der Statistik wie im [Kurs Statistik1](https://raw.githubusercontent.com/sebastiansauer/yacsda-bikerental/main/data/bikeshare_control.csv) vermittelt
+2. Einführung in die Inferenzstatistik wie im [Kurs Bayes:Start!](https://start-bayes.netlify.app/) vermittelt
+
+
+
 ## Zitation
 
 Nutzen Sie folgende DOI, um dieses Buch zu zitieren: [![DOI](https://zenodo.org/badge/461950782.svg)](https://zenodo.org/badge/latestdoi/461950782)
 
 
+Hier ist die Zitation im Bibtex-Format:
+
+```
+@online{sauer_grundlagen_2023,
+	title = {Grundlagen der Prognosemodellierung},
+	rights = {{MIT}},
+	url = {https://ds1-prognosemodellierung.netlify.app/},
+	type = {Kursbuch},
+	author = {Sauer, Sebastian},
+	date = {2023-08-24},
+}
+
+```
 
 
 
+
+## Quellcode
+
+Der Quellcode liegt öffentlich zugänglich in [diesem Github-Repositorium](https://github.com/sebastiansauer/datascience1).
 
 
 

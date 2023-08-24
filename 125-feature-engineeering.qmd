@@ -104,7 +104,7 @@ dabei ist aber Gowers Metrik zu bevorzugen.
 
 Es kann oft sinnvoll sein, Ausreisser zu entfernen,
 etwas wenn diese zuviel Einfluss haben auf die Parameter.
-Im Rahmen von Tidymodels gibt es ein spezialisiertes Paket [`tidy.outliers](https://brunocarlin.github.io/tidy.outliers/articles/integration_tidymodels.html),
+Im Rahmen von Tidymodels gibt es ein spezialisiertes Paket [`tidy.outliers`](https://brunocarlin.github.io/tidy.outliers/articles/integration_tidymodels.html),
 das das Entfernen von Extremwerten im Rahmens eines Rezept unterstützt.
 
 

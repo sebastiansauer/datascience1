@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.247">
+<meta name="generator" content="quarto-1.3.433">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Grundlagen der Prognosemodellierung 🔮🧰 - 11&nbsp; Ensemble Lerner</title>
 <style>
@@ -107,12 +107,13 @@ div.csl-indent {
     "search-more-matches-text": "weitere Treffer in diesem Dokument",
     "search-clear-button-title": "Zurücksetzen",
     "search-detached-cancel-button-title": "Abbrechen",
-    "search-submit-button-title": "Abschicken"
+    "search-submit-button-title": "Abschicken",
+    "search-label": "Suchen"
   }
 }</script><meta name="mermaid-theme" content="neutral">
 <script src="site_libs/quarto-diagram/mermaid.min.js"></script><script src="site_libs/quarto-diagram/mermaid-init.js"></script><link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 <script src="site_libs/htmlwidgets-1.6.2/htmlwidgets.js"></script><script src="site_libs/es6shim-0.35.6/es6shim.js"></script><script src="site_libs/es7shim-6.0.0/es7shim.js"></script><script src="site_libs/graphre-0.1.3/graphre.js"></script><script src="site_libs/nomnoml-1.5.3/nomnoml.js"></script><script src="site_libs/nomnoml-binding-0.2.6/nomnoml.js"></script><link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
-<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><link rel="stylesheet" href="styles.css">
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><link rel="stylesheet" href="styles.css">
 </head>
 <body class="nav-sidebar floating">
 
@@ -124,7 +125,7 @@ div.csl-indent {
       <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./110-ensemble.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Ensemble Lerner</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -399,8 +400,7 @@ Hinweis
 <div class="cell-output-display">
 <div id="fig-zmz" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="img/zmz.png" class="img-fluid figure-img" width="964"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;11.1: Bootstrapping: Der Topf links symbolisiert die Original-Stichprobe, aus der wir hier mehrere ZMZ-Stichproben ziehen (Rechts), dargestellt mit ‘in bag’</figcaption><p></p>
-</figure>
+<figcaption class="figure-caption">Abbildung&nbsp;11.1: Bootstrapping: Der Topf links symbolisiert die Original-Stichprobe, aus der wir hier mehrere ZMZ-Stichproben ziehen (Rechts), dargestellt mit ‘in bag’</figcaption></figure>
 </div>
 </div>
 </div>
@@ -435,8 +435,7 @@ Hinweis
   D--&gt;B4[Baum B]---&gt;M
 </pre>
 </div>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;11.2: Bagging schematisch illustriert</figcaption><p></p>
-</figure>
+<figcaption class="figure-caption">Abbildung&nbsp;11.2: Bagging schematisch illustriert</figcaption></figure>
 </div>
 </div>
 </div>
@@ -455,8 +454,7 @@ Hinweis
 <div class="cell" data-hash="110-ensemble_cache/html/fig-rf1_9d86f2f5a5fc63c2754862d3c45d2e4f">
 <div id="fig-rf1" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><div id="htmlwidget-f4a269f9f3606cb61d08" style="width:100%;height:700px;" class="nomnoml html-widget "></div>
-<script type="application/json" data-for="htmlwidget-f4a269f9f3606cb61d08">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n#direction:down\n                 [<database> Datensatz] ->zmz [Baum1\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n\n[<database> Datensatz] ->zmz [Baum2\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[<database> Datensatz] ->zmz [Baum ...\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[<database> Datensatz] ->zmz [Baum B\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[Baum1\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n] -> [Modus als Vorhersagewert]\n[Baum2\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n] -> [Modus als Vorhersagewert]\n[Baum ...] -> [Modus als Vorhersagewert]\n[Baum B] -> [Modus als Vorhersagewert]\n                 ","svg":false,"png":null},"evals":[],"jsHooks":[]}</script><p></p><figcaption class="figure-caption">Abbildung&nbsp;11.3: Zufallswälder durch Ziehen mit Zurücklegen (zmz) und Ziehen ohne Zurücklegen (ZoZ)</figcaption><p></p>
-</figure>
+<script type="application/json" data-for="htmlwidget-f4a269f9f3606cb61d08">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n#direction:down\n                 [<database> Datensatz] ->zmz [Baum1\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n\n[<database> Datensatz] ->zmz [Baum2\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[<database> Datensatz] ->zmz [Baum ...\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[<database> Datensatz] ->zmz [Baum B\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n]\n[Baum1\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n] -> [Modus als Vorhersagewert]\n[Baum2\n[ZoZ]->[ZOZ2]\n[ZoZ]->[ZoZ3]\n] -> [Modus als Vorhersagewert]\n[Baum ...] -> [Modus als Vorhersagewert]\n[Baum B] -> [Modus als Vorhersagewert]\n                 ","svg":false,"png":null},"evals":[],"jsHooks":[]}</script><figcaption class="figure-caption">Abbildung&nbsp;11.3: Zufallswälder durch Ziehen mit Zurücklegen (zmz) und Ziehen ohne Zurücklegen (ZoZ)</figcaption></figure>
 </div>
 </div>
 <p><a href="#fig-comp-trees">Abbildung&nbsp;<span>11.4</span></a> vergleicht die Test-Sample-Vorhersagegüte von Bagging- und Random-Forest-Algorithmen aus <span class="citation" data-cites="islr">James u.&nbsp;a. (<a href="references.html#ref-islr" role="doc-biblioref">2021</a>)</span>. In diesem Fall ist die Vorhersagegüte deutlich unter der OOB-Güte; laut <span class="citation" data-cites="islr">James u.&nbsp;a. (<a href="references.html#ref-islr" role="doc-biblioref">2021</a>)</span> ist dies hier “Zufall”.</p>
@@ -464,8 +462,7 @@ Hinweis
 <div class="cell-output-display">
 <div id="fig-comp-trees" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="img/8.8.png" class="img-fluid figure-img" width="1202"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;11.4: Test-Sample-Vorhersagegüte von Bagging- und Random-Forest-Algorithmen</figcaption><p></p>
-</figure>
+<figcaption class="figure-caption">Abbildung&nbsp;11.4: Test-Sample-Vorhersagegüte von Bagging- und Random-Forest-Algorithmen</figcaption></figure>
 </div>
 </div>
 </div>
@@ -474,8 +471,7 @@ Hinweis
 <div class="cell-output-display">
 <div id="fig-mtry" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="img/8.10.png" class="img-fluid figure-img" width="1202"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;11.5: Test-Sample-Vorhersagegüte von Bagging- und Random-Forest-Algorithmen</figcaption><p></p>
-</figure>
+<figcaption class="figure-caption">Abbildung&nbsp;11.5: Test-Sample-Vorhersagegüte von Bagging- und Random-Forest-Algorithmen</figcaption></figure>
 </div>
 </div>
 </div>
@@ -497,8 +493,7 @@ Hinweis
   root --&gt; leaf2
 </pre>
 </div>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;11.6: Ein Baumstumpf bei AdaBoost</figcaption><p></p>
-</figure>
+<figcaption class="figure-caption">Abbildung&nbsp;11.6: Ein Baumstumpf bei AdaBoost</figcaption></figure>
 </div>
 </div>
 </div>
@@ -517,8 +512,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 <div class="cell" data-hash="110-ensemble_cache/html/fig-ada_233ac7a18731b0f0f22091ab2df369f3">
 <div id="fig-ada" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><div id="htmlwidget-01cae8ad0dc6d5f4a688" style="width:100%;height:435px;" class="nomnoml html-widget "></div>
-<script type="application/json" data-for="htmlwidget-01cae8ad0dc6d5f4a688">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n  [m1] -> [ensemble]\n  [ensemble] -> [m2]\n  [m2] -> [ensemble]\n  [ensemble] -> [m3]\n  [m3] -> [ensemble]\n  [ensemble] -> [m4]\n  [m4] -> [ensemble]\n  [ensemble] -> [M ...]\n  [M ...] -> [ensemble]\n  [ensemble] -> [M B]\n  ","svg":false,"png":null},"evals":[],"jsHooks":[]}</script><p></p><figcaption class="figure-caption">Abbildung&nbsp;11.7: AdaBoost illustriert</figcaption><p></p>
-</figure>
+<script type="application/json" data-for="htmlwidget-01cae8ad0dc6d5f4a688">{"x":{"code":"\n#fill: #FEFEFF\n#lineWidth: 1\n#zoom: 4\n#direction: right\n\n\n  [m1] -> [ensemble]\n  [ensemble] -> [m2]\n  [m2] -> [ensemble]\n  [ensemble] -> [m3]\n  [m3] -> [ensemble]\n  [ensemble] -> [m4]\n  [m4] -> [ensemble]\n  [ensemble] -> [M ...]\n  [M ...] -> [ensemble]\n  [ensemble] -> [M B]\n  ","svg":false,"png":null},"evals":[],"jsHooks":[]}</script><figcaption class="figure-caption">Abbildung&nbsp;11.7: AdaBoost illustriert</figcaption></figure>
 </div>
 </div>
 </section><section id="xgboost" class="level3" data-number="11.8.2"><h3 data-number="11.8.2" class="anchored" data-anchor-id="xgboost">
@@ -529,8 +523,7 @@ w_i^{b-1} \cdot e^{\text{model weight}} \qquad \text{wenn inkorrekt klassifizier
 <div class="cell-output-display">
 <div id="fig-boost" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="img/8.10.png" class="img-fluid figure-img" width="1202"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;11.8: Vorhersagegüte von Boosting und Random Forest</figcaption><p></p>
-</figure>
+<figcaption class="figure-caption">Abbildung&nbsp;11.8: Vorhersagegüte von Boosting und Random Forest</figcaption></figure>
 </div>
 </div>
 </div>
@@ -1454,8 +1447,7 @@ Vorsicht
 <div class="cell-output-display">
 <div id="fig-autoplot-wf1" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="110-ensemble_files/figure-html/fig-autoplot-wf1-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;11.9: Autoplot zur Modellgüte aller Workflows eines Workflow-Sets</figcaption><p></p>
-</figure>
+<figcaption class="figure-caption">Abbildung&nbsp;11.9: Autoplot zur Modellgüte aller Workflows eines Workflow-Sets</figcaption></figure>
 </div>
 </div>
 </div>
@@ -1685,8 +1677,7 @@ Vorsicht
 <div class="cell-output-display">
 <div id="fig-canceled-service" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="110-ensemble_files/figure-html/fig-canceled-service-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;11.10: Die ROC-Kurve für unser Model</figcaption><p></p>
-</figure>
+<figcaption class="figure-caption">Abbildung&nbsp;11.10: Die ROC-Kurve für unser Model</figcaption></figure>
 </div>
 </div>
 </div>

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.247">
+<meta name="generator" content="quarto-1.3.433">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Grundlagen der Prognosemodellierung 🔮🧰 - 7&nbsp; kNN</title>
 <style>
@@ -107,10 +107,11 @@ div.csl-indent {
     "search-more-matches-text": "weitere Treffer in diesem Dokument",
     "search-clear-button-title": "Zurücksetzen",
     "search-detached-cancel-button-title": "Abbrechen",
-    "search-submit-button-title": "Abschicken"
+    "search-submit-button-title": "Abschicken",
+    "search-label": "Suchen"
   }
 }</script><link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
-<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><link rel="stylesheet" href="styles.css">
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><link rel="stylesheet" href="styles.css">
 </head>
 <body class="nav-sidebar floating">
 
@@ -122,7 +123,7 @@ div.csl-indent {
       <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./070-knn.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">kNN</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -357,8 +358,7 @@ div.csl-indent {
 <div class="cell-output-display">
 <div id="fig-slang" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="img/rhys-fig3-2.jpeg" class="img-fluid figure-img" width="216"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;7.1: Haben wir gerade eine Otter gesehen?</figcaption><p></p>
-</figure>
+<figcaption class="figure-caption">Abbildung&nbsp;7.1: Haben wir gerade eine Otter gesehen?</figcaption></figure>
 </div>
 </div>
 </div>
@@ -382,8 +382,7 @@ div.csl-indent {
 <div class="cell-output-display">
 <div id="fig-cancer1" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="070-knn_files/figure-html/fig-cancer1-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;7.2: Streudiagramm zur Einschätzung von Tumordiagnosen</figcaption><p></p>
-</figure>
+<figcaption class="figure-caption">Abbildung&nbsp;7.2: Streudiagramm zur Einschätzung von Tumordiagnosen</figcaption></figure>
 </div>
 </div>
 </div>
@@ -394,24 +393,21 @@ div.csl-indent {
 <div class="cell-output-display">
 <div id="fig-cancer2" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="070-knn_files/figure-html/fig-cancer2-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;7.3: Ein neuer Fall, bisher unklassifiziert</figcaption><p></p>
-</figure>
+<figcaption class="figure-caption">Abbildung&nbsp;7.3: Ein neuer Fall, bisher unklassifiziert</figcaption></figure>
 </div>
 </div>
 </div>
 <p>Wir können zunächst den (im euklidischen Koordinatensystem) nächst gelegenen Fall (der “nächste Nachbar”) betrachten, und vereinbaren, dass wir dessen Klasse als Schätzwert für den unklassiffizierten Fall übernehmen, s. <a href="#fig-cancer3">Abbildung&nbsp;<span>7.4</span></a>.</p>
 <div id="fig-cancer3" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="img/cancer3.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;7.4: Ein nächster Nachbar</figcaption><p></p>
-</figure>
+<figcaption class="figure-caption">Abbildung&nbsp;7.4: Ein nächster Nachbar</figcaption></figure>
 </div>
 <p>Betrachten wir einen anderen zu klassifizierenden Fall, s. <a href="#fig-cancer4">Abbildung&nbsp;<span>7.5</span></a>. Ob hier die Klassifikation von “benign” korrekt ist? Womöglich nicht, denn viele andere Nachbarn, die etwas weiter weg gelegen sind, gehören zur anderen Diagnose, malign.</p>
 <div class="cell" data-hash="070-knn_cache/html/fig-cancer4_44726798c67171e8dcadecb6e5364356">
 <div class="cell-output-display">
 <div id="fig-cancer4" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="https://datasciencebook.ca/_main_files/figure-html/05-knn-4-1.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;7.5: Trügt der nächste Nachbar?</figcaption><p></p>
-</figure>
+<figcaption class="figure-caption">Abbildung&nbsp;7.5: Trügt der nächste Nachbar?</figcaption></figure>
 </div>
 </div>
 </div>
@@ -420,8 +416,7 @@ div.csl-indent {
 <div class="cell-output-display">
 <div id="fig-cancer5" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="https://datasciencebook.ca/_main_files/figure-html/05-knn-5-1.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;7.6: kNN mit k=3</figcaption><p></p>
-</figure>
+<figcaption class="figure-caption">Abbildung&nbsp;7.6: kNN mit k=3</figcaption></figure>
 </div>
 </div>
 </div>
@@ -434,8 +429,7 @@ div.csl-indent {
 <div class="cell-output-display">
 <div id="fig-pyth1" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="img/distanz_crop.png" class="img-fluid figure-img" width="391"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;7.7: Euklidischer Abstand wird mit der Regel von Pythagoras berechnet</figcaption><p></p>
-</figure>
+<figcaption class="figure-caption">Abbildung&nbsp;7.7: Euklidischer Abstand wird mit der Regel von Pythagoras berechnet</figcaption></figure>
 </div>
 </div>
 </div>
@@ -451,15 +445,13 @@ div.csl-indent {
 <div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
 <div id="fig-pyth2a" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="img/pythagoras-crop.png" class="img-fluid figure-img" data-ref-parent="fig-pyth2"></p>
-<p></p><figcaption class="figure-caption">(a) Pythagoras mit mehr als zwei Dimensionen</figcaption><p></p>
-</figure>
+<figcaption class="figure-caption">(a) Pythagoras mit mehr als zwei Dimensionen</figcaption></figure>
 </div>
 </div>
 <div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
 <div id="fig-pyth2b" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="img/pythagoras2-crop.png" class="img-fluid figure-img" data-ref-parent="fig-pyth2"></p>
-<p></p><figcaption class="figure-caption">(b) Pythagoras mit mehr als zwei Dimensionen</figcaption><p></p>
-</figure>
+<figcaption class="figure-caption">(b) Pythagoras mit mehr als zwei Dimensionen</figcaption></figure>
 </div>
 </div>
 </div>
@@ -1224,8 +1216,7 @@ e &amp;= \sqrt{29} \approx 5.4
 </ol>
 <div id="fig-4arten" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="img/Binary-classification-measures.svg (2).png" class="img-fluid figure-img" style="width:50.0%"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;7.9: Zwei Fehlerarten einer Klassifikation</figcaption><p></p>
-</figure>
+<figcaption class="figure-caption">Abbildung&nbsp;7.9: Zwei Fehlerarten einer Klassifikation</figcaption></figure>
 </div>
 <p><a href="https://commons.wikimedia.org/w/index.php?curid=3494986">Quelle: Von Nichtich - Eigenes Werk, Gemeinfrei</a></p>
 <p>Bei <a href="https://de.wikipedia.org/wiki/Beurteilung_eines_bin%C3%A4ren_Klassifikators">Wikipedia</a> findet sich eine nützliche Erläuterung der Kennzahlen der Klassifikationsgüte, vgl. <a href="#fig-sens-fn">Abbildung&nbsp;<span>7.10</span></a> und <a href="#fig-spec-fp">Abbildung&nbsp;<span>7.11</span></a>.</p>
@@ -1234,15 +1225,13 @@ e &amp;= \sqrt{29} \approx 5.4
 <div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
 <div id="fig-sens" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="img/sens-440px-Binary-classification-file_sensitivity.svg.png" class="img-fluid figure-img" data-ref-parent="fig-sens-fn"></p>
-<p></p><figcaption class="figure-caption">(a) Sensitivität</figcaption><p></p>
-</figure>
+<figcaption class="figure-caption">(a) Sensitivität</figcaption></figure>
 </div>
 </div>
 <div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
 <div id="fig-fn-rante" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="img/fn-rate-Binary-classification-file_false_negative_rate.svg.png" class="img-fluid figure-img" data-ref-parent="fig-sens-fn"></p>
-<p></p><figcaption class="figure-caption">(b) FN-Rate</figcaption><p></p>
-</figure>
+<figcaption class="figure-caption">(b) FN-Rate</figcaption></figure>
 </div>
 </div>
 </div>
@@ -1254,15 +1243,13 @@ e &amp;= \sqrt{29} \approx 5.4
 <div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
 <div id="fig-spec" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="img/spec-Binary-classification-file_specifity.svg.png" class="img-fluid figure-img" data-ref-parent="fig-spec-fp"></p>
-<p></p><figcaption class="figure-caption">(a) Spezifität</figcaption><p></p>
-</figure>
+<figcaption class="figure-caption">(a) Spezifität</figcaption></figure>
 </div>
 </div>
 <div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
 <div id="fig-fp-rate" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="img/fp-rate-Binary-classification-file_fallout.svg.png" class="img-fluid figure-img" data-ref-parent="fig-spec-fp"></p>
-<p></p><figcaption class="figure-caption">(b) FP-Rate</figcaption><p></p>
-</figure>
+<figcaption class="figure-caption">(b) FP-Rate</figcaption></figure>
 </div>
 </div>
 </div>
@@ -1288,7 +1275,7 @@ Hinweis
 <div class="cell" data-hash="070-knn_cache/html/tbl-diag-stats_1634b605727fe7281b0d74d2a9f87db5">
 <div class="cell-output-display">
 <div id="tbl-diag-stats" class="anchored">
-<table class="table table-sm table-striped">
+<table class="table table-sm table-striped small">
 <caption>Tabelle&nbsp;7.1: Geläufige Kennwerte der Klassifikation. F: Falsch. R: Richtig. P: Positiv. N: Negativ</caption>
 <colgroup>
 <col style="width: 22%">
@@ -1385,8 +1372,7 @@ Hinweis
 <div class="cell-output-display">
 <div id="fig-roc1" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="070-knn_files/figure-html/fig-roc1-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;7.12: ROC-Kurve für das Fallbeispiel der Krebsdiagnostik</figcaption><p></p>
-</figure>
+<figcaption class="figure-caption">Abbildung&nbsp;7.12: ROC-Kurve für das Fallbeispiel der Krebsdiagnostik</figcaption></figure>
 </div>
 </div>
 </div>
@@ -1395,8 +1381,7 @@ Hinweis
 <div class="cell-output-display">
 <div id="fig-example-rocs" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="070-knn_files/figure-html/fig-example-rocs-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;7.13: Beispiel für eine sehr gute (A), gute (B) und schlechte (C) Klassifikation</figcaption><p></p>
-</figure>
+<figcaption class="figure-caption">Abbildung&nbsp;7.13: Beispiel für eine sehr gute (A), gute (B) und schlechte (C) Klassifikation</figcaption></figure>
 </div>
 </div>
 </div>
@@ -1414,8 +1399,7 @@ Hinweis
 <div class="cell-output-display">
 <div id="fig-krebstest" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="070-knn_files/figure-html/fig-krebstest-1.png" class="img-fluid figure-img" width="250"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;7.14: Kennwerte zu tatsächlichem und laut Test Krebs-Status</figcaption><p></p>
-</figure>
+<figcaption class="figure-caption">Abbildung&nbsp;7.14: Kennwerte zu tatsächlichem und laut Test Krebs-Status</figcaption></figure>
 </div>
 </div>
 </div>
@@ -1440,8 +1424,7 @@ Hinweis
 <div class="cell-output-display">
 <div id="fig-krebs-cm" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="070-knn_files/figure-html/fig-krebs-cm-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;7.15: Konfusionsmatrix für das Krebs-Beispiel</figcaption><p></p>
-</figure>
+<figcaption class="figure-caption">Abbildung&nbsp;7.15: Konfusionsmatrix für das Krebs-Beispiel</figcaption></figure>
 </div>
 </div>
 </div>

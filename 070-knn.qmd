@@ -581,7 +581,7 @@ Im Standard wird eine Beobachtung der Klasse mit der höchsten Wahrscheinlichkei
 
 ### Visualisierung
 
-Verbildlichen wir die Konfusionsmatrix, so dass wir sehen welche `B` als `B` klassifiziert wurden und welche `M` als `M` klassifiziert wurden (bzw. welche nicht), s. @fig-conf-bm.
+Verbildlichen wir die Konfusionsmatrix, so dass wir sehen welche `B` als `B` klassifiziert wurden und welche `M` als `M` klassifiziert wurden (bzw. welche nicht).
 
 
 

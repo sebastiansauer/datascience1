@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.247">
+<meta name="generator" content="quarto-1.3.433">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Grundlagen der Prognosemodellierung 🔮🧰 - 12&nbsp; Regularisierte Modelle</title>
 <style>
@@ -107,10 +107,11 @@ div.csl-indent {
     "search-more-matches-text": "weitere Treffer in diesem Dokument",
     "search-clear-button-title": "Zurücksetzen",
     "search-detached-cancel-button-title": "Abbrechen",
-    "search-submit-button-title": "Abschicken"
+    "search-submit-button-title": "Abschicken",
+    "search-label": "Suchen"
   }
 }</script><link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
-<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><link rel="stylesheet" href="styles.css">
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><link rel="stylesheet" href="styles.css">
 </head>
 <body class="nav-sidebar floating">
 
@@ -122,7 +123,7 @@ div.csl-indent {
       <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./120-regularisierte-modelle.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Regularisierte Modelle</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -368,8 +369,7 @@ div.csl-indent {
 <p>Abb. <a href="#fig-ols">Abbildung&nbsp;<span>12.1</span></a> visualisiert die Optimierung mit OLS (<a href="https://www.crumplab.com/rstatsforpsych/regression.html">Quelle</a>). An <a href="https://www.crumplab.com/rstatsforpsych/regression.html">gleicher Stelle</a> findet sich eine gute Darstellung zu den (mathematischen) Grundlagen der OLS-Regression.</p>
 <div id="fig-ols" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="img/regression_squares (1).gif" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;12.1: Visualisierung der Minimierung der RSS durch OLS</figcaption><p></p>
-</figure>
+<figcaption class="figure-caption">Abbildung&nbsp;12.1: Visualisierung der Minimierung der RSS durch OLS</figcaption></figure>
 </div>
 <p>Übrigens nennt man Funktionen, die man minimiert mit Hilfe von Methoden des maschinellen Lernens mit dem Ziel die optimalen Koeffizienten (wie <span class="math inline">\(\beta\)</span>s) zu finden, auch <em>Loss Functions</em> (Kostenfunktion).</p>
 <p>Das Problem der Regression ist, dass die schöne Eigenschaft BLUE nur im <em>Train-Sample</em>, <em>nicht</em> (notwendig) im Test-Sample gilt.</p>
@@ -393,8 +393,7 @@ div.csl-indent {
 <p>Der Effekt von <span class="math inline">\(\lambda \sum_{j=1}^p \beta_j^2\)</span> ist wie gesagt, dass die Koeffizienten in Richtung Null geschrumpft werden. Wenn <span class="math inline">\(\lambda = 0\)</span>, resultiert OLS. Wenn <span class="math inline">\(\lambda \rightarrow \infty\)</span>, werden alle Koeffizienten auf Null geschätzt werden, Abb. <a href="#fig-l2-shrink">Abbildung&nbsp;<span>12.2</span></a> verdeutlicht dies <span class="citation" data-cites="islr">(<a href="references.html#ref-islr" role="doc-biblioref">James u.&nbsp;a. 2021</a>)</span>.</p>
 <div id="fig-l2-shrink" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="img/6.4.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;12.2: Links: Regressionskoeffizienten als Funktion von lambda. Rechts: L2-Norm der Ridge-Regression im Verhältnis zur OLS-Regression</figcaption><p></p>
-</figure>
+<figcaption class="figure-caption">Abbildung&nbsp;12.2: Links: Regressionskoeffizienten als Funktion von lambda. Rechts: L2-Norm der Ridge-Regression im Verhältnis zur OLS-Regression</figcaption></figure>
 </div>
 </section><section id="standardisierung" class="level3" data-number="12.3.2"><h3 data-number="12.3.2" class="anchored" data-anchor-id="standardisierung">
 <span class="header-section-number">12.3.2</span> Standardisierung</h3>
@@ -415,28 +414,24 @@ div.csl-indent {
 <p>Abb. <a href="#fig-lasso-l1">Abbildung&nbsp;<span>12.3</span></a> verdeutlicht den Effekt der Variablenselektion, vgl. <span class="citation" data-cites="islr">James u.&nbsp;a. (<a href="references.html#ref-islr" role="doc-biblioref">2021</a>)</span>, Kap. 6.2. Die Ellipsen um <span class="math inline">\(\hat{beta}\)</span> herum nent man Kontourlinien. Alle Punkte einer Kontourlinie haben den gleiche RSS-Wert, stehen also für eine gleichwertige OLS-Lösung.</p>
 <div id="fig-lasso-l1" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="img/6.6.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;12.3: lambda in der Lasso-Regression</figcaption><p></p>
-</figure>
+<figcaption class="figure-caption">Abbildung&nbsp;12.3: lambda in der Lasso-Regression</figcaption></figure>
 </div>
 <p>Warum erlaubt die L1-Norm Variablenselektion, die L2-Norm aber nicht? Abb. <a href="#fig-l1l2">Abbildung&nbsp;<span>12.4</span></a> verdeutlicht den Unterschied zwischen L1- und L2-Norm. Es ist eine Regression mit zwei Prädiktoren, also den zwei Koeffizienten <span class="math inline">\(\beta1, \beta_2\)</span> dargestellt.</p>
 <div id="fig-l1l2" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="img/6.8.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;12.4: Verlauf des Strafterms bei der L1-Norm (links) und der L2-Norm (rechts); pink: Test-MSE, schwarz: Bias, grün: Varianz</figcaption><p></p>
-</figure>
+<figcaption class="figure-caption">Abbildung&nbsp;12.4: Verlauf des Strafterms bei der L1-Norm (links) und der L2-Norm (rechts); pink: Test-MSE, schwarz: Bias, grün: Varianz</figcaption></figure>
 </div>
 <p>Betrachten wir zunächst das rechte Teilbild für die L2-Norm aus Abb. <a href="#fig-l1l2">Abbildung&nbsp;<span>12.4</span></a>, das in Abb. <a href="#fig-l2-penalty">Abbildung&nbsp;<span>12.5</span></a> in den Fokus gerückt wird <span class="citation" data-cites="rhys">(<a href="references.html#ref-rhys" role="doc-biblioref">Rhys 2020</a>)</span>.</p>
 <div id="fig-l2-penalty" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="img/l2-penalty.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;12.5: OLS-Fehlerkontur (blaues Oval) und Kontur des L2-Strafterms, Bildquelle: Rhys, 2020</figcaption><p></p>
-</figure>
+<figcaption class="figure-caption">Abbildung&nbsp;12.5: OLS-Fehlerkontur (blaues Oval) und Kontur des L2-Strafterms, Bildquelle: Rhys, 2020</figcaption></figure>
 </div>
 <p>Wenn lambda gleich Null ist, entspricht <span class="math inline">\(L_{L2}\)</span> genau der OLS-Lösung. Vergrößert man lambda, so liegt <span class="math inline">\(L_{L2}\)</span> dem Schnittpunkt des OLS-Kreises mit dem zugehörigen lambda-Kreis. Wie man sieht, führt eine Erhöhung von lambda zu einer Reduktion der Absolutwerte von <span class="math inline">\(\beta_1\)</span> und <span class="math inline">\(\beta_2\)</span>. Allerdings werden, wie man im Diagramm sieht, auch bei hohen lambda-Werten die Regressionskoeffizienten nicht exakt Null sein.</p>
 <p>Warum lässt die L2-Norm für bestimmte lambda-Werte den charakteristischen Kreis entstehen? Die Antwort ist, dass die Lösungen für <span class="math inline">\(\beta_1^2 + \beta_2^2=1\)</span> (mit <span class="math inline">\(\lambda=1\)</span>) graphisch als Kreis dargestellt werden können.</p>
 <p>Anders ist die Situation bei der L1-Norm, dem Lasso, vgl. Abb. <a href="#fig-l1-penalty">Abbildung&nbsp;<span>12.6</span></a>.</p>
 <div id="fig-l1-penalty" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="img/l1-penalty.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Abbildung&nbsp;12.6: OLS-Fehlerkontur (blaues Oval) und Kontur des L1-Strafterms, Bildquelle: Rhys, 2020</figcaption><p></p>
-</figure>
+<figcaption class="figure-caption">Abbildung&nbsp;12.6: OLS-Fehlerkontur (blaues Oval) und Kontur des L1-Strafterms, Bildquelle: Rhys, 2020</figcaption></figure>
 </div>
 <p>Eine Erhöhung von $ führt aufgrund der charakteristischen Kontourlinie zu einem Schnittpunkt (von OLS-Lösung und lambda-Wert), der - wenn lambda groß genug ist, stets auf einer der beiden Achsen liegt, also zu einer Nullsetzung des Parameters führt.</p>
 <p>Damit kann man argumentieren, dass das Lasso implizit davon ausgeht, dass einige Koeffizienten in Wirklichkeit <em>exakt Null</em> sind, die L2-Norm aber nicht.</p>

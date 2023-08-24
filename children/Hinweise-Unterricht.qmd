@@ -25,13 +25,13 @@
 
 ### Organisatorisches
 
-- Bitte laden Sie sich rechtzeitig die Materialien herunter.
-- Beachten Sie die Vorbereitungshinweise zur ersten Unterrichtsstunde und für die einzelnen Termine.
-- Ein Foliensatz kann kein Lehrbuch ersetzen; falls Sie bei einem Termin gefehlt haben oder Ihre Aufzeichnung lückenhaft ist, lesen Sie bitte in der Literatur nach oder bitten Sie eine/n Kommiliton/in um Hilfe. 
-- Beachten Sie die Hinweise der Hochschule (s. Moodle) wie die Orientierungshilfe, die Klausur- und Studiengangsordnungen. Dort finden Sie verbindliche Hinweise zu vielen organisatorischen Fragen.
-- Bitte prüfen Sie jetzt schon und in regelmäßigen Abständen die Modulseite auf neue Materialien. 
-- Nachdem eine Unterrichtseinheit abgeschlossen ist, ändert der Dozent grundsätzlich nichts mehr an den Materialien (in Ausnahmefällen wie etwa der Korrektur eines Fehler informiert der Dozent schriftlich).
-- Es können sich Aktualisierungen des Unterrichtsmaterials ergeben. Bitte prüfen Sie regelmäßig, ob neues Material eingestellt ist. Nachdem der Unterricht stattgefunden hat, wird das Material aber nicht mehr geändert, so dass Sie Sicherheit für das Lernen haben.
+- Bitte *laden* Sie sich rechtzeitig die Materialien *herunter.*
+- Beachten Sie die *Vorbereitungshinweise* zur ersten Unterrichtsstunde und für die einzelnen Termine.
+- Kenntnis der *vorzubereitenden Inhalte* wird im Unterricht pro Kapitel und für die Prüfung vorausgsetzt.
+- Ein Foliensatz kann kein Lehrbuch ersetzen; falls Sie bei einem Termin gefehlt haben oder Ihre *Aufzeichnung lückenhaft* ist, lesen Sie bitte in der Literatur nach oder bitten Sie eine/n Kommiliton/in um Hilfe. 
+- Es kann sinnvoll sein, sich während der Vorlesung *Notizen* zu den Erläuterungen des Dozenten zu machen.
+- Beachten Sie die Hinweise der Hochschule (s. Moodle) wie die Orientierungshilfe, die Klausur- und *Studiengangsordnungen*. Dort finden Sie verbindliche Hinweise zu vielen organisatorischen Fragen.
+- Es können sich *Aktualisierungen* des Unterrichtsmaterials ergeben. Bitte prüfen Sie regelmäßig, ob neues Material eingestellt ist. Nachdem der Unterricht stattgefunden hat, wird das Material aber nicht mehr geändert, so dass Sie Sicherheit für das Lernen haben.
 
 
 ### Präsenzunterricht
@@ -63,7 +63,10 @@
 - Aufnahmen des Unterrichts durch die Studentis sind nicht erlaubt.
 
 
-### IT allgemein
+
+### IT
+
+#### IT allgemein
 
 - Sie benötigen einen *Computer* für diesen Kurs. Ein Laptop ist ideal (ein günstiges Modell ist vollkommen ausreichend); ein Tablett ist nicht ideal, reicht aber zur Not, wenn Sie eine Tastatur für das Gerät haben.
 - Sorgen Sie dafür, dass Sie in jeder Stunde über eine gute *Internetverbindung* verfügen.
@@ -76,7 +79,7 @@
 
 
 
-### Software: R und Friends
+#### Software: R und Friends
 
 - Stellen Sie sicher, dass Sie die jeweils aktuelle Version für die in diesem Kurs verwendete Software verwenden (z.B. bei Zoom gibt es viele Aktualisierungen).
 - Updaten Sie ggf. R, RStudio und Ihre R-Pakete.
@@ -98,6 +101,7 @@
 
 ### Videokonferenzen
 
+#### Algemein
 
 - Ihr Dozent informiert Sie, ob Videokonferenzen in diesem Modul angeboten werden.
 - Für Videokonferenzen/Webinare in diesem Modul wird die Software Zoom verwendet.
@@ -117,11 +121,12 @@
 - Aus Sicherheitsgründen kann eine Zoom-Konferenz auf Ihre "offizielle" E-Mail-Adresse (der Hochschule) begrenzt sein. Mit einer anderen, potenziell anonymen E-Mail-Adresse, können Sie also u.U. nicht teilnehmen.
 
 
-### Streaming
+#### Streaming
 
 In einigen Kursen wird Präsenzunterricht plus Streaming angeboten.
 In diesem Fall gelten folgende Hinweise:
 
+- Melden Sie sich zu Beginn der Stunde, wenn Sie merken, dass der Ton schwer zu verstehen ist (z.B. über das Mikro).
 - Wenn die Teilnehmerzahl am Kurs geringer ist als die Raumkapazität (z.B. weniger als 80 Teilnehmis), so haben Sie stets freie Wahl, ob Sie in Präsenz beiwohnen oder den Unterricht online verfolgen. 
 - Übersteigt die Teilnehmerzahl am Kurs die Raumkapazität bis zum Doppelten (z.B. 160 Teilnehmis bei 80 Plätzen), so findet der Präsenzunterricht zweizügig statt. In der 1. Woche können alle Studentis des Zugs A zum Präsenunterricht kommen; in Woche 2 können alle Studentis des Zugs B zum Präsenzunterricht kommen. Wer nicht für Präsenz eingeteilt ist, kann dem Unterricht online folgen. Auch wer in Präsenz eingeteilt ist, kann dem Unterricht jederzeit online folgen. Auch wer nicht für Präsenz eingeteilt ist, kann zum Präsenzunterricht kommen, FALLS es freie Plätze gibt: Kommen Sie einfach zum Hörsaal, wenn es freie Plätze gibt, sind Sie herzlich willkommen (es gilt: first come, first serve).
 - Sie müssen sich nicht anmelden für Präsenz oder Online.
@@ -143,7 +148,7 @@ In diesem Fall gelten folgende Hinweise:
 ### Wenn der Unterricht ausfällt
 
 - Im Krankheitsfall werden Sie möglichst frühzeitig informiert (via Moodle); das kann bedeuten, dass Sie am Morgen eine Nachricht bekommen, dass der Unterricht des jeweiligen Tages ausfällt.
-- Leider muss der Unterricht in einigen Fällen aufgrund anderer Dienstverpflichtungen des Dozenten entfallen; ein Beispiel sind Berungskomissionen (Auswahlgespräche für neu einzustellende Professor:innen).
+- Leider muss der Unterricht in einigen Fällen aufgrund anderer Dienstverpflichtungen des Dozenten entfallen; ein Beispiel sind Berufungskomissionen (Auswahlgespräche für neu einzustellende Professor:innen).
 - Aufgrund gesetzlicher Feiertage sowie hochschulweit geltenden lehrfreien Tagen fallen jedes Semester einige Tage für den Unterricht aus. Bitte informieren Sie sich auf der zentralen Hochschulseite dazu.
 - Falls der Unterricht ausfällt, heißt das *nicht*, dass der für die jeweilige Woche geplante Stoff obsolet ist. Viel mehr ist Ihre Pflicht, den Stoff selbständig zu erarbeiten. Natürlich können Sie bei Fragen jederzeit Ihren Dozenten kontaktieren.
 
